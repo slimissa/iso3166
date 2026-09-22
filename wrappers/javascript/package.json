@@ -1,0 +1,26 @@
+{
+  "name": "iso3166-registry",
+  "version": "0.1.0",
+  "description": "A canonical, versioned, machine-readable registry of ISO 3166 country codes.",
+  "license": "Apache-2.0",
+  "author": "Le P'tit <slimissabara@gmail.com>",
+  "homepage": "https://github.com/slimissa/iso3166",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slimissa/iso3166.git",
+    "directory": "wrappers/javascript"
+  },
+  "keywords": ["iso3166", "countries", "registry", "quantos"],
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "iso3166.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
