@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Thin wrapper around tools/iso3166_cli.py.
+# Phase 6 replaces this with a proper console_scripts entry point
+# installed by the Python wrapper package.
+set -euo pipefail
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec python3 "$here/tools/iso3166_cli.py" "$@"
