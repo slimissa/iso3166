@@ -1,0 +1,13 @@
+# Development and tool-time dependencies for the ISO 3166 registry.
+#
+# These are NOT runtime dependencies of the registry data. The JSON file
+# has no runtime dependencies; these are needed to regenerate and validate
+# the derived artifacts.
+#
+# Install:
+#   python3 -m venv .venv
+#   source .venv/bin/activate
+#   pip install -r requirements-dev.txt
+
+jsonschema>=4.20
+pyarrow>=15.0
