@@ -331,7 +331,7 @@ impl CountryRegistry {
             .filter(|c| {
                 c.currency_codes
                     .as_ref()
-                    .map_or(false, |v| v.iter().any(|x| x == &target))
+                    .is_some_and(|v| v.iter().any(|x| x == &target))
             })
             .collect()
     }
@@ -344,7 +344,7 @@ impl CountryRegistry {
             .filter(|c| {
                 c.region
                     .as_ref()
-                    .map_or(false, |r| r.to_ascii_lowercase() == target)
+                    .is_some_and(|r| r.to_ascii_lowercase() == target)
             })
             .collect()
     }
@@ -357,7 +357,7 @@ impl CountryRegistry {
             .filter(|c| {
                 c.subregion
                     .as_ref()
-                    .map_or(false, |r| r.to_ascii_lowercase() == target)
+                    .is_some_and(|r| r.to_ascii_lowercase() == target)
             })
             .collect()
     }
