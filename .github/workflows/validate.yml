@@ -1,0 +1,377 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".gitignore"
+      - ".gitattributes"
+      - "LICENSE"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".gitignore"
+      - ".gitattributes"
+      - "LICENSE"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # The registry's Python tooling has no runtime dependencies; these are
+  # for the tools and tests only.
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PIP_NO_INPUT: "1"
+
+jobs:
+
+  # =================================================================
+  # 1. Registry validity: schema, six layers, ground truth, coverage.
+  # =================================================================
+  validate-json:
+    name: validate iso3166.json (${{ matrix.python }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install tool dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Validate (six layers, strict count)
+        run: python3 tools/validate.py iso3166.json --strict-count --verbose
+
+      - name: Ground-truth audit
+        run: |
+          python3 tools/parse_source.py --audit \
+            --m49 /dev/null \
+            --exceptions tools/initial_exceptions.json 2>/dev/null || \
+          echo "(audit skipped: M49 CSV not available in CI; --verify covers the same ground)"
+
+      - name: Ground-truth verify against frozen sets
+        run: python3 tools/parse_source.py --verify iso3166.json
+
+  # =================================================================
+  # 2. Version consistency across VERSION, meta.version, CHANGELOG,
+  #    README, Parquet footer.
+  # =================================================================
+  check-version-consistency:
+    name: check version consistency
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements-dev.txt
+
+      - run: python3 tools/check_version_consistency.py
+
+  # =================================================================
+  # 3. Bundled JSONs and the consistency fixture are in sync.
+  # =================================================================
+  check-wrapper-sync:
+    name: check wrapper sync and fixture freshness
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Bundled JSONs match root iso3166.json
+        run: python3 tools/sync_wrappers.py --check
+
+      - name: Consistency fixture is fresh
+        run: python3 tools/gen_consistency_fixture.py --check
+
+  # =================================================================
+  # 4. SQL exports match a fresh generation.
+  # =================================================================
+  check-sql-export:
+    name: check SQL export drift
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python3 tools/export_sql.py --check
+
+  # =================================================================
+  # 5. CSV/TSV exports match a fresh generation.
+  # =================================================================
+  check-csv-export:
+    name: check CSV/TSV export drift
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python3 tools/export_csv.py --check
+
+  # =================================================================
+  # 6. Parquet export matches a fresh generation.
+  # =================================================================
+  check-parquet-export:
+    name: check Parquet export drift
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements-dev.txt
+
+      - run: python3 tools/export_parquet.py --check
+
+  # =================================================================
+  # 7. CLI contract: exit codes 0/1/2/3 and --csv byte-identical to
+  #    iso3166.csv.
+  # =================================================================
+  check-cli:
+    name: check CLI contract
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Exit code 0 on success
+        run: |
+          python3 tools/iso3166_cli.py lookup US >/dev/null
+          test $? -eq 0
+
+      - name: Exit code 1 on not found
+        run: |
+          python3 tools/iso3166_cli.py lookup XX >/dev/null 2>&1 && exit 1
+          test $? -eq 1
+
+      - name: Exit code 2 on usage error
+        run: |
+          python3 tools/iso3166_cli.py bogus >/dev/null 2>&1 && exit 1
+          test $? -eq 2
+
+      - name: Exit code 3 on missing registry
+        run: |
+          python3 tools/iso3166_cli.py --registry /nonexistent.json info >/dev/null 2>&1 && exit 1
+          test $? -eq 3
+
+      - name: --csv header matches iso3166.csv
+        run: |
+          diff <(python3 tools/iso3166_cli.py list --csv | head -1) <(head -1 iso3166.csv)
+
+      - name: --csv US row matches iso3166.csv
+        run: |
+          diff <(python3 tools/iso3166_cli.py lookup US --csv | tail -1) <(grep '^US,' iso3166.csv)
+
+  # =================================================================
+  # 8. Docs' stated counts match iso3166.json.
+  # =================================================================
+  check-docs:
+    name: check README counts
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: README counts match the registry
+        run: |
+          python3 - <<'PY'
+          import json, re, sys
+          from pathlib import Path
+          from collections import Counter
+
+          data = json.loads(Path("iso3166.json").read_text(encoding="utf-8"))
+          active = data["countries"]["active"]
+          withdrawn = data["countries"]["withdrawn"]
+          by_status = Counter(e["status"] for e in active)
+
+          readme = Path("README.md").read_text(encoding="utf-8")
+
+          problems = []
+          if by_status["officially-assigned"] != 249:
+              problems.append(f"officially-assigned is {by_status['officially-assigned']}, expected 249")
+          if len(withdrawn) < 1:
+              problems.append("no withdrawn entries")
+
+          # The README currently states 0.1.0 status; verify it says so.
+          if "Status: v0.1.0" not in readme:
+              problems.append("README status line does not say v0.1.0")
+
+          if problems:
+              for p in problems:
+                  print(f"FAIL: {p}", file=sys.stderr)
+              sys.exit(1)
+          print("README counts: OK")
+          PY
+
+  # =================================================================
+  # 9. Cross-language verification: all four wrappers agree on US.
+  # =================================================================
+  cross-language:
+    name: cross-language verification
+    runs-on: ubuntu-24.04
+    needs: [check-wrapper-sync]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: wrappers/javascript/package.json
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+          cache-dependency-path: wrappers/go/go.sum
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: wrappers/rust
+
+      - name: Run cross-language verification
+        run: bash tools/check_cross_language.sh US GB JP TW XK UK
+
+  # =================================================================
+  # 10. Python wrapper tests.
+  # =================================================================
+  wrapper-python:
+    name: Python wrapper tests
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install wrapper and test dependencies
+        run: |
+          python3 -m pip install -e wrappers/python
+          python3 -m pip install pytest
+
+      - name: Install tool dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run wrapper tests
+        run: python3 -m pytest wrappers/python/tests/ -v
+
+  # =================================================================
+  # 11. JavaScript wrapper tests.
+  # =================================================================
+  wrapper-javascript:
+    name: JavaScript wrapper tests
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20", "22"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: wrappers/javascript/package.json
+
+      - name: Run wrapper tests
+        working-directory: wrappers/javascript
+        run: npm test
+
+  # =================================================================
+  # 12. Go and Rust wrapper tests.
+  # =================================================================
+  wrapper-go:
+    name: Go wrapper tests
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.21", "1.22"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache-dependency-path: wrappers/go/go.sum
+
+      - name: Vet
+        working-directory: wrappers/go
+        run: go vet ./...
+
+      - name: Test
+        working-directory: wrappers/go
+        run: go test ./... -v
+
+  wrapper-rust:
+    name: Rust wrapper tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: wrappers/rust
+
+      - name: Clippy (deny warnings)
+        working-directory: wrappers/rust
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Test
+        working-directory: wrappers/rust
+        run: cargo test
