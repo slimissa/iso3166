@@ -88,27 +88,39 @@ def read_registry_version() -> str:
 
 
 def read_changelog_top(version: str) -> tuple[str | None, str | None]:
-    """Return (heading_value, error_message). heading_value may be None."""
+    """Return (matched_heading, error_message).
+
+    Keep a Changelog keeps [Unreleased] at the top of the file forever.
+    The check therefore looks for a heading whose value equals VERSION
+    anywhere in the file. Before the first release (VERSION < 1.0.0),
+    [Unreleased] is accepted in place of a version heading.
+
+    Returns the matched heading value on success, or (None, message) on
+    failure.
+    """
     if not CHANGELOG.exists():
         return None, f"{CHANGELOG}: not found"
 
     text = CHANGELOG.read_text(encoding="utf-8")
-    m = CHANGELOG_HEADING_RE.search(text)
-    if not m:
-        return None, f"{CHANGELOG}: no top [x.y.z] or [Unreleased] heading"
 
-    heading = m.group(1)
+    headings = CHANGELOG_HEADING_RE.findall(text)
+    if not headings:
+        return None, f"{CHANGELOG}: no [x.y.z] or [Unreleased] headings"
 
-    if heading == "Unreleased":
-        major = int(version.split(".", 1)[0])
-        if major < 1:
-            return "Unreleased", None
-        return None, (
-            f"{CHANGELOG}: top heading is [Unreleased] but VERSION is {version} "
-            f"(>= 1.0.0). Rename the top heading or move it below the release."
-        )
+    # Prefer a heading that matches VERSION exactly.
+    if version in headings:
+        return version, None
 
-    return heading, None
+    # Pre-release: [Unreleased] is acceptable if VERSION is still 0.x.y.
+    major = int(version.split(".", 1)[0])
+    if major < 1 and "Unreleased" in headings:
+        return "Unreleased", None
+
+    return None, (
+        f"{CHANGELOG}: no heading matching VERSION ({version}). "
+        f"Found headings: {headings}. "
+        f"Add '## [{version}]' to CHANGELOG.md."
+    )
 
 
 def read_readme_version() -> str | None:
@@ -165,14 +177,14 @@ def run() -> tuple[int, dict[str, Any]]:
         results["mismatches"].append(changelog_err)
     elif changelog_value == "Unreleased":
         results["notes"].append(
-            f"CHANGELOG top heading is [Unreleased]; VERSION is {version} < 1.0.0 "
+            f"CHANGELOG has [Unreleased]; VERSION is {version} < 1.0.0 "
             f"(pre-release, accepted)"
         )
     elif changelog_value == version:
-        results["matches"].append(f"CHANGELOG top heading == VERSION ({version})")
+        results["matches"].append(f"CHANGELOG contains [ {version} ]")
     else:
         results["mismatches"].append(
-            f"CHANGELOG top heading ({changelog_value}) != VERSION ({version})"
+            f"CHANGELOG heading ({changelog_value}) != VERSION ({version})"
         )
 
     readme_v = read_readme_version()

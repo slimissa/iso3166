@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
-## [0.1.0] — 2026-09-22
+## [1.0.0] — 2026-09-22
 
 Foundation. Registry data, schema, validator, exports, CLI, four
 language wrappers, and CI.
@@ -65,5 +65,5 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/slimissa/iso3166/releases/tag/v0.1.0
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/slimissa/iso3166/releases/tag/v1.0.0

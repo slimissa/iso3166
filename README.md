@@ -7,7 +7,7 @@ One JSON file. Zero runtime dependencies. Four language wrappers.
 [![Validate](https://github.com/slimissa/iso3166/actions/workflows/validate.yml/badge.svg)](https://github.com/slimissa/iso3166/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Schema](https://img.shields.io/badge/schema-1.0.0-green.svg)](./schema.json)
-[![Registry](https://img.shields.io/badge/registry-0.1.0-orange.svg)](./iso3166.json)
+[![Registry](https://img.shields.io/badge/registry-1.0.0-orange.svg)](./iso3166.json)
 
 ---
 
