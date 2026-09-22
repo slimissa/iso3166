@@ -270,6 +270,23 @@ jobs:
           PY
 
   # =================================================================
+  # 8b. Every officially-assigned entry has an official_name, sourced
+  #     per-entry. This is the v1.0.1 data-completeness gate.
+  # =================================================================
+  check-official-name:
+    name: check official_name completeness
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: All officially-assigned entries have official_name
+        run: python3 tools/enrich_official_name.py --check
+
+  # =================================================================
   # 9. Cross-language verification: all four wrappers agree on US.
   # =================================================================
   cross-language:
