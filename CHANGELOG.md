@@ -54,7 +54,7 @@ language wrappers, and CI.
 - `wrappers/rust/` — Rust wrapper.
 - Nine distribution artifacts at the repo root: four SQL files, four
   CSV/TSV files, one Parquet file.
-- `.github/workflows/validate.yml` — 13 CI jobs.
+- `.github/workflows/validate.yml` — 14 CI jobs.
 
 ### Notes
 

@@ -10,13 +10,14 @@ From the repository:
 pip install -e wrappers/python
 ```
 
-This installs the iso3166 command and the iso3166 importable
+This installs the `iso3166` command and the `iso3166` importable
 package.
 
 Publication to PyPI is tracked for v1.2.0.
-Library
-```python
 
+## Library
+
+```python
 from iso3166 import CountryRegistry
 
 reg = CountryRegistry()
@@ -30,25 +31,28 @@ print(len(reg.search("united")))        # multiple
 print(reg.summary())
 ```
 
-active() returns None for an unknown code. Use with_alpha2() to
+`active()` returns `None` for an unknown code. Use `with_alpha2()` to
 retrieve both the active and withdrawn entries for a reassigned code
-such as AI or SK.
-CLI
-```bash
+such as `AI` or `SK`.
 
+## CLI
+
+```bash
 iso3166 lookup US
 iso3166 list --region Europe
 iso3166 info
 iso3166 validate US FR DE
 ```
 
-See the top-level README for the
+See the [top-level README](https://github.com/slimissa/iso3166) for the
 full CLI reference.
-Tests
-```bash
 
+## Tests
+
+```bash
 python3 -m pytest wrappers/python/tests/
 ```
-License
+
+## License
 
 Apache 2.0.

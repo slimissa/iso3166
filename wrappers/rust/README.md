@@ -11,12 +11,13 @@ Source-only until v1.2.0. From a checkout of this repository:
 iso3166-registry = { path = "path/to/wrappers/rust" }
 ```
 
-Or vendor the wrappers/rust directory directly.
+Or vendor the `wrappers/rust` directory directly.
 
 Publication to crates.io is tracked for v1.2.0.
-Library
-```rust
 
+## Library
+
+```rust
 use iso3166_registry::CountryRegistry;
 
 fn main() {
@@ -33,14 +34,17 @@ fn main() {
     println!("{:?}", reg.summary());
 }
 ```
-active() returns Option<&Country>; use with_alpha2() to retrieve
-both the active and withdrawn entries for a reassigned code such as
-AI or SK.
-Tests
-```bash
 
+`active()` returns `Option<&Country>`; use `with_alpha2()` to retrieve
+both the active and withdrawn entries for a reassigned code such as
+`AI` or `SK`.
+
+## Tests
+
+```bash
 cargo test
 ```
-License
+
+## License
 
 Apache 2.0.

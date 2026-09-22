@@ -14,9 +14,10 @@ Zero runtime dependencies. Requires Node 18 or newer for the built-in
 test runner (the library itself works on Node 12+).
 
 Publication to npm is tracked for v1.2.0.
-Library
-```javascript
 
+## Library
+
+```javascript
 const { CountryRegistry } = require("iso3166-registry");
 
 const reg = new CountryRegistry();
@@ -32,14 +33,16 @@ console.log(reg.search("united").length);
 console.log(reg.summary());
 ```
 
-active() returns null for an unknown code. Use withAlpha2() to
+`active()` returns `null` for an unknown code. Use `withAlpha2()` to
 retrieve both the active and withdrawn entries for a reassigned code
-such as AI or SK.
-Tests
-```bash
+such as `AI` or `SK`.
 
+## Tests
+
+```bash
 npm test
 ```
-License
+
+## License
 
 Apache 2.0.

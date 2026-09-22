@@ -9,17 +9,19 @@ Source-only until v1.2.0. From a checkout of this repository:
 ```bash
 go mod edit -replace github.com/slimissa/iso3166-go=./path/to/wrappers/go
 ```
-Or vendor the wrappers/go directory directly.
+
+Or vendor the `wrappers/go` directory directly.
 
 Publication to the Go module proxy is tracked for v1.2.0, at which
 point the module will resolve as
-github.com/slimissa/iso3166-go. Because the module lives in a
+`github.com/slimissa/iso3166-go`. Because the module lives in a
 subdirectory of the repository, the release tag will be
-wrappers/go/vX.Y.Z, following the standard convention for
+`wrappers/go/vX.Y.Z`, following the standard convention for
 subdirectory modules.
-Library
-```go
 
+## Library
+
+```go
 package main
 
 import (
@@ -47,14 +49,17 @@ func main() {
     fmt.Println(reg.Summary())
 }
 ```
-Active returns nil for an unknown code. Use WithAlpha2 to
-retrieve both the active and withdrawn entries for a reassigned code
-such as AI or SK.
-Tests
-```bash
 
+`Active` returns `nil` for an unknown code. Use `WithAlpha2` to
+retrieve both the active and withdrawn entries for a reassigned code
+such as `AI` or `SK`.
+
+## Tests
+
+```bash
 go test ./...
 ```
-License
+
+## License
 
 Apache 2.0.
