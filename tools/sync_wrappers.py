@@ -35,6 +35,8 @@ from pathlib import Path
 SOURCE = Path("iso3166.json")
 
 TARGETS = (
+    Path("wrappers/python/iso3166/iso3166.json"),
+    Path("wrappers/javascript/iso3166.json"),
     Path("wrappers/go/iso3166.json"),
     Path("wrappers/rust/iso3166.json"),
 )

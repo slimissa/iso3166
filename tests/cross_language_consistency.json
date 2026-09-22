@@ -1,0 +1,212 @@
+{
+  "_comment": "Cross-language consistency fixture. Every wrapper's test suite reads this file and asserts that its public API produces these results. Adding a language does not require editing this file; adding a test case does. Regenerate with tools/gen_consistency_fixture.py.",
+  "version": "1.0.0",
+  "lookup_alpha2": [
+    {
+      "input": "US",
+      "alpha_2": "US",
+      "alpha_3": "USA",
+      "numeric": "840",
+      "name": "United States of America",
+      "status": "officially-assigned",
+      "independent": true,
+      "region": "Americas"
+    },
+    {
+      "input": "GB",
+      "alpha_2": "GB",
+      "alpha_3": "GBR",
+      "numeric": "826",
+      "name": "United Kingdom of Great Britain and Northern Ireland",
+      "status": "officially-assigned",
+      "independent": true,
+      "region": "Europe"
+    },
+    {
+      "input": "TW",
+      "alpha_2": "TW",
+      "alpha_3": "TWN",
+      "numeric": "158",
+      "name": "Taiwan, Province of China",
+      "status": "officially-assigned",
+      "independent": false,
+      "region": null
+    },
+    {
+      "input": "XK",
+      "alpha_2": "XK",
+      "alpha_3": "XKX",
+      "numeric": "000",
+      "name": "Kosovo",
+      "status": "user-assigned",
+      "independent": true,
+      "region": null
+    },
+    {
+      "input": "UK",
+      "alpha_2": "UK",
+      "alpha_3": "UKM",
+      "numeric": "000",
+      "name": "United Kingdom (exceptionally reserved)",
+      "status": "exceptionally-reserved",
+      "independent": false,
+      "region": null
+    },
+    {
+      "input": "us",
+      "alpha_2": "US",
+      "alpha_3": "USA",
+      "numeric": "840",
+      "name": "United States of America",
+      "status": "officially-assigned",
+      "independent": true,
+      "region": "Americas"
+    }
+  ],
+  "lookup_alpha2_missing": [
+    "XX",
+    "ZZ",
+    "",
+    "USA"
+  ],
+  "lookup_alpha3": [
+    {
+      "input": "USA",
+      "alpha_2": "US"
+    },
+    {
+      "input": "GBR",
+      "alpha_2": "GB"
+    },
+    {
+      "input": "TWN",
+      "alpha_2": "TW"
+    },
+    {
+      "input": "usa",
+      "alpha_2": "US"
+    }
+  ],
+  "lookup_numeric": [
+    {
+      "input": "840",
+      "alpha_2": "US"
+    },
+    {
+      "input": "826",
+      "alpha_2": "GB"
+    },
+    {
+      "input": "158",
+      "alpha_2": "TW"
+    }
+  ],
+  "counts": {
+    "total": 267,
+    "active": 252,
+    "withdrawn": 15,
+    "by_status": {
+      "officially-assigned": 249,
+      "user-assigned": 1,
+      "exceptionally-reserved": 2,
+      "withdrawn": 15
+    }
+  },
+  "overlap_codes": {
+    "AI": [
+      "officially-assigned",
+      "withdrawn"
+    ],
+    "SK": [
+      "officially-assigned",
+      "withdrawn"
+    ]
+  },
+  "region_query": [
+    {
+      "region": "Europe",
+      "min_count": 46,
+      "must_contain": [
+        "GB",
+        "FR",
+        "DE",
+        "IT"
+      ]
+    },
+    {
+      "region": "Asia",
+      "min_count": 45,
+      "must_contain": [
+        "JP",
+        "CN",
+        "IN"
+      ]
+    },
+    {
+      "region": "Africa",
+      "min_count": 55,
+      "must_contain": [
+        "ZA",
+        "EG",
+        "NG"
+      ]
+    },
+    {
+      "region": "Americas",
+      "min_count": 52,
+      "must_contain": [
+        "US",
+        "CA",
+        "BR",
+        "MX"
+      ]
+    },
+    {
+      "region": "Oceania",
+      "min_count": 24,
+      "must_contain": [
+        "AU",
+        "NZ"
+      ]
+    }
+  ],
+  "currencies": {
+    "US": [],
+    "GB": [],
+    "JP": []
+  },
+  "countries_with": {
+    "USD": [],
+    "EUR": [],
+    "GBP": []
+  },
+  "search": [
+    {
+      "query": "united",
+      "min_count": 4,
+      "must_contain": [
+        "AE",
+        "GB",
+        "UM",
+        "US"
+      ]
+    },
+    {
+      "query": "korea",
+      "min_count": 2,
+      "must_contain": [
+        "KP",
+        "KR"
+      ]
+    },
+    {
+      "query": "guinea",
+      "min_count": 3,
+      "must_contain": [
+        "GN",
+        "GW",
+        "PG"
+      ]
+    }
+  ]
+}

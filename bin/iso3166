@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-# Thin wrapper around tools/iso3166_cli.py.
-# Phase 6 replaces this with a proper console_scripts entry point
-# installed by the Python wrapper package.
+# Run the iso3166 CLI. Prefers an installed console script; falls back
+# to running the wrapper module from the repo without installation.
 set -euo pipefail
+
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+if command -v iso3166 >/dev/null 2>&1 && [ "$(command -v iso3166)" != "$here/bin/iso3166" ]; then
+    exec iso3166 "$@"
+fi
+
+# Fall back to the wrapper without installation.
 exec python3 "$here/tools/iso3166_cli.py" "$@"
