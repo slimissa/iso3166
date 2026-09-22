@@ -99,26 +99,36 @@ class RegistryError(Exception):
 
 
 def resolve_registry_path(explicit: Path | None) -> Path:
-    """Return the path to the registry, following the documented order."""
-    candidates: list[Path] = []
+    """Return the path to the registry, following the documented order.
 
+    An explicit path (--registry or $ISO3166_REGISTRY) must exist; there
+    is no fallback, because silently loading a different file than the
+    caller named is worse than failing. Only when neither is set does the
+    function fall back to ./iso3166.json and then <repo>/iso3166.json.
+    """
     if explicit is not None:
-        candidates.append(explicit)
+        if not explicit.exists():
+            raise RegistryError(f"registry not found: {explicit}")
+        return explicit
 
     env = os.environ.get("ISO3166_REGISTRY")
     if env:
-        candidates.append(Path(env))
+        env_path = Path(env)
+        if not env_path.exists():
+            raise RegistryError(
+                f"$ISO3166_REGISTRY points at a missing file: {env_path}"
+            )
+        return env_path
 
-    candidates.append(Path("iso3166.json"))
-    candidates.append(Path(__file__).resolve().parent.parent / "iso3166.json")
-
-    for c in candidates:
+    here = Path(__file__).resolve().parent.parent / "iso3166.json"
+    for c in (Path("iso3166.json"), here):
         if c.exists():
             return c
 
-    joined = "\n  ".join(str(c) for c in candidates)
     raise RegistryError(
-        "registry file not found. Tried:\n  " + joined + "\n"
+        "registry file not found. Tried:\n"
+        "  ./iso3166.json\n"
+        f"  {here}\n"
         "Set --registry PATH or $ISO3166_REGISTRY."
     )
 
@@ -555,30 +565,43 @@ def cmd_search(reg, args) -> int:
 # Argparse
 # ============================================================
 
-def add_common_args(p: argparse.ArgumentParser) -> None:
-    """Add flags that are valid before or after the subcommand."""
-    p.add_argument("--registry", type=Path, default=None,
+def add_common_args(
+    p: argparse.ArgumentParser,
+    *,
+    suppress_defaults: bool = False,
+) -> None:
+    """Add flags valid before or after the subcommand.
+
+    When suppress_defaults is True (used on subparsers), the defaults are
+    argparse.SUPPRESS so the subparser does not overwrite values already
+    set by the parent parser. main() fills in the real defaults for
+    anything left unset.
+    """
+    d_none = argparse.SUPPRESS if suppress_defaults else None
+    d_false = argparse.SUPPRESS if suppress_defaults else False
+
+    p.add_argument("--registry", type=Path, default=d_none,
                    help="Path to iso3166.json. Defaults to $ISO3166_REGISTRY, "
                         "then ./iso3166.json, then <repo>/iso3166.json.")
-    p.add_argument("--color", choices=["never", "auto", "always"], default=None,
+    p.add_argument("--color", choices=["never", "auto", "always"], default=d_none,
                    help="Control ANSI color. Defaults to $ISO3166_COLOR, then auto.")
 
     g = p.add_mutually_exclusive_group()
-    g.add_argument("--json", action="store_true",
+    g.add_argument("--json", action="store_true", default=d_false,
                    help="Emit JSON. Single object for lookup/info; array otherwise.")
-    g.add_argument("--jsonl", action="store_true",
+    g.add_argument("--jsonl", action="store_true", default=d_false,
                    help="Emit newline-delimited JSON, one object per line.")
-    g.add_argument("--csv", action="store_true",
+    g.add_argument("--csv", action="store_true", default=d_false,
                    help="Emit CSV with the same columns as iso3166.csv.")
-    g.add_argument("--tsv", action="store_true",
+    g.add_argument("--tsv", action="store_true", default=d_false,
                    help="Emit tab-delimited values with the same columns as iso3166.csv.")
-    g.add_argument("--raw", metavar="FIELD",
+    g.add_argument("--raw", metavar="FIELD", default=d_none,
                    help="Emit bare values for one field, one per line.")
 
 
 def build_parser() -> argparse.ArgumentParser:
     common = argparse.ArgumentParser(add_help=False)
-    add_common_args(common)
+    add_common_args(common, suppress_defaults=True)
 
     p = argparse.ArgumentParser(
         prog="iso3166",
@@ -641,9 +664,39 @@ def build_parser() -> argparse.ArgumentParser:
 # Entry point
 # ============================================================
 
+_COMMON_DEFAULTS = (
+    ("registry", None),
+    ("color", None),
+    ("json", False),
+    ("jsonl", False),
+    ("csv", False),
+    ("tsv", False),
+    ("raw", None),
+)
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+
+    # The subparsers carry argparse.SUPPRESS defaults for the common flags
+    # (see add_common_args) so they do not clobber values set by the parent
+    # parser. Anything left unset gets its real default here.
+    for attr, default in _COMMON_DEFAULTS:
+        if not hasattr(args, attr):
+            setattr(args, attr, default)
+
+    # The parent and the subparser each have a mutually exclusive group
+    # for the output modes, but they cannot see each other. Catch the
+    # cross-parser case here.
+    modes = [m for m in ("json", "jsonl", "csv", "tsv") if getattr(args, m, False)]
+    if len(modes) > 1:
+        print(
+            "error: output modes are mutually exclusive; got "
+            + ", ".join("--" + m for m in modes),
+            file=sys.stderr,
+        )
+        return EXIT_USAGE
 
     if args.raw and args.raw not in VALID_RAW_FIELDS and args.command != "validate":
         print(
