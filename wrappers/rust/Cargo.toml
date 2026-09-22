@@ -1,0 +1,25 @@
+[package]
+name = "iso3166-registry"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+description = "A canonical, versioned, machine-readable registry of ISO 3166 country codes."
+license = "Apache-2.0"
+authors = ["Le P'tit <slimissabara@gmail.com>"]
+homepage = "https://github.com/slimissa/iso3166"
+repository = "https://github.com/slimissa/iso3166"
+keywords = ["iso3166", "countries", "registry", "quantos"]
+categories = ["data-structures", "internationalization"]
+readme = "README.md"
+
+[lib]
+name = "iso3166_registry"
+path = "src/lib.rs"
+
+[[bin]]
+name = "lookup"
+path = "src/bin/lookup.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
