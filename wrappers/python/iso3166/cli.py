@@ -84,10 +84,33 @@ VALID_RAW_FIELDS = frozenset({
     "note", "last_verified", "withdrawal_date", "replaced_by",
 })
 
-# Import the CSV column contract so --csv output is byte-compatible
-# with iso3166.csv. Both files live in tools/.
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from export_csv import COLUMNS as CSV_COLUMNS, render_row as csv_render_row  # noqa: E402
+# The CSV column contract, identical to tools/export_csv.py's COLUMNS.
+# Defined here so the wrapper is self-contained; the two are kept in
+# sync by a cross-language test that reads
+# tests/cross_language_consistency.json and by tools/export_csv.py's
+# own --check.
+CSV_COLUMNS = (
+    "alpha_2", "alpha_3", "numeric", "name", "status", "independent",
+    "official_name", "region", "subregion", "intermediate_region",
+    "currency_codes", "calling_codes", "tlds", "languages", "borders",
+    "note", "last_verified", "withdrawal_date", "replaced_by",
+)
+
+
+def csv_render_row(entry):
+    """Render one registry entry as a row of strings, matching iso3166.csv."""
+    out = []
+    for col in CSV_COLUMNS:
+        v = entry.get(col)
+        if v is None:
+            out.append("")
+        elif isinstance(v, bool):
+            out.append("true" if v else "false")
+        elif isinstance(v, list):
+            out.append("|".join(str(x) for x in v) if v else "")
+        else:
+            out.append(str(v))
+    return out
 
 
 # ============================================================
@@ -120,15 +143,15 @@ def resolve_registry_path(explicit: Path | None) -> Path:
             )
         return env_path
 
-    here = Path(__file__).resolve().parent.parent / "iso3166.json"
-    for c in (Path("iso3166.json"), here):
+    bundled = Path(__file__).resolve().parent / "iso3166.json"
+    for c in (bundled, Path("iso3166.json")):
         if c.exists():
             return c
 
     raise RegistryError(
         "registry file not found. Tried:\n"
+        f"  {bundled}\n"
         "  ./iso3166.json\n"
-        f"  {here}\n"
         "Set --registry PATH or $ISO3166_REGISTRY."
     )
 
