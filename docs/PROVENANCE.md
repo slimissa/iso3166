@@ -103,3 +103,21 @@ Any discrepancy between sources is recorded here, with the resolution.
 |------|-------------|------------|
 | 2026-09-22 | UN M49 omits `TW` (Taiwan). ISO 3166-1 assigns it. | `TW` supplied manually via `tools/initial_exceptions.json`, sourced from the ISO 3166-1 official list, with the omission noted in the entry's `note` field. |
 
+
+## Snapshot policy
+
+`tools/iso4217_snapshot.json` is a committed extract of the ISO 4217
+registry: alpha currency codes only. It exists so that the
+cross-reference validation layer can check `currency_codes`
+references without a runtime dependency on the sibling repository.
+
+As of v1.0.1, `tools/validate.py` treats a missing snapshot as a FAIL
+rather than a WARN. The `--allow-missing-snapshot` flag restores the
+v1.0.0 WARN behavior for forks and downstream repositories that
+legitimately do not ship the snapshot. Recorded in decision D5.
+
+Refresh procedure: `tools/gen_iso4217_snapshot.py --source PATH`,
+run manually on every ISO 4217 release. The snapshot's `meta` block
+records the source version and date. Synthetic codes (for example
+`MXN_OLD`) are filtered out; the snapshot contains only codes
+matching `^[A-Z]{3}$`.
