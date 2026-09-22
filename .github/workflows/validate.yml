@@ -89,6 +89,68 @@ jobs:
       - run: python3 tools/check_version_consistency.py
 
   # =================================================================
+  # 2b. The ISO 4217 snapshot is well-formed. (Advisory in v1.0.0:
+  #     the snapshot is a committed extract, and CI cannot verify it
+  #     against the live ISO 4217 registry without network access.
+  #     The full source-vs-snapshot check runs manually via
+  #     tools/gen_iso4217_snapshot.py --check --source PATH.)
+  # =================================================================
+  check-iso4217-snapshot:
+    name: check ISO 4217 snapshot well-formedness
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Snapshot parses and counts agree
+        run: |
+          python3 - <<'PY'
+          import json, re, sys
+          from pathlib import Path
+
+          p = Path("tools/iso4217_snapshot.json")
+          if not p.exists():
+              print("FAIL: tools/iso4217_snapshot.json missing", file=sys.stderr)
+              sys.exit(1)
+
+          data = json.loads(p.read_text(encoding="utf-8"))
+          active = data.get("active", [])
+          withdrawn = data.get("withdrawn", [])
+          meta = data.get("meta", {})
+
+          problems = []
+          if meta.get("count_active") != len(active):
+              problems.append(
+                  f"meta.count_active is {meta.get('count_active')}, "
+                  f"len(active) is {len(active)}"
+              )
+          if meta.get("count_withdrawn") != len(withdrawn):
+              problems.append(
+                  f"meta.count_withdrawn is {meta.get('count_withdrawn')}, "
+                  f"len(withdrawn) is {len(withdrawn)}"
+              )
+
+          pattern = re.compile(r"^[A-Z]{3}$")
+          for code in active + withdrawn:
+              if not pattern.match(code):
+                  problems.append(f"bad currency code: {code!r}")
+
+          if len(set(active)) != len(active):
+              problems.append("duplicate entries in active")
+          if len(set(withdrawn)) != len(withdrawn):
+              problems.append("duplicate entries in withdrawn")
+
+          if problems:
+              for pr in problems:
+                  print(f"FAIL: {pr}", file=sys.stderr)
+              sys.exit(1)
+          print(f"OK: {len(active)} active, {len(withdrawn)} withdrawn, all well-formed")
+          PY
+
+  # =================================================================
   # 3. Bundled JSONs and the consistency fixture are in sync.
   # =================================================================
   check-wrapper-sync:

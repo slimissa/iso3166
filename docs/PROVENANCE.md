@@ -12,6 +12,7 @@ procedure, and the known gaps in v1.0.0.
 | `region`, `subregion`, `intermediate_region` | UN M49 | https://unstats.un.org/unsd/methodology/m49/ |
 | `withdrawal_date`, `replaced_by` | ISO 3166-3:2013 | https://www.iso.org/standard/63545.html |
 | `currency_codes` (future) | ISO 4217, via committed snapshot | https://github.com/slimissa/iso4217 |
+| `tools/iso4217_snapshot.json` | ISO 4217, regenerated from the sibling registry | https://github.com/slimissa/iso4217 |
 | `tlds` (future) | IANA ccTLD registry | https://www.iana.org/domains/root/db |
 | `calling_codes` (future) | ITU-T E.164 | https://www.itu.int/ |
 | `languages` (future) | ISO 639-3 | https://iso639-3.sil.org/ |
