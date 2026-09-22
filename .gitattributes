@@ -1,0 +1,17 @@
+# Force LF line endings for all text artifacts, regardless of platform.
+# The generated exports must be byte-identical across checkouts, and
+# CRLF would break --check on Windows.
+
+*.json  text eol=lf
+*.md    text eol=lf
+*.py    text eol=lf
+*.sql   text eol=lf
+*.csv   text eol=lf
+*.tsv   text eol=lf
+*.toml  text eol=lf
+*.sh    text eol=lf
+*.go    text eol=lf
+*.rs    text eol=lf
+
+# Parquet is binary; never convert.
+*.parquet binary
