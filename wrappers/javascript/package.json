@@ -10,7 +10,12 @@
     "url": "git+https://github.com/slimissa/iso3166.git",
     "directory": "wrappers/javascript"
   },
-  "keywords": ["iso3166", "countries", "registry", "quantos"],
+  "keywords": [
+    "iso3166",
+    "countries",
+    "registry",
+    "quantos"
+  ],
   "main": "index.js",
   "files": [
     "index.js",
@@ -21,6 +26,6 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node --test test/"
+    "test": "node --test"
   }
 }
