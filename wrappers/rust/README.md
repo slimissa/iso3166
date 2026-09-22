@@ -4,15 +4,18 @@ Rust wrapper for the [ISO 3166 country registry](https://github.com/slimissa/iso
 
 ## Install
 
-Until the crate is published (v1.2.0), depend on the repository:
+Source-only until v1.2.0. From a checkout of this repository:
 
 ```toml
 [dependencies]
 iso3166-registry = { path = "path/to/wrappers/rust" }
+```
 
-or vendor it.
+Or vendor the wrappers/rust directory directly.
+
+Publication to crates.io is tracked for v1.2.0.
 Library
-rust
+```rust
 
 use iso3166_registry::CountryRegistry;
 
@@ -29,15 +32,15 @@ fn main() {
     println!("{}", reg.search("united").len());
     println!("{:?}", reg.summary());
 }
-
+```
 active() returns Option<&Country>; use with_alpha2() to retrieve
 both the active and withdrawn entries for a reassigned code such as
 AI or SK.
 Tests
-bash
+```bash
 
 cargo test
-
+```
 License
 
 Apache 2.0.
