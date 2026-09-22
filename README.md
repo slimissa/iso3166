@@ -31,40 +31,35 @@ a parser.
 
 ```bash
 curl -O https://raw.githubusercontent.com/slimissa/iso3166/main/iso3166.json
-```
 
 Python
-
-```bash
+bash
 
 pip install -e wrappers/python
-```
 
-```python
+python
 
 from iso3166 import CountryRegistry
 
 reg = CountryRegistry()
 us = reg.active("US")
-print(us.alpha_3, us.name)    # USA United States of America
-print(reg.by_numeric("840").alpha_2)  # US
-print(len(reg.region("Europe")))      # number of European entries
-```
+print(us.alpha_3, us.name)             # USA United States of America
+print(reg.by_numeric("840").alpha_2)   # US
+print(len(reg.region("Europe")))       # number of European entries
 
 JavaScript
-```bash
-npm install ./wrappers/javascript
-```
+bash
 
-```javascript
+npm install ./wrappers/javascript
+
+javascript
+
 const { CountryRegistry } = require("iso3166-registry");
 const us = new CountryRegistry().active("US");
 console.log(us.alpha_3, us.name);
-```
 
 Go
-
-```go
+go
 
 import iso3166 "github.com/slimissa/iso3166-go"
 
@@ -72,10 +67,9 @@ reg, _ := iso3166.Load()
 if us := reg.Active("US"); us != nil {
     fmt.Println(us.Alpha3, us.Name)
 }
-```
 
 Rust
-```rust
+rust
 
 use iso3166_registry::CountryRegistry;
 
@@ -83,16 +77,14 @@ let reg = CountryRegistry::load().unwrap();
 if let Some(us) = reg.active("US") {
     println!("{} {}", us.alpha_3, us.name);
 }
-```
 
 Command line
-```bash
+bash
 
 iso3166 lookup US
 iso3166 list --region Europe
 iso3166 info
 iso3166 validate US FR DE
-```
 
 See the CLI reference below.
 Registry contents
@@ -109,8 +101,7 @@ reassigned them: AI was French Afars and Issas (withdrawn 1977,
 replaced by DJ), then became Anguilla; SK was Sikkim (withdrawn
 1975, replaced by IN), then became Slovakia.
 What's in a country entry
-
-```json
+json
 
 {
   "alpha_2": "US",
@@ -133,7 +124,6 @@ What's in a country entry
   "withdrawal_date": null,
   "replaced_by": null
 }
-```
 
 Every entry has alpha_2, alpha_3, numeric, name, status, and
 independent. The remaining fields are optional; when a source doesn't
@@ -164,8 +154,7 @@ Color is on when stdout is a TTY, off when piped. Override with
 ISO3166_COLOR=never|auto|always, or --color / --no-color.
 NO_COLOR (any value) forces off unless --color=always is given.
 Examples
-
-```bash
+bash
 
 # Look up a country.
 iso3166 lookup US
@@ -178,12 +167,10 @@ iso3166 list --region Europe --raw alpha_2
 
 # Validate a list of codes.
 iso3166 validate US FR DE JP || echo "one or more unknown"
-```
 
 --csv output is byte-compatible with iso3166.csv at the repo root.
 Repository contents
-
-```text
+text
 
 iso3166/
 ├── iso3166.json                 # The registry (267 entries)
@@ -200,6 +187,7 @@ iso3166/
 ├── docs/
 │   ├── PROVENANCE.md            # Sources, refresh cadence, known gaps
 │   ├── LAYERS.md                # RAW / CURATED / AGGREGATED model
+│   ├── v1.0.0-verification.md   # Release verification report
 │   └── decisions/
 │       ├── v1.0.0-decisions.md  # D1–D8
 │       └── withdrawn-codes.md   # ADR for ISO 3166-3 successor handling
@@ -225,6 +213,8 @@ iso3166/
 │   ├── sync_wrappers.py         # Bundled JSON sync (--check)
 │   ├── gen_consistency_fixture.py  # Regenerate the cross-language fixture
 │   ├── check_version_consistency.py
+│   ├── gen_iso4217_snapshot.py  # Cross-registry snapshot generator
+│   ├── iso4217_snapshot.json    # ISO 4217 codes for cross-reference
 │   ├── iso3166_cli.py           # CLI
 │   └── check_cross_language.sh  # Four-wrapper agreement check
 │
@@ -240,8 +230,7 @@ iso3166/
 ├── bin/
 │   └── iso3166                  # Shell wrapper (prefers installed CLI)
 │
-└── .github/workflows/validate.yml  # 13 CI jobs
-```
+└── .github/workflows/validate.yml  # 14 CI jobs
 
 Data model
 
@@ -279,28 +268,26 @@ RS, ME).
 Validation
 
 Six layers, each independently runnable:
-```bash
+bash
 
 python3 tools/validate.py iso3166.json
 python3 tools/validate.py iso3166.json --only ground-truth
 python3 tools/validate.py iso3166.json --skip cross-reference --skip coverage
 python3 tools/validate.py iso3166.json --strict-count
-```
 
 Layer	What it checks
 1. Schema	JSON structure against schema.json
 2. Integrity	Format patterns, no empty strings, calendar-valid dates
 3. Business	Uniqueness, status consistency, withdrawal rules
-4. Cross-reference	currency_codes vs. ISO 4217 snapshot (advisory in v1.0.0); borders and replaced_by resolvable within the registry
+4. Cross-reference	currency_codes vs. ISO 4217 snapshot; borders and replaced_by resolvable within the registry
 5. Ground-truth	Codes-by-status vs. tools/parse_source.py's frozen sets
 6. Coverage	meta.count_* vs. actual; VERSION vs. meta.version
 
 Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation.
 Cross-language verification
-```bash
+bash
 
 bash tools/check_cross_language.sh US GB JP TW XK UK
-```
 
 Runs the same lookup through all four wrappers, diffs the output
 literally, and exits non-zero if any disagree. This is the executable
@@ -347,7 +334,7 @@ See CONTRIBUTING.md. The short version:
 
     Run bash tools/check_cross_language.sh US — must exit 0.
 
-    Submit a PR. CI runs 13 jobs.
+    Submit a PR. CI runs 14 jobs.
 
 No third-party sources. Wikipedia, countrycode.org, aggregator CSVs
 and blog posts are not acceptable as the origin of a field. If a value
