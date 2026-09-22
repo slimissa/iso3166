@@ -6,7 +6,7 @@
     "iso4217_version": "1.5.3",
     "iso4217_updated": "2026-09-18",
     "count_active": 167,
-    "count_withdrawn": 135
+    "count_withdrawn": 134
   },
   "active": [
     "AED",
@@ -256,7 +256,6 @@
     "MTL",
     "MTP",
     "MVQ",
-    "MXN_OLD",
     "MXP",
     "MZE",
     "MZM",

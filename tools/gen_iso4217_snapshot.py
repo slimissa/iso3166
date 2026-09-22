@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -37,6 +38,13 @@ from typing import Any
 
 
 OUTPUT = Path("tools/iso4217_snapshot.json")
+
+# Only 3-letter alphabetic codes are currencies. ISO 4217's
+# active array contains synthetic identifiers (MXN_OLD, and similar)
+# that document historical distinctions but are not currencies.
+# The snapshot answers "could this be a currency code?", so it keeps
+# only real codes.
+CODE_RE = re.compile(r"^[A-Z]{3}$")
 
 
 class FatalError(SystemExit):
@@ -80,6 +88,9 @@ def build_snapshot(source_path: Path) -> dict[str, Any]:
                 withdrawn_codes.append(code)
             else:
                 active_codes.append(code)
+
+    active_codes = [c for c in active_codes if CODE_RE.match(c)]
+    withdrawn_codes = [c for c in withdrawn_codes if CODE_RE.match(c)]
 
     if not active_codes:
         raise FatalError(
