@@ -231,12 +231,15 @@ jobs:
           if len(withdrawn) < 1:
               problems.append("no withdrawn entries")
 
-          # README's status line must name the current VERSION.
+          # README must carry the current VERSION, in the badge or
+          # in a Status line.
           version = Path("VERSION").read_text(encoding="utf-8").strip()
-          expected = f"Status: v{version}"
-          if expected not in readme:
+          if (f"registry-{version}" not in readme
+                  and f"Status: v{version}" not in readme):
               problems.append(
-                  f"README status line does not say {expected!r}"
+                  f"README does not reference v{version} "
+                  f"(expected 'registry-{version}' badge or "
+                  f"'Status: v{version}')"
               )
 
           if problems:
