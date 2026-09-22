@@ -31,14 +31,15 @@ a parser.
 
 ```bash
 curl -O https://raw.githubusercontent.com/slimissa/iso3166/main/iso3166.json
+```
 
-Python
-bash
+### Python
 
+```bash
 pip install -e wrappers/python
+```
 
-python
-
+```python
 from iso3166 import CountryRegistry
 
 reg = CountryRegistry()
@@ -46,63 +47,74 @@ us = reg.active("US")
 print(us.alpha_3, us.name)             # USA United States of America
 print(reg.by_numeric("840").alpha_2)   # US
 print(len(reg.region("Europe")))       # number of European entries
+```
 
-JavaScript
-bash
+### JavaScript
 
+```bash
 npm install ./wrappers/javascript
+```
 
-javascript
-
+```javascript
 const { CountryRegistry } = require("iso3166-registry");
 const us = new CountryRegistry().active("US");
 console.log(us.alpha_3, us.name);
+```
 
-Go
-go
+### Go
 
+```go
 import iso3166 "github.com/slimissa/iso3166-go"
 
 reg, _ := iso3166.Load()
 if us := reg.Active("US"); us != nil {
     fmt.Println(us.Alpha3, us.Name)
 }
+```
 
-Rust
-rust
+### Rust
 
+```rust
 use iso3166_registry::CountryRegistry;
 
 let reg = CountryRegistry::load().unwrap();
 if let Some(us) = reg.active("US") {
     println!("{} {}", us.alpha_3, us.name);
 }
+```
 
-Command line
-bash
+### Command line
 
+```bash
 iso3166 lookup US
 iso3166 list --region Europe
 iso3166 info
 iso3166 validate US FR DE
+```
 
-See the CLI reference below.
-Registry contents
-Layer	Count	Purpose
-Officially-assigned ISO 3166-1	249	Every currently-assigned alpha-2 code
-Exceptionally-reserved	2	UK, EU
-User-assigned	1	XK (Kosovo)
-Withdrawn ISO 3166-3	15	Historical codes with successors
-Total	267	
+See [the CLI reference](#command-line-interface) below.
+
+---
+
+## Registry contents
+
+| Layer | Count | Purpose |
+|-------|-------|---------|
+| Officially-assigned ISO 3166-1 | 249 | Every currently-assigned alpha-2 code |
+| Exceptionally-reserved | 2 | `UK`, `EU` |
+| User-assigned | 1 | `XK` (Kosovo) |
+| Withdrawn ISO 3166-3 | 15 | Historical codes with successors |
+| **Total** | **267** | |
 
 The active array contains 252 entries; the withdrawn array contains 15.
-Two alpha-2 codes — AI and SK — appear in both, because ISO
-reassigned them: AI was French Afars and Issas (withdrawn 1977,
-replaced by DJ), then became Anguilla; SK was Sikkim (withdrawn
-1975, replaced by IN), then became Slovakia.
-What's in a country entry
-json
+Two alpha-2 codes — `AI` and `SK` — appear in both, because ISO
+reassigned them: `AI` was French Afars and Issas (withdrawn 1977,
+replaced by `DJ`), then became Anguilla; `SK` was Sikkim (withdrawn
+1975, replaced by `IN`), then became Slovakia.
 
+### What's in a country entry
+
+```json
 {
   "alpha_2": "US",
   "alpha_3": "USA",
@@ -124,38 +136,45 @@ json
   "withdrawal_date": null,
   "replaced_by": null
 }
+```
 
-Every entry has alpha_2, alpha_3, numeric, name, status, and
-independent. The remaining fields are optional; when a source doesn't
-provide a value, the field is null rather than omitted. See
-docs/PROVENANCE.md for which fields are
+Every entry has `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, and
+`independent`. The remaining fields are optional; when a source doesn't
+provide a value, the field is `null` rather than omitted. See
+[`docs/PROVENANCE.md`](./docs/PROVENANCE.md) for which fields are
 populated in v1.0.0 and which are deferred.
-Command-line interface
 
-The iso3166 command is installed by the Python wrapper. Eight
+---
+
+## Command-line interface
+
+The `iso3166` command is installed by the Python wrapper. Eight
 subcommands:
-Subcommand	Purpose
-lookup CC	All fields for one country
-list	Filter across the registry
-currency CC	Currencies in circulation in a country
-country CURRENCY	Countries where a currency circulates
-region REGION	All countries in a region
-info	Registry metadata
-validate CC...	Exit 0 if all codes exist, 1 otherwise
-search QUERY	Substring search on names and codes
 
-Five output modes, mutually exclusive: --json, --jsonl, --csv,
---tsv, --raw FIELD.
+| Subcommand | Purpose |
+|------------|---------|
+| `lookup CC` | All fields for one country |
+| `list` | Filter across the registry |
+| `currency CC` | Currencies in circulation in a country |
+| `country CURRENCY` | Countries where a currency circulates |
+| `region REGION` | All countries in a region |
+| `info` | Registry metadata |
+| `validate CC...` | Exit 0 if all codes exist, 1 otherwise |
+| `search QUERY` | Substring search on names and codes |
 
-Exit codes: 0 success, 1 code not found, 2 usage error,
-3 registry missing or invalid.
+Five output modes, mutually exclusive: `--json`, `--jsonl`, `--csv`,
+`--tsv`, `--raw FIELD`.
+
+Exit codes: **0** success, **1** code not found, **2** usage error,
+**3** registry missing or invalid.
 
 Color is on when stdout is a TTY, off when piped. Override with
-ISO3166_COLOR=never|auto|always, or --color / --no-color.
-NO_COLOR (any value) forces off unless --color=always is given.
-Examples
-bash
+`ISO3166_COLOR=never|auto|always`, or `--color` / `--no-color`.
+`NO_COLOR` (any value) forces off unless `--color=always` is given.
 
+### Examples
+
+```bash
 # Look up a country.
 iso3166 lookup US
 
@@ -167,11 +186,15 @@ iso3166 list --region Europe --raw alpha_2
 
 # Validate a list of codes.
 iso3166 validate US FR DE JP || echo "one or more unknown"
+```
 
---csv output is byte-compatible with iso3166.csv at the repo root.
-Repository contents
-text
+`--csv` output is byte-compatible with `iso3166.csv` at the repo root.
 
+---
+
+## Repository contents
+
+```
 iso3166/
 ├── iso3166.json                 # The registry (267 entries)
 ├── schema.json                  # JSON Schema draft-07 contract
@@ -231,132 +254,157 @@ iso3166/
 │   └── iso3166                  # Shell wrapper (prefers installed CLI)
 │
 └── .github/workflows/validate.yml  # 14 CI jobs
+```
 
-Data model
+---
+
+## Data model
 
 Twelve required-or-optional fields per entry, plus three for withdrawn:
-Field	Type	Notes
-alpha_2	string	Primary key. ^[A-Z]{2}$.
-alpha_3	string	^[A-Z]{3}$.
-numeric	string	^[0-9]{3}$. Zero-padded string, not integer.
-name	string	ISO 3166 English short name.
-status	string	officially-assigned / user-assigned / exceptionally-reserved / withdrawn.
-independent	boolean	ISO's sovereignty flag.
-official_name	string|null	ISO's full official name.
-region	string|null	UN M49 macro-region.
-subregion	string|null	UN M49 sub-region.
-intermediate_region	string|null	UN M49 intermediate region.
-currency_codes	list|null	ISO 4217 alpha-3 codes.
-calling_codes	list|null	ITU-T E.164 prefixes.
-tlds	list|null	IANA ccTLDs.
-languages	list|null	ISO 639-3 codes.
-borders	list|null	Adjacent alpha-2 codes.
-note	string|null	Anything the standard doesn't capture.
-last_verified	string|null	ISO date of last manual check.
-withdrawal_date	string|null	Withdrawn entries only.
-replaced_by	list|null	Withdrawn entries only.
 
-numeric is a string, not an integer, because numeric is a reserved
-word in SQL and because leading zeros (004 for Afghanistan) are
+| Field | Type | Notes |
+|-------|------|-------|
+| `alpha_2` | string | Primary key. `^[A-Z]{2}$`. |
+| `alpha_3` | string | `^[A-Z]{3}$`. |
+| `numeric` | string | `^[0-9]{3}$`. Zero-padded string, not integer. |
+| `name` | string | ISO 3166 English short name. |
+| `status` | string | `officially-assigned` / `user-assigned` / `exceptionally-reserved` / `withdrawn`. |
+| `independent` | boolean | ISO's sovereignty flag. |
+| `official_name` | string\|null | ISO's full official name. |
+| `region` | string\|null | UN M49 macro-region. |
+| `subregion` | string\|null | UN M49 sub-region. |
+| `intermediate_region` | string\|null | UN M49 intermediate region. |
+| `currency_codes` | list\|null | ISO 4217 alpha-3 codes. |
+| `calling_codes` | list\|null | ITU-T E.164 prefixes. |
+| `tlds` | list\|null | IANA ccTLDs. |
+| `languages` | list\|null | ISO 639-3 codes. |
+| `borders` | list\|null | Adjacent alpha-2 codes. |
+| `note` | string\|null | Anything the standard doesn't capture. |
+| `last_verified` | string\|null | ISO date of last manual check. |
+| `withdrawal_date` | string\|null | Withdrawn entries only. |
+| `replaced_by` | list\|null | Withdrawn entries only. |
+
+`numeric` is a string, not an integer, because `numeric` is a reserved
+word in SQL and because leading zeros (`004` for Afghanistan) are
 meaningful.
 
-The borders field, when populated, points only to active codes:
+The `borders` field, when populated, points only to **active** codes:
 a border is a currently-existing country, not a historical one. The
-replaced_by field may point to any code in the registry, active or
-withdrawn, because succession chains are legitimate (YU → CS →
-RS, ME).
-Validation
+`replaced_by` field may point to any code in the registry, active or
+withdrawn, because succession chains are legitimate (`YU` → `CS` →
+`RS`, `ME`).
+
+---
+
+## Validation
 
 Six layers, each independently runnable:
-bash
 
+```bash
 python3 tools/validate.py iso3166.json
 python3 tools/validate.py iso3166.json --only ground-truth
 python3 tools/validate.py iso3166.json --skip cross-reference --skip coverage
 python3 tools/validate.py iso3166.json --strict-count
+```
 
-Layer	What it checks
-1. Schema	JSON structure against schema.json
-2. Integrity	Format patterns, no empty strings, calendar-valid dates
-3. Business	Uniqueness, status consistency, withdrawal rules
-4. Cross-reference	currency_codes vs. ISO 4217 snapshot; borders and replaced_by resolvable within the registry
-5. Ground-truth	Codes-by-status vs. tools/parse_source.py's frozen sets
-6. Coverage	meta.count_* vs. actual; VERSION vs. meta.version
+| Layer | What it checks |
+|-------|----------------|
+| 1. Schema | JSON structure against `schema.json` |
+| 2. Integrity | Format patterns, no empty strings, calendar-valid dates |
+| 3. Business | Uniqueness, status consistency, withdrawal rules |
+| 4. Cross-reference | `currency_codes` vs. ISO 4217 snapshot; `borders` and `replaced_by` resolvable within the registry |
+| 5. Ground-truth | Codes-by-status vs. `tools/parse_source.py`'s frozen sets |
+| 6. Coverage | `meta.count_*` vs. actual; `VERSION` vs. `meta.version` |
 
 Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation.
-Cross-language verification
-bash
 
+### Cross-language verification
+
+```bash
 bash tools/check_cross_language.sh US GB JP TW XK UK
+```
 
 Runs the same lookup through all four wrappers, diffs the output
 literally, and exits non-zero if any disagree. This is the executable
 form of the ecosystem's central claim: the JSON is the contract.
-Versioning
+
+---
+
+## Versioning
 
 Two version numbers, one source:
 
-    VERSION — the registry data version. Single source of truth.
-    meta.version, the README badge, and the Parquet footer must all
-    match it. tools/check_version_consistency.py enforces this on every
-    push.
+- **`VERSION`** — the registry data version. Single source of truth.
+  **`meta.version`**, the README badge, and the Parquet footer must all
+  match it. `tools/check_version_consistency.py` enforces this on every
+  push.
 
-The schema version lives independently in schema.json:
-$id carries it, and it changes only when the format contract changes.
+The schema version lives independently in `schema.json`:
+`$id` carries it, and it changes only when the format contract changes.
 
-The registry follows Semantic Versioning:
+The registry follows [Semantic Versioning](https://semver.org/):
 
-    Major: breaking schema changes (removed fields, renamed keys)
-
-    Minor: new entries, new optional fields, new tooling
-
-    Patch: data corrections
+- **Major**: breaking schema changes (removed fields, renamed keys)
+- **Minor**: new entries, new optional fields, new tooling
+- **Patch**: data corrections
 
 Wrapper package versions track the registry version.
-Consumed by
-Project	How it uses this registry
-ISO 4217	Cross-references country codes from currency entity fields
-Exchange Calendar	Exchange JSON carries a country_code referencing alpha-2
-Corporate Actions	Instrument entries reference the country of listing
-LAS_Shell	Reads country codes for market status and prompt display
-Tempus	Planned compile-time Country<ISO3166> type validation
 
-Using this registry in your project? Open a PR to add your name here.
-Contributing
+---
 
-See CONTRIBUTING.md. The short version:
+## Consumed by
 
-    Open an issue before starting large changes.
+| Project | How it uses this registry |
+|---------|---------------------------|
+| [ISO 4217](https://github.com/slimissa/iso4217) | Cross-references country codes from currency `entity` fields |
+| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | Exchange JSON carries a `country_code` referencing alpha-2 |
+| [Corporate Actions](https://github.com/slimissa/corporate-actions) | Instrument entries reference the country of listing |
+| [LAS_Shell](https://github.com/slimissa/Las_shell) | Reads country codes for market status and prompt display |
+| [Tempus](https://github.com/slimissa/Tempus) | Planned compile-time `Country<ISO3166>` type validation |
 
-    Data corrections go in iso3166.json with a first-party source cited.
+*Using this registry in your project? Open a PR to add your name here.*
 
-    Run python3 tools/validate.py iso3166.json --strict-count — must exit 0.
+---
 
-    Run bash tools/check_cross_language.sh US — must exit 0.
+## Contributing
 
-    Submit a PR. CI runs 14 jobs.
+See [CONTRIBUTING.md](./CONTRIBUTING.md). The short version:
 
-No third-party sources. Wikipedia, countrycode.org, aggregator CSVs
+1. Open an issue before starting large changes.
+2. Data corrections go in `iso3166.json` with a first-party source cited.
+3. Run `python3 tools/validate.py iso3166.json --strict-count` — must exit 0.
+4. Run `bash tools/check_cross_language.sh US` — must exit 0.
+5. Submit a PR. CI runs 14 jobs.
+
+**No third-party sources.** Wikipedia, countrycode.org, aggregator CSVs
 and blog posts are not acceptable as the origin of a field. If a value
 can't be traced to ISO, the UN Statistics Division, IANA, or the ITU,
-it stays null.
-License
+it stays `null`.
 
-Apache 2.0. See LICENSE.
+---
+
+## License
+
+Apache 2.0. See [LICENSE](./LICENSE).
 
 The country data in this registry is factual information sourced from
 public standards. The compilation, schema, tooling, wrappers, and
 documentation are licensed works.
-Author
 
-Le P'tit — github.com/slimissa
-What's next
+---
 
-    v1.1.0 — enrich official_name, complete the ISO 3166-3 withdrawn set.
+## Author
 
-    v1.2.0 — populate currency_codes, calling_codes, tlds; publish to PyPI, npm, crates.io.
+**Le P'tit** — [github.com/slimissa](https://github.com/slimissa)
 
-    v1.3.0 — languages and borders, once a first-party source for adjacency is identified.
+---
 
-See CHANGELOG.md and
-docs/decisions/v1.0.0-decisions.md.
+## What's next
+
+- **v1.1.0** — enrich `official_name`, complete the ISO 3166-3 withdrawn set.
+- **v1.2.0** — populate `currency_codes`, `calling_codes`, `tlds`; publish to PyPI, npm, crates.io.
+- **v1.3.0** — `languages` and `borders`, once a first-party source for adjacency is identified.
+
+See [`CHANGELOG.md`](./CHANGELOG.md) and
+[`docs/decisions/v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md).
+
