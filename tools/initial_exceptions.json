@@ -1,0 +1,229 @@
+{
+  "_comment": "Hand-maintained overrides for the initial import. After v1.0.0, iso3166.json is the source of truth and this file is archival.",
+  "officially_assigned": {
+    "US": {
+      "independent": true,
+      "official_name": "United States of America"
+    },
+    "GB": {
+      "independent": true,
+      "official_name": "United Kingdom of Great Britain and Northern Ireland"
+    },
+    "FR": {
+      "independent": true,
+      "official_name": "French Republic"
+    },
+    "DE": {
+      "independent": true,
+      "official_name": "Federal Republic of Germany"
+    },
+    "JP": {
+      "independent": true,
+      "official_name": "Japan"
+    },
+    "CN": {
+      "independent": true,
+      "official_name": "People's Republic of China"
+    },
+    "IN": {
+      "independent": true,
+      "official_name": "Republic of India"
+    },
+    "BR": {
+      "independent": true,
+      "official_name": "Federative Republic of Brazil"
+    },
+    "RU": {
+      "independent": true,
+      "official_name": "Russian Federation"
+    },
+    "ZA": {
+      "independent": true,
+      "official_name": "Republic of South Africa"
+    },
+    "TW": {
+      "alpha_3": "TWN",
+      "numeric": "158",
+      "name": "Taiwan, Province of China",
+      "official_name": "Taiwan, Province of China",
+      "independent": false,
+      "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list."
+    }
+  },
+  "exceptionally_reserved": {
+    "UK": {
+      "alpha_3": "UKM",
+      "numeric": "000",
+      "name": "United Kingdom (exceptionally reserved)",
+      "note": "Exceptionally reserved at the request of the United Kingdom. Use GB for the sovereign state."
+    },
+    "EU": {
+      "alpha_3": "EUE",
+      "numeric": "000",
+      "name": "European Union",
+      "note": "Exceptionally reserved. Used by ISO 4217 for the euro."
+    }
+  },
+  "user_assigned": {
+    "XK": {
+      "alpha_3": "XKX",
+      "numeric": "000",
+      "name": "Kosovo",
+      "independent": true,
+      "note": "User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production."
+    }
+  },
+  "withdrawn": [
+    {
+      "alpha_2": "AN",
+      "alpha_3": "ANT",
+      "numeric": "530",
+      "name": "Netherlands Antilles",
+      "withdrawal_date": "2010-12-01",
+      "replaced_by": [
+        "BQ",
+        "CW",
+        "SX"
+      ]
+    },
+    {
+      "alpha_2": "CS",
+      "alpha_3": "SCG",
+      "numeric": "891",
+      "name": "Serbia and Montenegro",
+      "withdrawal_date": "2006-09-26",
+      "replaced_by": [
+        "RS",
+        "ME"
+      ]
+    },
+    {
+      "alpha_2": "YU",
+      "alpha_3": "YUG",
+      "numeric": "890",
+      "name": "Yugoslavia",
+      "withdrawal_date": "2003-07-23",
+      "replaced_by": [
+        "CS"
+      ]
+    },
+    {
+      "alpha_2": "SU",
+      "alpha_3": "SUN",
+      "numeric": "810",
+      "name": "USSR",
+      "withdrawal_date": "1992-08-30",
+      "replaced_by": null
+    },
+    {
+      "alpha_2": "ZR",
+      "alpha_3": "ZAR",
+      "numeric": "180",
+      "name": "Zaire",
+      "withdrawal_date": "1997-05-17",
+      "replaced_by": [
+        "CD"
+      ]
+    },
+    {
+      "alpha_2": "BU",
+      "alpha_3": "BUR",
+      "numeric": "104",
+      "name": "Burma",
+      "withdrawal_date": "1989-12-05",
+      "replaced_by": [
+        "MM"
+      ]
+    },
+    {
+      "alpha_2": "TP",
+      "alpha_3": "TMP",
+      "numeric": "626",
+      "name": "East Timor",
+      "withdrawal_date": "2002-05-20",
+      "replaced_by": [
+        "TL"
+      ]
+    },
+    {
+      "alpha_2": "DD",
+      "alpha_3": "DDR",
+      "numeric": "278",
+      "name": "East Germany",
+      "withdrawal_date": "1990-10-03",
+      "replaced_by": [
+        "DE"
+      ]
+    },
+    {
+      "alpha_2": "YD",
+      "alpha_3": "YMD",
+      "numeric": "720",
+      "name": "South Yemen",
+      "withdrawal_date": "1990-05-22",
+      "replaced_by": [
+        "YE"
+      ]
+    },
+    {
+      "alpha_2": "AI",
+      "alpha_3": "AFI",
+      "numeric": "000",
+      "name": "French Afars and Issas",
+      "withdrawal_date": "1977-06-27",
+      "replaced_by": [
+        "DJ"
+      ]
+    },
+    {
+      "alpha_2": "DY",
+      "alpha_3": "DHY",
+      "numeric": "000",
+      "name": "Dahomey",
+      "withdrawal_date": "1977-02-01",
+      "replaced_by": [
+        "BJ"
+      ]
+    },
+    {
+      "alpha_2": "HV",
+      "alpha_3": "HVO",
+      "numeric": "854",
+      "name": "Upper Volta",
+      "withdrawal_date": "1984-08-04",
+      "replaced_by": [
+        "BF"
+      ]
+    },
+    {
+      "alpha_2": "NH",
+      "alpha_3": "NHB",
+      "numeric": "000",
+      "name": "New Hebrides",
+      "withdrawal_date": "1980-07-30",
+      "replaced_by": [
+        "VU"
+      ]
+    },
+    {
+      "alpha_2": "RH",
+      "alpha_3": "RHO",
+      "numeric": "000",
+      "name": "Southern Rhodesia",
+      "withdrawal_date": "1980-04-18",
+      "replaced_by": [
+        "ZW"
+      ]
+    },
+    {
+      "alpha_2": "SK",
+      "alpha_3": "SKM",
+      "numeric": "000",
+      "name": "Sikkim",
+      "withdrawal_date": "1975-05-16",
+      "replaced_by": [
+        "IN"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/slimissa/iso3166/schema/1.0.0",
+  "title": "ISO 3166 Country Registry",
+  "description": "A canonical, versioned, machine-readable registry of ISO 3166 country codes.",
+  "type": "object",
+  "required": ["meta", "countries"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "updated", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Semantic version of the registry data."
+        },
+        "updated": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of last data update (ISO 8601)."
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Primary source standard and edition."
+        },
+        "schema_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Semantic version of the schema this data conforms to."
+        },
+        "count_active": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of entries in countries.active."
+        },
+        "count_withdrawn": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of entries in countries.withdrawn."
+        }
+      }
+    },
+    "countries": {
+      "type": "object",
+      "required": ["active", "withdrawn"],
+      "additionalProperties": false,
+      "properties": {
+        "active": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/active" }
+        },
+        "withdrawn": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/withdrawn" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "alpha2": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "alpha3": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 3166-1 alpha-3 country code."
+    },
+    "numeric": {
+      "type": "string",
+      "pattern": "^[0-9]{3}$",
+      "description": "ISO 3166-1 numeric code, zero-padded to three digits as a string."
+    },
+    "isoDate": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 calendar date (YYYY-MM-DD)."
+    },
+    "countryCode": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,3}$",
+      "description": "Either an alpha-2 or alpha-3 code."
+    },
+    "commonFields": {
+      "type": "object",
+      "required": ["alpha_2", "alpha_3", "numeric", "name", "status", "independent"],
+      "additionalProperties": false,
+      "properties": {
+        "alpha_2": { "$ref": "#/definitions/alpha2" },
+        "alpha_3": { "$ref": "#/definitions/alpha3" },
+        "numeric": { "$ref": "#/definitions/numeric" },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "ISO 3166 English short name."
+        },
+        "status": {
+          "enum": [
+            "officially-assigned",
+            "user-assigned",
+            "exceptionally-reserved",
+            "withdrawn"
+          ]
+        },
+        "independent": {
+          "type": "boolean",
+          "description": "Whether ISO 3166-1 designates the entity as independent."
+        },
+        "official_name": {
+          "type": ["string", "null"],
+          "description": "ISO 3166 English full official name."
+        },
+        "region": {
+          "type": ["string", "null"],
+          "description": "UN M49 macro-region."
+        },
+        "subregion": {
+          "type": ["string", "null"],
+          "description": "UN M49 sub-region."
+        },
+        "intermediate_region": {
+          "type": ["string", "null"],
+          "description": "UN M49 intermediate region."
+        },
+        "currency_codes": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/definitions/alpha3" },
+          "description": "ISO 4217 currency codes in circulation."
+        },
+        "calling_codes": {
+          "type": ["array", "null"],
+          "items": { "type": "string", "pattern": "^[0-9]+$" },
+          "description": "ITU-T E.164 country calling codes."
+        },
+        "tlds": {
+          "type": ["array", "null"],
+          "items": { "type": "string", "pattern": "^\\.[a-z]{2,}$" },
+          "description": "IANA country-code top-level domains."
+        },
+        "languages": {
+          "type": ["array", "null"],
+          "items": { "type": "string", "pattern": "^[a-z]{3}$" },
+          "description": "ISO 639-3 language codes."
+        },
+        "borders": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/definitions/alpha2" },
+          "description": "Adjacent country alpha-2 codes."
+        },
+        "note": {
+          "type": ["string", "null"]
+        },
+        "last_verified": {
+          "anyOf": [
+            { "$ref": "#/definitions/isoDate" },
+            { "type": "null" }
+          ]
+        },
+        "withdrawal_date": {
+          "anyOf": [
+            { "$ref": "#/definitions/isoDate" },
+            { "type": "null" }
+          ]
+        },
+        "replaced_by": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/definitions/alpha2" }
+        }
+      }
+    },
+    "active": {
+      "allOf": [
+        { "$ref": "#/definitions/commonFields" },
+        {
+          "properties": {
+            "status": {
+              "enum": [
+                "officially-assigned",
+                "user-assigned",
+                "exceptionally-reserved"
+              ]
+            },
+            "withdrawal_date": { "type": "null" },
+            "replaced_by": { "type": "null" }
+          }
+        }
+      ]
+    },
+    "withdrawn": {
+      "allOf": [
+        { "$ref": "#/definitions/commonFields" },
+        {
+          "required": ["withdrawal_date"],
+          "properties": {
+            "status": { "const": "withdrawn" }
+          }
+        }
+      ]
+    }
+  }
+}
