@@ -334,6 +334,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "1.22"
+          cache: false
 
       - uses: dtolnay/rust-toolchain@stable
 
@@ -412,6 +413,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
+          cache: false
 
       - name: Vet
         working-directory: wrappers/go
