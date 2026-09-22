@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Rust
+target/
+Cargo.lock
+
+# Go
+*.test
+*.out
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts that must not be committed
+# (Exports ARE committed — do not ignore iso3166.sql, iso3166.csv, or iso3166.parquet)
+
+# Local data that must never be committed
+identifiers.json
+iso4217.json
+exchange_calendar.json
