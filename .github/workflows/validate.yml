@@ -231,9 +231,13 @@ jobs:
           if len(withdrawn) < 1:
               problems.append("no withdrawn entries")
 
-          # The README currently states 0.1.0 status; verify it says so.
-          if "Status: v0.1.0" not in readme:
-              problems.append("README status line does not say v0.1.0")
+          # README's status line must name the current VERSION.
+          version = Path("VERSION").read_text(encoding="utf-8").strip()
+          expected = f"Status: v{version}"
+          if expected not in readme:
+              problems.append(
+                  f"README status line does not say {expected!r}"
+              )
 
           if problems:
               for p in problems:
@@ -265,7 +269,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "1.22"
-          cache-dependency-path: wrappers/go/go.sum
 
       - uses: dtolnay/rust-toolchain@stable
 
@@ -344,7 +347,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
-          cache-dependency-path: wrappers/go/go.sum
 
       - name: Vet
         working-directory: wrappers/go
