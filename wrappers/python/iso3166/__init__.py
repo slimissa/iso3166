@@ -14,4 +14,4 @@ The bundled registry file is iso3166.json, shipped inside this package.
 from .registry import Country, CountryRegistry, RegistryError
 
 __all__ = ["Country", "CountryRegistry", "RegistryError"]
-__version__ = "1.0.0"
+__version__ = "1.0.1"

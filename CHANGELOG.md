@@ -16,6 +16,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.0.1] — 2026-09-22
+
+Data completion and one behavioral change to the validator.
+
+### Added
+
+- `official_name` populated for all 249 officially-assigned ISO 3166-1
+  entries. Sourced per-entry from the ISO 3166-1 Online Browsing
+  Platform; each entry's `note` field records the source URL.
+- `tools/enrich_official_name.py` — entry tool and completeness check.
+  `--check` fails if any officially-assigned entry is missing an
+  official name.
+
+### Changed
+
+- `tools/validate.py`: the ISO 4217 snapshot check in the
+  cross-reference layer is now blocking. A missing
+  `tools/iso4217_snapshot.json` produces a FAIL rather than a WARN.
+  A new `--allow-missing-snapshot` flag restores the previous
+  behavior for forks and downstream repositories. Recorded in
+  decision D5.
+
+### Fixed
+
+- `wrappers/rust/Cargo.lock` records the crate at its actual version.
+
 ## [1.0.0] — 2026-09-22
 
 Foundation. Registry data, schema, validator, exports, CLI, four
@@ -65,5 +91,6 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/slimissa/iso3166/releases/tag/v1.0.1
 [1.0.0]: https://github.com/slimissa/iso3166/releases/tag/v1.0.0
