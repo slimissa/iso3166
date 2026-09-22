@@ -186,30 +186,30 @@ def write_parquet(reg: dict[str, Any], path: Path) -> None:
 
 
 def check_parquet(reg: dict[str, Any], path: Path) -> bool:
-    """Compare the on-disk Parquet's logical content to a fresh build."""
+    """Byte-level comparison of the on-disk Parquet against a fresh build.
+
+    Assumes pyarrow is deterministic for identical input and options,
+    which has been verified locally. If a future pyarrow version
+    introduces non-determinism (e.g. embedded timestamps), this check
+    will start failing and the fallback is a logical comparison plus a
+    magic-byte check on both PAR1 markers.
+    """
     if not path.exists():
         return False
     try:
-        import pyarrow.parquet as pq  # type: ignore
+        import pyarrow  # noqa: F401  # type: ignore
     except ImportError:
         return False
 
+    fresh_path = path.with_suffix(path.suffix + ".check.tmp")
     try:
-        existing = pq.read_table(path)
-    except Exception:
-        return False
-
-    fresh = build_table(reg)
-
-    # Compare schema (field names + types, ignoring metadata).
-    if existing.schema.remove_metadata() != fresh.schema.remove_metadata():
-        return False
-
-    # Compare columns as Python lists.
-    for name in [f.name for f in fresh.schema]:
-        if existing.column(name).to_pylist() != fresh.column(name).to_pylist():
-            return False
-    return True
+        write_parquet(reg, fresh_path)
+        return path.read_bytes() == fresh_path.read_bytes()
+    finally:
+        try:
+            fresh_path.unlink()
+        except OSError:
+            pass
 
 
 def build_parser() -> argparse.ArgumentParser:
