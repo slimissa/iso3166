@@ -33,7 +33,9 @@
       "languages": [
         "eng"
       ],
-      "borders": []
+      "borders": [
+        "IE"
+      ]
     },
     {
       "input": "JP",
@@ -67,7 +69,17 @@
       "languages": [
         "deu"
       ],
-      "borders": []
+      "borders": [
+        "AT",
+        "BE",
+        "CH",
+        "CZ",
+        "DK",
+        "FR",
+        "LU",
+        "NL",
+        "PL"
+      ]
     },
     {
       "input": "EC",
@@ -128,7 +140,13 @@
         "ita",
         "roh"
       ],
-      "borders": []
+      "borders": [
+        "AT",
+        "DE",
+        "FR",
+        "IT",
+        "LI"
+      ]
     },
     {
       "input": "FR",
@@ -145,7 +163,16 @@
       "languages": [
         "fra"
       ],
-      "borders": []
+      "borders": [
+        "AD",
+        "BE",
+        "CH",
+        "DE",
+        "ES",
+        "IT",
+        "LU",
+        "MC"
+      ]
     },
     {
       "input": "RU",
@@ -162,7 +189,22 @@
       "languages": [
         "rus"
       ],
-      "borders": []
+      "borders": [
+        "AZ",
+        "BY",
+        "CN",
+        "EE",
+        "FI",
+        "GE",
+        "KP",
+        "KZ",
+        "LT",
+        "LV",
+        "MN",
+        "NO",
+        "PL",
+        "UA"
+      ]
     },
     {
       "input": "LS",

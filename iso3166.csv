@@ -1,5 +1,5 @@
 alpha_2,alpha_3,numeric,name,status,independent,official_name,region,subregion,intermediate_region,currency_codes,calling_codes,tlds,languages,borders,note,last_verified,withdrawal_date,replaced_by
-AD,AND,020,Andorra,officially-assigned,false,Principality of Andorra,Europe,Southern Europe,,EUR,376,.ad,cat,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
+AD,AND,020,Andorra,officially-assigned,false,Principality of Andorra,Europe,Southern Europe,,EUR,376,.ad,cat,ES|FR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
 source: https://www.cia.gov/the-world-factbook/countries/AD/",2026-09-23,,
 AE,ARE,784,United Arab Emirates,officially-assigned,false,United Arab Emirates,Asia,Western Asia,,AED,971,.ae,ara,OM|SA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AE
 source: https://www.cia.gov/the-world-factbook/countries/AE/",2026-09-23,,
@@ -10,7 +10,7 @@ source: https://www.cia.gov/the-world-factbook/countries/AG/",2026-09-23,,
 AI,AIA,660,Anguilla,officially-assigned,false,Anguilla,Americas,Latin America and the Caribbean,Caribbean,XCD,1,.ai,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI
 source: https://www.cia.gov/the-world-factbook/countries/AI/",2026-09-23,,
 AI,AFI,000,French Afars and Issas,withdrawn,false,,,,,,,,,,,2026-09-22,1977-06-27,DJ
-AL,ALB,008,Albania,officially-assigned,false,Republic of Albania,Europe,Southern Europe,,ALL,355,.al,sqi,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
+AL,ALB,008,Albania,officially-assigned,false,Republic of Albania,Europe,Southern Europe,,ALL,355,.al,sqi,GR|ME|MK|XK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
 source: https://www.cia.gov/the-world-factbook/countries/AL/",2026-09-23,,
 AM,ARM,051,Armenia,officially-assigned,false,Republic of Armenia,Asia,Western Asia,,AMD,374,.am,hye,AZ|GE|IR|TR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AM
 source: https://www.cia.gov/the-world-factbook/countries/AM/",2026-09-23,,
@@ -23,27 +23,27 @@ AR,ARG,032,Argentina,officially-assigned,false,Argentina,Americas,Latin America 
 source: https://www.cia.gov/the-world-factbook/countries/AR/",2026-09-23,,
 AS,ASM,016,American Samoa,officially-assigned,false,American Samoa,Oceania,Polynesia,,USD,1,.as,eng|smo,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AS
 source: https://www.cia.gov/the-world-factbook/countries/AS/",2026-09-23,,
-AT,AUT,040,Austria,officially-assigned,false,Republic of Austria,Europe,Western Europe,,EUR,43,.at,deu,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
+AT,AUT,040,Austria,officially-assigned,false,Republic of Austria,Europe,Western Europe,,EUR,43,.at,deu,CH|CZ|DE|HU|IT|LI|SI|SK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
 source: https://www.cia.gov/the-world-factbook/countries/AT/",2026-09-23,,
 AU,AUS,036,Australia,officially-assigned,false,Australia,Oceania,Australia and New Zealand,,AUD,61,.au,,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU
 source: https://www.cia.gov/the-world-factbook/countries/AU/",2026-09-23,,
 AW,ABW,533,Aruba,officially-assigned,false,Aruba,Americas,Latin America and the Caribbean,Caribbean,AWG,297,.aw,nld|pap,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AW
 source: https://www.cia.gov/the-world-factbook/countries/AW/",2026-09-23,,
 AX,ALA,248,Åland Islands,officially-assigned,false,Åland Islands,Europe,Northern Europe,,EUR,358,.ax,,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX
-source: https://www.iana.org/domains/root/db",2026-09-23,,
+source: https://www.cia.gov/the-world-factbook/countries/AX/",2026-09-23,,
 AZ,AZE,031,Azerbaijan,officially-assigned,false,Republic of Azerbaijan,Asia,Western Asia,,AZN,994,.az,aze,AM|GE|IR|RU|TR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AZ
 source: https://www.cia.gov/the-world-factbook/countries/AZ/",2026-09-23,,
-BA,BIH,070,Bosnia and Herzegovina,officially-assigned,false,Bosnia and Herzegovina,Europe,Southern Europe,,BAM,387,.ba,bos|hrv|srp,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA
+BA,BIH,070,Bosnia and Herzegovina,officially-assigned,false,Bosnia and Herzegovina,Europe,Southern Europe,,BAM,387,.ba,bos|hrv|srp,HR|ME|RS,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA
 source: https://www.cia.gov/the-world-factbook/countries/BA/",2026-09-23,,
 BB,BRB,052,Barbados,officially-assigned,false,Barbados,Americas,Latin America and the Caribbean,Caribbean,BBD,1,.bb,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BB
 source: https://www.cia.gov/the-world-factbook/countries/BB/",2026-09-23,,
 BD,BGD,050,Bangladesh,officially-assigned,false,People's Republic of Bangladesh,Asia,Southern Asia,,BDT,880,.bd,ben,IN|MM,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BD
 source: https://www.cia.gov/the-world-factbook/countries/BD/",2026-09-23,,
-BE,BEL,056,Belgium,officially-assigned,false,Kingdom of Belgium,Europe,Western Europe,,EUR,32,.be,deu|fra|nld,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE
+BE,BEL,056,Belgium,officially-assigned,false,Kingdom of Belgium,Europe,Western Europe,,EUR,32,.be,deu|fra|nld,DE|FR|LU|NL,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE
 source: https://www.cia.gov/the-world-factbook/countries/BE/",2026-09-23,,
 BF,BFA,854,Burkina Faso,officially-assigned,false,Burkina Faso,Africa,Sub-Saharan Africa,Western Africa,XOF,226,.bf,fra,BJ|CI|GH|ML|NE|TG,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BF
 source: https://www.cia.gov/the-world-factbook/countries/BF/",2026-09-23,,
-BG,BGR,100,Bulgaria,officially-assigned,false,Republic of Bulgaria,Europe,Eastern Europe,,BGN,359,.bg,bul,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
+BG,BGR,100,Bulgaria,officially-assigned,false,Republic of Bulgaria,Europe,Eastern Europe,,BGN,359,.bg,bul,GR|MK|RO|RS|TR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
 source: https://www.cia.gov/the-world-factbook/countries/BG/",2026-09-23,,
 BH,BHR,048,Bahrain,officially-assigned,false,Kingdom of Bahrain,Asia,Western Asia,,BHD,973,.bh,ara,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 source: https://www.cia.gov/the-world-factbook/countries/BH/",2026-09-23,,
@@ -71,7 +71,7 @@ BV,BVT,074,Bouvet Island,officially-assigned,false,Bouvet Island,Americas,Latin 
 source: https://www.cia.gov/the-world-factbook/countries/BV/",2026-09-23,,
 BW,BWA,072,Botswana,officially-assigned,false,Republic of Botswana,Africa,Sub-Saharan Africa,Southern Africa,BWP,267,.bw,eng|tsn,NA|ZA|ZM|ZW,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BW
 source: https://www.cia.gov/the-world-factbook/countries/BW/",2026-09-23,,
-BY,BLR,112,Belarus,officially-assigned,false,Republic of Belarus,Europe,Eastern Europe,,BYN,375,.by,bel|rus,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY
+BY,BLR,112,Belarus,officially-assigned,false,Republic of Belarus,Europe,Eastern Europe,,BYN,375,.by,bel|rus,LT|LV|PL|RU|UA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY
 source: https://www.cia.gov/the-world-factbook/countries/BY/",2026-09-23,,
 BZ,BLZ,084,Belize,officially-assigned,false,Belize,Americas,Latin America and the Caribbean,Central America,BZD,501,.bz,eng,GT|MX,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BZ
 source: https://www.cia.gov/the-world-factbook/countries/BZ/",2026-09-23,,
@@ -85,7 +85,7 @@ CF,CAF,140,Central African Republic,officially-assigned,false,Central African Re
 source: https://www.cia.gov/the-world-factbook/countries/CF/",2026-09-23,,
 CG,COG,178,Congo,officially-assigned,false,Congo,Africa,Sub-Saharan Africa,Middle Africa,XAF,242,.cg,fra|lin,AO|CD|CF|CM|GA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CG
 source: https://www.cia.gov/the-world-factbook/countries/CG/",2026-09-23,,
-CH,CHE,756,Switzerland,officially-assigned,false,Switzerland,Europe,Western Europe,,CHF,41,.ch,deu|fra|ita|roh,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH
+CH,CHE,756,Switzerland,officially-assigned,false,Switzerland,Europe,Western Europe,,CHF,41,.ch,deu|fra|ita|roh,AT|DE|FR|IT|LI,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH
 source: https://www.cia.gov/the-world-factbook/countries/CH/",2026-09-23,,
 CI,CIV,384,Côte d’Ivoire,officially-assigned,false,Republic of Côte d'Ivoire,Africa,Sub-Saharan Africa,Western Africa,XOF,225,.ci,fra,BF|GH|GN|LR|ML,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CI
 source: https://www.cia.gov/the-world-factbook/countries/CI/",2026-09-23,,
@@ -112,13 +112,13 @@ CX,CXR,162,Christmas Island,officially-assigned,false,Christmas Island,Oceania,A
 source: https://www.cia.gov/the-world-factbook/countries/CX/",2026-09-23,,
 CY,CYP,196,Cyprus,officially-assigned,false,Republic of Cyprus,Asia,Western Asia,,EUR,357,.cy,ell|tur,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CY
 source: https://www.cia.gov/the-world-factbook/countries/CY/",2026-09-23,,
-CZ,CZE,203,Czechia,officially-assigned,false,Czech Republic,Europe,Eastern Europe,,CZK,420,.cz,ces,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
+CZ,CZE,203,Czechia,officially-assigned,false,Czech Republic,Europe,Eastern Europe,,CZK,420,.cz,ces,AT|DE|PL|SK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
 source: https://www.cia.gov/the-world-factbook/countries/CZ/",2026-09-23,,
 DD,DDR,278,East Germany,withdrawn,false,,,,,,,,,,,2026-09-22,1990-10-03,DE
-DE,DEU,276,Germany,officially-assigned,true,Federal Republic of Germany,Europe,Western Europe,,EUR,49,.de,deu,,source: https://www.cia.gov/the-world-factbook/countries/DE/,2026-09-23,,
+DE,DEU,276,Germany,officially-assigned,true,Federal Republic of Germany,Europe,Western Europe,,EUR,49,.de,deu,AT|BE|CH|CZ|DK|FR|LU|NL|PL,source: https://www.cia.gov/the-world-factbook/countries/DE/,2026-09-23,,
 DJ,DJI,262,Djibouti,officially-assigned,false,Republic of Djibouti,Africa,Sub-Saharan Africa,Eastern Africa,DJF,253,.dj,ara|fra,ER|ET|SO,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DJ
 source: https://www.cia.gov/the-world-factbook/countries/DJ/",2026-09-23,,
-DK,DNK,208,Denmark,officially-assigned,false,Kingdom of Denmark,Europe,Northern Europe,,DKK,45,.dk,dan,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK
+DK,DNK,208,Denmark,officially-assigned,false,Kingdom of Denmark,Europe,Northern Europe,,DKK,45,.dk,dan,DE,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK
 source: https://www.cia.gov/the-world-factbook/countries/DK/",2026-09-23,,
 DM,DMA,212,Dominica,officially-assigned,false,Commonwealth of Dominica,Americas,Latin America and the Caribbean,Caribbean,XCD,1,.dm,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DM
 source: https://www.cia.gov/the-world-factbook/countries/DM/",2026-09-23,,
@@ -129,20 +129,20 @@ DZ,DZA,012,Algeria,officially-assigned,false,People's Democratic Republic of Alg
 source: https://www.cia.gov/the-world-factbook/countries/DZ/",2026-09-23,,
 EC,ECU,218,Ecuador,officially-assigned,false,Republic of Ecuador,Americas,Latin America and the Caribbean,South America,USD,593,.ec,spa,CO|PE,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EC
 source: https://www.cia.gov/the-world-factbook/countries/EC/",2026-09-23,,
-EE,EST,233,Estonia,officially-assigned,false,Republic of Estonia,Europe,Northern Europe,,EUR,372,.ee,est,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE
+EE,EST,233,Estonia,officially-assigned,false,Republic of Estonia,Europe,Northern Europe,,EUR,372,.ee,est,LV|RU,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE
 source: https://www.cia.gov/the-world-factbook/countries/EE/",2026-09-23,,
-EG,EGY,818,Egypt,officially-assigned,false,Arab Republic of Egypt,Africa,Northern Africa,,EGP,20,.eg,ara,IL|LY|SD,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EG
+EG,EGY,818,Egypt,officially-assigned,false,Arab Republic of Egypt,Africa,Northern Africa,,EGP,20,.eg,ara,IL|LY|PS|SD,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EG
 source: https://www.cia.gov/the-world-factbook/countries/EG/",2026-09-23,,
 EH,ESH,732,Western Sahara,officially-assigned,false,Western Sahara,Africa,Northern Africa,,MAD,212,,ara,DZ|MA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EH
 source: https://www.cia.gov/the-world-factbook/countries/EH/",2026-09-23,,
 ER,ERI,232,Eritrea,officially-assigned,false,State of Eritrea,Africa,Sub-Saharan Africa,Eastern Africa,ERN,291,.er,ara|eng|tir,DJ|ET|SD,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ER
 source: https://www.cia.gov/the-world-factbook/countries/ER/",2026-09-23,,
-ES,ESP,724,Spain,officially-assigned,false,Kingdom of Spain,Europe,Southern Europe,,EUR,34,.es,spa,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES
+ES,ESP,724,Spain,officially-assigned,false,Kingdom of Spain,Europe,Southern Europe,,EUR,34,.es,spa,AD|FR|GI|MA|PT,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES
 source: https://www.cia.gov/the-world-factbook/countries/ES/",2026-09-23,,
 ET,ETH,231,Ethiopia,officially-assigned,false,Federal Democratic Republic of Ethiopia,Africa,Sub-Saharan Africa,Eastern Africa,ETB,251,.et,amh,DJ|ER|KE|SD|SO|SS,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ET
 source: https://www.cia.gov/the-world-factbook/countries/ET/",2026-09-23,,
 EU,EUE,000,European Union,exceptionally-reserved,false,,,,,,,,,,Exceptionally reserved. Used by ISO 4217 for the euro.,2026-09-22,,
-FI,FIN,246,Finland,officially-assigned,false,Republic of Finland,Europe,Northern Europe,,EUR,358,.fi,fin|swe,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI
+FI,FIN,246,Finland,officially-assigned,false,Republic of Finland,Europe,Northern Europe,,EUR,358,.fi,fin|swe,NO|RU|SE,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI
 source: https://www.cia.gov/the-world-factbook/countries/FI/",2026-09-23,,
 FJ,FJI,242,Fiji,officially-assigned,false,Republic of Fiji,Oceania,Melanesia,,FJD,679,.fj,eng|fij|hin,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FJ
 source: https://www.cia.gov/the-world-factbook/countries/FJ/",2026-09-23,,
@@ -153,13 +153,13 @@ source: https://www.cia.gov/the-world-factbook/countries/FM/",2026-09-23,,
 FO,FRO,234,Faroe Islands,officially-assigned,false,Faroe Islands,Europe,Northern Europe,,DKK,298,.fo,dan|fao,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO
 source: https://www.cia.gov/the-world-factbook/countries/FO/",2026-09-23,,
 FQ,ATF,000,French Southern and Antarctic Territories,withdrawn,false,,,,,,,,,,source: https://www.iso.org/obp/ui/#iso:code:3166:FQ,2026-09-23,1979-01-01,TF
-FR,FRA,250,France,officially-assigned,true,French Republic,Europe,Western Europe,,EUR,33,.fr,fra,,source: https://www.cia.gov/the-world-factbook/countries/FR/,2026-09-23,,
+FR,FRA,250,France,officially-assigned,true,French Republic,Europe,Western Europe,,EUR,33,.fr,fra,AD|BE|CH|DE|ES|IT|LU|MC,source: https://www.cia.gov/the-world-factbook/countries/FR/,2026-09-23,,
 GA,GAB,266,Gabon,officially-assigned,false,Gabonese Republic,Africa,Sub-Saharan Africa,Middle Africa,XAF,241,.ga,fra,CG|CM|GQ,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GA
 source: https://www.cia.gov/the-world-factbook/countries/GA/",2026-09-23,,
-GB,GBR,826,United Kingdom of Great Britain and Northern Ireland,officially-assigned,true,United Kingdom of Great Britain and Northern Ireland,Europe,Northern Europe,,GBP,44,.uk,eng,,source: https://www.cia.gov/the-world-factbook/countries/GB/,2026-09-23,,
+GB,GBR,826,United Kingdom of Great Britain and Northern Ireland,officially-assigned,true,United Kingdom of Great Britain and Northern Ireland,Europe,Northern Europe,,GBP,44,.uk,eng,IE,source: https://www.cia.gov/the-world-factbook/countries/GB/,2026-09-23,,
 GD,GRD,308,Grenada,officially-assigned,false,Grenada,Americas,Latin America and the Caribbean,Caribbean,XCD,1,.gd,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GD
 source: https://www.cia.gov/the-world-factbook/countries/GD/",2026-09-23,,
-GE,GEO,268,Georgia,officially-assigned,false,Georgia,Asia,Western Asia,,GEL,995,.ge,kat,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE
+GE,GEO,268,Georgia,officially-assigned,false,Georgia,Asia,Western Asia,,GEL,995,.ge,kat,AM|AZ|RU|TR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE
 source: https://www.cia.gov/the-world-factbook/countries/GE/",2026-09-23,,
 GF,GUF,254,French Guiana,officially-assigned,false,French Guiana,Americas,Latin America and the Caribbean,South America,EUR,594,.gf,fra,BR|SR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GF
 source: https://www.cia.gov/the-world-factbook/countries/GF/",2026-09-23,,
@@ -167,7 +167,7 @@ GG,GGY,831,Guernsey,officially-assigned,false,Guernsey,Europe,Northern Europe,,G
 source: https://www.cia.gov/the-world-factbook/countries/GG/",2026-09-23,,
 GH,GHA,288,Ghana,officially-assigned,false,Republic of Ghana,Africa,Sub-Saharan Africa,Western Africa,GHS,233,.gh,eng,BF|CI|TG,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GH
 source: https://www.cia.gov/the-world-factbook/countries/GH/",2026-09-23,,
-GI,GIB,292,Gibraltar,officially-assigned,false,Gibraltar,Europe,Southern Europe,,GIP,350,.gi,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI
+GI,GIB,292,Gibraltar,officially-assigned,false,Gibraltar,Europe,Southern Europe,,GIP,350,.gi,eng,ES,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI
 source: https://www.cia.gov/the-world-factbook/countries/GI/",2026-09-23,,
 GL,GRL,304,Greenland,officially-assigned,false,Greenland,Americas,Northern America,,DKK,299,.gl,dan|kal,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GL
 source: https://www.cia.gov/the-world-factbook/countries/GL/",2026-09-23,,
@@ -179,7 +179,7 @@ GP,GLP,312,Guadeloupe,officially-assigned,false,Guadeloupe,Americas,Latin Americ
 source: https://www.cia.gov/the-world-factbook/countries/GP/",2026-09-23,,
 GQ,GNQ,226,Equatorial Guinea,officially-assigned,false,Republic of Equatorial Guinea,Africa,Sub-Saharan Africa,Middle Africa,XAF,240,.gq,fra|por|spa,CM|GA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GQ
 source: https://www.cia.gov/the-world-factbook/countries/GQ/",2026-09-23,,
-GR,GRC,300,Greece,officially-assigned,false,Hellenic Republic,Europe,Southern Europe,,EUR,30,.gr,ell,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR
+GR,GRC,300,Greece,officially-assigned,false,Hellenic Republic,Europe,Southern Europe,,EUR,30,.gr,ell,AL|BG|MK|TR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR
 source: https://www.cia.gov/the-world-factbook/countries/GR/",2026-09-23,,
 GS,SGS,239,South Georgia and the South Sandwich Islands,officially-assigned,false,South Georgia and the South Sandwich Islands,Americas,Latin America and the Caribbean,South America,FKP,500,.gs,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GS
 source: https://www.cia.gov/the-world-factbook/countries/GS/",2026-09-23,,
@@ -197,16 +197,16 @@ HM,HMD,334,Heard Island and McDonald Islands,officially-assigned,false,Heard Isl
 source: https://www.cia.gov/the-world-factbook/countries/HM/",2026-09-23,,
 HN,HND,340,Honduras,officially-assigned,false,Republic of Honduras,Americas,Latin America and the Caribbean,Central America,HNL,504,.hn,spa,GT|NI|SV,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HN
 source: https://www.cia.gov/the-world-factbook/countries/HN/",2026-09-23,,
-HR,HRV,191,Croatia,officially-assigned,false,Republic of Croatia,Europe,Southern Europe,,EUR,385,.hr,hrv,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR
+HR,HRV,191,Croatia,officially-assigned,false,Republic of Croatia,Europe,Southern Europe,,EUR,385,.hr,hrv,BA|HU|ME|RS|SI,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR
 source: https://www.cia.gov/the-world-factbook/countries/HR/",2026-09-23,,
 HT,HTI,332,Haiti,officially-assigned,false,Republic of Haiti,Americas,Latin America and the Caribbean,Caribbean,HTG,509,.ht,fra|hat,DO,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HT
 source: https://www.cia.gov/the-world-factbook/countries/HT/",2026-09-23,,
-HU,HUN,348,Hungary,officially-assigned,false,Hungary,Europe,Eastern Europe,,HUF,36,.hu,hun,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU
+HU,HUN,348,Hungary,officially-assigned,false,Hungary,Europe,Eastern Europe,,HUF,36,.hu,hun,AT|HR|RO|RS|SI|SK|UA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU
 source: https://www.cia.gov/the-world-factbook/countries/HU/",2026-09-23,,
 HV,HVO,854,Upper Volta,withdrawn,false,,,,,,,,,,,2026-09-22,1984-08-04,BF
 ID,IDN,360,Indonesia,officially-assigned,false,Indonesia,Asia,South-eastern Asia,,IDR,62,.id,ind,MY|PG|TL,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
 source: https://www.cia.gov/the-world-factbook/countries/ID/",2026-09-23,,
-IE,IRL,372,Ireland,officially-assigned,false,Ireland,Europe,Northern Europe,,EUR,353,.ie,eng|gle,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE
+IE,IRL,372,Ireland,officially-assigned,false,Ireland,Europe,Northern Europe,,EUR,353,.ie,eng|gle,GB,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE
 source: https://www.cia.gov/the-world-factbook/countries/IE/",2026-09-23,,
 IL,ISR,376,Israel,officially-assigned,false,State of Israel,Asia,Western Asia,,ILS,972,.il,ara|heb,EG|JO|LB|PS|SY,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IL
 source: https://www.cia.gov/the-world-factbook/countries/IL/",2026-09-23,,
@@ -221,13 +221,13 @@ IR,IRN,364,Iran (Islamic Republic of),officially-assigned,false,Islamic Republic
 source: https://www.cia.gov/the-world-factbook/countries/IR/",2026-09-23,,
 IS,ISL,352,Iceland,officially-assigned,false,Iceland,Europe,Northern Europe,,ISK,354,.is,isl,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS
 source: https://www.cia.gov/the-world-factbook/countries/IS/",2026-09-23,,
-IT,ITA,380,Italy,officially-assigned,false,Italy,Europe,Southern Europe,,EUR,39,.it,ita,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT
+IT,ITA,380,Italy,officially-assigned,false,Italy,Europe,Southern Europe,,EUR,39,.it,ita,AT|CH|FR|SI|SM|VA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT
 source: https://www.cia.gov/the-world-factbook/countries/IT/",2026-09-23,,
 JE,JEY,832,Jersey,officially-assigned,false,Jersey,Europe,Northern Europe,,GBP,44,.je,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE
 source: https://www.cia.gov/the-world-factbook/countries/JE/",2026-09-23,,
 JM,JAM,388,Jamaica,officially-assigned,false,Jamaica,Americas,Latin America and the Caribbean,Caribbean,JMD,1,.jm,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JM
 source: https://www.cia.gov/the-world-factbook/countries/JM/",2026-09-23,,
-JO,JOR,400,Jordan,officially-assigned,false,Hashemite Kingdom of Jordan,Asia,Western Asia,,JOD,962,.jo,ara,IL|IQ|SA|SY,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JO
+JO,JOR,400,Jordan,officially-assigned,false,Hashemite Kingdom of Jordan,Asia,Western Asia,,JOD,962,.jo,ara,IL|IQ|PS|SA|SY,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JO
 source: https://www.cia.gov/the-world-factbook/countries/JO/",2026-09-23,,
 JP,JPN,392,Japan,officially-assigned,true,Japan,Asia,Eastern Asia,,JPY,81,.jp,jpn,,source: https://www.cia.gov/the-world-factbook/countries/JP/,2026-09-23,,
 JT,JTN,000,Johnston Island,withdrawn,false,,,,,,,,,,source: https://www.iso.org/obp/ui/#iso:code:3166:JT,2026-09-23,1986-01-01,
@@ -259,7 +259,7 @@ LB,LBN,422,Lebanon,officially-assigned,false,Lebanese Republic,Asia,Western Asia
 source: https://www.cia.gov/the-world-factbook/countries/LB/",2026-09-23,,
 LC,LCA,662,Saint Lucia,officially-assigned,false,Saint Lucia,Americas,Latin America and the Caribbean,Caribbean,XCD,1,.lc,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LC
 source: https://www.cia.gov/the-world-factbook/countries/LC/",2026-09-23,,
-LI,LIE,438,Liechtenstein,officially-assigned,false,Principality of Liechtenstein,Europe,Western Europe,,CHF,423,.li,deu,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI
+LI,LIE,438,Liechtenstein,officially-assigned,false,Principality of Liechtenstein,Europe,Western Europe,,CHF,423,.li,deu,AT|CH,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI
 source: https://www.cia.gov/the-world-factbook/countries/LI/",2026-09-23,,
 LK,LKA,144,Sri Lanka,officially-assigned,false,Democratic Socialist Republic of Sri Lanka,Asia,Southern Asia,,LKR,94,.lk,sin|tam,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LK
 source: https://www.cia.gov/the-world-factbook/countries/LK/",2026-09-23,,
@@ -267,21 +267,21 @@ LR,LBR,430,Liberia,officially-assigned,false,Republic of Liberia,Africa,Sub-Saha
 source: https://www.cia.gov/the-world-factbook/countries/LR/",2026-09-23,,
 LS,LSO,426,Lesotho,officially-assigned,false,Kingdom of Lesotho,Africa,Sub-Saharan Africa,Southern Africa,LSL,266,.ls,eng|sot,ZA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LS
 source: https://www.cia.gov/the-world-factbook/countries/LS/",2026-09-23,,
-LT,LTU,440,Lithuania,officially-assigned,false,Republic of Lithuania,Europe,Northern Europe,,EUR,370,.lt,lit,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT
+LT,LTU,440,Lithuania,officially-assigned,false,Republic of Lithuania,Europe,Northern Europe,,EUR,370,.lt,lit,BY|LV|PL|RU,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT
 source: https://www.cia.gov/the-world-factbook/countries/LT/",2026-09-23,,
-LU,LUX,442,Luxembourg,officially-assigned,false,Grand Duchy of Luxembourg,Europe,Western Europe,,EUR,352,.lu,deu|fra|ltz,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU
+LU,LUX,442,Luxembourg,officially-assigned,false,Grand Duchy of Luxembourg,Europe,Western Europe,,EUR,352,.lu,deu|fra|ltz,BE|DE|FR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU
 source: https://www.cia.gov/the-world-factbook/countries/LU/",2026-09-23,,
-LV,LVA,428,Latvia,officially-assigned,false,Republic of Latvia,Europe,Northern Europe,,EUR,371,.lv,lav,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV
+LV,LVA,428,Latvia,officially-assigned,false,Republic of Latvia,Europe,Northern Europe,,EUR,371,.lv,lav,BY|EE|LT|RU,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV
 source: https://www.cia.gov/the-world-factbook/countries/LV/",2026-09-23,,
 LY,LBY,434,Libya,officially-assigned,false,State of Libya,Africa,Northern Africa,,LYD,218,.ly,ara,DZ|EG|NE|SD|TD|TN,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LY
 source: https://www.cia.gov/the-world-factbook/countries/LY/",2026-09-23,,
 MA,MAR,504,Morocco,officially-assigned,false,Kingdom of Morocco,Africa,Northern Africa,,MAD,212,.ma,ara,DZ|EH|ES,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MA
 source: https://www.cia.gov/the-world-factbook/countries/MA/",2026-09-23,,
-MC,MCO,492,Monaco,officially-assigned,false,Principality of Monaco,Europe,Western Europe,,EUR,377,.mc,fra,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC
+MC,MCO,492,Monaco,officially-assigned,false,Principality of Monaco,Europe,Western Europe,,EUR,377,.mc,fra,FR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC
 source: https://www.cia.gov/the-world-factbook/countries/MC/",2026-09-23,,
-MD,MDA,498,Republic of Moldova,officially-assigned,false,Republic of Moldova,Europe,Eastern Europe,,MDL,373,.md,ron,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD
+MD,MDA,498,Republic of Moldova,officially-assigned,false,Republic of Moldova,Europe,Eastern Europe,,MDL,373,.md,ron,RO|UA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD
 source: https://www.cia.gov/the-world-factbook/countries/MD/",2026-09-23,,
-ME,MNE,499,Montenegro,officially-assigned,false,Montenegro,Europe,Southern Europe,,EUR,382,.me,cnr,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME
+ME,MNE,499,Montenegro,officially-assigned,false,Montenegro,Europe,Southern Europe,,EUR,382,.me,cnr,AL|BA|HR|RS|XK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME
 source: https://www.cia.gov/the-world-factbook/countries/ME/",2026-09-23,,
 MF,MAF,663,Saint Martin (French Part),officially-assigned,false,Saint Martin (French part),Americas,Latin America and the Caribbean,Caribbean,EUR,590,,fra,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MF
 source: https://www.cia.gov/the-world-factbook/countries/MF/",2026-09-23,,
@@ -290,7 +290,7 @@ source: https://www.cia.gov/the-world-factbook/countries/MG/",2026-09-23,,
 MH,MHL,584,Marshall Islands,officially-assigned,false,Republic of the Marshall Islands,Oceania,Micronesia,,USD,692,.mh,,,"source: https://www.iana.org/domains/root/db
 official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MH",2026-09-23,,
 MI,MID,000,Midway Islands,withdrawn,false,,,,,,,,,,source: https://www.iso.org/obp/ui/#iso:code:3166:MI,2026-09-23,1986-01-01,
-MK,MKD,807,North Macedonia,officially-assigned,false,Republic of North Macedonia,Europe,Southern Europe,,MKD,389,.mk,mkd,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK
+MK,MKD,807,North Macedonia,officially-assigned,false,Republic of North Macedonia,Europe,Southern Europe,,MKD,389,.mk,mkd,AL|BG|GR|RS|XK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK
 source: https://www.cia.gov/the-world-factbook/countries/MK/",2026-09-23,,
 ML,MLI,466,Mali,officially-assigned,false,Republic of Mali,Africa,Sub-Saharan Africa,Western Africa,XOF,223,.ml,fra,BF|CI|DZ|GN|MR|NE|SN,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ML
 source: https://www.cia.gov/the-world-factbook/countries/ML/",2026-09-23,,
@@ -335,9 +335,9 @@ source: https://www.cia.gov/the-world-factbook/countries/NG/",2026-09-23,,
 NH,NHB,000,New Hebrides,withdrawn,false,,,,,,,,,,,2026-09-22,1980-07-30,VU
 NI,NIC,558,Nicaragua,officially-assigned,false,Republic of Nicaragua,Americas,Latin America and the Caribbean,Central America,NIO,505,.ni,spa,CR|HN,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NI
 source: https://www.cia.gov/the-world-factbook/countries/NI/",2026-09-23,,
-NL,NLD,528,Netherlands (Kingdom of the),officially-assigned,false,Netherlands (Kingdom of the),Europe,Western Europe,,EUR,31,.nl,nld,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL
+NL,NLD,528,Netherlands (Kingdom of the),officially-assigned,false,Netherlands (Kingdom of the),Europe,Western Europe,,EUR,31,.nl,nld,BE|DE,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL
 source: https://www.cia.gov/the-world-factbook/countries/NL/",2026-09-23,,
-NO,NOR,578,Norway,officially-assigned,false,Kingdom of Norway,Europe,Northern Europe,,NOK,47,.no,nor,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO
+NO,NOR,578,Norway,officially-assigned,false,Kingdom of Norway,Europe,Northern Europe,,NOK,47,.no,nor,FI|RU|SE,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO
 source: https://www.cia.gov/the-world-factbook/countries/NO/",2026-09-23,,
 NP,NPL,524,Nepal,officially-assigned,false,Federal Democratic Republic of Nepal,Asia,Southern Asia,,NPR,977,.np,nep,CN|IN,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NP
 source: https://www.cia.gov/the-world-factbook/countries/NP/",2026-09-23,,
@@ -364,7 +364,7 @@ PH,PHL,608,Philippines,officially-assigned,false,Republic of the Philippines,Asi
 source: https://www.cia.gov/the-world-factbook/countries/PH/",2026-09-23,,
 PK,PAK,586,Pakistan,officially-assigned,false,Islamic Republic of Pakistan,Asia,Southern Asia,,PKR,92,.pk,eng|urd,AF|CN|IN|IR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PK
 source: https://www.cia.gov/the-world-factbook/countries/PK/",2026-09-23,,
-PL,POL,616,Poland,officially-assigned,false,Republic of Poland,Europe,Eastern Europe,,PLN,48,.pl,pol,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL
+PL,POL,616,Poland,officially-assigned,false,Republic of Poland,Europe,Eastern Europe,,PLN,48,.pl,pol,BY|CZ|DE|LT|RU|SK|UA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL
 source: https://www.cia.gov/the-world-factbook/countries/PL/",2026-09-23,,
 PM,SPM,666,Saint Pierre and Miquelon,officially-assigned,false,Saint Pierre and Miquelon,Americas,Northern America,,EUR,508,.pm,fra,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PM
 source: https://www.cia.gov/the-world-factbook/countries/PM/",2026-09-23,,
@@ -374,7 +374,7 @@ PR,PRI,630,Puerto Rico,officially-assigned,false,Puerto Rico,Americas,Latin Amer
 source: https://www.cia.gov/the-world-factbook/countries/PR/",2026-09-23,,
 PS,PSE,275,State of Palestine,officially-assigned,false,State of Palestine,Asia,Western Asia,,ILS,970,.ps,,EG|IL|JO,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PS
 source: https://www.cia.gov/the-world-factbook/countries/PS/",2026-09-23,,
-PT,PRT,620,Portugal,officially-assigned,false,Portuguese Republic,Europe,Southern Europe,,EUR,351,.pt,por,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT
+PT,PRT,620,Portugal,officially-assigned,false,Portuguese Republic,Europe,Southern Europe,,EUR,351,.pt,por,ES,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT
 source: https://www.cia.gov/the-world-factbook/countries/PT/",2026-09-23,,
 PW,PLW,585,Palau,officially-assigned,false,Republic of Palau,Oceania,Micronesia,,USD,680,.pw,eng|pau,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PW
 source: https://www.cia.gov/the-world-factbook/countries/PW/",2026-09-23,,
@@ -386,11 +386,11 @@ source: https://www.cia.gov/the-world-factbook/countries/QA/",2026-09-23,,
 RE,REU,638,Réunion,officially-assigned,false,Réunion,Africa,Sub-Saharan Africa,Eastern Africa,EUR,262,.re,fra,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RE
 source: https://www.cia.gov/the-world-factbook/countries/RE/",2026-09-23,,
 RH,RHO,000,Southern Rhodesia,withdrawn,false,,,,,,,,,,,2026-09-22,1980-04-18,ZW
-RO,ROU,642,Romania,officially-assigned,false,Romania,Europe,Eastern Europe,,RON,40,.ro,ron,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO
+RO,ROU,642,Romania,officially-assigned,false,Romania,Europe,Eastern Europe,,RON,40,.ro,ron,BG|HU|MD|RS|UA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO
 source: https://www.cia.gov/the-world-factbook/countries/RO/",2026-09-23,,
-RS,SRB,688,Serbia,officially-assigned,false,Republic of Serbia,Europe,Southern Europe,,RSD,381,.rs,srp,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS
+RS,SRB,688,Serbia,officially-assigned,false,Republic of Serbia,Europe,Southern Europe,,RSD,381,.rs,srp,BA|BG|HR|HU|ME|MK|RO|XK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS
 source: https://www.cia.gov/the-world-factbook/countries/RS/",2026-09-23,,
-RU,RUS,643,Russian Federation,officially-assigned,true,Russian Federation,Europe,Eastern Europe,,RUB,7,.ru,rus,,source: https://www.cia.gov/the-world-factbook/countries/RU/,2026-09-23,,
+RU,RUS,643,Russian Federation,officially-assigned,true,Russian Federation,Europe,Eastern Europe,,RUB,7,.ru,rus,AZ|BY|CN|EE|FI|GE|KP|KZ|LT|LV|MN|NO|PL|UA,source: https://www.cia.gov/the-world-factbook/countries/RU/,2026-09-23,,
 RW,RWA,646,Rwanda,officially-assigned,false,Republic of Rwanda,Africa,Sub-Saharan Africa,Eastern Africa,RWF,250,.rw,eng|fra|kin,BI|CD|TZ|UG,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RW
 source: https://www.cia.gov/the-world-factbook/countries/RW/",2026-09-23,,
 SA,SAU,682,Saudi Arabia,officially-assigned,false,Saudi Arabia,Asia,Western Asia,,SAR,966,.sa,,AE|IQ|JO|KW|OM|QA|YE,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA
@@ -401,22 +401,22 @@ SC,SYC,690,Seychelles,officially-assigned,false,Republic of Seychelles,Africa,Su
 source: https://www.cia.gov/the-world-factbook/countries/SC/",2026-09-23,,
 SD,SDN,729,Sudan,officially-assigned,false,Republic of the Sudan,Africa,Northern Africa,,SDG,249,.sd,ara|eng,CF|EG|ER|ET|LY|SS|TD,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SD
 source: https://www.cia.gov/the-world-factbook/countries/SD/",2026-09-23,,
-SE,SWE,752,Sweden,officially-assigned,false,Kingdom of Sweden,Europe,Northern Europe,,SEK,46,.se,swe,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE
+SE,SWE,752,Sweden,officially-assigned,false,Kingdom of Sweden,Europe,Northern Europe,,SEK,46,.se,swe,FI|NO,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE
 source: https://www.cia.gov/the-world-factbook/countries/SE/",2026-09-23,,
 SG,SGP,702,Singapore,officially-assigned,false,Singapore,Asia,South-eastern Asia,,SGD,65,.sg,cmn|eng|msa|tam,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG
 source: https://www.cia.gov/the-world-factbook/countries/SG/",2026-09-23,,
 SH,SHN,654,Saint Helena,officially-assigned,false,"Saint Helena, Ascension and Tristan da Cunha",Africa,Sub-Saharan Africa,Western Africa,SHP,290,.sh,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SH
 source: https://www.cia.gov/the-world-factbook/countries/SH/",2026-09-23,,
-SI,SVN,705,Slovenia,officially-assigned,false,Republic of Slovenia,Europe,Southern Europe,,EUR,386,.si,slv,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI
+SI,SVN,705,Slovenia,officially-assigned,false,Republic of Slovenia,Europe,Southern Europe,,EUR,386,.si,slv,AT|HR|HU|IT,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI
 source: https://www.cia.gov/the-world-factbook/countries/SI/",2026-09-23,,
 SJ,SJM,744,Svalbard and Jan Mayen Islands,officially-assigned,false,Svalbard and Jan Mayen,Europe,Northern Europe,,NOK,47,.sj,nor,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ
 source: https://www.cia.gov/the-world-factbook/countries/SJ/",2026-09-23,,
-SK,SVK,703,Slovakia,officially-assigned,false,Slovak Republic,Europe,Eastern Europe,,EUR,421,.sk,slk,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK
+SK,SVK,703,Slovakia,officially-assigned,false,Slovak Republic,Europe,Eastern Europe,,EUR,421,.sk,slk,AT|CZ|HU|PL|UA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK
 source: https://www.cia.gov/the-world-factbook/countries/SK/",2026-09-23,,
 SK,SKM,000,Sikkim,withdrawn,false,,,,,,,,,,,2026-09-22,1975-05-16,IN
 SL,SLE,694,Sierra Leone,officially-assigned,false,Republic of Sierra Leone,Africa,Sub-Saharan Africa,Western Africa,SLE,232,.sl,eng,GN|LR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SL
 source: https://www.cia.gov/the-world-factbook/countries/SL/",2026-09-23,,
-SM,SMR,674,San Marino,officially-assigned,false,Republic of San Marino,Europe,Southern Europe,,EUR,378,.sm,ita,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM
+SM,SMR,674,San Marino,officially-assigned,false,Republic of San Marino,Europe,Southern Europe,,EUR,378,.sm,ita,IT,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM
 source: https://www.cia.gov/the-world-factbook/countries/SM/",2026-09-23,,
 SN,SEN,686,Senegal,officially-assigned,false,Republic of Senegal,Africa,Sub-Saharan Africa,Western Africa,XOF,221,.sn,fra,GM|GN|GW|ML|MR,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SN
 source: https://www.cia.gov/the-world-factbook/countries/SN/",2026-09-23,,
@@ -470,7 +470,7 @@ TW,TWN,158,"Taiwan, Province of China",officially-assigned,false,"Taiwan, Provin
 source: https://www.cia.gov/the-world-factbook/countries/TW/",2026-09-23,,
 TZ,TZA,834,United Republic of Tanzania,officially-assigned,false,United Republic of Tanzania,Africa,Sub-Saharan Africa,Eastern Africa,TZS,255,.tz,eng|swa,BI|CD|KE|MW|MZ|RW|UG|ZM,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TZ
 source: https://www.cia.gov/the-world-factbook/countries/TZ/",2026-09-23,,
-UA,UKR,804,Ukraine,officially-assigned,false,Ukraine,Europe,Eastern Europe,,UAH,380,.ua,ukr,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA
+UA,UKR,804,Ukraine,officially-assigned,false,Ukraine,Europe,Eastern Europe,,UAH,380,.ua,ukr,BY|HU|MD|PL|RO|RU|SK,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA
 source: https://www.cia.gov/the-world-factbook/countries/UA/",2026-09-23,,
 UG,UGA,800,Uganda,officially-assigned,false,Republic of Uganda,Africa,Sub-Saharan Africa,Eastern Africa,UGX,256,.ug,eng|swa,CD|KE|RW|SS|TZ,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UG
 source: https://www.cia.gov/the-world-factbook/countries/UG/",2026-09-23,,
@@ -482,7 +482,7 @@ UY,URY,858,Uruguay,officially-assigned,false,Eastern Republic of Uruguay,America
 source: https://www.cia.gov/the-world-factbook/countries/UY/",2026-09-23,,
 UZ,UZB,860,Uzbekistan,officially-assigned,false,Republic of Uzbekistan,Asia,Central Asia,,UZS,998,.uz,rus|uzb,AF|KG|KZ|TJ|TM,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UZ
 source: https://www.cia.gov/the-world-factbook/countries/UZ/",2026-09-23,,
-VA,VAT,336,Holy See,officially-assigned,false,Holy See,Europe,Southern Europe,,EUR,39,.va,ita,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA
+VA,VAT,336,Holy See,officially-assigned,false,Holy See,Europe,Southern Europe,,EUR,39,.va,ita,IT,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA
 source: https://www.cia.gov/the-world-factbook/countries/VA/",2026-09-23,,
 VC,VCT,670,Saint Vincent and the Grenadines,officially-assigned,false,Saint Vincent and the Grenadines,Americas,Latin America and the Caribbean,Caribbean,XCD,1,.vc,eng,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VC
 source: https://www.cia.gov/the-world-factbook/countries/VC/",2026-09-23,,
@@ -502,7 +502,8 @@ source: https://www.cia.gov/the-world-factbook/countries/WF/",2026-09-23,,
 WK,WAK,000,Wake Island,withdrawn,false,,,,,,,,,,source: https://www.iso.org/obp/ui/#iso:code:3166:WK,2026-09-23,1986-01-01,
 WS,WSM,882,Samoa,officially-assigned,false,Independent State of Samoa,Oceania,Polynesia,,WST,685,.ws,eng|smo,,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:WS
 source: https://www.cia.gov/the-world-factbook/countries/WS/",2026-09-23,,
-XK,XKX,000,Kosovo,user-assigned,true,,,,,,,,,,User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production.,2026-09-22,,
+XK,XKX,000,Kosovo,user-assigned,true,,,,,,,,,AL|ME|MK|RS,"User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production.
+source: https://www.cia.gov/the-world-factbook/countries/XK/",2026-09-23,,
 YD,YMD,720,South Yemen,withdrawn,false,,,,,,,,,,,2026-09-22,1990-05-22,YE
 YE,YEM,887,Yemen,officially-assigned,false,Republic of Yemen,Asia,Western Asia,,YER,967,.ye,,OM|SA,"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:YE
 source: https://www.cia.gov/the-world-factbook/countries/YE/",2026-09-23,,
