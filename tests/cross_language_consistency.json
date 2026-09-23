@@ -1,4 +1,26 @@
 {
+  "lookup_withdrawn_fields": [
+    {
+      "input": "AN",
+      "subregion": "Caribbean"
+    },
+    {
+      "input": "BU",
+      "subregion": "South-eastern Asia"
+    },
+    {
+      "input": "CS",
+      "subregion": "Southern Europe"
+    },
+    {
+      "input": "DD",
+      "subregion": "Western Europe"
+    },
+    {
+      "input": "ZR",
+      "subregion": "Middle Africa"
+    }
+  ],
   "lookup_fields": [
     {
       "input": "US",

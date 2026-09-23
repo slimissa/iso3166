@@ -29,21 +29,7 @@ REGISTRY = Path("iso3166.json")
 
 
 def _summarize(entry: dict[str, Any]) -> dict[str, Any]:
-    # Subregion cases for representative withdrawn entries.
-    withdrawn_subregion_samples = ["AN", "BU", "CS", "DD", "ZR"]
-    lookup_withdrawn_fields = []
-    by_a2_withdrawn = {e["alpha_2"]: e for e in withdrawn}
-    for code in withdrawn_subregion_samples:
-        e = by_a2_withdrawn.get(code)
-        if e is None:
-            continue
-        lookup_withdrawn_fields.append({
-            "input": code,
-            "subregion": e.get("subregion"),
-        })
-
     return {
-        "lookup_withdrawn_fields": lookup_withdrawn_fields,
         "alpha_2": entry["alpha_2"],
         "alpha_3": entry["alpha_3"],
         "numeric": entry["numeric"],
@@ -165,7 +151,21 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             "borders": e.get("borders") or [],
         })
 
+    # Subregion cases for representative withdrawn entries.
+    withdrawn_subregion_samples = ["AN", "BU", "CS", "DD", "ZR"]
+    lookup_withdrawn_fields = []
+    by_a2_withdrawn = {e["alpha_2"]: e for e in withdrawn}
+    for code in withdrawn_subregion_samples:
+        e = by_a2_withdrawn.get(code)
+        if e is None:
+            continue
+        lookup_withdrawn_fields.append({
+            "input": code,
+            "subregion": e.get("subregion"),
+        })
+
     return {
+        "lookup_withdrawn_fields": lookup_withdrawn_fields,
         "lookup_fields": lookup_fields,
         "lookup_withdrawn": lookup_withdrawn,
         "_comment": (
