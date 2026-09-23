@@ -97,6 +97,14 @@ FIELDS: dict[str, FieldConfig] = {
         source_template="https://www.itu.int/oth/T02020000E8/en",
         describe="ITU-T E.164 calling codes",
     ),
+    "borders": FieldConfig(
+        name="borders",
+        item_pattern=r"^[A-Z]{2}$",
+        snapshot_path=Path("iso3166.json"),
+        snapshot_key=None,
+        source_template="https://www.cia.gov/the-world-factbook/countries/{code}/",
+        describe="adjacent country alpha-2 codes",
+    ),
     "languages": FieldConfig(
         name="languages",
         item_pattern=r"^[a-z]{3}$",
@@ -144,23 +152,24 @@ def write_registry(path: Path, data: dict[str, Any]) -> None:
 def load_snapshot(cfg: FieldConfig) -> frozenset[str]:
     if not cfg.snapshot_path.exists():
         raise FatalError(f"snapshot not found: {cfg.snapshot_path}")
-    try:
-        data = json.loads(cfg.snapshot_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise FatalError(f"{cfg.snapshot_path}: invalid JSON: {exc}") from exc
 
+    if cfg.snapshot_key is None:
+        # Special case: borders validates against the registry's own
+        # active alpha-2 codes.
+        reg = load_registry(cfg.snapshot_path)
+        return frozenset(
+            e["alpha_2"] for e in reg["countries"]["active"]
+            if e["status"] == "officially-assigned"
+        )
+
+    data = json.loads(cfg.snapshot_path.read_text(encoding="utf-8"))
     values = data.get(cfg.snapshot_key)
     if not isinstance(values, list):
         raise FatalError(
-            f"{cfg.snapshot_path}: key {cfg.snapshot_key!r} is missing "
-            f"or is not a list"
+            f"{cfg.snapshot_path}: key {cfg.snapshot_key!r} is not a list"
         )
-    return frozenset(v for v in values if isinstance(v, str))
+    return frozenset(values)
 
-
-# ----------------------------------------------------------------
-# Validation
-# ----------------------------------------------------------------
 
 def validate_values(
     values: list[str],
@@ -227,7 +236,7 @@ def apply_one(
     today: str,
 ) -> dict[str, Any]:
     """Set the field on one entry. Returns a summary dict for logging."""
-    if not values and cfg.name not in ("currency_codes", "tlds"):
+    if not values and cfg.name not in ("currency_codes", "tlds", "languages", "borders"):
         raise FatalError(f"{alpha_2}: at least one value required")
 
     validate_values(values, cfg, known)
