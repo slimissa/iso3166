@@ -12,14 +12,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Andorra",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD\nsource: https://www.iana.org/domains/root/db",
         "numeric": "020",
         "official_name": "Principality of Andorra",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ad"
+        ],
         "withdrawal_date": null
       },
       {
@@ -31,16 +33,18 @@
         "independent": false,
         "intermediate_region": null,
         "languages": null,
-        "last_verified": "2026-09-22",
+        "last_verified": "2026-09-23",
         "name": "United Arab Emirates",
-        "note": null,
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "784",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".ae"
+        ],
         "withdrawal_date": null
       },
       {
@@ -52,16 +56,18 @@
         "independent": false,
         "intermediate_region": null,
         "languages": null,
-        "last_verified": "2026-09-22",
+        "last_verified": "2026-09-23",
         "name": "Afghanistan",
-        "note": null,
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "004",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".af"
+        ],
         "withdrawal_date": null
       },
       {
@@ -73,16 +79,18 @@
         "independent": false,
         "intermediate_region": "Caribbean",
         "languages": null,
-        "last_verified": "2026-09-22",
+        "last_verified": "2026-09-23",
         "name": "Antigua and Barbuda",
-        "note": null,
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "028",
         "official_name": null,
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ag"
+        ],
         "withdrawal_date": null
       },
       {

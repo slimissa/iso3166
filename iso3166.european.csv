@@ -1,8 +1,9 @@
 alpha_2;alpha_3;numeric;name;status;independent;official_name;region;subregion;intermediate_region;currency_codes;calling_codes;tlds;languages;borders;note;last_verified;withdrawal_date;replaced_by
-AD;AND;020;Andorra;officially-assigned;false;Principality of Andorra;Europe;Southern Europe;;;;;;;official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD;2026-09-23;;
-AE;ARE;784;United Arab Emirates;officially-assigned;false;;Asia;Western Asia;;;;;;;;2026-09-22;;
-AF;AFG;004;Afghanistan;officially-assigned;false;;Asia;Southern Asia;;;;;;;;2026-09-22;;
-AG;ATG;028;Antigua and Barbuda;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;;;;;;;2026-09-22;;
+AD;AND;020;Andorra;officially-assigned;false;Principality of Andorra;Europe;Southern Europe;;;;.ad;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
+source: https://www.iana.org/domains/root/db";2026-09-23;;
+AE;ARE;784;United Arab Emirates;officially-assigned;false;;Asia;Western Asia;;;;.ae;;;source: https://www.iana.org/domains/root/db;2026-09-23;;
+AF;AFG;004;Afghanistan;officially-assigned;false;;Asia;Southern Asia;;;;.af;;;source: https://www.iana.org/domains/root/db;2026-09-23;;
+AG;ATG;028;Antigua and Barbuda;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;;;.ag;;;source: https://www.iana.org/domains/root/db;2026-09-23;;
 AI;AIA;660;Anguilla;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;;;;;;;2026-09-22;;
 AI;AFI;000;French Afars and Issas;withdrawn;false;;;;;;;;;;;2026-09-22;1977-06-27;DJ
 AL;ALB;008;Albania;officially-assigned;false;Republic of Albania;Europe;Southern Europe;;;;;;;official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL;2026-09-23;;
