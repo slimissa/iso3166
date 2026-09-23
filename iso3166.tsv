@@ -1,9 +1,9 @@
 alpha_2	alpha_3	numeric	name	status	independent	official_name	region	subregion	intermediate_region	currency_codes	calling_codes	tlds	languages	borders	note	last_verified	withdrawal_date	replaced_by
 AD	AND	020	Andorra	officially-assigned	false	Principality of Andorra	Europe	Southern Europe		EUR	376	.ad	cat		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
 source: https://www.cia.gov/the-world-factbook/countries/AD/"	2026-09-23		
-AE	ARE	784	United Arab Emirates	officially-assigned	false	United Arab Emirates	Asia	Western Asia		AED	971	.ae	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AE
+AE	ARE	784	United Arab Emirates	officially-assigned	false	United Arab Emirates	Asia	Western Asia		AED	971	.ae	ara	OM|SA	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AE
 source: https://www.cia.gov/the-world-factbook/countries/AE/"	2026-09-23		
-AF	AFG	004	Afghanistan	officially-assigned	false	Islamic Republic of Afghanistan	Asia	Southern Asia		AFN	93	.af	prs|pus		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AF
+AF	AFG	004	Afghanistan	officially-assigned	false	Islamic Republic of Afghanistan	Asia	Southern Asia		AFN	93	.af	prs|pus	CN|IR|PK|TJ|TM|UZ	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AF
 source: https://www.cia.gov/the-world-factbook/countries/AF/"	2026-09-23		
 AG	ATG	028	Antigua and Barbuda	officially-assigned	false	Antigua and Barbuda	Americas	Latin America and the Caribbean	Caribbean	XCD	1	.ag	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AG
 source: https://www.cia.gov/the-world-factbook/countries/AG/"	2026-09-23		
@@ -12,7 +12,7 @@ source: https://www.cia.gov/the-world-factbook/countries/AI/"	2026-09-23
 AI	AFI	000	French Afars and Issas	withdrawn	false											2026-09-22	1977-06-27	DJ
 AL	ALB	008	Albania	officially-assigned	false	Republic of Albania	Europe	Southern Europe		ALL	355	.al	sqi		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
 source: https://www.cia.gov/the-world-factbook/countries/AL/"	2026-09-23		
-AM	ARM	051	Armenia	officially-assigned	false	Republic of Armenia	Asia	Western Asia		AMD	374	.am	hye		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AM
+AM	ARM	051	Armenia	officially-assigned	false	Republic of Armenia	Asia	Western Asia		AMD	374	.am	hye	AZ|GE|IR|TR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AM
 source: https://www.cia.gov/the-world-factbook/countries/AM/"	2026-09-23		
 AN	ANT	530	Netherlands Antilles	withdrawn	false											2026-09-22	2010-12-01	BQ|CW|SX
 AO	AGO	024	Angola	officially-assigned	false	Republic of Angola	Africa	Sub-Saharan Africa	Middle Africa	AOA	244	.ao	por		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AO
@@ -26,18 +26,18 @@ source: https://www.cia.gov/the-world-factbook/countries/AS/"	2026-09-23
 AT	AUT	040	Austria	officially-assigned	false	Republic of Austria	Europe	Western Europe		EUR	43	.at	deu		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
 source: https://www.cia.gov/the-world-factbook/countries/AT/"	2026-09-23		
 AU	AUS	036	Australia	officially-assigned	false	Australia	Oceania	Australia and New Zealand		AUD	61	.au			"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU
-source: https://www.iana.org/domains/root/db"	2026-09-23		
+source: https://www.cia.gov/the-world-factbook/countries/AU/"	2026-09-23		
 AW	ABW	533	Aruba	officially-assigned	false	Aruba	Americas	Latin America and the Caribbean	Caribbean	AWG	297	.aw	nld|pap		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AW
 source: https://www.cia.gov/the-world-factbook/countries/AW/"	2026-09-23		
 AX	ALA	248	Åland Islands	officially-assigned	false	Åland Islands	Europe	Northern Europe		EUR	358	.ax			"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX
 source: https://www.iana.org/domains/root/db"	2026-09-23		
-AZ	AZE	031	Azerbaijan	officially-assigned	false	Republic of Azerbaijan	Asia	Western Asia		AZN	994	.az	aze		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AZ
+AZ	AZE	031	Azerbaijan	officially-assigned	false	Republic of Azerbaijan	Asia	Western Asia		AZN	994	.az	aze	AM|GE|IR|RU|TR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AZ
 source: https://www.cia.gov/the-world-factbook/countries/AZ/"	2026-09-23		
 BA	BIH	070	Bosnia and Herzegovina	officially-assigned	false	Bosnia and Herzegovina	Europe	Southern Europe		BAM	387	.ba	bos|hrv|srp		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA
 source: https://www.cia.gov/the-world-factbook/countries/BA/"	2026-09-23		
 BB	BRB	052	Barbados	officially-assigned	false	Barbados	Americas	Latin America and the Caribbean	Caribbean	BBD	1	.bb	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BB
 source: https://www.cia.gov/the-world-factbook/countries/BB/"	2026-09-23		
-BD	BGD	050	Bangladesh	officially-assigned	false	People's Republic of Bangladesh	Asia	Southern Asia		BDT	880	.bd	ben		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BD
+BD	BGD	050	Bangladesh	officially-assigned	false	People's Republic of Bangladesh	Asia	Southern Asia		BDT	880	.bd	ben	IN|MM	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BD
 source: https://www.cia.gov/the-world-factbook/countries/BD/"	2026-09-23		
 BE	BEL	056	Belgium	officially-assigned	false	Kingdom of Belgium	Europe	Western Europe		EUR	32	.be	deu|fra|nld		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE
 source: https://www.cia.gov/the-world-factbook/countries/BE/"	2026-09-23		
@@ -55,7 +55,7 @@ BL	BLM	652	Saint Barthélemy	officially-assigned	false	Saint Barthélemy	America
 source: https://www.cia.gov/the-world-factbook/countries/BL/"	2026-09-23		
 BM	BMU	060	Bermuda	officially-assigned	false	Bermuda	Americas	Northern America		BMD	1	.bm	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BM
 source: https://www.cia.gov/the-world-factbook/countries/BM/"	2026-09-23		
-BN	BRN	096	Brunei Darussalam	officially-assigned	false	Brunei Darussalam	Asia	South-eastern Asia		BND	673	.bn	msa		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BN
+BN	BRN	096	Brunei Darussalam	officially-assigned	false	Brunei Darussalam	Asia	South-eastern Asia		BND	673	.bn	msa	MY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BN
 source: https://www.cia.gov/the-world-factbook/countries/BN/"	2026-09-23		
 BO	BOL	068	Bolivia (Plurinational State of)	officially-assigned	false	Bolivia (Plurinational State of)	Americas	Latin America and the Caribbean	South America	BOB	591	.bo	aym|que|spa	AR|BR|CL|PE|PY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BO
 source: https://www.cia.gov/the-world-factbook/countries/BO/"	2026-09-23		
@@ -64,7 +64,7 @@ source: https://www.cia.gov/the-world-factbook/countries/BQ/"	2026-09-23
 BR	BRA	076	Brazil	officially-assigned	true	Federative Republic of Brazil	Americas	Latin America and the Caribbean	South America	BRL	55	.br	por	AR|BO|CO|GF|GY|PE|PY|SR|UY|VE	source: https://www.cia.gov/the-world-factbook/countries/BR/	2026-09-23		
 BS	BHS	044	Bahamas	officially-assigned	false	Commonwealth of the Bahamas	Americas	Latin America and the Caribbean	Caribbean	BSD	1	.bs	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BS
 source: https://www.cia.gov/the-world-factbook/countries/BS/"	2026-09-23		
-BT	BTN	064	Bhutan	officially-assigned	false	Kingdom of Bhutan	Asia	Southern Asia		BTN	975	.bt	dzo		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BT
+BT	BTN	064	Bhutan	officially-assigned	false	Kingdom of Bhutan	Asia	Southern Asia		BTN	975	.bt	dzo	CN|IN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BT
 source: https://www.cia.gov/the-world-factbook/countries/BT/"	2026-09-23		
 BU	BUR	104	Burma	withdrawn	false											2026-09-22	1989-12-05	MM
 BV	BVT	074	Bouvet Island	officially-assigned	false	Bouvet Island	Americas	Latin America and the Caribbean	South America	NOK	47	.bv	nor		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BV
@@ -95,7 +95,7 @@ CL	CHL	152	Chile	officially-assigned	false	Republic of Chile	Americas	Latin Amer
 source: https://www.cia.gov/the-world-factbook/countries/CL/"	2026-09-23		
 CM	CMR	120	Cameroon	officially-assigned	false	Republic of Cameroon	Africa	Sub-Saharan Africa	Middle Africa	XAF	237	.cm	eng|fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CM
 source: https://www.cia.gov/the-world-factbook/countries/CM/"	2026-09-23		
-CN	CHN	156	China	officially-assigned	true	People's Republic of China	Asia	Eastern Asia		CNY	86	.cn	cmn		source: https://www.cia.gov/the-world-factbook/countries/CN/	2026-09-23		
+CN	CHN	156	China	officially-assigned	true	People's Republic of China	Asia	Eastern Asia		CNY	86	.cn	cmn	AF|BT|HK|IN|KG|KP|KZ|LA|MM|MN|MO|NP|PK|RU|TJ|VN	source: https://www.cia.gov/the-world-factbook/countries/CN/	2026-09-23		
 CO	COL	170	Colombia	officially-assigned	false	Republic of Colombia	Americas	Latin America and the Caribbean	South America	COP	57	.co	spa	BR|EC|PA|PE|VE	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CO
 source: https://www.cia.gov/the-world-factbook/countries/CO/"	2026-09-23		
 CR	CRI	188	Costa Rica	officially-assigned	false	Republic of Costa Rica	Americas	Latin America and the Caribbean	Central America	CRC	506	.cr	spa	NI|PA	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CR
@@ -191,7 +191,7 @@ GW	GNB	624	Guinea-Bissau	officially-assigned	false	Republic of Guinea-Bissau	Afr
 source: https://www.cia.gov/the-world-factbook/countries/GW/"	2026-09-23		
 GY	GUY	328	Guyana	officially-assigned	false	Co-operative Republic of Guyana	Americas	Latin America and the Caribbean	South America	GYD	592	.gy	eng	BR|SR|VE	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GY
 source: https://www.cia.gov/the-world-factbook/countries/GY/"	2026-09-23		
-HK	HKG	344	China, Hong Kong Special Administrative Region	officially-assigned	false	Hong Kong	Asia	Eastern Asia		HKD	852	.hk	cmn|eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HK
+HK	HKG	344	China, Hong Kong Special Administrative Region	officially-assigned	false	Hong Kong	Asia	Eastern Asia		HKD	852	.hk	cmn|eng	CN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HK
 source: https://www.cia.gov/the-world-factbook/countries/HK/"	2026-09-23		
 HM	HMD	334	Heard Island and McDonald Islands	officially-assigned	false	Heard Island and McDonald Islands	Oceania	Australia and New Zealand		AUD	672	.hm	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HM
 source: https://www.cia.gov/the-world-factbook/countries/HM/"	2026-09-23		
@@ -204,20 +204,20 @@ source: https://www.cia.gov/the-world-factbook/countries/HT/"	2026-09-23
 HU	HUN	348	Hungary	officially-assigned	false	Hungary	Europe	Eastern Europe		HUF	36	.hu	hun		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU
 source: https://www.cia.gov/the-world-factbook/countries/HU/"	2026-09-23		
 HV	HVO	854	Upper Volta	withdrawn	false											2026-09-22	1984-08-04	BF
-ID	IDN	360	Indonesia	officially-assigned	false	Indonesia	Asia	South-eastern Asia		IDR	62	.id	ind		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
+ID	IDN	360	Indonesia	officially-assigned	false	Indonesia	Asia	South-eastern Asia		IDR	62	.id	ind	MY|PG|TL	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
 source: https://www.cia.gov/the-world-factbook/countries/ID/"	2026-09-23		
 IE	IRL	372	Ireland	officially-assigned	false	Ireland	Europe	Northern Europe		EUR	353	.ie	eng|gle		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE
 source: https://www.cia.gov/the-world-factbook/countries/IE/"	2026-09-23		
-IL	ISR	376	Israel	officially-assigned	false	State of Israel	Asia	Western Asia		ILS	972	.il	ara|heb		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IL
+IL	ISR	376	Israel	officially-assigned	false	State of Israel	Asia	Western Asia		ILS	972	.il	ara|heb	EG|JO|LB|PS|SY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IL
 source: https://www.cia.gov/the-world-factbook/countries/IL/"	2026-09-23		
 IM	IMN	833	Isle of Man	officially-assigned	false	Isle of Man	Europe	Northern Europe		GBP	44	.im	eng|glv		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM
 source: https://www.cia.gov/the-world-factbook/countries/IM/"	2026-09-23		
-IN	IND	356	India	officially-assigned	true	Republic of India	Asia	Southern Asia		INR	91	.in	eng|hin		source: https://www.cia.gov/the-world-factbook/countries/IN/	2026-09-23		
+IN	IND	356	India	officially-assigned	true	Republic of India	Asia	Southern Asia		INR	91	.in	eng|hin	BD|BT|CN|MM|NP|PK	source: https://www.cia.gov/the-world-factbook/countries/IN/	2026-09-23		
 IO	IOT	086	British Indian Ocean Territory	officially-assigned	false	British Indian Ocean Territory	Africa	Sub-Saharan Africa	Eastern Africa	USD	246	.io	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IO
 source: https://www.cia.gov/the-world-factbook/countries/IO/"	2026-09-23		
-IQ	IRQ	368	Iraq	officially-assigned	false	Republic of Iraq	Asia	Western Asia		IQD	964	.iq	ara|kur		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IQ
+IQ	IRQ	368	Iraq	officially-assigned	false	Republic of Iraq	Asia	Western Asia		IQD	964	.iq	ara|kur	IR|JO|KW|SA|SY|TR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IQ
 source: https://www.cia.gov/the-world-factbook/countries/IQ/"	2026-09-23		
-IR	IRN	364	Iran (Islamic Republic of)	officially-assigned	false	Islamic Republic of Iran	Asia	Southern Asia		IRR	98	.ir	pes		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IR
+IR	IRN	364	Iran (Islamic Republic of)	officially-assigned	false	Islamic Republic of Iran	Asia	Southern Asia		IRR	98	.ir	pes	AF|AM|AZ|IQ|PK|TM|TR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IR
 source: https://www.cia.gov/the-world-factbook/countries/IR/"	2026-09-23		
 IS	ISL	352	Iceland	officially-assigned	false	Iceland	Europe	Northern Europe		ISK	354	.is	isl		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS
 source: https://www.cia.gov/the-world-factbook/countries/IS/"	2026-09-23		
@@ -227,15 +227,15 @@ JE	JEY	832	Jersey	officially-assigned	false	Jersey	Europe	Northern Europe		GBP	4
 source: https://www.cia.gov/the-world-factbook/countries/JE/"	2026-09-23		
 JM	JAM	388	Jamaica	officially-assigned	false	Jamaica	Americas	Latin America and the Caribbean	Caribbean	JMD	1	.jm	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JM
 source: https://www.cia.gov/the-world-factbook/countries/JM/"	2026-09-23		
-JO	JOR	400	Jordan	officially-assigned	false	Hashemite Kingdom of Jordan	Asia	Western Asia		JOD	962	.jo	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JO
+JO	JOR	400	Jordan	officially-assigned	false	Hashemite Kingdom of Jordan	Asia	Western Asia		JOD	962	.jo	ara	IL|IQ|SA|SY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JO
 source: https://www.cia.gov/the-world-factbook/countries/JO/"	2026-09-23		
 JP	JPN	392	Japan	officially-assigned	true	Japan	Asia	Eastern Asia		JPY	81	.jp	jpn		source: https://www.cia.gov/the-world-factbook/countries/JP/	2026-09-23		
 JT	JTN	000	Johnston Island	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:JT	2026-09-23	1986-01-01	
 KE	KEN	404	Kenya	officially-assigned	false	Republic of Kenya	Africa	Sub-Saharan Africa	Eastern Africa	KES	254	.ke	eng|swa		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KE
 source: https://www.cia.gov/the-world-factbook/countries/KE/"	2026-09-23		
-KG	KGZ	417	Kyrgyzstan	officially-assigned	false	Kyrgyz Republic	Asia	Central Asia		KGS	996	.kg	kir|rus		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KG
+KG	KGZ	417	Kyrgyzstan	officially-assigned	false	Kyrgyz Republic	Asia	Central Asia		KGS	996	.kg	kir|rus	CN|KZ|TJ|UZ	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KG
 source: https://www.cia.gov/the-world-factbook/countries/KG/"	2026-09-23		
-KH	KHM	116	Cambodia	officially-assigned	false	Kingdom of Cambodia	Asia	South-eastern Asia		KHR	855	.kh	khm		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KH
+KH	KHM	116	Cambodia	officially-assigned	false	Kingdom of Cambodia	Asia	South-eastern Asia		KHR	855	.kh	khm	LA|TH|VN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KH
 source: https://www.cia.gov/the-world-factbook/countries/KH/"	2026-09-23		
 KI	KIR	296	Kiribati	officially-assigned	false	Republic of Kiribati	Oceania	Micronesia		AUD	686	.ki	eng|gil		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KI
 source: https://www.cia.gov/the-world-factbook/countries/KI/"	2026-09-23		
@@ -243,19 +243,19 @@ KM	COM	174	Comoros	officially-assigned	false	Union of the Comoros	Africa	Sub-Sah
 source: https://www.cia.gov/the-world-factbook/countries/KM/"	2026-09-23		
 KN	KNA	659	Saint Kitts and Nevis	officially-assigned	false	Saint Kitts and Nevis	Americas	Latin America and the Caribbean	Caribbean	XCD	1	.kn	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KN
 source: https://www.cia.gov/the-world-factbook/countries/KN/"	2026-09-23		
-KP	PRK	408	Democratic People's Republic of Korea	officially-assigned	false	Democratic People's Republic of Korea	Asia	Eastern Asia		KPW	850	.kp	kor		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KP
+KP	PRK	408	Democratic People's Republic of Korea	officially-assigned	false	Democratic People's Republic of Korea	Asia	Eastern Asia		KPW	850	.kp	kor	CN|KR|RU	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KP
 source: https://www.cia.gov/the-world-factbook/countries/KP/"	2026-09-23		
-KR	KOR	410	Republic of Korea	officially-assigned	false	Republic of Korea	Asia	Eastern Asia		KRW	82	.kr	kor		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR
+KR	KOR	410	Republic of Korea	officially-assigned	false	Republic of Korea	Asia	Eastern Asia		KRW	82	.kr	kor	KP	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR
 source: https://www.cia.gov/the-world-factbook/countries/KR/"	2026-09-23		
-KW	KWT	414	Kuwait	officially-assigned	false	State of Kuwait	Asia	Western Asia		KWD	965	.kw	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KW
+KW	KWT	414	Kuwait	officially-assigned	false	State of Kuwait	Asia	Western Asia		KWD	965	.kw	ara	IQ|SA	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KW
 source: https://www.cia.gov/the-world-factbook/countries/KW/"	2026-09-23		
 KY	CYM	136	Cayman Islands	officially-assigned	false	Cayman Islands	Americas	Latin America and the Caribbean	Caribbean	KYD	1	.ky	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KY
 source: https://www.cia.gov/the-world-factbook/countries/KY/"	2026-09-23		
-KZ	KAZ	398	Kazakhstan	officially-assigned	false	Republic of Kazakhstan	Asia	Central Asia		KZT	7	.kz	kaz|rus		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KZ
+KZ	KAZ	398	Kazakhstan	officially-assigned	false	Republic of Kazakhstan	Asia	Central Asia		KZT	7	.kz	kaz|rus	CN|KG|RU|TM|UZ	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KZ
 source: https://www.cia.gov/the-world-factbook/countries/KZ/"	2026-09-23		
-LA	LAO	418	Lao People's Democratic Republic	officially-assigned	false	Lao People's Democratic Republic	Asia	South-eastern Asia		LAK	856	.la	lao		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LA
+LA	LAO	418	Lao People's Democratic Republic	officially-assigned	false	Lao People's Democratic Republic	Asia	South-eastern Asia		LAK	856	.la	lao	CN|KH|MM|TH|VN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LA
 source: https://www.cia.gov/the-world-factbook/countries/LA/"	2026-09-23		
-LB	LBN	422	Lebanon	officially-assigned	false	Lebanese Republic	Asia	Western Asia		LBP	961	.lb	ara|fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LB
+LB	LBN	422	Lebanon	officially-assigned	false	Lebanese Republic	Asia	Western Asia		LBP	961	.lb	ara|fra	IL|SY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LB
 source: https://www.cia.gov/the-world-factbook/countries/LB/"	2026-09-23		
 LC	LCA	662	Saint Lucia	officially-assigned	false	Saint Lucia	Americas	Latin America and the Caribbean	Caribbean	XCD	1	.lc	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LC
 source: https://www.cia.gov/the-world-factbook/countries/LC/"	2026-09-23		
@@ -294,11 +294,11 @@ MK	MKD	807	North Macedonia	officially-assigned	false	Republic of North Macedonia
 source: https://www.cia.gov/the-world-factbook/countries/MK/"	2026-09-23		
 ML	MLI	466	Mali	officially-assigned	false	Republic of Mali	Africa	Sub-Saharan Africa	Western Africa	XOF	223	.ml	fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ML
 source: https://www.cia.gov/the-world-factbook/countries/ML/"	2026-09-23		
-MM	MMR	104	Myanmar	officially-assigned	false	Republic of the Union of Myanmar	Asia	South-eastern Asia		MMK	95	.mm	mya		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MM
+MM	MMR	104	Myanmar	officially-assigned	false	Republic of the Union of Myanmar	Asia	South-eastern Asia		MMK	95	.mm	mya	BD|CN|IN|LA|TH	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MM
 source: https://www.cia.gov/the-world-factbook/countries/MM/"	2026-09-23		
-MN	MNG	496	Mongolia	officially-assigned	false	Mongolia	Asia	Eastern Asia		MNT	976	.mn	mon		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MN
+MN	MNG	496	Mongolia	officially-assigned	false	Mongolia	Asia	Eastern Asia		MNT	976	.mn	mon	CN|RU	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MN
 source: https://www.cia.gov/the-world-factbook/countries/MN/"	2026-09-23		
-MO	MAC	446	China, Macao Special Administrative Region	officially-assigned	false	Macao	Asia	Eastern Asia		MOP	853	.mo	cmn|por		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MO
+MO	MAC	446	China, Macao Special Administrative Region	officially-assigned	false	Macao	Asia	Eastern Asia		MOP	853	.mo	cmn|por	CN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MO
 source: https://www.cia.gov/the-world-factbook/countries/MO/"	2026-09-23		
 MP	MNP	580	Northern Mariana Islands	officially-assigned	false	Commonwealth of the Northern Mariana Islands	Oceania	Micronesia		USD	1	.mp	cha|eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MP
 source: https://www.cia.gov/the-world-factbook/countries/MP/"	2026-09-23		
@@ -318,7 +318,7 @@ MW	MWI	454	Malawi	officially-assigned	false	Republic of Malawi	Africa	Sub-Sahara
 source: https://www.cia.gov/the-world-factbook/countries/MW/"	2026-09-23		
 MX	MEX	484	Mexico	officially-assigned	false	Mexico	Americas	Latin America and the Caribbean	Central America	MXN	52	.mx	spa	BZ|GT|US	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX
 source: https://www.cia.gov/the-world-factbook/countries/MX/"	2026-09-23		
-MY	MYS	458	Malaysia	officially-assigned	false	Malaysia	Asia	South-eastern Asia		MYR	60	.my	msa		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MY
+MY	MYS	458	Malaysia	officially-assigned	false	Malaysia	Asia	South-eastern Asia		MYR	60	.my	msa	BN|ID|TH	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MY
 source: https://www.cia.gov/the-world-factbook/countries/MY/"	2026-09-23		
 MZ	MOZ	508	Mozambique	officially-assigned	false	Republic of Mozambique	Africa	Sub-Saharan Africa	Eastern Africa	MZN	258	.mz	por		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MZ
 source: https://www.cia.gov/the-world-factbook/countries/MZ/"	2026-09-23		
@@ -339,7 +339,7 @@ NL	NLD	528	Netherlands (Kingdom of the)	officially-assigned	false	Netherlands (K
 source: https://www.cia.gov/the-world-factbook/countries/NL/"	2026-09-23		
 NO	NOR	578	Norway	officially-assigned	false	Kingdom of Norway	Europe	Northern Europe		NOK	47	.no	nor		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO
 source: https://www.cia.gov/the-world-factbook/countries/NO/"	2026-09-23		
-NP	NPL	524	Nepal	officially-assigned	false	Federal Democratic Republic of Nepal	Asia	Southern Asia		NPR	977	.np	nep		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NP
+NP	NPL	524	Nepal	officially-assigned	false	Federal Democratic Republic of Nepal	Asia	Southern Asia		NPR	977	.np	nep	CN|IN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NP
 source: https://www.cia.gov/the-world-factbook/countries/NP/"	2026-09-23		
 NQ	ATN	000	Dronning Maud Land	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:NQ	2026-09-23	1983-01-01	AQ
 NR	NRU	520	Naoero	officially-assigned	false	Republic of Nauru	Oceania	Micronesia		AUD	674	.nr	eng|nau		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NR
@@ -349,7 +349,7 @@ NU	NIU	570	Niue	officially-assigned	false	Niue	Oceania	Polynesia		NZD	683	.nu	en
 source: https://www.cia.gov/the-world-factbook/countries/NU/"	2026-09-23		
 NZ	NZL	554	New Zealand	officially-assigned	false	New Zealand	Oceania	Australia and New Zealand		NZD	64	.nz	eng|mri		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NZ
 source: https://www.cia.gov/the-world-factbook/countries/NZ/"	2026-09-23		
-OM	OMN	512	Oman	officially-assigned	false	Sultanate of Oman	Asia	Western Asia		OMR	968	.om	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:OM
+OM	OMN	512	Oman	officially-assigned	false	Sultanate of Oman	Asia	Western Asia		OMR	968	.om	ara	AE|SA|YE	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:OM
 source: https://www.cia.gov/the-world-factbook/countries/OM/"	2026-09-23		
 PA	PAN	591	Panama	officially-assigned	false	Republic of Panama	Americas	Latin America and the Caribbean	Central America	PAB|USD	507	.pa	spa	CO|CR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PA
 source: https://www.cia.gov/the-world-factbook/countries/PA/"	2026-09-23		
@@ -358,11 +358,11 @@ PE	PER	604	Peru	officially-assigned	false	Republic of Peru	Americas	Latin Americ
 source: https://www.cia.gov/the-world-factbook/countries/PE/"	2026-09-23		
 PF	PYF	258	French Polynesia	officially-assigned	false	French Polynesia	Oceania	Polynesia		XPF	689	.pf	fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PF
 source: https://www.cia.gov/the-world-factbook/countries/PF/"	2026-09-23		
-PG	PNG	598	Papua New Guinea	officially-assigned	false	Independent State of Papua New Guinea	Oceania	Melanesia		PGK	675	.pg	eng|hmo|tpi		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PG
+PG	PNG	598	Papua New Guinea	officially-assigned	false	Independent State of Papua New Guinea	Oceania	Melanesia		PGK	675	.pg	eng|hmo|tpi	ID	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PG
 source: https://www.cia.gov/the-world-factbook/countries/PG/"	2026-09-23		
 PH	PHL	608	Philippines	officially-assigned	false	Republic of the Philippines	Asia	South-eastern Asia		PHP	63	.ph	eng|fil		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PH
 source: https://www.cia.gov/the-world-factbook/countries/PH/"	2026-09-23		
-PK	PAK	586	Pakistan	officially-assigned	false	Islamic Republic of Pakistan	Asia	Southern Asia		PKR	92	.pk	eng|urd		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PK
+PK	PAK	586	Pakistan	officially-assigned	false	Islamic Republic of Pakistan	Asia	Southern Asia		PKR	92	.pk	eng|urd	AF|CN|IN|IR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PK
 source: https://www.cia.gov/the-world-factbook/countries/PK/"	2026-09-23		
 PL	POL	616	Poland	officially-assigned	false	Republic of Poland	Europe	Eastern Europe		PLN	48	.pl	pol		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL
 source: https://www.cia.gov/the-world-factbook/countries/PL/"	2026-09-23		
@@ -381,7 +381,7 @@ source: https://www.cia.gov/the-world-factbook/countries/PW/"	2026-09-23
 PY	PRY	600	Paraguay	officially-assigned	false	Republic of Paraguay	Americas	Latin America and the Caribbean	South America	PYG	595	.py	grn|spa	AR|BO|BR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PY
 source: https://www.cia.gov/the-world-factbook/countries/PY/"	2026-09-23		
 PZ	PCZ	000	Panama Canal Zone	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:PZ	2026-09-23	1980-01-01	PA
-QA	QAT	634	Qatar	officially-assigned	false	State of Qatar	Asia	Western Asia		QAR	974	.qa	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:QA
+QA	QAT	634	Qatar	officially-assigned	false	State of Qatar	Asia	Western Asia		QAR	974	.qa	ara	SA	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:QA
 source: https://www.cia.gov/the-world-factbook/countries/QA/"	2026-09-23		
 RE	REU	638	Réunion	officially-assigned	false	Réunion	Africa	Sub-Saharan Africa	Eastern Africa	EUR	262	.re	fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RE
 source: https://www.cia.gov/the-world-factbook/countries/RE/"	2026-09-23		
@@ -445,23 +445,23 @@ TF	ATF	260	French Southern Territories	officially-assigned	false	French Southern
 source: https://www.cia.gov/the-world-factbook/countries/TF/"	2026-09-23		
 TG	TGO	768	Togo	officially-assigned	false	Togolese Republic	Africa	Sub-Saharan Africa	Western Africa	XOF	228	.tg	fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TG
 source: https://www.cia.gov/the-world-factbook/countries/TG/"	2026-09-23		
-TH	THA	764	Thailand	officially-assigned	false	Kingdom of Thailand	Asia	South-eastern Asia		THB	66	.th	tha		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TH
+TH	THA	764	Thailand	officially-assigned	false	Kingdom of Thailand	Asia	South-eastern Asia		THB	66	.th	tha	KH|LA|MM|MY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TH
 source: https://www.cia.gov/the-world-factbook/countries/TH/"	2026-09-23		
-TJ	TJK	762	Tajikistan	officially-assigned	false	Republic of Tajikistan	Asia	Central Asia		TJS	992	.tj	rus|tgk		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TJ
+TJ	TJK	762	Tajikistan	officially-assigned	false	Republic of Tajikistan	Asia	Central Asia		TJS	992	.tj	rus|tgk	AF|CN|KG|UZ	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TJ
 source: https://www.cia.gov/the-world-factbook/countries/TJ/"	2026-09-23		
 TK	TKL	772	Tokelau	officially-assigned	false	Tokelau	Oceania	Polynesia		NZD	690	.tk	eng|tkl		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TK
 source: https://www.cia.gov/the-world-factbook/countries/TK/"	2026-09-23		
-TL	TLS	626	Timor-Leste	officially-assigned	false	Democratic Republic of Timor-Leste	Asia	South-eastern Asia		USD	670	.tl	por|tet		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TL
+TL	TLS	626	Timor-Leste	officially-assigned	false	Democratic Republic of Timor-Leste	Asia	South-eastern Asia		USD	670	.tl	por|tet	ID	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TL
 source: https://www.cia.gov/the-world-factbook/countries/TL/"	2026-09-23		
-TM	TKM	795	Turkmenistan	officially-assigned	false	Turkmenistan	Asia	Central Asia		TMT	993	.tm	rus|tuk		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TM
+TM	TKM	795	Turkmenistan	officially-assigned	false	Turkmenistan	Asia	Central Asia		TMT	993	.tm	rus|tuk	AF|IR|KZ|UZ	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TM
 source: https://www.cia.gov/the-world-factbook/countries/TM/"	2026-09-23		
 TN	TUN	788	Tunisia	officially-assigned	false	Republic of Tunisia	Africa	Northern Africa		TND	216	.tn	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TN
 source: https://www.cia.gov/the-world-factbook/countries/TN/"	2026-09-23		
 TO	TON	776	Tonga	officially-assigned	false	Kingdom of Tonga	Oceania	Polynesia		TOP	676	.to	eng|ton		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TO
 source: https://www.cia.gov/the-world-factbook/countries/TO/"	2026-09-23		
 TP	TMP	626	East Timor	withdrawn	false											2026-09-22	2002-05-20	TL
-TR	TUR	792	Türkiye	officially-assigned	false	Türkiye	Asia	Western Asia		TRY	90	.tr			"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR
-source: https://www.iana.org/domains/root/db"	2026-09-23		
+TR	TUR	792	Türkiye	officially-assigned	false	Türkiye	Asia	Western Asia		TRY	90	.tr		AM|AZ|BG|GE|GR|IQ|IR|SY	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR
+source: https://www.cia.gov/the-world-factbook/countries/TR/"	2026-09-23		
 TT	TTO	780	Trinidad and Tobago	officially-assigned	false	Republic of Trinidad and Tobago	Americas	Latin America and the Caribbean	Caribbean	TTD	1	.tt	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TT
 source: https://www.cia.gov/the-world-factbook/countries/TT/"	2026-09-23		
 TV	TUV	798	Tuvalu	officially-assigned	false	Tuvalu	Oceania	Polynesia		AUD	688	.tv	eng|tvl		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TV
@@ -480,7 +480,7 @@ source: https://www.cia.gov/the-world-factbook/countries/UM/"	2026-09-23
 US	USA	840	United States of America	officially-assigned	true	United States of America	Americas	Northern America		USD	1	.us			source: https://www.iana.org/domains/root/db	2026-09-23		
 UY	URY	858	Uruguay	officially-assigned	false	Eastern Republic of Uruguay	Americas	Latin America and the Caribbean	South America	UYU	598	.uy	spa	AR|BR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UY
 source: https://www.cia.gov/the-world-factbook/countries/UY/"	2026-09-23		
-UZ	UZB	860	Uzbekistan	officially-assigned	false	Republic of Uzbekistan	Asia	Central Asia		UZS	998	.uz	rus|uzb		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UZ
+UZ	UZB	860	Uzbekistan	officially-assigned	false	Republic of Uzbekistan	Asia	Central Asia		UZS	998	.uz	rus|uzb	AF|KG|KZ|TJ|TM	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UZ
 source: https://www.cia.gov/the-world-factbook/countries/UZ/"	2026-09-23		
 VA	VAT	336	Holy See	officially-assigned	false	Holy See	Europe	Southern Europe		EUR	39	.va	ita		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA
 source: https://www.cia.gov/the-world-factbook/countries/VA/"	2026-09-23		
@@ -493,7 +493,7 @@ VG	VGB	092	British Virgin Islands	officially-assigned	false	Virgin Islands (Brit
 source: https://www.cia.gov/the-world-factbook/countries/VG/"	2026-09-23		
 VI	VIR	850	United States Virgin Islands	officially-assigned	false	Virgin Islands (U.S.)	Americas	Latin America and the Caribbean	Caribbean	USD	1	.vi	eng		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VI
 source: https://www.cia.gov/the-world-factbook/countries/VI/"	2026-09-23		
-VN	VNM	704	Viet Nam	officially-assigned	false	Socialist Republic of Viet Nam	Asia	South-eastern Asia		VND	84	.vn	vie		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VN
+VN	VNM	704	Viet Nam	officially-assigned	false	Socialist Republic of Viet Nam	Asia	South-eastern Asia		VND	84	.vn	vie	CN|KH|LA	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VN
 source: https://www.cia.gov/the-world-factbook/countries/VN/"	2026-09-23		
 VU	VUT	548	Vanuatu	officially-assigned	false	Republic of Vanuatu	Oceania	Melanesia		VUV	678	.vu	bis|eng|fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VU
 source: https://www.cia.gov/the-world-factbook/countries/VU/"	2026-09-23		

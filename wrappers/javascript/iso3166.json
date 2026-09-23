@@ -33,7 +33,10 @@
       {
         "alpha_2": "AE",
         "alpha_3": "ARE",
-        "borders": null,
+        "borders": [
+          "OM",
+          "SA"
+        ],
         "calling_codes": [
           "971"
         ],
@@ -62,7 +65,14 @@
       {
         "alpha_2": "AF",
         "alpha_3": "AFG",
-        "borders": null,
+        "borders": [
+          "CN",
+          "IR",
+          "PK",
+          "TJ",
+          "TM",
+          "UZ"
+        ],
         "calling_codes": [
           "93"
         ],
@@ -179,7 +189,12 @@
       {
         "alpha_2": "AM",
         "alpha_3": "ARM",
-        "borders": null,
+        "borders": [
+          "AZ",
+          "GE",
+          "IR",
+          "TR"
+        ],
         "calling_codes": [
           "374"
         ],
@@ -297,7 +312,7 @@
       {
         "alpha_2": "AS",
         "alpha_3": "ASM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -356,7 +371,7 @@
       {
         "alpha_2": "AU",
         "alpha_3": "AUS",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "61"
         ],
@@ -368,7 +383,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Australia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU\nsource: https://www.iana.org/domains/root/db",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU\nsource: https://www.cia.gov/the-world-factbook/countries/AU/",
         "numeric": "036",
         "official_name": "Australia",
         "region": "Oceania",
@@ -440,7 +455,13 @@
       {
         "alpha_2": "AZ",
         "alpha_3": "AZE",
-        "borders": null,
+        "borders": [
+          "AM",
+          "GE",
+          "IR",
+          "RU",
+          "TR"
+        ],
         "calling_codes": [
           "994"
         ],
@@ -529,7 +550,10 @@
       {
         "alpha_2": "BD",
         "alpha_3": "BGD",
-        "borders": null,
+        "borders": [
+          "IN",
+          "MM"
+        ],
         "calling_codes": [
           "880"
         ],
@@ -647,7 +671,7 @@
       {
         "alpha_2": "BH",
         "alpha_3": "BHR",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "973"
         ],
@@ -791,7 +815,9 @@
       {
         "alpha_2": "BN",
         "alpha_3": "BRN",
-        "borders": null,
+        "borders": [
+          "MY"
+        ],
         "calling_codes": [
           "673"
         ],
@@ -953,7 +979,10 @@
       {
         "alpha_2": "BT",
         "alpha_3": "BTN",
-        "borders": null,
+        "borders": [
+          "CN",
+          "IN"
+        ],
         "calling_codes": [
           "975"
         ],
@@ -1135,7 +1164,7 @@
       {
         "alpha_2": "CC",
         "alpha_3": "CCK",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "61"
         ],
@@ -1316,7 +1345,7 @@
       {
         "alpha_2": "CK",
         "alpha_3": "COK",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "682"
         ],
@@ -1409,7 +1438,24 @@
       {
         "alpha_2": "CN",
         "alpha_3": "CHN",
-        "borders": null,
+        "borders": [
+          "AF",
+          "BT",
+          "HK",
+          "IN",
+          "KG",
+          "KP",
+          "KZ",
+          "LA",
+          "MM",
+          "MN",
+          "MO",
+          "NP",
+          "PK",
+          "RU",
+          "TJ",
+          "VN"
+        ],
         "calling_codes": [
           "86"
         ],
@@ -1593,7 +1639,7 @@
       {
         "alpha_2": "CX",
         "alpha_3": "CXR",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "61"
         ],
@@ -2115,7 +2161,7 @@
       {
         "alpha_2": "FJ",
         "alpha_3": "FJI",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "679"
         ],
@@ -2175,7 +2221,7 @@
       {
         "alpha_2": "FM",
         "alpha_3": "FSM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "691"
         ],
@@ -2738,7 +2784,7 @@
       {
         "alpha_2": "GU",
         "alpha_3": "GUM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -2830,7 +2876,9 @@
       {
         "alpha_2": "HK",
         "alpha_3": "HKG",
-        "borders": null,
+        "borders": [
+          "CN"
+        ],
         "calling_codes": [
           "852"
         ],
@@ -2860,7 +2908,7 @@
       {
         "alpha_2": "HM",
         "alpha_3": "HMD",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "672"
         ],
@@ -3012,7 +3060,11 @@
       {
         "alpha_2": "ID",
         "alpha_3": "IDN",
-        "borders": null,
+        "borders": [
+          "MY",
+          "PG",
+          "TL"
+        ],
         "calling_codes": [
           "62"
         ],
@@ -3071,7 +3123,13 @@
       {
         "alpha_2": "IL",
         "alpha_3": "ISR",
-        "borders": null,
+        "borders": [
+          "EG",
+          "JO",
+          "LB",
+          "PS",
+          "SY"
+        ],
         "calling_codes": [
           "972"
         ],
@@ -3131,7 +3189,14 @@
       {
         "alpha_2": "IN",
         "alpha_3": "IND",
-        "borders": null,
+        "borders": [
+          "BD",
+          "BT",
+          "CN",
+          "MM",
+          "NP",
+          "PK"
+        ],
         "calling_codes": [
           "91"
         ],
@@ -3161,7 +3226,7 @@
       {
         "alpha_2": "IO",
         "alpha_3": "IOT",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "246"
         ],
@@ -3190,7 +3255,14 @@
       {
         "alpha_2": "IQ",
         "alpha_3": "IRQ",
-        "borders": null,
+        "borders": [
+          "IR",
+          "JO",
+          "KW",
+          "SA",
+          "SY",
+          "TR"
+        ],
         "calling_codes": [
           "964"
         ],
@@ -3220,7 +3292,15 @@
       {
         "alpha_2": "IR",
         "alpha_3": "IRN",
-        "borders": null,
+        "borders": [
+          "AF",
+          "AM",
+          "AZ",
+          "IQ",
+          "PK",
+          "TM",
+          "TR"
+        ],
         "calling_codes": [
           "98"
         ],
@@ -3365,7 +3445,12 @@
       {
         "alpha_2": "JO",
         "alpha_3": "JOR",
-        "borders": null,
+        "borders": [
+          "IL",
+          "IQ",
+          "SA",
+          "SY"
+        ],
         "calling_codes": [
           "962"
         ],
@@ -3394,7 +3479,7 @@
       {
         "alpha_2": "JP",
         "alpha_3": "JPN",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "81"
         ],
@@ -3453,7 +3538,12 @@
       {
         "alpha_2": "KG",
         "alpha_3": "KGZ",
-        "borders": null,
+        "borders": [
+          "CN",
+          "KZ",
+          "TJ",
+          "UZ"
+        ],
         "calling_codes": [
           "996"
         ],
@@ -3483,7 +3573,11 @@
       {
         "alpha_2": "KH",
         "alpha_3": "KHM",
-        "borders": null,
+        "borders": [
+          "LA",
+          "TH",
+          "VN"
+        ],
         "calling_codes": [
           "855"
         ],
@@ -3512,7 +3606,7 @@
       {
         "alpha_2": "KI",
         "alpha_3": "KIR",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "686"
         ],
@@ -3542,7 +3636,7 @@
       {
         "alpha_2": "KM",
         "alpha_3": "COM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "269"
         ],
@@ -3601,7 +3695,11 @@
       {
         "alpha_2": "KP",
         "alpha_3": "PRK",
-        "borders": null,
+        "borders": [
+          "CN",
+          "KR",
+          "RU"
+        ],
         "calling_codes": [
           "850"
         ],
@@ -3630,7 +3728,9 @@
       {
         "alpha_2": "KR",
         "alpha_3": "KOR",
-        "borders": null,
+        "borders": [
+          "KP"
+        ],
         "calling_codes": [
           "82"
         ],
@@ -3659,7 +3759,10 @@
       {
         "alpha_2": "KW",
         "alpha_3": "KWT",
-        "borders": null,
+        "borders": [
+          "IQ",
+          "SA"
+        ],
         "calling_codes": [
           "965"
         ],
@@ -3717,7 +3820,13 @@
       {
         "alpha_2": "KZ",
         "alpha_3": "KAZ",
-        "borders": null,
+        "borders": [
+          "CN",
+          "KG",
+          "RU",
+          "TM",
+          "UZ"
+        ],
         "calling_codes": [
           "7"
         ],
@@ -3747,7 +3856,13 @@
       {
         "alpha_2": "LA",
         "alpha_3": "LAO",
-        "borders": null,
+        "borders": [
+          "CN",
+          "KH",
+          "MM",
+          "TH",
+          "VN"
+        ],
         "calling_codes": [
           "856"
         ],
@@ -3776,7 +3891,10 @@
       {
         "alpha_2": "LB",
         "alpha_3": "LBN",
-        "borders": null,
+        "borders": [
+          "IL",
+          "SY"
+        ],
         "calling_codes": [
           "961"
         ],
@@ -3864,7 +3982,7 @@
       {
         "alpha_2": "LK",
         "alpha_3": "LKA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "94"
         ],
@@ -4329,7 +4447,13 @@
       {
         "alpha_2": "MM",
         "alpha_3": "MMR",
-        "borders": null,
+        "borders": [
+          "BD",
+          "CN",
+          "IN",
+          "LA",
+          "TH"
+        ],
         "calling_codes": [
           "95"
         ],
@@ -4358,7 +4482,10 @@
       {
         "alpha_2": "MN",
         "alpha_3": "MNG",
-        "borders": null,
+        "borders": [
+          "CN",
+          "RU"
+        ],
         "calling_codes": [
           "976"
         ],
@@ -4387,7 +4514,9 @@
       {
         "alpha_2": "MO",
         "alpha_3": "MAC",
-        "borders": null,
+        "borders": [
+          "CN"
+        ],
         "calling_codes": [
           "853"
         ],
@@ -4417,7 +4546,7 @@
       {
         "alpha_2": "MP",
         "alpha_3": "MNP",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -4594,7 +4723,7 @@
       {
         "alpha_2": "MV",
         "alpha_3": "MDV",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "960"
         ],
@@ -4686,7 +4815,11 @@
       {
         "alpha_2": "MY",
         "alpha_3": "MYS",
-        "borders": null,
+        "borders": [
+          "BN",
+          "ID",
+          "TH"
+        ],
         "calling_codes": [
           "60"
         ],
@@ -4773,7 +4906,7 @@
       {
         "alpha_2": "NC",
         "alpha_3": "NCL",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "687"
         ],
@@ -4831,7 +4964,7 @@
       {
         "alpha_2": "NF",
         "alpha_3": "NFK",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "672"
         ],
@@ -4979,7 +5112,10 @@
       {
         "alpha_2": "NP",
         "alpha_3": "NPL",
-        "borders": null,
+        "borders": [
+          "CN",
+          "IN"
+        ],
         "calling_codes": [
           "977"
         ],
@@ -5008,7 +5144,7 @@
       {
         "alpha_2": "NR",
         "alpha_3": "NRU",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "674"
         ],
@@ -5038,7 +5174,7 @@
       {
         "alpha_2": "NU",
         "alpha_3": "NIU",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "683"
         ],
@@ -5068,7 +5204,7 @@
       {
         "alpha_2": "NZ",
         "alpha_3": "NZL",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "64"
         ],
@@ -5098,7 +5234,11 @@
       {
         "alpha_2": "OM",
         "alpha_3": "OMN",
-        "borders": null,
+        "borders": [
+          "AE",
+          "SA",
+          "YE"
+        ],
         "calling_codes": [
           "968"
         ],
@@ -5197,7 +5337,7 @@
       {
         "alpha_2": "PF",
         "alpha_3": "PYF",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "689"
         ],
@@ -5226,7 +5366,9 @@
       {
         "alpha_2": "PG",
         "alpha_3": "PNG",
-        "borders": null,
+        "borders": [
+          "ID"
+        ],
         "calling_codes": [
           "675"
         ],
@@ -5257,7 +5399,7 @@
       {
         "alpha_2": "PH",
         "alpha_3": "PHL",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "63"
         ],
@@ -5287,7 +5429,12 @@
       {
         "alpha_2": "PK",
         "alpha_3": "PAK",
-        "borders": null,
+        "borders": [
+          "AF",
+          "CN",
+          "IN",
+          "IR"
+        ],
         "calling_codes": [
           "92"
         ],
@@ -5375,7 +5522,7 @@
       {
         "alpha_2": "PN",
         "alpha_3": "PCN",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "64"
         ],
@@ -5490,7 +5637,7 @@
       {
         "alpha_2": "PW",
         "alpha_3": "PLW",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "680"
         ],
@@ -5554,7 +5701,9 @@
       {
         "alpha_2": "QA",
         "alpha_3": "QAT",
-        "borders": null,
+        "borders": [
+          "SA"
+        ],
         "calling_codes": [
           "974"
         ],
@@ -5757,7 +5906,7 @@
       {
         "alpha_2": "SB",
         "alpha_3": "SLB",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "677"
         ],
@@ -5875,7 +6024,7 @@
       {
         "alpha_2": "SG",
         "alpha_3": "SGP",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "65"
         ],
@@ -6467,7 +6616,12 @@
       {
         "alpha_2": "TH",
         "alpha_3": "THA",
-        "borders": null,
+        "borders": [
+          "KH",
+          "LA",
+          "MM",
+          "MY"
+        ],
         "calling_codes": [
           "66"
         ],
@@ -6496,7 +6650,12 @@
       {
         "alpha_2": "TJ",
         "alpha_3": "TJK",
-        "borders": null,
+        "borders": [
+          "AF",
+          "CN",
+          "KG",
+          "UZ"
+        ],
         "calling_codes": [
           "992"
         ],
@@ -6526,7 +6685,7 @@
       {
         "alpha_2": "TK",
         "alpha_3": "TKL",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "690"
         ],
@@ -6556,7 +6715,9 @@
       {
         "alpha_2": "TL",
         "alpha_3": "TLS",
-        "borders": null,
+        "borders": [
+          "ID"
+        ],
         "calling_codes": [
           "670"
         ],
@@ -6586,7 +6747,12 @@
       {
         "alpha_2": "TM",
         "alpha_3": "TKM",
-        "borders": null,
+        "borders": [
+          "AF",
+          "IR",
+          "KZ",
+          "UZ"
+        ],
         "calling_codes": [
           "993"
         ],
@@ -6645,7 +6811,7 @@
       {
         "alpha_2": "TO",
         "alpha_3": "TON",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "676"
         ],
@@ -6675,7 +6841,16 @@
       {
         "alpha_2": "TR",
         "alpha_3": "TUR",
-        "borders": null,
+        "borders": [
+          "AM",
+          "AZ",
+          "BG",
+          "GE",
+          "GR",
+          "IQ",
+          "IR",
+          "SY"
+        ],
         "calling_codes": [
           "90"
         ],
@@ -6687,7 +6862,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Türkiye",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR\nsource: https://www.iana.org/domains/root/db",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR\nsource: https://www.cia.gov/the-world-factbook/countries/TR/",
         "numeric": "792",
         "official_name": "Türkiye",
         "region": "Asia",
@@ -6731,7 +6906,7 @@
       {
         "alpha_2": "TV",
         "alpha_3": "TUV",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "688"
         ],
@@ -6761,7 +6936,7 @@
       {
         "alpha_2": "TW",
         "alpha_3": "TWN",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "886"
         ],
@@ -6986,7 +7161,13 @@
       {
         "alpha_2": "UZ",
         "alpha_3": "UZB",
-        "borders": null,
+        "borders": [
+          "AF",
+          "KG",
+          "KZ",
+          "TJ",
+          "TM"
+        ],
         "calling_codes": [
           "998"
         ],
@@ -7165,7 +7346,11 @@
       {
         "alpha_2": "VN",
         "alpha_3": "VNM",
-        "borders": null,
+        "borders": [
+          "CN",
+          "KH",
+          "LA"
+        ],
         "calling_codes": [
           "84"
         ],
@@ -7194,7 +7379,7 @@
       {
         "alpha_2": "VU",
         "alpha_3": "VUT",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "678"
         ],
@@ -7225,7 +7410,7 @@
       {
         "alpha_2": "WF",
         "alpha_3": "WLF",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "681"
         ],
@@ -7254,7 +7439,7 @@
       {
         "alpha_2": "WS",
         "alpha_3": "WSM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "685"
         ],
