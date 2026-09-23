@@ -97,6 +97,14 @@ FIELDS: dict[str, FieldConfig] = {
         source_template="https://www.itu.int/oth/T02020000E8/en",
         describe="ITU-T E.164 calling codes",
     ),
+    "languages": FieldConfig(
+        name="languages",
+        item_pattern=r"^[a-z]{3}$",
+        snapshot_path=Path("tools/iso639_3_snapshot.json"),
+        snapshot_key="languages",
+        source_template="https://www.cia.gov/the-world-factbook/countries/{code}/",
+        describe="ISO 639-3 language codes",
+    ),
     "tlds": FieldConfig(
         name="tlds",
         item_pattern=r"^\.[a-z]{2,}$",
