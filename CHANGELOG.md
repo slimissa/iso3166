@@ -16,6 +16,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.5.1] — 2026-09-23
+
+Enrichment tooling covers the M49 fields; the intermediate snapshot
+is no longer a stub.
+
+### Added
+
+- `tools/enrich_field.py` supports `--field subregion` and
+  `--field intermediate_region`. Both fields are populated in
+  `iso3166.json` from the v1.0.0 UN M49 import but were not
+  reachable through the enrichment tool until this release.
+
+### Changed
+
+- `tools/m49_intermediate_region_snapshot.json` populated with the
+  seven UN M49 intermediate regions used by the registry:
+  Caribbean, Central America, Eastern Africa, Middle Africa, South
+  America, Southern Africa, Western Africa. Replaces the
+  `<verify from UN source>` placeholder.
+
+### Fixed
+
+- `tools/enrich_field.py` treats `subregion` and
+  `intermediate_region` as scalars. The prior version wrote lists
+  where the schema requires strings, and printed scalar values
+  character-by-character in `--list-all`.
+- The `--dry-run` and batch summaries print the value that was
+  actually written, not the input list. No-op updates no longer
+  emit a spurious `(was: ...)` line.
+
+### Not in this release
+
+- Neither `subregion` nor `intermediate_region` is added to the
+  `check-fields` CI gate. AQ, TW, and the three exceptionals have
+  null `subregion` by design; 147 active entries have null
+  `intermediate_region` by design.
+
 ## [1.5.0] — 2026-09-23
 
 
@@ -253,7 +290,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.1...HEAD
+[1.5.1]: https://github.com/slimissa/iso3166/releases/tag/v1.5.1
 [1.5.0]: https://github.com/slimissa/iso3166/releases/tag/v1.5.0
 [1.4.0]: https://github.com/slimissa/iso3166/releases/tag/v1.4.0
 [1.3.0]: https://github.com/slimissa/iso3166/releases/tag/v1.3.0
