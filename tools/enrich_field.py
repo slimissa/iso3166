@@ -294,7 +294,7 @@ def apply_one(
 
     source = cfg.source_template.format(code=entry["alpha_2"])
     entry["note"] = record_source(entry.get("note"), source)
-    
+
     return {
         "alpha_2": entry["alpha_2"],
         "field": cfg.name,
@@ -324,7 +324,7 @@ def mode_set(args: argparse.Namespace) -> int:
 
     verb = "would set" if args.dry_run else "set"
     print(f"{verb} {summary['alpha_2']}.{summary['field']} = "
-          f"{summary['after']}")
+          f"{summary['after']!r}")
     print(f"  source: {summary['source']}")
     if summary["before"] and summary["before"] != summary["after"]:
         print(f"  (was: {summary['before']})")
@@ -382,7 +382,7 @@ def mode_from_file(args: argparse.Namespace) -> int:
     print(f"{verb} {len(summaries)} entrie(s):")
     for s in summaries:
         rendered = s["after"] if s["after"] else "(empty)"
-        print(f"  {s['alpha_2']}  {s['field']} = {rendered}")
+        print(f"  {s['alpha_2']}  {s['field']} = {rendered!r}")
     return 0
 
 

@@ -16,6 +16,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.5.2] — 2026-09-23
+
+Use `repr` for scalar field display in enrich_field.py.
+
+### Fixed
+
+- `tools/enrich_field.py` renders scalar field values with `repr`
+  in `--dry-run` and batch mode output. A scalar now prints as
+  `'South America'` and a one-element list as `['South America']`,
+  making the two visually distinct. The written value was already
+  correct; only the display changed.
+
 ## [1.5.1] — 2026-09-23
 
 Enrichment tooling covers the M49 fields; the intermediate snapshot
@@ -290,7 +302,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.2...HEAD
+[1.5.2]: https://github.com/slimissa/iso3166/releases/tag/v1.5.2
 [1.5.1]: https://github.com/slimissa/iso3166/releases/tag/v1.5.1
 [1.5.0]: https://github.com/slimissa/iso3166/releases/tag/v1.5.0
 [1.4.0]: https://github.com/slimissa/iso3166/releases/tag/v1.4.0
