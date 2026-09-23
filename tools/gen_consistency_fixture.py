@@ -167,8 +167,18 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
         "counts": counts,
         "overlap_codes": overlap,
         "region_query": region_query,
-        "currencies": {c: [] for c in ("US", "GB", "JP")},
-        "countries_with": {c: [] for c in ("USD", "EUR", "GBP")},
+        "currencies": {
+            code: (by_a2_active[code].get("currency_codes") or [])
+            for code in ("US", "GB", "JP")
+            if code in by_a2_active
+        },
+        "countries_with": {
+            curr: sorted(
+                e["alpha_2"] for e in active
+                if curr in (e.get("currency_codes") or [])
+            )
+            for curr in ("USD", "EUR", "GBP")
+        },
         "search": [
             {"query": "united", "min_count": 4, "must_contain": ["AE", "GB", "UM", "US"]},
             {"query": "korea",  "min_count": 2, "must_contain": ["KP", "KR"]},

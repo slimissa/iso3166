@@ -265,14 +265,80 @@
     }
   ],
   "currencies": {
-    "US": [],
-    "GB": [],
-    "JP": []
+    "US": [
+      "USD"
+    ],
+    "GB": [
+      "GBP"
+    ],
+    "JP": [
+      "JPY"
+    ]
   },
   "countries_with": {
-    "USD": [],
-    "EUR": [],
-    "GBP": []
+    "USD": [
+      "AS",
+      "BQ",
+      "EC",
+      "FM",
+      "GU",
+      "IO",
+      "MH",
+      "MP",
+      "PA",
+      "PR",
+      "PW",
+      "SV",
+      "TC",
+      "TL",
+      "UM",
+      "US",
+      "VG",
+      "VI"
+    ],
+    "EUR": [
+      "AD",
+      "AT",
+      "AX",
+      "BE",
+      "BL",
+      "CY",
+      "DE",
+      "EE",
+      "ES",
+      "FI",
+      "FR",
+      "GF",
+      "GP",
+      "GR",
+      "HR",
+      "IE",
+      "IT",
+      "LT",
+      "LU",
+      "LV",
+      "MC",
+      "ME",
+      "MF",
+      "MQ",
+      "MT",
+      "NL",
+      "PM",
+      "PT",
+      "RE",
+      "SI",
+      "SK",
+      "SM",
+      "TF",
+      "VA",
+      "YT"
+    ],
+    "GBP": [
+      "GB",
+      "GG",
+      "IM",
+      "JE"
+    ]
   },
   "search": [
     {
