@@ -1,5 +1,5 @@
 {
-  "_comment": "ITU-T E.164 assigned country calling codes. Extracted from the 'numerical order' section of ITU-T E.164D (11/2011). Reserved entry 0, reserved ranges (800, 808, 870-883, 888, 978, 979), and non-country codes (990, 997, 999) are excluded. Codes whose country name starts with a non-ASCII letter (Côte d'Ivoire) were extracted manually; the awk filter that produced this snapshot required an ASCII initial.",
+  "_comment": "ITU-T E.164 assigned country calling codes. Extracted from the 'numerical order' section of ITU-T E.164D (11/2011). Reserved entry 0, reserved ranges (800, 808, 870-883, 888, 978, 979), and non-country codes (990, 997, 999) are excluded. Codes whose country name starts with a non-ASCII letter (Côte d'Ivoire) were extracted manually; the awk filter that produced this snapshot required an ASCII initial. Codes whose country name starts with a non-ASCII letter (Côte d'Ivoire) were extracted manually; the awk filter that produced this snapshot required an ASCII initial.",
   "meta": {
     "generated": "2026-09-23",
     "source": "ITU-T E.164D (11/2011)",
