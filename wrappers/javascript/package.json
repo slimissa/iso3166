@@ -1,6 +1,6 @@
 {
   "name": "iso3166-registry",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A canonical, versioned, machine-readable registry of ISO 3166 country codes.",
   "license": "Apache-2.0",
   "author": "Le P'tit <slimissabara@gmail.com>",
