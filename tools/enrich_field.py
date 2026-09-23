@@ -219,7 +219,7 @@ def apply_one(
     today: str,
 ) -> dict[str, Any]:
     """Set the field on one entry. Returns a summary dict for logging."""
-    if not values:
+    if not values and cfg.name not in ("currency_codes", "tlds"):
         raise FatalError(f"{alpha_2}: at least one value required")
 
     validate_values(values, cfg, known)
@@ -296,11 +296,14 @@ def mode_from_file(args: argparse.Namespace) -> int:
             )
         code = parts[0].strip().upper()
         raw_values = parts[1].strip()
-        values = [v.strip() for v in raw_values.split(",") if v.strip()]
         if not code:
             raise FatalError(f"{args.from_file}:{lineno}: empty alpha_2")
-        if not values:
-            raise FatalError(f"{args.from_file}:{lineno}: empty values")
+        if raw_values == "-":
+            values: list[str] = []  # known: no value for this field
+        else:
+            values = [v.strip() for v in raw_values.split(",") if v.strip()]
+            if not values:
+                raise FatalError(f"{args.from_file}:{lineno}: empty values")
         rows.append((code, values))
 
     if not rows:
@@ -322,20 +325,17 @@ def mode_from_file(args: argparse.Namespace) -> int:
     verb = "would set" if args.dry_run else "set"
     print(f"{verb} {len(summaries)} entrie(s):")
     for s in summaries:
-        print(f"  {s['alpha_2']}  {s['field']} = {s['after']}")
+        rendered = s["after"] if s["after"] else "(empty)"
+        print(f"  {s['alpha_2']}  {s['field']} = {rendered}")
     return 0
 
-
-def _active_assigned(reg: dict[str, Any]) -> list[dict[str, Any]]:
-    return [e for e in reg["countries"]["active"]
-            if e["status"] == "officially-assigned"]
 
 
 def mode_list_missing(args: argparse.Namespace) -> int:
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
     assigned = _active_assigned(reg)
-    missing = [e for e in assigned if not e.get(cfg.name)]
+    missing = [e for e in assigned if e.get(cfg.name) is None]
 
     if not missing:
         print(f"all {len(assigned)} officially-assigned entries have "
@@ -362,7 +362,7 @@ def mode_check(args: argparse.Namespace) -> int:
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
     assigned = _active_assigned(reg)
-    missing = [e for e in assigned if not e.get(cfg.name)]
+    missing = [e for e in assigned if e.get(cfg.name) is None]
 
     if missing:
         print(
