@@ -72,6 +72,10 @@ struct LookupField {
     calling_codes: Vec<String>,
     #[serde(default)]
     tlds: Vec<String>,
+    #[serde(default)]
+    languages: Vec<String>,
+    #[serde(default)]
+    borders: Vec<String>,
 }
 
 #[derive(Deserialize)]

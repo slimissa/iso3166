@@ -134,5 +134,7 @@ test("lookup_fields", () => {
     assert.deepEqual(got.currency_codes || [], c.currency_codes);
     assert.deepEqual(got.calling_codes || [], c.calling_codes);
     assert.deepEqual(got.tlds || [], c.tlds);
+    assert.deepEqual(got.languages || [], c.languages || []);
+    assert.deepEqual(got.borders || [], c.borders || []);
   }
 });

@@ -192,3 +192,43 @@ Every field's source is a standards body. Each has its own cadence:
 
 There is no automatic sync. Every refresh is a human-reviewed commit
 with the source citation recorded in the entry's `note` field.
+
+## `languages`
+
+**Source.** CIA World Factbook, per country page.
+
+**Shape.** ISO 639-3 language codes for the languages the Factbook
+lists as major languages of the country. Capped at ten entries; the
+`note` field records where the source lists more.
+
+**Edge cases.**
+- Multilingual: CH (deu, fra, ita, roh), BE (nld, fra, deu),
+  ZA (zul, xho, afr, eng), IN (hin, eng, and twenty-two scheduled
+  languages).
+- Chinese: use `cmn` for Mandarin, `yue` for Cantonese. ISO 639-1's
+  `zh` is ambiguous.
+- Arabic: `ara` is the macrolanguage. Use it where the Factbook
+  says "Arabic".
+- No permanent population: AQ has `languages: []`.
+
+**Refresh.** On CIA World Factbook update; approximately annual.
+
+## `borders`
+
+**Source.** CIA World Factbook `Land boundaries` section per country.
+
+**Shape.** ISO 3166-1 alpha-2 codes of every country the Factbook
+names as a land neighbor.
+
+**Edge cases.**
+- Maritime-only borders are not included: UK and France share no
+  land border. IE and GB do.
+- Island states have `borders: []`: IS, MT, JP, NZ, AU, PH, ID, LK,
+  MG, MU, CV, CU, JM, and others.
+- Non-UN-observed entities: XK (Kosovo) is a border for AL, ME, MK,
+  RS. The registry carries XK as a user-assigned entry.
+- Symmetry: if A borders B, B must border A. `validate.py` enforces
+  this in the business layer.
+
+**Refresh.** On CIA World Factbook update; approximately annual.
+

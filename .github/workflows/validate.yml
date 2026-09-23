@@ -331,6 +331,12 @@ jobs:
       - name: tlds
         run: python3 tools/enrich_field.py --field tlds --check
 
+      - name: languages
+        run: python3 tools/enrich_field.py --field languages --check
+
+      - name: borders
+        run: python3 tools/enrich_field.py --field borders --check
+
   # =================================================================
   # 9. Cross-language verification: all four wrappers agree on US.
   # =================================================================

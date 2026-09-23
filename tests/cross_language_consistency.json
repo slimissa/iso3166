@@ -11,7 +11,9 @@
       ],
       "tlds": [
         ".us"
-      ]
+      ],
+      "languages": [],
+      "borders": []
     },
     {
       "input": "GB",
@@ -24,7 +26,11 @@
       ],
       "tlds": [
         ".uk"
-      ]
+      ],
+      "languages": [
+        "eng"
+      ],
+      "borders": []
     },
     {
       "input": "JP",
@@ -37,7 +43,9 @@
       ],
       "tlds": [
         ".jp"
-      ]
+      ],
+      "languages": [],
+      "borders": []
     },
     {
       "input": "DE",
@@ -50,7 +58,11 @@
       ],
       "tlds": [
         ".de"
-      ]
+      ],
+      "languages": [
+        "deu"
+      ],
+      "borders": []
     },
     {
       "input": "EC",
@@ -63,7 +75,11 @@
       ],
       "tlds": [
         ".ec"
-      ]
+      ],
+      "languages": [
+        "spa"
+      ],
+      "borders": []
     },
     {
       "input": "PA",
@@ -77,7 +93,80 @@
       ],
       "tlds": [
         ".pa"
-      ]
+      ],
+      "languages": [
+        "spa"
+      ],
+      "borders": []
+    },
+    {
+      "input": "CH",
+      "official_name": "Switzerland",
+      "currency_codes": [
+        "CHF"
+      ],
+      "calling_codes": [
+        "41"
+      ],
+      "tlds": [
+        ".ch"
+      ],
+      "languages": [
+        "deu",
+        "fra",
+        "ita",
+        "roh"
+      ],
+      "borders": []
+    },
+    {
+      "input": "FR",
+      "official_name": "French Republic",
+      "currency_codes": [
+        "EUR"
+      ],
+      "calling_codes": [
+        "33"
+      ],
+      "tlds": [
+        ".fr"
+      ],
+      "languages": [
+        "fra"
+      ],
+      "borders": []
+    },
+    {
+      "input": "RU",
+      "official_name": "Russian Federation",
+      "currency_codes": [
+        "RUB"
+      ],
+      "calling_codes": [
+        "7"
+      ],
+      "tlds": [
+        ".ru"
+      ],
+      "languages": [
+        "rus"
+      ],
+      "borders": []
+    },
+    {
+      "input": "LS",
+      "official_name": "Kingdom of Lesotho",
+      "currency_codes": [
+        "LSL"
+      ],
+      "calling_codes": [
+        "266"
+      ],
+      "tlds": [
+        ".ls"
+      ],
+      "languages": [],
+      "borders": []
     }
   ],
   "lookup_withdrawn": [

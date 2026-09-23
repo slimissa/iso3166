@@ -134,7 +134,7 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
 
     # Field-completeness cases for the four enriched list fields.
     # Includes the GB .uk exception and a dual-currency case.
-    field_samples = ["US", "GB", "JP", "DE", "EC", "PA"]
+    field_samples = ["US", "GB", "JP", "DE", "EC", "PA", "CH", "FR", "RU", "LS"]
     by_a2_active = {e["alpha_2"]: e for e in active}
     lookup_fields = []
     for code in field_samples:
@@ -147,6 +147,8 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             "currency_codes": e.get("currency_codes") or [],
             "calling_codes": e.get("calling_codes") or [],
             "tlds": e.get("tlds") or [],
+            "languages": e.get("languages") or [],
+            "borders": e.get("borders") or [],
         })
 
     return {

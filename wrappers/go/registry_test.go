@@ -213,6 +213,8 @@ type fixtureDoc struct {
 		CurrencyCodes []string `json:"currency_codes"`
 		CallingCodes  []string `json:"calling_codes"`
 		TLDs          []string `json:"tlds"`
+		Languages     []string `json:"languages"`
+		Borders       []string `json:"borders"`
 	} `json:"lookup_fields"`
 	LookupWithdrawn []struct {
 		Input          string  `json:"input"`
