@@ -44,7 +44,9 @@
       "tlds": [
         ".jp"
       ],
-      "languages": [],
+      "languages": [
+        "jpn"
+      ],
       "borders": []
     },
     {
