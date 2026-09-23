@@ -279,7 +279,15 @@ def apply_one(
             f"{entry['alpha_2']}: borders cannot contain self"
         )
 
-    entry[cfg.name] = sorted(values)
+    if cfg.is_scalar:
+        if len(values) != 1:
+            raise FatalError(
+                f"{cfg.name}: exactly one value required for a scalar "
+                f"field, got {len(values)}"
+            )
+        entry[cfg.name] = values[0]
+    else:
+        entry[cfg.name] = sorted(values)
     entry["last_verified"] = today
 
     source = cfg.source_template.format(code=entry["alpha_2"])
@@ -403,9 +411,13 @@ def mode_list_all(args: argparse.Namespace) -> int:
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
     for e in _active_assigned(reg):
-        values = e.get(cfg.name) or []
-        rendered = ",".join(values) if values else "—"
-        print(f"{e['alpha_2']}\t{rendered}")
+        if cfg.is_scalar:
+            v = e.get(cfg.name)
+            display = v if v else "—"
+        else:
+            values = e.get(cfg.name) or []
+            display = ",".join(values) if values else "—"
+        print(f"{e['alpha_2']}\t{display}")
     return 0
 
 
