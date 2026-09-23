@@ -247,7 +247,8 @@ def apply_one(
 
     entry = find_active(reg, alpha_2)
 
-    if entry["status"] != "officially-assigned":
+    if (entry["status"] != "officially-assigned"
+            and cfg.name not in ("subregion", "borders")):
         raise FatalError(
             f"{entry['alpha_2']}: status is {entry['status']!r}; "
             f"only officially-assigned entries are enriched"
