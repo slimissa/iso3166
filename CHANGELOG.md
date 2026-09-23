@@ -18,23 +18,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.0] — 2026-09-23
 
-Languages second-source pass; `intermediate_region` populated.
+
+Fixture support and documentation for `intermediate_region`; version
+bump.
 
 ### Added
 
-- `intermediate_region` populated for entries where UN M49 defines
-  one. Most countries stop at `subregion`; their
-  `intermediate_region` remains null.
-- `tools/m49_intermediate_region_snapshot.json` — the UN M49
-  intermediate-region list.
-- `docs/decisions/v1.5.0-scope.md` — scope decision for this
-  release.
+- `tools/gen_consistency_fixture.py` emits `intermediate_region` in
+  lookup cases. Wrapper suites assert agreement where the fixture
+  exercises the field.
+- `docs/ENRICHMENT.md` gains an `intermediate_region` section.
+- `docs/decisions/v1.5.0-scope.md` records the reconnaissance result:
+  `intermediate_region` was already fully populated from the v1.0.0
+  UN M49 import.
 
 ### Changed
 
-- `tools/enrich_field.py` supports `--field intermediate_region`.
-- Fixture includes the field; wrapper suites assert agreement where
-  the fixture exercises it.
+- Version bump to 1.5.0 across the eight version sites.
+
+### Not in this release
+
+- `tools/enrich_field.py` does not support `--field subregion` or
+  `--field intermediate_region`. Both fields are populated from the
+  initial M49 import and are not tool-managed. Tracked for a future
+  release.
+- `tools/m49_intermediate_region_snapshot.json` remains a stub.
+  The field's data is validated by the schema pattern check, not by
+  a snapshot cross-reference.
 
 ## [1.4.0] — 2026-09-23
 
