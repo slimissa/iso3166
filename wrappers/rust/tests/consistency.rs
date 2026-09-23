@@ -73,8 +73,10 @@ struct LookupField {
     #[serde(default)]
     tlds: Vec<String>,
     #[serde(default)]
+    #[allow(dead_code)]
     languages: Vec<String>,
     #[serde(default)]
+    #[allow(dead_code)]
     borders: Vec<String>,
 }
 
