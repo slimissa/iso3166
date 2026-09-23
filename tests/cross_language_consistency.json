@@ -46,7 +46,7 @@
     },
     {
       "input": "EC",
-      "official_name": null,
+      "official_name": "Republic of Ecuador",
       "currency_codes": [
         "USD"
       ],
@@ -57,7 +57,7 @@
     },
     {
       "input": "PA",
-      "official_name": null,
+      "official_name": "Republic of Panama",
       "currency_codes": [
         "PAB",
         "USD"
