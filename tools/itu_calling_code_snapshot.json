@@ -1,10 +1,10 @@
 {
-  "_comment": "ITU-T E.164 assigned country calling codes. Extracted from the 'numerical order' section of ITU-T E.164D (11/2011). Reserved entry 0 and the reserved/non-country codes (800, 808, 870, 878, 881, 882, 883, 888, 979, 990, 997, 999) are excluded.",
+  "_comment": "ITU-T E.164 assigned country calling codes. Extracted from the 'numerical order' section of ITU-T E.164D (11/2011). Reserved entry 0 and the reserved/non-country codes (800, 808, 870, 878, 881, 882, 883, 888, 978, 979, 990, 997, 999) are excluded.",
   "meta": {
     "generated": "2026-09-23",
     "source": "ITU-T E.164D (11/2011)",
     "source_url": "https://www.itu.int/oth/T02020000E8/en",
-    "count": 294
+    "count": 293
   },
   "codes": [
     "1",
@@ -293,7 +293,6 @@
     "975",
     "976",
     "977",
-    "978",
     "991",
     "992",
     "993",
