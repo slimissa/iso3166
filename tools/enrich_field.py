@@ -286,18 +286,20 @@ def apply_one(
                 f"field, got {len(values)}"
             )
         entry[cfg.name] = values[0]
+        written = values[0]
     else:
         entry[cfg.name] = sorted(values)
+        written = sorted(values)
     entry["last_verified"] = today
 
     source = cfg.source_template.format(code=entry["alpha_2"])
     entry["note"] = record_source(entry.get("note"), source)
-
+    
     return {
         "alpha_2": entry["alpha_2"],
         "field": cfg.name,
         "before": before,
-        "after": sorted(values),
+        "after": written,
         "source": source,
     }
 
