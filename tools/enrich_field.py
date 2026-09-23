@@ -155,11 +155,15 @@ def load_snapshot(cfg: FieldConfig) -> frozenset[str]:
 
     if cfg.snapshot_key is None:
         # Special case: borders validates against the registry's own
-        # active alpha-2 codes.
+        # active alpha-2 codes. user-assigned and exceptionally-reserved
+        # entries are valid border targets — Kosovo (XK) borders four
+        # officially-assigned countries.
         reg = load_registry(cfg.snapshot_path)
         return frozenset(
             e["alpha_2"] for e in reg["countries"]["active"]
-            if e["status"] == "officially-assigned"
+            if e["status"] in ("officially-assigned",
+                                "user-assigned",
+                                "exceptionally-reserved")
         )
 
     data = json.loads(cfg.snapshot_path.read_text(encoding="utf-8"))
