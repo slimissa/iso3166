@@ -1262,7 +1262,9 @@
         "alpha_3": "CAF",
         "borders": [
           "CD",
+          "CG",
           "CM",
+          "SD",
           "SS",
           "TD"
         ],
@@ -1465,6 +1467,7 @@
           "CF",
           "CG",
           "GA",
+          "GQ",
           "NG"
         ],
         "calling_codes": [
@@ -1942,6 +1945,7 @@
           "LY",
           "MA",
           "ML",
+          "MR",
           "NE",
           "TN"
         ],
@@ -2705,6 +2709,7 @@
           "GW",
           "LR",
           "ML",
+          "SL",
           "SN"
         ],
         "calling_codes": [
@@ -4552,6 +4557,7 @@
         "alpha_3": "MLI",
         "borders": [
           "BF",
+          "CI",
           "DZ",
           "GN",
           "MR",
@@ -4998,6 +5004,7 @@
         "borders": [
           "MW",
           "SZ",
+          "TZ",
           "ZA",
           "ZM",
           "ZW"
@@ -5752,7 +5759,11 @@
       {
         "alpha_2": "PS",
         "alpha_3": "PSE",
-        "borders": null,
+        "borders": [
+          "EG",
+          "IL",
+          "JO"
+        ],
         "calling_codes": [
           "970"
         ],
@@ -5764,7 +5775,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "State of Palestine",
-        "note": "source: https://www.iana.org/domains/root/db\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:PS",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PS\nsource: https://www.cia.gov/the-world-factbook/countries/PS/",
         "numeric": "275",
         "official_name": "State of Palestine",
         "region": "Asia",
@@ -6055,7 +6066,15 @@
       {
         "alpha_2": "SA",
         "alpha_3": "SAU",
-        "borders": null,
+        "borders": [
+          "AE",
+          "IQ",
+          "JO",
+          "KW",
+          "OM",
+          "QA",
+          "YE"
+        ],
         "calling_codes": [
           "966"
         ],
@@ -6067,7 +6086,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saudi Arabia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA\nsource: https://www.iana.org/domains/root/db",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA\nsource: https://www.cia.gov/the-world-factbook/countries/SA/",
         "numeric": "682",
         "official_name": "Saudi Arabia",
         "region": "Asia",
@@ -6646,7 +6665,13 @@
       {
         "alpha_2": "SY",
         "alpha_3": "SYR",
-        "borders": null,
+        "borders": [
+          "IL",
+          "IQ",
+          "JO",
+          "LB",
+          "TR"
+        ],
         "calling_codes": [
           "963"
         ],
@@ -6658,7 +6683,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Syrian Arab Republic",
-        "note": "source: https://www.iana.org/domains/root/db\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:SY",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SY\nsource: https://www.cia.gov/the-world-factbook/countries/SY/",
         "numeric": "760",
         "official_name": "Syrian Arab Republic",
         "region": "Asia",
@@ -7337,7 +7362,10 @@
       {
         "alpha_2": "US",
         "alpha_3": "USA",
-        "borders": null,
+        "borders": [
+          "CA",
+          "MX"
+        ],
         "calling_codes": [
           "1"
         ],
@@ -7349,7 +7377,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States of America",
-        "note": "source: https://www.iana.org/domains/root/db",
+        "note": "source: https://www.cia.gov/the-world-factbook/countries/US/",
         "numeric": "840",
         "official_name": "United States of America",
         "region": "Americas",
@@ -7725,7 +7753,10 @@
       {
         "alpha_2": "YE",
         "alpha_3": "YEM",
-        "borders": null,
+        "borders": [
+          "OM",
+          "SA"
+        ],
         "calling_codes": [
           "967"
         ],
@@ -7737,7 +7768,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Yemen",
-        "note": "source: https://www.iana.org/domains/root/db\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:YE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:YE\nsource: https://www.cia.gov/the-world-factbook/countries/YE/",
         "numeric": "887",
         "official_name": "Republic of Yemen",
         "region": "Asia",

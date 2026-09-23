@@ -13,7 +13,10 @@
         ".us"
       ],
       "languages": [],
-      "borders": []
+      "borders": [
+        "CA",
+        "MX"
+      ]
     },
     {
       "input": "GB",
