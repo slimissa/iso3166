@@ -75,6 +75,7 @@ class FieldConfig:
     snapshot_key: str
     source_template: str
     describe: str
+    is_scalar: bool = False
 
 
 FIELDS: dict[str, FieldConfig] = {
@@ -112,6 +113,7 @@ FIELDS: dict[str, FieldConfig] = {
         snapshot_key="subregions",
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 subregion name",
+        is_scalar=True,
     ),
     "languages": FieldConfig(
         name="languages",
@@ -268,7 +270,14 @@ def apply_one(
             f"{entry['alpha_2']}: borders cannot contain self"
         )
 
-    entry[cfg.name] = sorted(values)
+    if cfg.is_scalar:
+        if len(values) > 1:
+            raise FatalError(
+                f"{alpha_2}: {cfg.name} accepts one value, got {values!r}"
+            )
+        entry[cfg.name] = values[0]
+    else:
+        entry[cfg.name] = sorted(values)
     entry["last_verified"] = today
 
     source = cfg.source_template.format(code=entry["alpha_2"])
