@@ -12,7 +12,9 @@
       "tlds": [
         ".us"
       ],
-      "languages": [],
+      "languages": [
+        "eng"
+      ],
       "borders": [
         "CA",
         "MX"
