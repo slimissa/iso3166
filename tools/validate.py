@@ -297,6 +297,22 @@ def layer_integrity(reg: dict[str, Any]) -> LayerResult:
                 if not isinstance(v, str) or not _is_valid_iso_date(v):
                     r.error(f"{where}: {f} {v!r} is not a valid ISO date")
 
+    # withdrawn entries must not carry a future withdrawal_date.
+    from datetime import date as _date
+    for i, entry in enumerate(countries.get("withdrawn", [])):
+        wd = entry.get("withdrawal_date")
+        if not wd:
+            continue
+        try:
+            parsed = _date.fromisoformat(wd)
+        except ValueError:
+            continue  # already reported by the format check above
+        if parsed > _date.today():
+            r.error(
+                f"withdrawn[{i}] ({entry.get('alpha_2')}): "
+                f"withdrawal_date {wd} is in the future"
+            )
+
     if not r.errors:
         total = sum(len(countries.get(s, [])) for s in ("active", "withdrawn"))
         r.note(f"{total} entries checked")
@@ -350,6 +366,31 @@ def layer_business(reg: dict[str, Any]) -> LayerResult:
     overlap = active_codes & withdrawn_codes
     if overlap:
         r.note(f"codes in both active and withdrawn (expected for reassigned codes): {sorted(overlap)}")
+
+    # Succession graph must be acyclic. Walk replaced_by from every
+    # withdrawn entry; if any path returns to its start, fail.
+    graph = {
+        e["alpha_2"]: list(e.get("replaced_by") or [])
+        for e in withdrawn
+    }
+
+    def _find_cycle(start: str, path: list[str]) -> list[str] | None:
+        if start in path:
+            return path + [start]
+        succ = graph.get(start, [])
+        for s in succ:
+            found = _find_cycle(s, path + [start])
+            if found:
+                return found
+        return None
+
+    for code in graph:
+        cycle = _find_cycle(code, [])
+        if cycle:
+            r.error(
+                "succession cycle detected: " + " -> ".join(cycle)
+            )
+            break
 
     if not r.errors:
         r.note(f"{len(active)} active and {len(withdrawn)} withdrawn entries are internally consistent")
