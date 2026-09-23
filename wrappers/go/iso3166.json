@@ -257,7 +257,7 @@
       {
         "alpha_2": "AQ",
         "alpha_3": "ATA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "672"
         ],
@@ -1032,7 +1032,7 @@
       {
         "alpha_2": "BV",
         "alpha_3": "BVT",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "47"
         ],
@@ -2827,7 +2827,7 @@
       {
         "alpha_2": "GS",
         "alpha_3": "SGS",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "500"
         ],
@@ -6771,7 +6771,7 @@
       {
         "alpha_2": "TF",
         "alpha_3": "ATF",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "262"
         ],
@@ -7310,7 +7310,7 @@
       {
         "alpha_2": "UM",
         "alpha_3": "UMI",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
