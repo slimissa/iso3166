@@ -3,42 +3,55 @@
     {
       "input": "US",
       "official_name": "United States of America",
-      "currency_codes": [],
+      "currency_codes": [
+        "USD"
+      ],
       "calling_codes": [],
       "tlds": []
     },
     {
       "input": "GB",
       "official_name": "United Kingdom of Great Britain and Northern Ireland",
-      "currency_codes": [],
+      "currency_codes": [
+        "GBP"
+      ],
       "calling_codes": [],
       "tlds": []
     },
     {
       "input": "JP",
       "official_name": "Japan",
-      "currency_codes": [],
+      "currency_codes": [
+        "JPY"
+      ],
       "calling_codes": [],
       "tlds": []
     },
     {
       "input": "DE",
       "official_name": "Federal Republic of Germany",
-      "currency_codes": [],
+      "currency_codes": [
+        "EUR"
+      ],
       "calling_codes": [],
       "tlds": []
     },
     {
       "input": "EC",
       "official_name": null,
-      "currency_codes": [],
+      "currency_codes": [
+        "USD"
+      ],
       "calling_codes": [],
       "tlds": []
     },
     {
       "input": "PA",
       "official_name": null,
-      "currency_codes": [],
+      "currency_codes": [
+        "PAB",
+        "USD"
+      ],
       "calling_codes": [],
       "tlds": []
     }
