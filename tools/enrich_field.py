@@ -75,7 +75,6 @@ class FieldConfig:
     snapshot_key: str
     source_template: str
     describe: str
-    is_scalar: bool = False
 
 
 FIELDS: dict[str, FieldConfig] = {
@@ -105,15 +104,6 @@ FIELDS: dict[str, FieldConfig] = {
         snapshot_key=None,
         source_template="https://www.cia.gov/the-world-factbook/countries/{code}/",
         describe="adjacent country alpha-2 codes",
-    ),
-    "subregion": FieldConfig(
-        name="subregion",
-        item_pattern=r"^[A-Za-z][A-Za-z \-]*$",
-        snapshot_path=Path("tools/m49_subregion_snapshot.json"),
-        snapshot_key="subregions",
-        source_template="https://unstats.un.org/unsd/methodology/m49/",
-        describe="UN M49 subregion name",
-        is_scalar=True,
     ),
     "languages": FieldConfig(
         name="languages",
@@ -211,12 +201,12 @@ def validate_values(
             )
 
 
-def find_active(reg: dict, code: str) -> dict:
-    for section in ("active", "withdrawn"):
-        for e in reg["countries"][section]:
-            if e["alpha_2"] == code:
-                return e
-    raise FatalError(f"{code}: not present in countries")
+def find_active(reg: dict[str, Any], code: str) -> dict[str, Any]:
+    code = code.upper()
+    for entry in reg["countries"]["active"]:
+        if entry["alpha_2"] == code:
+            return entry
+    raise FatalError(f"{code}: not present in countries.active")
 
 
 def record_source(existing: str | None, source: str) -> str:
@@ -270,14 +260,7 @@ def apply_one(
             f"{entry['alpha_2']}: borders cannot contain self"
         )
 
-    if cfg.is_scalar:
-        if len(values) > 1:
-            raise FatalError(
-                f"{alpha_2}: {cfg.name} accepts one value, got {values!r}"
-            )
-        entry[cfg.name] = values[0]
-    else:
-        entry[cfg.name] = sorted(values)
+    entry[cfg.name] = sorted(values)
     entry["last_verified"] = today
 
     source = cfg.source_template.format(code=entry["alpha_2"])
