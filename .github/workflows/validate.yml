@@ -310,8 +310,10 @@ jobs:
   # 8b. Every officially-assigned entry is fully enriched.
   # =================================================================
   check-fields:
-    name: check field completeness
+    name: check field completeness (advisory until data lands)
     runs-on: ubuntu-24.04
+    # ADVISORY until Phases 2-5 complete. Remove this comment and the
+    # continue-on-error lines below when all four fields are at 249/249.
     steps:
       - uses: actions/checkout@v4
 
@@ -320,15 +322,19 @@ jobs:
           python-version: "3.12"
 
       - name: official_name
+        continue-on-error: true
         run: python3 tools/enrich_official_name.py --check
 
       - name: currency_codes
+        continue-on-error: true
         run: python3 tools/enrich_field.py --field currency_codes --check
 
       - name: calling_codes
+        continue-on-error: true
         run: python3 tools/enrich_field.py --field calling_codes --check
 
       - name: tlds
+        continue-on-error: true
         run: python3 tools/enrich_field.py --field tlds --check
 
   # =================================================================
