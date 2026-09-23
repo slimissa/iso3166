@@ -1,0 +1,32 @@
+{
+  "_comment": "UN M49 subregion names. Source: unstats.un.org/unsd/methodology/m49/. The list is closed: 22 subregions cover every country and territory.",
+  "meta": {
+    "source": "UN M49",
+    "source_url": "https://unstats.un.org/unsd/methodology/m49/",
+    "generated": "2026-09-23"
+  },
+  "subregions": [
+    "Australia and New Zealand",
+    "Caribbean",
+    "Central America",
+    "Central Asia",
+    "Eastern Africa",
+    "Eastern Asia",
+    "Eastern Europe",
+    "Melanesia",
+    "Micronesia",
+    "Middle Africa",
+    "Northern Africa",
+    "Northern America",
+    "Northern Europe",
+    "Polynesia",
+    "South America",
+    "South-eastern Asia",
+    "Southern Africa",
+    "Southern Asia",
+    "Southern Europe",
+    "Western Africa",
+    "Western Asia",
+    "Western Europe"
+  ]
+}
