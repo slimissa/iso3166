@@ -170,6 +170,44 @@ Closes #42.
 By contributing, you agree that your contributions will be licensed
 under the Apache 2.0 license that covers the repository.
 
+## Patch scripts
 
+Inline Python patch scripts are used to modify tools when a direct edit
+would be error-prone. Two rules:
 
+1. **Wrap the patch in `set -e`.** Without it, an anchor mismatch raises
+   `SystemExit` but the surrounding shell continues to the next command.
+   Several v1.3.0 fixes were silently skipped this way.
+2. **Print the target before aborting.** A failed anchor should print
+   the first 80 characters of the text it looked for, so the reviewer
+   can see what's actually in the file.
+
+Example:
+
+    set -e
+    python3 - <<'PYEOF'
+    from pathlib import Path
+    p = Path("tools/some_tool.py")
+    src = p.read_text(encoding="utf-8")
+    old = "..."
+    if old not in src:
+        print(f"target not found; first 80 chars: {old[:80]!r}")
+        raise SystemExit(1)
+    p.write_text(src.replace(old, "new", 1), encoding="utf-8")
+    print("patched")
+    PYEOF
+
+If the patch script prints "target not found", stop and paste the
+message back to the reviewer before running the next command.
+
+## Tag only after CI completes
+
+`gh run watch` returns when a run completes. A `gh run list` query
+that shows `status: in_progress` is not a green light. Confirm:
+
+    STATUS=$(gh run list --workflow=validate.yml --limit 1 \
+        --json status,conclusion --jq '.[0] | "\(.status) \(.conclusion)"')
+    [ "$STATUS" = "completed success" ] || echo "not ready: $STATUS"
+
+Tag only when `STATUS` reads `completed success`.
 
