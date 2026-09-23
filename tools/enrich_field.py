@@ -121,6 +121,22 @@ FIELDS: dict[str, FieldConfig] = {
         source_template="https://www.iana.org/domains/root/db",
         describe="IANA country-code top-level domains",
     ),
+    "subregion": FieldConfig(
+        name="subregion",
+        item_pattern=r"^[A-Za-z][A-Za-z \-]*$",
+        snapshot_path=Path("tools/m49_subregion_snapshot.json"),
+        snapshot_key="subregions",
+        source_template="https://unstats.un.org/unsd/methodology/m49/",
+        describe="UN M49 subregion name",
+    ),
+    "intermediate_region": FieldConfig(
+        name="intermediate_region",
+        item_pattern=r"^[A-Za-z][A-Za-z \-]*$",
+        snapshot_path=Path("tools/m49_intermediate_region_snapshot.json"),
+        snapshot_key="intermediate_regions",
+        source_template="https://unstats.un.org/unsd/methodology/m49/",
+        describe="UN M49 intermediate region name",
+    ),
 }
 
 
@@ -248,7 +264,7 @@ def apply_one(
     entry = find_active(reg, alpha_2)
 
     if (entry["status"] != "officially-assigned"
-            and cfg.name not in ("subregion", "borders")):
+            and cfg.name not in ("subregion", "intermediate_region", "borders")):
         raise FatalError(
             f"{entry['alpha_2']}: status is {entry['status']!r}; "
             f"only officially-assigned entries are enriched"
