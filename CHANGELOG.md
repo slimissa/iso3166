@@ -16,6 +16,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.5.0] — 2026-09-23
+
+Languages second-source pass; `intermediate_region` populated.
+
+### Added
+
+- `intermediate_region` populated for entries where UN M49 defines
+  one. Most countries stop at `subregion`; their
+  `intermediate_region` remains null.
+- `tools/m49_intermediate_region_snapshot.json` — the UN M49
+  intermediate-region list.
+- `docs/decisions/v1.5.0-scope.md` — scope decision for this
+  release.
+
+### Changed
+
+- `tools/enrich_field.py` supports `--field intermediate_region`.
+- Fixture includes the field; wrapper suites assert agreement where
+  the fixture exercises it.
+
 ## [1.4.0] — 2026-09-23
 
 Subregion on withdrawn entries; languages audit.
@@ -223,7 +243,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/slimissa/iso3166/releases/tag/v1.5.0
 [1.4.0]: https://github.com/slimissa/iso3166/releases/tag/v1.4.0
 [1.3.0]: https://github.com/slimissa/iso3166/releases/tag/v1.3.0
 [1.2.0]: https://github.com/slimissa/iso3166/releases/tag/v1.2.0
