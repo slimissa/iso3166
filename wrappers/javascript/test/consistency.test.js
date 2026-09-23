@@ -114,3 +114,14 @@ test("search", () => {
     }
   }
 });
+
+
+test("lookup_withdrawn", () => {
+  for (const c of fixture.lookup_withdrawn || []) {
+    const matches = reg.withAlpha2(c.input);
+    const found = matches.some(
+      (m) => m.status === "withdrawn" && m.name === c.name,
+    );
+    assert.ok(found, `${c.input}: withdrawn entry not found`);
+  }
+});

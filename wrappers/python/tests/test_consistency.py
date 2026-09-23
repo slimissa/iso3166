@@ -103,3 +103,13 @@ def test_search(fixture, reg):
         codes = {c.alpha_2 for c in results}
         for code in case["must_contain"]:
             assert code in codes, f"search {case['query']!r} missing {code}"
+
+
+def test_lookup_withdrawn(fixture, reg):
+    for case in fixture.get("lookup_withdrawn", []):
+        matches = reg.with_alpha2(case["input"])
+        found = any(
+            m.status == "withdrawn" and m.name == case["name"]
+            for m in matches
+        )
+        assert found, f"{case['input']}: withdrawn entry not found"

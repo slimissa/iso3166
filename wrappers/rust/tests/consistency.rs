@@ -51,6 +51,18 @@ struct SearchCase {
 }
 
 #[derive(Deserialize)]
+struct LookupWithdrawn {
+    input: String,
+    #[allow(dead_code)]
+    alpha_2: String,
+    name: String,
+    #[allow(dead_code)]
+    status: String,
+    #[allow(dead_code)]
+    withdrawal_date: Option<String>,
+}
+
+#[derive(Deserialize)]
 struct Fixture {
     lookup_alpha2: Vec<LookupAlpha2>,
     lookup_alpha2_missing: Vec<String>,
@@ -61,6 +73,8 @@ struct Fixture {
     region_query: Vec<RegionCase>,
     currencies: HashMap<String, Vec<String>>,
     countries_with: HashMap<String, Vec<String>>,
+    #[serde(default)]
+    lookup_withdrawn: Vec<LookupWithdrawn>,
     search: Vec<SearchCase>,
 }
 
@@ -86,9 +100,9 @@ fn reg() -> CountryRegistry {
 fn lookup_alpha2() {
     let reg = reg();
     for c in load_fixture().lookup_alpha2 {
-        let got = reg.active(&c.input).unwrap_or_else(|| {
-            panic!("active({:?}) returned None", c.input)
-        });
+        let got = reg
+            .active(&c.input)
+            .unwrap_or_else(|| panic!("active({:?}) returned None", c.input));
         assert_eq!(got.alpha_2, c.alpha_2);
         assert_eq!(got.alpha_3, c.alpha_3);
         assert_eq!(got.numeric, c.numeric);
@@ -103,8 +117,11 @@ fn lookup_alpha2() {
 fn lookup_alpha2_missing() {
     let reg = reg();
     for code in load_fixture().lookup_alpha2_missing {
-        assert!(reg.active(&code).is_none(),
-            "active({:?}) should be None", code);
+        assert!(
+            reg.active(&code).is_none(),
+            "active({:?}) should be None",
+            code
+        );
     }
 }
 
@@ -112,9 +129,9 @@ fn lookup_alpha2_missing() {
 fn lookup_alpha3() {
     let reg = reg();
     for c in load_fixture().lookup_alpha3 {
-        let got = reg.by_alpha3(&c.input).unwrap_or_else(|| {
-            panic!("by_alpha3({:?}) returned None", c.input)
-        });
+        let got = reg
+            .by_alpha3(&c.input)
+            .unwrap_or_else(|| panic!("by_alpha3({:?}) returned None", c.input));
         assert_eq!(got.alpha_2, c.alpha_2);
     }
 }
@@ -123,9 +140,9 @@ fn lookup_alpha3() {
 fn lookup_numeric() {
     let reg = reg();
     for c in load_fixture().lookup_numeric {
-        let got = reg.by_numeric(&c.input).unwrap_or_else(|| {
-            panic!("by_numeric({:?}) returned None", c.input)
-        });
+        let got = reg
+            .by_numeric(&c.input)
+            .unwrap_or_else(|| panic!("by_numeric({:?}) returned None", c.input));
         assert_eq!(got.alpha_2, c.alpha_2);
     }
 }
@@ -139,9 +156,14 @@ fn counts() {
     assert_eq!(s.active, fx.counts.active);
     assert_eq!(s.withdrawn, fx.counts.withdrawn);
     for (status, expected) in fx.counts.by_status {
-        assert_eq!(s.by_status.get(&status).copied().unwrap_or(0), expected,
-            "status {}: got {}, want {}", status,
-            s.by_status.get(&status).copied().unwrap_or(0), expected);
+        assert_eq!(
+            s.by_status.get(&status).copied().unwrap_or(0),
+            expected,
+            "status {}: got {}, want {}",
+            status,
+            s.by_status.get(&status).copied().unwrap_or(0),
+            expected
+        );
     }
 }
 
@@ -163,13 +185,22 @@ fn region_query() {
     let reg = reg();
     for c in load_fixture().region_query {
         let results = reg.region(&c.region);
-        assert!(results.len() >= c.min_count,
-            "region {}: got {}, want >= {}", c.region, results.len(), c.min_count);
+        assert!(
+            results.len() >= c.min_count,
+            "region {}: got {}, want >= {}",
+            c.region,
+            results.len(),
+            c.min_count
+        );
         let have: std::collections::HashSet<&str> =
             results.iter().map(|r| r.alpha_2.as_str()).collect();
         for code in &c.must_contain {
-            assert!(have.contains(code.as_str()),
-                "region {} missing {}", c.region, code);
+            assert!(
+                have.contains(code.as_str()),
+                "region {} missing {}",
+                c.region,
+                code
+            );
         }
     }
 }
@@ -179,8 +210,14 @@ fn currencies() {
     let reg = reg();
     for (code, expected) in load_fixture().currencies {
         let got = reg.currencies(&code);
-        assert_eq!(got.len(), expected.len(),
-            "{}: got {:?}, want {:?}", code, got, expected);
+        assert_eq!(
+            got.len(),
+            expected.len(),
+            "{}: got {:?}, want {:?}",
+            code,
+            got,
+            expected
+        );
     }
 }
 
@@ -189,8 +226,14 @@ fn countries_with() {
     let reg = reg();
     for (curr, expected) in load_fixture().countries_with {
         let got = reg.countries_with(&curr);
-        assert_eq!(got.len(), expected.len(),
-            "{}: got {} entries, want {}", curr, got.len(), expected.len());
+        assert_eq!(
+            got.len(),
+            expected.len(),
+            "{}: got {} entries, want {}",
+            curr,
+            got.len(),
+            expected.len()
+        );
     }
 }
 
@@ -199,13 +242,34 @@ fn search() {
     let reg = reg();
     for c in load_fixture().search {
         let results = reg.search(&c.query);
-        assert!(results.len() >= c.min_count,
-            "search {:?}: got {}, want >= {}", c.query, results.len(), c.min_count);
+        assert!(
+            results.len() >= c.min_count,
+            "search {:?}: got {}, want >= {}",
+            c.query,
+            results.len(),
+            c.min_count
+        );
         let have: std::collections::HashSet<&str> =
             results.iter().map(|r| r.alpha_2.as_str()).collect();
         for code in &c.must_contain {
-            assert!(have.contains(code.as_str()),
-                "search {:?} missing {}", c.query, code);
+            assert!(
+                have.contains(code.as_str()),
+                "search {:?} missing {}",
+                c.query,
+                code
+            );
         }
+    }
+}
+
+#[test]
+fn lookup_withdrawn() {
+    let reg = reg();
+    for c in load_fixture().lookup_withdrawn {
+        let matches = reg.with_alpha2(&c.input);
+        let found = matches
+            .iter()
+            .any(|m| m.status == "withdrawn" && m.name == c.name);
+        assert!(found, "{}: withdrawn entry not found", c.input);
     }
 }

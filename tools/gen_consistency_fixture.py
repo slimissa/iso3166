@@ -116,7 +116,24 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             "must_contain": [c for c in must if c in in_region],
         })
 
+    # Withdrawn lookup cases: a handful of representative codes.
+    withdrawn_samples = ["SU", "YU", "CS", "AN", "CT"]
+    lookup_withdrawn = []
+    by_a2_withdrawn = {e["alpha_2"]: e for e in withdrawn}
+    for code in withdrawn_samples:
+        e = by_a2_withdrawn.get(code)
+        if e is None:
+            continue
+        lookup_withdrawn.append({
+            "input": code,
+            "alpha_2": e["alpha_2"],
+            "name": e["name"],
+            "status": "withdrawn",
+            "withdrawal_date": e.get("withdrawal_date"),
+        })
+
     return {
+        "lookup_withdrawn": lookup_withdrawn,
         "_comment": (
             "Cross-language consistency fixture. Every wrapper's test suite "
             "reads this file and asserts that its public API produces these "

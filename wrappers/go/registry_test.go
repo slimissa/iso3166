@@ -196,7 +196,14 @@ type fixtureDoc struct {
 		MinCount    int      `json:"min_count"`
 		MustContain []string `json:"must_contain"`
 	} `json:"region_query"`
-	Currencies    map[string][]string `json:"currencies"`
+	Currencies      map[string][]string `json:"currencies"`
+	LookupWithdrawn []struct {
+		Input          string  `json:"input"`
+		Alpha2         string  `json:"alpha_2"`
+		Name           string  `json:"name"`
+		Status         string  `json:"status"`
+		WithdrawalDate *string `json:"withdrawal_date"`
+	} `json:"lookup_withdrawn"`
 	CountriesWith map[string][]string `json:"countries_with"`
 	Search        []struct {
 		Query       string   `json:"query"`
@@ -381,6 +388,23 @@ func TestFixtureSearch(t *testing.T) {
 			if !have[code] {
 				t.Fatalf("search %q missing %s", c.Query, code)
 			}
+		}
+	}
+}
+
+func TestFixtureLookupWithdrawn(t *testing.T) {
+	reg := mustLoad(t)
+	for _, c := range loadFixture(t).LookupWithdrawn {
+		matches := reg.WithAlpha2(c.Input)
+		found := false
+		for _, m := range matches {
+			if m.Status == "withdrawn" && m.Name == c.Name {
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Fatalf("%s: withdrawn entry not found", c.Input)
 		}
 	}
 }

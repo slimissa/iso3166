@@ -1,4 +1,41 @@
 {
+  "lookup_withdrawn": [
+    {
+      "input": "SU",
+      "alpha_2": "SU",
+      "name": "USSR",
+      "status": "withdrawn",
+      "withdrawal_date": "2099-01-01"
+    },
+    {
+      "input": "YU",
+      "alpha_2": "YU",
+      "name": "Yugoslavia",
+      "status": "withdrawn",
+      "withdrawal_date": "2003-07-23"
+    },
+    {
+      "input": "CS",
+      "alpha_2": "CS",
+      "name": "Serbia and Montenegro",
+      "status": "withdrawn",
+      "withdrawal_date": "2006-09-26"
+    },
+    {
+      "input": "AN",
+      "alpha_2": "AN",
+      "name": "Netherlands Antilles",
+      "status": "withdrawn",
+      "withdrawal_date": "2010-12-01"
+    },
+    {
+      "input": "CT",
+      "alpha_2": "CT",
+      "name": "Canton and Enderbury Islands",
+      "status": "withdrawn",
+      "withdrawal_date": "1984-01-01"
+    }
+  ],
   "_comment": "Cross-language consistency fixture. Every wrapper's test suite reads this file and asserts that its public API produces these results. Adding a language does not require editing this file; adding a test case does. Regenerate with tools/gen_consistency_fixture.py.",
   "version": "1.0.0",
   "lookup_alpha2": [
