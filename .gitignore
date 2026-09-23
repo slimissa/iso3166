@@ -36,3 +36,7 @@ Thumbs.db
 identifiers.json
 iso4217.json
 exchange_calendar.json
+
+# Source PDFs from standards bodies. Extract data from these; do not
+# commit them.
+*.pdf

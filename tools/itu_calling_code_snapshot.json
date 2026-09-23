@@ -1,0 +1,14 @@
+{
+  "_comment": "ITU-T E.164 assigned country calling codes. Country codes only: international networks (+800, +808, +870 family) and reserved ranges are excluded. Sub-prefixes under a shared root (+1-340 for the US Virgin Islands) are recorded as their own strings.",
+  "meta": {
+    "generated": "2026-09-23",
+    "source": "ITU-T E.164D (11/2011)",
+    "source_url": "https://www.itu.int/oth/T02020000E8/en",
+    "count": 3
+  },
+  "codes": [
+    "41",
+    "247",
+    "290"
+  ]
+}
