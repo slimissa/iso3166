@@ -331,6 +331,11 @@ def mode_from_file(args: argparse.Namespace) -> int:
 
 
 
+def _active_assigned(reg: dict[str, Any]) -> list[dict[str, Any]]:
+    return [e for e in reg["countries"]["active"]
+            if e["status"] == "officially-assigned"]
+
+
 def mode_list_missing(args: argparse.Namespace) -> int:
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
