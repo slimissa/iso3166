@@ -241,6 +241,11 @@ def apply_one(
         )
 
     before = entry.get(cfg.name)
+    if cfg.name == "borders" and entry["alpha_2"] in values:
+        raise FatalError(
+            f"{entry['alpha_2']}: borders cannot contain self"
+        )
+
     entry[cfg.name] = sorted(values)
     entry["last_verified"] = today
 

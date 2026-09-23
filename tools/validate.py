@@ -367,6 +367,21 @@ def layer_business(reg: dict[str, Any]) -> LayerResult:
     if overlap:
         r.note(f"codes in both active and withdrawn (expected for reassigned codes): {sorted(overlap)}")
 
+    # Borders must be symmetric: if A borders B, B must border A.
+    border_map = {
+        e["alpha_2"]: set(e.get("borders") or [])
+        for e in countries.get("active", [])
+        if e.get("borders")
+    }
+    for a, neighbors in border_map.items():
+        for b in neighbors:
+            back = border_map.get(b, set())
+            if a not in back:
+                r.error(
+                    f"borders relation is not symmetric: {a} lists {b}, "
+                    f"but {b} does not list {a}"
+                )
+
     # Succession graph must be acyclic. Walk replaced_by from every
     # withdrawn entry; if any path returns to its start, fail.
     graph = {
