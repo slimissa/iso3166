@@ -75,6 +75,7 @@ class FieldConfig:
     snapshot_key: str
     source_template: str
     describe: str
+    is_scalar: bool = False
 
 
 FIELDS: dict[str, FieldConfig] = {
@@ -128,6 +129,7 @@ FIELDS: dict[str, FieldConfig] = {
         snapshot_key="subregions",
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 subregion name",
+        is_scalar=True,
     ),
     "intermediate_region": FieldConfig(
         name="intermediate_region",
@@ -136,6 +138,7 @@ FIELDS: dict[str, FieldConfig] = {
         snapshot_key="intermediate_regions",
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 intermediate region name",
+        is_scalar=True,
     ),
 }
 
