@@ -113,3 +113,12 @@ def test_lookup_withdrawn(fixture, reg):
             for m in matches
         )
         assert found, f"{case['input']}: withdrawn entry not found"
+
+def test_lookup_fields(fixture, reg):
+    for case in fixture.get("lookup_fields", []):
+        c = reg.active(case["input"])
+        assert c is not None, f"{case['input']} missing"
+        assert c.official_name == case["official_name"]
+        assert (c.currency_codes or []) == case["currency_codes"]
+        assert (c.calling_codes or []) == case["calling_codes"]
+        assert (c.tlds or []) == case["tlds"]

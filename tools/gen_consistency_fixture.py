@@ -132,7 +132,25 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             "withdrawal_date": e.get("withdrawal_date"),
         })
 
+    # Field-completeness cases for the four enriched list fields.
+    # Includes the GB .uk exception and a dual-currency case.
+    field_samples = ["US", "GB", "JP", "DE", "EC", "PA"]
+    by_a2_active = {e["alpha_2"]: e for e in active}
+    lookup_fields = []
+    for code in field_samples:
+        e = by_a2_active.get(code)
+        if e is None:
+            continue
+        lookup_fields.append({
+            "input": code,
+            "official_name": e.get("official_name"),
+            "currency_codes": e.get("currency_codes") or [],
+            "calling_codes": e.get("calling_codes") or [],
+            "tlds": e.get("tlds") or [],
+        })
+
     return {
+        "lookup_fields": lookup_fields,
         "lookup_withdrawn": lookup_withdrawn,
         "_comment": (
             "Cross-language consistency fixture. Every wrapper's test suite "

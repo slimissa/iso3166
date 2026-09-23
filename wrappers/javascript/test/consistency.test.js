@@ -125,3 +125,14 @@ test("lookup_withdrawn", () => {
     assert.ok(found, `${c.input}: withdrawn entry not found`);
   }
 });
+
+test("lookup_fields", () => {
+  for (const c of fixture.lookup_fields || []) {
+    const got = reg.active(c.input);
+    assert.ok(got, `${c.input} missing`);
+    assert.deepEqual(got.official_name, c.official_name);
+    assert.deepEqual(got.currency_codes || [], c.currency_codes);
+    assert.deepEqual(got.calling_codes || [], c.calling_codes);
+    assert.deepEqual(got.tlds || [], c.tlds);
+  }
+});

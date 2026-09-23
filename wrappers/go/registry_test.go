@@ -196,7 +196,14 @@ type fixtureDoc struct {
 		MinCount    int      `json:"min_count"`
 		MustContain []string `json:"must_contain"`
 	} `json:"region_query"`
-	Currencies      map[string][]string `json:"currencies"`
+	Currencies   map[string][]string `json:"currencies"`
+	LookupFields []struct {
+		Input         string   `json:"input"`
+		OfficialName  *string  `json:"official_name"`
+		CurrencyCodes []string `json:"currency_codes"`
+		CallingCodes  []string `json:"calling_codes"`
+		TLDs          []string `json:"tlds"`
+	} `json:"lookup_fields"`
 	LookupWithdrawn []struct {
 		Input          string  `json:"input"`
 		Alpha2         string  `json:"alpha_2"`
@@ -407,4 +414,39 @@ func TestFixtureLookupWithdrawn(t *testing.T) {
 			t.Fatalf("%s: withdrawn entry not found", c.Input)
 		}
 	}
+}
+
+func TestFixtureLookupFields(t *testing.T) {
+	reg := mustLoad(t)
+	for _, c := range loadFixture(t).LookupFields {
+		got := reg.Active(c.Input)
+		if got == nil {
+			t.Fatalf("%s missing", c.Input)
+		}
+		if got.OfficialName == nil || c.OfficialName == nil || *got.OfficialName != *c.OfficialName {
+			t.Fatalf("%s: official_name mismatch", c.Input)
+		}
+		// compare slices
+		if !sliceEq(got.CurrencyCodes, c.CurrencyCodes) {
+			t.Fatalf("%s: currency_codes mismatch", c.Input)
+		}
+		if !sliceEq(got.CallingCodes, c.CallingCodes) {
+			t.Fatalf("%s: calling_codes mismatch", c.Input)
+		}
+		if !sliceEq(got.TLDs, c.TLDs) {
+			t.Fatalf("%s: tlds mismatch", c.Input)
+		}
+	}
+}
+
+func sliceEq(a, b []string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
 }

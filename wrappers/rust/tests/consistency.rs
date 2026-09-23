@@ -63,6 +63,18 @@ struct LookupWithdrawn {
 }
 
 #[derive(Deserialize)]
+struct LookupField {
+    input: String,
+    official_name: Option<String>,
+    #[serde(default)]
+    currency_codes: Vec<String>,
+    #[serde(default)]
+    calling_codes: Vec<String>,
+    #[serde(default)]
+    tlds: Vec<String>,
+}
+
+#[derive(Deserialize)]
 struct Fixture {
     lookup_alpha2: Vec<LookupAlpha2>,
     lookup_alpha2_missing: Vec<String>,
@@ -73,6 +85,8 @@ struct Fixture {
     region_query: Vec<RegionCase>,
     currencies: HashMap<String, Vec<String>>,
     countries_with: HashMap<String, Vec<String>>,
+    #[serde(default)]
+    lookup_fields: Vec<LookupField>,
     #[serde(default)]
     lookup_withdrawn: Vec<LookupWithdrawn>,
     search: Vec<SearchCase>,
@@ -271,5 +285,39 @@ fn lookup_withdrawn() {
             .iter()
             .any(|m| m.status == "withdrawn" && m.name == c.name);
         assert!(found, "{}: withdrawn entry not found", c.input);
+    }
+}
+
+#[test]
+fn lookup_fields() {
+    let reg = reg();
+    for c in load_fixture().lookup_fields {
+        let got = reg
+            .active(&c.input)
+            .unwrap_or_else(|| panic!("{}: missing", c.input));
+        assert_eq!(
+            got.official_name.as_deref(),
+            c.official_name.as_deref(),
+            "{}: official_name mismatch",
+            c.input
+        );
+        assert_eq!(
+            got.currency_codes.clone().unwrap_or_default(),
+            c.currency_codes,
+            "{}: currency_codes mismatch",
+            c.input
+        );
+        assert_eq!(
+            got.calling_codes.clone().unwrap_or_default(),
+            c.calling_codes,
+            "{}: calling_codes mismatch",
+            c.input
+        );
+        assert_eq!(
+            got.tlds.clone().unwrap_or_default(),
+            c.tlds,
+            "{}: tlds mismatch",
+            c.input
+        );
     }
 }
