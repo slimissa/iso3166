@@ -144,8 +144,9 @@ OFFICIAL_ISO3166_CODES: frozenset[str] = frozenset({
 })
 
 WITHDRAWN_ISO3166_CODES: frozenset[str] = frozenset({
-    "AI", "AN", "BU", "CS", "DD", "DY", "HV", "NH", "RH", "SK", "SU", "TP",
-    "YD", "YU", "ZR",
+    "AI", "AN", "BU", "CS", "CT", "DD", "DY", "FQ", "HV", "JT", "MI", "NH",
+    "NQ", "NT", "PC", "PZ", "RH", "SK", "SU", "TP", "VD", "WK", "YD", "YU",
+    "ZR",
 })
 
 EXCEPTIONALLY_RESERVED_CODES: frozenset[str] = frozenset({
