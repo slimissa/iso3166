@@ -177,7 +177,9 @@
         "eng",
         "sot"
       ],
-      "borders": []
+      "borders": [
+        "ZA"
+      ]
     }
   ],
   "lookup_withdrawn": [
