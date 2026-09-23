@@ -52,7 +52,8 @@ CM	CMR	120	Cameroon	officially-assigned	false		Africa	Sub-Saharan Africa	Middle 
 CN	CHN	156	China	officially-assigned	true	People's Republic of China	Asia	Eastern Asia								2026-09-22		
 CO	COL	170	Colombia	officially-assigned	false		Americas	Latin America and the Caribbean	South America							2026-09-22		
 CR	CRI	188	Costa Rica	officially-assigned	false		Americas	Latin America and the Caribbean	Central America							2026-09-22		
-CS	SCG	891	Serbia and Montenegro	withdrawn	false											2026-09-22	2006-09-26	RS|ME
+CS	SCG	891	Serbia and Montenegro	withdrawn	false										CS was used twice: Czechoslovakia (withdrawn 1993-01-01, replaced by CZ and SK) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by ME and RS). This entry records the second use; replaced_by reflects the terminal successors of that use.	2026-09-22	2006-09-26	RS|ME
+CT	CTE	000	Canton and Enderbury Islands	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:CT	2026-09-23	1984-01-01	KI
 CU	CUB	192	Cuba	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
 CV	CPV	132	Cabo Verde	officially-assigned	false		Africa	Sub-Saharan Africa	Western Africa							2026-09-22		
 CW	CUW	531	Curaçao	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
@@ -80,6 +81,7 @@ FJ	FJI	242	Fiji	officially-assigned	false		Oceania	Melanesia								2026-09-22
 FK	FLK	238	Falkland Islands (Malvinas)	officially-assigned	false		Americas	Latin America and the Caribbean	South America							2026-09-22		
 FM	FSM	583	Micronesia (Federated States of)	officially-assigned	false		Oceania	Micronesia								2026-09-22		
 FO	FRO	234	Faroe Islands	officially-assigned	false		Europe	Northern Europe								2026-09-22		
+FQ	ATF	000	French Southern and Antarctic Territories	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:FQ	2026-09-23	1979-01-01	TF
 FR	FRA	250	France	officially-assigned	true	French Republic	Europe	Western Europe								2026-09-22		
 GA	GAB	266	Gabon	officially-assigned	false		Africa	Sub-Saharan Africa	Middle Africa							2026-09-22		
 GB	GBR	826	United Kingdom of Great Britain and Northern Ireland	officially-assigned	true	United Kingdom of Great Britain and Northern Ireland	Europe	Northern Europe								2026-09-22		
@@ -121,6 +123,7 @@ JE	JEY	832	Jersey	officially-assigned	false		Europe	Northern Europe								2026-
 JM	JAM	388	Jamaica	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
 JO	JOR	400	Jordan	officially-assigned	false		Asia	Western Asia								2026-09-22		
 JP	JPN	392	Japan	officially-assigned	true	Japan	Asia	Eastern Asia								2026-09-22		
+JT	JTN	000	Johnston Island	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:JT	2026-09-23	1986-01-01	
 KE	KEN	404	Kenya	officially-assigned	false		Africa	Sub-Saharan Africa	Eastern Africa							2026-09-22		
 KG	KGZ	417	Kyrgyzstan	officially-assigned	false		Asia	Central Asia								2026-09-22		
 KH	KHM	116	Cambodia	officially-assigned	false		Asia	South-eastern Asia								2026-09-22		
@@ -150,6 +153,7 @@ ME	MNE	499	Montenegro	officially-assigned	false		Europe	Southern Europe								2
 MF	MAF	663	Saint Martin (French Part)	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
 MG	MDG	450	Madagascar	officially-assigned	false		Africa	Sub-Saharan Africa	Eastern Africa							2026-09-22		
 MH	MHL	584	Marshall Islands	officially-assigned	false		Oceania	Micronesia								2026-09-22		
+MI	MID	000	Midway Islands	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:MI	2026-09-23	1986-01-01	
 MK	MKD	807	North Macedonia	officially-assigned	false		Europe	Southern Europe								2026-09-22		
 ML	MLI	466	Mali	officially-assigned	false		Africa	Sub-Saharan Africa	Western Africa							2026-09-22		
 MM	MMR	104	Myanmar	officially-assigned	false		Asia	South-eastern Asia								2026-09-22		
@@ -176,11 +180,14 @@ NI	NIC	558	Nicaragua	officially-assigned	false		Americas	Latin America and the C
 NL	NLD	528	Netherlands (Kingdom of the)	officially-assigned	false		Europe	Western Europe								2026-09-22		
 NO	NOR	578	Norway	officially-assigned	false		Europe	Northern Europe								2026-09-22		
 NP	NPL	524	Nepal	officially-assigned	false		Asia	Southern Asia								2026-09-22		
+NQ	ATN	000	Dronning Maud Land	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:NQ	2026-09-23	1983-01-01	AQ
 NR	NRU	520	Naoero	officially-assigned	false		Oceania	Micronesia								2026-09-22		
+NT	NTZ	000	Neutral Zone	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:NT	2026-09-23	1993-07-01	
 NU	NIU	570	Niue	officially-assigned	false		Oceania	Polynesia								2026-09-22		
 NZ	NZL	554	New Zealand	officially-assigned	false		Oceania	Australia and New Zealand								2026-09-22		
 OM	OMN	512	Oman	officially-assigned	false		Asia	Western Asia								2026-09-22		
 PA	PAN	591	Panama	officially-assigned	false		Americas	Latin America and the Caribbean	Central America							2026-09-22		
+PC	PCI	000	Pacific Islands (Trust Territory)	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:PC	2026-09-23	1986-11-03	FM|MH|MP|PW
 PE	PER	604	Peru	officially-assigned	false		Americas	Latin America and the Caribbean	South America							2026-09-22		
 PF	PYF	258	French Polynesia	officially-assigned	false		Oceania	Polynesia								2026-09-22		
 PG	PNG	598	Papua New Guinea	officially-assigned	false		Oceania	Melanesia								2026-09-22		
@@ -194,6 +201,7 @@ PS	PSE	275	State of Palestine	officially-assigned	false		Asia	Western Asia						
 PT	PRT	620	Portugal	officially-assigned	false		Europe	Southern Europe								2026-09-22		
 PW	PLW	585	Palau	officially-assigned	false		Oceania	Micronesia								2026-09-22		
 PY	PRY	600	Paraguay	officially-assigned	false		Americas	Latin America and the Caribbean	South America							2026-09-22		
+PZ	PCZ	000	Panama Canal Zone	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:PZ	2026-09-23	1980-01-01	PA
 QA	QAT	634	Qatar	officially-assigned	false		Asia	Western Asia								2026-09-22		
 RE	REU	638	Réunion	officially-assigned	false		Africa	Sub-Saharan Africa	Eastern Africa							2026-09-22		
 RH	RHO	000	Southern Rhodesia	withdrawn	false											2026-09-22	1980-04-18	ZW
@@ -250,12 +258,14 @@ UY	URY	858	Uruguay	officially-assigned	false		Americas	Latin America and the Car
 UZ	UZB	860	Uzbekistan	officially-assigned	false		Asia	Central Asia								2026-09-22		
 VA	VAT	336	Holy See	officially-assigned	false		Europe	Southern Europe								2026-09-22		
 VC	VCT	670	Saint Vincent and the Grenadines	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
+VD	VDR	000	North Vietnam	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:VD	2026-09-23	1976-07-02	VN
 VE	VEN	862	Venezuela (Bolivarian Republic of)	officially-assigned	false		Americas	Latin America and the Caribbean	South America							2026-09-22		
 VG	VGB	092	British Virgin Islands	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
 VI	VIR	850	United States Virgin Islands	officially-assigned	false		Americas	Latin America and the Caribbean	Caribbean							2026-09-22		
 VN	VNM	704	Viet Nam	officially-assigned	false		Asia	South-eastern Asia								2026-09-22		
 VU	VUT	548	Vanuatu	officially-assigned	false		Oceania	Melanesia								2026-09-22		
 WF	WLF	876	Wallis and Futuna Islands	officially-assigned	false		Oceania	Polynesia								2026-09-22		
+WK	WAK	000	Wake Island	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:WK	2026-09-23	1986-01-01	
 WS	WSM	882	Samoa	officially-assigned	false		Oceania	Polynesia								2026-09-22		
 XK	XKX	000	Kosovo	user-assigned	true										User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production.	2026-09-22		
 YD	YMD	720	South Yemen	withdrawn	false											2026-09-22	1990-05-22	YE

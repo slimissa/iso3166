@@ -102,14 +102,14 @@
     }
   ],
   "counts": {
-    "total": 267,
+    "total": 277,
     "active": 252,
-    "withdrawn": 15,
+    "withdrawn": 25,
     "by_status": {
       "officially-assigned": 249,
       "user-assigned": 1,
       "exceptionally-reserved": 2,
-      "withdrawn": 15
+      "withdrawn": 25
     }
   },
   "overlap_codes": {
