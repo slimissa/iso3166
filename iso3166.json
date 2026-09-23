@@ -5,7 +5,9 @@
         "alpha_2": "AD",
         "alpha_3": "AND",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "376"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -14,7 +16,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Andorra",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD\nsource: https://www.iso.org/obp/ui/#iso:code:3166:AD",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "020",
         "official_name": "Principality of Andorra",
         "region": "Europe",
@@ -30,7 +32,9 @@
         "alpha_2": "AE",
         "alpha_3": "ARE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "971"
+        ],
         "currency_codes": [
           "AED"
         ],
@@ -39,7 +43,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United Arab Emirates",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "784",
         "official_name": null,
         "region": "Asia",
@@ -55,7 +59,9 @@
         "alpha_2": "AF",
         "alpha_3": "AFG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "93"
+        ],
         "currency_codes": [
           "AFN"
         ],
@@ -64,7 +70,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Afghanistan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "004",
         "official_name": null,
         "region": "Asia",
@@ -80,7 +86,9 @@
         "alpha_2": "AG",
         "alpha_3": "ATG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -89,7 +97,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Antigua and Barbuda",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "028",
         "official_name": null,
         "region": "Americas",
@@ -105,7 +113,9 @@
         "alpha_2": "AI",
         "alpha_3": "AIA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -114,7 +124,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Anguilla",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AI",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "660",
         "official_name": null,
         "region": "Americas",
@@ -128,7 +138,9 @@
         "alpha_2": "AL",
         "alpha_3": "ALB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "355"
+        ],
         "currency_codes": [
           "ALL"
         ],
@@ -137,7 +149,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Albania",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL\nsource: https://www.iso.org/obp/ui/#iso:code:3166:AL",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "008",
         "official_name": "Republic of Albania",
         "region": "Europe",
@@ -151,7 +163,9 @@
         "alpha_2": "AM",
         "alpha_3": "ARM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "374"
+        ],
         "currency_codes": [
           "AMD"
         ],
@@ -160,7 +174,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Armenia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "051",
         "official_name": null,
         "region": "Asia",
@@ -174,7 +188,9 @@
         "alpha_2": "AO",
         "alpha_3": "AGO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "244"
+        ],
         "currency_codes": [
           "AOA"
         ],
@@ -183,7 +199,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Angola",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "024",
         "official_name": null,
         "region": "Africa",
@@ -197,14 +213,16 @@
         "alpha_2": "AQ",
         "alpha_3": "ATA",
         "borders": null,
-        "calling_codes": null,
-        "currency_codes": null,
+        "calling_codes": [
+          "672"
+        ],
+        "currency_codes": [],
         "independent": false,
         "intermediate_region": null,
         "languages": null,
-        "last_verified": "2026-09-22",
+        "last_verified": "2026-09-23",
         "name": "Antarctica",
-        "note": null,
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "010",
         "official_name": null,
         "region": null,
@@ -218,7 +236,9 @@
         "alpha_2": "AR",
         "alpha_3": "ARG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "54"
+        ],
         "currency_codes": [
           "ARS"
         ],
@@ -227,7 +247,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Argentina",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR\nsource: https://www.iso.org/obp/ui/#iso:code:3166:AR",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "032",
         "official_name": "Argentina",
         "region": "Americas",
@@ -241,7 +261,9 @@
         "alpha_2": "AS",
         "alpha_3": "ASM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -250,7 +272,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "American Samoa",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "016",
         "official_name": null,
         "region": "Oceania",
@@ -264,7 +286,9 @@
         "alpha_2": "AT",
         "alpha_3": "AUT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "43"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -273,7 +297,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Austria",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT\nsource: https://www.iso.org/obp/ui/#iso:code:3166:AT",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "040",
         "official_name": "Republic of Austria",
         "region": "Europe",
@@ -287,7 +311,9 @@
         "alpha_2": "AU",
         "alpha_3": "AUS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "61"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -296,7 +322,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Australia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU\nsource: https://www.iso.org/obp/ui/#iso:code:3166:AU",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "036",
         "official_name": "Australia",
         "region": "Oceania",
@@ -310,7 +336,9 @@
         "alpha_2": "AW",
         "alpha_3": "ABW",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "297"
+        ],
         "currency_codes": [
           "AWG"
         ],
@@ -319,7 +347,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Aruba",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "533",
         "official_name": null,
         "region": "Americas",
@@ -333,7 +361,9 @@
         "alpha_2": "AX",
         "alpha_3": "ALA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "358"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -342,7 +372,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Åland Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AX\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "248",
         "official_name": "Åland Islands",
         "region": "Europe",
@@ -356,7 +386,9 @@
         "alpha_2": "AZ",
         "alpha_3": "AZE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "994"
+        ],
         "currency_codes": [
           "AZN"
         ],
@@ -365,7 +397,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Azerbaijan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:AZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "031",
         "official_name": null,
         "region": "Asia",
@@ -379,7 +411,9 @@
         "alpha_2": "BA",
         "alpha_3": "BIH",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "387"
+        ],
         "currency_codes": [
           "BAM"
         ],
@@ -388,7 +422,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bosnia and Herzegovina",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BA\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "070",
         "official_name": "Bosnia and Herzegovina",
         "region": "Europe",
@@ -402,7 +436,9 @@
         "alpha_2": "BB",
         "alpha_3": "BRB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "BBD"
         ],
@@ -411,7 +447,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Barbados",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BB",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "052",
         "official_name": null,
         "region": "Americas",
@@ -425,7 +461,9 @@
         "alpha_2": "BD",
         "alpha_3": "BGD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "880"
+        ],
         "currency_codes": [
           "BDT"
         ],
@@ -434,7 +472,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bangladesh",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BD",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "050",
         "official_name": null,
         "region": "Asia",
@@ -448,7 +486,9 @@
         "alpha_2": "BE",
         "alpha_3": "BEL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "32"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -457,7 +497,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Belgium",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BE\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "056",
         "official_name": "Kingdom of Belgium",
         "region": "Europe",
@@ -471,7 +511,9 @@
         "alpha_2": "BF",
         "alpha_3": "BFA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "226"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -480,7 +522,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Burkina Faso",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "854",
         "official_name": null,
         "region": "Africa",
@@ -494,7 +536,9 @@
         "alpha_2": "BG",
         "alpha_3": "BGR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "359"
+        ],
         "currency_codes": [
           "BGN"
         ],
@@ -503,7 +547,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bulgaria",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BG\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "100",
         "official_name": "Republic of Bulgaria",
         "region": "Europe",
@@ -517,7 +561,9 @@
         "alpha_2": "BH",
         "alpha_3": "BHR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "973"
+        ],
         "currency_codes": [
           "BHD"
         ],
@@ -526,7 +572,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bahrain",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "048",
         "official_name": null,
         "region": "Asia",
@@ -540,7 +586,9 @@
         "alpha_2": "BI",
         "alpha_3": "BDI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "257"
+        ],
         "currency_codes": [
           "BIF"
         ],
@@ -549,7 +597,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Burundi",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BI",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "108",
         "official_name": null,
         "region": "Africa",
@@ -563,7 +611,9 @@
         "alpha_2": "BJ",
         "alpha_3": "BEN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "229"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -572,7 +622,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Benin",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BJ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "204",
         "official_name": null,
         "region": "Africa",
@@ -586,7 +636,9 @@
         "alpha_2": "BL",
         "alpha_3": "BLM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "590"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -595,7 +647,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Barthélemy",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BL",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "652",
         "official_name": null,
         "region": "Americas",
@@ -609,7 +661,9 @@
         "alpha_2": "BM",
         "alpha_3": "BMU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "BMD"
         ],
@@ -618,7 +672,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bermuda",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "060",
         "official_name": null,
         "region": "Americas",
@@ -632,7 +686,9 @@
         "alpha_2": "BN",
         "alpha_3": "BRN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "673"
+        ],
         "currency_codes": [
           "BND"
         ],
@@ -641,7 +697,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Brunei Darussalam",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "096",
         "official_name": null,
         "region": "Asia",
@@ -655,7 +711,9 @@
         "alpha_2": "BO",
         "alpha_3": "BOL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "591"
+        ],
         "currency_codes": [
           "BOB"
         ],
@@ -664,7 +722,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bolivia (Plurinational State of)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "068",
         "official_name": null,
         "region": "Americas",
@@ -678,7 +736,9 @@
         "alpha_2": "BQ",
         "alpha_3": "BES",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "599"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -687,7 +747,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bonaire, Sint Eustatius and Saba",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BQ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "535",
         "official_name": null,
         "region": "Americas",
@@ -701,7 +761,9 @@
         "alpha_2": "BR",
         "alpha_3": "BRA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "55"
+        ],
         "currency_codes": [
           "BRL"
         ],
@@ -710,7 +772,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Brazil",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "076",
         "official_name": "Federative Republic of Brazil",
         "region": "Americas",
@@ -724,7 +786,9 @@
         "alpha_2": "BS",
         "alpha_3": "BHS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "BSD"
         ],
@@ -733,7 +797,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bahamas",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "044",
         "official_name": null,
         "region": "Americas",
@@ -747,7 +811,9 @@
         "alpha_2": "BT",
         "alpha_3": "BTN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "975"
+        ],
         "currency_codes": [
           "BTN"
         ],
@@ -756,7 +822,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bhutan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BT",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "064",
         "official_name": null,
         "region": "Asia",
@@ -770,7 +836,9 @@
         "alpha_2": "BV",
         "alpha_3": "BVT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "47"
+        ],
         "currency_codes": [
           "NOK"
         ],
@@ -779,7 +847,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bouvet Island",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BV",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "074",
         "official_name": null,
         "region": "Americas",
@@ -793,7 +861,9 @@
         "alpha_2": "BW",
         "alpha_3": "BWA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "267"
+        ],
         "currency_codes": [
           "BWP"
         ],
@@ -802,7 +872,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Botswana",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "072",
         "official_name": null,
         "region": "Africa",
@@ -816,7 +886,9 @@
         "alpha_2": "BY",
         "alpha_3": "BLR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "375"
+        ],
         "currency_codes": [
           "BYN"
         ],
@@ -825,7 +897,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Belarus",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BY\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "112",
         "official_name": "Republic of Belarus",
         "region": "Europe",
@@ -839,7 +911,9 @@
         "alpha_2": "BZ",
         "alpha_3": "BLZ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "501"
+        ],
         "currency_codes": [
           "BZD"
         ],
@@ -848,7 +922,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Belize",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:BZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "084",
         "official_name": null,
         "region": "Americas",
@@ -862,7 +936,9 @@
         "alpha_2": "CA",
         "alpha_3": "CAN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "CAD"
         ],
@@ -871,7 +947,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Canada",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA\nsource: https://www.iso.org/obp/ui/#iso:code:3166:CA",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "124",
         "official_name": "Canada",
         "region": "Americas",
@@ -885,7 +961,9 @@
         "alpha_2": "CC",
         "alpha_3": "CCK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "61"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -894,7 +972,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cocos (Keeling) Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "166",
         "official_name": null,
         "region": "Oceania",
@@ -908,7 +986,9 @@
         "alpha_2": "CD",
         "alpha_3": "COD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "243"
+        ],
         "currency_codes": [
           "CDF"
         ],
@@ -917,7 +997,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Democratic Republic of the Congo",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CD",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "180",
         "official_name": null,
         "region": "Africa",
@@ -931,7 +1011,9 @@
         "alpha_2": "CF",
         "alpha_3": "CAF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "236"
+        ],
         "currency_codes": [
           "XAF"
         ],
@@ -940,7 +1022,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Central African Republic",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "140",
         "official_name": null,
         "region": "Africa",
@@ -954,7 +1036,9 @@
         "alpha_2": "CG",
         "alpha_3": "COG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "242"
+        ],
         "currency_codes": [
           "XAF"
         ],
@@ -963,7 +1047,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Congo",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "178",
         "official_name": null,
         "region": "Africa",
@@ -977,7 +1061,9 @@
         "alpha_2": "CH",
         "alpha_3": "CHE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "41"
+        ],
         "currency_codes": [
           "CHF"
         ],
@@ -986,7 +1072,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Switzerland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH\nsource: https://www.iso.org/obp/ui/#iso:code:3166:CH",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "756",
         "official_name": "Switzerland",
         "region": "Europe",
@@ -1000,7 +1086,9 @@
         "alpha_2": "CI",
         "alpha_3": "CIV",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "225"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -1009,7 +1097,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Côte d’Ivoire",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CI",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "384",
         "official_name": null,
         "region": "Africa",
@@ -1023,7 +1111,9 @@
         "alpha_2": "CK",
         "alpha_3": "COK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "682"
+        ],
         "currency_codes": [
           "NZD"
         ],
@@ -1032,7 +1122,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cook Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CK",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "184",
         "official_name": null,
         "region": "Oceania",
@@ -1046,7 +1136,9 @@
         "alpha_2": "CL",
         "alpha_3": "CHL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "56"
+        ],
         "currency_codes": [
           "CLP"
         ],
@@ -1055,7 +1147,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Chile",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CL",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "152",
         "official_name": null,
         "region": "Americas",
@@ -1069,7 +1161,9 @@
         "alpha_2": "CM",
         "alpha_3": "CMR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "237"
+        ],
         "currency_codes": [
           "XAF"
         ],
@@ -1078,7 +1172,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cameroon",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "120",
         "official_name": null,
         "region": "Africa",
@@ -1092,7 +1186,9 @@
         "alpha_2": "CN",
         "alpha_3": "CHN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "86"
+        ],
         "currency_codes": [
           "CNY"
         ],
@@ -1101,7 +1197,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "China",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "156",
         "official_name": "People's Republic of China",
         "region": "Asia",
@@ -1115,7 +1211,9 @@
         "alpha_2": "CO",
         "alpha_3": "COL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "57"
+        ],
         "currency_codes": [
           "COP"
         ],
@@ -1124,7 +1222,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Colombia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "170",
         "official_name": null,
         "region": "Americas",
@@ -1138,7 +1236,9 @@
         "alpha_2": "CR",
         "alpha_3": "CRI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "506"
+        ],
         "currency_codes": [
           "CRC"
         ],
@@ -1147,7 +1247,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Costa Rica",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "188",
         "official_name": null,
         "region": "Americas",
@@ -1161,7 +1261,9 @@
         "alpha_2": "CU",
         "alpha_3": "CUB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "53"
+        ],
         "currency_codes": [
           "CUP"
         ],
@@ -1170,7 +1272,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cuba",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CU",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "192",
         "official_name": null,
         "region": "Americas",
@@ -1184,7 +1286,9 @@
         "alpha_2": "CV",
         "alpha_3": "CPV",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "238"
+        ],
         "currency_codes": [
           "CVE"
         ],
@@ -1193,7 +1297,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cabo Verde",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CV",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "132",
         "official_name": null,
         "region": "Africa",
@@ -1207,7 +1311,9 @@
         "alpha_2": "CW",
         "alpha_3": "CUW",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "599"
+        ],
         "currency_codes": [
           "ANG"
         ],
@@ -1216,7 +1322,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Curaçao",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "531",
         "official_name": null,
         "region": "Americas",
@@ -1230,7 +1336,9 @@
         "alpha_2": "CX",
         "alpha_3": "CXR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "61"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -1239,7 +1347,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Christmas Island",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CX",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "162",
         "official_name": null,
         "region": "Oceania",
@@ -1253,7 +1361,9 @@
         "alpha_2": "CY",
         "alpha_3": "CYP",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "357"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1262,7 +1372,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cyprus",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "196",
         "official_name": null,
         "region": "Asia",
@@ -1276,7 +1386,9 @@
         "alpha_2": "CZ",
         "alpha_3": "CZE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "420"
+        ],
         "currency_codes": [
           "CZK"
         ],
@@ -1285,7 +1397,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Czechia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:CZ\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "203",
         "official_name": "Czech Republic",
         "region": "Europe",
@@ -1299,7 +1411,9 @@
         "alpha_2": "DE",
         "alpha_3": "DEU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "49"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1308,7 +1422,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Germany",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:DE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "276",
         "official_name": "Federal Republic of Germany",
         "region": "Europe",
@@ -1322,7 +1436,9 @@
         "alpha_2": "DJ",
         "alpha_3": "DJI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "253"
+        ],
         "currency_codes": [
           "DJF"
         ],
@@ -1331,7 +1447,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Djibouti",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:DJ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "262",
         "official_name": null,
         "region": "Africa",
@@ -1345,7 +1461,9 @@
         "alpha_2": "DK",
         "alpha_3": "DNK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "45"
+        ],
         "currency_codes": [
           "DKK"
         ],
@@ -1354,7 +1472,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Denmark",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:DK\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "208",
         "official_name": "Kingdom of Denmark",
         "region": "Europe",
@@ -1368,7 +1486,9 @@
         "alpha_2": "DM",
         "alpha_3": "DMA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -1377,7 +1497,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Dominica",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:DM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "212",
         "official_name": null,
         "region": "Americas",
@@ -1391,7 +1511,9 @@
         "alpha_2": "DO",
         "alpha_3": "DOM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "DOP"
         ],
@@ -1400,7 +1522,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Dominican Republic",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:DO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "214",
         "official_name": null,
         "region": "Americas",
@@ -1414,7 +1536,9 @@
         "alpha_2": "DZ",
         "alpha_3": "DZA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "213"
+        ],
         "currency_codes": [
           "DZD"
         ],
@@ -1423,7 +1547,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Algeria",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:DZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "012",
         "official_name": null,
         "region": "Africa",
@@ -1437,7 +1561,9 @@
         "alpha_2": "EC",
         "alpha_3": "ECU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "593"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -1446,7 +1572,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ecuador",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:EC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "218",
         "official_name": null,
         "region": "Americas",
@@ -1460,7 +1586,9 @@
         "alpha_2": "EE",
         "alpha_3": "EST",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "372"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1469,7 +1597,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Estonia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:EE\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "233",
         "official_name": "Republic of Estonia",
         "region": "Europe",
@@ -1483,7 +1611,9 @@
         "alpha_2": "EG",
         "alpha_3": "EGY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "20"
+        ],
         "currency_codes": [
           "EGP"
         ],
@@ -1492,7 +1622,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Egypt",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:EG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "818",
         "official_name": null,
         "region": "Africa",
@@ -1506,7 +1636,9 @@
         "alpha_2": "EH",
         "alpha_3": "ESH",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "212"
+        ],
         "currency_codes": [
           "MAD"
         ],
@@ -1515,7 +1647,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Western Sahara",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:EH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "732",
         "official_name": null,
         "region": "Africa",
@@ -1529,7 +1661,9 @@
         "alpha_2": "ER",
         "alpha_3": "ERI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "291"
+        ],
         "currency_codes": [
           "ERN"
         ],
@@ -1538,7 +1672,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Eritrea",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ER",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "232",
         "official_name": null,
         "region": "Africa",
@@ -1552,7 +1686,9 @@
         "alpha_2": "ES",
         "alpha_3": "ESP",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "34"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1561,7 +1697,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Spain",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ES\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "724",
         "official_name": "Kingdom of Spain",
         "region": "Europe",
@@ -1575,7 +1711,9 @@
         "alpha_2": "ET",
         "alpha_3": "ETH",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "251"
+        ],
         "currency_codes": [
           "ETB"
         ],
@@ -1584,7 +1722,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ethiopia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ET",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "231",
         "official_name": null,
         "region": "Africa",
@@ -1619,7 +1757,9 @@
         "alpha_2": "FI",
         "alpha_3": "FIN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "358"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1628,7 +1768,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Finland",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:FI\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "246",
         "official_name": "Republic of Finland",
         "region": "Europe",
@@ -1642,7 +1782,9 @@
         "alpha_2": "FJ",
         "alpha_3": "FJI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "679"
+        ],
         "currency_codes": [
           "FJD"
         ],
@@ -1651,7 +1793,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Fiji",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:FJ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "242",
         "official_name": null,
         "region": "Oceania",
@@ -1665,7 +1807,9 @@
         "alpha_2": "FK",
         "alpha_3": "FLK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "500"
+        ],
         "currency_codes": [
           "FKP"
         ],
@@ -1674,7 +1818,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Falkland Islands (Malvinas)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:FK",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "238",
         "official_name": null,
         "region": "Americas",
@@ -1688,7 +1832,9 @@
         "alpha_2": "FM",
         "alpha_3": "FSM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "691"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -1697,7 +1843,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Micronesia (Federated States of)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:FM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "583",
         "official_name": null,
         "region": "Oceania",
@@ -1711,7 +1857,9 @@
         "alpha_2": "FO",
         "alpha_3": "FRO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "298"
+        ],
         "currency_codes": [
           "DKK"
         ],
@@ -1720,7 +1868,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Faroe Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:FO\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "234",
         "official_name": "Faroe Islands",
         "region": "Europe",
@@ -1734,7 +1882,9 @@
         "alpha_2": "FR",
         "alpha_3": "FRA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "33"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1743,7 +1893,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "France",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:FR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "250",
         "official_name": "French Republic",
         "region": "Europe",
@@ -1757,7 +1907,9 @@
         "alpha_2": "GA",
         "alpha_3": "GAB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "241"
+        ],
         "currency_codes": [
           "XAF"
         ],
@@ -1766,7 +1918,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Gabon",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "266",
         "official_name": null,
         "region": "Africa",
@@ -1780,7 +1932,9 @@
         "alpha_2": "GB",
         "alpha_3": "GBR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "44"
+        ],
         "currency_codes": [
           "GBP"
         ],
@@ -1789,7 +1943,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United Kingdom of Great Britain and Northern Ireland",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GB",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "826",
         "official_name": "United Kingdom of Great Britain and Northern Ireland",
         "region": "Europe",
@@ -1803,7 +1957,9 @@
         "alpha_2": "GD",
         "alpha_3": "GRD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -1812,7 +1968,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Grenada",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GD",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "308",
         "official_name": null,
         "region": "Americas",
@@ -1826,7 +1982,9 @@
         "alpha_2": "GE",
         "alpha_3": "GEO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "995"
+        ],
         "currency_codes": [
           "GEL"
         ],
@@ -1835,7 +1993,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Georgia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GE\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "268",
         "official_name": "Georgia",
         "region": "Asia",
@@ -1849,7 +2007,9 @@
         "alpha_2": "GF",
         "alpha_3": "GUF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "594"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -1858,7 +2018,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Guiana",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "254",
         "official_name": null,
         "region": "Americas",
@@ -1872,7 +2032,9 @@
         "alpha_2": "GG",
         "alpha_3": "GGY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "44"
+        ],
         "currency_codes": [
           "GBP"
         ],
@@ -1881,7 +2043,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guernsey",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GG\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:GG",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GG\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "831",
         "official_name": "Guernsey",
         "region": "Europe",
@@ -1895,7 +2057,9 @@
         "alpha_2": "GH",
         "alpha_3": "GHA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "233"
+        ],
         "currency_codes": [
           "GHS"
         ],
@@ -1904,7 +2068,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ghana",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "288",
         "official_name": null,
         "region": "Africa",
@@ -1918,7 +2082,9 @@
         "alpha_2": "GI",
         "alpha_3": "GIB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "350"
+        ],
         "currency_codes": [
           "GIP"
         ],
@@ -1927,7 +2093,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Gibraltar",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GI\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "292",
         "official_name": "Gibraltar",
         "region": "Europe",
@@ -1941,7 +2107,9 @@
         "alpha_2": "GL",
         "alpha_3": "GRL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "299"
+        ],
         "currency_codes": [
           "DKK"
         ],
@@ -1950,7 +2118,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Greenland",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GL",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "304",
         "official_name": null,
         "region": "Americas",
@@ -1964,7 +2132,9 @@
         "alpha_2": "GM",
         "alpha_3": "GMB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "220"
+        ],
         "currency_codes": [
           "GMD"
         ],
@@ -1973,7 +2143,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Gambia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "270",
         "official_name": null,
         "region": "Africa",
@@ -1987,7 +2157,9 @@
         "alpha_2": "GN",
         "alpha_3": "GIN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "224"
+        ],
         "currency_codes": [
           "GNF"
         ],
@@ -1996,7 +2168,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guinea",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "324",
         "official_name": null,
         "region": "Africa",
@@ -2010,7 +2182,9 @@
         "alpha_2": "GP",
         "alpha_3": "GLP",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "590"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -2019,7 +2193,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guadeloupe",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GP",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "312",
         "official_name": null,
         "region": "Americas",
@@ -2033,7 +2207,9 @@
         "alpha_2": "GQ",
         "alpha_3": "GNQ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "240"
+        ],
         "currency_codes": [
           "XAF"
         ],
@@ -2042,7 +2218,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Equatorial Guinea",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GQ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "226",
         "official_name": null,
         "region": "Africa",
@@ -2056,7 +2232,9 @@
         "alpha_2": "GR",
         "alpha_3": "GRC",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "30"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -2065,7 +2243,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Greece",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GR\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "300",
         "official_name": "Hellenic Republic",
         "region": "Europe",
@@ -2079,7 +2257,9 @@
         "alpha_2": "GS",
         "alpha_3": "SGS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "500"
+        ],
         "currency_codes": [
           "FKP"
         ],
@@ -2088,7 +2268,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Georgia and the South Sandwich Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "239",
         "official_name": null,
         "region": "Americas",
@@ -2102,7 +2282,9 @@
         "alpha_2": "GT",
         "alpha_3": "GTM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "502"
+        ],
         "currency_codes": [
           "GTQ"
         ],
@@ -2111,7 +2293,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guatemala",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GT",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "320",
         "official_name": null,
         "region": "Americas",
@@ -2125,7 +2307,9 @@
         "alpha_2": "GU",
         "alpha_3": "GUM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -2134,7 +2318,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guam",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GU",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "316",
         "official_name": null,
         "region": "Oceania",
@@ -2148,7 +2332,9 @@
         "alpha_2": "GW",
         "alpha_3": "GNB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "245"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -2157,7 +2343,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guinea-Bissau",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "624",
         "official_name": null,
         "region": "Africa",
@@ -2171,7 +2357,9 @@
         "alpha_2": "GY",
         "alpha_3": "GUY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "592"
+        ],
         "currency_codes": [
           "GYD"
         ],
@@ -2180,7 +2368,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guyana",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:GY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "328",
         "official_name": null,
         "region": "Americas",
@@ -2194,7 +2382,9 @@
         "alpha_2": "HK",
         "alpha_3": "HKG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "852"
+        ],
         "currency_codes": [
           "HKD"
         ],
@@ -2203,7 +2393,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "China, Hong Kong Special Administrative Region",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:HK",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "344",
         "official_name": null,
         "region": "Asia",
@@ -2217,7 +2407,9 @@
         "alpha_2": "HM",
         "alpha_3": "HMD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "672"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -2226,7 +2418,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Heard Island and McDonald Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:HM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "334",
         "official_name": null,
         "region": "Oceania",
@@ -2240,7 +2432,9 @@
         "alpha_2": "HN",
         "alpha_3": "HND",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "504"
+        ],
         "currency_codes": [
           "HNL"
         ],
@@ -2249,7 +2443,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Honduras",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:HN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "340",
         "official_name": null,
         "region": "Americas",
@@ -2263,7 +2457,9 @@
         "alpha_2": "HR",
         "alpha_3": "HRV",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "385"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -2272,7 +2468,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Croatia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:HR\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "191",
         "official_name": "Republic of Croatia",
         "region": "Europe",
@@ -2286,7 +2482,9 @@
         "alpha_2": "HT",
         "alpha_3": "HTI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "509"
+        ],
         "currency_codes": [
           "HTG"
         ],
@@ -2295,7 +2493,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Haiti",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:HT",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "332",
         "official_name": null,
         "region": "Americas",
@@ -2309,7 +2507,9 @@
         "alpha_2": "HU",
         "alpha_3": "HUN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "36"
+        ],
         "currency_codes": [
           "HUF"
         ],
@@ -2318,7 +2518,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Hungary",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:HU\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "348",
         "official_name": "Hungary",
         "region": "Europe",
@@ -2332,7 +2532,9 @@
         "alpha_2": "ID",
         "alpha_3": "IDN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "62"
+        ],
         "currency_codes": [
           "IDR"
         ],
@@ -2341,7 +2543,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Indonesia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID\nsource: https://www.iso.org/obp/ui/#iso:code:3166:ID",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "360",
         "official_name": "Indonesia",
         "region": "Asia",
@@ -2355,7 +2557,9 @@
         "alpha_2": "IE",
         "alpha_3": "IRL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "353"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -2364,7 +2568,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ireland",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IE\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "372",
         "official_name": "Ireland",
         "region": "Europe",
@@ -2378,7 +2582,9 @@
         "alpha_2": "IL",
         "alpha_3": "ISR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "972"
+        ],
         "currency_codes": [
           "ILS"
         ],
@@ -2387,7 +2593,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Israel",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IL",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "376",
         "official_name": null,
         "region": "Asia",
@@ -2401,7 +2607,9 @@
         "alpha_2": "IM",
         "alpha_3": "IMN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "44"
+        ],
         "currency_codes": [
           "GBP"
         ],
@@ -2410,7 +2618,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Isle of Man",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IM\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "833",
         "official_name": "Isle of Man",
         "region": "Europe",
@@ -2424,7 +2632,9 @@
         "alpha_2": "IN",
         "alpha_3": "IND",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "91"
+        ],
         "currency_codes": [
           "INR"
         ],
@@ -2433,7 +2643,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "India",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "356",
         "official_name": "Republic of India",
         "region": "Asia",
@@ -2447,7 +2657,9 @@
         "alpha_2": "IO",
         "alpha_3": "IOT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "246"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -2456,7 +2668,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "British Indian Ocean Territory",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "086",
         "official_name": null,
         "region": "Africa",
@@ -2470,7 +2682,9 @@
         "alpha_2": "IQ",
         "alpha_3": "IRQ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "964"
+        ],
         "currency_codes": [
           "IQD"
         ],
@@ -2479,7 +2693,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Iraq",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IQ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "368",
         "official_name": null,
         "region": "Asia",
@@ -2493,7 +2707,9 @@
         "alpha_2": "IR",
         "alpha_3": "IRN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "98"
+        ],
         "currency_codes": [
           "IRR"
         ],
@@ -2502,7 +2718,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Iran (Islamic Republic of)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "364",
         "official_name": null,
         "region": "Asia",
@@ -2516,7 +2732,9 @@
         "alpha_2": "IS",
         "alpha_3": "ISL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "354"
+        ],
         "currency_codes": [
           "ISK"
         ],
@@ -2525,7 +2743,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Iceland",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:IS\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "352",
         "official_name": "Iceland",
         "region": "Europe",
@@ -2539,7 +2757,9 @@
         "alpha_2": "IT",
         "alpha_3": "ITA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "39"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -2548,7 +2768,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Italy",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT\nsource: https://www.iso.org/obp/ui/#iso:code:3166:IT",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "380",
         "official_name": "Italy",
         "region": "Europe",
@@ -2562,7 +2782,9 @@
         "alpha_2": "JE",
         "alpha_3": "JEY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "44"
+        ],
         "currency_codes": [
           "GBP"
         ],
@@ -2571,7 +2793,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Jersey",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:JE\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "832",
         "official_name": "Jersey",
         "region": "Europe",
@@ -2585,7 +2807,9 @@
         "alpha_2": "JM",
         "alpha_3": "JAM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "JMD"
         ],
@@ -2594,7 +2818,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Jamaica",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:JM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "388",
         "official_name": null,
         "region": "Americas",
@@ -2608,7 +2832,9 @@
         "alpha_2": "JO",
         "alpha_3": "JOR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "962"
+        ],
         "currency_codes": [
           "JOD"
         ],
@@ -2617,7 +2843,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Jordan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:JO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "400",
         "official_name": null,
         "region": "Asia",
@@ -2631,7 +2857,9 @@
         "alpha_2": "JP",
         "alpha_3": "JPN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "81"
+        ],
         "currency_codes": [
           "JPY"
         ],
@@ -2640,7 +2868,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Japan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:JP",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "392",
         "official_name": "Japan",
         "region": "Asia",
@@ -2654,7 +2882,9 @@
         "alpha_2": "KE",
         "alpha_3": "KEN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "254"
+        ],
         "currency_codes": [
           "KES"
         ],
@@ -2663,7 +2893,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kenya",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "404",
         "official_name": null,
         "region": "Africa",
@@ -2677,7 +2907,9 @@
         "alpha_2": "KG",
         "alpha_3": "KGZ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "996"
+        ],
         "currency_codes": [
           "KGS"
         ],
@@ -2686,7 +2918,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kyrgyzstan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "417",
         "official_name": null,
         "region": "Asia",
@@ -2700,7 +2932,9 @@
         "alpha_2": "KH",
         "alpha_3": "KHM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "855"
+        ],
         "currency_codes": [
           "KHR"
         ],
@@ -2709,7 +2943,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cambodia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "116",
         "official_name": null,
         "region": "Asia",
@@ -2723,7 +2957,9 @@
         "alpha_2": "KI",
         "alpha_3": "KIR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "686"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -2732,7 +2968,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kiribati",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KI",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "296",
         "official_name": null,
         "region": "Oceania",
@@ -2746,7 +2982,9 @@
         "alpha_2": "KM",
         "alpha_3": "COM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "269"
+        ],
         "currency_codes": [
           "KMF"
         ],
@@ -2755,7 +2993,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Comoros",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "174",
         "official_name": null,
         "region": "Africa",
@@ -2769,7 +3007,9 @@
         "alpha_2": "KN",
         "alpha_3": "KNA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -2778,7 +3018,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Kitts and Nevis",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "659",
         "official_name": null,
         "region": "Americas",
@@ -2792,7 +3032,9 @@
         "alpha_2": "KP",
         "alpha_3": "PRK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "850"
+        ],
         "currency_codes": [
           "KPW"
         ],
@@ -2801,7 +3043,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Democratic People's Republic of Korea",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KP",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "408",
         "official_name": null,
         "region": "Asia",
@@ -2815,7 +3057,9 @@
         "alpha_2": "KR",
         "alpha_3": "KOR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "82"
+        ],
         "currency_codes": [
           "KRW"
         ],
@@ -2824,7 +3068,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Republic of Korea",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR\nsource: https://www.iso.org/obp/ui/#iso:code:3166:KR",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "410",
         "official_name": "Republic of Korea",
         "region": "Asia",
@@ -2838,7 +3082,9 @@
         "alpha_2": "KW",
         "alpha_3": "KWT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "965"
+        ],
         "currency_codes": [
           "KWD"
         ],
@@ -2847,7 +3093,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kuwait",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "414",
         "official_name": null,
         "region": "Asia",
@@ -2861,7 +3107,9 @@
         "alpha_2": "KY",
         "alpha_3": "CYM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "KYD"
         ],
@@ -2870,7 +3118,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cayman Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "136",
         "official_name": null,
         "region": "Americas",
@@ -2884,7 +3132,9 @@
         "alpha_2": "KZ",
         "alpha_3": "KAZ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "7"
+        ],
         "currency_codes": [
           "KZT"
         ],
@@ -2893,7 +3143,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kazakhstan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:KZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "398",
         "official_name": null,
         "region": "Asia",
@@ -2907,7 +3157,9 @@
         "alpha_2": "LA",
         "alpha_3": "LAO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "856"
+        ],
         "currency_codes": [
           "LAK"
         ],
@@ -2916,7 +3168,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lao People's Democratic Republic",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "418",
         "official_name": null,
         "region": "Asia",
@@ -2930,7 +3182,9 @@
         "alpha_2": "LB",
         "alpha_3": "LBN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "961"
+        ],
         "currency_codes": [
           "LBP"
         ],
@@ -2939,7 +3193,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lebanon",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LB",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "422",
         "official_name": null,
         "region": "Asia",
@@ -2953,7 +3207,9 @@
         "alpha_2": "LC",
         "alpha_3": "LCA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -2962,7 +3218,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Lucia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "662",
         "official_name": null,
         "region": "Americas",
@@ -2976,7 +3232,9 @@
         "alpha_2": "LI",
         "alpha_3": "LIE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "423"
+        ],
         "currency_codes": [
           "CHF"
         ],
@@ -2985,7 +3243,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Liechtenstein",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LI\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "438",
         "official_name": "Principality of Liechtenstein",
         "region": "Europe",
@@ -2999,7 +3257,9 @@
         "alpha_2": "LK",
         "alpha_3": "LKA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "94"
+        ],
         "currency_codes": [
           "LKR"
         ],
@@ -3008,7 +3268,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sri Lanka",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LK",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "144",
         "official_name": null,
         "region": "Asia",
@@ -3022,7 +3282,9 @@
         "alpha_2": "LR",
         "alpha_3": "LBR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "231"
+        ],
         "currency_codes": [
           "LRD"
         ],
@@ -3031,7 +3293,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Liberia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "430",
         "official_name": null,
         "region": "Africa",
@@ -3045,7 +3307,9 @@
         "alpha_2": "LS",
         "alpha_3": "LSO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "266"
+        ],
         "currency_codes": [
           "LSL"
         ],
@@ -3054,7 +3318,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lesotho",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "426",
         "official_name": null,
         "region": "Africa",
@@ -3068,7 +3332,9 @@
         "alpha_2": "LT",
         "alpha_3": "LTU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "370"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3077,7 +3343,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lithuania",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LT\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "440",
         "official_name": "Republic of Lithuania",
         "region": "Europe",
@@ -3091,7 +3357,9 @@
         "alpha_2": "LU",
         "alpha_3": "LUX",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "352"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3100,7 +3368,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Luxembourg",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LU\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "442",
         "official_name": "Grand Duchy of Luxembourg",
         "region": "Europe",
@@ -3114,7 +3382,9 @@
         "alpha_2": "LV",
         "alpha_3": "LVA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "371"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3123,7 +3393,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Latvia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LV\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "428",
         "official_name": "Republic of Latvia",
         "region": "Europe",
@@ -3137,7 +3407,9 @@
         "alpha_2": "LY",
         "alpha_3": "LBY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "218"
+        ],
         "currency_codes": [
           "LYD"
         ],
@@ -3146,7 +3418,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Libya",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:LY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "434",
         "official_name": null,
         "region": "Africa",
@@ -3160,7 +3432,9 @@
         "alpha_2": "MA",
         "alpha_3": "MAR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "212"
+        ],
         "currency_codes": [
           "MAD"
         ],
@@ -3169,7 +3443,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Morocco",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "504",
         "official_name": null,
         "region": "Africa",
@@ -3183,7 +3457,9 @@
         "alpha_2": "MC",
         "alpha_3": "MCO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "377"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3192,7 +3468,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Monaco",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MC\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "492",
         "official_name": "Principality of Monaco",
         "region": "Europe",
@@ -3206,7 +3482,9 @@
         "alpha_2": "MD",
         "alpha_3": "MDA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "373"
+        ],
         "currency_codes": [
           "MDL"
         ],
@@ -3215,7 +3493,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Republic of Moldova",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MD\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "498",
         "official_name": "Republic of Moldova",
         "region": "Europe",
@@ -3229,7 +3507,9 @@
         "alpha_2": "ME",
         "alpha_3": "MNE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "382"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3238,7 +3518,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Montenegro",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ME\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "499",
         "official_name": "Montenegro",
         "region": "Europe",
@@ -3252,7 +3532,9 @@
         "alpha_2": "MF",
         "alpha_3": "MAF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "590"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3261,7 +3543,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Martin (French Part)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "663",
         "official_name": null,
         "region": "Americas",
@@ -3275,7 +3557,9 @@
         "alpha_2": "MG",
         "alpha_3": "MDG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "261"
+        ],
         "currency_codes": [
           "MGA"
         ],
@@ -3284,7 +3568,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Madagascar",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "450",
         "official_name": null,
         "region": "Africa",
@@ -3298,7 +3582,9 @@
         "alpha_2": "MH",
         "alpha_3": "MHL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "692"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -3307,7 +3593,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Marshall Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "584",
         "official_name": null,
         "region": "Oceania",
@@ -3321,7 +3607,9 @@
         "alpha_2": "MK",
         "alpha_3": "MKD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "389"
+        ],
         "currency_codes": [
           "MKD"
         ],
@@ -3330,7 +3618,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "North Macedonia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MK\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "807",
         "official_name": "Republic of North Macedonia",
         "region": "Europe",
@@ -3344,7 +3632,9 @@
         "alpha_2": "ML",
         "alpha_3": "MLI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "223"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -3353,7 +3643,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mali",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ML",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "466",
         "official_name": null,
         "region": "Africa",
@@ -3367,7 +3657,9 @@
         "alpha_2": "MM",
         "alpha_3": "MMR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "95"
+        ],
         "currency_codes": [
           "MMK"
         ],
@@ -3376,7 +3668,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Myanmar",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "104",
         "official_name": null,
         "region": "Asia",
@@ -3390,7 +3682,9 @@
         "alpha_2": "MN",
         "alpha_3": "MNG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "976"
+        ],
         "currency_codes": [
           "MNT"
         ],
@@ -3399,7 +3693,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mongolia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "496",
         "official_name": null,
         "region": "Asia",
@@ -3413,7 +3707,9 @@
         "alpha_2": "MO",
         "alpha_3": "MAC",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "853"
+        ],
         "currency_codes": [
           "MOP"
         ],
@@ -3422,7 +3718,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "China, Macao Special Administrative Region",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "446",
         "official_name": null,
         "region": "Asia",
@@ -3436,7 +3732,9 @@
         "alpha_2": "MP",
         "alpha_3": "MNP",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -3445,7 +3743,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Northern Mariana Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MP",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "580",
         "official_name": null,
         "region": "Oceania",
@@ -3459,7 +3757,9 @@
         "alpha_2": "MQ",
         "alpha_3": "MTQ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "596"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3468,7 +3768,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Martinique",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MQ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "474",
         "official_name": null,
         "region": "Americas",
@@ -3482,7 +3782,9 @@
         "alpha_2": "MR",
         "alpha_3": "MRT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "222"
+        ],
         "currency_codes": [
           "MRU"
         ],
@@ -3491,7 +3793,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mauritania",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "478",
         "official_name": null,
         "region": "Africa",
@@ -3505,7 +3807,9 @@
         "alpha_2": "MS",
         "alpha_3": "MSR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -3514,7 +3818,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Montserrat",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "500",
         "official_name": null,
         "region": "Americas",
@@ -3528,7 +3832,9 @@
         "alpha_2": "MT",
         "alpha_3": "MLT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "356"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3537,7 +3843,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Malta",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MT\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "470",
         "official_name": "Republic of Malta",
         "region": "Europe",
@@ -3551,7 +3857,9 @@
         "alpha_2": "MU",
         "alpha_3": "MUS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "230"
+        ],
         "currency_codes": [
           "MUR"
         ],
@@ -3560,7 +3868,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mauritius",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MU",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "480",
         "official_name": null,
         "region": "Africa",
@@ -3574,7 +3882,9 @@
         "alpha_2": "MV",
         "alpha_3": "MDV",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "960"
+        ],
         "currency_codes": [
           "MVR"
         ],
@@ -3583,7 +3893,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Maldives",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MV",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "462",
         "official_name": null,
         "region": "Asia",
@@ -3597,7 +3907,9 @@
         "alpha_2": "MW",
         "alpha_3": "MWI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "265"
+        ],
         "currency_codes": [
           "MWK"
         ],
@@ -3606,7 +3918,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Malawi",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "454",
         "official_name": null,
         "region": "Africa",
@@ -3620,7 +3932,9 @@
         "alpha_2": "MX",
         "alpha_3": "MEX",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "52"
+        ],
         "currency_codes": [
           "MXN"
         ],
@@ -3629,7 +3943,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mexico",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX\nsource: https://www.iso.org/obp/ui/#iso:code:3166:MX",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "484",
         "official_name": "Mexico",
         "region": "Americas",
@@ -3643,7 +3957,9 @@
         "alpha_2": "MY",
         "alpha_3": "MYS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "60"
+        ],
         "currency_codes": [
           "MYR"
         ],
@@ -3652,7 +3968,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Malaysia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "458",
         "official_name": null,
         "region": "Asia",
@@ -3666,7 +3982,9 @@
         "alpha_2": "MZ",
         "alpha_3": "MOZ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "258"
+        ],
         "currency_codes": [
           "MZN"
         ],
@@ -3675,7 +3993,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mozambique",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:MZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "508",
         "official_name": null,
         "region": "Africa",
@@ -3689,7 +4007,9 @@
         "alpha_2": "NA",
         "alpha_3": "NAM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "264"
+        ],
         "currency_codes": [
           "NAD"
         ],
@@ -3698,7 +4018,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Namibia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "516",
         "official_name": null,
         "region": "Africa",
@@ -3712,7 +4032,9 @@
         "alpha_2": "NC",
         "alpha_3": "NCL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "687"
+        ],
         "currency_codes": [
           "XPF"
         ],
@@ -3721,7 +4043,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "New Caledonia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "540",
         "official_name": null,
         "region": "Oceania",
@@ -3735,7 +4057,9 @@
         "alpha_2": "NE",
         "alpha_3": "NER",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "227"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -3744,7 +4068,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Niger",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "562",
         "official_name": null,
         "region": "Africa",
@@ -3758,7 +4082,9 @@
         "alpha_2": "NF",
         "alpha_3": "NFK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "672"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -3767,7 +4093,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Norfolk Island",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "574",
         "official_name": null,
         "region": "Oceania",
@@ -3781,7 +4107,9 @@
         "alpha_2": "NG",
         "alpha_3": "NGA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "234"
+        ],
         "currency_codes": [
           "NGN"
         ],
@@ -3790,7 +4118,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Nigeria",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "566",
         "official_name": null,
         "region": "Africa",
@@ -3804,7 +4132,9 @@
         "alpha_2": "NI",
         "alpha_3": "NIC",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "505"
+        ],
         "currency_codes": [
           "NIO"
         ],
@@ -3813,7 +4143,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Nicaragua",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NI",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "558",
         "official_name": null,
         "region": "Americas",
@@ -3827,7 +4157,9 @@
         "alpha_2": "NL",
         "alpha_3": "NLD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "31"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -3836,7 +4168,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Netherlands (Kingdom of the)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL\nsource: https://www.iso.org/obp/ui/#iso:code:3166:NL",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "528",
         "official_name": "Netherlands (Kingdom of the)",
         "region": "Europe",
@@ -3850,7 +4182,9 @@
         "alpha_2": "NO",
         "alpha_3": "NOR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "47"
+        ],
         "currency_codes": [
           "NOK"
         ],
@@ -3859,7 +4193,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Norway",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NO\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "578",
         "official_name": "Kingdom of Norway",
         "region": "Europe",
@@ -3873,7 +4207,9 @@
         "alpha_2": "NP",
         "alpha_3": "NPL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "977"
+        ],
         "currency_codes": [
           "NPR"
         ],
@@ -3882,7 +4218,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Nepal",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NP",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "524",
         "official_name": null,
         "region": "Asia",
@@ -3896,7 +4232,9 @@
         "alpha_2": "NR",
         "alpha_3": "NRU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "674"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -3905,7 +4243,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Naoero",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "520",
         "official_name": null,
         "region": "Oceania",
@@ -3919,7 +4257,9 @@
         "alpha_2": "NU",
         "alpha_3": "NIU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "683"
+        ],
         "currency_codes": [
           "NZD"
         ],
@@ -3928,7 +4268,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Niue",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NU",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "570",
         "official_name": null,
         "region": "Oceania",
@@ -3942,7 +4282,9 @@
         "alpha_2": "NZ",
         "alpha_3": "NZL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "64"
+        ],
         "currency_codes": [
           "NZD"
         ],
@@ -3951,7 +4293,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "New Zealand",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:NZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "554",
         "official_name": null,
         "region": "Oceania",
@@ -3965,7 +4307,9 @@
         "alpha_2": "OM",
         "alpha_3": "OMN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "968"
+        ],
         "currency_codes": [
           "OMR"
         ],
@@ -3974,7 +4318,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Oman",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:OM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "512",
         "official_name": null,
         "region": "Asia",
@@ -3988,7 +4332,9 @@
         "alpha_2": "PA",
         "alpha_3": "PAN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "507"
+        ],
         "currency_codes": [
           "PAB",
           "USD"
@@ -3998,7 +4344,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Panama",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "591",
         "official_name": null,
         "region": "Americas",
@@ -4012,7 +4358,9 @@
         "alpha_2": "PE",
         "alpha_3": "PER",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "51"
+        ],
         "currency_codes": [
           "PEN"
         ],
@@ -4021,7 +4369,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Peru",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "604",
         "official_name": null,
         "region": "Americas",
@@ -4035,7 +4383,9 @@
         "alpha_2": "PF",
         "alpha_3": "PYF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "689"
+        ],
         "currency_codes": [
           "XPF"
         ],
@@ -4044,7 +4394,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Polynesia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "258",
         "official_name": null,
         "region": "Oceania",
@@ -4058,7 +4408,9 @@
         "alpha_2": "PG",
         "alpha_3": "PNG",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "675"
+        ],
         "currency_codes": [
           "PGK"
         ],
@@ -4067,7 +4419,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Papua New Guinea",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "598",
         "official_name": null,
         "region": "Oceania",
@@ -4081,7 +4433,9 @@
         "alpha_2": "PH",
         "alpha_3": "PHL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "63"
+        ],
         "currency_codes": [
           "PHP"
         ],
@@ -4090,7 +4444,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Philippines",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "608",
         "official_name": null,
         "region": "Asia",
@@ -4104,7 +4458,9 @@
         "alpha_2": "PK",
         "alpha_3": "PAK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "92"
+        ],
         "currency_codes": [
           "PKR"
         ],
@@ -4113,7 +4469,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Pakistan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PK",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "586",
         "official_name": null,
         "region": "Asia",
@@ -4127,7 +4483,9 @@
         "alpha_2": "PL",
         "alpha_3": "POL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "48"
+        ],
         "currency_codes": [
           "PLN"
         ],
@@ -4136,7 +4494,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Poland",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PL\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "616",
         "official_name": "Republic of Poland",
         "region": "Europe",
@@ -4150,7 +4508,9 @@
         "alpha_2": "PM",
         "alpha_3": "SPM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "508"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4159,7 +4519,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Pierre and Miquelon",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "666",
         "official_name": null,
         "region": "Americas",
@@ -4173,7 +4533,9 @@
         "alpha_2": "PN",
         "alpha_3": "PCN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "64"
+        ],
         "currency_codes": [
           "NZD"
         ],
@@ -4182,7 +4544,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Pitcairn",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "612",
         "official_name": null,
         "region": "Oceania",
@@ -4196,7 +4558,9 @@
         "alpha_2": "PR",
         "alpha_3": "PRI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -4205,7 +4569,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Puerto Rico",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "630",
         "official_name": null,
         "region": "Americas",
@@ -4219,7 +4583,9 @@
         "alpha_2": "PS",
         "alpha_3": "PSE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "970"
+        ],
         "currency_codes": [
           "ILS"
         ],
@@ -4228,7 +4594,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "State of Palestine",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "275",
         "official_name": null,
         "region": "Asia",
@@ -4242,7 +4608,9 @@
         "alpha_2": "PT",
         "alpha_3": "PRT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "351"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4251,7 +4619,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Portugal",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PT\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "620",
         "official_name": "Portuguese Republic",
         "region": "Europe",
@@ -4265,7 +4633,9 @@
         "alpha_2": "PW",
         "alpha_3": "PLW",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "680"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -4274,7 +4644,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Palau",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "585",
         "official_name": null,
         "region": "Oceania",
@@ -4288,7 +4658,9 @@
         "alpha_2": "PY",
         "alpha_3": "PRY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "595"
+        ],
         "currency_codes": [
           "PYG"
         ],
@@ -4297,7 +4669,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Paraguay",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:PY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "600",
         "official_name": null,
         "region": "Americas",
@@ -4311,7 +4683,9 @@
         "alpha_2": "QA",
         "alpha_3": "QAT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "974"
+        ],
         "currency_codes": [
           "QAR"
         ],
@@ -4320,7 +4694,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Qatar",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:QA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "634",
         "official_name": null,
         "region": "Asia",
@@ -4334,7 +4708,9 @@
         "alpha_2": "RE",
         "alpha_3": "REU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "262"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4343,7 +4719,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Réunion",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:RE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "638",
         "official_name": null,
         "region": "Africa",
@@ -4357,7 +4733,9 @@
         "alpha_2": "RO",
         "alpha_3": "ROU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "40"
+        ],
         "currency_codes": [
           "RON"
         ],
@@ -4366,7 +4744,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Romania",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:RO\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "642",
         "official_name": "Romania",
         "region": "Europe",
@@ -4380,7 +4758,9 @@
         "alpha_2": "RS",
         "alpha_3": "SRB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "381"
+        ],
         "currency_codes": [
           "RSD"
         ],
@@ -4389,7 +4769,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Serbia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:RS\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "688",
         "official_name": "Republic of Serbia",
         "region": "Europe",
@@ -4403,7 +4783,9 @@
         "alpha_2": "RU",
         "alpha_3": "RUS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "7"
+        ],
         "currency_codes": [
           "RUB"
         ],
@@ -4412,7 +4794,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Russian Federation",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:RU",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "643",
         "official_name": "Russian Federation",
         "region": "Europe",
@@ -4426,7 +4808,9 @@
         "alpha_2": "RW",
         "alpha_3": "RWA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "250"
+        ],
         "currency_codes": [
           "RWF"
         ],
@@ -4435,7 +4819,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Rwanda",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:RW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "646",
         "official_name": null,
         "region": "Africa",
@@ -4449,7 +4833,9 @@
         "alpha_2": "SA",
         "alpha_3": "SAU",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "966"
+        ],
         "currency_codes": [
           "SAR"
         ],
@@ -4458,7 +4844,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saudi Arabia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA\nsource: https://www.iso.org/obp/ui/#iso:code:3166:SA",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "682",
         "official_name": "Saudi Arabia",
         "region": "Asia",
@@ -4472,7 +4858,9 @@
         "alpha_2": "SB",
         "alpha_3": "SLB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "677"
+        ],
         "currency_codes": [
           "SBD"
         ],
@@ -4481,7 +4869,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Solomon Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SB",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "090",
         "official_name": null,
         "region": "Oceania",
@@ -4495,7 +4883,9 @@
         "alpha_2": "SC",
         "alpha_3": "SYC",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "248"
+        ],
         "currency_codes": [
           "SCR"
         ],
@@ -4504,7 +4894,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Seychelles",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "690",
         "official_name": null,
         "region": "Africa",
@@ -4518,7 +4908,9 @@
         "alpha_2": "SD",
         "alpha_3": "SDN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "249"
+        ],
         "currency_codes": [
           "SDG"
         ],
@@ -4527,7 +4919,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sudan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SD",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "729",
         "official_name": null,
         "region": "Africa",
@@ -4541,7 +4933,9 @@
         "alpha_2": "SE",
         "alpha_3": "SWE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "46"
+        ],
         "currency_codes": [
           "SEK"
         ],
@@ -4550,7 +4944,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sweden",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SE\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "752",
         "official_name": "Kingdom of Sweden",
         "region": "Europe",
@@ -4564,7 +4958,9 @@
         "alpha_2": "SG",
         "alpha_3": "SGP",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "65"
+        ],
         "currency_codes": [
           "SGD"
         ],
@@ -4573,7 +4969,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Singapore",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG\nsource: https://www.iso.org/obp/ui/#iso:code:3166:SG",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "702",
         "official_name": "Singapore",
         "region": "Asia",
@@ -4587,7 +4983,9 @@
         "alpha_2": "SH",
         "alpha_3": "SHN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "290"
+        ],
         "currency_codes": [
           "SHP"
         ],
@@ -4596,7 +4994,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Helena",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "654",
         "official_name": null,
         "region": "Africa",
@@ -4610,7 +5008,9 @@
         "alpha_2": "SI",
         "alpha_3": "SVN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "386"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4619,7 +5019,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Slovenia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SI\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "705",
         "official_name": "Republic of Slovenia",
         "region": "Europe",
@@ -4633,7 +5033,9 @@
         "alpha_2": "SJ",
         "alpha_3": "SJM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "47"
+        ],
         "currency_codes": [
           "NOK"
         ],
@@ -4642,7 +5044,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Svalbard and Jan Mayen Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SJ\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "744",
         "official_name": "Svalbard and Jan Mayen",
         "region": "Europe",
@@ -4656,7 +5058,9 @@
         "alpha_2": "SK",
         "alpha_3": "SVK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "421"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4665,7 +5069,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Slovakia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SK\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "703",
         "official_name": "Slovak Republic",
         "region": "Europe",
@@ -4679,7 +5083,9 @@
         "alpha_2": "SL",
         "alpha_3": "SLE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "232"
+        ],
         "currency_codes": [
           "SLE"
         ],
@@ -4688,7 +5094,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sierra Leone",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SL",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "694",
         "official_name": null,
         "region": "Africa",
@@ -4702,7 +5108,9 @@
         "alpha_2": "SM",
         "alpha_3": "SMR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "378"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4711,7 +5119,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "San Marino",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SM\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "674",
         "official_name": "Republic of San Marino",
         "region": "Europe",
@@ -4725,7 +5133,9 @@
         "alpha_2": "SN",
         "alpha_3": "SEN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "221"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -4734,7 +5144,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Senegal",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "686",
         "official_name": null,
         "region": "Africa",
@@ -4748,7 +5158,9 @@
         "alpha_2": "SO",
         "alpha_3": "SOM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "252"
+        ],
         "currency_codes": [
           "SOS"
         ],
@@ -4757,7 +5169,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Somalia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "706",
         "official_name": null,
         "region": "Africa",
@@ -4771,7 +5183,9 @@
         "alpha_2": "SR",
         "alpha_3": "SUR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "597"
+        ],
         "currency_codes": [
           "SRD"
         ],
@@ -4780,7 +5194,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Suriname",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SR",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "740",
         "official_name": null,
         "region": "Americas",
@@ -4794,7 +5208,9 @@
         "alpha_2": "SS",
         "alpha_3": "SSD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "211"
+        ],
         "currency_codes": [
           "SSP"
         ],
@@ -4803,7 +5219,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Sudan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "728",
         "official_name": null,
         "region": "Africa",
@@ -4817,7 +5233,9 @@
         "alpha_2": "ST",
         "alpha_3": "STP",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "239"
+        ],
         "currency_codes": [
           "STN"
         ],
@@ -4826,7 +5244,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sao Tome and Principe",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ST",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "678",
         "official_name": null,
         "region": "Africa",
@@ -4840,7 +5258,9 @@
         "alpha_2": "SV",
         "alpha_3": "SLV",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "503"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -4849,7 +5269,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "El Salvador",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SV",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "222",
         "official_name": null,
         "region": "Americas",
@@ -4863,7 +5283,9 @@
         "alpha_2": "SX",
         "alpha_3": "SXM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "ANG"
         ],
@@ -4872,7 +5294,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sint Maarten (Dutch part)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SX",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "534",
         "official_name": null,
         "region": "Americas",
@@ -4886,7 +5308,9 @@
         "alpha_2": "SY",
         "alpha_3": "SYR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "963"
+        ],
         "currency_codes": [
           "SYP"
         ],
@@ -4895,7 +5319,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Syrian Arab Republic",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "760",
         "official_name": null,
         "region": "Asia",
@@ -4909,7 +5333,9 @@
         "alpha_2": "SZ",
         "alpha_3": "SWZ",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "268"
+        ],
         "currency_codes": [
           "SZL"
         ],
@@ -4918,7 +5344,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Eswatini",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:SZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "748",
         "official_name": null,
         "region": "Africa",
@@ -4932,7 +5358,9 @@
         "alpha_2": "TC",
         "alpha_3": "TCA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -4941,7 +5369,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Turks and Caicos Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "796",
         "official_name": null,
         "region": "Americas",
@@ -4955,7 +5383,9 @@
         "alpha_2": "TD",
         "alpha_3": "TCD",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "235"
+        ],
         "currency_codes": [
           "XAF"
         ],
@@ -4964,7 +5394,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Chad",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TD",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "148",
         "official_name": null,
         "region": "Africa",
@@ -4978,7 +5408,9 @@
         "alpha_2": "TF",
         "alpha_3": "ATF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "262"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -4987,7 +5419,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Southern Territories",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "260",
         "official_name": null,
         "region": "Africa",
@@ -5001,7 +5433,9 @@
         "alpha_2": "TG",
         "alpha_3": "TGO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "228"
+        ],
         "currency_codes": [
           "XOF"
         ],
@@ -5010,7 +5444,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Togo",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "768",
         "official_name": null,
         "region": "Africa",
@@ -5024,7 +5458,9 @@
         "alpha_2": "TH",
         "alpha_3": "THA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "66"
+        ],
         "currency_codes": [
           "THB"
         ],
@@ -5033,7 +5469,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Thailand",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TH",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "764",
         "official_name": null,
         "region": "Asia",
@@ -5047,7 +5483,9 @@
         "alpha_2": "TJ",
         "alpha_3": "TJK",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "992"
+        ],
         "currency_codes": [
           "TJS"
         ],
@@ -5056,7 +5494,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tajikistan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TJ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "762",
         "official_name": null,
         "region": "Asia",
@@ -5070,7 +5508,9 @@
         "alpha_2": "TK",
         "alpha_3": "TKL",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "690"
+        ],
         "currency_codes": [
           "NZD"
         ],
@@ -5079,7 +5519,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tokelau",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TK",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "772",
         "official_name": null,
         "region": "Oceania",
@@ -5093,7 +5533,9 @@
         "alpha_2": "TL",
         "alpha_3": "TLS",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "670"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -5102,7 +5544,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Timor-Leste",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TL",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "626",
         "official_name": null,
         "region": "Asia",
@@ -5116,7 +5558,9 @@
         "alpha_2": "TM",
         "alpha_3": "TKM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "993"
+        ],
         "currency_codes": [
           "TMT"
         ],
@@ -5125,7 +5569,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Turkmenistan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "795",
         "official_name": null,
         "region": "Asia",
@@ -5139,7 +5583,9 @@
         "alpha_2": "TN",
         "alpha_3": "TUN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "216"
+        ],
         "currency_codes": [
           "TND"
         ],
@@ -5148,7 +5594,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tunisia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "788",
         "official_name": null,
         "region": "Africa",
@@ -5162,7 +5608,9 @@
         "alpha_2": "TO",
         "alpha_3": "TON",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "676"
+        ],
         "currency_codes": [
           "TOP"
         ],
@@ -5171,7 +5619,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tonga",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TO",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "776",
         "official_name": null,
         "region": "Oceania",
@@ -5185,7 +5633,9 @@
         "alpha_2": "TR",
         "alpha_3": "TUR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "90"
+        ],
         "currency_codes": [
           "TRY"
         ],
@@ -5194,7 +5644,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Türkiye",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR\nsource: https://www.iso.org/obp/ui/#iso:code:3166:TR",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "792",
         "official_name": "Türkiye",
         "region": "Asia",
@@ -5208,7 +5658,9 @@
         "alpha_2": "TT",
         "alpha_3": "TTO",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "TTD"
         ],
@@ -5217,7 +5669,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Trinidad and Tobago",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TT",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "780",
         "official_name": null,
         "region": "Americas",
@@ -5231,7 +5683,9 @@
         "alpha_2": "TV",
         "alpha_3": "TUV",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "688"
+        ],
         "currency_codes": [
           "AUD"
         ],
@@ -5240,7 +5694,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tuvalu",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TV",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "798",
         "official_name": null,
         "region": "Oceania",
@@ -5254,7 +5708,9 @@
         "alpha_2": "TW",
         "alpha_3": "TWN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "886"
+        ],
         "currency_codes": [
           "TWD"
         ],
@@ -5263,7 +5719,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Taiwan, Province of China",
-        "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.\nsource: https://www.iso.org/obp/ui/#iso:code:3166:TW",
+        "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "158",
         "official_name": "Taiwan, Province of China",
         "region": null,
@@ -5277,7 +5733,9 @@
         "alpha_2": "TZ",
         "alpha_3": "TZA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "255"
+        ],
         "currency_codes": [
           "TZS"
         ],
@@ -5286,7 +5744,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United Republic of Tanzania",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:TZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "834",
         "official_name": null,
         "region": "Africa",
@@ -5300,7 +5758,9 @@
         "alpha_2": "UA",
         "alpha_3": "UKR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "380"
+        ],
         "currency_codes": [
           "UAH"
         ],
@@ -5309,7 +5769,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ukraine",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:UA\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "804",
         "official_name": "Ukraine",
         "region": "Europe",
@@ -5323,7 +5783,9 @@
         "alpha_2": "UG",
         "alpha_3": "UGA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "256"
+        ],
         "currency_codes": [
           "UGX"
         ],
@@ -5332,7 +5794,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Uganda",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:UG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "800",
         "official_name": null,
         "region": "Africa",
@@ -5367,7 +5829,9 @@
         "alpha_2": "UM",
         "alpha_3": "UMI",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -5376,7 +5840,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States Minor Outlying Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:UM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "581",
         "official_name": null,
         "region": "Oceania",
@@ -5390,7 +5854,9 @@
         "alpha_2": "US",
         "alpha_3": "USA",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -5399,7 +5865,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States of America",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:US",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "840",
         "official_name": "United States of America",
         "region": "Americas",
@@ -5413,7 +5879,9 @@
         "alpha_2": "UY",
         "alpha_3": "URY",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "598"
+        ],
         "currency_codes": [
           "UYU"
         ],
@@ -5422,7 +5890,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Uruguay",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:UY",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "858",
         "official_name": null,
         "region": "Americas",
@@ -5436,7 +5904,9 @@
         "alpha_2": "UZ",
         "alpha_3": "UZB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "998"
+        ],
         "currency_codes": [
           "UZS"
         ],
@@ -5445,7 +5915,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Uzbekistan",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:UZ",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "860",
         "official_name": null,
         "region": "Asia",
@@ -5459,7 +5929,9 @@
         "alpha_2": "VA",
         "alpha_3": "VAT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "39"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -5468,7 +5940,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Holy See",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VA\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA\nsource: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "336",
         "official_name": "Holy See",
         "region": "Europe",
@@ -5482,7 +5954,9 @@
         "alpha_2": "VC",
         "alpha_3": "VCT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "XCD"
         ],
@@ -5491,7 +5965,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Vincent and the Grenadines",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VC",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "670",
         "official_name": null,
         "region": "Americas",
@@ -5505,7 +5979,9 @@
         "alpha_2": "VE",
         "alpha_3": "VEN",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "58"
+        ],
         "currency_codes": [
           "VES"
         ],
@@ -5514,7 +5990,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Venezuela (Bolivarian Republic of)",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "862",
         "official_name": null,
         "region": "Americas",
@@ -5528,7 +6004,9 @@
         "alpha_2": "VG",
         "alpha_3": "VGB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -5537,7 +6015,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "British Virgin Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VG",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "092",
         "official_name": null,
         "region": "Americas",
@@ -5551,7 +6029,9 @@
         "alpha_2": "VI",
         "alpha_3": "VIR",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "1"
+        ],
         "currency_codes": [
           "USD"
         ],
@@ -5560,7 +6040,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States Virgin Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VI",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "850",
         "official_name": null,
         "region": "Americas",
@@ -5574,7 +6054,9 @@
         "alpha_2": "VN",
         "alpha_3": "VNM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "84"
+        ],
         "currency_codes": [
           "VND"
         ],
@@ -5583,7 +6065,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Viet Nam",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VN",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "704",
         "official_name": null,
         "region": "Asia",
@@ -5597,7 +6079,9 @@
         "alpha_2": "VU",
         "alpha_3": "VUT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "678"
+        ],
         "currency_codes": [
           "VUV"
         ],
@@ -5606,7 +6090,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Vanuatu",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:VU",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "548",
         "official_name": null,
         "region": "Oceania",
@@ -5620,7 +6104,9 @@
         "alpha_2": "WF",
         "alpha_3": "WLF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "681"
+        ],
         "currency_codes": [
           "XPF"
         ],
@@ -5629,7 +6115,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Wallis and Futuna Islands",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:WF",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "876",
         "official_name": null,
         "region": "Oceania",
@@ -5643,7 +6129,9 @@
         "alpha_2": "WS",
         "alpha_3": "WSM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "685"
+        ],
         "currency_codes": [
           "WST"
         ],
@@ -5652,7 +6140,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Samoa",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:WS",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "882",
         "official_name": null,
         "region": "Oceania",
@@ -5687,7 +6175,9 @@
         "alpha_2": "YE",
         "alpha_3": "YEM",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "967"
+        ],
         "currency_codes": [
           "YER"
         ],
@@ -5696,7 +6186,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Yemen",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:YE",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "887",
         "official_name": null,
         "region": "Asia",
@@ -5710,7 +6200,9 @@
         "alpha_2": "YT",
         "alpha_3": "MYT",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "262"
+        ],
         "currency_codes": [
           "EUR"
         ],
@@ -5719,7 +6211,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mayotte",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:YT",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "175",
         "official_name": null,
         "region": "Africa",
@@ -5733,7 +6225,9 @@
         "alpha_2": "ZA",
         "alpha_3": "ZAF",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "27"
+        ],
         "currency_codes": [
           "ZAR"
         ],
@@ -5742,7 +6236,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Africa",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ZA",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "710",
         "official_name": "Republic of South Africa",
         "region": "Africa",
@@ -5756,7 +6250,9 @@
         "alpha_2": "ZM",
         "alpha_3": "ZMB",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "260"
+        ],
         "currency_codes": [
           "ZMW"
         ],
@@ -5765,7 +6261,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Zambia",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ZM",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "894",
         "official_name": null,
         "region": "Africa",
@@ -5779,7 +6275,9 @@
         "alpha_2": "ZW",
         "alpha_3": "ZWE",
         "borders": null,
-        "calling_codes": null,
+        "calling_codes": [
+          "263"
+        ],
         "currency_codes": [
           "ZWG"
         ],
@@ -5788,7 +6286,7 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Zimbabwe",
-        "note": "source: https://www.iso.org/obp/ui/#iso:code:3166:ZW",
+        "note": "source: https://www.itu.int/oth/T02020000E8/en",
         "numeric": "716",
         "official_name": null,
         "region": "Africa",

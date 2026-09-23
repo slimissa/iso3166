@@ -1,336 +1,336 @@
 alpha_2;alpha_3;numeric;name;status;independent;official_name;region;subregion;intermediate_region;currency_codes;calling_codes;tlds;languages;borders;note;last_verified;withdrawal_date;replaced_by
-AD;AND;020;Andorra;officially-assigned;false;Principality of Andorra;Europe;Southern Europe;;EUR;;.ad;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
-source: https://www.iso.org/obp/ui/#iso:code:3166:AD";2026-09-23;;
-AE;ARE;784;United Arab Emirates;officially-assigned;false;;Asia;Western Asia;;AED;;.ae;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AE;2026-09-23;;
-AF;AFG;004;Afghanistan;officially-assigned;false;;Asia;Southern Asia;;AFN;;.af;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AF;2026-09-23;;
-AG;ATG;028;Antigua and Barbuda;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;.ag;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AG;2026-09-23;;
-AI;AIA;660;Anguilla;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AI;2026-09-23;;
+AD;AND;020;Andorra;officially-assigned;false;Principality of Andorra;Europe;Southern Europe;;EUR;376;.ad;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+AE;ARE;784;United Arab Emirates;officially-assigned;false;;Asia;Western Asia;;AED;971;.ae;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AF;AFG;004;Afghanistan;officially-assigned;false;;Asia;Southern Asia;;AFN;93;.af;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AG;ATG;028;Antigua and Barbuda;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;.ag;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AI;AIA;660;Anguilla;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 AI;AFI;000;French Afars and Issas;withdrawn;false;;;;;;;;;;;2026-09-22;1977-06-27;DJ
-AL;ALB;008;Albania;officially-assigned;false;Republic of Albania;Europe;Southern Europe;;ALL;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
-source: https://www.iso.org/obp/ui/#iso:code:3166:AL";2026-09-23;;
-AM;ARM;051;Armenia;officially-assigned;false;;Asia;Western Asia;;AMD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AM;2026-09-23;;
+AL;ALB;008;Albania;officially-assigned;false;Republic of Albania;Europe;Southern Europe;;ALL;355;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+AM;ARM;051;Armenia;officially-assigned;false;;Asia;Western Asia;;AMD;374;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 AN;ANT;530;Netherlands Antilles;withdrawn;false;;;;;;;;;;;2026-09-22;2010-12-01;BQ|CW|SX
-AO;AGO;024;Angola;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;AOA;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AO;2026-09-23;;
-AQ;ATA;010;Antarctica;officially-assigned;false;;;;;;;;;;;2026-09-22;;
-AR;ARG;032;Argentina;officially-assigned;false;Argentina;Americas;Latin America and the Caribbean;South America;ARS;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR
-source: https://www.iso.org/obp/ui/#iso:code:3166:AR";2026-09-23;;
-AS;ASM;016;American Samoa;officially-assigned;false;;Oceania;Polynesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AS;2026-09-23;;
-AT;AUT;040;Austria;officially-assigned;false;Republic of Austria;Europe;Western Europe;;EUR;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
-source: https://www.iso.org/obp/ui/#iso:code:3166:AT";2026-09-23;;
-AU;AUS;036;Australia;officially-assigned;false;Australia;Oceania;Australia and New Zealand;;AUD;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU
-source: https://www.iso.org/obp/ui/#iso:code:3166:AU";2026-09-23;;
-AW;ABW;533;Aruba;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;AWG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AW;2026-09-23;;
-AX;ALA;248;Åland Islands;officially-assigned;false;Åland Islands;Europe;Northern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:AX
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX";2026-09-23;;
-AZ;AZE;031;Azerbaijan;officially-assigned;false;;Asia;Western Asia;;AZN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:AZ;2026-09-23;;
-BA;BIH;070;Bosnia and Herzegovina;officially-assigned;false;Bosnia and Herzegovina;Europe;Southern Europe;;BAM;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:BA
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA";2026-09-23;;
-BB;BRB;052;Barbados;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;BBD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BB;2026-09-23;;
-BD;BGD;050;Bangladesh;officially-assigned;false;;Asia;Southern Asia;;BDT;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BD;2026-09-23;;
-BE;BEL;056;Belgium;officially-assigned;false;Kingdom of Belgium;Europe;Western Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:BE
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE";2026-09-23;;
-BF;BFA;854;Burkina Faso;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BF;2026-09-23;;
-BG;BGR;100;Bulgaria;officially-assigned;false;Republic of Bulgaria;Europe;Eastern Europe;;BGN;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:BG
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG";2026-09-23;;
-BH;BHR;048;Bahrain;officially-assigned;false;;Asia;Western Asia;;BHD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BH;2026-09-23;;
-BI;BDI;108;Burundi;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;BIF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BI;2026-09-23;;
-BJ;BEN;204;Benin;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BJ;2026-09-23;;
-BL;BLM;652;Saint Barthélemy;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BL;2026-09-23;;
-BM;BMU;060;Bermuda;officially-assigned;false;;Americas;Northern America;;BMD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BM;2026-09-23;;
-BN;BRN;096;Brunei Darussalam;officially-assigned;false;;Asia;South-eastern Asia;;BND;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BN;2026-09-23;;
-BO;BOL;068;Bolivia (Plurinational State of);officially-assigned;false;;Americas;Latin America and the Caribbean;South America;BOB;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BO;2026-09-23;;
-BQ;BES;535;Bonaire, Sint Eustatius and Saba;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BQ;2026-09-23;;
-BR;BRA;076;Brazil;officially-assigned;true;Federative Republic of Brazil;Americas;Latin America and the Caribbean;South America;BRL;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BR;2026-09-23;;
-BS;BHS;044;Bahamas;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;BSD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BS;2026-09-23;;
-BT;BTN;064;Bhutan;officially-assigned;false;;Asia;Southern Asia;;BTN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BT;2026-09-23;;
+AO;AGO;024;Angola;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;AOA;244;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AQ;ATA;010;Antarctica;officially-assigned;false;;;;;;672;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AR;ARG;032;Argentina;officially-assigned;false;Argentina;Americas;Latin America and the Caribbean;South America;ARS;54;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+AS;ASM;016;American Samoa;officially-assigned;false;;Oceania;Polynesia;;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AT;AUT;040;Austria;officially-assigned;false;Republic of Austria;Europe;Western Europe;;EUR;43;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+AU;AUS;036;Australia;officially-assigned;false;Australia;Oceania;Australia and New Zealand;;AUD;61;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+AW;ABW;533;Aruba;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;AWG;297;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+AX;ALA;248;Åland Islands;officially-assigned;false;Åland Islands;Europe;Northern Europe;;EUR;358;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+AZ;AZE;031;Azerbaijan;officially-assigned;false;;Asia;Western Asia;;AZN;994;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BA;BIH;070;Bosnia and Herzegovina;officially-assigned;false;Bosnia and Herzegovina;Europe;Southern Europe;;BAM;387;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+BB;BRB;052;Barbados;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;BBD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BD;BGD;050;Bangladesh;officially-assigned;false;;Asia;Southern Asia;;BDT;880;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BE;BEL;056;Belgium;officially-assigned;false;Kingdom of Belgium;Europe;Western Europe;;EUR;32;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+BF;BFA;854;Burkina Faso;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;226;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BG;BGR;100;Bulgaria;officially-assigned;false;Republic of Bulgaria;Europe;Eastern Europe;;BGN;359;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+BH;BHR;048;Bahrain;officially-assigned;false;;Asia;Western Asia;;BHD;973;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BI;BDI;108;Burundi;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;BIF;257;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BJ;BEN;204;Benin;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;229;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BL;BLM;652;Saint Barthélemy;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;590;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BM;BMU;060;Bermuda;officially-assigned;false;;Americas;Northern America;;BMD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BN;BRN;096;Brunei Darussalam;officially-assigned;false;;Asia;South-eastern Asia;;BND;673;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BO;BOL;068;Bolivia (Plurinational State of);officially-assigned;false;;Americas;Latin America and the Caribbean;South America;BOB;591;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BQ;BES;535;Bonaire, Sint Eustatius and Saba;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;599;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BR;BRA;076;Brazil;officially-assigned;true;Federative Republic of Brazil;Americas;Latin America and the Caribbean;South America;BRL;55;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BS;BHS;044;Bahamas;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;BSD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BT;BTN;064;Bhutan;officially-assigned;false;;Asia;Southern Asia;;BTN;975;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 BU;BUR;104;Burma;withdrawn;false;;;;;;;;;;;2026-09-22;1989-12-05;MM
-BV;BVT;074;Bouvet Island;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;NOK;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BV;2026-09-23;;
-BW;BWA;072;Botswana;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;BWP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BW;2026-09-23;;
-BY;BLR;112;Belarus;officially-assigned;false;Republic of Belarus;Europe;Eastern Europe;;BYN;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:BY
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY";2026-09-23;;
-BZ;BLZ;084;Belize;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;BZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:BZ;2026-09-23;;
-CA;CAN;124;Canada;officially-assigned;false;Canada;Americas;Northern America;;CAD;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA
-source: https://www.iso.org/obp/ui/#iso:code:3166:CA";2026-09-23;;
-CC;CCK;166;Cocos (Keeling) Islands;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CC;2026-09-23;;
-CD;COD;180;Democratic Republic of the Congo;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;CDF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CD;2026-09-23;;
-CF;CAF;140;Central African Republic;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CF;2026-09-23;;
-CG;COG;178;Congo;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CG;2026-09-23;;
-CH;CHE;756;Switzerland;officially-assigned;false;Switzerland;Europe;Western Europe;;CHF;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH
-source: https://www.iso.org/obp/ui/#iso:code:3166:CH";2026-09-23;;
-CI;CIV;384;Côte d’Ivoire;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CI;2026-09-23;;
-CK;COK;184;Cook Islands;officially-assigned;false;;Oceania;Polynesia;;NZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CK;2026-09-23;;
-CL;CHL;152;Chile;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;CLP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CL;2026-09-23;;
-CM;CMR;120;Cameroon;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CM;2026-09-23;;
-CN;CHN;156;China;officially-assigned;true;People's Republic of China;Asia;Eastern Asia;;CNY;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CN;2026-09-23;;
-CO;COL;170;Colombia;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;COP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CO;2026-09-23;;
-CR;CRI;188;Costa Rica;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;CRC;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CR;2026-09-23;;
+BV;BVT;074;Bouvet Island;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;NOK;47;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BW;BWA;072;Botswana;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;BWP;267;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+BY;BLR;112;Belarus;officially-assigned;false;Republic of Belarus;Europe;Eastern Europe;;BYN;375;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+BZ;BLZ;084;Belize;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;BZD;501;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CA;CAN;124;Canada;officially-assigned;false;Canada;Americas;Northern America;;CAD;1;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+CC;CCK;166;Cocos (Keeling) Islands;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;61;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CD;COD;180;Democratic Republic of the Congo;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;CDF;243;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CF;CAF;140;Central African Republic;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;236;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CG;COG;178;Congo;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;242;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CH;CHE;756;Switzerland;officially-assigned;false;Switzerland;Europe;Western Europe;;CHF;41;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+CI;CIV;384;Côte d’Ivoire;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;225;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CK;COK;184;Cook Islands;officially-assigned;false;;Oceania;Polynesia;;NZD;682;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CL;CHL;152;Chile;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;CLP;56;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CM;CMR;120;Cameroon;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;237;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CN;CHN;156;China;officially-assigned;true;People's Republic of China;Asia;Eastern Asia;;CNY;86;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CO;COL;170;Colombia;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;COP;57;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CR;CRI;188;Costa Rica;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;CRC;506;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 CS;SCG;891;Serbia and Montenegro;withdrawn;false;;;;;;;;;;"CS was used twice: Czechoslovakia (withdrawn 1993-01-01, replaced by CZ and SK) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by ME and RS). This entry records the second use; replaced_by reflects the terminal successors of that use.";2026-09-22;2006-09-26;RS|ME
 CT;CTE;000;Canton and Enderbury Islands;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CT;2026-09-23;1984-01-01;KI
-CU;CUB;192;Cuba;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;CUP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CU;2026-09-23;;
-CV;CPV;132;Cabo Verde;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;CVE;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CV;2026-09-23;;
-CW;CUW;531;Curaçao;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;ANG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CW;2026-09-23;;
-CX;CXR;162;Christmas Island;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CX;2026-09-23;;
-CY;CYP;196;Cyprus;officially-assigned;false;;Asia;Western Asia;;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CY;2026-09-23;;
-CZ;CZE;203;Czechia;officially-assigned;false;Czech Republic;Europe;Eastern Europe;;CZK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ";2026-09-23;;
+CU;CUB;192;Cuba;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;CUP;53;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CV;CPV;132;Cabo Verde;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;CVE;238;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CW;CUW;531;Curaçao;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;ANG;599;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CX;CXR;162;Christmas Island;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;61;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CY;CYP;196;Cyprus;officially-assigned;false;;Asia;Western Asia;;EUR;357;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+CZ;CZE;203;Czechia;officially-assigned;false;Czech Republic;Europe;Eastern Europe;;CZK;420;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
 DD;DDR;278;East Germany;withdrawn;false;;;;;;;;;;;2026-09-22;1990-10-03;DE
-DE;DEU;276;Germany;officially-assigned;true;Federal Republic of Germany;Europe;Western Europe;;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:DE;2026-09-23;;
-DJ;DJI;262;Djibouti;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;DJF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:DJ;2026-09-23;;
-DK;DNK;208;Denmark;officially-assigned;false;Kingdom of Denmark;Europe;Northern Europe;;DKK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:DK
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK";2026-09-23;;
-DM;DMA;212;Dominica;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:DM;2026-09-23;;
-DO;DOM;214;Dominican Republic;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;DOP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:DO;2026-09-23;;
+DE;DEU;276;Germany;officially-assigned;true;Federal Republic of Germany;Europe;Western Europe;;EUR;49;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+DJ;DJI;262;Djibouti;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;DJF;253;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+DK;DNK;208;Denmark;officially-assigned;false;Kingdom of Denmark;Europe;Northern Europe;;DKK;45;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+DM;DMA;212;Dominica;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+DO;DOM;214;Dominican Republic;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;DOP;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 DY;DHY;000;Dahomey;withdrawn;false;;;;;;;;;;;2026-09-22;1977-02-01;BJ
-DZ;DZA;012;Algeria;officially-assigned;false;;Africa;Northern Africa;;DZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:DZ;2026-09-23;;
-EC;ECU;218;Ecuador;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:EC;2026-09-23;;
-EE;EST;233;Estonia;officially-assigned;false;Republic of Estonia;Europe;Northern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:EE
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE";2026-09-23;;
-EG;EGY;818;Egypt;officially-assigned;false;;Africa;Northern Africa;;EGP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:EG;2026-09-23;;
-EH;ESH;732;Western Sahara;officially-assigned;false;;Africa;Northern Africa;;MAD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:EH;2026-09-23;;
-ER;ERI;232;Eritrea;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ERN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ER;2026-09-23;;
-ES;ESP;724;Spain;officially-assigned;false;Kingdom of Spain;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:ES
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES";2026-09-23;;
-ET;ETH;231;Ethiopia;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ETB;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ET;2026-09-23;;
+DZ;DZA;012;Algeria;officially-assigned;false;;Africa;Northern Africa;;DZD;213;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+EC;ECU;218;Ecuador;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;USD;593;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+EE;EST;233;Estonia;officially-assigned;false;Republic of Estonia;Europe;Northern Europe;;EUR;372;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+EG;EGY;818;Egypt;officially-assigned;false;;Africa;Northern Africa;;EGP;20;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+EH;ESH;732;Western Sahara;officially-assigned;false;;Africa;Northern Africa;;MAD;212;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+ER;ERI;232;Eritrea;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ERN;291;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+ES;ESP;724;Spain;officially-assigned;false;Kingdom of Spain;Europe;Southern Europe;;EUR;34;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+ET;ETH;231;Ethiopia;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ETB;251;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 EU;EUE;000;European Union;exceptionally-reserved;false;;;;;;;;;;Exceptionally reserved. Used by ISO 4217 for the euro.;2026-09-22;;
-FI;FIN;246;Finland;officially-assigned;false;Republic of Finland;Europe;Northern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:FI
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI";2026-09-23;;
-FJ;FJI;242;Fiji;officially-assigned;false;;Oceania;Melanesia;;FJD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:FJ;2026-09-23;;
-FK;FLK;238;Falkland Islands (Malvinas);officially-assigned;false;;Americas;Latin America and the Caribbean;South America;FKP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:FK;2026-09-23;;
-FM;FSM;583;Micronesia (Federated States of);officially-assigned;false;;Oceania;Micronesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:FM;2026-09-23;;
-FO;FRO;234;Faroe Islands;officially-assigned;false;Faroe Islands;Europe;Northern Europe;;DKK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:FO
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO";2026-09-23;;
+FI;FIN;246;Finland;officially-assigned;false;Republic of Finland;Europe;Northern Europe;;EUR;358;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+FJ;FJI;242;Fiji;officially-assigned;false;;Oceania;Melanesia;;FJD;679;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+FK;FLK;238;Falkland Islands (Malvinas);officially-assigned;false;;Americas;Latin America and the Caribbean;South America;FKP;500;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+FM;FSM;583;Micronesia (Federated States of);officially-assigned;false;;Oceania;Micronesia;;USD;691;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+FO;FRO;234;Faroe Islands;officially-assigned;false;Faroe Islands;Europe;Northern Europe;;DKK;298;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
 FQ;ATF;000;French Southern and Antarctic Territories;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:FQ;2026-09-23;1979-01-01;TF
-FR;FRA;250;France;officially-assigned;true;French Republic;Europe;Western Europe;;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:FR;2026-09-23;;
-GA;GAB;266;Gabon;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GA;2026-09-23;;
-GB;GBR;826;United Kingdom of Great Britain and Northern Ireland;officially-assigned;true;United Kingdom of Great Britain and Northern Ireland;Europe;Northern Europe;;GBP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GB;2026-09-23;;
-GD;GRD;308;Grenada;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GD;2026-09-23;;
-GE;GEO;268;Georgia;officially-assigned;false;Georgia;Asia;Western Asia;;GEL;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:GE
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE";2026-09-23;;
-GF;GUF;254;French Guiana;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GF;2026-09-23;;
-GG;GGY;831;Guernsey;officially-assigned;false;Guernsey;Europe;Northern Europe;;GBP;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:GG
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GG";2026-09-23;;
-GH;GHA;288;Ghana;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;GHS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GH;2026-09-23;;
-GI;GIB;292;Gibraltar;officially-assigned;false;Gibraltar;Europe;Southern Europe;;GIP;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:GI
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI";2026-09-23;;
-GL;GRL;304;Greenland;officially-assigned;false;;Americas;Northern America;;DKK;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GL;2026-09-23;;
-GM;GMB;270;Gambia;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;GMD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GM;2026-09-23;;
-GN;GIN;324;Guinea;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;GNF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GN;2026-09-23;;
-GP;GLP;312;Guadeloupe;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GP;2026-09-23;;
-GQ;GNQ;226;Equatorial Guinea;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GQ;2026-09-23;;
-GR;GRC;300;Greece;officially-assigned;false;Hellenic Republic;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:GR
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR";2026-09-23;;
-GS;SGS;239;South Georgia and the South Sandwich Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;FKP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GS;2026-09-23;;
-GT;GTM;320;Guatemala;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;GTQ;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GT;2026-09-23;;
-GU;GUM;316;Guam;officially-assigned;false;;Oceania;Micronesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GU;2026-09-23;;
-GW;GNB;624;Guinea-Bissau;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GW;2026-09-23;;
-GY;GUY;328;Guyana;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;GYD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:GY;2026-09-23;;
-HK;HKG;344;China, Hong Kong Special Administrative Region;officially-assigned;false;;Asia;Eastern Asia;;HKD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:HK;2026-09-23;;
-HM;HMD;334;Heard Island and McDonald Islands;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:HM;2026-09-23;;
-HN;HND;340;Honduras;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;HNL;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:HN;2026-09-23;;
-HR;HRV;191;Croatia;officially-assigned;false;Republic of Croatia;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:HR
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR";2026-09-23;;
-HT;HTI;332;Haiti;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;HTG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:HT;2026-09-23;;
-HU;HUN;348;Hungary;officially-assigned;false;Hungary;Europe;Eastern Europe;;HUF;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:HU
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU";2026-09-23;;
+FR;FRA;250;France;officially-assigned;true;French Republic;Europe;Western Europe;;EUR;33;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GA;GAB;266;Gabon;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;241;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GB;GBR;826;United Kingdom of Great Britain and Northern Ireland;officially-assigned;true;United Kingdom of Great Britain and Northern Ireland;Europe;Northern Europe;;GBP;44;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GD;GRD;308;Grenada;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GE;GEO;268;Georgia;officially-assigned;false;Georgia;Asia;Western Asia;;GEL;995;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+GF;GUF;254;French Guiana;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;EUR;594;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GG;GGY;831;Guernsey;officially-assigned;false;Guernsey;Europe;Northern Europe;;GBP;44;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GG
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+GH;GHA;288;Ghana;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;GHS;233;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GI;GIB;292;Gibraltar;officially-assigned;false;Gibraltar;Europe;Southern Europe;;GIP;350;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+GL;GRL;304;Greenland;officially-assigned;false;;Americas;Northern America;;DKK;299;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GM;GMB;270;Gambia;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;GMD;220;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GN;GIN;324;Guinea;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;GNF;224;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GP;GLP;312;Guadeloupe;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;590;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GQ;GNQ;226;Equatorial Guinea;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;240;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GR;GRC;300;Greece;officially-assigned;false;Hellenic Republic;Europe;Southern Europe;;EUR;30;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+GS;SGS;239;South Georgia and the South Sandwich Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;FKP;500;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GT;GTM;320;Guatemala;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;GTQ;502;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GU;GUM;316;Guam;officially-assigned;false;;Oceania;Micronesia;;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GW;GNB;624;Guinea-Bissau;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;245;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+GY;GUY;328;Guyana;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;GYD;592;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+HK;HKG;344;China, Hong Kong Special Administrative Region;officially-assigned;false;;Asia;Eastern Asia;;HKD;852;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+HM;HMD;334;Heard Island and McDonald Islands;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;672;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+HN;HND;340;Honduras;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;HNL;504;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+HR;HRV;191;Croatia;officially-assigned;false;Republic of Croatia;Europe;Southern Europe;;EUR;385;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+HT;HTI;332;Haiti;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;HTG;509;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+HU;HUN;348;Hungary;officially-assigned;false;Hungary;Europe;Eastern Europe;;HUF;36;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
 HV;HVO;854;Upper Volta;withdrawn;false;;;;;;;;;;;2026-09-22;1984-08-04;BF
-ID;IDN;360;Indonesia;officially-assigned;false;Indonesia;Asia;South-eastern Asia;;IDR;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
-source: https://www.iso.org/obp/ui/#iso:code:3166:ID";2026-09-23;;
-IE;IRL;372;Ireland;officially-assigned;false;Ireland;Europe;Northern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:IE
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE";2026-09-23;;
-IL;ISR;376;Israel;officially-assigned;false;;Asia;Western Asia;;ILS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:IL;2026-09-23;;
-IM;IMN;833;Isle of Man;officially-assigned;false;Isle of Man;Europe;Northern Europe;;GBP;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:IM
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM";2026-09-23;;
-IN;IND;356;India;officially-assigned;true;Republic of India;Asia;Southern Asia;;INR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:IN;2026-09-23;;
-IO;IOT;086;British Indian Ocean Territory;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:IO;2026-09-23;;
-IQ;IRQ;368;Iraq;officially-assigned;false;;Asia;Western Asia;;IQD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:IQ;2026-09-23;;
-IR;IRN;364;Iran (Islamic Republic of);officially-assigned;false;;Asia;Southern Asia;;IRR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:IR;2026-09-23;;
-IS;ISL;352;Iceland;officially-assigned;false;Iceland;Europe;Northern Europe;;ISK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:IS
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS";2026-09-23;;
-IT;ITA;380;Italy;officially-assigned;false;Italy;Europe;Southern Europe;;EUR;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT
-source: https://www.iso.org/obp/ui/#iso:code:3166:IT";2026-09-23;;
-JE;JEY;832;Jersey;officially-assigned;false;Jersey;Europe;Northern Europe;;GBP;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:JE
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE";2026-09-23;;
-JM;JAM;388;Jamaica;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;JMD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:JM;2026-09-23;;
-JO;JOR;400;Jordan;officially-assigned;false;;Asia;Western Asia;;JOD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:JO;2026-09-23;;
-JP;JPN;392;Japan;officially-assigned;true;Japan;Asia;Eastern Asia;;JPY;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:JP;2026-09-23;;
+ID;IDN;360;Indonesia;officially-assigned;false;Indonesia;Asia;South-eastern Asia;;IDR;62;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+IE;IRL;372;Ireland;officially-assigned;false;Ireland;Europe;Northern Europe;;EUR;353;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+IL;ISR;376;Israel;officially-assigned;false;;Asia;Western Asia;;ILS;972;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+IM;IMN;833;Isle of Man;officially-assigned;false;Isle of Man;Europe;Northern Europe;;GBP;44;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+IN;IND;356;India;officially-assigned;true;Republic of India;Asia;Southern Asia;;INR;91;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+IO;IOT;086;British Indian Ocean Territory;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;USD;246;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+IQ;IRQ;368;Iraq;officially-assigned;false;;Asia;Western Asia;;IQD;964;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+IR;IRN;364;Iran (Islamic Republic of);officially-assigned;false;;Asia;Southern Asia;;IRR;98;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+IS;ISL;352;Iceland;officially-assigned;false;Iceland;Europe;Northern Europe;;ISK;354;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+IT;ITA;380;Italy;officially-assigned;false;Italy;Europe;Southern Europe;;EUR;39;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+JE;JEY;832;Jersey;officially-assigned;false;Jersey;Europe;Northern Europe;;GBP;44;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+JM;JAM;388;Jamaica;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;JMD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+JO;JOR;400;Jordan;officially-assigned;false;;Asia;Western Asia;;JOD;962;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+JP;JPN;392;Japan;officially-assigned;true;Japan;Asia;Eastern Asia;;JPY;81;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 JT;JTN;000;Johnston Island;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:JT;2026-09-23;1986-01-01;
-KE;KEN;404;Kenya;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;KES;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KE;2026-09-23;;
-KG;KGZ;417;Kyrgyzstan;officially-assigned;false;;Asia;Central Asia;;KGS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KG;2026-09-23;;
-KH;KHM;116;Cambodia;officially-assigned;false;;Asia;South-eastern Asia;;KHR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KH;2026-09-23;;
-KI;KIR;296;Kiribati;officially-assigned;false;;Oceania;Micronesia;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KI;2026-09-23;;
-KM;COM;174;Comoros;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;KMF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KM;2026-09-23;;
-KN;KNA;659;Saint Kitts and Nevis;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KN;2026-09-23;;
-KP;PRK;408;Democratic People's Republic of Korea;officially-assigned;false;;Asia;Eastern Asia;;KPW;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KP;2026-09-23;;
-KR;KOR;410;Republic of Korea;officially-assigned;false;Republic of Korea;Asia;Eastern Asia;;KRW;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR
-source: https://www.iso.org/obp/ui/#iso:code:3166:KR";2026-09-23;;
-KW;KWT;414;Kuwait;officially-assigned;false;;Asia;Western Asia;;KWD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KW;2026-09-23;;
-KY;CYM;136;Cayman Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;KYD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KY;2026-09-23;;
-KZ;KAZ;398;Kazakhstan;officially-assigned;false;;Asia;Central Asia;;KZT;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:KZ;2026-09-23;;
-LA;LAO;418;Lao People's Democratic Republic;officially-assigned;false;;Asia;South-eastern Asia;;LAK;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LA;2026-09-23;;
-LB;LBN;422;Lebanon;officially-assigned;false;;Asia;Western Asia;;LBP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LB;2026-09-23;;
-LC;LCA;662;Saint Lucia;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LC;2026-09-23;;
-LI;LIE;438;Liechtenstein;officially-assigned;false;Principality of Liechtenstein;Europe;Western Europe;;CHF;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:LI
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI";2026-09-23;;
-LK;LKA;144;Sri Lanka;officially-assigned;false;;Asia;Southern Asia;;LKR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LK;2026-09-23;;
-LR;LBR;430;Liberia;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;LRD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LR;2026-09-23;;
-LS;LSO;426;Lesotho;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;LSL;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LS;2026-09-23;;
-LT;LTU;440;Lithuania;officially-assigned;false;Republic of Lithuania;Europe;Northern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:LT
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT";2026-09-23;;
-LU;LUX;442;Luxembourg;officially-assigned;false;Grand Duchy of Luxembourg;Europe;Western Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:LU
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU";2026-09-23;;
-LV;LVA;428;Latvia;officially-assigned;false;Republic of Latvia;Europe;Northern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:LV
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV";2026-09-23;;
-LY;LBY;434;Libya;officially-assigned;false;;Africa;Northern Africa;;LYD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:LY;2026-09-23;;
-MA;MAR;504;Morocco;officially-assigned;false;;Africa;Northern Africa;;MAD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MA;2026-09-23;;
-MC;MCO;492;Monaco;officially-assigned;false;Principality of Monaco;Europe;Western Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:MC
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC";2026-09-23;;
-MD;MDA;498;Republic of Moldova;officially-assigned;false;Republic of Moldova;Europe;Eastern Europe;;MDL;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:MD
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD";2026-09-23;;
-ME;MNE;499;Montenegro;officially-assigned;false;Montenegro;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:ME
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME";2026-09-23;;
-MF;MAF;663;Saint Martin (French Part);officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MF;2026-09-23;;
-MG;MDG;450;Madagascar;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MGA;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MG;2026-09-23;;
-MH;MHL;584;Marshall Islands;officially-assigned;false;;Oceania;Micronesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MH;2026-09-23;;
+KE;KEN;404;Kenya;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;KES;254;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KG;KGZ;417;Kyrgyzstan;officially-assigned;false;;Asia;Central Asia;;KGS;996;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KH;KHM;116;Cambodia;officially-assigned;false;;Asia;South-eastern Asia;;KHR;855;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KI;KIR;296;Kiribati;officially-assigned;false;;Oceania;Micronesia;;AUD;686;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KM;COM;174;Comoros;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;KMF;269;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KN;KNA;659;Saint Kitts and Nevis;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KP;PRK;408;Democratic People's Republic of Korea;officially-assigned;false;;Asia;Eastern Asia;;KPW;850;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KR;KOR;410;Republic of Korea;officially-assigned;false;Republic of Korea;Asia;Eastern Asia;;KRW;82;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+KW;KWT;414;Kuwait;officially-assigned;false;;Asia;Western Asia;;KWD;965;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KY;CYM;136;Cayman Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;KYD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+KZ;KAZ;398;Kazakhstan;officially-assigned;false;;Asia;Central Asia;;KZT;7;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LA;LAO;418;Lao People's Democratic Republic;officially-assigned;false;;Asia;South-eastern Asia;;LAK;856;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LB;LBN;422;Lebanon;officially-assigned;false;;Asia;Western Asia;;LBP;961;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LC;LCA;662;Saint Lucia;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LI;LIE;438;Liechtenstein;officially-assigned;false;Principality of Liechtenstein;Europe;Western Europe;;CHF;423;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+LK;LKA;144;Sri Lanka;officially-assigned;false;;Asia;Southern Asia;;LKR;94;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LR;LBR;430;Liberia;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;LRD;231;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LS;LSO;426;Lesotho;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;LSL;266;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+LT;LTU;440;Lithuania;officially-assigned;false;Republic of Lithuania;Europe;Northern Europe;;EUR;370;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+LU;LUX;442;Luxembourg;officially-assigned;false;Grand Duchy of Luxembourg;Europe;Western Europe;;EUR;352;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+LV;LVA;428;Latvia;officially-assigned;false;Republic of Latvia;Europe;Northern Europe;;EUR;371;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+LY;LBY;434;Libya;officially-assigned;false;;Africa;Northern Africa;;LYD;218;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MA;MAR;504;Morocco;officially-assigned;false;;Africa;Northern Africa;;MAD;212;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MC;MCO;492;Monaco;officially-assigned;false;Principality of Monaco;Europe;Western Europe;;EUR;377;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+MD;MDA;498;Republic of Moldova;officially-assigned;false;Republic of Moldova;Europe;Eastern Europe;;MDL;373;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+ME;MNE;499;Montenegro;officially-assigned;false;Montenegro;Europe;Southern Europe;;EUR;382;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+MF;MAF;663;Saint Martin (French Part);officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;590;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MG;MDG;450;Madagascar;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MGA;261;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MH;MHL;584;Marshall Islands;officially-assigned;false;;Oceania;Micronesia;;USD;692;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 MI;MID;000;Midway Islands;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MI;2026-09-23;1986-01-01;
-MK;MKD;807;North Macedonia;officially-assigned;false;Republic of North Macedonia;Europe;Southern Europe;;MKD;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:MK
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK";2026-09-23;;
-ML;MLI;466;Mali;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ML;2026-09-23;;
-MM;MMR;104;Myanmar;officially-assigned;false;;Asia;South-eastern Asia;;MMK;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MM;2026-09-23;;
-MN;MNG;496;Mongolia;officially-assigned;false;;Asia;Eastern Asia;;MNT;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MN;2026-09-23;;
-MO;MAC;446;China, Macao Special Administrative Region;officially-assigned;false;;Asia;Eastern Asia;;MOP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MO;2026-09-23;;
-MP;MNP;580;Northern Mariana Islands;officially-assigned;false;;Oceania;Micronesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MP;2026-09-23;;
-MQ;MTQ;474;Martinique;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MQ;2026-09-23;;
-MR;MRT;478;Mauritania;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;MRU;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MR;2026-09-23;;
-MS;MSR;500;Montserrat;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MS;2026-09-23;;
-MT;MLT;470;Malta;officially-assigned;false;Republic of Malta;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:MT
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT";2026-09-23;;
-MU;MUS;480;Mauritius;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MU;2026-09-23;;
-MV;MDV;462;Maldives;officially-assigned;false;;Asia;Southern Asia;;MVR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MV;2026-09-23;;
-MW;MWI;454;Malawi;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MWK;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MW;2026-09-23;;
-MX;MEX;484;Mexico;officially-assigned;false;Mexico;Americas;Latin America and the Caribbean;Central America;MXN;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX
-source: https://www.iso.org/obp/ui/#iso:code:3166:MX";2026-09-23;;
-MY;MYS;458;Malaysia;officially-assigned;false;;Asia;South-eastern Asia;;MYR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MY;2026-09-23;;
-MZ;MOZ;508;Mozambique;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MZN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MZ;2026-09-23;;
-NA;NAM;516;Namibia;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;NAD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NA;2026-09-23;;
-NC;NCL;540;New Caledonia;officially-assigned;false;;Oceania;Melanesia;;XPF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NC;2026-09-23;;
-NE;NER;562;Niger;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NE;2026-09-23;;
-NF;NFK;574;Norfolk Island;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NF;2026-09-23;;
-NG;NGA;566;Nigeria;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;NGN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NG;2026-09-23;;
+MK;MKD;807;North Macedonia;officially-assigned;false;Republic of North Macedonia;Europe;Southern Europe;;MKD;389;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+ML;MLI;466;Mali;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;223;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MM;MMR;104;Myanmar;officially-assigned;false;;Asia;South-eastern Asia;;MMK;95;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MN;MNG;496;Mongolia;officially-assigned;false;;Asia;Eastern Asia;;MNT;976;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MO;MAC;446;China, Macao Special Administrative Region;officially-assigned;false;;Asia;Eastern Asia;;MOP;853;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MP;MNP;580;Northern Mariana Islands;officially-assigned;false;;Oceania;Micronesia;;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MQ;MTQ;474;Martinique;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;EUR;596;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MR;MRT;478;Mauritania;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;MRU;222;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MS;MSR;500;Montserrat;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MT;MLT;470;Malta;officially-assigned;false;Republic of Malta;Europe;Southern Europe;;EUR;356;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+MU;MUS;480;Mauritius;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MUR;230;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MV;MDV;462;Maldives;officially-assigned;false;;Asia;Southern Asia;;MVR;960;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MW;MWI;454;Malawi;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MWK;265;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MX;MEX;484;Mexico;officially-assigned;false;Mexico;Americas;Latin America and the Caribbean;Central America;MXN;52;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+MY;MYS;458;Malaysia;officially-assigned;false;;Asia;South-eastern Asia;;MYR;60;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+MZ;MOZ;508;Mozambique;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;MZN;258;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NA;NAM;516;Namibia;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;NAD;264;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NC;NCL;540;New Caledonia;officially-assigned;false;;Oceania;Melanesia;;XPF;687;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NE;NER;562;Niger;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;227;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NF;NFK;574;Norfolk Island;officially-assigned;false;;Oceania;Australia and New Zealand;;AUD;672;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NG;NGA;566;Nigeria;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;NGN;234;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 NH;NHB;000;New Hebrides;withdrawn;false;;;;;;;;;;;2026-09-22;1980-07-30;VU
-NI;NIC;558;Nicaragua;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;NIO;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NI;2026-09-23;;
-NL;NLD;528;Netherlands (Kingdom of the);officially-assigned;false;Netherlands (Kingdom of the);Europe;Western Europe;;EUR;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL
-source: https://www.iso.org/obp/ui/#iso:code:3166:NL";2026-09-23;;
-NO;NOR;578;Norway;officially-assigned;false;Kingdom of Norway;Europe;Northern Europe;;NOK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:NO
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO";2026-09-23;;
-NP;NPL;524;Nepal;officially-assigned;false;;Asia;Southern Asia;;NPR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NP;2026-09-23;;
+NI;NIC;558;Nicaragua;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;NIO;505;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NL;NLD;528;Netherlands (Kingdom of the);officially-assigned;false;Netherlands (Kingdom of the);Europe;Western Europe;;EUR;31;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+NO;NOR;578;Norway;officially-assigned;false;Kingdom of Norway;Europe;Northern Europe;;NOK;47;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+NP;NPL;524;Nepal;officially-assigned;false;;Asia;Southern Asia;;NPR;977;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 NQ;ATN;000;Dronning Maud Land;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NQ;2026-09-23;1983-01-01;AQ
-NR;NRU;520;Naoero;officially-assigned;false;;Oceania;Micronesia;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NR;2026-09-23;;
+NR;NRU;520;Naoero;officially-assigned;false;;Oceania;Micronesia;;AUD;674;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 NT;NTZ;000;Neutral Zone;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NT;2026-09-23;1993-07-01;
-NU;NIU;570;Niue;officially-assigned;false;;Oceania;Polynesia;;NZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NU;2026-09-23;;
-NZ;NZL;554;New Zealand;officially-assigned;false;;Oceania;Australia and New Zealand;;NZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NZ;2026-09-23;;
-OM;OMN;512;Oman;officially-assigned;false;;Asia;Western Asia;;OMR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:OM;2026-09-23;;
-PA;PAN;591;Panama;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;PAB|USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PA;2026-09-23;;
+NU;NIU;570;Niue;officially-assigned;false;;Oceania;Polynesia;;NZD;683;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+NZ;NZL;554;New Zealand;officially-assigned;false;;Oceania;Australia and New Zealand;;NZD;64;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+OM;OMN;512;Oman;officially-assigned;false;;Asia;Western Asia;;OMR;968;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PA;PAN;591;Panama;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;PAB|USD;507;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 PC;PCI;000;Pacific Islands (Trust Territory);withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PC;2026-09-23;1986-11-03;FM|MH|MP|PW
-PE;PER;604;Peru;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;PEN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PE;2026-09-23;;
-PF;PYF;258;French Polynesia;officially-assigned;false;;Oceania;Polynesia;;XPF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PF;2026-09-23;;
-PG;PNG;598;Papua New Guinea;officially-assigned;false;;Oceania;Melanesia;;PGK;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PG;2026-09-23;;
-PH;PHL;608;Philippines;officially-assigned;false;;Asia;South-eastern Asia;;PHP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PH;2026-09-23;;
-PK;PAK;586;Pakistan;officially-assigned;false;;Asia;Southern Asia;;PKR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PK;2026-09-23;;
-PL;POL;616;Poland;officially-assigned;false;Republic of Poland;Europe;Eastern Europe;;PLN;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:PL
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL";2026-09-23;;
-PM;SPM;666;Saint Pierre and Miquelon;officially-assigned;false;;Americas;Northern America;;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PM;2026-09-23;;
-PN;PCN;612;Pitcairn;officially-assigned;false;;Oceania;Polynesia;;NZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PN;2026-09-23;;
-PR;PRI;630;Puerto Rico;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PR;2026-09-23;;
-PS;PSE;275;State of Palestine;officially-assigned;false;;Asia;Western Asia;;ILS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PS;2026-09-23;;
-PT;PRT;620;Portugal;officially-assigned;false;Portuguese Republic;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:PT
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT";2026-09-23;;
-PW;PLW;585;Palau;officially-assigned;false;;Oceania;Micronesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PW;2026-09-23;;
-PY;PRY;600;Paraguay;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;PYG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PY;2026-09-23;;
+PE;PER;604;Peru;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;PEN;51;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PF;PYF;258;French Polynesia;officially-assigned;false;;Oceania;Polynesia;;XPF;689;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PG;PNG;598;Papua New Guinea;officially-assigned;false;;Oceania;Melanesia;;PGK;675;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PH;PHL;608;Philippines;officially-assigned;false;;Asia;South-eastern Asia;;PHP;63;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PK;PAK;586;Pakistan;officially-assigned;false;;Asia;Southern Asia;;PKR;92;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PL;POL;616;Poland;officially-assigned;false;Republic of Poland;Europe;Eastern Europe;;PLN;48;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+PM;SPM;666;Saint Pierre and Miquelon;officially-assigned;false;;Americas;Northern America;;EUR;508;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PN;PCN;612;Pitcairn;officially-assigned;false;;Oceania;Polynesia;;NZD;64;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PR;PRI;630;Puerto Rico;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PS;PSE;275;State of Palestine;officially-assigned;false;;Asia;Western Asia;;ILS;970;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PT;PRT;620;Portugal;officially-assigned;false;Portuguese Republic;Europe;Southern Europe;;EUR;351;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+PW;PLW;585;Palau;officially-assigned;false;;Oceania;Micronesia;;USD;680;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+PY;PRY;600;Paraguay;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;PYG;595;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 PZ;PCZ;000;Panama Canal Zone;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:PZ;2026-09-23;1980-01-01;PA
-QA;QAT;634;Qatar;officially-assigned;false;;Asia;Western Asia;;QAR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:QA;2026-09-23;;
-RE;REU;638;Réunion;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:RE;2026-09-23;;
+QA;QAT;634;Qatar;officially-assigned;false;;Asia;Western Asia;;QAR;974;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+RE;REU;638;Réunion;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;EUR;262;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 RH;RHO;000;Southern Rhodesia;withdrawn;false;;;;;;;;;;;2026-09-22;1980-04-18;ZW
-RO;ROU;642;Romania;officially-assigned;false;Romania;Europe;Eastern Europe;;RON;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:RO
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO";2026-09-23;;
-RS;SRB;688;Serbia;officially-assigned;false;Republic of Serbia;Europe;Southern Europe;;RSD;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:RS
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS";2026-09-23;;
-RU;RUS;643;Russian Federation;officially-assigned;true;Russian Federation;Europe;Eastern Europe;;RUB;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:RU;2026-09-23;;
-RW;RWA;646;Rwanda;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;RWF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:RW;2026-09-23;;
-SA;SAU;682;Saudi Arabia;officially-assigned;false;Saudi Arabia;Asia;Western Asia;;SAR;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA
-source: https://www.iso.org/obp/ui/#iso:code:3166:SA";2026-09-23;;
-SB;SLB;090;Solomon Islands;officially-assigned;false;;Oceania;Melanesia;;SBD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SB;2026-09-23;;
-SC;SYC;690;Seychelles;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;SCR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SC;2026-09-23;;
-SD;SDN;729;Sudan;officially-assigned;false;;Africa;Northern Africa;;SDG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SD;2026-09-23;;
-SE;SWE;752;Sweden;officially-assigned;false;Kingdom of Sweden;Europe;Northern Europe;;SEK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:SE
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE";2026-09-23;;
-SG;SGP;702;Singapore;officially-assigned;false;Singapore;Asia;South-eastern Asia;;SGD;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG
-source: https://www.iso.org/obp/ui/#iso:code:3166:SG";2026-09-23;;
-SH;SHN;654;Saint Helena;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;SHP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SH;2026-09-23;;
-SI;SVN;705;Slovenia;officially-assigned;false;Republic of Slovenia;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:SI
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI";2026-09-23;;
-SJ;SJM;744;Svalbard and Jan Mayen Islands;officially-assigned;false;Svalbard and Jan Mayen;Europe;Northern Europe;;NOK;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:SJ
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ";2026-09-23;;
-SK;SVK;703;Slovakia;officially-assigned;false;Slovak Republic;Europe;Eastern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:SK
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK";2026-09-23;;
+RO;ROU;642;Romania;officially-assigned;false;Romania;Europe;Eastern Europe;;RON;40;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+RS;SRB;688;Serbia;officially-assigned;false;Republic of Serbia;Europe;Southern Europe;;RSD;381;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+RU;RUS;643;Russian Federation;officially-assigned;true;Russian Federation;Europe;Eastern Europe;;RUB;7;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+RW;RWA;646;Rwanda;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;RWF;250;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SA;SAU;682;Saudi Arabia;officially-assigned;false;Saudi Arabia;Asia;Western Asia;;SAR;966;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+SB;SLB;090;Solomon Islands;officially-assigned;false;;Oceania;Melanesia;;SBD;677;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SC;SYC;690;Seychelles;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;SCR;248;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SD;SDN;729;Sudan;officially-assigned;false;;Africa;Northern Africa;;SDG;249;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SE;SWE;752;Sweden;officially-assigned;false;Kingdom of Sweden;Europe;Northern Europe;;SEK;46;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+SG;SGP;702;Singapore;officially-assigned;false;Singapore;Asia;South-eastern Asia;;SGD;65;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+SH;SHN;654;Saint Helena;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;SHP;290;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SI;SVN;705;Slovenia;officially-assigned;false;Republic of Slovenia;Europe;Southern Europe;;EUR;386;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+SJ;SJM;744;Svalbard and Jan Mayen Islands;officially-assigned;false;Svalbard and Jan Mayen;Europe;Northern Europe;;NOK;47;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+SK;SVK;703;Slovakia;officially-assigned;false;Slovak Republic;Europe;Eastern Europe;;EUR;421;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
 SK;SKM;000;Sikkim;withdrawn;false;;;;;;;;;;;2026-09-22;1975-05-16;IN
-SL;SLE;694;Sierra Leone;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;SLE;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SL;2026-09-23;;
-SM;SMR;674;San Marino;officially-assigned;false;Republic of San Marino;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:SM
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM";2026-09-23;;
-SN;SEN;686;Senegal;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SN;2026-09-23;;
-SO;SOM;706;Somalia;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;SOS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SO;2026-09-23;;
-SR;SUR;740;Suriname;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;SRD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SR;2026-09-23;;
-SS;SSD;728;South Sudan;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;SSP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SS;2026-09-23;;
-ST;STP;678;Sao Tome and Principe;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;STN;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ST;2026-09-23;;
+SL;SLE;694;Sierra Leone;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;SLE;232;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SM;SMR;674;San Marino;officially-assigned;false;Republic of San Marino;Europe;Southern Europe;;EUR;378;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+SN;SEN;686;Senegal;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;221;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SO;SOM;706;Somalia;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;SOS;252;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SR;SUR;740;Suriname;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;SRD;597;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SS;SSD;728;South Sudan;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;SSP;211;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+ST;STP;678;Sao Tome and Principe;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;STN;239;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 SU;SUN;810;USSR;withdrawn;false;;;;;;;;;;;2026-09-22;1992-08-30;
-SV;SLV;222;El Salvador;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SV;2026-09-23;;
-SX;SXM;534;Sint Maarten (Dutch part);officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;ANG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SX;2026-09-23;;
-SY;SYR;760;Syrian Arab Republic;officially-assigned;false;;Asia;Western Asia;;SYP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SY;2026-09-23;;
-SZ;SWZ;748;Eswatini;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;SZL;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:SZ;2026-09-23;;
-TC;TCA;796;Turks and Caicos Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TC;2026-09-23;;
-TD;TCD;148;Chad;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TD;2026-09-23;;
-TF;ATF;260;French Southern Territories;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TF;2026-09-23;;
-TG;TGO;768;Togo;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TG;2026-09-23;;
-TH;THA;764;Thailand;officially-assigned;false;;Asia;South-eastern Asia;;THB;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TH;2026-09-23;;
-TJ;TJK;762;Tajikistan;officially-assigned;false;;Asia;Central Asia;;TJS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TJ;2026-09-23;;
-TK;TKL;772;Tokelau;officially-assigned;false;;Oceania;Polynesia;;NZD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TK;2026-09-23;;
-TL;TLS;626;Timor-Leste;officially-assigned;false;;Asia;South-eastern Asia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TL;2026-09-23;;
-TM;TKM;795;Turkmenistan;officially-assigned;false;;Asia;Central Asia;;TMT;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TM;2026-09-23;;
-TN;TUN;788;Tunisia;officially-assigned;false;;Africa;Northern Africa;;TND;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TN;2026-09-23;;
-TO;TON;776;Tonga;officially-assigned;false;;Oceania;Polynesia;;TOP;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TO;2026-09-23;;
+SV;SLV;222;El Salvador;officially-assigned;false;;Americas;Latin America and the Caribbean;Central America;USD;503;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SX;SXM;534;Sint Maarten (Dutch part);officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;ANG;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SY;SYR;760;Syrian Arab Republic;officially-assigned;false;;Asia;Western Asia;;SYP;963;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+SZ;SWZ;748;Eswatini;officially-assigned;false;;Africa;Sub-Saharan Africa;Southern Africa;SZL;268;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TC;TCA;796;Turks and Caicos Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TD;TCD;148;Chad;officially-assigned;false;;Africa;Sub-Saharan Africa;Middle Africa;XAF;235;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TF;ATF;260;French Southern Territories;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;EUR;262;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TG;TGO;768;Togo;officially-assigned;false;;Africa;Sub-Saharan Africa;Western Africa;XOF;228;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TH;THA;764;Thailand;officially-assigned;false;;Asia;South-eastern Asia;;THB;66;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TJ;TJK;762;Tajikistan;officially-assigned;false;;Asia;Central Asia;;TJS;992;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TK;TKL;772;Tokelau;officially-assigned;false;;Oceania;Polynesia;;NZD;690;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TL;TLS;626;Timor-Leste;officially-assigned;false;;Asia;South-eastern Asia;;USD;670;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TM;TKM;795;Turkmenistan;officially-assigned;false;;Asia;Central Asia;;TMT;993;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TN;TUN;788;Tunisia;officially-assigned;false;;Africa;Northern Africa;;TND;216;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TO;TON;776;Tonga;officially-assigned;false;;Oceania;Polynesia;;TOP;676;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 TP;TMP;626;East Timor;withdrawn;false;;;;;;;;;;;2026-09-22;2002-05-20;TL
-TR;TUR;792;Türkiye;officially-assigned;false;Türkiye;Asia;Western Asia;;TRY;;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR
-source: https://www.iso.org/obp/ui/#iso:code:3166:TR";2026-09-23;;
-TT;TTO;780;Trinidad and Tobago;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;TTD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TT;2026-09-23;;
-TV;TUV;798;Tuvalu;officially-assigned;false;;Oceania;Polynesia;;AUD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TV;2026-09-23;;
-TW;TWN;158;Taiwan, Province of China;officially-assigned;false;Taiwan, Province of China;;;;TWD;;;;;"ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.
-source: https://www.iso.org/obp/ui/#iso:code:3166:TW";2026-09-23;;
-TZ;TZA;834;United Republic of Tanzania;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;TZS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:TZ;2026-09-23;;
-UA;UKR;804;Ukraine;officially-assigned;false;Ukraine;Europe;Eastern Europe;;UAH;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:UA
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA";2026-09-23;;
-UG;UGA;800;Uganda;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;UGX;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:UG;2026-09-23;;
+TR;TUR;792;Türkiye;officially-assigned;false;Türkiye;Asia;Western Asia;;TRY;90;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+TT;TTO;780;Trinidad and Tobago;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;TTD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TV;TUV;798;Tuvalu;officially-assigned;false;;Oceania;Polynesia;;AUD;688;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+TW;TWN;158;Taiwan, Province of China;officially-assigned;false;Taiwan, Province of China;;;;TWD;886;;;;"ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+TZ;TZA;834;United Republic of Tanzania;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;TZS;255;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+UA;UKR;804;Ukraine;officially-assigned;false;Ukraine;Europe;Eastern Europe;;UAH;380;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+UG;UGA;800;Uganda;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;UGX;256;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 UK;UKM;000;United Kingdom (exceptionally reserved);exceptionally-reserved;false;;;;;;;;;;Exceptionally reserved at the request of the United Kingdom. Use GB for the sovereign state.;2026-09-22;;
-UM;UMI;581;United States Minor Outlying Islands;officially-assigned;false;;Oceania;Micronesia;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:UM;2026-09-23;;
-US;USA;840;United States of America;officially-assigned;true;United States of America;Americas;Northern America;;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:US;2026-09-23;;
-UY;URY;858;Uruguay;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;UYU;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:UY;2026-09-23;;
-UZ;UZB;860;Uzbekistan;officially-assigned;false;;Asia;Central Asia;;UZS;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:UZ;2026-09-23;;
-VA;VAT;336;Holy See;officially-assigned;false;Holy See;Europe;Southern Europe;;EUR;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:VA
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA";2026-09-23;;
-VC;VCT;670;Saint Vincent and the Grenadines;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VC;2026-09-23;;
+UM;UMI;581;United States Minor Outlying Islands;officially-assigned;false;;Oceania;Micronesia;;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+US;USA;840;United States of America;officially-assigned;true;United States of America;Americas;Northern America;;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+UY;URY;858;Uruguay;officially-assigned;false;;Americas;Latin America and the Caribbean;South America;UYU;598;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+UZ;UZB;860;Uzbekistan;officially-assigned;false;;Asia;Central Asia;;UZS;998;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+VA;VAT;336;Holy See;officially-assigned;false;Holy See;Europe;Southern Europe;;EUR;39;;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA
+source: https://www.itu.int/oth/T02020000E8/en";2026-09-23;;
+VC;VCT;670;Saint Vincent and the Grenadines;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;XCD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 VD;VDR;000;North Vietnam;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VD;2026-09-23;1976-07-02;VN
-VE;VEN;862;Venezuela (Bolivarian Republic of);officially-assigned;false;;Americas;Latin America and the Caribbean;South America;VES;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VE;2026-09-23;;
-VG;VGB;092;British Virgin Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VG;2026-09-23;;
-VI;VIR;850;United States Virgin Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VI;2026-09-23;;
-VN;VNM;704;Viet Nam;officially-assigned;false;;Asia;South-eastern Asia;;VND;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VN;2026-09-23;;
-VU;VUT;548;Vanuatu;officially-assigned;false;;Oceania;Melanesia;;VUV;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:VU;2026-09-23;;
-WF;WLF;876;Wallis and Futuna Islands;officially-assigned;false;;Oceania;Polynesia;;XPF;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:WF;2026-09-23;;
+VE;VEN;862;Venezuela (Bolivarian Republic of);officially-assigned;false;;Americas;Latin America and the Caribbean;South America;VES;58;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+VG;VGB;092;British Virgin Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+VI;VIR;850;United States Virgin Islands;officially-assigned;false;;Americas;Latin America and the Caribbean;Caribbean;USD;1;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+VN;VNM;704;Viet Nam;officially-assigned;false;;Asia;South-eastern Asia;;VND;84;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+VU;VUT;548;Vanuatu;officially-assigned;false;;Oceania;Melanesia;;VUV;678;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+WF;WLF;876;Wallis and Futuna Islands;officially-assigned;false;;Oceania;Polynesia;;XPF;681;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 WK;WAK;000;Wake Island;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:WK;2026-09-23;1986-01-01;
-WS;WSM;882;Samoa;officially-assigned;false;;Oceania;Polynesia;;WST;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:WS;2026-09-23;;
+WS;WSM;882;Samoa;officially-assigned;false;;Oceania;Polynesia;;WST;685;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 XK;XKX;000;Kosovo;user-assigned;true;;;;;;;;;;User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production.;2026-09-22;;
 YD;YMD;720;South Yemen;withdrawn;false;;;;;;;;;;;2026-09-22;1990-05-22;YE
-YE;YEM;887;Yemen;officially-assigned;false;;Asia;Western Asia;;YER;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:YE;2026-09-23;;
-YT;MYT;175;Mayotte;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;EUR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:YT;2026-09-23;;
+YE;YEM;887;Yemen;officially-assigned;false;;Asia;Western Asia;;YER;967;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+YT;MYT;175;Mayotte;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;EUR;262;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 YU;YUG;890;Yugoslavia;withdrawn;false;;;;;;;;;;;2026-09-22;2003-07-23;CS
-ZA;ZAF;710;South Africa;officially-assigned;true;Republic of South Africa;Africa;Sub-Saharan Africa;Southern Africa;ZAR;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ZA;2026-09-23;;
-ZM;ZMB;894;Zambia;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ZMW;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ZM;2026-09-23;;
+ZA;ZAF;710;South Africa;officially-assigned;true;Republic of South Africa;Africa;Sub-Saharan Africa;Southern Africa;ZAR;27;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
+ZM;ZMB;894;Zambia;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ZMW;260;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;
 ZR;ZAR;180;Zaire;withdrawn;false;;;;;;;;;;;2026-09-22;1997-05-17;CD
-ZW;ZWE;716;Zimbabwe;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ZWG;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:ZW;2026-09-23;;
+ZW;ZWE;716;Zimbabwe;officially-assigned;false;;Africa;Sub-Saharan Africa;Eastern Africa;ZWG;263;;;;source: https://www.itu.int/oth/T02020000E8/en;2026-09-23;;

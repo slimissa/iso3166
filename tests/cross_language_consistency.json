@@ -6,7 +6,9 @@
       "currency_codes": [
         "USD"
       ],
-      "calling_codes": [],
+      "calling_codes": [
+        "1"
+      ],
       "tlds": []
     },
     {
@@ -15,7 +17,9 @@
       "currency_codes": [
         "GBP"
       ],
-      "calling_codes": [],
+      "calling_codes": [
+        "44"
+      ],
       "tlds": []
     },
     {
@@ -24,7 +28,9 @@
       "currency_codes": [
         "JPY"
       ],
-      "calling_codes": [],
+      "calling_codes": [
+        "81"
+      ],
       "tlds": []
     },
     {
@@ -33,7 +39,9 @@
       "currency_codes": [
         "EUR"
       ],
-      "calling_codes": [],
+      "calling_codes": [
+        "49"
+      ],
       "tlds": []
     },
     {
@@ -42,7 +50,9 @@
       "currency_codes": [
         "USD"
       ],
-      "calling_codes": [],
+      "calling_codes": [
+        "593"
+      ],
       "tlds": []
     },
     {
@@ -52,7 +62,9 @@
         "PAB",
         "USD"
       ],
-      "calling_codes": [],
+      "calling_codes": [
+        "507"
+      ],
       "tlds": []
     }
   ],
