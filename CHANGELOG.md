@@ -16,6 +16,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.4.0] — 2026-09-23
+
+Subregion on withdrawn entries; languages audit.
+
+### Added
+
+- `subregion` populated on 18 of the 25 withdrawn entries from the UN
+  M49 classification. The remaining 7 spanned multiple subregions or
+  were uninhabited; each carries a note explaining the null.
+- `tools/m49_subregion_snapshot.json` — 22 UN M49 subregion names.
+- `tools/audit_languages.py` — classifies each entry's languages list.
+- `docs/decisions/languages-audit-2026-09.md` — audit of the
+  `languages` field.
+
+### Changed
+
+- `tools/enrich_field.py` supports `subregion`. The field is a
+  scalar; it is the first that applies to withdrawn entries.
+  `find_active` now searches both arrays.
+- `languages` corrected for `MT`, `IE`, `CY`, `PR` where the Factbook
+  listed only the official language.
+- `CONTRIBUTING.md` gains a patch-script rule and a tag-after-CI
+  rule, both lessons from v1.3.0.
+
+### Fixed
+
+- The Rust test's `LookupField` struct declared `languages` and
+  `borders` but never read them; clippy with `-D warnings` failed the
+  v1.3.0 tag. Assertions added.
+
 ## [1.3.0] — 2026-09-23
 
 Populate `languages` and `borders`; tighten the ITU snapshot.
@@ -193,7 +223,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/slimissa/iso3166/releases/tag/v1.4.0
 [1.3.0]: https://github.com/slimissa/iso3166/releases/tag/v1.3.0
 [1.2.0]: https://github.com/slimissa/iso3166/releases/tag/v1.2.0
 [1.1.0]: https://github.com/slimissa/iso3166/releases/tag/v1.1.0
