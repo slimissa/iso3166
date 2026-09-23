@@ -386,7 +386,8 @@ def mode_set(args: argparse.Namespace) -> int:
         reg["meta"]["count_withdrawn"] = len(reg["countries"]["withdrawn"])
         write_registry(args.registry, reg)
 
-    verb = "would " + action if args.dry_run else action
+    verb = ("would add" if action == "added" else "would update") \
+        if args.dry_run else action
     succ = ",".join(entry["replaced_by"] or []) or "—"
     print(f"{verb} {entry['alpha_2']}  {entry['name']}  "
           f"({entry['withdrawal_date']}) -> {succ}")
