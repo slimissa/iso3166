@@ -124,14 +124,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Anguilla",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "660",
         "official_name": "Anguilla",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ai"
+        ],
         "withdrawal_date": null
       },
       {
@@ -149,14 +151,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Albania",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL\nsource: https://www.iana.org/domains/root/db",
         "numeric": "008",
         "official_name": "Republic of Albania",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".al"
+        ],
         "withdrawal_date": null
       },
       {
@@ -174,14 +178,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Armenia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "051",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".am"
+        ],
         "withdrawal_date": null
       },
       {
@@ -199,14 +205,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Angola",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "024",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ao"
+        ],
         "withdrawal_date": null
       },
       {
@@ -222,14 +230,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Antarctica",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "010",
         "official_name": null,
         "region": null,
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": null,
-        "tlds": null,
+        "tlds": [
+          ".aq"
+        ],
         "withdrawal_date": null
       },
       {
@@ -247,14 +257,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Argentina",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "032",
         "official_name": "Argentina",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ar"
+        ],
         "withdrawal_date": null
       },
       {
@@ -272,14 +284,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "American Samoa",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "016",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".as"
+        ],
         "withdrawal_date": null
       },
       {
@@ -297,14 +311,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Austria",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "040",
         "official_name": "Republic of Austria",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".at"
+        ],
         "withdrawal_date": null
       },
       {
@@ -322,14 +338,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Australia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU\nsource: https://www.iana.org/domains/root/db",
         "numeric": "036",
         "official_name": "Australia",
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Australia and New Zealand",
-        "tlds": null,
+        "tlds": [
+          ".au"
+        ],
         "withdrawal_date": null
       },
       {
@@ -347,14 +365,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Aruba",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AW\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AW\nsource: https://www.iana.org/domains/root/db",
         "numeric": "533",
         "official_name": "Aruba",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".aw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -372,14 +392,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Åland Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AX\nsource: https://www.iana.org/domains/root/db",
         "numeric": "248",
         "official_name": "Åland Islands",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ax"
+        ],
         "withdrawal_date": null
       },
       {
@@ -397,14 +419,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Azerbaijan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "031",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".az"
+        ],
         "withdrawal_date": null
       },
       {
@@ -422,14 +446,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bosnia and Herzegovina",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA\nsource: https://www.iana.org/domains/root/db",
         "numeric": "070",
         "official_name": "Bosnia and Herzegovina",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ba"
+        ],
         "withdrawal_date": null
       },
       {
@@ -447,14 +473,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Barbados",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BB\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BB\nsource: https://www.iana.org/domains/root/db",
         "numeric": "052",
         "official_name": "Barbados",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".bb"
+        ],
         "withdrawal_date": null
       },
       {
@@ -472,14 +500,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bangladesh",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "050",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".bd"
+        ],
         "withdrawal_date": null
       },
       {
@@ -497,14 +527,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Belgium",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "056",
         "official_name": "Kingdom of Belgium",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".be"
+        ],
         "withdrawal_date": null
       },
       {
@@ -522,14 +554,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Burkina Faso",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "854",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".bf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -547,14 +581,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bulgaria",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG\nsource: https://www.iana.org/domains/root/db",
         "numeric": "100",
         "official_name": "Republic of Bulgaria",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".bg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -572,14 +608,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bahrain",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "048",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".bh"
+        ],
         "withdrawal_date": null
       },
       {
@@ -597,14 +635,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Burundi",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "108",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".bi"
+        ],
         "withdrawal_date": null
       },
       {
@@ -622,14 +662,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Benin",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "204",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".bj"
+        ],
         "withdrawal_date": null
       },
       {
@@ -647,14 +689,14 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Barthélemy",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BL\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BL\nsource: https://www.iana.org/domains/root/db",
         "numeric": "652",
         "official_name": "Saint Barthélemy",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [],
         "withdrawal_date": null
       },
       {
@@ -672,14 +714,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bermuda",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BM\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BM\nsource: https://www.iana.org/domains/root/db",
         "numeric": "060",
         "official_name": "Bermuda",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern America",
-        "tlds": null,
+        "tlds": [
+          ".bm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -697,14 +741,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Brunei Darussalam",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "096",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".bn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -722,14 +768,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bolivia (Plurinational State of)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BO\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BO\nsource: https://www.iana.org/domains/root/db",
         "numeric": "068",
         "official_name": "Bolivia (Plurinational State of)",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".bo"
+        ],
         "withdrawal_date": null
       },
       {
@@ -747,14 +795,14 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bonaire, Sint Eustatius and Saba",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BQ\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BQ\nsource: https://www.iana.org/domains/root/db",
         "numeric": "535",
         "official_name": "Bonaire, Sint Eustatius and Saba",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [],
         "withdrawal_date": null
       },
       {
@@ -772,14 +820,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Brazil",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "076",
         "official_name": "Federative Republic of Brazil",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".br"
+        ],
         "withdrawal_date": null
       },
       {
@@ -797,14 +847,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bahamas",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BS\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BS\nsource: https://www.iana.org/domains/root/db",
         "numeric": "044",
         "official_name": "Commonwealth of the Bahamas",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".bs"
+        ],
         "withdrawal_date": null
       },
       {
@@ -822,14 +874,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bhutan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "064",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".bt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -847,14 +901,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Bouvet Island",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "074",
         "official_name": null,
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".bv"
+        ],
         "withdrawal_date": null
       },
       {
@@ -872,14 +928,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Botswana",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "072",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".bw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -897,14 +955,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Belarus",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY\nsource: https://www.iana.org/domains/root/db",
         "numeric": "112",
         "official_name": "Republic of Belarus",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".by"
+        ],
         "withdrawal_date": null
       },
       {
@@ -922,14 +982,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Belize",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BZ\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BZ\nsource: https://www.iana.org/domains/root/db",
         "numeric": "084",
         "official_name": "Belize",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".bz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -947,14 +1009,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Canada",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA\nsource: https://www.iana.org/domains/root/db",
         "numeric": "124",
         "official_name": "Canada",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern America",
-        "tlds": null,
+        "tlds": [
+          ".ca"
+        ],
         "withdrawal_date": null
       },
       {
@@ -972,14 +1036,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cocos (Keeling) Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "166",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Australia and New Zealand",
-        "tlds": null,
+        "tlds": [
+          ".cc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -997,14 +1063,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Democratic Republic of the Congo",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "180",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".cd"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1022,14 +1090,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Central African Republic",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "140",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".cf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1047,14 +1117,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Congo",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "178",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".cg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1072,14 +1144,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Switzerland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH\nsource: https://www.iana.org/domains/root/db",
         "numeric": "756",
         "official_name": "Switzerland",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".ch"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1097,14 +1171,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Côte d’Ivoire",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "384",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ci"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1122,14 +1198,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cook Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "184",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".ck"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1147,14 +1225,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Chile",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CL\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CL\nsource: https://www.iana.org/domains/root/db",
         "numeric": "152",
         "official_name": "Republic of Chile",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".cl"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1172,14 +1252,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cameroon",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "120",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".cm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1197,14 +1279,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "China",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "156",
         "official_name": "People's Republic of China",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".cn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1222,14 +1306,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Colombia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CO\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CO\nsource: https://www.iana.org/domains/root/db",
         "numeric": "170",
         "official_name": "Republic of Colombia",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".co"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1247,14 +1333,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Costa Rica",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "188",
         "official_name": "Republic of Costa Rica",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".cr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1272,14 +1360,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cuba",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CU\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CU\nsource: https://www.iana.org/domains/root/db",
         "numeric": "192",
         "official_name": "Republic of Cuba",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".cu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1297,14 +1387,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cabo Verde",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "132",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".cv"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1322,14 +1414,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Curaçao",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CW\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CW\nsource: https://www.iana.org/domains/root/db",
         "numeric": "531",
         "official_name": "Curaçao",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".cw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1347,14 +1441,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Christmas Island",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "162",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Australia and New Zealand",
-        "tlds": null,
+        "tlds": [
+          ".cx"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1372,14 +1468,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cyprus",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "196",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".cy"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1397,14 +1495,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Czechia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ\nsource: https://www.iana.org/domains/root/db",
         "numeric": "203",
         "official_name": "Czech Republic",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".cz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1422,14 +1522,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Germany",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "276",
         "official_name": "Federal Republic of Germany",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".de"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1447,14 +1549,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Djibouti",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "262",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".dj"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1472,14 +1576,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Denmark",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK\nsource: https://www.iana.org/domains/root/db",
         "numeric": "208",
         "official_name": "Kingdom of Denmark",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".dk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1497,14 +1603,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Dominica",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DM\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DM\nsource: https://www.iana.org/domains/root/db",
         "numeric": "212",
         "official_name": "Commonwealth of Dominica",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".dm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1522,14 +1630,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Dominican Republic",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DO\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DO\nsource: https://www.iana.org/domains/root/db",
         "numeric": "214",
         "official_name": "Dominican Republic",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".do"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1547,14 +1657,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Algeria",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "012",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [
+          ".dz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1572,14 +1684,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ecuador",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EC\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EC\nsource: https://www.iana.org/domains/root/db",
         "numeric": "218",
         "official_name": "Republic of Ecuador",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ec"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1597,14 +1711,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Estonia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "233",
         "official_name": "Republic of Estonia",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ee"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1622,14 +1738,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Egypt",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "818",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [
+          ".eg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1647,14 +1765,14 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Western Sahara",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "732",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [],
         "withdrawal_date": null
       },
       {
@@ -1672,14 +1790,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Eritrea",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "232",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".er"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1697,14 +1817,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Spain",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES\nsource: https://www.iana.org/domains/root/db",
         "numeric": "724",
         "official_name": "Kingdom of Spain",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".es"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1722,14 +1844,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ethiopia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "231",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".et"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1768,14 +1892,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Finland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "246",
         "official_name": "Republic of Finland",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".fi"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1793,14 +1919,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Fiji",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "242",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Melanesia",
-        "tlds": null,
+        "tlds": [
+          ".fj"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1818,14 +1946,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Falkland Islands (Malvinas)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FK\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FK\nsource: https://www.iana.org/domains/root/db",
         "numeric": "238",
         "official_name": "Falkland Islands (Malvinas)",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".fk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1843,14 +1973,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Micronesia (Federated States of)",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "583",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".fm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1868,14 +2000,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Faroe Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FO\nsource: https://www.iana.org/domains/root/db",
         "numeric": "234",
         "official_name": "Faroe Islands",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".fo"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1893,14 +2027,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "France",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "250",
         "official_name": "French Republic",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".fr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1918,14 +2054,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Gabon",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "266",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ga"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1943,14 +2081,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United Kingdom of Great Britain and Northern Ireland",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "826",
         "official_name": "United Kingdom of Great Britain and Northern Ireland",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".uk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1968,14 +2108,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Grenada",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GD\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GD\nsource: https://www.iana.org/domains/root/db",
         "numeric": "308",
         "official_name": "Grenada",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".gd"
+        ],
         "withdrawal_date": null
       },
       {
@@ -1993,14 +2135,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Georgia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "268",
         "official_name": "Georgia",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".ge"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2018,14 +2162,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Guiana",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GF\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GF\nsource: https://www.iana.org/domains/root/db",
         "numeric": "254",
         "official_name": "French Guiana",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".gf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2043,14 +2189,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guernsey",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GG\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GG\nsource: https://www.iana.org/domains/root/db",
         "numeric": "831",
         "official_name": "Guernsey",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".gg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2068,14 +2216,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ghana",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "288",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".gh"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2093,14 +2243,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Gibraltar",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "292",
         "official_name": "Gibraltar",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".gi"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2118,14 +2270,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Greenland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GL\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GL\nsource: https://www.iana.org/domains/root/db",
         "numeric": "304",
         "official_name": "Greenland",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern America",
-        "tlds": null,
+        "tlds": [
+          ".gl"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2143,14 +2297,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Gambia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "270",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".gm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2168,14 +2324,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guinea",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "324",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".gn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2193,14 +2351,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guadeloupe",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GP\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GP\nsource: https://www.iana.org/domains/root/db",
         "numeric": "312",
         "official_name": "Guadeloupe",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".gp"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2218,14 +2378,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Equatorial Guinea",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "226",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".gq"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2243,14 +2405,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Greece",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "300",
         "official_name": "Hellenic Republic",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".gr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2268,14 +2432,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Georgia and the South Sandwich Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "239",
         "official_name": null,
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".gs"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2293,14 +2459,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guatemala",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "320",
         "official_name": "Republic of Guatemala",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".gt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2318,14 +2486,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guam",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "316",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".gu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2343,14 +2513,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guinea-Bissau",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "624",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".gw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2368,14 +2540,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Guyana",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GY\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GY\nsource: https://www.iana.org/domains/root/db",
         "numeric": "328",
         "official_name": "Co-operative Republic of Guyana",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".gy"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2393,14 +2567,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "China, Hong Kong Special Administrative Region",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "344",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".hk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2418,14 +2594,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Heard Island and McDonald Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "334",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Australia and New Zealand",
-        "tlds": null,
+        "tlds": [
+          ".hm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2443,14 +2621,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Honduras",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HN\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HN\nsource: https://www.iana.org/domains/root/db",
         "numeric": "340",
         "official_name": "Republic of Honduras",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".hn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2468,14 +2648,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Croatia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "191",
         "official_name": "Republic of Croatia",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".hr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2493,14 +2675,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Haiti",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "332",
         "official_name": "Republic of Haiti",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ht"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2518,14 +2702,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Hungary",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU\nsource: https://www.iana.org/domains/root/db",
         "numeric": "348",
         "official_name": "Hungary",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".hu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2543,14 +2729,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Indonesia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID\nsource: https://www.iana.org/domains/root/db",
         "numeric": "360",
         "official_name": "Indonesia",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".id"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2568,14 +2756,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ireland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "372",
         "official_name": "Ireland",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ie"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2593,14 +2783,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Israel",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "376",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".il"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2618,14 +2810,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Isle of Man",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IM\nsource: https://www.iana.org/domains/root/db",
         "numeric": "833",
         "official_name": "Isle of Man",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".im"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2643,14 +2837,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "India",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "356",
         "official_name": "Republic of India",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".in"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2668,14 +2864,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "British Indian Ocean Territory",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "086",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".io"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2693,14 +2891,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Iraq",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "368",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".iq"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2718,14 +2918,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Iran (Islamic Republic of)",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "364",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".ir"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2743,14 +2945,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Iceland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS\nsource: https://www.iana.org/domains/root/db",
         "numeric": "352",
         "official_name": "Iceland",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".is"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2768,14 +2972,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Italy",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "380",
         "official_name": "Italy",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".it"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2793,14 +2999,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Jersey",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "832",
         "official_name": "Jersey",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".je"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2818,14 +3026,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Jamaica",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JM\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JM\nsource: https://www.iana.org/domains/root/db",
         "numeric": "388",
         "official_name": "Jamaica",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".jm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2843,14 +3053,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Jordan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "400",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".jo"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2868,14 +3080,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Japan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "392",
         "official_name": "Japan",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".jp"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2893,14 +3107,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kenya",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "404",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ke"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2918,14 +3134,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kyrgyzstan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "417",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Central Asia",
-        "tlds": null,
+        "tlds": [
+          ".kg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2943,14 +3161,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cambodia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "116",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".kh"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2968,14 +3188,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kiribati",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "296",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".ki"
+        ],
         "withdrawal_date": null
       },
       {
@@ -2993,14 +3215,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Comoros",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "174",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".km"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3018,14 +3242,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Kitts and Nevis",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KN\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KN\nsource: https://www.iana.org/domains/root/db",
         "numeric": "659",
         "official_name": "Saint Kitts and Nevis",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".kn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3043,14 +3269,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Democratic People's Republic of Korea",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "408",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".kp"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3068,14 +3296,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Republic of Korea",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "410",
         "official_name": "Republic of Korea",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".kr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3093,14 +3323,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kuwait",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "414",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".kw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3118,14 +3350,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Cayman Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KY\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KY\nsource: https://www.iana.org/domains/root/db",
         "numeric": "136",
         "official_name": "Cayman Islands",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ky"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3143,14 +3377,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kazakhstan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "398",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Central Asia",
-        "tlds": null,
+        "tlds": [
+          ".kz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3168,14 +3404,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lao People's Democratic Republic",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "418",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".la"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3193,14 +3431,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lebanon",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "422",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".lb"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3218,14 +3458,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Lucia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LC\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LC\nsource: https://www.iana.org/domains/root/db",
         "numeric": "662",
         "official_name": "Saint Lucia",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".lc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3243,14 +3485,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Liechtenstein",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "438",
         "official_name": "Principality of Liechtenstein",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".li"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3268,14 +3512,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sri Lanka",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "144",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".lk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3293,14 +3539,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Liberia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "430",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".lr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3318,14 +3566,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lesotho",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "426",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ls"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3343,14 +3593,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Lithuania",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "440",
         "official_name": "Republic of Lithuania",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".lt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3368,14 +3620,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Luxembourg",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU\nsource: https://www.iana.org/domains/root/db",
         "numeric": "442",
         "official_name": "Grand Duchy of Luxembourg",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".lu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3393,14 +3647,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Latvia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV\nsource: https://www.iana.org/domains/root/db",
         "numeric": "428",
         "official_name": "Republic of Latvia",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".lv"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3418,14 +3674,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Libya",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "434",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [
+          ".ly"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3443,14 +3701,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Morocco",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "504",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [
+          ".ma"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3468,14 +3728,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Monaco",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC\nsource: https://www.iana.org/domains/root/db",
         "numeric": "492",
         "official_name": "Principality of Monaco",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".mc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3493,14 +3755,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Republic of Moldova",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD\nsource: https://www.iana.org/domains/root/db",
         "numeric": "498",
         "official_name": "Republic of Moldova",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".md"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3518,14 +3782,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Montenegro",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME\nsource: https://www.iana.org/domains/root/db",
         "numeric": "499",
         "official_name": "Montenegro",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".me"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3543,14 +3809,14 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Martin (French Part)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MF\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MF\nsource: https://www.iana.org/domains/root/db",
         "numeric": "663",
         "official_name": "Saint Martin (French part)",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [],
         "withdrawal_date": null
       },
       {
@@ -3568,14 +3834,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Madagascar",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "450",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".mg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3593,14 +3861,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Marshall Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "584",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".mh"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3618,14 +3888,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "North Macedonia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK\nsource: https://www.iana.org/domains/root/db",
         "numeric": "807",
         "official_name": "Republic of North Macedonia",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".mk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3643,14 +3915,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mali",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "466",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ml"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3668,14 +3942,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Myanmar",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "104",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".mm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3693,14 +3969,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mongolia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "496",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".mn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3718,14 +3996,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "China, Macao Special Administrative Region",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "446",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".mo"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3743,14 +4023,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Northern Mariana Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "580",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".mp"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3768,14 +4050,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Martinique",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MQ\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MQ\nsource: https://www.iana.org/domains/root/db",
         "numeric": "474",
         "official_name": "Martinique",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".mq"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3793,14 +4077,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mauritania",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "478",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".mr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3818,14 +4104,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Montserrat",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MS\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MS\nsource: https://www.iana.org/domains/root/db",
         "numeric": "500",
         "official_name": "Montserrat",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ms"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3843,14 +4131,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Malta",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "470",
         "official_name": "Republic of Malta",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".mt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3868,14 +4158,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mauritius",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "480",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".mu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3893,14 +4185,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Maldives",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "462",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".mv"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3918,14 +4212,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Malawi",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "454",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".mw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3943,14 +4239,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mexico",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX\nsource: https://www.iana.org/domains/root/db",
         "numeric": "484",
         "official_name": "Mexico",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".mx"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3968,14 +4266,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Malaysia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "458",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".my"
+        ],
         "withdrawal_date": null
       },
       {
@@ -3993,14 +4293,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mozambique",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "508",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".mz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4018,14 +4320,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Namibia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "516",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".na"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4043,14 +4347,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "New Caledonia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "540",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Melanesia",
-        "tlds": null,
+        "tlds": [
+          ".nc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4068,14 +4374,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Niger",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "562",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ne"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4093,14 +4401,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Norfolk Island",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "574",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Australia and New Zealand",
-        "tlds": null,
+        "tlds": [
+          ".nf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4118,14 +4428,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Nigeria",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "566",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ng"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4143,14 +4455,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Nicaragua",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "558",
         "official_name": "Republic of Nicaragua",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ni"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4168,14 +4482,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Netherlands (Kingdom of the)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL\nsource: https://www.iana.org/domains/root/db",
         "numeric": "528",
         "official_name": "Netherlands (Kingdom of the)",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Europe",
-        "tlds": null,
+        "tlds": [
+          ".nl"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4193,14 +4509,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Norway",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO\nsource: https://www.iana.org/domains/root/db",
         "numeric": "578",
         "official_name": "Kingdom of Norway",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".no"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4218,14 +4536,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Nepal",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "524",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".np"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4243,14 +4563,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Naoero",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "520",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".nr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4268,14 +4590,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Niue",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "570",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".nu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4293,14 +4617,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "New Zealand",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "554",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Australia and New Zealand",
-        "tlds": null,
+        "tlds": [
+          ".nz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4318,14 +4644,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Oman",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "512",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".om"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4344,14 +4672,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Panama",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PA\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PA\nsource: https://www.iana.org/domains/root/db",
         "numeric": "591",
         "official_name": "Republic of Panama",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".pa"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4369,14 +4699,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Peru",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "604",
         "official_name": "Republic of Peru",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".pe"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4394,14 +4726,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Polynesia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "258",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".pf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4419,14 +4753,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Papua New Guinea",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "598",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Melanesia",
-        "tlds": null,
+        "tlds": [
+          ".pg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4444,14 +4780,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Philippines",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "608",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".ph"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4469,14 +4807,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Pakistan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "586",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Asia",
-        "tlds": null,
+        "tlds": [
+          ".pk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4494,14 +4834,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Poland",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL\nsource: https://www.iana.org/domains/root/db",
         "numeric": "616",
         "official_name": "Republic of Poland",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".pl"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4519,14 +4861,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Pierre and Miquelon",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PM\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PM\nsource: https://www.iana.org/domains/root/db",
         "numeric": "666",
         "official_name": "Saint Pierre and Miquelon",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern America",
-        "tlds": null,
+        "tlds": [
+          ".pm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4544,14 +4888,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Pitcairn",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "612",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".pn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4569,14 +4915,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Puerto Rico",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "630",
         "official_name": "Puerto Rico",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".pr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4594,14 +4942,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "State of Palestine",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "275",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".ps"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4619,14 +4969,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Portugal",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "620",
         "official_name": "Portuguese Republic",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".pt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4644,14 +4996,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Palau",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "585",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [
+          ".pw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4669,14 +5023,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Paraguay",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PY\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PY\nsource: https://www.iana.org/domains/root/db",
         "numeric": "600",
         "official_name": "Republic of Paraguay",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".py"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4694,14 +5050,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Qatar",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "634",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".qa"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4719,14 +5077,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Réunion",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "638",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".re"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4744,14 +5104,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Romania",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO\nsource: https://www.iana.org/domains/root/db",
         "numeric": "642",
         "official_name": "Romania",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ro"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4769,14 +5131,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Serbia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS\nsource: https://www.iana.org/domains/root/db",
         "numeric": "688",
         "official_name": "Republic of Serbia",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".rs"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4794,14 +5158,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Russian Federation",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "643",
         "official_name": "Russian Federation",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ru"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4819,14 +5185,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Rwanda",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "646",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".rw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4844,14 +5212,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saudi Arabia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA\nsource: https://www.iana.org/domains/root/db",
         "numeric": "682",
         "official_name": "Saudi Arabia",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".sa"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4869,14 +5239,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Solomon Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "090",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Melanesia",
-        "tlds": null,
+        "tlds": [
+          ".sb"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4894,14 +5266,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Seychelles",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "690",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".sc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4919,14 +5293,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sudan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "729",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [
+          ".sd"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4944,14 +5320,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sweden",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "752",
         "official_name": "Kingdom of Sweden",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".se"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4969,14 +5347,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Singapore",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG\nsource: https://www.iana.org/domains/root/db",
         "numeric": "702",
         "official_name": "Singapore",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".sg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -4994,14 +5374,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Helena",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "654",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".sh"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5019,14 +5401,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Slovenia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "705",
         "official_name": "Republic of Slovenia",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".si"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5044,14 +5428,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Svalbard and Jan Mayen Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ\nsource: https://www.iana.org/domains/root/db",
         "numeric": "744",
         "official_name": "Svalbard and Jan Mayen",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Europe",
-        "tlds": null,
+        "tlds": [
+          ".sj"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5069,14 +5455,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Slovakia",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK\nsource: https://www.iana.org/domains/root/db",
         "numeric": "703",
         "official_name": "Slovak Republic",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".sk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5094,14 +5482,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sierra Leone",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "694",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".sl"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5119,14 +5509,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "San Marino",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM\nsource: https://www.iana.org/domains/root/db",
         "numeric": "674",
         "official_name": "Republic of San Marino",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".sm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5144,14 +5536,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Senegal",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "686",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".sn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5169,14 +5563,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Somalia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "706",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".so"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5194,14 +5590,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Suriname",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "740",
         "official_name": "Republic of Suriname",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".sr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5219,14 +5617,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Sudan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "728",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ss"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5244,14 +5644,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sao Tome and Principe",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "678",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".st"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5269,14 +5671,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "El Salvador",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SV\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SV\nsource: https://www.iana.org/domains/root/db",
         "numeric": "222",
         "official_name": "Republic of El Salvador",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".sv"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5294,14 +5698,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Sint Maarten (Dutch part)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SX\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SX\nsource: https://www.iana.org/domains/root/db",
         "numeric": "534",
         "official_name": "Sint Maarten (Dutch part)",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".sx"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5319,14 +5725,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Syrian Arab Republic",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "760",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".sy"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5344,14 +5752,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Eswatini",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "748",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".sz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5369,14 +5779,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Turks and Caicos Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TC\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TC\nsource: https://www.iana.org/domains/root/db",
         "numeric": "796",
         "official_name": "Turks and Caicos Islands",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".tc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5394,14 +5806,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Chad",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "148",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".td"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5419,14 +5833,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Southern Territories",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "260",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".tf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5444,14 +5860,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Togo",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "768",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".tg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5469,14 +5887,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Thailand",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "764",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".th"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5494,14 +5914,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tajikistan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "762",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Central Asia",
-        "tlds": null,
+        "tlds": [
+          ".tj"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5519,14 +5941,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tokelau",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "772",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".tk"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5544,14 +5968,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Timor-Leste",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "626",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".tl"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5569,14 +5995,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Turkmenistan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "795",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Central Asia",
-        "tlds": null,
+        "tlds": [
+          ".tm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5594,14 +6022,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tunisia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "788",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern Africa",
-        "tlds": null,
+        "tlds": [
+          ".tn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5619,14 +6049,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tonga",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "776",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".to"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5644,14 +6076,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Türkiye",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR\nsource: https://www.iana.org/domains/root/db",
         "numeric": "792",
         "official_name": "Türkiye",
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".tr"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5669,14 +6103,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Trinidad and Tobago",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TT\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TT\nsource: https://www.iana.org/domains/root/db",
         "numeric": "780",
         "official_name": "Republic of Trinidad and Tobago",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".tt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5694,14 +6130,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Tuvalu",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "798",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".tv"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5719,14 +6157,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Taiwan, Province of China",
-        "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.\nsource: https://www.iana.org/domains/root/db",
         "numeric": "158",
         "official_name": "Taiwan, Province of China",
         "region": null,
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": null,
-        "tlds": null,
+        "tlds": [
+          ".tw"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5744,14 +6184,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United Republic of Tanzania",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "834",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".tz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5769,14 +6211,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Ukraine",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA\nsource: https://www.iana.org/domains/root/db",
         "numeric": "804",
         "official_name": "Ukraine",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Eastern Europe",
-        "tlds": null,
+        "tlds": [
+          ".ua"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5794,14 +6238,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Uganda",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "800",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".ug"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5840,14 +6286,14 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States Minor Outlying Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "581",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Micronesia",
-        "tlds": null,
+        "tlds": [],
         "withdrawal_date": null
       },
       {
@@ -5865,14 +6311,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States of America",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "840",
         "official_name": "United States of America",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Northern America",
-        "tlds": null,
+        "tlds": [
+          ".us"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5890,14 +6338,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Uruguay",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UY\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UY\nsource: https://www.iana.org/domains/root/db",
         "numeric": "858",
         "official_name": "Eastern Republic of Uruguay",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".uy"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5915,14 +6365,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Uzbekistan",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "860",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Central Asia",
-        "tlds": null,
+        "tlds": [
+          ".uz"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5940,14 +6392,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Holy See",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA\nsource: https://www.iana.org/domains/root/db",
         "numeric": "336",
         "official_name": "Holy See",
         "region": "Europe",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Southern Europe",
-        "tlds": null,
+        "tlds": [
+          ".va"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5965,14 +6419,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Saint Vincent and the Grenadines",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VC\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VC\nsource: https://www.iana.org/domains/root/db",
         "numeric": "670",
         "official_name": "Saint Vincent and the Grenadines",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".vc"
+        ],
         "withdrawal_date": null
       },
       {
@@ -5990,14 +6446,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Venezuela (Bolivarian Republic of)",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VE\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VE\nsource: https://www.iana.org/domains/root/db",
         "numeric": "862",
         "official_name": "Bolivarian Republic of Venezuela",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".ve"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6015,14 +6473,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "British Virgin Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VG\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VG\nsource: https://www.iana.org/domains/root/db",
         "numeric": "092",
         "official_name": "Virgin Islands (British)",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".vg"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6040,14 +6500,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "United States Virgin Islands",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VI\nsource: https://www.itu.int/oth/T02020000E8/en",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VI\nsource: https://www.iana.org/domains/root/db",
         "numeric": "850",
         "official_name": "Virgin Islands (U.S.)",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Latin America and the Caribbean",
-        "tlds": null,
+        "tlds": [
+          ".vi"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6065,14 +6527,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Viet Nam",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "704",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "South-eastern Asia",
-        "tlds": null,
+        "tlds": [
+          ".vn"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6090,14 +6554,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Vanuatu",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "548",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Melanesia",
-        "tlds": null,
+        "tlds": [
+          ".vu"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6115,14 +6581,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Wallis and Futuna Islands",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "876",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".wf"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6140,14 +6608,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Samoa",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "882",
         "official_name": null,
         "region": "Oceania",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Polynesia",
-        "tlds": null,
+        "tlds": [
+          ".ws"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6186,14 +6656,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Yemen",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "887",
         "official_name": null,
         "region": "Asia",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Western Asia",
-        "tlds": null,
+        "tlds": [
+          ".ye"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6211,14 +6683,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Mayotte",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "175",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".yt"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6236,14 +6710,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Africa",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "710",
         "official_name": "Republic of South Africa",
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".za"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6261,14 +6737,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Zambia",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "894",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".zm"
+        ],
         "withdrawal_date": null
       },
       {
@@ -6286,14 +6764,16 @@
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Zimbabwe",
-        "note": "source: https://www.itu.int/oth/T02020000E8/en",
+        "note": "source: https://www.iana.org/domains/root/db",
         "numeric": "716",
         "official_name": null,
         "region": "Africa",
         "replaced_by": null,
         "status": "officially-assigned",
         "subregion": "Sub-Saharan Africa",
-        "tlds": null,
+        "tlds": [
+          ".zw"
+        ],
         "withdrawal_date": null
       }
     ],

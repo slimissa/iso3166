@@ -9,7 +9,9 @@
       "calling_codes": [
         "1"
       ],
-      "tlds": []
+      "tlds": [
+        ".us"
+      ]
     },
     {
       "input": "GB",
@@ -20,7 +22,9 @@
       "calling_codes": [
         "44"
       ],
-      "tlds": []
+      "tlds": [
+        ".uk"
+      ]
     },
     {
       "input": "JP",
@@ -31,7 +35,9 @@
       "calling_codes": [
         "81"
       ],
-      "tlds": []
+      "tlds": [
+        ".jp"
+      ]
     },
     {
       "input": "DE",
@@ -42,7 +48,9 @@
       "calling_codes": [
         "49"
       ],
-      "tlds": []
+      "tlds": [
+        ".de"
+      ]
     },
     {
       "input": "EC",
@@ -53,7 +61,9 @@
       "calling_codes": [
         "593"
       ],
-      "tlds": []
+      "tlds": [
+        ".ec"
+      ]
     },
     {
       "input": "PA",
@@ -65,7 +75,9 @@
       "calling_codes": [
         "507"
       ],
-      "tlds": []
+      "tlds": [
+        ".pa"
+      ]
     }
   ],
   "lookup_withdrawn": [
