@@ -1,11 +1,17 @@
 {
-  "_comment": "UN M49 intermediate regions. Source: unstats.un.org/unsd/methodology/m49/. Only countries with a defined intermediate region carry this field.",
+  "_comment": "UN M49 intermediate regions used by the registry. Source: unstats.un.org/unsd/methodology/m49/. Only the seven regions actually present in the data are listed; UN M49 does not assign an intermediate region to every entry, and this list is not exhaustive of the UN M49 hierarchy.",
   "meta": {
     "source": "UN M49",
     "source_url": "https://unstats.un.org/unsd/methodology/m49/",
     "generated": "2026-09-23"
   },
   "intermediate_regions": [
-    "<verify from UN source>"
+    "Caribbean",
+    "Central America",
+    "Eastern Africa",
+    "Middle Africa",
+    "South America",
+    "Southern Africa",
+    "Western Africa"
   ]
 }
