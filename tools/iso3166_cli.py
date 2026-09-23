@@ -47,6 +47,7 @@ import io
 import json
 import os
 import sys
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Iterable, Sequence
 
@@ -365,6 +366,40 @@ def cmd_list(reg, args) -> int:
     elif args.withdrawn:
         pool = [e for e in pool if e.get("status") == "withdrawn"]
 
+    # Date filters over the withdrawn set.
+    since = getattr(args, "withdrawn_since", None)
+    before = getattr(args, "withdrawn_before", None)
+    if since or before:
+        if not args.withdrawn:
+            print(
+                "error: --withdrawn-since and --withdrawn-before require --withdrawn",
+                file=sys.stderr,
+            )
+            return EXIT_USAGE
+
+        def _parse(s: str, flag: str):
+            try:
+                return datetime.strptime(s, "%Y-%m-%d").date()
+            except ValueError:
+                print(f"error: {flag}: {s!r} is not YYYY-MM-DD", file=sys.stderr)
+                return None
+
+        if since:
+            since_d = _parse(since, "--withdrawn-since")
+            if since_d is None:
+                return EXIT_USAGE
+            pool = [e for e in pool
+                    if e.get("withdrawal_date")
+                    and datetime.strptime(e["withdrawal_date"], "%Y-%m-%d").date() >= since_d]
+
+        if before:
+            before_d = _parse(before, "--withdrawn-before")
+            if before_d is None:
+                return EXIT_USAGE
+            pool = [e for e in pool
+                    if e.get("withdrawal_date")
+                    and datetime.strptime(e["withdrawal_date"], "%Y-%m-%d").date() < before_d]
+
     if args.status:
         pool = [e for e in pool if e.get("status") == args.status]
     if args.region:
@@ -562,6 +597,189 @@ def cmd_search(reg, args) -> int:
 
 
 # ============================================================
+# Succession queries
+# ============================================================
+
+def _terminal_successors(entry: dict, by_a2: dict) -> set[str]:
+    """Terminal successors of a withdrawn entry.
+
+    A terminal successor is a code reachable via `replaced_by` that is
+    not itself further replaced. An active code is terminal. A
+    withdrawn code with no `replaced_by` is terminal. A code that is
+    not present in the registry is terminal.
+    """
+    terminals: set[str] = set()
+    seen: set[str] = set()
+
+    def walk(code: str) -> None:
+        if code in seen:
+            return
+        seen.add(code)
+        e = by_a2.get(code)
+        if e is None:
+            terminals.add(code)
+            return
+        succ = list(e.get("replaced_by") or [])
+        if not succ:
+            terminals.add(code)
+            return
+        for s in succ:
+            walk(s)
+
+    walk(entry["alpha_2"])
+    return terminals
+
+
+def cmd_successors(reg, args) -> int:
+    code = args.code.upper()
+    by_a2 = {e["alpha_2"]: e for e in all_entries(reg)}
+    entry = by_a2.get(code)
+    if entry is None:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+
+    chain: list[str] = []
+    terminals: set[str] = set()
+    seen: set[str] = set()
+
+    def walk(cur: str) -> None:
+        if cur in seen:
+            return
+        seen.add(cur)
+        e = by_a2.get(cur)
+        if e is None:
+            terminals.add(cur)
+            return
+        succ = list(e.get("replaced_by") or [])
+        if e.get("status") == "withdrawn" and succ:
+            chain.append(cur)
+            for s in succ:
+                walk(s)
+        else:
+            terminals.add(cur)
+
+    walk(code)
+
+    if args.json:
+        write_json({
+            "code": code,
+            "chain": [
+                {
+                    "alpha_2": c,
+                    "name": by_a2[c].get("name"),
+                    "withdrawal_date": by_a2[c].get("withdrawal_date"),
+                    "replaced_by": by_a2[c].get("replaced_by") or [],
+                }
+                for c in chain
+            ],
+            "terminal_successors": sorted(terminals),
+        })
+        return EXIT_SUCCESS
+
+    if args.jsonl:
+        for c in chain:
+            e = by_a2[c]
+            sys.stdout.write(json.dumps({
+                "alpha_2": c,
+                "name": e.get("name"),
+                "withdrawal_date": e.get("withdrawal_date"),
+                "replaced_by": e.get("replaced_by") or [],
+            }, sort_keys=True) + "\n")
+        return EXIT_SUCCESS
+
+    if args.raw:
+        for t in sorted(terminals):
+            sys.stdout.write(f"{t}\n")
+        return EXIT_SUCCESS
+
+    if args.csv or args.tsv:
+        delim = "," if args.csv else "\t"
+        buf = io.StringIO(newline="")
+        w = csv.writer(buf, delimiter=delim, lineterminator="\n")
+        w.writerow(["alpha_2", "name", "withdrawal_date", "replaced_by"])
+        for c in chain:
+            e = by_a2[c]
+            w.writerow([
+                c,
+                e.get("name") or "",
+                e.get("withdrawal_date") or "",
+                ",".join(e.get("replaced_by") or []),
+            ])
+        sys.stdout.write(buf.getvalue())
+        return EXIT_SUCCESS
+
+    style = Style(resolve_color_enabled(args.color, sys.stdout))
+    if not chain:
+        e = by_a2[code]
+        print(f"{style.cyan(code)} — {e.get('name', '')} has no successors.")
+        return EXIT_SUCCESS
+
+    for c in chain:
+        e = by_a2[c]
+        succ = ", ".join(e.get("replaced_by") or []) or "—"
+        wd = e.get("withdrawal_date") or ""
+        wd_str = f" (withdrawn {wd})" if wd else ""
+        print(f"{style.cyan(c)} — {e.get('name', '')}{wd_str} -> {succ}")
+
+    print()
+    if terminals:
+        print(f"Terminal successors: {', '.join(sorted(terminals))}")
+    else:
+        print("Terminal successors: (none)")
+    return EXIT_SUCCESS
+
+
+def cmd_predecessors(reg, args) -> int:
+    code = args.code.upper()
+    by_a2 = {e["alpha_2"]: e for e in all_entries(reg)}
+    if code not in by_a2:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+
+    predecessors: list[str] = []
+    for e in reg["countries"]["withdrawn"]:
+        if e["alpha_2"] == code:
+            continue
+        if code in _terminal_successors(e, by_a2):
+            predecessors.append(e["alpha_2"])
+    predecessors.sort()
+
+    if args.json:
+        write_json({"code": code, "predecessors": predecessors})
+        return EXIT_SUCCESS
+
+    if args.jsonl:
+        for p in predecessors:
+            sys.stdout.write(json.dumps(
+                {"code": code, "predecessor": p}, sort_keys=True,
+            ) + "\n")
+        return EXIT_SUCCESS
+
+    if args.raw:
+        for p in predecessors:
+            sys.stdout.write(f"{p}\n")
+        return EXIT_SUCCESS
+
+    if args.csv or args.tsv:
+        delim = "," if args.csv else "\t"
+        buf = io.StringIO(newline="")
+        w = csv.writer(buf, delimiter=delim, lineterminator="\n")
+        w.writerow(["predecessor"])
+        for p in predecessors:
+            w.writerow([p])
+        sys.stdout.write(buf.getvalue())
+        return EXIT_SUCCESS
+
+    style = Style(resolve_color_enabled(args.color, sys.stdout))
+    if not predecessors:
+        print(f"{style.cyan(code)} has no withdrawn predecessors.")
+    else:
+        print(f"{style.cyan(code)} is a terminal successor of: "
+              f"{', '.join(predecessors)}")
+    return EXIT_SUCCESS
+
+
+# ============================================================
 # Argparse
 # ============================================================
 
@@ -626,6 +844,10 @@ def build_parser() -> argparse.ArgumentParser:
     g = sp.add_mutually_exclusive_group()
     g.add_argument("--active", action="store_true")
     g.add_argument("--withdrawn", action="store_true")
+    sp.add_argument("--withdrawn-since", metavar="YYYY-MM-DD",
+                    help="With --withdrawn: only entries withdrawn on or after this date.")
+    sp.add_argument("--withdrawn-before", metavar="YYYY-MM-DD",
+                    help="With --withdrawn: only entries withdrawn before this date.")
     sp.add_argument("--limit", type=int)
     sp.set_defaults(func=cmd_list)
 
@@ -656,6 +878,16 @@ def build_parser() -> argparse.ArgumentParser:
                         help="Substring search on names and codes.")
     sp.add_argument("query")
     sp.set_defaults(func=cmd_search)
+
+    sp = sub.add_parser("successors", parents=[common],
+                        help="Follow replaced_by transitively to terminal successors.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_successors)
+
+    sp = sub.add_parser("predecessors", parents=[common],
+                        help="Withdrawn codes whose terminal successors include this code.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_predecessors)
 
     return p
 
