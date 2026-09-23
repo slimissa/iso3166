@@ -161,6 +161,8 @@ subcommands:
 | `info` | Registry metadata |
 | `validate CC...` | Exit 0 if all codes exist, 1 otherwise |
 | `search QUERY` | Substring search on names and codes |
+| `successors CC` | Follow `replaced_by` transitively to terminal successors |
+| `predecessors CC` | Withdrawn codes whose terminal successors include this code |
 
 Five output modes, mutually exclusive: `--json`, `--jsonl`, `--csv`,
 `--tsv`, `--raw FIELD`.
