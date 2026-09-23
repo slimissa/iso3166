@@ -422,12 +422,14 @@ Wrapper package versions track the registry version.
 
 | Project | How it uses this registry |
 |---------|---------------------------|
+| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | **Vendors a byte-for-byte snapshot at `tools/iso3166_snapshot.json` (v1.5.2).** Every exchange's `country_code` must resolve in `countries.active[]`; `country` must match `name` byte-for-byte. Checked in CI. |
 | [ISO 4217](https://github.com/slimissa/iso4217) | Cross-references country codes from currency `entity` fields |
-| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | Exchange JSON carries a `country_code` referencing alpha-2 |
 | [Corporate Actions](https://github.com/slimissa/corporate-actions) | Instrument entries reference the country of listing |
 | [Asset Identifiers](https://github.com/slimissa/asset-identifiers) | Will reference `alpha_2` for country of listing |
 | [LAS_Shell](https://github.com/slimissa/Las_shell) | Reads country codes for market status and prompt display |
 | [Tempus](https://github.com/slimissa/Tempus) | Planned compile-time `Country<ISO3166>` type validation |
+
+Exchange Calendar is the first consumer to vendor a snapshot and check it in CI. If you build on this registry the same way — byte-for-byte snapshot, CI-gated — open a PR to add your project to this table with the version you vendored.
 
 *Using this registry in your project? Open a PR to add your name here.*
 

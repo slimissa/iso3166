@@ -8,6 +8,53 @@ For anything more than a data correction, **open an issue first**. The
 registry is small and deliberate; large PRs that arrive unannounced
 are hard to review.
 
+## Downstream notification
+
+Exchange Calendar vendors a byte-for-byte snapshot of `iso3166.json`
+and validates that every exchange's `country` field matches this
+registry's `name` byte-for-byte. That means two classes of change
+require coordinating with downstream consumers before releasing:
+
+### Renaming a country
+
+Changing any entry's `name` is a **breaking change** for byte-equal
+consumers. Examples:
+
+- `Turkey` → `Türkiye` (2022)
+- `Czech Republic` → `Czechia` (2016)
+- `Macedonia` → `North Macedonia` (2019)
+
+These are never patch releases. They require:
+
+1. An entry in `CHANGELOG.md` under a `### Breaking` heading
+2. A minor or major version bump, not a patch
+3. A note in the release's GitHub body naming the affected codes
+4. A heads-up to downstream consumers
+
+### Changing a code's status
+
+Reassigning an alpha-2 (as happened with `AI` and `SK`) or withdrawing
+a code that any downstream consumer references will break their CI.
+
+Before releasing:
+
+1. Note the code and its new status in the CHANGELOG
+2. Include the succession chain (`replaced_by`) if applicable
+3. If a downstream consumer's snapshot references the code, notify them
+
+A downstream CI failure is the correct outcome — it forces a
+conversation. But it should be anticipated, not discovered.
+
+### Notification checklist
+
+Before tagging a release:
+
+- [ ] Does any entry's `name` differ from the previous release?
+- [ ] Has any code changed status?
+- [ ] Has any code been added to or removed from `countries.active`?
+
+If any answer is "yes", the release notes must say so explicitly.
+
 ## Data corrections
 
 1. Edit `iso3166.json`.
