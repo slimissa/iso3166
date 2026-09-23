@@ -165,7 +165,10 @@
       "tlds": [
         ".ls"
       ],
-      "languages": [],
+      "languages": [
+        "eng",
+        "sot"
+      ],
       "borders": []
     }
   ],
