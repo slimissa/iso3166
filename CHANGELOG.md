@@ -16,6 +16,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.3.0] — 2026-09-23
+
+Populate `languages` and `borders`; tighten the ITU snapshot.
+
+### Added
+
+- `languages` populated for all 249 officially-assigned entries.
+  ISO 639-3 codes sourced from the CIA World Factbook.
+- `borders` populated for all 249 officially-assigned entries.
+  Sourced from the CIA World Factbook `Land boundaries` section.
+- `tools/iso639_3_snapshot.json` — ISO 639-3 language codes.
+- `docs/decisions/languages-borders-sources.md` — ADR expanding the
+  first-party source rule to include government statistical
+  services.
+
+### Changed
+
+- `tools/itu_calling_code_snapshot.json` reduced from 294 to 204
+  codes. The extras were valid ITU assignments that do not map to
+  an ISO 3166-1 entry.
+- `tools/enrich_field.py` supports `languages` and `borders`.
+- `tools/validate.py` business layer enforces border symmetry.
+- The `check-fields` CI job now runs six blocking checks.
+
+### Deferred
+
+- `subregion` on withdrawn entries. Seven of the 25 withdrawn codes
+  span multiple UN M49 subregions or are uninhabited; the field would
+  carry `null` for those. Deferred to v1.4.0.
+
 ## [1.2.0] — 2026-09-23
 
 Populate four data fields for every officially-assigned ISO 3166-1
@@ -163,7 +193,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/slimissa/iso3166/releases/tag/v1.3.0
 [1.2.0]: https://github.com/slimissa/iso3166/releases/tag/v1.2.0
 [1.1.0]: https://github.com/slimissa/iso3166/releases/tag/v1.1.0
 [1.0.1]: https://github.com/slimissa/iso3166/releases/tag/v1.0.1
