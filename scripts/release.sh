@@ -114,7 +114,7 @@ p.write_text(json.dumps(d, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
 def sub_file(path, pattern, replacement):
     p = Path(path)
     text = p.read_text(encoding="utf-8")
-    new = re.sub(pattern, replacement, text)
+    new = re.sub(pattern, replacement, text, flags=re.MULTILINE)
     if new == text:
         sys.exit(f"sub had no effect on {path}: pattern {pattern!r}")
     p.write_text(new, encoding="utf-8")
