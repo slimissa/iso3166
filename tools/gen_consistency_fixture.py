@@ -149,6 +149,7 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             "tlds": e.get("tlds") or [],
             "languages": e.get("languages") or [],
             "borders": e.get("borders") or [],
+            "intermediate_region": e.get("intermediate_region"),
         })
 
     # Subregion cases for representative withdrawn entries.

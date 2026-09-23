@@ -40,7 +40,8 @@
       "borders": [
         "CA",
         "MX"
-      ]
+      ],
+      "intermediate_region": null
     },
     {
       "input": "GB",
@@ -59,7 +60,8 @@
       ],
       "borders": [
         "IE"
-      ]
+      ],
+      "intermediate_region": null
     },
     {
       "input": "JP",
@@ -76,7 +78,8 @@
       "languages": [
         "jpn"
       ],
-      "borders": []
+      "borders": [],
+      "intermediate_region": null
     },
     {
       "input": "DE",
@@ -103,7 +106,8 @@
         "LU",
         "NL",
         "PL"
-      ]
+      ],
+      "intermediate_region": null
     },
     {
       "input": "EC",
@@ -123,7 +127,8 @@
       "borders": [
         "CO",
         "PE"
-      ]
+      ],
+      "intermediate_region": "South America"
     },
     {
       "input": "PA",
@@ -144,7 +149,8 @@
       "borders": [
         "CO",
         "CR"
-      ]
+      ],
+      "intermediate_region": "Central America"
     },
     {
       "input": "CH",
@@ -170,7 +176,8 @@
         "FR",
         "IT",
         "LI"
-      ]
+      ],
+      "intermediate_region": null
     },
     {
       "input": "FR",
@@ -196,7 +203,8 @@
         "IT",
         "LU",
         "MC"
-      ]
+      ],
+      "intermediate_region": null
     },
     {
       "input": "RU",
@@ -228,7 +236,8 @@
         "NO",
         "PL",
         "UA"
-      ]
+      ],
+      "intermediate_region": null
     },
     {
       "input": "LS",
@@ -248,7 +257,8 @@
       ],
       "borders": [
         "ZA"
-      ]
+      ],
+      "intermediate_region": "Southern Africa"
     }
   ],
   "lookup_withdrawn": [

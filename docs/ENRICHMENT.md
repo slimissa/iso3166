@@ -256,3 +256,20 @@ single subregion applies.
 
 **Refresh.** Rare. The UN M49 subregion list is closed: 22 names.
 
+## `intermediate_region`
+
+**Source.** UN M49 classification.
+
+**Shape.** The country's intermediate region as named by UN M49.
+Populated only where M49 defines one — most countries stop at
+`subregion`, and their `intermediate_region` is null.
+
+**Edge cases.**
+- Caribbean countries (`AG`, `BB`, `CU`, `DO`, `HT`, `JM`, `PR`, `TT`,
+  and territories) have intermediate region "Caribbean".
+- Central American countries (`BZ`, `CR`, `GT`, `HN`, `MX`, `NI`,
+  `PA`, `SV`) have intermediate region "Central America".
+- South American countries have "South America".
+- Everywhere else: null.
+
+**Refresh.** Rare. The UN M49 intermediate-region list is closed.
