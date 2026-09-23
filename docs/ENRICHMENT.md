@@ -213,6 +213,11 @@ lists as major languages of the country. Capped at ten entries; the
 
 **Refresh.** On CIA World Factbook update; approximately annual.
 
+**Second source.** Where the CIA World Factbook's list is
+demonstrably incomplete, UNESCO Institute for Statistics
+(`uis.unesco.org`) provides the canonical list. The entry's `note`
+records which source was used.
+
 ## `borders`
 
 **Source.** CIA World Factbook `Land boundaries` section per country.
