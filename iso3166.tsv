@@ -44,7 +44,7 @@ CC	CCK	166	Cocos (Keeling) Islands	officially-assigned	false		Oceania	Australia 
 CD	COD	180	Democratic Republic of the Congo	officially-assigned	false		Africa	Sub-Saharan Africa	Middle Africa							2026-09-22		
 CF	CAF	140	Central African Republic	officially-assigned	false		Africa	Sub-Saharan Africa	Middle Africa							2026-09-22		
 CG	COG	178	Congo	officially-assigned	false		Africa	Sub-Saharan Africa	Middle Africa							2026-09-22		
-CH	CHE	756	Switzerland	officially-assigned	false		Europe	Western Europe								2026-09-22		
+CH	CHE	756	Switzerland	officially-assigned	false	Switzerland	Europe	Western Europe							official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH	2026-09-23		
 CI	CIV	384	Côte d’Ivoire	officially-assigned	false		Africa	Sub-Saharan Africa	Western Africa							2026-09-22		
 CK	COK	184	Cook Islands	officially-assigned	false		Oceania	Polynesia								2026-09-22		
 CL	CHL	152	Chile	officially-assigned	false		Americas	Latin America and the Caribbean	South America							2026-09-22		
@@ -177,7 +177,7 @@ NF	NFK	574	Norfolk Island	officially-assigned	false		Oceania	Australia and New Z
 NG	NGA	566	Nigeria	officially-assigned	false		Africa	Sub-Saharan Africa	Western Africa							2026-09-22		
 NH	NHB	000	New Hebrides	withdrawn	false											2026-09-22	1980-07-30	VU
 NI	NIC	558	Nicaragua	officially-assigned	false		Americas	Latin America and the Caribbean	Central America							2026-09-22		
-NL	NLD	528	Netherlands (Kingdom of the)	officially-assigned	false		Europe	Western Europe								2026-09-22		
+NL	NLD	528	Netherlands (Kingdom of the)	officially-assigned	false	Netherlands (Kingdom of the)	Europe	Western Europe							official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL	2026-09-23		
 NO	NOR	578	Norway	officially-assigned	false		Europe	Northern Europe								2026-09-22		
 NP	NPL	524	Nepal	officially-assigned	false		Asia	Southern Asia								2026-09-22		
 NQ	ATN	000	Dronning Maud Land	withdrawn	false										source: https://www.iso.org/obp/ui/#iso:code:3166:NQ	2026-09-23	1983-01-01	AQ
@@ -214,7 +214,7 @@ SB	SLB	090	Solomon Islands	officially-assigned	false		Oceania	Melanesia								2
 SC	SYC	690	Seychelles	officially-assigned	false		Africa	Sub-Saharan Africa	Eastern Africa							2026-09-22		
 SD	SDN	729	Sudan	officially-assigned	false		Africa	Northern Africa								2026-09-22		
 SE	SWE	752	Sweden	officially-assigned	false		Europe	Northern Europe								2026-09-22		
-SG	SGP	702	Singapore	officially-assigned	false		Asia	South-eastern Asia								2026-09-22		
+SG	SGP	702	Singapore	officially-assigned	false	Singapore	Asia	South-eastern Asia							official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG	2026-09-23		
 SH	SHN	654	Saint Helena	officially-assigned	false		Africa	Sub-Saharan Africa	Western Africa							2026-09-22		
 SI	SVN	705	Slovenia	officially-assigned	false		Europe	Southern Europe								2026-09-22		
 SJ	SJM	744	Svalbard and Jan Mayen Islands	officially-assigned	false		Europe	Northern Europe								2026-09-22		
