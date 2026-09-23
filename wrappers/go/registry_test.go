@@ -216,6 +216,11 @@ type fixtureDoc struct {
 		Languages     []string `json:"languages"`
 		Borders       []string `json:"borders"`
 	} `json:"lookup_fields"`
+
+	LookupWithdrawnFields []struct {
+		Input     string  `json:"input"`
+		Subregion *string `json:"subregion"`
+	} `json:"lookup_withdrawn_fields"`
 	LookupWithdrawn []struct {
 		Input          string  `json:"input"`
 		Alpha2         string  `json:"alpha_2"`
@@ -461,4 +466,21 @@ func sliceEq(a, b []string) bool {
 		}
 	}
 	return true
+}
+
+func TestFixtureLookupWithdrawnFields(t *testing.T) {
+	reg := mustLoad(t)
+	for _, c := range loadFixture(t).LookupWithdrawnFields {
+		matches := reg.WithAlpha2(c.Input)
+		if len(matches) == 0 {
+			t.Fatalf("%s: not found", c.Input)
+		}
+		got := matches[0].Subregion
+		if got == nil && c.Subregion == nil {
+			continue
+		}
+		if got == nil || c.Subregion == nil || *got != *c.Subregion {
+			t.Fatalf("%s: subregion mismatch", c.Input)
+		}
+	}
 }

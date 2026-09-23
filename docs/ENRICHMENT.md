@@ -232,3 +232,22 @@ names as a land neighbor.
 
 **Refresh.** On CIA World Factbook update; approximately annual.
 
+## `subregion`
+
+**Source.** UN M49 classification.
+
+**Shape.** The country's subregion as named by the UN M49 standard.
+A scalar string, not a list. On active entries, populated from UN M49
+at initial import. On withdrawn entries, populated by hand where a
+single subregion applies.
+
+**Edge cases.**
+- Entries that spanned multiple subregions stay null: FQ (French
+  Southern and Antarctic Territories), SU (USSR).
+- Uninhabited entries stay null: CT, JT, MI, NQ, WK.
+- The UN M49 does not assign a subregion to AQ (Antarctica) or to
+  TW (Taiwan). Both stay null on the active side.
+- Each null entry carries a note explaining why.
+
+**Refresh.** Rare. The UN M49 subregion list is closed: 22 names.
+

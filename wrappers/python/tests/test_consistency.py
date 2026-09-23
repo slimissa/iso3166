@@ -122,3 +122,13 @@ def test_lookup_fields(fixture, reg):
         assert (c.currency_codes or []) == case["currency_codes"]
         assert (c.calling_codes or []) == case["calling_codes"]
         assert (c.tlds or []) == case["tlds"]
+
+def test_lookup_withdrawn_fields(fixture, reg):
+    for case in fixture.get("lookup_withdrawn_fields", []):
+        matches = reg.with_alpha2(case["input"])
+        assert matches, f"{case['input']} not found"
+        entry = matches[0]
+        assert entry.subregion == case["subregion"], (
+            f"{case['input']}: subregion is {entry.subregion!r}, "
+            f"expected {case['subregion']!r}"
+        )

@@ -138,3 +138,12 @@ test("lookup_fields", () => {
     assert.deepEqual(got.borders || [], c.borders || []);
   }
 });
+
+test("lookup_withdrawn_fields", () => {
+  for (const c of fixture.lookup_withdrawn_fields || []) {
+    const matches = reg.withAlpha2(c.input);
+    assert.ok(matches.length > 0, `${c.input} not found`);
+    assert.equal(matches[0].subregion, c.subregion,
+      `${c.input}: subregion mismatch`);
+  }
+});
