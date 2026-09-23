@@ -25,7 +25,7 @@ Entries: **25**
 | PZ | PCZ | 000 | Panama Canal Zone | 1980-01-01 | PA |
 | RH | RHO | 000 | Southern Rhodesia | 1980-04-18 | ZW |
 | SK | SKM | 000 | Sikkim | 1975-05-16 | IN |
-| SU | SUN | 810 | USSR | 2099-01-01 | — |
+| SU | SUN | 810 | USSR | 1992-08-30 | — |
 | TP | TMP | 626 | East Timor | 2002-05-20 | TL |
 | VD | VDR | 000 | North Vietnam | 1976-07-02 | VN |
 | WK | WAK | 000 | Wake Island | 1986-01-01 | — |

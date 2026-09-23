@@ -317,7 +317,10 @@ impl CountryRegistry {
     /// Currency codes in circulation in a country. Empty if the country
     /// is unknown or has none.
     pub fn currencies(&self, alpha_2: &str) -> &[String] {
-        match self.active(alpha_2).and_then(|c| c.currency_codes.as_deref()) {
+        match self
+            .active(alpha_2)
+            .and_then(|c| c.currency_codes.as_deref())
+        {
             Some(v) => v,
             None => &[],
         }
