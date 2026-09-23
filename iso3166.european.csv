@@ -17,8 +17,8 @@ official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AM";2026-09-23;;
 AN;ANT;530;Netherlands Antilles;withdrawn;false;;;;;;;;;;;2026-09-22;2010-12-01;BQ|CW|SX
 AO;AGO;024;Angola;officially-assigned;false;Republic of Angola;Africa;Sub-Saharan Africa;Middle Africa;AOA;244;.ao;por;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AO
 source: https://www.cia.gov/the-world-factbook/countries/AO/";2026-09-23;;
-AQ;ATA;010;Antarctica;officially-assigned;false;Antarctica;;;;;672;.aq;;;"source: https://www.iana.org/domains/root/db
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AQ";2026-09-23;;
+AQ;ATA;010;Antarctica;officially-assigned;false;Antarctica;;;;;672;.aq;;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AQ
+source: https://www.cia.gov/the-world-factbook/countries/AQ/";2026-09-23;;
 AR;ARG;032;Argentina;officially-assigned;false;Argentina;Americas;Latin America and the Caribbean;South America;ARS;54;.ar;spa;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR
 source: https://www.cia.gov/the-world-factbook/countries/AR/";2026-09-23;;
 AS;ASM;016;American Samoa;officially-assigned;false;American Samoa;Oceania;Polynesia;;USD;1;.as;;;"source: https://www.iana.org/domains/root/db
@@ -67,8 +67,8 @@ source: https://www.cia.gov/the-world-factbook/countries/BS/";2026-09-23;;
 BT;BTN;064;Bhutan;officially-assigned;false;Kingdom of Bhutan;Asia;Southern Asia;;BTN;975;.bt;;;"source: https://www.iana.org/domains/root/db
 official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BT";2026-09-23;;
 BU;BUR;104;Burma;withdrawn;false;;;;;;;;;;;2026-09-22;1989-12-05;MM
-BV;BVT;074;Bouvet Island;officially-assigned;false;Bouvet Island;Americas;Latin America and the Caribbean;South America;NOK;47;.bv;;;"source: https://www.iana.org/domains/root/db
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BV";2026-09-23;;
+BV;BVT;074;Bouvet Island;officially-assigned;false;Bouvet Island;Americas;Latin America and the Caribbean;South America;NOK;47;.bv;nor;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BV
+source: https://www.cia.gov/the-world-factbook/countries/BV/";2026-09-23;;
 BW;BWA;072;Botswana;officially-assigned;false;Republic of Botswana;Africa;Sub-Saharan Africa;Southern Africa;BWP;267;.bw;eng|tsn;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BW
 source: https://www.cia.gov/the-world-factbook/countries/BW/";2026-09-23;;
 BY;BLR;112;Belarus;officially-assigned;false;Republic of Belarus;Europe;Eastern Europe;;BYN;375;.by;bel|rus;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY
@@ -181,8 +181,8 @@ GQ;GNQ;226;Equatorial Guinea;officially-assigned;false;Republic of Equatorial Gu
 source: https://www.cia.gov/the-world-factbook/countries/GQ/";2026-09-23;;
 GR;GRC;300;Greece;officially-assigned;false;Hellenic Republic;Europe;Southern Europe;;EUR;30;.gr;ell;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR
 source: https://www.cia.gov/the-world-factbook/countries/GR/";2026-09-23;;
-GS;SGS;239;South Georgia and the South Sandwich Islands;officially-assigned;false;South Georgia and the South Sandwich Islands;Americas;Latin America and the Caribbean;South America;FKP;500;.gs;;;"source: https://www.iana.org/domains/root/db
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GS";2026-09-23;;
+GS;SGS;239;South Georgia and the South Sandwich Islands;officially-assigned;false;South Georgia and the South Sandwich Islands;Americas;Latin America and the Caribbean;South America;FKP;500;.gs;eng;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GS
+source: https://www.cia.gov/the-world-factbook/countries/GS/";2026-09-23;;
 GT;GTM;320;Guatemala;officially-assigned;false;Republic of Guatemala;Americas;Latin America and the Caribbean;Central America;GTQ;502;.gt;spa;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GT
 source: https://www.cia.gov/the-world-factbook/countries/GT/";2026-09-23;;
 GU;GUM;316;Guam;officially-assigned;false;Guam;Oceania;Micronesia;;USD;1;.gu;;;"source: https://www.iana.org/domains/root/db
@@ -441,8 +441,8 @@ TC;TCA;796;Turks and Caicos Islands;officially-assigned;false;Turks and Caicos I
 source: https://www.cia.gov/the-world-factbook/countries/TC/";2026-09-23;;
 TD;TCD;148;Chad;officially-assigned;false;Republic of Chad;Africa;Sub-Saharan Africa;Middle Africa;XAF;235;.td;ara|fra;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TD
 source: https://www.cia.gov/the-world-factbook/countries/TD/";2026-09-23;;
-TF;ATF;260;French Southern Territories;officially-assigned;false;French Southern Territories;Africa;Sub-Saharan Africa;Eastern Africa;EUR;262;.tf;;;"source: https://www.iana.org/domains/root/db
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TF";2026-09-23;;
+TF;ATF;260;French Southern Territories;officially-assigned;false;French Southern Territories;Africa;Sub-Saharan Africa;Eastern Africa;EUR;262;.tf;fra;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TF
+source: https://www.cia.gov/the-world-factbook/countries/TF/";2026-09-23;;
 TG;TGO;768;Togo;officially-assigned;false;Togolese Republic;Africa;Sub-Saharan Africa;Western Africa;XOF;228;.tg;fra;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TG
 source: https://www.cia.gov/the-world-factbook/countries/TG/";2026-09-23;;
 TH;THA;764;Thailand;officially-assigned;false;Kingdom of Thailand;Asia;South-eastern Asia;;THB;66;.th;;;"source: https://www.iana.org/domains/root/db
@@ -475,8 +475,8 @@ source: https://www.cia.gov/the-world-factbook/countries/UA/";2026-09-23;;
 UG;UGA;800;Uganda;officially-assigned;false;Republic of Uganda;Africa;Sub-Saharan Africa;Eastern Africa;UGX;256;.ug;eng|swa;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UG
 source: https://www.cia.gov/the-world-factbook/countries/UG/";2026-09-23;;
 UK;UKM;000;United Kingdom (exceptionally reserved);exceptionally-reserved;false;;;;;;;;;;Exceptionally reserved at the request of the United Kingdom. Use GB for the sovereign state.;2026-09-22;;
-UM;UMI;581;United States Minor Outlying Islands;officially-assigned;false;United States Minor Outlying Islands;Oceania;Micronesia;;USD;1;;;;"source: https://www.iana.org/domains/root/db
-official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UM";2026-09-23;;
+UM;UMI;581;United States Minor Outlying Islands;officially-assigned;false;United States Minor Outlying Islands;Oceania;Micronesia;;USD;1;;eng;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UM
+source: https://www.cia.gov/the-world-factbook/countries/UM/";2026-09-23;;
 US;USA;840;United States of America;officially-assigned;true;United States of America;Americas;Northern America;;USD;1;.us;;;source: https://www.iana.org/domains/root/db;2026-09-23;;
 UY;URY;858;Uruguay;officially-assigned;false;Eastern Republic of Uruguay;Americas;Latin America and the Caribbean;South America;UYU;598;.uy;spa;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UY
 source: https://www.cia.gov/the-world-factbook/countries/UY/";2026-09-23;;
