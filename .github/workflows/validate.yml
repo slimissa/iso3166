@@ -287,6 +287,22 @@ jobs:
         run: python3 tools/enrich_official_name.py --check
 
   # =================================================================
+  # 8b. The withdrawn set is complete.
+  # =================================================================
+  check-withdrawn:
+    name: check withdrawn set completeness
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: All ISO 3166-3 codes are present
+        run: python3 tools/enrich_withdrawn.py --check
+
+  # =================================================================
   # 8c. docs/WITHDRAWN.md matches a fresh generation.
   # =================================================================
   check-withdrawn-doc:
