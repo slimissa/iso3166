@@ -92,7 +92,7 @@
       {
         "alpha_2": "AG",
         "alpha_3": "ATG",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -121,7 +121,7 @@
       {
         "alpha_2": "AI",
         "alpha_3": "AIA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -262,7 +262,13 @@
       {
         "alpha_2": "AR",
         "alpha_3": "ARG",
-        "borders": null,
+        "borders": [
+          "BO",
+          "BR",
+          "CL",
+          "PY",
+          "UY"
+        ],
         "calling_codes": [
           "54"
         ],
@@ -377,7 +383,7 @@
       {
         "alpha_2": "AW",
         "alpha_3": "ABW",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "297"
         ],
@@ -494,7 +500,7 @@
       {
         "alpha_2": "BB",
         "alpha_3": "BRB",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -729,7 +735,7 @@
       {
         "alpha_2": "BL",
         "alpha_3": "BLM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "590"
         ],
@@ -756,7 +762,7 @@
       {
         "alpha_2": "BM",
         "alpha_3": "BMU",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -814,7 +820,13 @@
       {
         "alpha_2": "BO",
         "alpha_3": "BOL",
-        "borders": null,
+        "borders": [
+          "AR",
+          "BR",
+          "CL",
+          "PE",
+          "PY"
+        ],
         "calling_codes": [
           "591"
         ],
@@ -845,7 +857,7 @@
       {
         "alpha_2": "BQ",
         "alpha_3": "BES",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "599"
         ],
@@ -872,7 +884,18 @@
       {
         "alpha_2": "BR",
         "alpha_3": "BRA",
-        "borders": null,
+        "borders": [
+          "AR",
+          "BO",
+          "CO",
+          "GF",
+          "GY",
+          "PE",
+          "PY",
+          "SR",
+          "UY",
+          "VE"
+        ],
         "calling_codes": [
           "55"
         ],
@@ -901,7 +924,7 @@
       {
         "alpha_2": "BS",
         "alpha_3": "BHS",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -1048,7 +1071,10 @@
       {
         "alpha_2": "BZ",
         "alpha_3": "BLZ",
-        "borders": null,
+        "borders": [
+          "GT",
+          "MX"
+        ],
         "calling_codes": [
           "501"
         ],
@@ -1077,7 +1103,9 @@
       {
         "alpha_2": "CA",
         "alpha_3": "CAN",
-        "borders": null,
+        "borders": [
+          "US"
+        ],
         "calling_codes": [
           "1"
         ],
@@ -1318,7 +1346,11 @@
       {
         "alpha_2": "CL",
         "alpha_3": "CHL",
-        "borders": null,
+        "borders": [
+          "AR",
+          "BO",
+          "PE"
+        ],
         "calling_codes": [
           "56"
         ],
@@ -1406,7 +1438,13 @@
       {
         "alpha_2": "CO",
         "alpha_3": "COL",
-        "borders": null,
+        "borders": [
+          "BR",
+          "EC",
+          "PA",
+          "PE",
+          "VE"
+        ],
         "calling_codes": [
           "57"
         ],
@@ -1435,7 +1473,10 @@
       {
         "alpha_2": "CR",
         "alpha_3": "CRI",
-        "borders": null,
+        "borders": [
+          "NI",
+          "PA"
+        ],
         "calling_codes": [
           "506"
         ],
@@ -1464,7 +1505,7 @@
       {
         "alpha_2": "CU",
         "alpha_3": "CUB",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "53"
         ],
@@ -1522,7 +1563,7 @@
       {
         "alpha_2": "CW",
         "alpha_3": "CUW",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "599"
         ],
@@ -1728,7 +1769,7 @@
       {
         "alpha_2": "DM",
         "alpha_3": "DMA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -1757,7 +1798,9 @@
       {
         "alpha_2": "DO",
         "alpha_3": "DOM",
-        "borders": null,
+        "borders": [
+          "HT"
+        ],
         "calling_codes": [
           "1"
         ],
@@ -1815,7 +1858,10 @@
       {
         "alpha_2": "EC",
         "alpha_3": "ECU",
-        "borders": null,
+        "borders": [
+          "CO",
+          "PE"
+        ],
         "calling_codes": [
           "593"
         ],
@@ -2100,7 +2146,7 @@
       {
         "alpha_2": "FK",
         "alpha_3": "FLK",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "500"
         ],
@@ -2275,7 +2321,7 @@
       {
         "alpha_2": "GD",
         "alpha_3": "GRD",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -2333,7 +2379,10 @@
       {
         "alpha_2": "GF",
         "alpha_3": "GUF",
-        "borders": null,
+        "borders": [
+          "BR",
+          "SR"
+        ],
         "calling_codes": [
           "594"
         ],
@@ -2449,7 +2498,7 @@
       {
         "alpha_2": "GL",
         "alpha_3": "GRL",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "299"
         ],
@@ -2537,7 +2586,7 @@
       {
         "alpha_2": "GP",
         "alpha_3": "GLP",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "590"
         ],
@@ -2655,7 +2704,12 @@
       {
         "alpha_2": "GT",
         "alpha_3": "GTM",
-        "borders": null,
+        "borders": [
+          "BZ",
+          "HN",
+          "MX",
+          "SV"
+        ],
         "calling_codes": [
           "502"
         ],
@@ -2743,7 +2797,11 @@
       {
         "alpha_2": "GY",
         "alpha_3": "GUY",
-        "borders": null,
+        "borders": [
+          "BR",
+          "SR",
+          "VE"
+        ],
         "calling_codes": [
           "592"
         ],
@@ -2831,7 +2889,11 @@
       {
         "alpha_2": "HN",
         "alpha_3": "HND",
-        "borders": null,
+        "borders": [
+          "GT",
+          "NI",
+          "SV"
+        ],
         "calling_codes": [
           "504"
         ],
@@ -2889,7 +2951,9 @@
       {
         "alpha_2": "HT",
         "alpha_3": "HTI",
-        "borders": null,
+        "borders": [
+          "DO"
+        ],
         "calling_codes": [
           "509"
         ],
@@ -3272,7 +3336,7 @@
       {
         "alpha_2": "JM",
         "alpha_3": "JAM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -3508,7 +3572,7 @@
       {
         "alpha_2": "KN",
         "alpha_3": "KNA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -3624,7 +3688,7 @@
       {
         "alpha_2": "KY",
         "alpha_3": "CYM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -3742,7 +3806,7 @@
       {
         "alpha_2": "LC",
         "alpha_3": "LCA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -4123,7 +4187,7 @@
       {
         "alpha_2": "MF",
         "alpha_3": "MAF",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "590"
         ],
@@ -4383,7 +4447,7 @@
       {
         "alpha_2": "MQ",
         "alpha_3": "MTQ",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "596"
         ],
@@ -4441,7 +4505,7 @@
       {
         "alpha_2": "MS",
         "alpha_3": "MSR",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -4589,7 +4653,11 @@
       {
         "alpha_2": "MX",
         "alpha_3": "MEX",
-        "borders": null,
+        "borders": [
+          "BZ",
+          "GT",
+          "US"
+        ],
         "calling_codes": [
           "52"
         ],
@@ -4821,7 +4889,10 @@
       {
         "alpha_2": "NI",
         "alpha_3": "NIC",
-        "borders": null,
+        "borders": [
+          "CR",
+          "HN"
+        ],
         "calling_codes": [
           "505"
         ],
@@ -5056,7 +5127,10 @@
       {
         "alpha_2": "PA",
         "alpha_3": "PAN",
-        "borders": null,
+        "borders": [
+          "CO",
+          "CR"
+        ],
         "calling_codes": [
           "507"
         ],
@@ -5086,7 +5160,13 @@
       {
         "alpha_2": "PE",
         "alpha_3": "PER",
-        "borders": null,
+        "borders": [
+          "BO",
+          "BR",
+          "CL",
+          "CO",
+          "EC"
+        ],
         "calling_codes": [
           "51"
         ],
@@ -5266,7 +5346,7 @@
       {
         "alpha_2": "PM",
         "alpha_3": "SPM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "508"
         ],
@@ -5324,7 +5404,7 @@
       {
         "alpha_2": "PR",
         "alpha_3": "PRI",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -5440,7 +5520,11 @@
       {
         "alpha_2": "PY",
         "alpha_3": "PRY",
-        "borders": null,
+        "borders": [
+          "AR",
+          "BO",
+          "BR"
+        ],
         "calling_codes": [
           "595"
         ],
@@ -6056,7 +6140,11 @@
       {
         "alpha_2": "SR",
         "alpha_3": "SUR",
-        "borders": null,
+        "borders": [
+          "BR",
+          "GF",
+          "GY"
+        ],
         "calling_codes": [
           "597"
         ],
@@ -6143,7 +6231,10 @@
       {
         "alpha_2": "SV",
         "alpha_3": "SLV",
-        "borders": null,
+        "borders": [
+          "GT",
+          "HN"
+        ],
         "calling_codes": [
           "503"
         ],
@@ -6172,7 +6263,7 @@
       {
         "alpha_2": "SX",
         "alpha_3": "SXM",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -6259,7 +6350,7 @@
       {
         "alpha_2": "TC",
         "alpha_3": "TCA",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -6611,7 +6702,7 @@
       {
         "alpha_2": "TT",
         "alpha_3": "TTO",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -6863,7 +6954,10 @@
       {
         "alpha_2": "UY",
         "alpha_3": "URY",
-        "borders": null,
+        "borders": [
+          "AR",
+          "BR"
+        ],
         "calling_codes": [
           "598"
         ],
@@ -6951,7 +7045,7 @@
       {
         "alpha_2": "VC",
         "alpha_3": "VCT",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -6980,7 +7074,11 @@
       {
         "alpha_2": "VE",
         "alpha_3": "VEN",
-        "borders": null,
+        "borders": [
+          "BR",
+          "CO",
+          "GY"
+        ],
         "calling_codes": [
           "58"
         ],
@@ -7009,7 +7107,7 @@
       {
         "alpha_2": "VG",
         "alpha_3": "VGB",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],
@@ -7038,7 +7136,7 @@
       {
         "alpha_2": "VI",
         "alpha_3": "VIR",
-        "borders": null,
+        "borders": [],
         "calling_codes": [
           "1"
         ],

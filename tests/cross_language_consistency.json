@@ -81,7 +81,10 @@
       "languages": [
         "spa"
       ],
-      "borders": []
+      "borders": [
+        "CO",
+        "PE"
+      ]
     },
     {
       "input": "PA",
@@ -99,7 +102,10 @@
       "languages": [
         "spa"
       ],
-      "borders": []
+      "borders": [
+        "CO",
+        "CR"
+      ]
     },
     {
       "input": "CH",
