@@ -16,6 +16,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.2.0] — 2026-09-23
+
+Populate four data fields for every officially-assigned ISO 3166-1
+entry.
+
+### Added
+
+- `official_name` populated for all 249 officially-assigned entries.
+  Sourced per-entry from the ISO 3166-1 Online Browsing Platform.
+- `currency_codes` populated for all 249 entries. Sourced from ISO
+  3166-1 OBP country pages, cross-checked against ISO 4217.
+- `calling_codes` populated for all 249 entries. Sourced from ITU-T
+  E.164.
+- `tlds` populated for all 249 entries. Sourced from the IANA ccTLD
+  registry.
+- `tools/enrich_field.py` — unified enrichment for the three list
+  fields. `--field` selector; single-entry and TSV batch modes;
+  `--check` gate.
+- `tools/iana_tld_snapshot.json` — IANA ccTLDs.
+- `tools/itu_calling_code_snapshot.json` — ITU-T E.164 codes.
+- `docs/ENRICHMENT.md` — per-field source and edge-case reference.
+
+### Changed
+
+- `tools/validate.py` cross-reference layer now checks `tlds` against
+  the IANA snapshot and `calling_codes` against the ITU snapshot.
+- The `check-official-name` CI job becomes `check-fields`, running
+  four blocking `--check` invocations.
+- `tests/cross_language_consistency.json` now carries `lookup_fields`
+  cases covering the new fields, including the `.uk` exception for GB
+  and the dual-currency case for PA. All four wrapper test suites
+  assert agreement.
+
+### Fixed
+
+- The `check-official-name` gate added in v1.0.1 is now enforced
+  against complete data; the `continue-on-error: true` advisory is
+  removed.
+
 ## [1.1.0] — 2026-09-23
 
 Complete the ISO 3166-3 withdrawn set and add the tooling around it.
@@ -124,7 +163,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/slimissa/iso3166/releases/tag/v1.2.0
 [1.1.0]: https://github.com/slimissa/iso3166/releases/tag/v1.1.0
 [1.0.1]: https://github.com/slimissa/iso3166/releases/tag/v1.0.1
 [1.0.0]: https://github.com/slimissa/iso3166/releases/tag/v1.0.0
