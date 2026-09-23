@@ -7,6 +7,16 @@ import (
 	"testing"
 )
 
+func strPtrEq(a, b *string) bool {
+	if a == nil && b == nil {
+		return true
+	}
+	if a == nil || b == nil {
+		return false
+	}
+	return *a == *b
+}
+
 func mustLoad(t *testing.T) *CountryRegistry {
 	t.Helper()
 	reg, err := Load()
@@ -423,7 +433,7 @@ func TestFixtureLookupFields(t *testing.T) {
 		if got == nil {
 			t.Fatalf("%s missing", c.Input)
 		}
-		if got.OfficialName == nil || c.OfficialName == nil || *got.OfficialName != *c.OfficialName {
+		if !strPtrEq(got.OfficialName, c.OfficialName) {
 			t.Fatalf("%s: official_name mismatch", c.Input)
 		}
 		// compare slices
