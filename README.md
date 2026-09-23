@@ -7,7 +7,7 @@ One JSON file. Zero runtime dependencies. Four language wrappers.
 [![Validate](https://github.com/slimissa/iso3166/actions/workflows/validate.yml/badge.svg)](https://github.com/slimissa/iso3166/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Schema](https://img.shields.io/badge/schema-1.0.0-green.svg)](./schema.json)
-[![Registry](https://img.shields.io/badge/registry-1.0.1-orange.svg)](./iso3166.json)
+[![Registry](https://img.shields.io/badge/registry-1.1.0-orange.svg)](./iso3166.json)
 
 ---
 
@@ -163,6 +163,8 @@ subcommands:
 | `search QUERY` | Substring search on names and codes |
 | `successors CC` | Follow `replaced_by` transitively to terminal successors |
 | `predecessors CC` | Withdrawn codes whose terminal successors include this code |
+| `list --withdrawn-since DATE` | Withdrawn entries on or after this date |
+| `list --withdrawn-before DATE` | Withdrawn entries before this date |
 
 Five output modes, mutually exclusive: `--json`, `--jsonl`, `--csv`,
 `--tsv`, `--raw FIELD`.

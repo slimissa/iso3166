@@ -16,6 +16,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.1.0] — 2026-09-23
+
+Complete the ISO 3166-3 withdrawn set and add the tooling around it.
+
+### Added
+
+- `tools/enrich_withdrawn.py` — add or update withdrawn entries,
+  parallel to `enrich_official_name.py`. Enforces status, date, and
+  successor consistency; records the source URL in `note`.
+- `iso3166 successors CODE` — follow `replaced_by` transitively to
+  terminal successors.
+- `iso3166 predecessors CODE` — the inverse query, computed from the
+  data.
+- `iso3166 list --withdrawn-since DATE --withdrawn-before DATE` —
+  date filters over the withdrawn set.
+- `docs/WITHDRAWN.md` — generated table of every withdrawn code and
+  its successor chain.
+- `tools/gen_withdrawn_doc.py` — generator with `--check`.
+
+### Changed
+
+- The `withdrawn` array is now complete: 25 entries, one for every
+  code ISO 3166-3:2013 lists.
+- `tests/cross_language_consistency.json` now carries withdrawn-lookup
+  cases. All four wrapper test suites assert agreement on them.
+
+### Fixed
+
+- `tools/validate.py` now rejects a cyclical `replaced_by` graph and
+  a `withdrawal_date` in the future.
+- `iso3166 successors --raw` and `iso3166 predecessors --raw` accept
+  the flag without a field name.
+
 ## [1.0.1] — 2026-09-22
 
 Data completion and one behavioral change to the validator.
@@ -91,6 +124,7 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/slimissa/iso3166/releases/tag/v1.1.0
 [1.0.1]: https://github.com/slimissa/iso3166/releases/tag/v1.0.1
 [1.0.0]: https://github.com/slimissa/iso3166/releases/tag/v1.0.0
