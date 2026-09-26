@@ -4,16 +4,12 @@ on:
   push:
     branches: [main, "v*"]
     paths-ignore:
-      - "docs/**"
-      - "**/*.md"
       - ".gitignore"
       - ".gitattributes"
       - "LICENSE"
   pull_request:
     branches: [main]
     paths-ignore:
-      - "docs/**"
-      - "**/*.md"
       - ".gitignore"
       - ".gitattributes"
       - "LICENSE"
@@ -353,9 +349,27 @@ jobs:
 
       - name: No mojibake in any file
         run: python3 tools/check_mojibake.py
+        
+  # =================================================================
+  # 10. Snapshot freshness. Every tools/*_snapshot.json must have
+  #     a review_by that is either a future date or the literal
+  #     string "closed".
+  # =================================================================
+  check-snapshot-freshness:
+    name: check snapshot freshness
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: All snapshots fresh
+        run: python3 tools/check_snapshot_freshness.py
 
   # =================================================================
-  # 10. Cross-language verification: all four wrappers agree on US.
+  # 11. Cross-language verification: all four wrappers agree on US.
   # =================================================================
   cross-language:
     name: cross-language verification
@@ -389,7 +403,7 @@ jobs:
         run: bash tools/check_cross_language.sh US GB JP TW XK UK
 
   # =================================================================
-  # 11. Python wrapper tests.
+  # 12. Python wrapper tests.
   # =================================================================
   wrapper-python:
     name: Python wrapper tests
@@ -418,7 +432,7 @@ jobs:
         run: python3 -m pytest wrappers/python/tests/ -v
 
   # =================================================================
-  # 12. JavaScript wrapper tests.
+  # 13. JavaScript wrapper tests.
   # =================================================================
   wrapper-javascript:
     name: JavaScript wrapper tests
@@ -441,7 +455,7 @@ jobs:
         run: npm test
 
   # =================================================================
-  # 13. Go and Rust wrapper tests.
+  # 14. Go and Rust wrapper tests.
   # =================================================================
   wrapper-go:
     name: Go wrapper tests

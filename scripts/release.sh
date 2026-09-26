@@ -177,6 +177,7 @@ if [ "$DRY_RUN" = "0" ]; then
     {
         python3 tools/check_version_consistency.py
         python3 tools/check_mojibake.py
+        python3 tools/check_snapshot_freshness.py
         python3 tools/validate.py iso3166.json --strict-count
         python3 tools/enrich_official_name.py --check
         python3 tools/enrich_withdrawn.py --check
