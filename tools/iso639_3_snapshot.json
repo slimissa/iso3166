@@ -1,11 +1,5 @@
 {
   "_comment": "ISO 639-3 language codes. Registration authority: SIL International. Regenerate from https://iso639-3.sil.org/sites/iso639-3/files/downloads/iso-639-3.tab",
-  "meta": {
-    "generated": "2026-09-23",
-    "source": "ISO 639-3",
-    "source_url": "https://iso639-3.sil.org/",
-    "count": 7927
-  },
   "languages": [
     "aaa",
     "aab",
@@ -7934,5 +7928,13 @@
     "zyp",
     "zza",
     "zzj"
-  ]
+  ],
+  "meta": {
+    "count": 7927,
+    "generated": "2026-09-23",
+    "refresh_cadence": "rare",
+    "review_by": "2027-09-27",
+    "source": "ISO 639-3",
+    "source_url": "https://iso639-3.sil.org/"
+  }
 }
