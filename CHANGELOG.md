@@ -16,6 +16,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.5.4] — 2026-09-27
+
+Snapshot freshness check; CI scans docs.
+
+### Added
+
+- `tools/check_snapshot_freshness.py`. Reads every
+  `tools/*_snapshot.json` and verifies `meta.review_by` is not in
+  the past. Three states: ISO date (fail if past), the literal
+  string `"closed"` (never checked), and null (warn, don't fail).
+- `check-snapshot-freshness` CI job.
+- `meta.review_by` and `meta.refresh_cadence` fields on all six
+  snapshot files. `iso4217_snapshot.json` carries a 90-day cadence;
+  the language, calling-code, and TLD snapshots carry 365 days;
+  the two M49 snapshots are marked `"closed"`.
+
+### Changed
+
+- `scripts/release.sh` gate runs the freshness check after the
+  mojibake scan.
+- `validate.yml` no longer filters `docs/**` and `**/*.md` from
+  the push trigger. Docs-only commits now run CI. The mojibake and
+  freshness checks are sub-second, and the docs are exactly where
+  mojibake lives.
+
 ## [1.5.3] — 2026-09-26
 
 Adopt the mojibake scanner from ISO 4217.
@@ -323,7 +348,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.3...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.4...HEAD
+[1.5.4]: https://github.com/slimissa/iso3166/releases/tag/v1.5.4
 [1.5.3]: https://github.com/slimissa/iso3166/releases/tag/v1.5.3
 [1.5.2]: https://github.com/slimissa/iso3166/releases/tag/v1.5.2
 [1.5.1]: https://github.com/slimissa/iso3166/releases/tag/v1.5.1
