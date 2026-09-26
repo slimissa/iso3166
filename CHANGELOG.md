@@ -16,6 +16,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.0] — 2026-09-27
+
+Version axes contract; release pattern document.
+
+### Added
+
+- `tools/version_axes.json` — declarative contract describing which
+  files carry the registry version, and how to extract it. Adopted
+  from iso4217/axes.json. One axis, ten sites, seven extractors.
+  Not yet read by `check_version_consistency.py`; the refactor
+  waits for ISO 10383's version.
+- `docs/RELEASE_PATTERN.md` — generalizes the three stable
+  `release.sh` implementations (ISO 4217, ISO 3166, Exchange
+  Calendar) into a single pattern document. Eight essential
+  invariants, two shapes of step 4, wrapper-copy test question,
+  tag immutability and partial-release recovery, operator hygiene,
+  mojibake self-trigger rule, vendored-snapshot `review_by` shape,
+  snapshot drift.
+
+### Changed
+
+- Nothing. v1.6.0 is additive.
+
 ## [1.5.4] — 2026-09-27
 
 Snapshot freshness check; CI scans docs.
@@ -348,7 +371,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.4...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/slimissa/iso3166/releases/tag/v1.6.0
 [1.5.4]: https://github.com/slimissa/iso3166/releases/tag/v1.5.4
 [1.5.3]: https://github.com/slimissa/iso3166/releases/tag/v1.5.3
 [1.5.2]: https://github.com/slimissa/iso3166/releases/tag/v1.5.2
