@@ -16,6 +16,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.5.3] — 2026-09-26
+
+Adopt the mojibake scanner from ISO 4217.
+
+### Added
+
+- `tools/check_mojibake.py`, forked from iso4217 v1.6.1. Detects
+  UTF-8 text that has been round-tripped through Latin-1, which
+  corrupts accented characters in country names. Covers the three
+  literal signatures (em-dash, check mark, box-drawing) plus a
+  range regex for every accented Latin-1 character.
+- `check-mojibake` CI job. Sub-second, blocking.
+- `CONTRIBUTING.md` rule: any doc that shows corruption by example
+  will trigger the check that detects it. Describe in prose, or
+  mark the file with the mojibake skip marker.
+
+### Changed
+
+- `scripts/release.sh` gate now runs the mojibake scan against the
+  release's own CHANGELOG and docstrings before committing.
+
 ## [1.5.2] — 2026-09-23
 
 Use `repr` for scalar field display in enrich_field.py.
@@ -302,7 +323,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.2...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.5.3...HEAD
+[1.5.3]: https://github.com/slimissa/iso3166/releases/tag/v1.5.3
 [1.5.2]: https://github.com/slimissa/iso3166/releases/tag/v1.5.2
 [1.5.1]: https://github.com/slimissa/iso3166/releases/tag/v1.5.1
 [1.5.0]: https://github.com/slimissa/iso3166/releases/tag/v1.5.0
