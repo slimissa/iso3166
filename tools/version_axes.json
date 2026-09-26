@@ -1,0 +1,110 @@
+{
+  "$comment": "Declarative contract for the version sites ISO 3166 tracks. Not yet read by check_version_consistency.py; the refactor that makes the check data-driven waits for ISO 10383's version to land, making three implementations (ISO 4217, ISO 3166, ISO 10383). Adopt the shape verbatim from iso4217/axes.json.",
+  "axes": [
+    {
+      "name": "registry",
+      "source": "VERSION",
+      "comment": "The registry data version. Single source of truth. Bumped on every release."
+    }
+  ],
+  "extractors": {
+    "text": {
+      "comment": "The file is a single line containing only the version.",
+      "arg": null
+    },
+    "json_path": {
+      "comment": "Read a JSON file and return the value at the dotted path.",
+      "arg": "dotted path, e.g. 'meta.version'"
+    },
+    "toml_section": {
+      "comment": "Read a TOML file and return the value of the named key.",
+      "arg": "key name, e.g. 'version'"
+    },
+    "python_regex": {
+      "comment": "Match a Python file with a regex that captures the version.",
+      "arg": "regex with one capture group"
+    },
+    "badge": {
+      "comment": "Match a shields.io badge on a markdown line.",
+      "arg": "badge label, e.g. 'registry'"
+    },
+    "first_released_heading": {
+      "comment": "Read CHANGELOG.md and return the version from the first '## [x.y.z]' heading.",
+      "arg": null
+    },
+    "parquet_footer": {
+      "comment": "Read the version from the Parquet file's key-value metadata.",
+      "arg": "metadata key, e.g. 'iso3166.version'"
+    }
+  },
+  "sites": [
+    {
+      "axis": "registry",
+      "path": "VERSION",
+      "extractor": "text",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "iso3166.json",
+      "extractor": "json_path",
+      "extractor_arg": "meta.version",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "CHANGELOG.md",
+      "extractor": "first_released_heading",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "README.md",
+      "extractor": "badge",
+      "extractor_arg": "registry",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "wrappers/python/pyproject.toml",
+      "extractor": "toml_section",
+      "extractor_arg": "version",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "wrappers/python/iso3166/__init__.py",
+      "extractor": "python_regex",
+      "extractor_arg": "^__version__ = \"([0-9.]+)\"",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "wrappers/javascript/package.json",
+      "extractor": "json_path",
+      "extractor_arg": "version",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "wrappers/rust/Cargo.toml",
+      "extractor": "toml_section",
+      "extractor_arg": "version",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "wrappers/rust/Cargo.lock",
+      "extractor": "toml_section",
+      "extractor_arg": "iso3166-registry.version",
+      "required": true
+    },
+    {
+      "axis": "registry",
+      "path": "iso3166.parquet",
+      "extractor": "parquet_footer",
+      "extractor_arg": "iso3166.version",
+      "required": true
+    }
+  ]
+}
