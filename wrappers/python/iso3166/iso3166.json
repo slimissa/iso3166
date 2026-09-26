@@ -8755,7 +8755,7 @@
     "count_withdrawn": 25,
     "schema_version": "1.0.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
-    "updated": "2026-09-26",
-    "version": "1.5.3"
+    "updated": "2026-09-27",
+    "version": "1.5.4"
   }
 }
