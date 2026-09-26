@@ -15,6 +15,23 @@ and validates that every exchange's `country` field matches this
 registry's `name` byte-for-byte. That means two classes of change
 require coordinating with downstream consumers before releasing:
 
+## No live corruption examples in docs
+
+Any doc that shows a corruption class by example will trigger the
+check that detects it. `tools/check_mojibake.py` scans every text
+file, including its own docstring and the CHANGELOG.
+
+Two escapes, both valid:
+
+1. Describe the corruption in prose. "The circumflexed o becomes
+   four bytes when a file is decoded as Latin-1 and re-encoded as
+   UTF-8" rather than embedding the corrupted string.
+2. Mark the file with `# mojibake-scan: skip` on the first line.
+   Reserved for test fixtures that deliberately contain corruption.
+
+This generalizes beyond mojibake: any pattern-based check will
+find its own explanation. The rule is the same for both.
+
 ### Renaming a country
 
 Changing any entry's `name` is a **breaking change** for byte-equal
