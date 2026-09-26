@@ -338,7 +338,24 @@ jobs:
         run: python3 tools/enrich_field.py --field borders --check
 
   # =================================================================
-  # 9. Cross-language verification: all four wrappers agree on US.
+  # 9. Mojibake scan. Every text file in the repo is checked for
+  #    UTF-8 / Latin-1 round-trip corruption. Sub-second.
+  # =================================================================
+  check-mojibake:
+    name: check mojibake
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: No mojibake in any file
+        run: python3 tools/check_mojibake.py
+
+  # =================================================================
+  # 10. Cross-language verification: all four wrappers agree on US.
   # =================================================================
   cross-language:
     name: cross-language verification
@@ -372,7 +389,7 @@ jobs:
         run: bash tools/check_cross_language.sh US GB JP TW XK UK
 
   # =================================================================
-  # 10. Python wrapper tests.
+  # 11. Python wrapper tests.
   # =================================================================
   wrapper-python:
     name: Python wrapper tests
@@ -401,7 +418,7 @@ jobs:
         run: python3 -m pytest wrappers/python/tests/ -v
 
   # =================================================================
-  # 11. JavaScript wrapper tests.
+  # 12. JavaScript wrapper tests.
   # =================================================================
   wrapper-javascript:
     name: JavaScript wrapper tests
@@ -424,7 +441,7 @@ jobs:
         run: npm test
 
   # =================================================================
-  # 12. Go and Rust wrapper tests.
+  # 13. Go and Rust wrapper tests.
   # =================================================================
   wrapper-go:
     name: Go wrapper tests
