@@ -1,6 +1,10 @@
 # Release pattern
 
-**Status:** DRAFT — pending review by ISO 4217 and Exchange Calendar.
+**Status:** Reviewed.
+
+Reviewed-by:
+- `slimissa/iso4217` — 2026-09-27
+- `slimissa/exchange-calendar` — 2026-09-27
 
 The `release.sh` script exists in three registries. Each was written
 independently. They share eight invariants and diverge on one step.
@@ -51,10 +55,13 @@ and ISO 3166 shapes.
 
 Two shapes. Pick the one that matches your generator count.
 
-**Single generator.** `build → re-read → compare`. Three lines,
-immediate, points at the build script if it fails.
+**Single generator.** One artifact from one generator
+(Exchange Calendar: `calendar.json` from `tools/build.py`).
+`build → re-read → compare`. Three lines, immediate, points at
+the build script if it fails.
 
-**Multiple generators.** `regenerate all → gate → consistency
+**Multiple generators.** Nine artifacts from four generators
+(ISO 4217, ISO 3166). `regenerate all → gate → consistency
 check`. The gate centralizes the comparison. The failure message
 names the stale artifact.
 
@@ -78,9 +85,15 @@ on push to the release branch. Wait for all of them to complete.
 `completed success` is.
 
 Schedule-driven workflows (`monitor`, `fetch`, `refresh`) are
-deliberately excluded. List them explicitly in the script, and
-verify the list against the workflows directory before every
-release.
+deliberately excluded. The exclusion list is enumerated by hand
+and must be checked against the workflows directory before every
+release; a new per-push workflow added silently to the repo would
+otherwise be missed.
+
+In a repo with multiple per-push workflows, `gh run list` returns
+multiple runs per SHA. Querying only the first (`head -1`) silently
+misses the others. Query all runs for the SHA and assert every one
+is `completed success`.
 
 Why: a tag that lands on a green commit whose second workflow is
 still running is a tag that hides a failure. v1.3.0 in ISO 3166 is
@@ -97,6 +110,11 @@ Why: this is the rule that the release process exists to enforce.
 cannot tag on red."
 
 ### 8. Immutable tags
+
+**This is policy, not mechanism.** The script refuses to re-run on
+an already-tagged version (invariant 7). Nothing in the code
+prevents a manual `git tag -f`. The rule holds because operators
+follow it, not because the tooling enforces it.
 
 Once a tag is pushed, the code it points at is what shipped,
 whether or not the CHANGELOG reflects it accurately.
@@ -199,6 +217,21 @@ with an issue that was discovered later, the next CHANGELOG's
 and points at the fix's commit. This is the reconciliation. It is
 not a rewrite.
 
+### The partial-release state
+
+The script can produce one state it cannot resolve: the release
+commit is pushed, `VERSION` is bumped, and the poll times out
+before the tag is created. Re-running the script fails at
+precondition (invariant 2: `VERSION` already at target).
+
+Recovery is a manual `git tag -a vX.Y.Z -F /tmp/tag-message.txt`
+on the pushed SHA, then `git push origin vX.Y.Z`. The tag message
+is the same one the script would have written. Nothing else needs
+to change.
+
+This is the one state where a human must finish the release the
+script started. Document it in the release script's header comment.
+
 ---
 
 ## Operator hygiene
@@ -235,15 +268,77 @@ other value.
 The failure mode: a tag created while the second workflow was
 still running. The tag landed on a commit that failed.
 
-### 4. Every multi-line construct goes into a file
+### 4. Any construct that requires the shell to parse structure
+   goes into a file
+
+The class is not "multi-line constructs." It is "any construct
+that requires the shell to parse structure." A single-line
+`bash -c "..."` with nested quoting fails the same way a pasted
+multi-line loop does.
 
 Heredocs, loops with function calls, `bash -c "..."`, Python via
-stdin — all of them. If it needs quoting across more than one
-level, it goes into a file. Run the file. Check the exit code.
-Then proceed.
+stdin — all of them go into a file. Inline `python3 -c "..."`
+for a one-liner is fine. The line is: does it need shell quoting
+across more than one level?
+
+Run the file. Check the exit code. Then proceed.
 
 The failure mode: a `for` loop pasted into an interactive shell
 that referenced functions defined inside a script. Twice.
+
+---
+
+## The vendored-snapshot `review_by` shape
+
+When registry A vendors a byte-for-byte snapshot of registry B, and
+the snapshot-freshness check (see ISO 3166's `check_snapshot_
+freshness.py`) needs a `review_by` field, the byte-for-byte property
+collides with the metadata requirement. Adding `review_by` to the
+vendored file breaks the property the snapshot exists for.
+
+Three shapes:
+
+**1. Separate metadata file.** `tools/<source>_snapshot.meta.json`
+next to the snapshot, carrying `review_by` and `refresh_cadence`.
+The check reads both files. The snapshot stays byte-for-byte.
+Recommended: the cadence is a property of the vendoring, not of
+the vendored.
+
+**2. In-memory wrapper.** The snapshot is vendored into a wrapper
+object at check time, with `review_by` injected. Byte-for-byte
+preserved on disk; the wrapper exists only in memory.
+
+**3. Documented exception.** Byte-for-byte applies to the source's
+*data*, not its metadata block. Add `review_by` directly and note
+in the ADR that the metadata block is not covered.
+
+The recommendation is shape 1. If a registry ever ships a second
+consumer of the same source, the metadata file travels
+independently.
+
+---
+
+## Snapshot drift
+
+When registry A vendors a snapshot of registry B, nothing on A's
+side detects that B has released a newer version. Two legitimate
+shapes:
+
+**1. Freshness check per vendoring registry.** Each repo that
+vendors a snapshot checks that the vendored version matches the
+sibling's current release. Cheap when both repos have a
+discoverable version; hard when they do not.
+
+**2. Refresh-on-demand.** The vendoring repo refreshes when it
+needs a specific upstream change. No automatic drift detection.
+
+Shape 1 is right for registries that *depend on upstream
+stability* (a foreign-key join against the source, for example).
+Shape 2 is right for registries that just *consume the data* at
+build time.
+
+Both are legitimate. The choice depends on the relationship, not
+on a rule. State which shape your repo uses and why.
 
 ---
 
@@ -264,6 +359,11 @@ Two escapes, both valid:
 2. Mark the file with the check's skip marker. Reserved for test
    fixtures that deliberately contain the pattern.
 
+A third example: `check_version_consistency.py` would trip on a
+doc that embedded a mismatch string — a `VERSION == meta.version`
+example shown as `1.5.3 == 1.5.2`. The doc must describe the
+mismatch without printing it.
+
 The general rule: state what the pattern matches, not the pattern
 itself.
 
@@ -282,13 +382,22 @@ itself.
 
 ---
 
-## Reviewers
+## Review history
 
-This draft awaits review by:
+- 2026-09-27 — reviewed by ISO 4217. Two implementation divergences
+  found in 4217's own `release.sh` (`head -1` on the poll list;
+  missing `HEAD == origin/main` check). Doc unchanged; 4217's script
+  fixes the divergences. Vendored-snapshot `review_by` shape
+  discussed; recommendation adopted.
+- 2026-09-27 — reviewed by Exchange Calendar. Invariant 8 clarified
+  as policy, not mechanism. Partial-release recovery state added to
+  the tag-immutability section. Operator hygiene rule sharpened
+  from "multi-line construct" to "construct that requires shell
+  parsing." Workflow poll list confirmed hardcoded; note added to
+  invariant 6.
 
-- ISO 4217 (`slimissa/iso4217`)
-- Exchange Calendar (`slimissa/exchange-calendar`)
+Reviewed-by:
+- `slimissa/iso4217`
+- `slimissa/exchange-calendar`
 
-After both have reviewed, the DRAFT marker in the header is
-removed, and a `Reviewed-by:` line is added naming the reviewing
-repos and the review dates.
+The document is stable. Future changes require a new review cycle.
