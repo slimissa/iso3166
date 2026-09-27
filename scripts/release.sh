@@ -70,6 +70,31 @@ check_workflows_covered() {
     done <<< "$actual"
 }
 
+# Detect template variables that were renamed but not updated
+# everywhere. A heredoc referencing an undefined variable only
+# fails at expansion time, not parse time. See RELEASE_PATTERN.md
+# operator hygiene.
+check_no_orphan_variables() {
+    local orphans
+    orphans="$(grep -nE '\$\{[A-Z_]+\}|\$[A-Z_]{3,}' scripts/release.sh \
+        | grep -vE '^\s*#' \
+        | grep -oE '\$\{?[A-Z_]+' \
+        | sort -u \
+        | while read -r v; do
+            v="${v#\$}"
+            v="${v#\{}"
+            # A variable is defined if it appears as assignment anywhere.
+            if ! grep -qE "(^|\s)${v}=" scripts/release.sh; then
+                echo "$v"
+            fi
+        done || true)"
+
+    if [ -n "$orphans" ]; then
+        echo "  WARN orphan variables (defined nowhere, expanded somewhere):"
+        echo "$orphans" | sed 's/^/    /'
+    fi
+}
+
 # --- helpers -----------------------------------------------------------
 
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
@@ -110,6 +135,7 @@ CURRENT_VERSION=$(cat VERSION)
 [ "$CURRENT_VERSION" != "$VERSION" ] \
     || die "VERSION already reads $VERSION; nothing to do"
 
+check_no_orphan_variables
 check_workflows_covered
 echo "  tree clean"
 echo "  on main at $LOCAL_SHA"
