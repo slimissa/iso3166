@@ -286,6 +286,17 @@ to change.
 This is the one state where a human must finish the release the
 script started. Document it in the release script's header comment.
 
+The state can also occur **after** the tag: the release is pushed,
+CI passes, the tag lands, and a post-tag step (verification report,
+artifact upload, notification) fails. The tag stays; the failing
+step is completed manually; a follow-up commit closes the release.
+
+ISO 3166 v1.6.2 is the reference example: the release ran through
+step 6, step 7 failed on an undefined variable in the report
+template, the tag stayed at the release commit, and the report was
+written manually and committed forward. No force-push, no tag
+move.
+
 ---
 
 ## The one exception: release-pipeline failure
