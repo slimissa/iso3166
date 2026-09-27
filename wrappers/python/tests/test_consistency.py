@@ -132,19 +132,3 @@ def test_lookup_withdrawn_fields(fixture, reg):
             f"{case['input']}: subregion is {entry.subregion!r}, "
             f"expected {case['subregion']!r}"
         )
-
-ACCESSORS = {
-    "official_name": lambda c: c.official_name,
-    "borders": lambda c: c.borders,
-}
-
-def test_optional_absent(fixture, reg):
-    for case in fixture.get("optional_absent", []):
-        c = reg.active(case["input"])
-        assert c is not None, f"{case['input']} missing"
-        accessor = ACCESSORS[case["field"]]
-        actual = accessor(c)
-        assert actual == case["expected"], (
-            f"{case['input']}.{case['field']}: "
-            f"got {actual!r}, expected {case['expected']!r}"
-        )

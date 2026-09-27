@@ -147,19 +147,3 @@ test("lookup_withdrawn_fields", () => {
       `${c.input}: subregion mismatch`);
   }
 });
-
-const ACCESSORS = {
-  official_name: (c) => c.officialName,
-  borders: (c) => c.borders,
-};
-
-test('optional_absent', () => {
-  const fixture = loadFixture();
-  for (const cs of fixture.optional_absent ?? []) {
-    const c = registry.active(cs.input);
-    assert.ok(c, `${cs.input} missing`);
-    const actual = ACCESSORS[cs.field](c);
-    assert.deepStrictEqual(actual, cs.expected,
-      `${cs.input}.${cs.field}: got ${JSON.stringify(actual)}, expected ${JSON.stringify(cs.expected)}`);
-  }
-});

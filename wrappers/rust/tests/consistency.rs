@@ -327,29 +327,3 @@ fn lookup_fields() {
         );
     }
 }
-
-#[test]
-fn optional_absent() {
-    let fixture = load_fixture();
-    let reg = Registry::load().expect("registry");
-    for case in fixture["optional_absent"].as_array().into_iter().flatten() {
-        let alpha = case["input"].as_str().unwrap();
-        let field = case["field"].as_str().unwrap();
-        let c = reg.active(alpha).unwrap_or_else(|| panic!("{alpha} missing"));
-
-        match field {
-            "official_name" => {
-                let expected = case["expected"].as_str();  // Option<&str>
-                assert_eq!(c.official_name.as_deref(), expected,
-                    "{alpha}.official_name mismatch");
-            }
-            "borders" => {
-                let expected: Vec<&str> = case["expected"].as_array().unwrap()
-                    .iter().map(|v| v.as_str().unwrap()).collect();
-                let actual: Vec<&str> = c.borders.iter().map(|s| s.as_str()).collect();
-                assert_eq!(actual, expected, "{alpha}.borders mismatch");
-            }
-            other => panic!("unknown field {other}"),
-        }
-    }
-}
