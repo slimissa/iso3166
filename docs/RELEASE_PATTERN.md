@@ -95,6 +95,18 @@ multiple runs per SHA. Querying only the first (`head -1`) silently
 misses the others. Query all runs for the SHA and assert every one
 is `completed success`.
 
+Reference implementation:
+
+- ISO 4217, `scripts/release.sh` at commit `1f38fb4` — the
+  `poll_ci` function reads every run for the SHA and asserts
+  each reads `completed success`.
+- ISO 3166, `scripts/release.sh` — same shape, adopted from
+  ISO 4217's fix.
+- The workflow-coverage check is `check_workflows_covered`,
+  present in both scripts. It enumerates `.github/workflows/`,
+  excludes schedule-driven files by name prefix, and fails if
+  any remaining workflow isn't in the declared poll list.
+
 Why: a tag that lands on a green commit whose second workflow is
 still running is a tag that hides a failure. v1.3.0 in ISO 3166 is
 the historical example.
