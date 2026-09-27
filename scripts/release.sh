@@ -40,9 +40,35 @@ fi
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-WORKFLOW="validate.yml"
+POLLED_WORKFLOWS=(
+    "validate.yml"
+)
 CI_POLL_INTERVAL=20
 CI_POLL_MAX=90     # 30 minutes max
+
+
+check_workflows_covered() {
+    local actual
+    actual="$(find .github/workflows -maxdepth 1 \( -name '*.yml' -o -name '*.yaml' \) \
+        -exec basename {} \; 2>/dev/null \
+        | grep -v -E '^(monitor|fetch|refresh|update|schedule)' || true)"
+    if [ -z "$actual" ]; then
+        return
+    fi
+    while read -r wf; do
+        [ -z "$wf" ] && continue
+        local found=0
+        for d in "${POLLED_WORKFLOWS[@]}"; do
+            if [ "$wf" = "$d" ]; then
+                found=1
+                break
+            fi
+        done
+        if [ "$found" -eq 0 ]; then
+            die "workflow $wf is not in POLLED_WORKFLOWS; add it to the array"
+        fi
+    done <<< "$actual"
+}
 
 # --- helpers -----------------------------------------------------------
 
@@ -84,6 +110,7 @@ CURRENT_VERSION=$(cat VERSION)
 [ "$CURRENT_VERSION" != "$VERSION" ] \
     || die "VERSION already reads $VERSION; nothing to do"
 
+check_workflows_covered
 echo "  tree clean"
 echo "  on main at $LOCAL_SHA"
 echo "  CHANGELOG has section for $VERSION"
@@ -239,29 +266,39 @@ if [ "$DRY_RUN" = "0" ]; then
         sleep "$CI_POLL_INTERVAL"
         elapsed=$((elapsed + CI_POLL_INTERVAL))
 
-        STATUS=$(gh run list --workflow="$WORKFLOW" --limit 10 \
-            --json headSha,status,conclusion \
-            --jq ".[] | select(.headSha == \"$RELEASE_SHA\") | \"\(.status) \(.conclusion)\"" \
-            | head -1)
+        RUNS=$(gh run list --limit 30 \
+            --json databaseId,headSha,status,conclusion,workflowName \
+            --jq ".[] | select(.headSha == \"$RELEASE_SHA\") | \"\(.databaseId)|\(.status)|\(.conclusion // \"pending\")|\(.workflowName)\"" \
+            2>/dev/null || echo "")
 
-        case "$STATUS" in
-            "completed success")
-                echo "  CI passed after ${elapsed}s"
+        if [ -z "$RUNS" ]; then
+            echo "  no runs yet (${elapsed}s)"
+            continue
+        fi
+
+        ALL_COMPLETE=true
+        FAILED=false
+        while IFS='|' read -r id status conclusion name; do
+            if [ "$status" != "completed" ]; then
+                ALL_COMPLETE=false
                 break
-                ;;
-            "completed failure"|"completed cancelled")
-                echo "  CI $STATUS" >&2
-                gh run list --workflow="$WORKFLOW" --limit 5 \
-                    --json headSha,databaseId \
-                    --jq ".[] | select(.headSha == \"$RELEASE_SHA\") | .databaseId" \
-                    | head -1 \
-                    | xargs -I{} gh run view {} --log-failed 2>&1 | head -40
-                die "CI failed on $RELEASE_SHA"
-                ;;
-            *)
-                echo "  waiting... ($STATUS, ${elapsed}s)"
-                ;;
-        esac
+            fi
+            if [ "$conclusion" != "success" ]; then
+                FAILED=true
+                echo "  workflow '$name' (run $id) concluded '$conclusion'" >&2
+            fi
+        done <<< "$RUNS"
+
+        if [ "$FAILED" = "true" ]; then
+            die "CI failed on $RELEASE_SHA"
+        fi
+
+        if [ "$ALL_COMPLETE" = "true" ]; then
+            echo "  CI passed after ${elapsed}s"
+            break
+        fi
+
+        echo "  waiting... (${elapsed}s)"
     done
 
     if [ "$elapsed" -ge $((CI_POLL_INTERVAL * CI_POLL_MAX)) ]; then
