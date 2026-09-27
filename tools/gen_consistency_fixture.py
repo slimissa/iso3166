@@ -203,6 +203,25 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
         ],
     }
 
+def collect_optional_absent(reg):
+    """Return the fixture vector for absent optional fields."""
+    active = reg["countries"]["active"]
+
+    # A non-officially-assigned entry with no official_name.
+    null_name = next(
+        e["alpha_2"] for e in active
+        if e["status"] != "officially-assigned" and e.get("official_name") is None
+    )
+    # An officially-assigned entry with an empty borders list.
+    empty_borders = next(
+        e["alpha_2"] for e in active
+        if e["status"] == "officially-assigned" and e.get("borders") == []
+    )
+
+    return [
+        {"input": null_name, "field": "official_name", "expected": None},
+        {"input": empty_borders, "field": "borders", "expected": []},
+    ]
 
 def main() -> int:
     ap = argparse.ArgumentParser()

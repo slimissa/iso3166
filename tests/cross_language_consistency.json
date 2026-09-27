@@ -573,17 +573,5 @@
         "PG"
       ]
     }
-  ],
-  "optional_absent": [
-    {
-      "input": "EU",
-      "field": "official_name",
-      "expected": null
-    },
-    {
-      "input": "AG",
-      "field": "borders",
-      "expected": []
-    }
   ]
 }
