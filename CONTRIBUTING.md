@@ -15,6 +15,33 @@ and validates that every exchange's `country` field matches this
 registry's `name` byte-for-byte. That means two classes of change
 require coordinating with downstream consumers before releasing:
 
+## Inbound notifications
+
+The downstream rules above are what ISO 3166 owes its consumers.
+This section is the mirror: what ISO 3166 expects to hear from
+the registries it consumes.
+
+### From ISO 4217
+
+- Any change to a country code referenced by a currency's
+  `countries[].code` field
+- Any change to a currency's `classification` that affects a
+  value in ISO 3166's `currency_codes[]`
+- Any change to a numeric code that affects the numeric-to-alpha-2
+  join
+
+### From Exchange Calendar
+
+- Any change to an exchange MIC that affects ISO 3166's future
+  cross-registry work
+
+### General rule
+
+Name changes and status changes in an upstream registry get
+coordinated, not shipped silently. The release notes are the
+current notification channel. Neither repo has an automated
+mechanism.
+
 ## No live corruption examples in docs
 
 Any doc that shows a corruption class by example will trigger the
