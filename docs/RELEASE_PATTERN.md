@@ -211,6 +211,47 @@ check's role.
 
 ---
 
+## Registry freshness vs. snapshot freshness
+
+Two questions that look similar and aren't:
+
+- **Registry freshness** — is my own source of truth current?
+  Answered by comparing the registry's `meta.updated` against a
+  threshold (typically 180 days).
+
+- **Snapshot freshness** — are my vendored copies of other repos'
+  sources current? Answered by checking each snapshot's
+  `meta.review_by` against the current date.
+
+Both share an exit-code contract (0 fresh, 1 stale, 2 fatal).
+Their state designs differ: registry freshness is one date against
+one threshold; snapshot freshness has three states (ISO date,
+`closed`, `null`) because vendored sources can be static.
+
+**Naming.** A tool named `check_snapshot_freshness.py` answers the
+second question. If it is used to answer the first, the naming
+collides with the purpose and a maintainer will look for the
+registry's freshness check and not find it. The two questions
+want two names.
+
+**Reference implementation.** ISO 4217 has both as of v1.6.3:
+
+- `tools/check_registry_freshness.py` — reads
+  `iso4217.json → meta.updated`, 180-day threshold.
+- `tools/check_snapshot_freshness.py` — adopted from ISO 3166
+  v1.6.1. Globs `tools/*_snapshot.json`; reads `meta.review_by`
+  from a sibling `<stem>.meta.json` when present, from the
+  snapshot's own `meta` block when not.
+
+Both run in CI, both run in the release gate. Neither supersedes
+the other.
+
+**When to add the registry check.** Any repo whose source of
+truth is updated on a human cadence needs it. A repo whose source
+of truth is updated by an automated pipeline that runs on every
+push does not — the pipeline is the freshness guarantee. ISO
+3166 is in the second category today; ISO 4217 is in the first.
+
 ## Tagged releases are immutable
 
 Three rules, all consequences of the same principle.
@@ -304,6 +345,21 @@ still running. The tag landed on a commit that failed.
 
 ### 4. Any construct that requires the shell to parse structure
    goes into a file
+
+### 5. The exit code of a pipeline is the last command's exit
+
+`python3 tool.py | tail -3; echo $?` prints `tail`'s exit code,
+not `tool.py`'s. `tail` always succeeds. The failure is invisible.
+
+Redirect to a file, capture the exit code, then read the file:
+
+python3 tool.py > /tmp/out 2>&1
+echo "exit: $?"
+tail -3 /tmp/out
+
+The failure mode: a validator ran with a broken import, exited 1,
+and the piped `tail -3` printed `0`. The release proceeded with
+the validator broken.
 
 The class is not "multi-line constructs." It is "any construct
 that requires the shell to parse structure." A single-line
@@ -400,6 +456,16 @@ mismatch without printing it.
 
 The general rule: state what the pattern matches, not the pattern
 itself.
+
+### Implementation note
+
+`tools/check_mojibake.py` scans the first 200 bytes of every file
+for the literal string `# mojibake-scan: skip`. If present, the
+file is not scanned. This is the second escape, implemented.
+
+The first escape — prose description — is a documentation
+discipline, not a mechanical rule. It applies to any pattern-
+based check, not just mojibake.
 
 ---
 
