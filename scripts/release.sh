@@ -399,7 +399,7 @@ https://github.com/slimissa/iso3166/releases/tag/v$VERSION
 
 ## CI at the tag
 
-Workflow: .github/workflows/$WORKFLOW
+Workflows: ${POLLED_WORKFLOWS[*]}
 The release commit's CI completed green before the tag was pushed.
 
 ## Notes
