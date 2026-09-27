@@ -246,6 +246,27 @@ script started. Document it in the release script's header comment.
 
 ---
 
+## The one exception: release-pipeline failure
+
+If a tag was created on a commit that was red at the moment of
+creation — because the release pipeline itself was broken, not
+because the release content was wrong — moving the tag is a
+recovery procedure, not a violation of rule 8.
+
+The condition is narrow. The pipeline must have failed. The
+release itself must be correct. The procedure must be documented
+in the registry's own ADR with a Scope section limiting it to
+this case.
+
+ISO 10383's ADR 0005 is the reference implementation. Its scope
+statement: the procedure applies only when the release pipeline
+itself failed after the tag was pushed — a CI-polling defect, a
+script that missed a workflow, a gate that ran the wrong
+command. It does not apply to post-shipment discoveries (rule
+8's CHANGELOG reconciliation) or to cosmetic corrections.
+
+---
+
 ## Operator hygiene
 
 Four rules that emerged from specific failure modes across the
