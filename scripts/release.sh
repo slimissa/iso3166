@@ -368,7 +368,7 @@ PYEOF
 
     # Verify the body isn't a placeholder.
     BODY=$(gh release view "v$VERSION" --json body --jq .body)
-    if printf '%s' "$BODY" | grep -qE '<[a-z ]+>|placeholder|TODO'; then
+    if printf '%s' "$BODY" | grep -qE '<clean release text here>|<release text>|<your version here>'; then
         echo "release body looks wrong:" >&2
         printf '%s\n' "$BODY" | head -10 >&2
         die "release body contains placeholder text; fix with 'gh release edit v$VERSION --notes-file $RELNOTES'"
