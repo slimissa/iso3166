@@ -396,6 +396,18 @@ itself.
 
 ## Review history
 
+- 2026-09-27 — reviewed by ISO 10383 during their v1.0.2 preparation.
+  Two corrections applied: the implementations list named ISO 10383
+  as "planned" when it shipped at v1.0.0; the tag-immutability
+  section gained an exception for tags created on a red commit
+  by a pipeline defect. The exception cites ISO 10383's ADR 0005
+  as the reference implementation.
+- 2026-09-27 — reconciled against ISO 4217 v1.7.0. Adopted the
+  additions ISO 3166 had not yet absorbed: the fifth
+  operator-hygiene rule, the mojibake implementation note, and
+  the registry-vs-snapshot subsection. Text-level differences
+  reconciled in the same commit.
+
 - 2026-09-27 — reviewed by ISO 4217. Two implementation divergences
   found in 4217's own `release.sh` (`head -1` on the poll list;
   missing `HEAD == origin/main` check). Doc unchanged; 4217's script
