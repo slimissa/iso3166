@@ -1,12 +1,8 @@
 # Release pattern
 
-**Status:** Reviewed.
+**Status:** Adopted — reviewed by ISO 3166 and Exchange Calendar.
 
-Reviewed-by:
-- `slimissa/iso4217` — 2026-09-27
-- `slimissa/exchange-calendar` — 2026-09-27
-
-The `release.sh` script exists in three registries. Each was written
+The `release.sh` script exists in four registries. Each was written
 independently. They share eight invariants and diverge on one step.
 This document captures both.
 
@@ -25,6 +21,10 @@ order. The order matters: cheap checks first.
 
 The working tree is clean, the current branch is `main`, and `HEAD`
 matches `origin/main`. All three, or the release does not start.
+
+The `HEAD` comparison must be against a freshly-fetched
+`origin/main`. Without the fetch, a stale remote-tracking ref lets
+the check pass locally while the remote has moved ahead.
 
 Why: a release built from an uncommitted state is a release whose
 contents can't be reproduced. A release from a non-`main` branch is a
