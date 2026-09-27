@@ -15,6 +15,22 @@ so the snapshot itself stays unmodified.
 If no sibling exists, review_by is read from the snapshot's own
 meta block.
 
+Two notes on the shape:
+
+1. The sibling file's review_by is read from
+   `sibling.meta.review_by`, not from the sibling's top level.
+   A flat `review_by` at the top of the sibling file will be
+   reported as `unset` (warning, exit 0). The `meta` block is
+   required.
+
+2. This tool checks vendored snapshots — copies of external
+   standards kept in `tools/`. The registry's own freshness is
+   a separate concern. For ISO 3166, `validate.py` and the
+   enrichment pipeline cover that. A future
+   `check_registry_freshness.py` would be the right home for a
+   registry-level check; ISO 4217 and ISO 10383 have that
+   tool already.
+
 Three-state design:
 
   - ISO date (YYYY-MM-DD)   fail if past, pass if future or today
