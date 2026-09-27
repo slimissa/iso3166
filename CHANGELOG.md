@@ -16,6 +16,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.1] — 2026-09-27
+
+Sibling metadata for freshness check; poll-every-workflow fix.
+
+### Added
+
+- `tools/check_snapshot_freshness.py` reads a sibling file
+  (`tools/<stem>.meta.json`) before falling back to the snapshot's
+  own `meta` block. This is the vendored-snapshot shape: the
+  snapshot stays byte-for-byte, the cadence metadata lives
+  alongside. Output marks sibling-sourced entries with
+  `(sibling)`.
+- `CONTRIBUTING.md` gains an "Inbound notifications" section
+  naming what ISO 3166 expects to hear from ISO 4217 and
+  Exchange Calendar. Previously only the outbound direction was
+  documented.
+- `RELEASE_PATTERN.md` invariant 6 names a reference
+  implementation for the poll-every-workflow shape and for the
+  workflow-coverage check.
+
+### Fixed
+
+- `scripts/release.sh` poll loop now enumerates every run for the
+  pushed SHA and asserts each is `completed success`. The previous
+  shape filtered to `validate.yml` and used `head -1`, silently
+  missing any second per-push workflow. Latent on ISO 3166 (one
+  workflow); the same bug was active on ISO 4217 through v1.6.1.
+- `scripts/release.sh` gains `check_workflows_covered`, which
+  fails at preflight if any non-schedule workflow in
+  `.github/workflows/` isn't in the declared poll list.
+
+### Changed
+
+- The workflow list is a `POLLED_WORKFLOWS` array instead of a
+  single `WORKFLOW` constant.
+
 ## [1.6.0] — 2026-09-27
 
 Version axes contract; release pattern document.
@@ -371,7 +407,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.1...HEAD
+[1.6.1]: https://github.com/slimissa/iso3166/releases/tag/v1.6.1
 [1.6.0]: https://github.com/slimissa/iso3166/releases/tag/v1.6.0
 [1.5.4]: https://github.com/slimissa/iso3166/releases/tag/v1.5.4
 [1.5.3]: https://github.com/slimissa/iso3166/releases/tag/v1.5.3
