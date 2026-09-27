@@ -5,6 +5,16 @@ tools/check_snapshot_freshness.py
 Reads every tools/*_snapshot.json and verifies that its
 meta.review_by field is not in the past.
 
+For each snapshot, the tool first looks for a sibling metadata
+file at tools/<stem>.meta.json. If that file exists, review_by
+and refresh_cadence are read from it. This is the vendored-
+snapshot shape: when a snapshot is a byte-for-byte copy of an
+external source, the cadence metadata lives in the sibling file
+so the snapshot itself stays unmodified.
+
+If no sibling exists, review_by is read from the snapshot's own
+meta block.
+
 Three-state design:
 
   - ISO date (YYYY-MM-DD)   fail if past, pass if future or today
@@ -34,6 +44,11 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SNAPSHOT_GLOB = "tools/*_snapshot.json"
 
+
+def sibling_meta_path(snapshot_path: Path) -> Path:
+    """Return tools/<stem>.meta.json for tools/<stem>.json."""
+    return snapshot_path.with_name(snapshot_path.stem + ".meta.json")
+
 EXIT_OK = 0
 EXIT_STALE = 1
 EXIT_FATAL = 2
@@ -54,7 +69,11 @@ def parse_iso_date(value: str) -> date:
 
 def evaluate(path: Path, today: date) -> dict[str, Any]:
     """
-    Return a dict with keys: file, status, detail, review_by.
+    Return a dict with keys: file, status, detail, review_by, meta_source.
+
+    meta_source is one of:
+      "sibling"   metadata was read from tools/<stem>.meta.json
+      "snapshot"  metadata was read from the snapshot's own meta block
 
     status is one of:
       "fresh"    review_by is in the future or today
@@ -62,14 +81,27 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
       "unset"    review_by is missing or null; warning only
       "stale"    review_by is in the past
     """
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except OSError as exc:
-        raise FatalError(f"{path}: cannot read: {exc}") from exc
-    except json.JSONDecodeError as exc:
-        raise FatalError(f"{path}: invalid JSON: {exc}") from exc
-
     rel = str(path.relative_to(PROJECT_ROOT))
+
+    # Prefer the sibling metadata file when it exists.
+    sibling = sibling_meta_path(path)
+    meta_source = "snapshot"
+    if sibling.exists():
+        try:
+            data = json.loads(sibling.read_text(encoding="utf-8"))
+        except OSError as exc:
+            raise FatalError(f"{sibling}: cannot read: {exc}") from exc
+        except json.JSONDecodeError as exc:
+            raise FatalError(f"{sibling}: invalid JSON: {exc}") from exc
+        meta_source = "sibling"
+    else:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except OSError as exc:
+            raise FatalError(f"{path}: cannot read: {exc}") from exc
+        except json.JSONDecodeError as exc:
+            raise FatalError(f"{path}: invalid JSON: {exc}") from exc
+
     meta = data.get("meta")
 
     if not isinstance(meta, dict):
@@ -78,6 +110,7 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
             "status": "unset",
             "detail": "meta is missing or not an object",
             "review_by": None,
+            "meta_source": meta_source,
         }
 
     review_by = meta.get("review_by")
@@ -88,6 +121,7 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
             "status": "unset",
             "detail": "review_by is not set",
             "review_by": None,
+            "meta_source": meta_source,
         }
 
     if review_by == "closed":
@@ -96,6 +130,7 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
             "status": "closed",
             "detail": "static snapshot, no review required",
             "review_by": "closed",
+            "meta_source": meta_source,
         }
 
     if not isinstance(review_by, str):
@@ -104,6 +139,7 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
             "status": "unset",
             "detail": f"review_by has unexpected type: {type(review_by).__name__}",
             "review_by": None,
+            "meta_source": meta_source,
         }
 
     d = parse_iso_date(review_by)
@@ -113,6 +149,7 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
             "status": "stale",
             "detail": f"review_by {review_by} is past due",
             "review_by": review_by,
+            "meta_source": meta_source,
         }
 
     return {
@@ -120,6 +157,7 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
         "status": "fresh",
         "detail": f"review_by {review_by}",
         "review_by": review_by,
+        "meta_source": meta_source,
     }
 
 
@@ -153,7 +191,9 @@ def report_text(results: list[dict[str, Any]], today: date) -> None:
             "unset":  "WARN",
             "stale":  "FAIL",
         }[r["status"]]
-        print(f"  [{marker}] {r['file']}: {r['detail']}")
+        source = r.get("meta_source", "snapshot")
+        suffix = " (sibling)" if source == "sibling" else ""
+        print(f"  [{marker}] {r['file']}: {r['detail']}{suffix}")
     print(rule)
 
     stale = [r for r in results if r["status"] == "stale"]
