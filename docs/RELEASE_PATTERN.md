@@ -9,6 +9,7 @@ This document captures both.
 - ISO 4217 (`scripts/release.sh`, two axes, eleven version sites)
 - ISO 3166 (`scripts/release.sh`, one axis, eight version sites)
 - Exchange Calendar (`scripts/release.sh`, three sites, two workflows)
+- ISO 10383 (`scripts/release.sh`, eight version sites, one polled workflow)
 
 ---
 
