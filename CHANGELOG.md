@@ -16,6 +16,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.2] — 2026-09-27
+
+RELEASE_PATTERN.md reconciliation; wrapper absent-field audit.
+
+### Added
+
+- `RELEASE_PATTERN.md` gains the tag-immutability exception for
+  tags created on a red commit by a pipeline defect. Cites ISO
+  10383's ADR 0005 as the reference implementation.
+- `tests/cross_language_consistency.json` gains an `optional_absent`
+  vector: a null `official_name` and an empty `borders` list. Each
+  wrapper's test suite asserts the return matches the contract.
+
+### Changed
+
+- `docs/RELEASE_PATTERN.md` reconciled against ISO 4217 v1.7.0.
+  Adopted the fifth operator-hygiene rule, the mojibake
+  implementation note, and the registry-vs-snapshot subsection.
+- The implementations list corrects the ISO 10383 line: shipped
+  at v1.0.0, not "planned for v1.1.0."
+- `tools/check_snapshot_freshness.py` docstring names the `meta`
+  block requirement and the registry-vs-snapshot distinction.
+
+### Fixed
+
+- Nothing behavioural. v1.6.2 is documentation and tests.
+
 ## [1.6.1] — 2026-09-27
 
 Sibling metadata for freshness check; poll-every-workflow fix.
@@ -407,7 +434,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.1...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.2...HEAD
+[1.6.2]: https://github.com/slimissa/iso3166/releases/tag/v1.6.2
 [1.6.1]: https://github.com/slimissa/iso3166/releases/tag/v1.6.1
 [1.6.0]: https://github.com/slimissa/iso3166/releases/tag/v1.6.0
 [1.5.4]: https://github.com/slimissa/iso3166/releases/tag/v1.5.4
