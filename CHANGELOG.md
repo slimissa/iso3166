@@ -18,30 +18,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.6.2] — 2026-09-27
 
-RELEASE_PATTERN.md reconciliation; wrapper absent-field audit.
+RELEASE_PATTERN.md reconciliation; fixture vector for absent
+optional fields.
 
 ### Added
 
 - `RELEASE_PATTERN.md` gains the tag-immutability exception for
   tags created on a red commit by a pipeline defect. Cites ISO
-  10383's ADR 0005 as the reference implementation.
-- `tests/cross_language_consistency.json` gains an `optional_absent`
-  vector: a null `official_name` and an empty `borders` list. Each
-  wrapper's test suite asserts the return matches the contract.
+  10383's ADR 0005.
+- `RELEASE_PATTERN.md` adopts three ISO 4217 v1.7.0 additions:
+  the registry-vs-snapshot section, the pipeline-exit-code
+  operator-hygiene rule, and the mojibake implementation note.
+- `tests/cross_language_consistency.json` gains an
+  `optional_absent` vector: `EU` with `official_name: null`,
+  `AG` with `borders: []`. Tests that read the vector are
+  deferred to v1.6.3.
 
 ### Changed
 
-- `docs/RELEASE_PATTERN.md` reconciled against ISO 4217 v1.7.0.
-  Adopted the fifth operator-hygiene rule, the mojibake
-  implementation note, and the registry-vs-snapshot subsection.
-- The implementations list corrects the ISO 10383 line: shipped
-  at v1.0.0, not "planned for v1.1.0."
+- `RELEASE_PATTERN.md` implementations list adds ISO 10383
+  (eight version sites, one polled workflow).
+- Header adopts ISO 4217's "Adopted — reviewed by" status form.
 - `tools/check_snapshot_freshness.py` docstring names the `meta`
-  block requirement and the registry-vs-snapshot distinction.
+  block requirement and the registry-vs-snapshot split.
+
+### Not in this release
+
+- Wrapper tests that assert the `optional_absent` contract.
+  Deferred to v1.6.3; one wrapper per commit, each verified.
 
 ### Fixed
 
-- Nothing behavioural. v1.6.2 is documentation and tests.
+- Nothing behavioural. v1.6.2 is documentation and fixture.
 
 ## [1.6.1] — 2026-09-27
 
