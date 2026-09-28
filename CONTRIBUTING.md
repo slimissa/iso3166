@@ -221,6 +221,25 @@ Every push to `main` runs 14 jobs:
 A red job names the failing command and the exact assertion. Every
 command the CI runs is also runnable locally.
 
+## Release claims
+
+Every CHANGELOG version must have a matching entry in
+`tools/release_claims.json`. Each entry lists machine-checkable
+assertions about what shipped: a file exists, a file contains a
+specific string, a section was added.
+
+The release gate runs `tools/check_release_claims.py $VERSION` and
+stops the release on any failing claim. A missing manifest entry
+for the version being released is a hard error.
+
+This exists because three consecutive releases shipped CHANGELOG
+sections that overstated what shipped. The manifest is the
+machine-readable version of the prose.
+
+Write the manifest entry in the same commit as the CHANGELOG
+section. If a claim is hard to express as "file contains X", the
+claim is probably too vague — sharpen it.
+
 ## No tag before CI is green
 
 A tag on a red commit is a lie in the history books. Before tagging
