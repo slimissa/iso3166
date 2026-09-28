@@ -147,3 +147,29 @@ test("lookup_withdrawn_fields", () => {
       `${c.input}: subregion mismatch`);
   }
 });
+
+test('optional_absent', () => {
+  const fixture = loadFixture();
+  for (const cs of fixture.optional_absent ?? []) {
+    const c = registry.active(cs.input);
+    assert.ok(c, `${cs.input} missing`);
+
+    if (cs.field === 'official_name') {
+      const actual = c.officialName ?? null;
+      assert.strictEqual(
+        actual,
+        null,
+        `${cs.input}.official_name: expected null, got ${JSON.stringify(actual)}`
+      );
+    } else if (cs.field === 'borders') {
+      const actual = c.borders ?? [];
+      assert.deepStrictEqual(
+        actual,
+        [],
+        `${cs.input}.borders: expected [], got ${JSON.stringify(actual)}`
+      );
+    } else {
+      throw new Error(`unknown field: ${cs.field}`);
+    }
+  }
+});
