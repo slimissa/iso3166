@@ -132,3 +132,21 @@ def test_lookup_withdrawn_fields(fixture, reg):
             f"{case['input']}: subregion is {entry.subregion!r}, "
             f"expected {case['subregion']!r}"
         )
+
+def test_optional_absent(fixture, reg):
+    for case in fixture.get("optional_absent", []):
+        c = reg.active(case["input"])
+        assert c is not None, f"{case['input']} missing"
+        if case["field"] == "official_name":
+            assert c.official_name == case["expected"], (
+                f"{case['input']}.official_name: "
+                f"got {c.official_name!r}, expected {case['expected']!r}"
+            )
+        elif case["field"] == "borders":
+            actual = c.borders or []
+            assert actual == case["expected"], (
+                f"{case['input']}.borders: "
+                f"got {actual!r}, expected {case['expected']!r}"
+            )
+        else:
+            raise AssertionError(f"unknown field: {case['field']}")
