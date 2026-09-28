@@ -522,5 +522,6 @@ based check, not just mojibake.
 Reviewed-by:
 - `slimissa/iso4217`
 - `slimissa/exchange-calendar`
+- ISO 10383 (`slimissa/iso10383`)
 
 The document is stable. Future changes require a new review cycle.
