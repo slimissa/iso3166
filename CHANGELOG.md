@@ -16,6 +16,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.3] — 2026-09-28
+
+Wrapper tests for absent optional fields; orphan-variable preflight.
+
+### Added
+
+- Four wrapper tests reading the `optional_absent` fixture vector:
+  Python, Go, Rust, JavaScript. Each asserts that a null
+  `official_name` returns null and an empty `borders` list
+  returns an empty list.
+- `tools/gen_consistency_fixture.py` generates the
+  `optional_absent` vector from `iso3166.json`.
+- `scripts/release.sh` preflight warns on orphan variables — a
+  heredoc referencing a renamed variable only fails at expansion
+  time. The v1.6.2 report failure was this class.
+- `docs/RELEASE_PATTERN.md` names the post-tag partial-release
+  state (v1.6.2 is the reference example).
+
+### Not in this release
+
+- Reviewer-block entry for ISO 10383. Deferred to v1.6.4.
+
 ## [1.6.2] — 2026-09-27
 
 RELEASE_PATTERN.md reconciliation; fixture vector for absent
@@ -442,7 +464,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.2...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.3...HEAD
+[1.6.3]: https://github.com/slimissa/iso3166/releases/tag/v1.6.3
 [1.6.2]: https://github.com/slimissa/iso3166/releases/tag/v1.6.2
 [1.6.1]: https://github.com/slimissa/iso3166/releases/tag/v1.6.1
 [1.6.0]: https://github.com/slimissa/iso3166/releases/tag/v1.6.0
