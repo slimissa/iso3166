@@ -1,0 +1,10 @@
+{
+  "_comment": "Machine-checkable claims per CHANGELOG version. Each entry is {file, contains} or {file, absent}. release.sh runs tools/check_release_claims.py against the version being released; any failing claim stops the release. A missing manifest for a released version is a hard error.",
+  "1.6.5": [
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "slimissa/iso10383"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "check_no_orphan_variables"},
+    {"file": "tools/check_release_claims.py"},
+    {"file": "tools/release_claims.json"},
+    {"file": "CHANGELOG.md", "contains": "## [1.6.5]"}
+  ]
+}
