@@ -92,10 +92,18 @@ struct Fixture {
     currencies: HashMap<String, Vec<String>>,
     countries_with: HashMap<String, Vec<String>>,
     #[serde(default)]
+    optional_absent: Vec<OptionalAbsent>,
+    #[serde(default)]
     lookup_fields: Vec<LookupField>,
     #[serde(default)]
     lookup_withdrawn: Vec<LookupWithdrawn>,
     search: Vec<SearchCase>,
+}
+
+#[derive(Deserialize)]
+struct OptionalAbsent {
+    input: String,
+    field: String,
 }
 
 fn fixture_path() -> PathBuf {
@@ -325,5 +333,40 @@ fn lookup_fields() {
             "{}: tlds mismatch",
             c.input
         );
+    }
+}
+
+#[test]
+fn optional_absent() {
+    let fixture = load_fixture();
+    let reg = reg();
+
+    for case in &fixture.optional_absent {
+        let c = reg
+            .active(&case.input)
+            .unwrap_or_else(|| panic!("{} missing", case.input));
+
+        match case.field.as_str() {
+            "official_name" => {
+                assert!(
+                    c.official_name.is_none(),
+                    "{}.official_name: expected None, got {:?}",
+                    case.input,
+                    c.official_name
+                );
+            }
+            "borders" => {
+                let empty = match &c.borders {
+                    None => true,
+                    Some(v) => v.is_empty(),
+                };
+                assert!(
+                    empty,
+                    "{}.borders: expected empty, got {:?}",
+                    case.input, c.borders
+                );
+            }
+            other => panic!("unknown field {}", other),
+        }
     }
 }
