@@ -229,6 +229,7 @@ if [ "$DRY_RUN" = "0" ]; then
     GATE_LOG=/tmp/release-gate.log
     {
         python3 tools/check_version_consistency.py
+        python3 tools/check_release_claims.py "$VERSION"
         python3 tools/check_mojibake.py
         python3 tools/check_snapshot_freshness.py
         python3 tools/validate.py iso3166.json --strict-count
