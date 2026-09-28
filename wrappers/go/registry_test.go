@@ -234,6 +234,11 @@ type fixtureDoc struct {
 		MinCount    int      `json:"min_count"`
 		MustContain []string `json:"must_contain"`
 	} `json:"search"`
+	OptionalAbsent []struct {
+		Input    string          `json:"input"`
+		Field    string          `json:"field"`
+		Expected json.RawMessage `json:"expected"`
+	} `json:"optional_absent"`
 }
 
 func loadFixture(t *testing.T) fixtureDoc {
@@ -452,6 +457,36 @@ func TestFixtureLookupFields(t *testing.T) {
 		}
 		if !sliceEq(got.TLDs, c.TLDs) {
 			t.Fatalf("%s: tlds mismatch", c.Input)
+		}
+	}
+}
+
+func TestOptionalAbsent(t *testing.T) {
+	fixture := loadFixture(t)
+	reg, err := Load()
+	if err != nil {
+		t.Fatalf("load: %v", err)
+	}
+
+	for _, c := range fixture.OptionalAbsent {
+		country := reg.Active(c.Input)
+		if country == nil {
+			t.Fatalf("%s missing", c.Input)
+		}
+
+		switch c.Field {
+		case "official_name":
+			if country.OfficialName != nil {
+				t.Errorf("%s.official_name: got %q, want nil",
+					c.Input, *country.OfficialName)
+			}
+		case "borders":
+			if len(country.Borders) != 0 {
+				t.Errorf("%s.borders: got %v, want []",
+					c.Input, country.Borders)
+			}
+		default:
+			t.Fatalf("unknown field %s", c.Field)
 		}
 	}
 }
