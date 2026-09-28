@@ -66,6 +66,13 @@ the build script if it fails.
 check`. The gate centralizes the comparison. The failure message
 names the stale artifact.
 
+A template that references a variable by name will not fail at
+parse time. `set -u` catches the failure at expansion time. Add
+a preflight that greps the release script for `$VAR` patterns,
+checks each is assigned somewhere, and warns on orphans. ISO
+3166's `check_no_orphan_variables` is the reference
+implementation.
+
 Rule: state which shape your repo uses, and why.
 
 ### 5. Gate before commit
@@ -522,6 +529,6 @@ based check, not just mojibake.
 Reviewed-by:
 - `slimissa/iso4217`
 - `slimissa/exchange-calendar`
-- ISO 10383 (`slimissa/iso10383`)
+- `slimissa/iso10383`
 
 The document is stable. Future changes require a new review cycle.
