@@ -201,6 +201,7 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             {"query": "korea",  "min_count": 2, "must_contain": ["KP", "KR"]},
             {"query": "guinea", "min_count": 3, "must_contain": ["GN", "GW", "PG"]},
         ],
+        "optional_absent": collect_optional_absent(reg),
     }
 
 def collect_optional_absent(reg):
