@@ -16,19 +16,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.5] — 2026-09-28
+
+Release-claims gate; v1.6.4 doc corrections landed.
+
+### Added
+
+- `tools/check_release_claims.py` — verifies machine-checkable
+  claims about a release against the repository state.
+- `tools/release_claims.json` — per-version manifest of claims.
+- `scripts/release.sh` gate runs the claims check before the
+  artifact regeneration. A missing manifest entry or a failing
+  claim stops the release.
+- `CONTRIBUTING.md` documents the convention.
+
+### Fixed
+
+- The v1.6.4 reviewer block and orphan-preflight convention,
+  claimed but not applied, are now in `docs/RELEASE_PATTERN.md`.
+
 ## [1.6.4] — 2026-09-28
 
 ISO 10383 as third reviewer; orphan preflight named as convention.
 
 ### Added
 
-- `RELEASE_PATTERN.md` reviewer block adds ISO 10383
-  (`slimissa/iso10383`).
-- `RELEASE_PATTERN.md` operator-hygiene rule 4 names the
-  orphan-variable preflight as a shared convention, citing ISO
-  3166's `check_no_orphan_variables` as the reference.
 - `RELEASE_PATTERN.md` review history records the ISO 10383
   exchange.
+
+### Not landed
+
+- The reviewer-block entry and the orphan-preflight convention
+  were claimed but not applied in this release. Corrected in
+  v1.6.5.
 
 ### Not in this release
 
@@ -482,7 +502,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.4...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.5...HEAD
+[1.6.5]: https://github.com/slimissa/iso3166/releases/tag/v1.6.5
 [1.6.4]: https://github.com/slimissa/iso3166/releases/tag/v1.6.4
 [1.6.3]: https://github.com/slimissa/iso3166/releases/tag/v1.6.3
 [1.6.2]: https://github.com/slimissa/iso3166/releases/tag/v1.6.2
