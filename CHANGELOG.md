@@ -16,6 +16,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.4] — 2026-09-28
+
+ISO 10383 as third reviewer; orphan preflight named as convention.
+
+### Added
+
+- `RELEASE_PATTERN.md` reviewer block adds ISO 10383
+  (`slimissa/iso10383`).
+- `RELEASE_PATTERN.md` operator-hygiene rule 4 names the
+  orphan-variable preflight as a shared convention, citing ISO
+  3166's `check_no_orphan_variables` as the reference.
+- `RELEASE_PATTERN.md` review history records the ISO 10383
+  exchange.
+
+### Not in this release
+
+- No code change. v1.6.4 is documentation only.
+
 ## [1.6.3] — 2026-09-28
 
 Wrapper tests for absent optional fields; orphan-variable preflight.
@@ -464,7 +482,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.3...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.4...HEAD
+[1.6.4]: https://github.com/slimissa/iso3166/releases/tag/v1.6.4
 [1.6.3]: https://github.com/slimissa/iso3166/releases/tag/v1.6.3
 [1.6.2]: https://github.com/slimissa/iso3166/releases/tag/v1.6.2
 [1.6.1]: https://github.com/slimissa/iso3166/releases/tag/v1.6.1
