@@ -238,7 +238,7 @@ if [ "$DRY_RUN" = "0" ]; then
     python3 tools/gen_withdrawn_doc.py
 
     GATE_LOG=/tmp/release-gate.log
-    {
+    (
         set -e
         python3 tools/check_version_consistency.py
         python3 tools/check_release_claims.py "$VERSION"
@@ -259,7 +259,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/gen_consistency_fixture.py --check
         python3 tools/gen_withdrawn_doc.py --check
         python3 -m pytest wrappers/python/tests/ -q
-    } > "$GATE_LOG" 2>&1 \
+    ) > "$GATE_LOG" 2>&1 \
         || { tail -20 "$GATE_LOG"; die "gate failed; see $GATE_LOG"; }
 
     echo "  gate passed"

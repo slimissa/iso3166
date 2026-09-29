@@ -1,5 +1,11 @@
 {
   "_comment": "Machine-checkable claims per CHANGELOG version. Each entry is {file, contains} or {file, absent}. release.sh runs tools/check_release_claims.py against the version being released; any failing claim stops the release. A missing manifest for a released version is a hard error.",
+  "1.6.7": [
+    {"file": "scripts/release.sh", "contains": "(set -e"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "commit is not the working tree"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "Attribution convention"},
+    {"file": "CHANGELOG.md", "contains": "## [1.6.7]"}
+  ],
   "1.6.6": [
     {"file": "scripts/release.sh", "contains": "check_manifest_has_version"},
     {"file": "scripts/release.sh", "contains": "die \"release script references undefined variables\""},

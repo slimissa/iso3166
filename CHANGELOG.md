@@ -16,6 +16,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.7] — 2026-09-29
+
+Gate fails fast on first failing check; v1.6.6 claims landed.
+
+### Fixed
+
+- `scripts/release.sh` gate block changed from a brace group to
+  a subshell with `set -e`. A brace group on the left of `||`
+  disables `set -e`, so every check inside was advisory. v1.6.6
+  shipped with two failing claims because the gate reported
+  "passed" regardless of the results. The subshell restores
+  fail-fast: any failing check stops the release.
+- `docs/RELEASE_PATTERN.md` gains operator-hygiene rule 6b: the
+  commit message is a claim about the diff, verified by
+  `git diff --cached --stat` before every commit. The v1.6.6
+  commit claimed two doc additions; only the attribution
+  section landed.
+
+### Not in this release
+
+- No changes to registry data, schema, or wrappers.
+
 ## [1.6.6] — 2026-09-29
 
 Orphan check fails; manifest precondition; attribution convention.
