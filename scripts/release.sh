@@ -90,8 +90,9 @@ check_no_orphan_variables() {
         done || true)"
 
     if [ -n "$orphans" ]; then
-        echo "  WARN orphan variables (defined nowhere, expanded somewhere):"
-        echo "$orphans" | sed 's/^/    /'
+        echo "orphan variables (defined nowhere, expanded somewhere):" >&2
+        echo "$orphans" | sed 's/^/  /' >&2
+        die "release script references undefined variables"
     fi
 }
 
