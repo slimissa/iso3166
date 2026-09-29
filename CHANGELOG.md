@@ -16,6 +16,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   wrappers to PyPI, npm, crates.io.
 - v1.3.0: populate `languages` and `borders`.
 
+## [1.6.6] — 2026-09-29
+
+Orphan check fails; manifest precondition; attribution convention.
+
+### Fixed
+
+- `scripts/release.sh` `check_no_orphan_variables` now dies on
+  finding, not warns. The check name implies fail-on-finding;
+  v1.6.3 shipped the warn shape.
+- The orphan-check info line no longer fires unconditionally.
+
+### Added
+
+- `scripts/release.sh` preflight calls
+  `check_manifest_has_version`, failing before any version-site
+  mutation if `tools/release_claims.json` has no entry for the
+  version being released.
+- `RELEASE_PATTERN.md` operator-hygiene rule 6b: the commit
+  message is a claim about the diff; verify with
+  `git diff --cached --stat` before every commit.
+- `RELEASE_PATTERN.md` attribution convention: review-history
+  entries name the repo each addition came from.
+
 ## [1.6.5] — 2026-09-28
 
 Release-claims gate; v1.6.4 doc corrections landed.
@@ -502,7 +525,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.5...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.6...HEAD
+[1.6.6]: https://github.com/slimissa/iso3166/releases/tag/v1.6.6
 [1.6.5]: https://github.com/slimissa/iso3166/releases/tag/v1.6.5
 [1.6.4]: https://github.com/slimissa/iso3166/releases/tag/v1.6.4
 [1.6.3]: https://github.com/slimissa/iso3166/releases/tag/v1.6.3
