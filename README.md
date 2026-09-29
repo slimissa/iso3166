@@ -2,7 +2,7 @@
 
 **A canonical, versioned, machine-readable registry of ISO 3166 country codes.**
 
-One JSON file. Zero runtime dependencies. Four language wrappers. Nine distribution artifacts.
+One JSON file. Zero runtime dependencies. Four language wrappers. Nine distribution artifacts. Every field sourced from a first-party standard and guarded by CI.
 
 [![Validate](https://github.com/slimissa/iso3166/actions/workflows/validate.yml/badge.svg)](https://github.com/slimissa/iso3166/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
@@ -110,7 +110,9 @@ See [the CLI reference](#command-line-interface) below.
 
 The active array contains 252 entries; the withdrawn array contains 25. Two alpha-2 codes — `AI` and `SK` — appear in both, because ISO reassigned them: `AI` was French Afars and Issas (withdrawn 1977, replaced by `DJ`), then became Anguilla; `SK` was Sikkim (withdrawn 1975, replaced by `IN`), then became Slovakia.
 
-### Field coverage at v1.5.2
+### Field coverage
+
+Coverage is stable at v1.6.7; the last data change was v1.5.4.
 
 | Field | Populated | Notes |
 |-------|-----------|-------|
@@ -226,11 +228,12 @@ iso3166/
 │   ├── ENRICHMENT.md            # Per-field sourcing and edge cases
 │   ├── LAYERS.md                # RAW / CURATED / AGGREGATED model
 │   ├── WITHDRAWN.md             # Generated table of withdrawn entries
-│   ├── v1.5.2-verification.md   # Release verification report
+│   ├── RELEASE_PATTERN.md       # Shared release-pattern document
+│   ├── v1.6.7-verification.md   # Current release verification report
 │   └── decisions/
 │       ├── v1.0.0-decisions.md  # D1–D8
 │       ├── withdrawn-codes.md   # ADR for ISO 3166-3 successor handling
-│       ├── languages-borders-sources.md  # ADR expanding the source rule
+│       ├── languages-borders-sources.md
 │       ├── languages-audit-2026-09.md
 │       └── v1.5.0-scope.md
 │
@@ -259,6 +262,11 @@ iso3166/
 │   ├── sync_wrappers.py         # Bundled JSON sync (--check)
 │   ├── gen_consistency_fixture.py
 │   ├── check_version_consistency.py
+│   ├── check_mojibake.py        # UTF-8/Latin-1 round-trip detector
+│   ├── check_snapshot_freshness.py  # review_by check on vendored snapshots
+│   ├── check_release_claims.py  # per-version claims verifier
+│   ├── release_claims.json      # manifest of per-version claims
+│   ├── version_axes.json        # declarative version-site contract
 │   ├── gen_withdrawn_doc.py     # Generate docs/WITHDRAWN.md (--check)
 │   ├── gen_iso4217_snapshot.py  # Cross-registry snapshot generator
 │   ├── iso3166_cli.py           # CLI
@@ -286,7 +294,7 @@ iso3166/
 ├── bin/
 │   └── iso3166                  # Shell wrapper (prefers installed CLI)
 │
-└── .github/workflows/validate.yml  # 18 CI jobs
+└── .github/workflows/validate.yml  # 20 CI jobs
 ```
 
 ---
@@ -338,9 +346,11 @@ Eight fields are populated by three tools, each with a snapshot or per-entry sou
 | `subregion` | `enrich_field.py` | `m49_subregion_snapshot.json` |
 | `intermediate_region` | `enrich_field.py` | `m49_intermediate_region_snapshot.json` |
 
-Every field has a `--check` mode. Seven are blocking in CI as of v1.5.2 (the `check-fields` job). `subregion` and `intermediate_region` are ungated because most entries legitimately have null.
+Every field has a `--check` mode. Seven are blocking in CI (the `check-fields` job). `subregion` and `intermediate_region` are ungated because most entries legitimately have null.
 
 Values not in the corresponding snapshot are refused. Hand-edits are rejected; every change goes through a tool that sets `last_verified`, records the source URL in `note`, and writes deterministically.
+
+Each snapshot carries `meta.review_by` and `meta.refresh_cadence`. `tools/check_snapshot_freshness.py` fails on any snapshot past its review date. The two M49 snapshots are marked `"closed"` — they're static and never re-reviewed.
 
 See [`docs/ENRICHMENT.md`](./docs/ENRICHMENT.md) for per-field sourcing, edge cases, and refresh cadence.
 
@@ -382,31 +392,82 @@ bash tools/check_cross_language.sh US GB JP TW XK UK
 
 Runs the same lookup through all four wrappers, diffs the output literally, and exits non-zero if any disagree. This is the executable form of the ecosystem's central claim: the JSON is the contract.
 
+### Additional checks
+
+Beyond the six-layer validator, the repo carries four auxiliary checks:
+
+| Tool | Purpose |
+|------|---------|
+| `tools/check_version_consistency.py` | Reads all eight version sites on the registry axis; fails on any disagreement. |
+| `tools/check_mojibake.py` | Scans every text file for UTF-8/Latin-1 round-trip corruption. Fails on any hit. |
+| `tools/check_snapshot_freshness.py` | Reads `meta.review_by` on each `tools/*_snapshot.json`; fails on any date in the past. |
+| `tools/check_release_claims.py` | Verifies machine-checkable claims about the version being released. Runs at release time, not on every push. |
+
+The first three run in CI on every push. The fourth runs in the release gate.
+
 ---
 
 ## Releasing
 
-Releases are cut by `scripts/release.sh <version>`. The script:
+Releases are cut by `scripts/release.sh <version>`. The script enforces seven steps.
 
-1. Verifies preconditions (clean tree, on `main`, `CHANGELOG` section present, version differs)
-2. Bumps the eight version sites and refuses if they don't agree
-3. Regenerates nine artifacts and runs the full gate
-4. Commits, pushes, and polls CI until `completed success`
-5. Tags with a message derived from `CHANGELOG.md`
-6. Creates the GitHub release and verifies the body
-7. Writes `docs/v<version>-verification.md` and commits it
+**Preflight** — refuses on:
 
-The script refuses on a dirty tree, wrong branch, missing CHANGELOG section, gate failure, or CI failure. Test with `--dry-run` before use.
+- dirty tree
+- wrong branch (must be `main`)
+- `HEAD` not at `origin/main` (after a fresh fetch)
+- `CHANGELOG.md` missing a `## [<version>]` section
+- `tools/release_claims.json` missing an entry for the version
+- any per-push workflow in `.github/workflows/` absent from `POLLED_WORKFLOWS`
+- any orphan variable in `scripts/release.sh`
+
+**Bump** — the eight version sites, verified to agree afterward.
+
+**Gate** — a fail-fast subshell with `set -e`. Fourteen checks run in sequence; the first failure stops the release:
+
+1. `check_version_consistency.py`
+2. `check_release_claims.py <version>`
+3. `check_mojibake.py`
+4. `check_snapshot_freshness.py`
+5. `validate.py --strict-count`
+6. Seven `enrich_field.py --check` invocations
+7. Four `export_*.py --check` invocations
+8. `sync_wrappers.py --check`
+9. `gen_consistency_fixture.py --check`
+10. `gen_withdrawn_doc.py --check`
+11. Python wrapper test suite
+
+**Commit, push, wait** — polls every per-push workflow on the pushed SHA until all report `completed success`.
+
+**Tag** — tag message derived from the CHANGELOG section, written to a file first, then read back.
+
+**Release** — `gh release create` with the CHANGELOG section, then re-read the body to refuse placeholder text.
+
+**Report** — writes `docs/v<version>-verification.md` and commits it.
+
+The script never force-pushes, never moves a pushed tag, and refuses any state that would violate the invariants in [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+
+Test the plan with `--dry-run` before running for real.
 
 ---
 
 ## Versioning
 
-Two version numbers, one source:
+One version number, eight sites, all enforced by `tools/check_version_consistency.py`:
 
-- **`VERSION`** — the registry data version. Single source of truth. **`meta.version`**, the README badge, and the Parquet footer must all match it. `tools/check_version_consistency.py` enforces this on every push.
+- `VERSION` — the source of truth
+- `CHANGELOG.md` top released heading
+- `iso3166.json` → `meta.version`
+- `iso3166.parquet` footer → `iso3166.version`
+- `wrappers/python/pyproject.toml`
+- `wrappers/python/iso3166/__init__.py`
+- `wrappers/javascript/package.json`
+- `wrappers/rust/Cargo.toml` + `Cargo.lock`
+- `README.md` badge
 
-The schema version lives independently in `schema.json`: `$id` carries it, and it changes only when the format contract changes.
+`tools/version_axes.json` declares the sites declaratively. The check script still reads a hardcoded list; the declarative refactor waits for a fourth implementation.
+
+The schema version lives independently in `schema.json`. It changes only when the format contract changes.
 
 The registry follows [Semantic Versioning](https://semver.org/):
 
@@ -422,14 +483,15 @@ Wrapper package versions track the registry version.
 
 | Project | How it uses this registry |
 |---------|---------------------------|
-| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | **Vendors a byte-for-byte snapshot at `tools/iso3166_snapshot.json` (v1.5.2).** Every exchange's `country_code` must resolve in `countries.active[]`; `country` must match `name` byte-for-byte. Checked in CI. |
-| [ISO 4217](https://github.com/slimissa/iso4217) | Cross-references country codes from currency `entity` fields |
+| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | **Vendors a byte-for-byte snapshot at `tools/iso3166_snapshot.json`.** Every exchange's `country_code` must resolve in `countries.active[]`; `country` must match `name` byte-for-byte. Checked in CI. |
+| [ISO 4217](https://github.com/slimissa/iso4217) | **Vendors a byte-for-byte snapshot at `tools/iso3166_snapshot.json`.** Every currency's `countries[].code` must resolve in `countries.active[].alpha_2`. 245 unique codes, 268 references. Checked in CI. |
+| [ISO 10383](https://github.com/slimissa/iso10383) | **Vendors a byte-for-byte snapshot at `tools/iso3166_snapshot.json`.** Every MIC's `country_code` must resolve, or be `ZZ` (the ISO 10383 placeholder). Checked in CI. |
 | [Corporate Actions](https://github.com/slimissa/corporate-actions) | Instrument entries reference the country of listing |
 | [Asset Identifiers](https://github.com/slimissa/asset-identifiers) | Will reference `alpha_2` for country of listing |
 | [LAS_Shell](https://github.com/slimissa/Las_shell) | Reads country codes for market status and prompt display |
 | [Tempus](https://github.com/slimissa/Tempus) | Planned compile-time `Country<ISO3166>` type validation |
 
-Exchange Calendar is the first consumer to vendor a snapshot and check it in CI. If you build on this registry the same way — byte-for-byte snapshot, CI-gated — open a PR to add your project to this table with the version you vendored.
+Three registries vendor a snapshot of this registry and check it in CI. If you build on this registry the same way — byte-for-byte snapshot, CI-gated — open a PR to add your project to this table with the version you vendored.
 
 *Using this registry in your project? Open a PR to add your name here.*
 
@@ -443,11 +505,17 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md). The short version:
 2. Data corrections go through an enrichment tool, not hand-edits.
 3. Run `python3 tools/validate.py iso3166.json --strict-count` — must exit 0.
 4. Run `bash tools/check_cross_language.sh US` — must exit 0.
-5. Submit a PR. CI runs 18 jobs.
+5. Submit a PR. CI runs 20 jobs.
 
 **No third-party sources.** Wikipedia, countrycode.org, aggregator CSVs, and blog posts are not acceptable as the origin of a field.
 
-**No heredocs for patch scripts.** Write `/tmp/script.py`, run it standalone, check its exit code. The `CONTRIBUTING.md` rules exist because heredocs have silently corrupted files four times.
+**No heredocs for patch scripts.** Write `/tmp/script.py`, run it standalone, check its exit code. The rule exists because heredocs have silently corrupted files four times.
+
+**No live corruption examples in docs.** A pattern-based check will find its own explanation. Describe the corruption in prose, or mark the file with the check's skip marker.
+
+**Commit messages are claims about the diff.** Run `git diff --cached --stat` before every commit. An empty stat means the edit didn't land.
+
+**No tag before CI is green.** The release script enforces this; the discipline is the same at the human level.
 
 ---
 
@@ -467,8 +535,12 @@ The country data in this registry is factual information sourced from public sta
 
 ## What's next
 
-- **ISO 4217 mirror** — add `tools/iso3166_snapshot.json` and a matching check job to the sibling repository. Closes the cross-registry loop in both directions.
-- **`release.sh` port** — apply the release pipeline to Exchange Calendar, Corporate Actions, and the other registries. Proves the pattern is portable.
-- **v2.0.0 (`subdivisions.json`)** — ISO 3166-2 subdivisions as a companion file. Deferred until a downstream consumer needs it; the current ecosystem operates at the country level.
+The registry is complete. All twelve enrichable fields are populated, the release pipeline is self-enforcing, three sibling registries vendor snapshots and check them in CI, and the shared release pattern is documented in [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+
+The open items are extensions, not corrections:
+
+- **`tools/version_axes.json` refactor** — make `check_version_consistency.py` read the declarative axes file. Waits for a fourth implementation, per the three-implementations rule.
+- **`source_hash`** — the registry's sources are not stable files, so the field has no population path. Add it when a stable raw source appears.
+- **v2.0.0 — `subdivisions.json`** — ISO 3166-2 subdivisions as a companion file. Deferred until a downstream consumer needs sub-national jurisdiction; the current ecosystem operates at the country level.
 
 See [`CHANGELOG.md`](./CHANGELOG.md) for release history and [`docs/decisions/`](./docs/decisions/) for locked architectural decisions.
