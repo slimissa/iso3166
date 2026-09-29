@@ -70,6 +70,16 @@ check_workflows_covered() {
     done <<< "$actual"
 }
 
+check_manifest_has_version() {
+    if ! python3 -c "
+import json, sys
+manifest = json.load(open('tools/release_claims.json'))
+sys.exit(0 if '$VERSION' in manifest else 1)
+"; then
+        die "release_claims.json has no entry for version $VERSION"
+    fi
+}
+
 # Detect template variables that were renamed but not updated
 # everywhere. A heredoc referencing an undefined variable only
 # fails at expansion time, not parse time. See RELEASE_PATTERN.md
