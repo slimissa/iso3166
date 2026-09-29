@@ -119,6 +119,18 @@ Why: a tag that lands on a green commit whose second workflow is
 still running is a tag that hides a failure. v1.3.0 in ISO 3166 is
 the historical example.
 
+### 6b. The commit message is a claim about the diff
+
+A commit whose message describes a change the commit doesn't
+contain is the same class as a CHANGELOG section that overstates
+what shipped. `git diff --cached --stat` before every commit is
+the verification. An empty stat means the edit didn't land.
+
+Two instances on record: ISO 3166 v1.6.4 (`Reviewed by:` vs
+`Reviewed-by:` anchor mismatch) and ISO 4217's `3687bc2`
+(function body not staged). Both commits described changes that
+weren't in the diff.
+
 ### 7. Tag only on green
 
 The tag is created only after all polled workflows report
@@ -530,5 +542,12 @@ Reviewed-by:
 - `slimissa/iso4217`
 - `slimissa/exchange-calendar`
 - `slimissa/iso10383`
+
+## Attribution convention
+
+Review-history entries name the repo each addition came from.
+The document is produced by three implementations; a reader
+tracing a rule's origin wants a real source. "Co-authored" is
+not a source.
 
 The document is stable. Future changes require a new review cycle.
