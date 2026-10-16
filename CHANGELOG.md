@@ -15,8 +15,9 @@ Four findings from Exchange Calendar's v2.4.0 review.
 ### Fixed
 
 - `tools/check_mojibake.py` gains cp1252 and U+FFFD signatures.
-  The cp1252 `â€` family — bytes `c3 a2 e2 82 ac` — was not
-  caught. Neither was the U+FFFD replacement character.
+  The cp1252 em-dash prefix family — the lead bytes of an 
+  em-dash reinterpreted through Windows-1252 — was not caught.
+  Neither was the U+FFFD replacement character.
 - The first signature's docstring described `e2 80 9a` as a
   corrupted em-dash; it is U+201A, a legitimate character. The
   docstring now names each signature accurately.
