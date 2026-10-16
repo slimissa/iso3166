@@ -11,11 +11,15 @@ registry.
 
 Refresh procedure (manual, on every ISO 4217 release):
 
-    git clone --depth 1 https://github.com/slimissa/iso4217.git /tmp/iso4217
-    python3 tools/gen_iso4217_snapshot.py --source /tmp/iso4217/iso4217.json
+    git fetch --tags
+    git checkout vX.Y.Z
+    python3 tools/gen_iso4217_snapshot.py --source path/to/iso4217.json
     # review the diff
     git add tools/iso4217_snapshot.json
-    # update tools/iso4217_snapshot.version in the file's meta block
+
+The generator preserves meta.review_by and meta.refresh_cadence from
+the existing snapshot. Set review_by manually once if it is null; the
+tool preserves the value on every subsequent run.
 
 Usage:
     python3 tools/gen_iso4217_snapshot.py --source PATH
@@ -29,7 +33,6 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
-from curses import meta
 import json
 import re
 import sys
@@ -41,10 +44,10 @@ from typing import Any
 OUTPUT = Path("tools/iso4217_snapshot.json")
 
 # Only 3-letter alphabetic codes are currencies. ISO 4217's
-# active array contains synthetic identifiers (MXN_OLD, and similar)
-# that document historical distinctions but are not currencies.
-# The snapshot answers "could this be a currency code?", so it keeps
-# only real codes.
+# active array contains synthetic identifiers (MXN_OLD, and
+# similar) that document historical distinctions but are not
+# currencies. The snapshot answers "could this be a currency
+# code?", so it keeps only real codes.
 CODE_RE = re.compile(r"^[A-Z]{3}$")
 
 
@@ -54,64 +57,78 @@ class FatalError(SystemExit):
         super().__init__(code)
 
 
+def _read_existing_meta() -> tuple[str | None, str | None]:
+    """Read review_by and refresh_cadence from the committed snapshot.
+
+    Returns (None, None) if the file doesn't exist or is malformed.
+    The preservation is best-effort — a corrupted snapshot should not
+    stop a refresh.
+    """
+    if not OUTPUT.exists():
+        return None, None
+    try:
+        existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None, None
+    meta = existing.get("meta", {})
+    if not isinstance(meta, dict):
+        return None, None
+    return meta.get("review_by"), meta.get("refresh_cadence")
+
+
+def _extract_codes(source: dict[str, Any]) -> tuple[list[str], list[str]]:
+    """Return (active_codes, withdrawn_codes) from a parsed source.
+
+    Handles both shapes the ISO 4217 registry has used:
+      - currencies: { active: [...], withdrawn: [...] }
+      - currencies: [ { code, status }, ... ]
+    """
+    currencies = source.get("currencies", {})
+    active: list[str] = []
+    withdrawn: list[str] = []
+
+    if isinstance(currencies, dict):
+        for entry in currencies.get("active", []):
+            code = entry.get("code") or entry.get("alpha_3")
+            if code:
+                active.append(code)
+        for entry in currencies.get("withdrawn", []):
+            code = entry.get("code") or entry.get("alpha_3")
+            if code:
+                withdrawn.append(code)
+    elif isinstance(currencies, list):
+        for entry in currencies:
+            code = entry.get("code") or entry.get("alpha_3")
+            if not code:
+                continue
+            if entry.get("status") == "withdrawn":
+                withdrawn.append(code)
+            else:
+                active.append(code)
+
+    active = sorted({c for c in active if CODE_RE.match(c)})
+    withdrawn = sorted({c for c in withdrawn if CODE_RE.match(c)})
+    return active, withdrawn
+
+
 def build_snapshot(source_path: Path) -> dict[str, Any]:
     if not source_path.exists():
         raise FatalError(f"source not found: {source_path}")
     try:
-        data = json.loads(source_path.read_text(encoding="utf-8"))
+        source = json.loads(source_path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         raise FatalError(f"{source_path}: invalid JSON: {exc}") from exc
 
-    meta = data.get("meta", {})
-    countries = data.get("currencies", {})
+    source_meta = source.get("meta", {})
+    active, withdrawn = _extract_codes(source)
 
-    # ISO 4217 uses countries.active / countries.withdrawn in some
-    # shapes and a flat currencies array in others. Handle both.
-    active_codes: list[str] = []
-    withdrawn_codes: list[str] = []
-
-    if isinstance(countries, dict):
-        for entry in countries.get("active", []):
-            code = entry.get("code") or entry.get("alpha_3")
-            if code:
-                active_codes.append(code)
-        for entry in countries.get("withdrawn", []):
-            code = entry.get("code") or entry.get("alpha_3")
-            if code:
-                withdrawn_codes.append(code)
-    elif isinstance(countries, list):
-        for entry in countries:
-            code = entry.get("code") or entry.get("alpha_3")
-            status = entry.get("status", "active")
-            if not code:
-                continue
-            if status == "withdrawn":
-                withdrawn_codes.append(code)
-            else:
-                active_codes.append(code)
-
-    active_codes = [c for c in active_codes if CODE_RE.match(c)]
-    withdrawn_codes = [c for c in withdrawn_codes if CODE_RE.match(c)]
-
-    if not active_codes:
+    if not active:
         raise FatalError(
             f"{source_path}: no active currency codes found. "
             f"Check the file's shape."
         )
 
-    # Before writing, read the existing file to preserve review_by and cadence.
-    existing_review_by = None
-    existing_cadence = None
-    if output_path.exists():
-        try:
-            existing = json.loads(output_path.read_text(encoding="utf-8"))
-            existing_review_by = existing.get("meta", {}).get("review_by")
-            existing_cadence = existing.get("meta", {}).get("refresh_cadence")
-        except (OSError, json.JSONDecodeError):
-            pass
-
-    meta["review_by"] = existing_review_by
-    meta["refresh_cadence"] = existing_cadence or "quarterly"
+    review_by, refresh_cadence = _read_existing_meta()
 
     return {
         "_comment": (
@@ -123,13 +140,15 @@ def build_snapshot(source_path: Path) -> dict[str, Any]:
         "meta": {
             "generated": str(date.today()),
             "source": "slimissa/iso4217",
-            "iso4217_version": str(meta.get("version", "")),
-            "iso4217_updated": str(meta.get("updated", "")),
-            "count_active": len(active_codes),
-            "count_withdrawn": len(withdrawn_codes),
+            "iso4217_version": str(source_meta.get("version", "")),
+            "iso4217_updated": str(source_meta.get("updated", "")),
+            "count_active": len(active),
+            "count_withdrawn": len(withdrawn),
+            "review_by": review_by,
+            "refresh_cadence": refresh_cadence or "quarterly",
         },
-        "active": sorted(active_codes),
-        "withdrawn": sorted(withdrawn_codes),
+        "active": active,
+        "withdrawn": withdrawn,
     }
 
 
