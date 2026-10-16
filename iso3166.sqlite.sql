@@ -91,7 +91,7 @@ source: https://www.cia.gov/the-world-factbook/countries/BE/', '2026-09-23', NUL
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BF', 'BFA', '854', 'Burkina Faso', 'officially-assigned', 0, 'Burkina Faso', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '226', '.bf', 'fra', 'BJ|CI|GH|ML|NE|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BF
 source: https://www.cia.gov/the-world-factbook/countries/BF/', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BG', 'BGR', '100', 'Bulgaria', 'officially-assigned', 0, 'Republic of Bulgaria', 'Europe', 'Eastern Europe', NULL, '359', '.bg', 'bul', 'GR|MK|RO|RS|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
-source: https://www.cia.gov/the-world-factbook/countries/BG/', '2026-09-23', NULL, NULL);
+source: https://www.iso.org/obp/ui/#iso:code:3166:BG', '2026-10-16', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BH', 'BHR', '048', 'Bahrain', 'officially-assigned', 0, 'Kingdom of Bahrain', 'Asia', 'Western Asia', NULL, '973', '.bh', 'ara', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 source: https://www.cia.gov/the-world-factbook/countries/BH/', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BI', 'BDI', '108', 'Burundi', 'officially-assigned', 0, 'Republic of Burundi', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '257', '.bi', 'fra|run', 'CD|RW|TZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BI
@@ -587,7 +587,7 @@ INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BB', 'B
 INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BD', 'BDT');
 INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BE', 'EUR');
 INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BF', 'XOF');
-INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BG', 'BGN');
+INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BG', 'EUR');
 INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BH', 'BHD');
 INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BI', 'BIF');
 INSERT INTO country_currencies (country_alpha_2, currency_code) VALUES ('BJ', 'XOF');

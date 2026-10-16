@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.9] — 2026-10-16
+
+Bulgaria adopts the euro; ISO 4217 snapshot refreshed.
+
+### Fixed
+
+- BG `currency_codes` updated from `["BGN"]` to `["EUR"]` via
+  `enrich_field.py`. ISO 4217 amendment 180 withdrew BGN and
+  placed Bulgaria under the euro.
+- `tools/iso4217_snapshot.json` refreshed from ISO 4217 v1.8.0.
+  BGN is no longer in the active set.
+
+### Notes
+
+- The BG change was present as a working-tree edit during
+  v1.6.7 and reverted in v1.6.8 cleanup. It lands here as a
+  proper enrichment-tool change with a source citation.
+
 ## [1.6.8] — 2026-10-16
 
 Four findings from Exchange Calendar's v2.4.0 review.
@@ -570,7 +588,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.8...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.9...HEAD
+[1.6.9]: https://github.com/slimissa/iso3166/releases/tag/v1.6.9
 [1.6.8]: https://github.com/slimissa/iso3166/releases/tag/v1.6.8
 [1.6.7]: https://github.com/slimissa/iso3166/releases/tag/v1.6.7
 [1.6.6]: https://github.com/slimissa/iso3166/releases/tag/v1.6.6

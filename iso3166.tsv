@@ -44,8 +44,8 @@ BE	BEL	056	Belgium	officially-assigned	false	Kingdom of Belgium	Europe	Western E
 source: https://www.cia.gov/the-world-factbook/countries/BE/"	2026-09-23		
 BF	BFA	854	Burkina Faso	officially-assigned	false	Burkina Faso	Africa	Sub-Saharan Africa	Western Africa	XOF	226	.bf	fra	BJ|CI|GH|ML|NE|TG	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BF
 source: https://www.cia.gov/the-world-factbook/countries/BF/"	2026-09-23		
-BG	BGR	100	Bulgaria	officially-assigned	false	Republic of Bulgaria	Europe	Eastern Europe		BGN	359	.bg	bul	GR|MK|RO|RS|TR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
-source: https://www.cia.gov/the-world-factbook/countries/BG/"	2026-09-23		
+BG	BGR	100	Bulgaria	officially-assigned	false	Republic of Bulgaria	Europe	Eastern Europe		EUR	359	.bg	bul	GR|MK|RO|RS|TR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
+source: https://www.iso.org/obp/ui/#iso:code:3166:BG"	2026-10-16		
 BH	BHR	048	Bahrain	officially-assigned	false	Kingdom of Bahrain	Asia	Western Asia		BHD	973	.bh	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 source: https://www.cia.gov/the-world-factbook/countries/BH/"	2026-09-23		
 BI	BDI	108	Burundi	officially-assigned	false	Republic of Burundi	Africa	Sub-Saharan Africa	Eastern Africa	BIF	257	.bi	fra|run	CD|RW|TZ	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BI
