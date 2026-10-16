@@ -5,6 +5,25 @@ tools/check_snapshot_freshness.py
 Reads every tools/*_snapshot.json and verifies that its
 meta.review_by field is not in the past.
 
+This tool checks the snapshot's own review date. It is not the
+mechanism that catches version drift between a vendored snapshot
+and its source.
+
+Two mechanisms, two concerns:
+
+  - Cross-reference check (in the consumer's own repo). Validates
+    the consumer's data against the snapshot. Fires when the
+    consumer's fields diverge from the snapshot's contents. This
+    is what catches drift in data the consumer uses.
+
+  - review_by (this tool). Scheduled re-verification of the
+    snapshot against its source. Fires on a calendar date,
+    independent of any consumer's data. This is what catches
+    changes to parts of the source the consumer does not
+    reference yet.
+
+Neither replaces the other. Do not merge them.
+
 For each snapshot, the tool first looks for a sibling metadata
 file at tools/<stem>.meta.json. If that file exists, review_by
 and refresh_cadence are read from it. This is the vendored-
