@@ -96,7 +96,7 @@ MOJIBAKE_PATTERNS: tuple[bytes, ...] = (
     rb"\xc3\xa2\xc2\x88",
     rb"\xc3\xa2\xc2\x80",
     rb"\xc3[\x83-\x89]\xc2[\x80-\xbf]",
-    rb"\xc3\xa2\xe2\x82\xac",  # cp1252 'â€' prefix (latin-1 -> cp1252 round-trip)
+    rb"\xc3\xa2\xe2\x82\xac",  # cp1252 em-dash prefix (latin-1 -> cp1252 round-trip)
     rb"\xef\xbf\xbd",          # U+FFFD replacement character
 )
 
