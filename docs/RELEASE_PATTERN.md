@@ -487,6 +487,52 @@ mismatch without printing it.
 The general rule: state what the pattern matches, not the pattern
 itself.
 
+### Non-zero exit halts the release
+
+Every command that produces an artifact the release will commit
+must be checked for non-zero exit before the release proceeds.
+A command that fails and is not checked leaves the previous
+artifact in place; the release commits stale output.
+
+Two mechanisms, either is valid:
+
+- Wrap the sequence in a subshell with `set -e`. The subshell
+  exits on the first non-zero return.
+- Check each command's exit explicitly: `command || die "..."`.
+
+The failure mode this prevents (ISO 3166 v1.6.9): the snapshot
+generator ran without its required `--source` argument. The tool
+exited non-zero; the shell continued; the release commit carried
+a stale snapshot. The `--source`-less invocation was the bug;
+the unchecked exit was why it reached the commit.
+
+Applies to: artifact generators, exporters, sync scripts, and
+any command whose output the release commit includes.
+
+### Every tool proves its own reachability
+
+Every tool that produces a committed artifact must be runnable
+in CI, even on unchanged inputs. Add a `--check` or smoke
+invocation to the CI workflow so the tool executes on every
+push.
+
+The check does not need to verify output; it needs to verify the
+tool's code path is reachable. A `--check` that regenerates and
+compares satisfies both — it exercises every code path the
+generator would run and fails on unreachable ones.
+
+The failure mode this prevents (ISO 3166 v1.6.9): the snapshot
+generator carried a preservation block that referenced an
+undefined variable. The tool crashed on every invocation. It
+appeared to work because the snapshot it produced was set by a
+manual one-liner earlier; the generator's output was never
+exercised. A `--check` invocation in CI would have crashed on
+the first push.
+
+Applies to: every tool with an output path in the repo, every
+generator, every exporter. A tool with no CI execution is a tool
+whose unreachable paths are invisible.
+
 ### The `[Unreleased]` convention
 
 `[Unreleased]` is permitted at the top of `CHANGELOG.md` at
