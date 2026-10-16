@@ -162,7 +162,7 @@ def main() -> int:
     args = ap.parse_args()
 
     doc = build_snapshot(args.source)
-    text = json.dumps(doc, indent=2, ensure_ascii=False, sort_keys=False) + "\n"
+    text = json.dumps(doc, indent=2, ensure_ascii=False, sort_keys=True) + "\n"
 
     if args.check:
         if OUTPUT.exists() and OUTPUT.read_text(encoding="utf-8") == text:
