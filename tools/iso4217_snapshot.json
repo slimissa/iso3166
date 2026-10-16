@@ -1,5 +1,13 @@
 {
   "_comment": "Minimal extract of the ISO 4217 registry: alpha currency codes only. Used by tools/validate.py to check that any currency_codes reference resolves. Regenerate with tools/gen_iso4217_snapshot.py on every ISO 4217 release.",
+  "meta": {
+    "generated": "2026-10-16",
+    "source": "slimissa/iso4217",
+    "iso4217_version": "1.8.0",
+    "iso4217_updated": "2026-10-16",
+    "count_active": 166,
+    "count_withdrawn": 135
+  },
   "active": [
     "AED",
     "AFN",
@@ -14,7 +22,6 @@
     "BAM",
     "BBD",
     "BDT",
-    "BGN",
     "BHD",
     "BIF",
     "BMD",
@@ -169,16 +176,6 @@
     "ZMW",
     "ZWG"
   ],
-  "meta": {
-    "count_active": 167,
-    "count_withdrawn": 134,
-    "generated": "2026-09-22",
-    "iso4217_updated": "2026-09-18",
-    "iso4217_version": "1.5.3",
-    "refresh_cadence": "quarterly",
-    "review_by": "2026-12-26",
-    "source": "slimissa/iso4217"
-  },
   "withdrawn": [
     "ADF",
     "ADP",
@@ -201,6 +198,7 @@
     "BGJ",
     "BGK",
     "BGL",
+    "BGN",
     "BOP",
     "BRB",
     "BRC",
