@@ -3,23 +3,33 @@
 Mojibake detector for text files in the repository.
 
 Mojibake is UTF-8 bytes reinterpreted as Latin-1/Windows-1252 and
-re-saved as UTF-8. Four byte patterns are checked: three literal
-signatures (em-dash, check mark, box-drawing round-trips) and one
-regex range covering every accented Latin-1 character.
+re-saved as UTF-8. Six byte patterns are checked: five literal
+signatures and one regex range covering every accented Latin-1
+character.
 
-  Literal signatures (three chars):
-    \\xe2\\x80\\x9a    from — (em-dash)
-    \\xc3\\xa2\\xc2\\x88    from ✅ (check mark)
-    \\xc3\\xa2\\xc2\\x80    from ├ ─ │ └ ┐ ┘ (box drawing)
+  Literal signatures:
+    \xe2\x80\x9a          U+201A single low-9 quotation mark; a
+                          legitimate character, included because
+                          some round-trips produce it spuriously
+    \xc3\xa2\xc2\x88      from a corrupted check-mark round-trip
+    \xc3\xa2\xc2\x80      from a corrupted box-drawing round-trip
+    \xc3\xa2\xe2\x82\xac  cp1252 em-dash prefix; the lead byte of
+                          an em-dash followed by a UTF-8
+                          continuation byte, from a
+                          Latin-1 -> cp1252 -> UTF-8 round-trip
+    \xef\xbf\xbd          U+FFFD replacement character; from a
+                          lossy decode upstream of this file
 
-  Range signatures (four chars, one pattern):
-    \\xc3[\\x83-\\x89]\\xc2[\\x80-\\xbf]
-      Covers every Latin-1 accented character round-trip in one rule.
-      The corruption class: a two-byte accented character such as
-      the circumflexed o in a French city name (\\xc3\\xb4) becomes
-      four bytes (\\xc3\\x83\\xc2\\xb4) when a file is decoded as
-      Latin-1 and re-encoded as UTF-8. Same for the cedilla-c in a
-      Portuguese name, the tilde-n in Spanish, and so on.
+  Range signature:
+    \xc3[\x83-\x89]\xc2[\x80-\xbf]
+      Covers every Latin-1 accented character round-trip in one
+      rule. A two-byte accented character such as the circumflexed
+      o in a French city name becomes four bytes when a file is
+      decoded as Latin-1 and re-encoded as UTF-8. Same for the
+      cedilla-c in a Portuguese name, the tilde-n in Spanish. 
+      when a file is decoded as Latin-1 and re-encoded as UTF-8.
+      Same for the cedilla-c in a Portuguese name, the tilde-n 
+      in Spanish, and so on.
 
 Any hit is a real bug: the file is valid UTF-8, but a human reading it
 sees garbage and downstream tools (grep, sed, diff) silently fail to
@@ -86,6 +96,8 @@ MOJIBAKE_PATTERNS: tuple[bytes, ...] = (
     rb"\xc3\xa2\xc2\x88",
     rb"\xc3\xa2\xc2\x80",
     rb"\xc3[\x83-\x89]\xc2[\x80-\xbf]",
+    rb"\xc3\xa2\xe2\x82\xac",  # cp1252 'â€' prefix (latin-1 -> cp1252 round-trip)
+    rb"\xef\xbf\xbd",          # U+FFFD replacement character
 )
 
 SKIP_MARKER = b"# mojibake-scan: skip"
