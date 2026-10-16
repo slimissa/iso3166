@@ -487,6 +487,30 @@ mismatch without printing it.
 The general rule: state what the pattern matches, not the pattern
 itself.
 
+### The `[Unreleased]` convention
+
+`[Unreleased]` is permitted at the top of `CHANGELOG.md` at
+release time. The target version's heading must be present in
+the file. Position does not matter.
+
+Both the CI check and `release.sh`'s precondition must locate the
+target heading anywhere in the file, not require it at line 1.
+The precondition uses `grep -q "^## \[$VERSION\]"` — presence,
+not position.
+
+Reasoning: keep-a-changelog keeps `[Unreleased]` permanently at
+the top. Removing it for the release window produces merge
+conflicts and loses the unreleased-changes record between the
+CHANGELOG commit and the release commit. The precondition is
+presence, not position.
+
+The failure mode is divergence between the two tools. Exchange
+Calendar's CI check skipped `[Unreleased]` and located the top
+dated heading; its `release.sh` required the target heading to
+be literal-top. A CHANGELOG with `[Unreleased]` above the
+target version passed CI and failed the release. The rule
+resolves to "permitted, presence anywhere" so both tools agree.
+
 ### Implementation note
 
 `tools/check_mojibake.py` scans the first 200 bytes of every file
