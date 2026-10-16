@@ -562,10 +562,12 @@ based check, not just mojibake.
   parsing." Workflow poll list confirmed hardcoded; note added to
   invariant 6.
 
-Reviewed-by:
-- `slimissa/iso4217`
-- `slimissa/exchange-calendar`
-- `slimissa/iso10383`
+Reviewed by:
+
+- ISO 4217 (`slimissa/iso4217`) — 2026-09-27
+- ISO 3166 (`slimissa/iso3166`) — 2026-09-27
+- Exchange Calendar (`slimissa/exchange-calendar`) — 2026-10-06
+- ISO 10383 (`slimissa/iso10383`) — 2026-09-28
 
 ## Attribution convention
 
