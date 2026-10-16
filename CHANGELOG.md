@@ -8,13 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned
+## [1.6.8] — 2026-10-16
 
-- v1.1.0: enrich `official_name` for all 249 officially-assigned
-  entries; complete the ISO 3166-3 withdrawn set.
-- v1.2.0: populate `currency_codes`, `calling_codes`, `tlds`; publish
-  wrappers to PyPI, npm, crates.io.
-- v1.3.0: populate `languages` and `borders`.
+Four findings from Exchange Calendar's v2.4.0 review.
+
+### Fixed
+
+- `tools/check_mojibake.py` gains cp1252 and U+FFFD signatures.
+  The cp1252 `â€` family — bytes `c3 a2 e2 82 ac` — was not
+  caught. Neither was the U+FFFD replacement character.
+- The first signature's docstring described `e2 80 9a` as a
+  corrupted em-dash; it is U+201A, a legitimate character. The
+  docstring now names each signature accurately.
+- `scripts/release.sh` `check_no_orphan_variables` — the comment
+  filter `^\s*#` never matched because `grep -n` prefixed line
+  numbers. A `$VAR` inside a comment fired the check.
+
+### Added
+
+- `docs/RELEASE_PATTERN.md` names the `[Unreleased]` convention.
+  Presence, not position: both the CI check and `release.sh`
+  locate the target heading anywhere in `CHANGELOG.md`.
+- `tools/check_snapshot_freshness.py` docstring names the two
+  mechanisms: the consumer's cross-reference check and
+  `review_by`. Neither replaces the other.
+
+### Changed
+
+- `docs/RELEASE_PATTERN.md` reviewer block records Exchange
+  Calendar v2.4.0 as of 2026-10-06.
 
 ## [1.6.7] — 2026-09-29
 
@@ -547,7 +569,9 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.6...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.8...HEAD
+[1.6.8]: https://github.com/slimissa/iso3166/releases/tag/v1.6.8
+[1.6.7]: https://github.com/slimissa/iso3166/releases/tag/v1.6.7
 [1.6.6]: https://github.com/slimissa/iso3166/releases/tag/v1.6.6
 [1.6.5]: https://github.com/slimissa/iso3166/releases/tag/v1.6.5
 [1.6.4]: https://github.com/slimissa/iso3166/releases/tag/v1.6.4
