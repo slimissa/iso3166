@@ -29,6 +29,7 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+from curses import meta
 import json
 import re
 import sys
@@ -97,6 +98,20 @@ def build_snapshot(source_path: Path) -> dict[str, Any]:
             f"{source_path}: no active currency codes found. "
             f"Check the file's shape."
         )
+
+    # Before writing, read the existing file to preserve review_by and cadence.
+    existing_review_by = None
+    existing_cadence = None
+    if output_path.exists():
+        try:
+            existing = json.loads(output_path.read_text(encoding="utf-8"))
+            existing_review_by = existing.get("meta", {}).get("review_by")
+            existing_cadence = existing.get("meta", {}).get("refresh_cadence")
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    meta["review_by"] = existing_review_by
+    meta["refresh_cadence"] = existing_cadence or "quarterly"
 
     return {
         "_comment": (

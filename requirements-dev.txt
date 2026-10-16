@@ -10,4 +10,4 @@
 #   pip install -r requirements-dev.txt
 
 jsonschema>=4.20
-pyarrow==25.0.1
+pyarrow==26.0.0
