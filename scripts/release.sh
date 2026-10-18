@@ -381,10 +381,11 @@ PYEOF
     [ "$TAG_SHA" = "$(git rev-parse HEAD)" ] \
         || die "tag does not point at HEAD ($TAG_SHA vs $(git rev-parse HEAD))"
 
-    TAG_CONTENTS=$(git for-each-ref "refs/tags/v$VERSION" --format='%(contents)')
-    [ "$TAG_CONTENTS" = "$(cat "$TAG_MESSAGE_FILE")" ] \
-        || die "tag message in git does not match the file; delete the tag and retry"
-    echo "  tag v$VERSION -> $TAG_SHA"
+    if ! diff -q <(git for-each-ref "refs/tags/v$VERSION" --format='%(contents)') "$TAG_MESSAGE_FILE" > /dev/null; then
+        die "tag message in git does not match the file"
+        fi
+        echo "  tag v$VERSION -> $TAG_SHA"
+    fi
 fi
 
 # --- step 6: GitHub release --------------------------------------------
