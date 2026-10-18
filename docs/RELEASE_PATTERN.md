@@ -85,6 +85,10 @@ Why: a release that fails CI is a release that needs a revert
 commit. A release that fails the gate locally is a release that
 was never created.
 
+
+**Gate completeness.**
+The release gate includes every check that runs in CI *on push*. Scheduled or event-triggered workflows that open PRs rather than gate `main` (e.g., a `refresh.yml` or `monitor.yml`) are exempt. The exemption is named per-registry in this document.
+
 ### 6. Poll every workflow
 
 After the release commit is pushed, poll every workflow that runs
@@ -231,6 +235,12 @@ check's role.
 ---
 
 ## Registry freshness vs. snapshot freshness
+
+**Freshness is per-source, not per-registry.**
+Every committed snapshot, every vendored reference, and every per-entity file derived from an external source carries its own review date and cadence. The release gate checks each one. Single-source registries have one instance; multi-source registries have many. The mechanism is identical.
+
+**Per-source health, not just freshness.**
+A review date says "we should look at this again." A health probe says "the source is still reachable." Live pages and PDFs can disappear between review dates. The gate or CI must include a reachability check for live sources (e.g., `check-sources.yml`).
 
 Two questions that look similar and aren't:
 
