@@ -430,6 +430,20 @@ If the dry-run preview prints `git push --tags` while the real script pushes a s
 
 Post-run assertions that depend on the script having executed (e.g., `grep -q "version" README.md` after a `sed` that was skipped in dry-run) will halt the script. Wrap these assertions in `DRY_RUN` checks. If a dry-run halts before the target commands, it offers no preview.
 
+### 12. Addendum. Testing dry-run reachability
+
+Testing a release script's dry-run in a throwaway copy requires a local remote. `git fetch origin` in preflight overwrites any `git update-ref refs/remotes/origin/<branch>` fakery set in the copy. Use this sequence to test dry-runs properly:
+
+```bash
+git init --bare /tmp/fake-origin
+git remote set-url origin /tmp/fake-origin
+git push -u origin main
+DRY_RUN=1 scripts/release.sh <target>
+```
+
+### 13. Commit messages use -F, not -m
+
+Long -m "..." strings are paste-garbling-vulnerable. A heredoc or an embedded command can corrupt the message body. Write the message to /tmp/msg.txt, cat it to verify, then use git commit -F /tmp/msg.txt
 
 ## The vendored-snapshot `review_by` shape
 
