@@ -418,6 +418,19 @@ that referenced functions defined inside a script. Twice.
 
 ---
 
+### 9. Patches are edits to a file, not commands for the shell
+
+Pasting script variables (`$VERSION`), undefined functions (`die`), or multi-line blocks (`<<'PYEOF'`) into an interactive shell fails silently or behaves destructively. The shell evaluates them in the context of the terminal, not the script. Apply patches with an editor.
+
+### 10. A dry-run must echo the actual commands
+
+If the dry-run preview prints `git push --tags` while the real script pushes a specific tag, the preview is lying. The echo logic must be updated in the same commit as the real logic. A false preview is worse than no preview.
+
+### 11. A dry-run must reach the commands it is meant to preview
+
+Post-run assertions that depend on the script having executed (e.g., `grep -q "version" README.md` after a `sed` that was skipped in dry-run) will halt the script. Wrap these assertions in `DRY_RUN` checks. If a dry-run halts before the target commands, it offers no preview.
+
+
 ## The vendored-snapshot `review_by` shape
 
 When registry A vendors a byte-for-byte snapshot of registry B, and
