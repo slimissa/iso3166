@@ -145,6 +145,17 @@ Why: this is the rule that the release process exists to enforce.
 `CONTRIBUTING.md` says "don't tag on red"; the script says "you
 cannot tag on red."
 
+
+### Tag-message verification
+
+The tag is created with `git tag -a v$VERSION -F "$TAG_MESSAGE_FILE"`. Git applies `--cleanup` to the message when storing it. By default, git uses `strip`, which removes leading and trailing empty lines and trailing whitespace.
+
+If the read-back uses `git for-each-ref "refs/tags/v$VERSION" --format='%(contents)'`, the stored message must match the file byte-for-byte. 
+
+**The pitfall:** `--cleanup=whitespace` strips leading whitespace (like Markdown indentation) as well as trailing. The write side might not. This causes a false positive on the verification. Use `--cleanup=verbatim` (Git 2.25+) so git stores exactly what is in the file, preserving indentation. Then normalize trailing newlines on both sides.
+
+**The exit code trap:** `diff -q fileA fileB` exits 0 (same), 1 (differ), and 2 (error, e.g. file missing). A naive `if ! diff -q ...; then die "differ"; fi` treats an exit 2 as "differ". The check must distinguish "the messages differ" from "the check could not run". Wrap the diff in an explicit status check to route exit 2 to an error message.
+
 ### 8. Immutable tags
 
 **This is policy, not mechanism.** The script refuses to re-run on

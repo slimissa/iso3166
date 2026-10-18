@@ -374,7 +374,7 @@ PYEOF
     head -6 "$TAG_MESSAGE_FILE"
     echo "  ---"
 
-    git tag -a "v$VERSION" -F "$TAG_MESSAGE_FILE"
+    git tag -a "v$VERSION" -F "$TAG_MESSAGE_FILE" --cleanup=verbatim
     git push origin "v$VERSION"
 
     TAG_SHA=$(git rev-list -n1 "v$VERSION")
