@@ -1,34 +1,28 @@
 # Layers
 
-This registry is a **RAW** layer. Every downstream artifact is
-**CURATED**, derived from it deterministically. There is no AGGREGATED
-layer yet; one is planned for v1.7.0 once ISO 4217 also exists in the
-same shape.
+This registry uses a three-tier Medallion Architecture (RAW → CURATED → AGGREGATED).
+
+A layer may only read from the layer immediately below it. The code structurally enforces this.
 
 ## The three layers
 
 | Layer | What it is | Where it lives |
 |-------|-----------|----------------|
-| **RAW** | The authoritative data. Hand-edited or generated once, then frozen. | `iso3166.json` |
-| **CURATED** | Deterministic transforms of RAW. Regenerable byte-for-byte. | SQL, CSV, TSV, Parquet, CLI output |
-| **AGGREGATED** | Cross-registry joins or rollups. Depends on RAW from more than one registry. | (none yet) |
+| **RAW** | The authoritative data. | `iso3166.json` |
+| **CURATED** | Deterministic transforms of RAW. | SQL, CSV, TSV, Parquet, CLI output |
+| **AGGREGATED** | Rollups and pre-computed metrics derived from CURATED. | `countries_by_region.parquet` |
 
 ## RAW — `iso3166.json`
 
-The single source of truth. Its shape is fixed by `schema.json`.
-Changes to RAW are reviewed by a human and require a first-party source
-citation in the commit message.
+The single source of truth. Its shape is fixed by `schema.json`. Changes to RAW are reviewed by a human and require a first-party source citation in the commit message.
 
-`iso3166.json` is committed. It is not generated at build time. The
-one-shot importer in `tools/build_initial_data.py` produced it once and
-is archival; after v1.0.0, the JSON is edited directly.
+`iso3166.json` is committed. It is not generated at build time. The one-shot importer in `tools/build_initial_data.py` produced it once and is archival; after v1.0.0, the JSON is edited directly.
 
 ## CURATED — the derived artifacts
 
-Every CURATED artifact is regenerable from RAW by a single command,
-producing byte-identical output. CI verifies this: each exporter has a
-`--check` mode that fails the build if a committed artifact differs
-from a fresh generation.
+Every CURATED artifact is regenerable from RAW by a single command, producing byte-identical output. CI verifies this: each exporter has a `--check` mode that fails the build if a committed artifact differs from a fresh generation.
+
+**Byte-for-byte validation:** CURATED `--check` modes use strict byte comparison. A library upgrade (e.g., `pyarrow` changing its internal compression bytes) that alters the output file *must* fail the check. The artifact is the source of truth for its content, so any byte change is a change of state. The tool version must be pinned (see `RELEASE_PATTERN.md`).
 
 | Artifact | Generator | `--check` |
 |----------|-----------|-----------|
@@ -38,26 +32,23 @@ from a fresh generation.
 | CLI output | `tools/iso3166_cli.py` | via `check-cli` CI job |
 | Bundled JSON in wrappers | `tools/sync_wrappers.py` | ✅ |
 
-Determinism rules:
+**Determinism rules:**
 
-- Keys sorted where order doesn't matter; rows sorted by `alpha_2`
-  where order does.
+- Keys sorted where order doesn't matter; rows sorted by `alpha_2` where order does.
 - LF line endings everywhere; enforced by `.gitattributes`.
-- UTF-8, no BOM except in `iso3166.excel.csv` where the BOM is what
-  makes Windows Excel open it without an import dialog.
-- No timestamps in artifact content. Version and updated date appear
-  only in Parquet footer metadata and in `meta` in the JSON.
+- UTF-8, no BOM except in `iso3166.excel.csv` where the BOM is what makes Windows Excel open it without an import dialog.
+- No timestamps in artifact content. Version and updated date appear only in Parquet footer metadata and in `meta` in the JSON.
 
-## AGGREGATED — not yet
+## AGGREGATED — `countries_by_region.parquet`
 
-An AGGREGATED artifact would be, for example, `currencies_by_region`:
-a rollup of ISO 4217 currency counts by ISO 3166 region. It requires
-both registries to exist and be joinable on `alpha_2`. Planned for
-v1.7.0.
+An analytical rollup of ISO 3166 country counts by region and subregion. It reads **only** from the CURATED `iso3166.parquet` layer. It must never read the RAW `iso3166.json`. This rule is structurally enforced by `tests/test_architecture.py`, which uses Python's `ast` module to reject any `json` imports or `.json` string literals in the aggregator script.
+
+**Content-equivalence validation:** AGGREGATED `--check` modes use logical content comparison (`pd.testing.assert_frame_equal`). If a library upgrade changes the physical bytes of the Parquet file but the tabular data remains identical, the check passes. The aggregate is a query over CURATED, not a source of truth. Byte comparison on AGGREGATED files couples them to a library version for no benefit.
+
+| Artifact | Generator | `--check` |
+|----------|-----------|-----------|
+| `countries_by_region.parquet` | `tools/export_aggregated.py` | ✅ (content-equivalence) |
 
 ## Why the layering matters
 
-Every field has exactly one home. A consumer that wants a stable data
-file reads RAW. A consumer that wants a database table reads CURATED.
-A consumer that wants an analytical rollup reads AGGREGATED (when it
-exists). No layer re-derives what a lower layer already provides.
+Every field has exactly one home. A consumer that wants a stable data file reads RAW. A consumer that wants a database table reads CURATED. A consumer that wants an analytical rollup reads AGGREGATED. No layer re-derives what a lower layer already provides.
