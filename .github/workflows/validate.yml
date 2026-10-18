@@ -172,6 +172,9 @@ jobs:
 
       - run: python3 tools/export_parquet.py --check
       
+      - name: Install dependencies
+        run: pip install pyarrow pandas
+
       - name: Check AGGREGATED export drift
         run: python3 tools/export_aggregated.py --check
   
