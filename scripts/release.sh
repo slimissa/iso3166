@@ -259,6 +259,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/gen_consistency_fixture.py --check
         python3 tools/gen_withdrawn_doc.py --check
         python3 -m pytest wrappers/python/tests/ -q
+        bash tools/check_cross_language.sh US GB JP
     ) > "$GATE_LOG" 2>&1 \
         || { tail -20 "$GATE_LOG"; die "gate failed; see $GATE_LOG"; }
 
@@ -378,6 +379,10 @@ PYEOF
     TAG_SHA=$(git rev-list -n1 "v$VERSION")
     [ "$TAG_SHA" = "$(git rev-parse HEAD)" ] \
         || die "tag does not point at HEAD ($TAG_SHA vs $(git rev-parse HEAD))"
+
+    TAG_CONTENTS=$(git for-each-ref "refs/tags/v$VERSION" --format='%(contents)')
+    [ "$TAG_CONTENTS" = "$(cat "$TAG_MESSAGE_FILE")" ] \
+        || die "tag message in git does not match the file; delete the tag and retry"
     echo "  tag v$VERSION -> $TAG_SHA"
 fi
 

@@ -559,6 +559,9 @@ resolves to "permitted, presence anywhere" so both tools agree.
 
 ### Version-pinned byte outputs
 
+**Absence claims.** Assert the absence of nondeterministic strings (`date.today()`, timestamps) in the release manifest, not just the presence of expected strings. A claim that a file contains a date-dependent value is a claim that will fail tomorrow. ISO 10383's manifest is the reference implementation.
+
+
 Any build tool that produces a byte-comparable artifact must be
 pinned to an exact version, not a version range. The `--check`
 mode compares bytes; a different tool version produces different
