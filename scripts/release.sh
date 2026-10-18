@@ -255,6 +255,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/export_sql.py --check
         python3 tools/export_csv.py --check
         python3 tools/export_parquet.py --check
+        python3 tools/export_aggregated.py --check
         python3 tools/sync_wrappers.py --check
         python3 tools/gen_consistency_fixture.py --check
         python3 tools/gen_withdrawn_doc.py --check

@@ -171,7 +171,10 @@ jobs:
       - run: pip install -r requirements-dev.txt
 
       - run: python3 tools/export_parquet.py --check
-
+      
+      - name: Check AGGREGATED export drift
+        run: python3 tools/export_aggregated.py --check
+  
   # =================================================================
   # 7. CLI contract: exit codes 0/1/2/3 and --csv byte-identical to
   #    iso3166.csv.
