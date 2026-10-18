@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] — 2026-10-18
+
+Add AGGREGATED layer and enforce Medallion Architecture.
+
+### Added
+- `tools/export_aggregated.py` — groups the CURATED Parquet layer by region and subregion, writing `countries_by_region.parquet`.
+- `tests/test_architecture.py` — AST guardrail ensuring the AGGREGATED layer never imports `json` or reads `.json` files.
+- `tests/test_export_aggregated.py` — full test suite for the new tool, isolated via `tmp_path`.
+- `docs/LAYERS.md` updated to document the three-tier architecture.
+
+### Changed
+- `RELEASE_PATTERN.md` updated with the CURATED (byte) vs AGGREGATED (content) check distinction.
+
 ## [1.6.9] — 2026-10-16
 
 Bulgaria adopts the euro; ISO 4217 snapshot refreshed.

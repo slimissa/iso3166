@@ -1,35 +1,114 @@
 {
   "_comment": "Machine-checkable claims per CHANGELOG version. Each entry is {file, contains} or {file, absent}. release.sh runs tools/check_release_claims.py against the version being released; any failing claim stops the release. A missing manifest for a released version is a hard error.",
   "1.6.9": [
-    {"file": "tools/iso4217_snapshot.json", "contains": "\"iso4217_version\": \"1.8.0\""},
-    {"file": "CHANGELOG.md", "contains": "## [1.6.9]"}
+    {
+      "file": "tools/iso4217_snapshot.json",
+      "contains": "\"iso4217_version\": \"1.8.0\""
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.6.9]"
+    }
   ],
   "1.6.8": [
-    {"file": "tools/check_mojibake.py", "contains": "\\xef\\xbf\\xbd"},
-    {"file": "tools/check_mojibake.py", "contains": "\\xc3\\xa2\\xe2\\x82\\xac"},
-    {"file": "tools/check_snapshot_freshness.py", "contains": "Two mechanisms, two concerns"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "The `[Unreleased]` convention"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "2026-10-06"},
-    {"file": "CHANGELOG.md", "contains": "## [1.6.8]"}
+    {
+      "file": "tools/check_mojibake.py",
+      "contains": "\\xef\\xbf\\xbd"
+    },
+    {
+      "file": "tools/check_mojibake.py",
+      "contains": "\\xc3\\xa2\\xe2\\x82\\xac"
+    },
+    {
+      "file": "tools/check_snapshot_freshness.py",
+      "contains": "Two mechanisms, two concerns"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "The `[Unreleased]` convention"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "2026-10-06"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.6.8]"
+    }
   ],
   "1.6.7": [
-    {"file": "scripts/release.sh", "contains": "(set -e"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "commit is not the working tree"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "Attribution convention"},
-    {"file": "CHANGELOG.md", "contains": "## [1.6.7]"}
+    {
+      "file": "scripts/release.sh",
+      "contains": "(set -e"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "commit is not the working tree"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Attribution convention"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.6.7]"
+    }
   ],
   "1.6.6": [
-    {"file": "scripts/release.sh", "contains": "check_manifest_has_version"},
-    {"file": "scripts/release.sh", "contains": "die \"release script references undefined variables\""},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "commit is not the working tree"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "attribution"},
-    {"file": "CHANGELOG.md", "contains": "## [1.6.6]"}
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_manifest_has_version"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "die \"release script references undefined variables\""
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "commit is not the working tree"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "attribution"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.6.6]"
+    }
   ],
   "1.6.5": [
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "slimissa/iso10383"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "check_no_orphan_variables"},
-    {"file": "tools/check_release_claims.py"},
-    {"file": "tools/release_claims.json"},
-    {"file": "CHANGELOG.md", "contains": "## [1.6.5]"}
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "slimissa/iso10383"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "check_no_orphan_variables"
+    },
+    {
+      "file": "tools/check_release_claims.py"
+    },
+    {
+      "file": "tools/release_claims.json"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.6.5]"
+    }
+  ],
+  "1.7.0": [
+    {
+      "file": "tools/export_aggregated.py"
+    },
+    {
+      "file": "countries_by_region.parquet"
+    },
+    {
+      "file": "tests/test_architecture.py"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.7.0]"
+    }
   ]
 }

@@ -615,6 +615,9 @@ CSV and JSON are usually stable across versions. Anything binary
 or with a structured footer (Parquet, Arrow, Avro, HDF5) is not.
 Pin those.
 
+**CURATED vs. AGGREGATED checks.** 
+CURATED artifacts compare byte-for-byte. They are the source of truth for their content, so any byte change is a change of state. AGGREGATED artifacts compare content-equivalence. They are queries over CURATED; their invariant is that the same query produces the same answer. Byte-comparison on AGGREGATED files couples them to a library version for no benefit; content-comparison on CURATED files lets silent drift through.
+
 ### Implementation note
 
 `tools/check_mojibake.py` scans the first 200 bytes of every file
