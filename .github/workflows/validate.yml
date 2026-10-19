@@ -49,6 +49,9 @@ jobs:
           python-version: ${{ matrix.python }}
           cache: pip
 
+      - name: Verify dev requirements parse
+        run: pip install --dry-run -r requirements-dev.txt
+
       - name: Install tool dependencies
         run: pip install -r requirements-dev.txt
 
@@ -85,6 +88,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+
+      - name: Verify dev requirements parse
+        run: pip install --dry-run -r requirements-dev.txt
 
       - run: pip install -r requirements-dev.txt
 
@@ -173,6 +179,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+
+      - name: Verify dev requirements parse
+        run: pip install --dry-run -r requirements-dev.txt
 
       - run: pip install -r requirements-dev.txt
 
@@ -436,6 +445,9 @@ jobs:
         run: |
           python3 -m pip install -e wrappers/python
           python3 -m pip install pytest
+
+      - name: Verify dev requirements parse
+        run: pip install --dry-run -r requirements-dev.txt
 
       - name: Install tool dependencies
         run: pip install -r requirements-dev.txt
