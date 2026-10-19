@@ -379,15 +379,28 @@ PYEOF
     head -6 "$TAG_MESSAGE_FILE"
     echo "  ---"
 
+    # Guard: an empty tag message means the CHANGELOG extraction failed.
+    [ -s "$TAG_MESSAGE_FILE" ] \
+        || die "tag message file is empty: $TAG_MESSAGE_FILE"
+
+    # Delete the local tag and die. Used by every post-create check
+    # below so that a failed verification never leaves a tag behind
+    # and never reaches the push (rule 8: pushed tags are immutable).
+    drop_local_tag_and_die() {
+        if ! git tag -d "v$VERSION" >/dev/null 2>&1; then
+            die "$1; git tag -d also failed; tag may still exist locally"
+        fi
+        die "$1; local tag deleted before push"
+    }
+
     git tag -a "v$VERSION" -F "$TAG_MESSAGE_FILE" --cleanup=verbatim
-    git push origin "v$VERSION"
 
     TAG_SHA=$(git rev-list -n1 "v$VERSION")
     [ "$TAG_SHA" = "$(git rev-parse HEAD)" ] \
-        || die "tag does not point at HEAD ($TAG_SHA vs $(git rev-parse HEAD))"
+        || drop_local_tag_and_die "tag points at $TAG_SHA, not HEAD ($(git rev-parse HEAD))"
 
     if ! git for-each-ref "refs/tags/v$VERSION" --format='%(contents)' > /tmp/recorded_tag.txt; then
-        die "could not read tag message from git"
+        drop_local_tag_and_die "could not read tag message from git"
     fi
 
     set +e
@@ -395,13 +408,16 @@ PYEOF
     diff -q <(printf '%s' "$(cat /tmp/recorded_tag.txt)") <(printf '%s' "$(cat "$TAG_MESSAGE_FILE")") > /dev/null
     diff_status=$?
     set -e
-    
+
     if [ "$diff_status" -eq 2 ]; then
-        die "diff command failed to compare tag messages"
+        drop_local_tag_and_die "diff command failed to compare tag messages"
     elif [ "$diff_status" -eq 1 ]; then
-        die "tag message in git does not match the file; delete the tag and retry"
+        drop_local_tag_and_die "tag message in git does not match the file"
     fi
-    echo "  tag v$VERSION -> $TAG_SHA"
+
+    # Push only after every local verification has passed.
+    git push origin "v$VERSION"
+    echo "  tag v$VERSION -> $TAG_SHA (verified before push)"
 fi
 
 # --- step 6: GitHub release --------------------------------------------
