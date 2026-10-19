@@ -2,7 +2,7 @@
 """
 tools/check_version_consistency.py
 
-Verify that the five version references in this repository agree.
+Verify that the version references in this repository agree.
 
 Sources checked:
     1. VERSION                                   (file content)
@@ -10,6 +10,13 @@ Sources checked:
     3. CHANGELOG.md -> top [x.y.z] heading       (release notes)
     4. README.md -> "Status: v0.X.Y" (optional)  (human-facing)
     5. iso3166.parquet -> iso3166.version        (artifact metadata)
+    6. wrappers/python/pyproject.toml            (required)
+    7. wrappers/python/iso3166/__init__.py       (required)
+    8. wrappers/javascript/package.json          (required)
+    9. wrappers/rust/Cargo.toml                  (required)
+
+Not checked here: wrappers/rust/Cargo.lock and the README registry badge
+(scripts/release.sh compares the former; the latter is unchecked).
 
 Pre-release exception
 ---------------------
@@ -152,6 +159,51 @@ def read_parquet_version() -> tuple[str | None, str]:
     return v.decode("utf-8"), "ok"
 
 
+WRAPPER_SITES: tuple[tuple[str, str, str], ...] = (
+    # (label, path, kind)
+    ("wrappers/python/pyproject.toml", "wrappers/python/pyproject.toml", "toml"),
+    (
+        "wrappers/python/iso3166/__init__.py",
+        "wrappers/python/iso3166/__init__.py",
+        "pyinit",
+    ),
+    (
+        "wrappers/javascript/package.json",
+        "wrappers/javascript/package.json",
+        "packagejson",
+    ),
+    ("wrappers/rust/Cargo.toml", "wrappers/rust/Cargo.toml", "toml"),
+)
+
+_TOML_VERSION_RE = re.compile(r'^version\s*=\s*"([^"]+)"', re.MULTILINE)
+_PYINIT_VERSION_RE = re.compile(r'^__version__\s*=\s*"([^"]+)"', re.MULTILINE)
+
+
+def read_wrapper_version(path: str, kind: str) -> tuple[str | None, str]:
+    """Return (version, error). version is None if it could not be read.
+
+    Wrapper manifests are required release sites, so a missing file or an
+    unparseable version is reported as a mismatch, never skipped.
+    """
+    p = Path(path)
+    if not p.exists():
+        return None, f"{path}: file not found"
+    try:
+        text = p.read_text(encoding="utf-8")
+        if kind == "packagejson":
+            v = json.loads(text).get("version")
+            if not isinstance(v, str):
+                return None, f"{path}: no string 'version' field"
+            return v, ""
+        regex = _PYINIT_VERSION_RE if kind == "pyinit" else _TOML_VERSION_RE
+        m = regex.search(text)
+        if not m:
+            return None, f"{path}: no version declaration found"
+        return m.group(1), ""
+    except (OSError, ValueError) as exc:
+        return None, f"{path}: could not read: {exc}"
+
+
 def run() -> tuple[int, dict[str, Any]]:
     version = read_version_file()
     registry = read_registry_version()
@@ -206,6 +258,17 @@ def run() -> tuple[int, dict[str, Any]]:
         results["mismatches"].append(
             f"Parquet footer ({parquet_v}) != VERSION ({version})"
         )
+
+    for label, path, kind in WRAPPER_SITES:
+        wrapper_v, wrapper_err = read_wrapper_version(path, kind)
+        if wrapper_v is None:
+            results["mismatches"].append(wrapper_err)
+        elif wrapper_v == version:
+            results["matches"].append(f"{label} == VERSION ({version})")
+        else:
+            results["mismatches"].append(
+                f"{label} ({wrapper_v}) != VERSION ({version})"
+            )
 
     exit_code = 1 if results["mismatches"] else 0
     return exit_code, results
