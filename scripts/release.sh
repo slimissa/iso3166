@@ -152,12 +152,20 @@ CURRENT_VERSION=$(cat VERSION)
 [ "$CURRENT_VERSION" != "$VERSION" ] \
     || die "VERSION already reads $VERSION; nothing to do"
 
+# Tag must not exist locally or on origin.
+if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null 2>&1; then
+    die "tag v$VERSION already exists locally; delete it or pick a different version"
+fi
+if [ -n "$(git ls-remote --tags origin "refs/tags/v$VERSION")" ]; then
+    die "tag v$VERSION already exists on origin; pick a different version"
+fi
+
 check_no_orphan_variables
 check_workflows_covered
 echo "  tree clean"
 echo "  on main at $LOCAL_SHA"
 echo "  CHANGELOG has section for $VERSION"
-echo "  current version: $CURRENT_VERSION"
+echo "  current version: $CURRENT_VERSION; tag v$VERSION is free"
 
 # --- step 1: bump ------------------------------------------------------
 
