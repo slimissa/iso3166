@@ -452,6 +452,11 @@ jobs:
       - name: Install tool dependencies
         run: pip install -r requirements-dev.txt
 
+      - name: Audit dev requirements (pip-audit)
+        run: |
+          python3 -m pip install pip-audit
+          pip-audit -r requirements-dev.txt --strict
+
       - name: Run wrapper tests
         run: python3 -m pytest wrappers/python/tests/ -v
 
@@ -504,6 +509,12 @@ jobs:
         working-directory: wrappers/go
         run: go test ./... -v
 
+      - name: Audit (govulncheck)
+        working-directory: wrappers/go
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@latest
+          "$(go env GOPATH)/bin/govulncheck" ./...
+
   wrapper-rust:
     name: Rust wrapper tests
     runs-on: ubuntu-24.04
@@ -525,3 +536,9 @@ jobs:
       - name: Test
         working-directory: wrappers/rust
         run: cargo test
+
+      - name: Audit (cargo audit)
+        working-directory: wrappers/rust
+        run: |
+          cargo install cargo-audit --locked
+          cargo audit
