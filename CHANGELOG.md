@@ -8,6 +8,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.1] — 2026-10-20
+
+Trust the script. Release-pipeline safety fixes; no data or schema changes.
+
+### Fixed
+
+- `requirements-dev.txt` — repaired the corruption committed in
+  `e5080fd` (`pyarrow==26.0.0pandas` plus duplicate `pandas` lines).
+  CI has been failing on `pip install -r requirements-dev.txt` on
+  every push since the corruption landed. Contributors following
+  `CONTRIBUTING.md` were blocked.
+- `scripts/release.sh` — verify tag message before push, delete local
+  tag on any verification failure. Adopted from ISO 4217's A12.
+- `scripts/release.sh` — refuse if the target tag already exists
+  locally or on origin. Prevents "commit pushed, tag orphaned" after
+  a manual recovery.
+- `scripts/release.sh` — refuse a release whose staged changes touch
+  only paths ignored by `validate.yml`, and exit early if CI does not
+  start within 60 seconds.
+
+### Added
+
+- CI: `pip install --dry-run -r requirements-dev.txt` step in all four
+  jobs that install dev requirements.
+- CI: `pip-audit --strict`, `govulncheck`, and `cargo audit` in wrapper
+  jobs, per `RELEASE_PATTERN.md` rule 9 (adopted from ISO 4217 during
+  v1.8.4 coordination).
+
+### Notes
+
+- Platform requirement (`Linux-only, GNU tools`) documented in the
+  `scripts/release.sh` header as of `6d4d60f`.
+- Audit results: `pip-audit` clean; `govulncheck` clean; `cargo audit`
+  clean at 12 crate dependencies.
+- Downstream coordination: this release does not change the
+  `iso3166.json` data or schema. ISO 4217, ISO 10383, and Exchange
+  Calendar can re-vendor the same snapshot. The `independent` field
+  correction ships in v1.7.2 and will require re-vendoring at that
+  time.
+  
 ## [1.7.0] — 2026-10-18
 
 Add AGGREGATED layer and enforce Medallion Architecture.
