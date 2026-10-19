@@ -68,6 +68,9 @@ jobs:
       - name: Ground-truth verify against frozen sets
         run: python3 tools/parse_source.py --verify iso3166.json
 
+      - name: Run root test suite
+        run: python3 -m pytest tests/ -v
+  
   # =================================================================
   # 2. Version consistency across VERSION, meta.version, CHANGELOG,
   #    README, Parquet footer.

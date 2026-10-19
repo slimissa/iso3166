@@ -63,8 +63,7 @@ PARQUET = Path("iso3166.parquet")
 
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 CHANGELOG_HEADING_RE = re.compile(r"^## \[([0-9]+\.[0-9]+\.[0-9]+|Unreleased)\]", re.MULTILINE)
-README_STATUS_RE = re.compile(r"Status:\s*v(\d+\.\d+\.\d+)", re.IGNORECASE)
-
+README_STATUS_RE = re.compile(r"registry-(\d+\.\d+\.\d+)-orange", re.IGNORECASE)
 
 class FatalError(SystemExit):
     def __init__(self, message: str, code: int = 2) -> None:
@@ -160,19 +159,11 @@ def read_parquet_version() -> tuple[str | None, str]:
 
 
 WRAPPER_SITES: tuple[tuple[str, str, str], ...] = (
-    # (label, path, kind)
     ("wrappers/python/pyproject.toml", "wrappers/python/pyproject.toml", "toml"),
-    (
-        "wrappers/python/iso3166/__init__.py",
-        "wrappers/python/iso3166/__init__.py",
-        "pyinit",
-    ),
-    (
-        "wrappers/javascript/package.json",
-        "wrappers/javascript/package.json",
-        "packagejson",
-    ),
+    ("wrappers/python/iso3166/__init__.py", "wrappers/python/iso3166/__init__.py", "pyinit"),
+    ("wrappers/javascript/package.json", "wrappers/javascript/package.json", "packagejson"),
     ("wrappers/rust/Cargo.toml", "wrappers/rust/Cargo.toml", "toml"),
+    ("wrappers/rust/Cargo.lock", "wrappers/rust/Cargo.lock", "cargolock"),
 )
 
 _TOML_VERSION_RE = re.compile(r'^version\s*=\s*"([^"]+)"', re.MULTILINE)
@@ -180,11 +171,6 @@ _PYINIT_VERSION_RE = re.compile(r'^__version__\s*=\s*"([^"]+)"', re.MULTILINE)
 
 
 def read_wrapper_version(path: str, kind: str) -> tuple[str | None, str]:
-    """Return (version, error). version is None if it could not be read.
-
-    Wrapper manifests are required release sites, so a missing file or an
-    unparseable version is reported as a mismatch, never skipped.
-    """
     p = Path(path)
     if not p.exists():
         return None, f"{path}: file not found"
@@ -195,6 +181,12 @@ def read_wrapper_version(path: str, kind: str) -> tuple[str | None, str]:
             if not isinstance(v, str):
                 return None, f"{path}: no string 'version' field"
             return v, ""
+        if kind == "cargolock":
+            m = re.search(r'name = "iso3166-registry"\nversion = "([^"]+)"', text)
+            if not m:
+                return None, f"{path}: no version for iso3166-registry"
+            return m.group(1), ""
+        
         regex = _PYINIT_VERSION_RE if kind == "pyinit" else _TOML_VERSION_RE
         m = regex.search(text)
         if not m:

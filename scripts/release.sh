@@ -358,13 +358,11 @@ if [ "$DRY_RUN" = "0" ]; then
     python3 - "$VERSION" > "$TAG_MESSAGE_FILE" <<'PYEOF'
 import re, sys
 from pathlib import Path
-
 version = sys.argv[1]
 text = Path("CHANGELOG.md").read_text(encoding="utf-8")
 pattern = rf"^## \[{re.escape(version)}\][^\n]*\n(.*?)(?=^## \[|\Z)"
 m = re.search(pattern, text, re.M | re.S)
-if not m:
-    sys.exit(f"CHANGELOG section for {version} not found")
+if not m: sys.exit(f"CHANGELOG section for {version} not found")
 print(f"ISO 3166 Country Registry v{version}")
 print()
 print(m.group(1).strip())
@@ -387,7 +385,8 @@ PYEOF
     fi
 
     set +e
-    diff -q /tmp/recorded_tag.txt "$TAG_MESSAGE_FILE" > /dev/null
+    # Normalize trailing newlines to prevent false positives
+    diff -q <(printf '%s' "$(cat /tmp/recorded_tag.txt)") <(printf '%s' "$(cat "$TAG_MESSAGE_FILE")") > /dev/null
     diff_status=$?
     set -e
     
@@ -395,12 +394,8 @@ PYEOF
         die "diff command failed to compare tag messages"
     elif [ "$diff_status" -eq 1 ]; then
         die "tag message in git does not match the file; delete the tag and retry"
-    file; delete the tag and retry"
-        fi
-   
-        fi
-        echo "  tag v$VERSION -> $TAG_SHA"
     fi
+    echo "  tag v$VERSION -> $TAG_SHA"
 fi
 
 # --- step 6: GitHub release --------------------------------------------

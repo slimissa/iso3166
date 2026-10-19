@@ -121,7 +121,7 @@ Coverage is stable at v1.6.7; the last data change was v1.5.4.
 | `region`, `subregion` | 247/252 active | UN M49 |
 | `intermediate_region` | 105/252 active | UN M49; only where defined |
 | `currency_codes` | 248/252 active | ISO 4217; AQ has none |
-| `calling_codes` | 249/252 active | ITU-T E.164 |
+| `calling_codes` | 247/252 active | ITU-T E.164 |
 | `tlds` | 244/252 active | IANA; some territories have no ccTLD |
 | `languages` | 248/252 active | ISO 639-3; AQ has none |
 | `borders` | 162/252 active (non-empty) | Island states have `[]` |
