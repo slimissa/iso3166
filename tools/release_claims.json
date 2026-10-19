@@ -1,5 +1,27 @@
 {
   "_comment": "Machine-checkable claims per CHANGELOG version. Each entry is {file, contains} or {file, absent}. release.sh runs tools/check_release_claims.py against the version being released; any failing claim stops the release. A missing manifest for a released version is a hard error.",
+  "1.7.1": [
+    {
+      "file": "requirements-dev.txt",
+      "contains": "pyarrow==26.0.0\npandas>=2.0"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "Verify dev requirements parse"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "tag v$VERSION already exists locally"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "CI_START_TIMEOUT"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.7.1]"
+    }
+  ],
   "1.6.9": [
     {
       "file": "tools/iso4217_snapshot.json",
