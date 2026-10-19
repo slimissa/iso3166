@@ -490,9 +490,8 @@ jobs:
     name: Go wrapper tests
     runs-on: ubuntu-24.04
     strategy:
-      fail-fast: false
       matrix:
-        go: ["1.21", "1.22"]
+        go: ['1.23', '1.24']
     steps:
       - uses: actions/checkout@v4
 

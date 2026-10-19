@@ -12,3 +12,4 @@
 jsonschema>=4.20
 pyarrow==26.0.0
 pandas>=2.0
+pytest>=8   
