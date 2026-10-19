@@ -8,4 +8,4 @@ def test_release_pattern_sections():
     assert "proves its own reachability" in text, "Missing Rule B"
     assert "The `[Unreleased]` convention" in text, "Missing [Unreleased] rule"
     assert "Absence claims" in text, "Missing absence-claims corollary"
-    assert "grep on JSON" in text, "Missing 6d diagnostic note"
+    assert "grep on structured data" in text, "Missing 6d diagnostic note"

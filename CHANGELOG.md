@@ -601,7 +601,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.6.9...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/slimissa/iso3166/releases/tag/v1.7.0
 [1.6.9]: https://github.com/slimissa/iso3166/releases/tag/v1.6.9
 [1.6.8]: https://github.com/slimissa/iso3166/releases/tag/v1.6.8
 [1.6.7]: https://github.com/slimissa/iso3166/releases/tag/v1.6.7

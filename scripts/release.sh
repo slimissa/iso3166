@@ -259,6 +259,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/sync_wrappers.py --check
         python3 tools/gen_consistency_fixture.py --check
         python3 tools/gen_withdrawn_doc.py --check
+        python3 -m pytest tests/ -v
         python3 -m pytest wrappers/python/tests/ -q
         bash tools/check_cross_language.sh US GB JP
     ) > "$GATE_LOG" 2>&1 \
@@ -385,12 +386,16 @@ PYEOF
         die "could not read tag message from git"
     fi
 
-    if ! diff -q /tmp/recorded_tag.txt "$TAG_MESSAGE_FILE" > /dev/null; then
-        diff_status=$?
-        if [ "$diff_status" -eq 2 ]; then
-            die "diff command failed to compare tag messages"
-        else
-            die "tag message in git does not match the file; delete the tag and retry"
+    set +e
+    diff -q /tmp/recorded_tag.txt "$TAG_MESSAGE_FILE" > /dev/null
+    diff_status=$?
+    set -e
+    
+    if [ "$diff_status" -eq 2 ]; then
+        die "diff command failed to compare tag messages"
+    elif [ "$diff_status" -eq 1 ]; then
+        die "tag message in git does not match the file; delete the tag and retry"
+    file; delete the tag and retry"
         fi
     file"
         fi

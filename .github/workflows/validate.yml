@@ -55,6 +55,9 @@ jobs:
       - name: Validate (six layers, strict count)
         run: python3 tools/validate.py iso3166.json --strict-count --verbose
 
+      - name: Run root test suite
+        run: python3 -m pytest tests/ -v
+
       - name: Ground-truth audit
         run: |
           python3 tools/parse_source.py --audit \

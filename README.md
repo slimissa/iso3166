@@ -118,7 +118,7 @@ Coverage is stable at v1.6.7; the last data change was v1.5.4.
 |-------|-----------|-------|
 | `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, `independent` | 252/252 | Required |
 | `official_name` | 249/249 officially-assigned | ISO OBP long-form name |
-| `region`, `subregion` | 249/252 active | UN M49 |
+| `region`, `subregion` | 247/252 active | UN M49 |
 | `intermediate_region` | 105/252 active | UN M49; only where defined |
 | `currency_codes` | 248/252 active | ISO 4217; AQ has none |
 | `calling_codes` | 249/252 active | ITU-T E.164 |
