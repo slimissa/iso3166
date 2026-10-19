@@ -135,6 +135,10 @@ Two instances on record: ISO 3166 v1.6.4 (`Reviewed by:` vs
 (function body not staged). Both commits described changes that
 weren't in the diff.
 
+### 6d. grep on structured data
+
+A diagnostic check must parse with the same parser the consumer uses. Running grep on JSON cannot match values containing escaped characters. Diagnose with `json.loads` + string comparison.
+
 ### 7. Tag only on green
 
 The tag is created only after all polled workflows report
