@@ -397,7 +397,7 @@ PYEOF
         die "tag message in git does not match the file; delete the tag and retry"
     file; delete the tag and retry"
         fi
-    file"
+   
         fi
         echo "  tag v$VERSION -> $TAG_SHA"
     fi
