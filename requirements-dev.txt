@@ -10,6 +10,5 @@
 #   pip install -r requirements-dev.txt
 
 jsonschema>=4.20
-pyarrow==26.0.0pandas
-pandas
-pandas
+pyarrow==26.0.0
+pandas>=2.0
