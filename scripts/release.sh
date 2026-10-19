@@ -51,6 +51,7 @@ POLLED_WORKFLOWS=(
 )
 CI_POLL_INTERVAL=20
 CI_POLL_MAX=90     # 30 minutes max
+CI_START_TIMEOUT=60  # die if no CI run appears within this many seconds
 
 
 check_workflows_covered() {
@@ -295,6 +296,15 @@ if [ "$DRY_RUN" = "0" ]; then
         die "nothing staged; version sites may already be correct"
     fi
 
+    # validate.yml ignores pushes that touch only these root paths
+    # (paths-ignore). A release commit made only of them would not
+    # trigger CI, and step 4 would wait for runs that never appear.
+    # Keep this list in sync with paths-ignore in validate.yml.
+    CI_RELEVANT="$(git diff --cached --name-only \
+        | grep -v -F -x -e .gitignore -e .gitattributes -e LICENSE || true)"
+    [ -n "$CI_RELEVANT" ] \
+        || die "staged changes touch only paths ignored by validate.yml; CI will not run on this commit. Inspect: git diff --cached --stat"
+
     git commit -F - <<MSG
 chore: release v$VERSION
 
@@ -328,6 +338,9 @@ if [ "$DRY_RUN" = "0" ]; then
             2>/dev/null || echo "")
 
         if [ -z "$RUNS" ]; then
+            if [ "$elapsed" -ge "$CI_START_TIMEOUT" ]; then
+                die "no CI run for $RELEASE_SHA appeared within ${CI_START_TIMEOUT}s; check paths-ignore, Actions status, and gh auth (gh errors are suppressed here)"
+            fi
             echo "  no runs yet (${elapsed}s)"
             continue
         fi
