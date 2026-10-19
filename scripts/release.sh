@@ -9,8 +9,14 @@
 # green, tags, creates the GitHub release, and writes the verification
 # report.
 #
-# Requires: bash, git, gh, python3, cargo. The working tree must be
-# clean and on main.
+# Requires: bash 4+, git, gh, python3, cargo, GNU coreutils. The
+# working tree must be clean and on main.
+#
+# Platform: Linux-only. Tested on Ubuntu 22.04. Uses GNU grep -P,
+# find -exec basename, and other GNU-only constructs. macOS/BSD
+# compatibility is not verified. If you need to cut a release from
+# macOS, run scripts/release.sh inside a Linux container (Docker:
+# ubuntu:22.04 with bash, git, gh, python3, cargo installed).
 #
 # Exits 0 on success, non-zero on the first failure. The output names
 # the step that failed and the command to diagnose.
