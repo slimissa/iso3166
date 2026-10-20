@@ -8,6 +8,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.3] — 2026-10-20
+
+`independent` corrected for the active set per ISO 3166-1's designation.
+
+### Changed
+
+- **Downstream coordination.** ISO 4217, ISO 10383, and Exchange
+  Calendar hold snapshots of this registry. All three should
+  re-vendor on this release. The `independent` field is corrected
+  for ~180 active entries (previously `false` for most sovereign
+  states); the schema does not change, so re-vendoring is
+  mechanical.
+- `independent` re-derived from ISO 3166-1 OBP per-entry lookup
+  (the schema's stated source), not CIA Factbook independence dates.
+  Overrides: `XK` true, `TW` false, `EU` false. Withdrawn entries
+  set per-code (11 true for sovereign states, 14 false for
+  dependencies and territories).
+
+### Added
+
+- `tools/enrich_independent.py` — populate `independent` from OBP;
+  `--check` compares `iso3166.json` against the companion snapshot
+  (exit 0 with a warning while the snapshot is empty).
+- `tools/independent_snapshot.json` — audit trail: `{value,
+  source_url, extracted_at}` per alpha-2.
+- `tests/cross_language_consistency.json` — `independent` case, 20
+  entries plus count bounds; all four wrappers assert once the
+  snapshot is populated (`enforced`), and skip until then.
+- `tools/validate.py` — Northern America business-layer rule
+  (warn-only until `--strict-independent` is enabled).
+
+### Fixed
+
+- `docs/RELEASE_PATTERN.md` — rules 16 (don't reset VERSION) and
+  17 (don't Ctrl+C during CI wait) from v1.7.2 recovery; preflight
+  CI gate documented.
+
+### Notes
+
+- `UK` is exceptionally reserved and has no OBP entry. It is not
+  overridden; its `independent` value is left unchanged and the tool
+  lists it as unresolved.
+- 11 entries (BR, CN, DE, FR, GB, IN, JP, RU, TW, US, ZA) have
+  `official_name` populated but no `official_name source:` line.
+  Not invented. `TODO(v1.7.4)`.
+
 ## [1.7.2] — 2026-10-20
 
 Source citation repair. `enrich_field.py` no longer overwrites prior
