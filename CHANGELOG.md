@@ -8,6 +8,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.2] — 2026-10-20
+
+Source citation repair. `enrich_field.py` no longer overwrites prior
+fields' source citations; 250 notes reconstructed to carry one
+`<field> source:` line per populated field. No schema change; no
+consumer-visible data change beyond the `note` field format.
+
+### Fixed
+
+- `tools/enrich_field.py` — `record_source` writes
+  `<field> source: <url>` instead of bare `source: <url>`.
+  Prior to this release, each enrichment run overwrote the
+  previous field's citation. `enrich_withdrawn.py` and
+  `enrich_official_name.py` unchanged: the former's `--source`
+  covers the whole entry, the latter already uses
+  `official_name source:`.
+
+### Changed
+
+- `iso3166.json` — 250 notes reconstructed. Prior to this release,
+  238 entries carried two source lines for up to eight enriched
+  fields. The migration reconstructs each field's URL from
+  `enrich_field.py`'s `FIELDS[field].source_template.format(code=alpha_2)`
+  (a pure function of field and alpha-2), not guessed. Entries
+  whose surviving bare URL did not match a populated field's
+  template are left untouched and flagged.
+
+### Added
+
+- `tools/migrate_notes_to_per_field.py` — one-shot, idempotent
+  migration from the pre-v1.7.2 note format.
+- `tests/test_enrich_field_citations.py` — 5 cases.
+
+### Notes
+
+- 11 entries have `official_name` populated but no
+  `official_name source:` line: BR, CN, DE, FR, GB, IN, JP, RU,
+  TW, US, ZA. The migration does not invent a citation.
+  `TODO(v1.7.3)`: re-run `enrich_official_name.py` on these 11.
+- The `independent` field correction is deferred to v1.7.3.
+  Downstream registries (ISO 4217, ISO 10383, Exchange Calendar)
+  continue to hold their snapshots; no re-vendor needed on v1.7.2.
+  
 ## [1.7.1] — 2026-10-20
 
 Trust the script. Release-pipeline safety fixes; no data or schema changes.
