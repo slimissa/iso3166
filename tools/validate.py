@@ -74,6 +74,12 @@ VALID_STATUSES = {
 }
 ACTIVE_STATUSES = {"officially-assigned", "user-assigned", "exceptionally-reserved"}
 
+# Northern America has 5 entries: BM, CA, GL, PM, US. CA and US are
+# sovereign; BM, GL, PM are dependencies. If a future entry is added to
+# Northern America, either add it to this exception list with a
+# justification or confirm its independent value.
+NORTHERN_AMERICA_DEPENDENCIES = frozenset({"BM", "GL", "PM"})
+
 OPTIONAL_LIST_FIELDS = ("currency_codes", "calling_codes", "tlds", "languages", "borders", "replaced_by")
 OPTIONAL_STRING_FIELDS = ("official_name", "region", "subregion", "intermediate_region", "note")
 
@@ -323,7 +329,7 @@ def layer_integrity(reg: dict[str, Any]) -> LayerResult:
 # Layer 3 — business
 # ============================================================
 
-def layer_business(reg: dict[str, Any]) -> LayerResult:
+def layer_business(reg: dict[str, Any], *, strict_independent: bool = False) -> LayerResult:
     r = LayerResult("business")
     countries = reg.get("countries", {})
     active = countries.get("active", [])
@@ -350,6 +356,27 @@ def layer_business(reg: dict[str, Any]) -> LayerResult:
     for i, e in enumerate(withdrawn):
         if e.get("status") != "withdrawn":
             r.error(f"withdrawn[{i}] ({e.get('alpha_2')}): status must be 'withdrawn'")
+
+    # Northern America must be sovereign unless listed as a dependency
+    # (see NORTHERN_AMERICA_DEPENDENCIES). Warn-only until the v1.7.3 data
+    # commit has populated `independent`; after that commit, flip the
+    # default by running with --strict-independent in the gate (or make
+    # strict_independent default to True), so a regression blocks.
+    na_bad = sorted(
+        e["alpha_2"] for e in active
+        if e.get("region") == "Americas"
+        and e.get("subregion") == "Northern America"
+        and e["alpha_2"] not in NORTHERN_AMERICA_DEPENDENCIES
+        and e.get("independent") is not True
+    )
+    if na_bad:
+        msg = (f"Northern America entries must have independent=true "
+               f"(exceptions {sorted(NORTHERN_AMERICA_DEPENDENCIES)}): {na_bad}")
+        if strict_independent:
+            r.error(msg)
+        else:
+            r.warn(msg + "; warn-only until the data commit, "
+                         "pass --strict-independent to block")
         if not e.get("withdrawal_date"):
             r.error(f"withdrawn[{i}] ({e.get('alpha_2')}): withdrawal_date is required")
 
@@ -610,6 +637,7 @@ def run_layers(
     only: set[str] | None,
     skip: set[str] | None,
     strict_count: bool,
+    strict_independent: bool = False,
 ) -> list[LayerResult]:
     only = only or set()
     skip = skip or set()
@@ -628,7 +656,7 @@ def run_layers(
     if should_run("integrity"):
         results.append(layer_integrity(reg))
     if should_run("business"):
-        results.append(layer_business(reg))
+        results.append(layer_business(reg, strict_independent=strict_independent))
     if should_run("cross-reference"):
         results.append(layer_cross_reference(reg, snapshot_path=snapshot_path))
     if should_run("ground-truth"):
@@ -769,6 +797,12 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Fail if the officially-assigned count is not exactly 249.",
     )
+    p.add_argument(
+        "--strict-independent",
+        action="store_true",
+        help="Fail (instead of warn) if a Northern America entry other than "
+             "BM, GL, PM is not independent=true. Use after the data commit.",
+    )
     p.add_argument("--json", action="store_true", dest="json_output",
                    help="Emit machine-readable JSON.")
     p.add_argument("--verbose", action="store_true",
@@ -792,6 +826,7 @@ def main(argv: list[str] | None = None) -> int:
         only=set(args.only) if args.only else None,
         skip=set(args.skip) if args.skip else None,
         strict_count=args.strict_count,
+        strict_independent=args.strict_independent,
     )
 
     exit_code = compute_exit_code(results)
