@@ -233,7 +233,24 @@ jobs:
 
       - name: --csv US row matches iso3166.csv
         run: |
-          diff <(python3 tools/iso3166_cli.py lookup US --csv | tail -1) <(grep '^US,' iso3166.csv)
+          python3 - <<'PY'
+          import csv, io, subprocess, sys
+          cli = subprocess.run(
+              [sys.executable, 'tools/iso3166_cli.py', 'lookup', 'US', '--csv'],
+              capture_output=True, text=True, check=True,
+          ).stdout
+          cli_rows = list(csv.reader(io.StringIO(cli)))
+          assert len(cli_rows) == 2, f'expected header + 1 row, got {len(cli_rows)}'
+          cli_header, cli_us = cli_rows
+          with open('iso3166.csv', newline='') as f:
+              reader = csv.reader(f)
+              csv_header = next(reader)
+              csv_us = next((r for r in reader if r and r[0] == 'US'), None)
+          assert csv_us is not None, 'US row missing from iso3166.csv'
+          assert cli_header == csv_header, 'header mismatch'
+          assert cli_us == csv_us, f'US row mismatch:\n  cli: {cli_us}\n  csv: {csv_us}'
+          print('  --csv US row matches iso3166.csv')
+          PY
 
   # =================================================================
   # 8. Docs' stated counts match iso3166.json.

@@ -144,6 +144,22 @@ git fetch origin main --quiet
 LOCAL_SHA=$(git rev-parse HEAD)
 REMOTE_SHA=$(git rev-parse origin/main)
 [ "$LOCAL_SHA" = "$REMOTE_SHA" ] || die "main is not up to date with origin/main"
+# Refuse if CI on HEAD has not completed green.
+# The pre-release commit must be CI-verified before the release commit is created;
+# otherwise the release commit inherits any red state and CI fails at step 4.
+HEAD_RUNS=$(gh run list --limit 20 --json headSha,status,conclusion \
+    --jq ".[] | select(.headSha == \"$LOCAL_SHA\") | \"\(.status) \(.conclusion)\"" \
+    2>/dev/null || echo "")
+if [ -z "$HEAD_RUNS" ]; then
+    die "no CI runs found for HEAD ($LOCAL_SHA); push first and wait for CI"
+fi
+if echo "$HEAD_RUNS" | grep -qE '^(queued|in_progress|pending|waiting) '; then
+    die "CI on HEAD ($LOCAL_SHA) is still running; wait for it to complete"
+fi
+if echo "$HEAD_RUNS" | grep -q ' failure$'; then
+    die "CI on HEAD ($LOCAL_SHA) is red; fix and push before releasing"
+fi
+echo "  CI on HEAD is green"
 
 grep -q "^## \[$VERSION\]" CHANGELOG.md \
     || die "CHANGELOG.md has no '## [$VERSION]' section; write it before releasing"
