@@ -44,6 +44,17 @@ struct RegionCase {
 }
 
 #[derive(Deserialize)]
+struct IndependentCase {
+    enforced: bool,
+    #[serde(rename = "true")]
+    true_codes: Vec<String>,
+    #[serde(rename = "false")]
+    false_codes: Vec<String>,
+    count_true_min: usize,
+    count_true_max: usize,
+}
+
+#[derive(Deserialize)]
 struct SearchCase {
     query: String,
     min_count: usize,
@@ -98,6 +109,7 @@ struct Fixture {
     #[serde(default)]
     lookup_withdrawn: Vec<LookupWithdrawn>,
     search: Vec<SearchCase>,
+    independent: IndependentCase,
 }
 
 #[derive(Deserialize)]
@@ -369,4 +381,32 @@ fn optional_absent() {
             other => panic!("unknown field {}", other),
         }
     }
+}
+
+#[test]
+fn independent() {
+    let fixture = load_fixture();
+    let case = &fixture.independent;
+    if !case.enforced {
+        eprintln!("independent: snapshot not populated yet; skipping (run tools/enrich_independent.py --write)");
+        return;
+    }
+    let reg = reg();
+
+    for code in &case.true_codes {
+        let c = reg.active(code).unwrap_or_else(|| panic!("{} missing", code));
+        assert!(c.independent, "{}.independent: expected true", code);
+    }
+    for code in &case.false_codes {
+        let c = reg.active(code).unwrap_or_else(|| panic!("{} missing", code));
+        assert!(!c.independent, "{}.independent: expected false", code);
+    }
+    let n = reg.all_active().iter().filter(|c| c.independent).count();
+    assert!(
+        n >= case.count_true_min && n <= case.count_true_max,
+        "independent=true count {} outside [{}, {}]",
+        n,
+        case.count_true_min,
+        case.count_true_max
+    );
 }

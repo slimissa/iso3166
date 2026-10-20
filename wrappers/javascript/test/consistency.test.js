@@ -172,3 +172,29 @@ test("optional_absent", () => {
     }
   }
 });
+
+test(
+  "independent",
+  {
+    skip: !fixture.independent.enforced &&
+      "independent snapshot not populated yet (run tools/enrich_independent.py --write)",
+  },
+  () => {
+    const c = fixture.independent;
+    for (const code of c.true) {
+      const got = reg.active(code);
+      assert.ok(got, `${code} missing`);
+      assert.equal(got.independent, true, `${code}.independent: expected true`);
+    }
+    for (const code of c.false) {
+      const got = reg.active(code);
+      assert.ok(got, `${code} missing`);
+      assert.equal(got.independent, false, `${code}.independent: expected false`);
+    }
+    const n = reg.allActive().filter((x) => x.independent === true).length;
+    assert.ok(
+      n >= c.count_true_min && n <= c.count_true_max,
+      `independent=true count ${n} outside [${c.count_true_min}, ${c.count_true_max}]`,
+    );
+  },
+);

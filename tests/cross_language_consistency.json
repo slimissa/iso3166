@@ -586,5 +586,35 @@
       "field": "borders",
       "expected": []
     }
-  ]
+  ],
+  "independent": {
+    "_comment": "Pins the independent field. All four wrappers must return the same boolean.",
+    "enforced": false,
+    "true": [
+      "AE",
+      "AT",
+      "BE",
+      "BR",
+      "CA",
+      "CH",
+      "DE",
+      "FR",
+      "GB",
+      "US"
+    ],
+    "false": [
+      "AQ",
+      "AW",
+      "BM",
+      "BQ",
+      "EU",
+      "GL",
+      "HK",
+      "MO",
+      "PR",
+      "TW"
+    ],
+    "count_true_min": 0,
+    "count_true_max": 1000
+  }
 }

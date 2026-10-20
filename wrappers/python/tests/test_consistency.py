@@ -150,3 +150,23 @@ def test_optional_absent(fixture, reg):
             )
         else:
             raise AssertionError(f"unknown field: {case['field']}")
+
+
+def test_independent(fixture, reg):
+    case = fixture["independent"]
+    if not case["enforced"]:
+        pytest.skip("independent snapshot not populated yet "
+                    "(run tools/enrich_independent.py --write)")
+    for code in case["true"]:
+        c = reg.active(code)
+        assert c is not None, f"{code} missing"
+        assert c.independent is True, f"{code}.independent: expected True"
+    for code in case["false"]:
+        c = reg.active(code)
+        assert c is not None, f"{code} missing"
+        assert c.independent is False, f"{code}.independent: expected False"
+    n = sum(1 for c in reg.all_active() if c.independent)
+    assert case["count_true_min"] <= n <= case["count_true_max"], (
+        f"independent=true count {n} outside "
+        f"[{case['count_true_min']}, {case['count_true_max']}]"
+    )

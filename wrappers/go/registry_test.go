@@ -239,6 +239,13 @@ type fixtureDoc struct {
 		Field    string          `json:"field"`
 		Expected json.RawMessage `json:"expected"`
 	} `json:"optional_absent"`
+	Independent struct {
+		Enforced     bool     `json:"enforced"`
+		True         []string `json:"true"`
+		False        []string `json:"false"`
+		CountTrueMin int      `json:"count_true_min"`
+		CountTrueMax int      `json:"count_true_max"`
+	} `json:"independent"`
 }
 
 func loadFixture(t *testing.T) fixtureDoc {
@@ -517,5 +524,41 @@ func TestFixtureLookupWithdrawnFields(t *testing.T) {
 		if got == nil || c.Subregion == nil || *got != *c.Subregion {
 			t.Fatalf("%s: subregion mismatch", c.Input)
 		}
+	}
+}
+
+func TestFixtureIndependent(t *testing.T) {
+	fixture := loadFixture(t)
+	c := fixture.Independent
+	if !c.Enforced {
+		t.Skip("independent snapshot not populated yet (run tools/enrich_independent.py --write)")
+	}
+	reg := mustLoad(t)
+	for _, code := range c.True {
+		got := reg.Active(code)
+		if got == nil {
+			t.Fatalf("%s missing", code)
+		}
+		if !got.Independent {
+			t.Fatalf("%s.independent: got false, expected true", code)
+		}
+	}
+	for _, code := range c.False {
+		got := reg.Active(code)
+		if got == nil {
+			t.Fatalf("%s missing", code)
+		}
+		if got.Independent {
+			t.Fatalf("%s.independent: got true, expected false", code)
+		}
+	}
+	n := 0
+	for _, country := range reg.AllActive() {
+		if country.Independent {
+			n++
+		}
+	}
+	if n < c.CountTrueMin || n > c.CountTrueMax {
+		t.Fatalf("independent=true count %d outside [%d, %d]", n, c.CountTrueMin, c.CountTrueMax)
 	}
 }

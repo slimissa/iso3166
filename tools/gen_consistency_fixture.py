@@ -26,6 +26,18 @@ from typing import Any
 
 FIXTURE = Path("tests/cross_language_consistency.json")
 REGISTRY = Path("iso3166.json")
+INDEPENDENT_SNAPSHOT = Path(__file__).resolve().parent / "independent_snapshot.json"
+
+# independent case (v1.7.3). Codes below are pinned by hand; every one
+# must exist in countries.active (build() asserts it).
+INDEPENDENT_TRUE = ["AE", "AT", "BE", "BR", "CA", "CH", "DE", "FR", "GB", "US"]
+INDEPENDENT_FALSE = ["AQ", "AW", "BM", "BQ", "EU", "GL", "HK", "MO", "PR", "TW"]
+# SENTINEL bounds, broad on purpose so any plausible extraction passes.
+# After running tools/enrich_independent.py --write, set these to the
+# extracted count of independent=true active entries -10 / +10 and
+# regenerate, in the same commit as the data.
+INDEPENDENT_COUNT_TRUE_MIN = 0
+INDEPENDENT_COUNT_TRUE_MAX = 1000
 
 
 def _summarize(entry: dict[str, Any]) -> dict[str, Any]:
@@ -202,7 +214,33 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             {"query": "guinea", "min_count": 3, "must_contain": ["GN", "GW", "PG"]},
         ],
         "optional_absent": collect_optional_absent(reg),
+        "independent": independent_case(reg),
     }
+
+def independent_case(reg: dict[str, Any]) -> dict[str, Any]:
+    """Fixture case pinning the independent field for all wrappers.
+
+    `enforced` is True only once tools/independent_snapshot.json is
+    populated. Before the data commit the registry still carries the old
+    values, so wrappers skip the value assertions instead of failing.
+    """
+    codes = {e["alpha_2"] for e in reg["countries"]["active"]}
+    missing = sorted(set(INDEPENDENT_TRUE + INDEPENDENT_FALSE) - codes)
+    if missing:
+        raise SystemExit(f"independent fixture: not active entries: {missing}")
+    try:
+        snap = json.loads(INDEPENDENT_SNAPSHOT.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        snap = {}
+    return {
+        "_comment": "Pins the independent field. All four wrappers must return the same boolean.",
+        "enforced": bool(snap.get("entries")),
+        "true": list(INDEPENDENT_TRUE),
+        "false": list(INDEPENDENT_FALSE),
+        "count_true_min": INDEPENDENT_COUNT_TRUE_MIN,
+        "count_true_max": INDEPENDENT_COUNT_TRUE_MAX,
+    }
+
 
 def collect_optional_absent(reg):
     """Return the fixture vector for absent optional fields."""
