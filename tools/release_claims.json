@@ -1,5 +1,11 @@
 {
   "_comment": "Machine-checkable claims per CHANGELOG version. Each entry is {file, contains} or {file, absent}. release.sh runs tools/check_release_claims.py against the version being released; any failing claim stops the release. A missing manifest for a released version is a hard error.",
+  "1.7.2": [
+    {"file": "tools/enrich_field.py", "contains": "{field} source:"},
+    {"file": "tools/migrate_notes_to_per_field.py"},
+    {"file": "tests/test_enrich_field_citations.py"},
+    {"file": "CHANGELOG.md", "contains": "## [1.7.2]"}
+  ],
   "1.7.1": [
     {
       "file": "requirements-dev.txt",
