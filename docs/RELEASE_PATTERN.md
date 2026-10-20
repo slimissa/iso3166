@@ -32,6 +32,31 @@ contents can't be reproduced. A release from a non-`main` branch is a
 release nobody else has. A release from a stale `main` is a release
 that will conflict with the next push.
 
+### Preflight: CI on HEAD must be green
+
+Before `release.sh` creates the release commit, verify CI on `HEAD` has
+completed green. The reference implementation in `scripts/release.sh`:
+
+```bash
+HEAD_RUNS=$(gh run list --limit 20 --json headSha,status,conclusion \
+    --jq ".[] | select(.headSha == \"$LOCAL_SHA\") | \"\(.status) \(.conclusion)\"" \
+    2>/dev/null || echo "")
+[ -n "$HEAD_RUNS" ] || die "no CI runs found for HEAD; push first and wait for CI"
+echo "$HEAD_RUNS" | grep -qE '^(queued|in_progress|pending|waiting) ' \
+    && die "CI on HEAD is still running; wait for it to complete"
+echo "$HEAD_RUNS" | grep -q ' failure$' \
+    && die "CI on HEAD is red; fix and push before releasing"
+```
+
+Refuse on no runs, on a run that is queued, in progress, pending or
+waiting, and on a failure. Without this, the release commit inherits a
+red or unfinished state and CI fails at step 4.
+
+Sourced from the ISO 3166 v1.7.2 recovery: the pre-release commit was
+still running CI when `release.sh` pushed the release commit, GitHub
+cancelled the pre-release run, and the release inherited a failed
+check. The check landed in v1.7.2 as a fix commit.
+
 ### 2. Refuse on version collision or missing CHANGELOG
 
 `VERSION` differs from the target, and `CHANGELOG.md` has a
@@ -459,6 +484,21 @@ DRY_RUN=1 scripts/release.sh <target>
 ### 13. Commit messages use -F, not -m
 
 Long -m "..." strings are paste-garbling-vulnerable. A heredoc or an embedded command can corrupt the message body. Write the message to /tmp/msg.txt, cat it to verify, then use git commit -F /tmp/msg.txt
+
+### 16. Never reset VERSION to re-run release.sh
+
+The script's job is to bump N-1 to N. If it is interrupted between the
+bump and the tag, recovery is manual: create the tag, the release, and
+the verification doc by hand. Resetting `VERSION` to N-1 and running the
+script again is not recovery. It re-bumps over a half-released state and
+can produce a second, different release commit for the same version.
+
+### 17. Never Ctrl+C during the CI wait in step 4
+
+Interrupting the poll leaves `main` holding an untagged release commit
+and cancels any pending workflow run. Let the wait finish; if it must be
+stopped, treat it as the partial-release state described under "Tagged
+releases are immutable" and recover manually.
 
 ## The vendored-snapshot `review_by` shape
 
