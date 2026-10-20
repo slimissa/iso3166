@@ -63,7 +63,6 @@ from typing import Any
 
 
 REGISTRY = Path("iso3166.json")
-SOURCE_LINE_RE = re.compile(r"^source:.*$", re.MULTILINE)
 
 
 @dataclass(frozen=True)
@@ -228,19 +227,24 @@ def find_active(reg: dict[str, Any], code: str) -> dict[str, Any]:
     raise FatalError(f"{code}: not present in countries.active")
 
 
-def record_source(existing: str | None, source: str) -> str:
-    """Append or replace the source line in the note field.
+def record_source(existing: str | None, source: str, field: str) -> str:
+    """Append or replace this field's citation line in the note field.
 
-    Preserves any note text that is not a previous `source:` line.
+    The line is `<field> source: <url>`. Only a previous line for the
+    SAME field is replaced, so enriching currency_codes does not remove
+    the citation written when calling_codes was enriched. Every other
+    note line (other fields' citations, prose, and any legacy bare
+    `source:` line from before v1.7.2) is preserved untouched.
     Idempotent: applying the same source twice does not duplicate it.
     """
-    citation = f"source: {source}"
+    citation = f"{field} source: {source}"
+    own_line = re.compile(rf"^{re.escape(field)} source:.*$")
 
     if not existing:
         return citation
 
     kept = [line for line in existing.splitlines()
-            if not SOURCE_LINE_RE.match(line)]
+            if not own_line.match(line)]
     kept.append(citation)
     return "\n".join(kept)
 
@@ -293,7 +297,7 @@ def apply_one(
     entry["last_verified"] = today
 
     source = cfg.source_template.format(code=entry["alpha_2"])
-    entry["note"] = record_source(entry.get("note"), source)
+    entry["note"] = record_source(entry.get("note"), source, cfg.name)
 
     return {
         "alpha_2": entry["alpha_2"],
