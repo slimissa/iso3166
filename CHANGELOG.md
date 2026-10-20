@@ -23,8 +23,20 @@ consumer-visible data change beyond the `note` field format.
   previous field's citation. `enrich_withdrawn.py` and
   `enrich_official_name.py` unchanged: the former's `--source`
   covers the whole entry, the latter already uses
-  `official_name source:`.
-
+  `official_name source:`. 
+- CI (`check CLI contract`) — the `--csv US row matches iso3166.csv`
+  check compared `tail -1` of the CLI output against `grep '^US,'` of
+  `iso3166.csv`. That works only when the `note` field is single-line;
+  after this release's migration, US's note carries eight per-field
+  citations across eight physical lines, and the check compared the
+  first line against the last. Replaced with a Python check that
+  parses both sides with `csv.reader` and asserts full-row equality.
+- `scripts/release.sh` — preflight now refuses to run if CI on HEAD
+  has not completed green. First instance: v1.7.2's initial release
+  attempt, when the pre-release commit was still running CI; GitHub
+  cancelled it when the release commit pushed, and the release
+  inherited the failed check.
+  
 ### Changed
 
 - `iso3166.json` — 250 notes reconstructed. Prior to this release,
@@ -50,7 +62,7 @@ consumer-visible data change beyond the `note` field format.
 - The `independent` field correction is deferred to v1.7.3.
   Downstream registries (ISO 4217, ISO 10383, Exchange Calendar)
   continue to hold their snapshots; no re-vendor needed on v1.7.2.
-  
+
 ## [1.7.1] — 2026-10-20
 
 Trust the script. Release-pipeline safety fixes; no data or schema changes.
