@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Downstream coordination.** ISO 4217, ISO 10383, and Exchange
   Calendar hold snapshots of this registry. All three should
   re-vendor on this release. The `independent` field is corrected
-  for ~180 active entries (previously `false` for most sovereign
+  for 184 active entries (previously `false` for most sovereign
   states); the schema does not change, so re-vendoring is
   mechanical.
 - `independent` re-derived from ISO 3166-1 OBP per-entry lookup

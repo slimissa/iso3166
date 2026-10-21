@@ -36,8 +36,8 @@ INDEPENDENT_FALSE = ["AQ", "AW", "BM", "BQ", "EU", "GL", "HK", "MO", "PR", "TW"]
 # After running tools/enrich_independent.py --write, set these to the
 # extracted count of independent=true active entries -10 / +10 and
 # regenerate, in the same commit as the data.
-INDEPENDENT_COUNT_TRUE_MIN = 0
-INDEPENDENT_COUNT_TRUE_MAX = 1000
+INDEPENDENT_COUNT_TRUE_MIN = 185
+INDEPENDENT_COUNT_TRUE_MAX = 205
 
 
 def _summarize(entry: dict[str, Any]) -> dict[str, Any]:

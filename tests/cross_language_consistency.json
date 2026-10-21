@@ -589,7 +589,7 @@
   ],
   "independent": {
     "_comment": "Pins the independent field. All four wrappers must return the same boolean.",
-    "enforced": false,
+    "enforced": true,
     "true": [
       "AE",
       "AT",
@@ -614,7 +614,7 @@
       "PR",
       "TW"
     ],
-    "count_true_min": 0,
-    "count_true_max": 1000
+    "count_true_min": 185,
+    "count_true_max": 205
   }
 }
