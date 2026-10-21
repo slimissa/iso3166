@@ -8,6 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.4] — 2026-10-21
+
+Release-pipeline robustness and citation completeness.
+
+### Fixed
+
+- `scripts/release.sh` — increased `CI_START_TIMEOUT` from 60s to 180s.
+  GitHub Actions regularly takes 90-120s to register a workflow run;
+  the 60s limit caused a false-positive partial-release state in v1.7.3.
+- `iso3166.json` — added missing `official_name source:` citations for
+  11 entries (BR, CN, DE, FR, GB, IN, JP, RU, TW, US, ZA) that had
+  official names but no recorded source URL.
+
+### Added
+
+- `.gitignore` — ignores `pages/` so manual ISO OBP harvests are never
+  accidentally committed to the repository.
+- `docs/RELEASE_PATTERN.md` — rules 18 (CI queueing latency) and 19
+  (split releases by decision dependency) codified from the v1.7.2 and
+  v1.7.3 recoveries.
+
+### Notes
+
+- All 249 officially-assigned entries now carry an `official_name source:`
+  line. `enrich_official_name.py --check` is fully green.
+  
 ## [1.7.3] — 2026-10-20
 
 `independent` corrected for the active set per ISO 3166-1's designation.
