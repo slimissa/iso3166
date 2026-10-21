@@ -48,7 +48,7 @@ CREATE TABLE country_currencies (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- countries
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AD', 'AND', '020', 'Andorra', 'officially-assigned', 0, 'Principality of Andorra', 'Europe', 'Southern Europe', NULL, '376', '.ad', 'cat', 'ES|FR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AD', 'AND', '020', 'Andorra', 'officially-assigned', 1, 'Principality of Andorra', 'Europe', 'Southern Europe', NULL, '376', '.ad', 'cat', 'ES|FR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AD/
@@ -56,7 +56,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AD/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AE', 'ARE', '784', 'United Arab Emirates', 'officially-assigned', 0, 'United Arab Emirates', 'Asia', 'Western Asia', NULL, '971', '.ae', 'ara', 'OM|SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AE', 'ARE', '784', 'United Arab Emirates', 'officially-assigned', 1, 'United Arab Emirates', 'Asia', 'Western Asia', NULL, '971', '.ae', 'ara', 'OM|SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AE/
@@ -64,7 +64,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AF', 'AFG', '004', 'Afghanistan', 'officially-assigned', 0, 'Islamic Republic of Afghanistan', 'Asia', 'Southern Asia', NULL, '93', '.af', 'prs|pus', 'CN|IR|PK|TJ|TM|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AF
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AF', 'AFG', '004', 'Afghanistan', 'officially-assigned', 1, 'Islamic Republic of Afghanistan', 'Asia', 'Southern Asia', NULL, '93', '.af', 'prs|pus', 'CN|IR|PK|TJ|TM|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AF
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AF
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AF/
@@ -72,7 +72,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AF/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AG', 'ATG', '028', 'Antigua and Barbuda', 'officially-assigned', 0, 'Antigua and Barbuda', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.ag', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AG', 'ATG', '028', 'Antigua and Barbuda', 'officially-assigned', 1, 'Antigua and Barbuda', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.ag', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AG/
@@ -91,7 +91,7 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AI', 'AFI', '000', 'French Afars and Issas', 'withdrawn', 0, NULL, NULL, 'Eastern Africa', NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-22', '1977-06-27', 'DJ');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AL', 'ALB', '008', 'Albania', 'officially-assigned', 0, 'Republic of Albania', 'Europe', 'Southern Europe', NULL, '355', '.al', 'sqi', 'GR|ME|MK|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AL', 'ALB', '008', 'Albania', 'officially-assigned', 1, 'Republic of Albania', 'Europe', 'Southern Europe', NULL, '355', '.al', 'sqi', 'GR|ME|MK|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AL/
@@ -99,7 +99,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AL/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AM', 'ARM', '051', 'Armenia', 'officially-assigned', 0, 'Republic of Armenia', 'Asia', 'Western Asia', NULL, '374', '.am', 'hye', 'AZ|GE|IR|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AM', 'ARM', '051', 'Armenia', 'officially-assigned', 1, 'Republic of Armenia', 'Asia', 'Western Asia', NULL, '374', '.am', 'hye', 'AZ|GE|IR|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AM/
@@ -108,7 +108,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AN', 'ANT', '530', 'Netherlands Antilles', 'withdrawn', 0, NULL, NULL, 'Caribbean', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '2010-12-01', 'BQ|CW|SX');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AO', 'AGO', '024', 'Angola', 'officially-assigned', 0, 'Republic of Angola', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '244', '.ao', 'por', 'CD|CG|NA|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AO', 'AGO', '024', 'Angola', 'officially-assigned', 1, 'Republic of Angola', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '244', '.ao', 'por', 'CD|CG|NA|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AO/
@@ -125,7 +125,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AQ/
 tlds source: https://www.iana.org/domains/root/db
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source
 Antarctica. The UN M49 does not assign a subregion.', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AR', 'ARG', '032', 'Argentina', 'officially-assigned', 0, 'Argentina', 'Americas', 'Latin America and the Caribbean', 'South America', '54', '.ar', 'spa', 'BO|BR|CL|PY|UY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AR', 'ARG', '032', 'Argentina', 'officially-assigned', 1, 'Argentina', 'Americas', 'Latin America and the Caribbean', 'South America', '54', '.ar', 'spa', 'BO|BR|CL|PY|UY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AR/
@@ -142,7 +142,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AS/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AT', 'AUT', '040', 'Austria', 'officially-assigned', 0, 'Republic of Austria', 'Europe', 'Western Europe', NULL, '43', '.at', 'deu', 'CH|CZ|DE|HU|IT|LI|SI|SK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AT', 'AUT', '040', 'Austria', 'officially-assigned', 1, 'Republic of Austria', 'Europe', 'Western Europe', NULL, '43', '.at', 'deu', 'CH|CZ|DE|HU|IT|LI|SI|SK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AT/
@@ -150,7 +150,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AU', 'AUS', '036', 'Australia', 'officially-assigned', 0, 'Australia', 'Oceania', 'Australia and New Zealand', NULL, '61', '.au', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AU', 'AUS', '036', 'Australia', 'officially-assigned', 1, 'Australia', 'Oceania', 'Australia and New Zealand', NULL, '61', '.au', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AU/
@@ -175,7 +175,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AX/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AZ', 'AZE', '031', 'Azerbaijan', 'officially-assigned', 0, 'Republic of Azerbaijan', 'Asia', 'Western Asia', NULL, '994', '.az', 'aze', 'AM|GE|IR|RU|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AZ', 'AZE', '031', 'Azerbaijan', 'officially-assigned', 1, 'Republic of Azerbaijan', 'Asia', 'Western Asia', NULL, '994', '.az', 'aze', 'AM|GE|IR|RU|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AZ/
@@ -183,7 +183,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BA', 'BIH', '070', 'Bosnia and Herzegovina', 'officially-assigned', 0, 'Bosnia and Herzegovina', 'Europe', 'Southern Europe', NULL, '387', '.ba', 'bos|hrv|srp', 'HR|ME|RS', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BA', 'BIH', '070', 'Bosnia and Herzegovina', 'officially-assigned', 1, 'Bosnia and Herzegovina', 'Europe', 'Southern Europe', NULL, '387', '.ba', 'bos|hrv|srp', 'HR|ME|RS', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BA/
@@ -191,7 +191,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BA/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BB', 'BRB', '052', 'Barbados', 'officially-assigned', 0, 'Barbados', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.bb', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BB
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BB', 'BRB', '052', 'Barbados', 'officially-assigned', 1, 'Barbados', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.bb', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BB
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BB
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BB/
@@ -200,7 +200,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BD', 'BGD', '050', 'Bangladesh', 'officially-assigned', 0, 'People''s Republic of Bangladesh', 'Asia', 'Southern Asia', NULL, '880', '.bd', 'ben', 'IN|MM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BD', 'BGD', '050', 'Bangladesh', 'officially-assigned', 1, 'People''s Republic of Bangladesh', 'Asia', 'Southern Asia', NULL, '880', '.bd', 'ben', 'IN|MM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BD/
@@ -208,7 +208,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BD/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BE', 'BEL', '056', 'Belgium', 'officially-assigned', 0, 'Kingdom of Belgium', 'Europe', 'Western Europe', NULL, '32', '.be', 'deu|fra|nld', 'DE|FR|LU|NL', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BE', 'BEL', '056', 'Belgium', 'officially-assigned', 1, 'Kingdom of Belgium', 'Europe', 'Western Europe', NULL, '32', '.be', 'deu|fra|nld', 'DE|FR|LU|NL', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BE/
@@ -216,7 +216,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BF', 'BFA', '854', 'Burkina Faso', 'officially-assigned', 0, 'Burkina Faso', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '226', '.bf', 'fra', 'BJ|CI|GH|ML|NE|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BF
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BF', 'BFA', '854', 'Burkina Faso', 'officially-assigned', 1, 'Burkina Faso', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '226', '.bf', 'fra', 'BJ|CI|GH|ML|NE|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BF
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BF
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BF/
@@ -225,7 +225,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BG', 'BGR', '100', 'Bulgaria', 'officially-assigned', 0, 'Republic of Bulgaria', 'Europe', 'Eastern Europe', NULL, '359', '.bg', 'bul', 'GR|MK|RO|RS|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BG', 'BGR', '100', 'Bulgaria', 'officially-assigned', 1, 'Republic of Bulgaria', 'Europe', 'Eastern Europe', NULL, '359', '.bg', 'bul', 'GR|MK|RO|RS|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BG/
@@ -233,7 +233,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BG/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-10-16', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BH', 'BHR', '048', 'Bahrain', 'officially-assigned', 0, 'Kingdom of Bahrain', 'Asia', 'Western Asia', NULL, '973', '.bh', 'ara', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BH', 'BHR', '048', 'Bahrain', 'officially-assigned', 1, 'Kingdom of Bahrain', 'Asia', 'Western Asia', NULL, '973', '.bh', 'ara', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BH/
@@ -241,7 +241,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BI', 'BDI', '108', 'Burundi', 'officially-assigned', 0, 'Republic of Burundi', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '257', '.bi', 'fra|run', 'CD|RW|TZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BI', 'BDI', '108', 'Burundi', 'officially-assigned', 1, 'Republic of Burundi', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '257', '.bi', 'fra|run', 'CD|RW|TZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BI/
@@ -250,7 +250,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BJ', 'BEN', '204', 'Benin', 'officially-assigned', 0, 'Republic of Benin', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '229', '.bj', 'fra', 'BF|NE|NG|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BJ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BJ', 'BEN', '204', 'Benin', 'officially-assigned', 1, 'Republic of Benin', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '229', '.bj', 'fra', 'BF|NE|NG|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BJ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BJ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BJ/
@@ -276,7 +276,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BM/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BN', 'BRN', '096', 'Brunei Darussalam', 'officially-assigned', 0, 'Brunei Darussalam', 'Asia', 'South-eastern Asia', NULL, '673', '.bn', 'msa', 'MY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BN', 'BRN', '096', 'Brunei Darussalam', 'officially-assigned', 1, 'Brunei Darussalam', 'Asia', 'South-eastern Asia', NULL, '673', '.bn', 'msa', 'MY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BN/
@@ -284,7 +284,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BN/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BO', 'BOL', '068', 'Bolivia (Plurinational State of)', 'officially-assigned', 0, 'Bolivia (Plurinational State of)', 'Americas', 'Latin America and the Caribbean', 'South America', '591', '.bo', 'aym|que|spa', 'AR|BR|CL|PE|PY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BO', 'BOL', '068', 'Bolivia (Plurinational State of)', 'officially-assigned', 1, 'Bolivia (Plurinational State of)', 'Americas', 'Latin America and the Caribbean', 'South America', '591', '.bo', 'aym|que|spa', 'AR|BR|CL|PE|PY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BO/
@@ -310,7 +310,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BS', 'BHS', '044', 'Bahamas', 'officially-assigned', 0, 'Commonwealth of the Bahamas', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.bs', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BS
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BS', 'BHS', '044', 'Bahamas', 'officially-assigned', 1, 'Commonwealth of the Bahamas', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.bs', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BS/
@@ -319,7 +319,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BT', 'BTN', '064', 'Bhutan', 'officially-assigned', 0, 'Kingdom of Bhutan', 'Asia', 'Southern Asia', NULL, '975', '.bt', 'dzo', 'CN|IN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BT', 'BTN', '064', 'Bhutan', 'officially-assigned', 1, 'Kingdom of Bhutan', 'Asia', 'Southern Asia', NULL, '975', '.bt', 'dzo', 'CN|IN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BT/
@@ -327,7 +327,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BU', 'BUR', '104', 'Burma', 'withdrawn', 0, NULL, NULL, 'South-eastern Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1989-12-05', 'MM');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BU', 'BUR', '104', 'Burma', 'withdrawn', 1, NULL, NULL, 'South-eastern Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1989-12-05', 'MM');
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BV', 'BVT', '074', 'Bouvet Island', 'officially-assigned', 0, 'Bouvet Island', 'Americas', 'Latin America and the Caribbean', 'South America', '47', '.bv', 'nor', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BV
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BV
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -337,7 +337,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BW', 'BWA', '072', 'Botswana', 'officially-assigned', 0, 'Republic of Botswana', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '267', '.bw', 'eng|tsn', 'NA|ZA|ZM|ZW', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BW', 'BWA', '072', 'Botswana', 'officially-assigned', 1, 'Republic of Botswana', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '267', '.bw', 'eng|tsn', 'NA|ZA|ZM|ZW', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BW/
@@ -346,7 +346,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BY', 'BLR', '112', 'Belarus', 'officially-assigned', 0, 'Republic of Belarus', 'Europe', 'Eastern Europe', NULL, '375', '.by', 'bel|rus', 'LT|LV|PL|RU|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BY', 'BLR', '112', 'Belarus', 'officially-assigned', 1, 'Republic of Belarus', 'Europe', 'Eastern Europe', NULL, '375', '.by', 'bel|rus', 'LT|LV|PL|RU|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BY/
@@ -354,7 +354,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BZ', 'BLZ', '084', 'Belize', 'officially-assigned', 0, 'Belize', 'Americas', 'Latin America and the Caribbean', 'Central America', '501', '.bz', 'eng', 'GT|MX', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('BZ', 'BLZ', '084', 'Belize', 'officially-assigned', 1, 'Belize', 'Americas', 'Latin America and the Caribbean', 'Central America', '501', '.bz', 'eng', 'GT|MX', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BZ/
@@ -363,7 +363,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CA', 'CAN', '124', 'Canada', 'officially-assigned', 0, 'Canada', 'Americas', 'Northern America', NULL, '1', '.ca', 'eng|fra', 'US', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CA', 'CAN', '124', 'Canada', 'officially-assigned', 1, 'Canada', 'Americas', 'Northern America', NULL, '1', '.ca', 'eng|fra', 'US', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CA/
@@ -379,7 +379,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CC/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CD', 'COD', '180', 'Democratic Republic of the Congo', 'officially-assigned', 0, 'Democratic Republic of the Congo', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '243', '.cd', 'fra|lin|swa', 'AO|BI|CF|CG|RW|SS|TZ|UG|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CD', 'COD', '180', 'Democratic Republic of the Congo', 'officially-assigned', 1, 'Democratic Republic of the Congo', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '243', '.cd', 'fra|lin|swa', 'AO|BI|CF|CG|RW|SS|TZ|UG|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CD/
@@ -388,7 +388,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CF', 'CAF', '140', 'Central African Republic', 'officially-assigned', 0, 'Central African Republic', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '236', '.cf', 'fra|sag', 'CD|CG|CM|SD|SS|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CF
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CF', 'CAF', '140', 'Central African Republic', 'officially-assigned', 1, 'Central African Republic', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '236', '.cf', 'fra|sag', 'CD|CG|CM|SD|SS|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CF
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CF
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CF/
@@ -397,7 +397,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CG', 'COG', '178', 'Congo', 'officially-assigned', 0, 'Congo', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '242', '.cg', 'fra|lin', 'AO|CD|CF|CM|GA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CG', 'COG', '178', 'Congo', 'officially-assigned', 1, 'Congo', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '242', '.cg', 'fra|lin', 'AO|CD|CF|CM|GA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CG/
@@ -406,7 +406,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CH', 'CHE', '756', 'Switzerland', 'officially-assigned', 0, 'Switzerland', 'Europe', 'Western Europe', NULL, '41', '.ch', 'deu|fra|ita|roh', 'AT|DE|FR|IT|LI', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CH', 'CHE', '756', 'Switzerland', 'officially-assigned', 1, 'Switzerland', 'Europe', 'Western Europe', NULL, '41', '.ch', 'deu|fra|ita|roh', 'AT|DE|FR|IT|LI', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CH/
@@ -414,7 +414,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CI', 'CIV', '384', 'Côte d’Ivoire', 'officially-assigned', 0, 'Republic of Côte d''Ivoire', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '225', '.ci', 'fra', 'BF|GH|GN|LR|ML', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CI', 'CIV', '384', 'Côte d’Ivoire', 'officially-assigned', 1, 'Republic of Côte d''Ivoire', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '225', '.ci', 'fra', 'BF|GH|GN|LR|ML', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CI/
@@ -431,7 +431,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CL', 'CHL', '152', 'Chile', 'officially-assigned', 0, 'Republic of Chile', 'Americas', 'Latin America and the Caribbean', 'South America', '56', '.cl', 'spa', 'AR|BO|PE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CL', 'CHL', '152', 'Chile', 'officially-assigned', 1, 'Republic of Chile', 'Americas', 'Latin America and the Caribbean', 'South America', '56', '.cl', 'spa', 'AR|BO|PE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CL/
@@ -440,7 +440,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CM', 'CMR', '120', 'Cameroon', 'officially-assigned', 0, 'Republic of Cameroon', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '237', '.cm', 'eng|fra', 'CF|CG|GA|GQ|NG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CM', 'CMR', '120', 'Cameroon', 'officially-assigned', 1, 'Republic of Cameroon', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '237', '.cm', 'eng|fra', 'CF|CG|GA|GQ|NG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CM/
@@ -456,7 +456,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CN/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CO', 'COL', '170', 'Colombia', 'officially-assigned', 0, 'Republic of Colombia', 'Americas', 'Latin America and the Caribbean', 'South America', '57', '.co', 'spa', 'BR|EC|PA|PE|VE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CO', 'COL', '170', 'Colombia', 'officially-assigned', 1, 'Republic of Colombia', 'Americas', 'Latin America and the Caribbean', 'South America', '57', '.co', 'spa', 'BR|EC|PA|PE|VE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CO/
@@ -465,7 +465,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CR', 'CRI', '188', 'Costa Rica', 'officially-assigned', 0, 'Republic of Costa Rica', 'Americas', 'Latin America and the Caribbean', 'Central America', '506', '.cr', 'spa', 'NI|PA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CR', 'CRI', '188', 'Costa Rica', 'officially-assigned', 1, 'Republic of Costa Rica', 'Americas', 'Latin America and the Caribbean', 'Central America', '506', '.cr', 'spa', 'NI|PA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CR/
@@ -474,10 +474,10 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CS', 'SCG', '891', 'Serbia and Montenegro', 'withdrawn', 0, NULL, NULL, 'Southern Europe', NULL, NULL, NULL, NULL, NULL, 'CS was used twice: Czechoslovakia (withdrawn 1993-01-01, replaced by CZ and SK) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by ME and RS). This entry records the second use; replaced_by reflects the terminal successors of that use.
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CS', 'SCG', '891', 'Serbia and Montenegro', 'withdrawn', 1, NULL, NULL, 'Southern Europe', NULL, NULL, NULL, NULL, NULL, 'CS was used twice: Czechoslovakia (withdrawn 1993-01-01, replaced by CZ and SK) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by ME and RS). This entry records the second use; replaced_by reflects the terminal successors of that use.
 source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '2006-09-26', 'RS|ME');
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CT', 'CTE', '000', 'Canton and Enderbury Islands', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: https://www.iso.org/obp/ui/#iso:code:3166:CT', '2026-09-23', '1984-01-01', 'KI');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CU', 'CUB', '192', 'Cuba', 'officially-assigned', 0, 'Republic of Cuba', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '53', '.cu', 'spa', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CU
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CU', 'CUB', '192', 'Cuba', 'officially-assigned', 1, 'Republic of Cuba', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '53', '.cu', 'spa', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CU/
@@ -486,7 +486,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CV', 'CPV', '132', 'Cabo Verde', 'officially-assigned', 0, 'Republic of Cabo Verde', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '238', '.cv', 'por', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CV
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CV', 'CPV', '132', 'Cabo Verde', 'officially-assigned', 1, 'Republic of Cabo Verde', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '238', '.cv', 'por', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CV
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CV
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CV/
@@ -512,7 +512,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CX/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CY', 'CYP', '196', 'Cyprus', 'officially-assigned', 0, 'Republic of Cyprus', 'Asia', 'Western Asia', NULL, '357', '.cy', 'ell|tur', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CY', 'CYP', '196', 'Cyprus', 'officially-assigned', 1, 'Republic of Cyprus', 'Asia', 'Western Asia', NULL, '357', '.cy', 'ell|tur', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CY/
@@ -520,7 +520,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CZ', 'CZE', '203', 'Czechia', 'officially-assigned', 0, 'Czech Republic', 'Europe', 'Eastern Europe', NULL, '420', '.cz', 'ces', 'AT|DE|PL|SK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('CZ', 'CZE', '203', 'Czechia', 'officially-assigned', 1, 'Czech Republic', 'Europe', 'Eastern Europe', NULL, '420', '.cz', 'ces', 'AT|DE|PL|SK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/CZ/
@@ -528,7 +528,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DD', 'DDR', '278', 'East Germany', 'withdrawn', 0, NULL, NULL, 'Western Europe', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1990-10-03', 'DE');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DD', 'DDR', '278', 'East Germany', 'withdrawn', 1, NULL, NULL, 'Western Europe', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1990-10-03', 'DE');
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DE', 'DEU', '276', 'Germany', 'officially-assigned', 1, 'Federal Republic of Germany', 'Europe', 'Western Europe', NULL, '49', '.de', 'deu', 'AT|BE|CH|CZ|DK|FR|LU|NL|PL', 'currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DE/
@@ -536,7 +536,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/DE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DJ', 'DJI', '262', 'Djibouti', 'officially-assigned', 0, 'Republic of Djibouti', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '253', '.dj', 'ara|fra', 'ER|ET|SO', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DJ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DJ', 'DJI', '262', 'Djibouti', 'officially-assigned', 1, 'Republic of Djibouti', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '253', '.dj', 'ara|fra', 'ER|ET|SO', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DJ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DJ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DJ/
@@ -545,7 +545,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DK', 'DNK', '208', 'Denmark', 'officially-assigned', 0, 'Kingdom of Denmark', 'Europe', 'Northern Europe', NULL, '45', '.dk', 'dan', 'DE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DK', 'DNK', '208', 'Denmark', 'officially-assigned', 1, 'Kingdom of Denmark', 'Europe', 'Northern Europe', NULL, '45', '.dk', 'dan', 'DE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DK
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DK
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DK/
@@ -553,7 +553,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/DK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DM', 'DMA', '212', 'Dominica', 'officially-assigned', 0, 'Commonwealth of Dominica', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.dm', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DM', 'DMA', '212', 'Dominica', 'officially-assigned', 1, 'Commonwealth of Dominica', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.dm', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DM/
@@ -562,7 +562,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DO', 'DOM', '214', 'Dominican Republic', 'officially-assigned', 0, 'Dominican Republic', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.do', 'spa', 'HT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DO', 'DOM', '214', 'Dominican Republic', 'officially-assigned', 1, 'Dominican Republic', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.do', 'spa', 'HT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DO/
@@ -571,8 +571,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DY', 'DHY', '000', 'Dahomey', 'withdrawn', 0, NULL, NULL, 'Western Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1977-02-01', 'BJ');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DZ', 'DZA', '012', 'Algeria', 'officially-assigned', 0, 'People''s Democratic Republic of Algeria', 'Africa', 'Northern Africa', NULL, '213', '.dz', 'ara', 'EH|LY|MA|ML|MR|NE|TN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DY', 'DHY', '000', 'Dahomey', 'withdrawn', 1, NULL, NULL, 'Western Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1977-02-01', 'BJ');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('DZ', 'DZA', '012', 'Algeria', 'officially-assigned', 1, 'People''s Democratic Republic of Algeria', 'Africa', 'Northern Africa', NULL, '213', '.dz', 'ara', 'EH|LY|MA|ML|MR|NE|TN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:DZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DZ/
@@ -580,7 +580,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/DZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EC', 'ECU', '218', 'Ecuador', 'officially-assigned', 0, 'Republic of Ecuador', 'Americas', 'Latin America and the Caribbean', 'South America', '593', '.ec', 'spa', 'CO|PE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EC
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EC', 'ECU', '218', 'Ecuador', 'officially-assigned', 1, 'Republic of Ecuador', 'Americas', 'Latin America and the Caribbean', 'South America', '593', '.ec', 'spa', 'CO|PE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EC
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:EC
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/EC/
@@ -589,7 +589,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EE', 'EST', '233', 'Estonia', 'officially-assigned', 0, 'Republic of Estonia', 'Europe', 'Northern Europe', NULL, '372', '.ee', 'est', 'LV|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EE', 'EST', '233', 'Estonia', 'officially-assigned', 1, 'Republic of Estonia', 'Europe', 'Northern Europe', NULL, '372', '.ee', 'est', 'LV|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:EE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/EE/
@@ -597,7 +597,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/EE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EG', 'EGY', '818', 'Egypt', 'officially-assigned', 0, 'Arab Republic of Egypt', 'Africa', 'Northern Africa', NULL, '20', '.eg', 'ara', 'IL|LY|PS|SD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EG', 'EGY', '818', 'Egypt', 'officially-assigned', 1, 'Arab Republic of Egypt', 'Africa', 'Northern Africa', NULL, '20', '.eg', 'ara', 'IL|LY|PS|SD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:EG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/EG/
@@ -613,7 +613,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/EH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ER', 'ERI', '232', 'Eritrea', 'officially-assigned', 0, 'State of Eritrea', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '291', '.er', 'ara|eng|tir', 'DJ|ET|SD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ER
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ER', 'ERI', '232', 'Eritrea', 'officially-assigned', 1, 'State of Eritrea', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '291', '.er', 'ara|eng|tir', 'DJ|ET|SD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ER
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ER
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ER/
@@ -622,7 +622,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ES', 'ESP', '724', 'Spain', 'officially-assigned', 0, 'Kingdom of Spain', 'Europe', 'Southern Europe', NULL, '34', '.es', 'spa', 'AD|FR|GI|MA|PT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ES', 'ESP', '724', 'Spain', 'officially-assigned', 1, 'Kingdom of Spain', 'Europe', 'Southern Europe', NULL, '34', '.es', 'spa', 'AD|FR|GI|MA|PT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ES
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ES
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ES/
@@ -630,7 +630,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/ES/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ET', 'ETH', '231', 'Ethiopia', 'officially-assigned', 0, 'Federal Democratic Republic of Ethiopia', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '251', '.et', 'amh', 'DJ|ER|KE|SD|SO|SS', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ET
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ET', 'ETH', '231', 'Ethiopia', 'officially-assigned', 1, 'Federal Democratic Republic of Ethiopia', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '251', '.et', 'amh', 'DJ|ER|KE|SD|SO|SS', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ET
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ET
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ET/
@@ -640,7 +640,7 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('EU', 'EUE', '000', 'European Union', 'exceptionally-reserved', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Exceptionally reserved. Used by ISO 4217 for the euro.', '2026-09-22', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('FI', 'FIN', '246', 'Finland', 'officially-assigned', 0, 'Republic of Finland', 'Europe', 'Northern Europe', NULL, '358', '.fi', 'fin|swe', 'NO|RU|SE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('FI', 'FIN', '246', 'Finland', 'officially-assigned', 1, 'Republic of Finland', 'Europe', 'Northern Europe', NULL, '358', '.fi', 'fin|swe', 'NO|RU|SE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:FI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/FI/
@@ -648,7 +648,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/FI/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('FJ', 'FJI', '242', 'Fiji', 'officially-assigned', 0, 'Republic of Fiji', 'Oceania', 'Melanesia', NULL, '679', '.fj', 'eng|fij|hin', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FJ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('FJ', 'FJI', '242', 'Fiji', 'officially-assigned', 1, 'Republic of Fiji', 'Oceania', 'Melanesia', NULL, '679', '.fj', 'eng|fij|hin', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FJ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:FJ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/FJ/
@@ -665,7 +665,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('FM', 'FSM', '583', 'Micronesia (Federated States of)', 'officially-assigned', 0, 'Federated States of Micronesia', 'Oceania', 'Micronesia', NULL, '691', '.fm', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('FM', 'FSM', '583', 'Micronesia (Federated States of)', 'officially-assigned', 1, 'Federated States of Micronesia', 'Oceania', 'Micronesia', NULL, '691', '.fm', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:FM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/FM/
@@ -689,7 +689,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/FR/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GA', 'GAB', '266', 'Gabon', 'officially-assigned', 0, 'Gabonese Republic', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '241', '.ga', 'fra', 'CG|CM|GQ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GA', 'GAB', '266', 'Gabon', 'officially-assigned', 1, 'Gabonese Republic', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '241', '.ga', 'fra', 'CG|CM|GQ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GA/
@@ -705,7 +705,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/GB/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GD', 'GRD', '308', 'Grenada', 'officially-assigned', 0, 'Grenada', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.gd', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GD', 'GRD', '308', 'Grenada', 'officially-assigned', 1, 'Grenada', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.gd', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GD/
@@ -714,7 +714,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GE', 'GEO', '268', 'Georgia', 'officially-assigned', 0, 'Georgia', 'Asia', 'Western Asia', NULL, '995', '.ge', 'kat', 'AM|AZ|RU|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GE', 'GEO', '268', 'Georgia', 'officially-assigned', 1, 'Georgia', 'Asia', 'Western Asia', NULL, '995', '.ge', 'kat', 'AM|AZ|RU|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GE/
@@ -739,7 +739,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/GG/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GH', 'GHA', '288', 'Ghana', 'officially-assigned', 0, 'Republic of Ghana', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '233', '.gh', 'eng', 'BF|CI|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GH', 'GHA', '288', 'Ghana', 'officially-assigned', 1, 'Republic of Ghana', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '233', '.gh', 'eng', 'BF|CI|TG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GH/
@@ -764,7 +764,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/GL/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GM', 'GMB', '270', 'Gambia', 'officially-assigned', 0, 'Republic of the Gambia', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '220', '.gm', 'eng', 'SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GM', 'GMB', '270', 'Gambia', 'officially-assigned', 1, 'Republic of the Gambia', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '220', '.gm', 'eng', 'SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GM/
@@ -773,7 +773,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GN', 'GIN', '324', 'Guinea', 'officially-assigned', 0, 'Republic of Guinea', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '224', '.gn', 'fra', 'CI|GW|LR|ML|SL|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GN', 'GIN', '324', 'Guinea', 'officially-assigned', 1, 'Republic of Guinea', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '224', '.gn', 'fra', 'CI|GW|LR|ML|SL|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GN/
@@ -791,7 +791,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GQ', 'GNQ', '226', 'Equatorial Guinea', 'officially-assigned', 0, 'Republic of Equatorial Guinea', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '240', '.gq', 'fra|por|spa', 'CM|GA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GQ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GQ', 'GNQ', '226', 'Equatorial Guinea', 'officially-assigned', 1, 'Republic of Equatorial Guinea', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '240', '.gq', 'fra|por|spa', 'CM|GA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GQ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GQ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GQ/
@@ -800,7 +800,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GR', 'GRC', '300', 'Greece', 'officially-assigned', 0, 'Hellenic Republic', 'Europe', 'Southern Europe', NULL, '30', '.gr', 'ell', 'AL|BG|MK|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GR', 'GRC', '300', 'Greece', 'officially-assigned', 1, 'Hellenic Republic', 'Europe', 'Southern Europe', NULL, '30', '.gr', 'ell', 'AL|BG|MK|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GR/
@@ -817,7 +817,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GT', 'GTM', '320', 'Guatemala', 'officially-assigned', 0, 'Republic of Guatemala', 'Americas', 'Latin America and the Caribbean', 'Central America', '502', '.gt', 'spa', 'BZ|HN|MX|SV', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GT', 'GTM', '320', 'Guatemala', 'officially-assigned', 1, 'Republic of Guatemala', 'Americas', 'Latin America and the Caribbean', 'Central America', '502', '.gt', 'spa', 'BZ|HN|MX|SV', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GT/
@@ -834,7 +834,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/GU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GW', 'GNB', '624', 'Guinea-Bissau', 'officially-assigned', 0, 'Republic of Guinea-Bissau', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '245', '.gw', 'por', 'GN|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GW', 'GNB', '624', 'Guinea-Bissau', 'officially-assigned', 1, 'Republic of Guinea-Bissau', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '245', '.gw', 'por', 'GN|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GW/
@@ -843,7 +843,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GY', 'GUY', '328', 'Guyana', 'officially-assigned', 0, 'Co-operative Republic of Guyana', 'Americas', 'Latin America and the Caribbean', 'South America', '592', '.gy', 'eng', 'BR|SR|VE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('GY', 'GUY', '328', 'Guyana', 'officially-assigned', 1, 'Co-operative Republic of Guyana', 'Americas', 'Latin America and the Caribbean', 'South America', '592', '.gy', 'eng', 'BR|SR|VE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/GY/
@@ -868,7 +868,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/HM/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HN', 'HND', '340', 'Honduras', 'officially-assigned', 0, 'Republic of Honduras', 'Americas', 'Latin America and the Caribbean', 'Central America', '504', '.hn', 'spa', 'GT|NI|SV', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HN', 'HND', '340', 'Honduras', 'officially-assigned', 1, 'Republic of Honduras', 'Americas', 'Latin America and the Caribbean', 'Central America', '504', '.hn', 'spa', 'GT|NI|SV', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:HN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/HN/
@@ -877,7 +877,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HR', 'HRV', '191', 'Croatia', 'officially-assigned', 0, 'Republic of Croatia', 'Europe', 'Southern Europe', NULL, '385', '.hr', 'hrv', 'BA|HU|ME|RS|SI', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HR', 'HRV', '191', 'Croatia', 'officially-assigned', 1, 'Republic of Croatia', 'Europe', 'Southern Europe', NULL, '385', '.hr', 'hrv', 'BA|HU|ME|RS|SI', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:HR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/HR/
@@ -885,7 +885,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/HR/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HT', 'HTI', '332', 'Haiti', 'officially-assigned', 0, 'Republic of Haiti', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '509', '.ht', 'fra|hat', 'DO', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HT', 'HTI', '332', 'Haiti', 'officially-assigned', 1, 'Republic of Haiti', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '509', '.ht', 'fra|hat', 'DO', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:HT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/HT/
@@ -894,7 +894,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HU', 'HUN', '348', 'Hungary', 'officially-assigned', 0, 'Hungary', 'Europe', 'Eastern Europe', NULL, '36', '.hu', 'hun', 'AT|HR|RO|RS|SI|SK|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HU', 'HUN', '348', 'Hungary', 'officially-assigned', 1, 'Hungary', 'Europe', 'Eastern Europe', NULL, '36', '.hu', 'hun', 'AT|HR|RO|RS|SI|SK|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:HU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:HU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/HU/
@@ -902,8 +902,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/HU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HV', 'HVO', '854', 'Upper Volta', 'withdrawn', 0, NULL, NULL, 'Western Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1984-08-04', 'BF');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ID', 'IDN', '360', 'Indonesia', 'officially-assigned', 0, 'Indonesia', 'Asia', 'South-eastern Asia', NULL, '62', '.id', 'ind', 'MY|PG|TL', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('HV', 'HVO', '854', 'Upper Volta', 'withdrawn', 1, NULL, NULL, 'Western Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1984-08-04', 'BF');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ID', 'IDN', '360', 'Indonesia', 'officially-assigned', 1, 'Indonesia', 'Asia', 'South-eastern Asia', NULL, '62', '.id', 'ind', 'MY|PG|TL', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ID
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ID/
@@ -911,7 +911,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/ID/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IE', 'IRL', '372', 'Ireland', 'officially-assigned', 0, 'Ireland', 'Europe', 'Northern Europe', NULL, '353', '.ie', 'eng|gle', 'GB', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IE', 'IRL', '372', 'Ireland', 'officially-assigned', 1, 'Ireland', 'Europe', 'Northern Europe', NULL, '353', '.ie', 'eng|gle', 'GB', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/IE/
@@ -919,7 +919,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/IE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IL', 'ISR', '376', 'Israel', 'officially-assigned', 0, 'State of Israel', 'Asia', 'Western Asia', NULL, '972', '.il', 'ara|heb', 'EG|JO|LB|PS|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IL', 'ISR', '376', 'Israel', 'officially-assigned', 1, 'State of Israel', 'Asia', 'Western Asia', NULL, '972', '.il', 'ara|heb', 'EG|JO|LB|PS|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/IL/
@@ -951,7 +951,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IQ', 'IRQ', '368', 'Iraq', 'officially-assigned', 0, 'Republic of Iraq', 'Asia', 'Western Asia', NULL, '964', '.iq', 'ara|kur', 'IR|JO|KW|SA|SY|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IQ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IQ', 'IRQ', '368', 'Iraq', 'officially-assigned', 1, 'Republic of Iraq', 'Asia', 'Western Asia', NULL, '964', '.iq', 'ara|kur', 'IR|JO|KW|SA|SY|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IQ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IQ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/IQ/
@@ -959,7 +959,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/IQ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IR', 'IRN', '364', 'Iran (Islamic Republic of)', 'officially-assigned', 0, 'Islamic Republic of Iran', 'Asia', 'Southern Asia', NULL, '98', '.ir', 'pes', 'AF|AM|AZ|IQ|PK|TM|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IR', 'IRN', '364', 'Iran (Islamic Republic of)', 'officially-assigned', 1, 'Islamic Republic of Iran', 'Asia', 'Southern Asia', NULL, '98', '.ir', 'pes', 'AF|AM|AZ|IQ|PK|TM|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/IR/
@@ -967,7 +967,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/IR/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IS', 'ISL', '352', 'Iceland', 'officially-assigned', 0, 'Iceland', 'Europe', 'Northern Europe', NULL, '354', '.is', 'isl', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IS', 'ISL', '352', 'Iceland', 'officially-assigned', 1, 'Iceland', 'Europe', 'Northern Europe', NULL, '354', '.is', 'isl', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/IS/
@@ -975,7 +975,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/IS/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IT', 'ITA', '380', 'Italy', 'officially-assigned', 0, 'Italy', 'Europe', 'Southern Europe', NULL, '39', '.it', 'ita', 'AT|CH|FR|SI|SM|VA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('IT', 'ITA', '380', 'Italy', 'officially-assigned', 1, 'Italy', 'Europe', 'Southern Europe', NULL, '39', '.it', 'ita', 'AT|CH|FR|SI|SM|VA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:IT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/IT/
@@ -991,7 +991,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/JE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('JM', 'JAM', '388', 'Jamaica', 'officially-assigned', 0, 'Jamaica', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.jm', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('JM', 'JAM', '388', 'Jamaica', 'officially-assigned', 1, 'Jamaica', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.jm', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:JM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/JM/
@@ -1000,7 +1000,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('JO', 'JOR', '400', 'Jordan', 'officially-assigned', 0, 'Hashemite Kingdom of Jordan', 'Asia', 'Western Asia', NULL, '962', '.jo', 'ara', 'IL|IQ|PS|SA|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('JO', 'JOR', '400', 'Jordan', 'officially-assigned', 1, 'Hashemite Kingdom of Jordan', 'Asia', 'Western Asia', NULL, '962', '.jo', 'ara', 'IL|IQ|PS|SA|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:JO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/JO/
@@ -1016,7 +1016,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('JT', 'JTN', '000', 'Johnston Island', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: https://www.iso.org/obp/ui/#iso:code:3166:JT', '2026-09-23', '1986-01-01', NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KE', 'KEN', '404', 'Kenya', 'officially-assigned', 0, 'Republic of Kenya', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '254', '.ke', 'eng|swa', 'ET|SO|SS|TZ|UG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KE', 'KEN', '404', 'Kenya', 'officially-assigned', 1, 'Republic of Kenya', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '254', '.ke', 'eng|swa', 'ET|SO|SS|TZ|UG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KE/
@@ -1025,7 +1025,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KG', 'KGZ', '417', 'Kyrgyzstan', 'officially-assigned', 0, 'Kyrgyz Republic', 'Asia', 'Central Asia', NULL, '996', '.kg', 'kir|rus', 'CN|KZ|TJ|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KG', 'KGZ', '417', 'Kyrgyzstan', 'officially-assigned', 1, 'Kyrgyz Republic', 'Asia', 'Central Asia', NULL, '996', '.kg', 'kir|rus', 'CN|KZ|TJ|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KG/
@@ -1033,7 +1033,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/KG/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KH', 'KHM', '116', 'Cambodia', 'officially-assigned', 0, 'Kingdom of Cambodia', 'Asia', 'South-eastern Asia', NULL, '855', '.kh', 'khm', 'LA|TH|VN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KH', 'KHM', '116', 'Cambodia', 'officially-assigned', 1, 'Kingdom of Cambodia', 'Asia', 'South-eastern Asia', NULL, '855', '.kh', 'khm', 'LA|TH|VN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KH/
@@ -1041,7 +1041,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/KH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KI', 'KIR', '296', 'Kiribati', 'officially-assigned', 0, 'Republic of Kiribati', 'Oceania', 'Micronesia', NULL, '686', '.ki', 'eng|gil', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KI', 'KIR', '296', 'Kiribati', 'officially-assigned', 1, 'Republic of Kiribati', 'Oceania', 'Micronesia', NULL, '686', '.ki', 'eng|gil', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KI/
@@ -1049,7 +1049,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/KI/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KM', 'COM', '174', 'Comoros', 'officially-assigned', 0, 'Union of the Comoros', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '269', '.km', 'ara|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KM', 'COM', '174', 'Comoros', 'officially-assigned', 1, 'Union of the Comoros', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '269', '.km', 'ara|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KM/
@@ -1058,7 +1058,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KN', 'KNA', '659', 'Saint Kitts and Nevis', 'officially-assigned', 0, 'Saint Kitts and Nevis', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.kn', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KN', 'KNA', '659', 'Saint Kitts and Nevis', 'officially-assigned', 1, 'Saint Kitts and Nevis', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.kn', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KN/
@@ -1067,7 +1067,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KP', 'PRK', '408', 'Democratic People''s Republic of Korea', 'officially-assigned', 0, 'Democratic People''s Republic of Korea', 'Asia', 'Eastern Asia', NULL, '850', '.kp', 'kor', 'CN|KR|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KP
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KP', 'PRK', '408', 'Democratic People''s Republic of Korea', 'officially-assigned', 1, 'Democratic People''s Republic of Korea', 'Asia', 'Eastern Asia', NULL, '850', '.kp', 'kor', 'CN|KR|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KP
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KP
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KP/
@@ -1075,7 +1075,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/KP/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KR', 'KOR', '410', 'Republic of Korea', 'officially-assigned', 0, 'Republic of Korea', 'Asia', 'Eastern Asia', NULL, '82', '.kr', 'kor', 'KP', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KR', 'KOR', '410', 'Republic of Korea', 'officially-assigned', 1, 'Republic of Korea', 'Asia', 'Eastern Asia', NULL, '82', '.kr', 'kor', 'KP', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KR/
@@ -1083,7 +1083,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/KR/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KW', 'KWT', '414', 'Kuwait', 'officially-assigned', 0, 'State of Kuwait', 'Asia', 'Western Asia', NULL, '965', '.kw', 'ara', 'IQ|SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KW', 'KWT', '414', 'Kuwait', 'officially-assigned', 1, 'State of Kuwait', 'Asia', 'Western Asia', NULL, '965', '.kw', 'ara', 'IQ|SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KW/
@@ -1100,7 +1100,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KZ', 'KAZ', '398', 'Kazakhstan', 'officially-assigned', 0, 'Republic of Kazakhstan', 'Asia', 'Central Asia', NULL, '7', '.kz', 'kaz|rus', 'CN|KG|RU|TM|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('KZ', 'KAZ', '398', 'Kazakhstan', 'officially-assigned', 1, 'Republic of Kazakhstan', 'Asia', 'Central Asia', NULL, '7', '.kz', 'kaz|rus', 'CN|KG|RU|TM|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/KZ/
@@ -1108,7 +1108,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/KZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LA', 'LAO', '418', 'Lao People''s Democratic Republic', 'officially-assigned', 0, 'Lao People''s Democratic Republic', 'Asia', 'South-eastern Asia', NULL, '856', '.la', 'lao', 'CN|KH|MM|TH|VN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LA', 'LAO', '418', 'Lao People''s Democratic Republic', 'officially-assigned', 1, 'Lao People''s Democratic Republic', 'Asia', 'South-eastern Asia', NULL, '856', '.la', 'lao', 'CN|KH|MM|TH|VN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LA/
@@ -1116,7 +1116,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LA/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LB', 'LBN', '422', 'Lebanon', 'officially-assigned', 0, 'Lebanese Republic', 'Asia', 'Western Asia', NULL, '961', '.lb', 'ara|fra', 'IL|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LB
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LB', 'LBN', '422', 'Lebanon', 'officially-assigned', 1, 'Lebanese Republic', 'Asia', 'Western Asia', NULL, '961', '.lb', 'ara|fra', 'IL|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LB
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LB
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LB/
@@ -1124,7 +1124,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LB/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LC', 'LCA', '662', 'Saint Lucia', 'officially-assigned', 0, 'Saint Lucia', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.lc', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LC
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LC', 'LCA', '662', 'Saint Lucia', 'officially-assigned', 1, 'Saint Lucia', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.lc', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LC
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LC
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LC/
@@ -1133,7 +1133,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LI', 'LIE', '438', 'Liechtenstein', 'officially-assigned', 0, 'Principality of Liechtenstein', 'Europe', 'Western Europe', NULL, '423', '.li', 'deu', 'AT|CH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LI', 'LIE', '438', 'Liechtenstein', 'officially-assigned', 1, 'Principality of Liechtenstein', 'Europe', 'Western Europe', NULL, '423', '.li', 'deu', 'AT|CH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LI/
@@ -1141,7 +1141,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LI/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LK', 'LKA', '144', 'Sri Lanka', 'officially-assigned', 0, 'Democratic Socialist Republic of Sri Lanka', 'Asia', 'Southern Asia', NULL, '94', '.lk', 'sin|tam', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LK
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LK', 'LKA', '144', 'Sri Lanka', 'officially-assigned', 1, 'Democratic Socialist Republic of Sri Lanka', 'Asia', 'Southern Asia', NULL, '94', '.lk', 'sin|tam', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LK
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LK
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LK/
@@ -1149,7 +1149,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LR', 'LBR', '430', 'Liberia', 'officially-assigned', 0, 'Republic of Liberia', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '231', '.lr', 'eng', 'CI|GN|SL', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LR', 'LBR', '430', 'Liberia', 'officially-assigned', 1, 'Republic of Liberia', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '231', '.lr', 'eng', 'CI|GN|SL', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LR/
@@ -1158,7 +1158,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LS', 'LSO', '426', 'Lesotho', 'officially-assigned', 0, 'Kingdom of Lesotho', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '266', '.ls', 'eng|sot', 'ZA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LS
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LS', 'LSO', '426', 'Lesotho', 'officially-assigned', 1, 'Kingdom of Lesotho', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '266', '.ls', 'eng|sot', 'ZA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LS/
@@ -1167,7 +1167,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LT', 'LTU', '440', 'Lithuania', 'officially-assigned', 0, 'Republic of Lithuania', 'Europe', 'Northern Europe', NULL, '370', '.lt', 'lit', 'BY|LV|PL|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LT', 'LTU', '440', 'Lithuania', 'officially-assigned', 1, 'Republic of Lithuania', 'Europe', 'Northern Europe', NULL, '370', '.lt', 'lit', 'BY|LV|PL|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LT/
@@ -1175,7 +1175,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LU', 'LUX', '442', 'Luxembourg', 'officially-assigned', 0, 'Grand Duchy of Luxembourg', 'Europe', 'Western Europe', NULL, '352', '.lu', 'deu|fra|ltz', 'BE|DE|FR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LU', 'LUX', '442', 'Luxembourg', 'officially-assigned', 1, 'Grand Duchy of Luxembourg', 'Europe', 'Western Europe', NULL, '352', '.lu', 'deu|fra|ltz', 'BE|DE|FR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LU/
@@ -1183,7 +1183,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LV', 'LVA', '428', 'Latvia', 'officially-assigned', 0, 'Republic of Latvia', 'Europe', 'Northern Europe', NULL, '371', '.lv', 'lav', 'BY|EE|LT|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LV', 'LVA', '428', 'Latvia', 'officially-assigned', 1, 'Republic of Latvia', 'Europe', 'Northern Europe', NULL, '371', '.lv', 'lav', 'BY|EE|LT|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LV
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LV
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LV/
@@ -1191,7 +1191,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LV/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LY', 'LBY', '434', 'Libya', 'officially-assigned', 0, 'State of Libya', 'Africa', 'Northern Africa', NULL, '218', '.ly', 'ara', 'DZ|EG|NE|SD|TD|TN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('LY', 'LBY', '434', 'Libya', 'officially-assigned', 1, 'State of Libya', 'Africa', 'Northern Africa', NULL, '218', '.ly', 'ara', 'DZ|EG|NE|SD|TD|TN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/LY/
@@ -1199,7 +1199,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/LY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MA', 'MAR', '504', 'Morocco', 'officially-assigned', 0, 'Kingdom of Morocco', 'Africa', 'Northern Africa', NULL, '212', '.ma', 'ara', 'DZ|EH|ES', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MA', 'MAR', '504', 'Morocco', 'officially-assigned', 1, 'Kingdom of Morocco', 'Africa', 'Northern Africa', NULL, '212', '.ma', 'ara', 'DZ|EH|ES', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MA/
@@ -1207,7 +1207,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MA/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MC', 'MCO', '492', 'Monaco', 'officially-assigned', 0, 'Principality of Monaco', 'Europe', 'Western Europe', NULL, '377', '.mc', 'fra', 'FR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MC', 'MCO', '492', 'Monaco', 'officially-assigned', 1, 'Principality of Monaco', 'Europe', 'Western Europe', NULL, '377', '.mc', 'fra', 'FR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MC
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MC
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MC/
@@ -1215,7 +1215,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MC/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MD', 'MDA', '498', 'Republic of Moldova', 'officially-assigned', 0, 'Republic of Moldova', 'Europe', 'Eastern Europe', NULL, '373', '.md', 'ron', 'RO|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MD', 'MDA', '498', 'Republic of Moldova', 'officially-assigned', 1, 'Republic of Moldova', 'Europe', 'Eastern Europe', NULL, '373', '.md', 'ron', 'RO|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MD/
@@ -1223,7 +1223,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MD/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ME', 'MNE', '499', 'Montenegro', 'officially-assigned', 0, 'Montenegro', 'Europe', 'Southern Europe', NULL, '382', '.me', 'cnr', 'AL|BA|HR|RS|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ME', 'MNE', '499', 'Montenegro', 'officially-assigned', 1, 'Montenegro', 'Europe', 'Southern Europe', NULL, '382', '.me', 'cnr', 'AL|BA|HR|RS|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ME
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ME
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ME/
@@ -1240,7 +1240,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MG', 'MDG', '450', 'Madagascar', 'officially-assigned', 0, 'Republic of Madagascar', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '261', '.mg', 'fra|mlg', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MG', 'MDG', '450', 'Madagascar', 'officially-assigned', 1, 'Republic of Madagascar', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '261', '.mg', 'fra|mlg', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MG/
@@ -1249,7 +1249,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MH', 'MHL', '584', 'Marshall Islands', 'officially-assigned', 0, 'Republic of the Marshall Islands', 'Oceania', 'Micronesia', NULL, '692', '.mh', 'eng|mah', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MH', 'MHL', '584', 'Marshall Islands', 'officially-assigned', 1, 'Republic of the Marshall Islands', 'Oceania', 'Micronesia', NULL, '692', '.mh', 'eng|mah', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MH/
@@ -1258,7 +1258,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MI', 'MID', '000', 'Midway Islands', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: https://www.iso.org/obp/ui/#iso:code:3166:MI', '2026-09-23', '1986-01-01', NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MK', 'MKD', '807', 'North Macedonia', 'officially-assigned', 0, 'Republic of North Macedonia', 'Europe', 'Southern Europe', NULL, '389', '.mk', 'mkd', 'AL|BG|GR|RS|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MK', 'MKD', '807', 'North Macedonia', 'officially-assigned', 1, 'Republic of North Macedonia', 'Europe', 'Southern Europe', NULL, '389', '.mk', 'mkd', 'AL|BG|GR|RS|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MK
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MK/
@@ -1266,7 +1266,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ML', 'MLI', '466', 'Mali', 'officially-assigned', 0, 'Republic of Mali', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '223', '.ml', 'fra', 'BF|CI|DZ|GN|MR|NE|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ML
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ML', 'MLI', '466', 'Mali', 'officially-assigned', 1, 'Republic of Mali', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '223', '.ml', 'fra', 'BF|CI|DZ|GN|MR|NE|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ML
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ML
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ML/
@@ -1275,7 +1275,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MM', 'MMR', '104', 'Myanmar', 'officially-assigned', 0, 'Republic of the Union of Myanmar', 'Asia', 'South-eastern Asia', NULL, '95', '.mm', 'mya', 'BD|CN|IN|LA|TH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MM', 'MMR', '104', 'Myanmar', 'officially-assigned', 1, 'Republic of the Union of Myanmar', 'Asia', 'South-eastern Asia', NULL, '95', '.mm', 'mya', 'BD|CN|IN|LA|TH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MM/
@@ -1283,7 +1283,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MM/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MN', 'MNG', '496', 'Mongolia', 'officially-assigned', 0, 'Mongolia', 'Asia', 'Eastern Asia', NULL, '976', '.mn', 'mon', 'CN|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MN', 'MNG', '496', 'Mongolia', 'officially-assigned', 1, 'Mongolia', 'Asia', 'Eastern Asia', NULL, '976', '.mn', 'mon', 'CN|RU', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MN/
@@ -1316,7 +1316,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MR', 'MRT', '478', 'Mauritania', 'officially-assigned', 0, 'Islamic Republic of Mauritania', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '222', '.mr', 'ara', 'DZ|ML|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MR', 'MRT', '478', 'Mauritania', 'officially-assigned', 1, 'Islamic Republic of Mauritania', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '222', '.mr', 'ara', 'DZ|ML|SN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MR/
@@ -1334,7 +1334,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MT', 'MLT', '470', 'Malta', 'officially-assigned', 0, 'Republic of Malta', 'Europe', 'Southern Europe', NULL, '356', '.mt', 'eng|mlt', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MT', 'MLT', '470', 'Malta', 'officially-assigned', 1, 'Republic of Malta', 'Europe', 'Southern Europe', NULL, '356', '.mt', 'eng|mlt', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MT/
@@ -1342,7 +1342,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MU', 'MUS', '480', 'Mauritius', 'officially-assigned', 0, 'Republic of Mauritius', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '230', '.mu', 'eng|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MU
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MU', 'MUS', '480', 'Mauritius', 'officially-assigned', 1, 'Republic of Mauritius', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '230', '.mu', 'eng|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MU/
@@ -1351,7 +1351,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MV', 'MDV', '462', 'Maldives', 'officially-assigned', 0, 'Republic of Maldives', 'Asia', 'Southern Asia', NULL, '960', '.mv', 'div', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MV
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MV', 'MDV', '462', 'Maldives', 'officially-assigned', 1, 'Republic of Maldives', 'Asia', 'Southern Asia', NULL, '960', '.mv', 'div', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MV
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MV
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MV/
@@ -1359,7 +1359,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MV/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MW', 'MWI', '454', 'Malawi', 'officially-assigned', 0, 'Republic of Malawi', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '265', '.mw', 'eng|nya', 'MZ|TZ|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MW', 'MWI', '454', 'Malawi', 'officially-assigned', 1, 'Republic of Malawi', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '265', '.mw', 'eng|nya', 'MZ|TZ|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MW/
@@ -1368,7 +1368,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MX', 'MEX', '484', 'Mexico', 'officially-assigned', 0, 'Mexico', 'Americas', 'Latin America and the Caribbean', 'Central America', '52', '.mx', 'spa', 'BZ|GT|US', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MX', 'MEX', '484', 'Mexico', 'officially-assigned', 1, 'Mexico', 'Americas', 'Latin America and the Caribbean', 'Central America', '52', '.mx', 'spa', 'BZ|GT|US', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MX
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MX
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MX/
@@ -1377,7 +1377,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MY', 'MYS', '458', 'Malaysia', 'officially-assigned', 0, 'Malaysia', 'Asia', 'South-eastern Asia', NULL, '60', '.my', 'msa', 'BN|ID|TH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MY', 'MYS', '458', 'Malaysia', 'officially-assigned', 1, 'Malaysia', 'Asia', 'South-eastern Asia', NULL, '60', '.my', 'msa', 'BN|ID|TH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MY/
@@ -1385,7 +1385,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MZ', 'MOZ', '508', 'Mozambique', 'officially-assigned', 0, 'Republic of Mozambique', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '258', '.mz', 'por', 'MW|SZ|TZ|ZA|ZM|ZW', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('MZ', 'MOZ', '508', 'Mozambique', 'officially-assigned', 1, 'Republic of Mozambique', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '258', '.mz', 'por', 'MW|SZ|TZ|ZA|ZM|ZW', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/MZ/
@@ -1394,7 +1394,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NA', 'NAM', '516', 'Namibia', 'officially-assigned', 0, 'Republic of Namibia', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '264', '.na', 'eng', 'AO|BW|ZA|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NA', 'NAM', '516', 'Namibia', 'officially-assigned', 1, 'Republic of Namibia', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '264', '.na', 'eng', 'AO|BW|ZA|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NA/
@@ -1411,7 +1411,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NC/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NE', 'NER', '562', 'Niger', 'officially-assigned', 0, 'Republic of the Niger', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '227', '.ne', 'fra', 'BF|BJ|DZ|LY|ML|NG|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NE', 'NER', '562', 'Niger', 'officially-assigned', 1, 'Republic of the Niger', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '227', '.ne', 'fra', 'BF|BJ|DZ|LY|ML|NG|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NE/
@@ -1428,7 +1428,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NF/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NG', 'NGA', '566', 'Nigeria', 'officially-assigned', 0, 'Federal Republic of Nigeria', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '234', '.ng', 'eng', 'BJ|CM|NE|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NG', 'NGA', '566', 'Nigeria', 'officially-assigned', 1, 'Federal Republic of Nigeria', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '234', '.ng', 'eng', 'BJ|CM|NE|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NG/
@@ -1438,7 +1438,7 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NH', 'NHB', '000', 'New Hebrides', 'withdrawn', 0, NULL, NULL, 'Melanesia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1980-07-30', 'VU');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NI', 'NIC', '558', 'Nicaragua', 'officially-assigned', 0, 'Republic of Nicaragua', 'Americas', 'Latin America and the Caribbean', 'Central America', '505', '.ni', 'spa', 'CR|HN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NI', 'NIC', '558', 'Nicaragua', 'officially-assigned', 1, 'Republic of Nicaragua', 'Americas', 'Latin America and the Caribbean', 'Central America', '505', '.ni', 'spa', 'CR|HN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NI/
@@ -1447,7 +1447,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NL', 'NLD', '528', 'Netherlands (Kingdom of the)', 'officially-assigned', 0, 'Netherlands (Kingdom of the)', 'Europe', 'Western Europe', NULL, '31', '.nl', 'nld', 'BE|DE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NL', 'NLD', '528', 'Netherlands (Kingdom of the)', 'officially-assigned', 1, 'Netherlands (Kingdom of the)', 'Europe', 'Western Europe', NULL, '31', '.nl', 'nld', 'BE|DE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NL/
@@ -1455,7 +1455,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NL/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NO', 'NOR', '578', 'Norway', 'officially-assigned', 0, 'Kingdom of Norway', 'Europe', 'Northern Europe', NULL, '47', '.no', 'nor', 'FI|RU|SE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NO', 'NOR', '578', 'Norway', 'officially-assigned', 1, 'Kingdom of Norway', 'Europe', 'Northern Europe', NULL, '47', '.no', 'nor', 'FI|RU|SE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NO/
@@ -1463,7 +1463,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NO/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NP', 'NPL', '524', 'Nepal', 'officially-assigned', 0, 'Federal Democratic Republic of Nepal', 'Asia', 'Southern Asia', NULL, '977', '.np', 'nep', 'CN|IN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NP
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NP', 'NPL', '524', 'Nepal', 'officially-assigned', 1, 'Federal Democratic Republic of Nepal', 'Asia', 'Southern Asia', NULL, '977', '.np', 'nep', 'CN|IN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NP
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NP
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NP/
@@ -1472,7 +1472,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NQ', 'ATN', '000', 'Dronning Maud Land', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: https://www.iso.org/obp/ui/#iso:code:3166:NQ', '2026-09-23', '1983-01-01', 'AQ');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NR', 'NRU', '520', 'Naoero', 'officially-assigned', 0, 'Republic of Nauru', 'Oceania', 'Micronesia', NULL, '674', '.nr', 'eng|nau', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NR', 'NRU', '520', 'Naoero', 'officially-assigned', 1, 'Republic of Nauru', 'Oceania', 'Micronesia', NULL, '674', '.nr', 'eng|nau', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NR/
@@ -1489,7 +1489,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NZ', 'NZL', '554', 'New Zealand', 'officially-assigned', 0, 'New Zealand', 'Oceania', 'Australia and New Zealand', NULL, '64', '.nz', 'eng|mri', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('NZ', 'NZL', '554', 'New Zealand', 'officially-assigned', 1, 'New Zealand', 'Oceania', 'Australia and New Zealand', NULL, '64', '.nz', 'eng|mri', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/NZ/
@@ -1497,7 +1497,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('OM', 'OMN', '512', 'Oman', 'officially-assigned', 0, 'Sultanate of Oman', 'Asia', 'Western Asia', NULL, '968', '.om', 'ara', 'AE|SA|YE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:OM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('OM', 'OMN', '512', 'Oman', 'officially-assigned', 1, 'Sultanate of Oman', 'Asia', 'Western Asia', NULL, '968', '.om', 'ara', 'AE|SA|YE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:OM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:OM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/OM/
@@ -1505,7 +1505,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/OM/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PA', 'PAN', '591', 'Panama', 'officially-assigned', 0, 'Republic of Panama', 'Americas', 'Latin America and the Caribbean', 'Central America', '507', '.pa', 'spa', 'CO|CR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PA', 'PAN', '591', 'Panama', 'officially-assigned', 1, 'Republic of Panama', 'Americas', 'Latin America and the Caribbean', 'Central America', '507', '.pa', 'spa', 'CO|CR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PA/
@@ -1515,7 +1515,7 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PC', 'PCI', '000', 'Pacific Islands (Trust Territory)', 'withdrawn', 0, NULL, NULL, 'Micronesia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1986-11-03', 'FM|MH|MP|PW');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PE', 'PER', '604', 'Peru', 'officially-assigned', 0, 'Republic of Peru', 'Americas', 'Latin America and the Caribbean', 'South America', '51', '.pe', 'aym|que|spa', 'BO|BR|CL|CO|EC', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PE', 'PER', '604', 'Peru', 'officially-assigned', 1, 'Republic of Peru', 'Americas', 'Latin America and the Caribbean', 'South America', '51', '.pe', 'aym|que|spa', 'BO|BR|CL|CO|EC', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PE/
@@ -1532,7 +1532,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PF/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PG', 'PNG', '598', 'Papua New Guinea', 'officially-assigned', 0, 'Independent State of Papua New Guinea', 'Oceania', 'Melanesia', NULL, '675', '.pg', 'eng|hmo|tpi', 'ID', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PG', 'PNG', '598', 'Papua New Guinea', 'officially-assigned', 1, 'Independent State of Papua New Guinea', 'Oceania', 'Melanesia', NULL, '675', '.pg', 'eng|hmo|tpi', 'ID', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PG/
@@ -1540,7 +1540,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PG/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PH', 'PHL', '608', 'Philippines', 'officially-assigned', 0, 'Republic of the Philippines', 'Asia', 'South-eastern Asia', NULL, '63', '.ph', 'eng|fil', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PH', 'PHL', '608', 'Philippines', 'officially-assigned', 1, 'Republic of the Philippines', 'Asia', 'South-eastern Asia', NULL, '63', '.ph', 'eng|fil', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PH/
@@ -1548,7 +1548,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PK', 'PAK', '586', 'Pakistan', 'officially-assigned', 0, 'Islamic Republic of Pakistan', 'Asia', 'Southern Asia', NULL, '92', '.pk', 'eng|urd', 'AF|CN|IN|IR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PK
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PK', 'PAK', '586', 'Pakistan', 'officially-assigned', 1, 'Islamic Republic of Pakistan', 'Asia', 'Southern Asia', NULL, '92', '.pk', 'eng|urd', 'AF|CN|IN|IR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PK
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PK
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PK/
@@ -1556,7 +1556,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PL', 'POL', '616', 'Poland', 'officially-assigned', 0, 'Republic of Poland', 'Europe', 'Eastern Europe', NULL, '48', '.pl', 'pol', 'BY|CZ|DE|LT|RU|SK|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PL', 'POL', '616', 'Poland', 'officially-assigned', 1, 'Republic of Poland', 'Europe', 'Eastern Europe', NULL, '48', '.pl', 'pol', 'BY|CZ|DE|LT|RU|SK|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PL/
@@ -1597,7 +1597,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PS/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PT', 'PRT', '620', 'Portugal', 'officially-assigned', 0, 'Portuguese Republic', 'Europe', 'Southern Europe', NULL, '351', '.pt', 'por', 'ES', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PT', 'PRT', '620', 'Portugal', 'officially-assigned', 1, 'Portuguese Republic', 'Europe', 'Southern Europe', NULL, '351', '.pt', 'por', 'ES', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PT/
@@ -1605,7 +1605,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PW', 'PLW', '585', 'Palau', 'officially-assigned', 0, 'Republic of Palau', 'Oceania', 'Micronesia', NULL, '680', '.pw', 'eng|pau', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PW', 'PLW', '585', 'Palau', 'officially-assigned', 1, 'Republic of Palau', 'Oceania', 'Micronesia', NULL, '680', '.pw', 'eng|pau', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PW/
@@ -1613,7 +1613,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PW/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PY', 'PRY', '600', 'Paraguay', 'officially-assigned', 0, 'Republic of Paraguay', 'Americas', 'Latin America and the Caribbean', 'South America', '595', '.py', 'grn|spa', 'AR|BO|BR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PY', 'PRY', '600', 'Paraguay', 'officially-assigned', 1, 'Republic of Paraguay', 'Americas', 'Latin America and the Caribbean', 'South America', '595', '.py', 'grn|spa', 'AR|BO|BR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/PY/
@@ -1623,7 +1623,7 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('PZ', 'PCZ', '000', 'Panama Canal Zone', 'withdrawn', 0, NULL, NULL, 'Central America', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1980-01-01', 'PA');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('QA', 'QAT', '634', 'Qatar', 'officially-assigned', 0, 'State of Qatar', 'Asia', 'Western Asia', NULL, '974', '.qa', 'ara', 'SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:QA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('QA', 'QAT', '634', 'Qatar', 'officially-assigned', 1, 'State of Qatar', 'Asia', 'Western Asia', NULL, '974', '.qa', 'ara', 'SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:QA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:QA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/QA/
@@ -1641,7 +1641,7 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RH', 'RHO', '000', 'Southern Rhodesia', 'withdrawn', 0, NULL, NULL, 'Eastern Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1980-04-18', 'ZW');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RO', 'ROU', '642', 'Romania', 'officially-assigned', 0, 'Romania', 'Europe', 'Eastern Europe', NULL, '40', '.ro', 'ron', 'BG|HU|MD|RS|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RO', 'ROU', '642', 'Romania', 'officially-assigned', 1, 'Romania', 'Europe', 'Eastern Europe', NULL, '40', '.ro', 'ron', 'BG|HU|MD|RS|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:RO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/RO/
@@ -1649,7 +1649,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/RO/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RS', 'SRB', '688', 'Serbia', 'officially-assigned', 0, 'Republic of Serbia', 'Europe', 'Southern Europe', NULL, '381', '.rs', 'srp', 'BA|BG|HR|HU|ME|MK|RO|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RS', 'SRB', '688', 'Serbia', 'officially-assigned', 1, 'Republic of Serbia', 'Europe', 'Southern Europe', NULL, '381', '.rs', 'srp', 'BA|BG|HR|HU|ME|MK|RO|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:RS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/RS/
@@ -1664,7 +1664,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/RU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RW', 'RWA', '646', 'Rwanda', 'officially-assigned', 0, 'Republic of Rwanda', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '250', '.rw', 'eng|fra|kin', 'BI|CD|TZ|UG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('RW', 'RWA', '646', 'Rwanda', 'officially-assigned', 1, 'Republic of Rwanda', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '250', '.rw', 'eng|fra|kin', 'BI|CD|TZ|UG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:RW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/RW/
@@ -1673,7 +1673,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SA', 'SAU', '682', 'Saudi Arabia', 'officially-assigned', 0, 'Saudi Arabia', 'Asia', 'Western Asia', NULL, '966', '.sa', 'ara', 'AE|IQ|JO|KW|OM|QA|YE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SA', 'SAU', '682', 'Saudi Arabia', 'officially-assigned', 1, 'Saudi Arabia', 'Asia', 'Western Asia', NULL, '966', '.sa', 'ara', 'AE|IQ|JO|KW|OM|QA|YE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SA/
@@ -1681,7 +1681,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SA/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SB', 'SLB', '090', 'Solomon Islands', 'officially-assigned', 0, 'Solomon Islands', 'Oceania', 'Melanesia', NULL, '677', '.sb', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SB
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SB', 'SLB', '090', 'Solomon Islands', 'officially-assigned', 1, 'Solomon Islands', 'Oceania', 'Melanesia', NULL, '677', '.sb', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SB
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SB
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SB/
@@ -1689,7 +1689,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SB/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SC', 'SYC', '690', 'Seychelles', 'officially-assigned', 0, 'Republic of Seychelles', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '248', '.sc', 'eng|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SC
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SC', 'SYC', '690', 'Seychelles', 'officially-assigned', 1, 'Republic of Seychelles', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '248', '.sc', 'eng|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SC
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SC
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SC/
@@ -1698,7 +1698,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SD', 'SDN', '729', 'Sudan', 'officially-assigned', 0, 'Republic of the Sudan', 'Africa', 'Northern Africa', NULL, '249', '.sd', 'ara|eng', 'CF|EG|ER|ET|LY|SS|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SD', 'SDN', '729', 'Sudan', 'officially-assigned', 1, 'Republic of the Sudan', 'Africa', 'Northern Africa', NULL, '249', '.sd', 'ara|eng', 'CF|EG|ER|ET|LY|SS|TD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SD/
@@ -1706,7 +1706,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SD/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SE', 'SWE', '752', 'Sweden', 'officially-assigned', 0, 'Kingdom of Sweden', 'Europe', 'Northern Europe', NULL, '46', '.se', 'swe', 'FI|NO', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SE', 'SWE', '752', 'Sweden', 'officially-assigned', 1, 'Kingdom of Sweden', 'Europe', 'Northern Europe', NULL, '46', '.se', 'swe', 'FI|NO', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SE/
@@ -1714,7 +1714,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SG', 'SGP', '702', 'Singapore', 'officially-assigned', 0, 'Singapore', 'Asia', 'South-eastern Asia', NULL, '65', '.sg', 'cmn|eng|msa|tam', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SG', 'SGP', '702', 'Singapore', 'officially-assigned', 1, 'Singapore', 'Asia', 'South-eastern Asia', NULL, '65', '.sg', 'cmn|eng|msa|tam', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SG/
@@ -1731,7 +1731,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SI', 'SVN', '705', 'Slovenia', 'officially-assigned', 0, 'Republic of Slovenia', 'Europe', 'Southern Europe', NULL, '386', '.si', 'slv', 'AT|HR|HU|IT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SI', 'SVN', '705', 'Slovenia', 'officially-assigned', 1, 'Republic of Slovenia', 'Europe', 'Southern Europe', NULL, '386', '.si', 'slv', 'AT|HR|HU|IT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SI/
@@ -1747,7 +1747,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SJ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SK', 'SVK', '703', 'Slovakia', 'officially-assigned', 0, 'Slovak Republic', 'Europe', 'Eastern Europe', NULL, '421', '.sk', 'slk', 'AT|CZ|HU|PL|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SK', 'SVK', '703', 'Slovakia', 'officially-assigned', 1, 'Slovak Republic', 'Europe', 'Eastern Europe', NULL, '421', '.sk', 'slk', 'AT|CZ|HU|PL|UA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SK
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SK
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SK/
@@ -1756,7 +1756,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SK', 'SKM', '000', 'Sikkim', 'withdrawn', 0, NULL, NULL, 'Southern Asia', NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-22', '1975-05-16', 'IN');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SL', 'SLE', '694', 'Sierra Leone', 'officially-assigned', 0, 'Republic of Sierra Leone', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '232', '.sl', 'eng', 'GN|LR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SL', 'SLE', '694', 'Sierra Leone', 'officially-assigned', 1, 'Republic of Sierra Leone', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '232', '.sl', 'eng', 'GN|LR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SL/
@@ -1765,7 +1765,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SM', 'SMR', '674', 'San Marino', 'officially-assigned', 0, 'Republic of San Marino', 'Europe', 'Southern Europe', NULL, '378', '.sm', 'ita', 'IT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SM', 'SMR', '674', 'San Marino', 'officially-assigned', 1, 'Republic of San Marino', 'Europe', 'Southern Europe', NULL, '378', '.sm', 'ita', 'IT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SM/
@@ -1773,7 +1773,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SM/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SN', 'SEN', '686', 'Senegal', 'officially-assigned', 0, 'Republic of Senegal', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '221', '.sn', 'fra', 'GM|GN|GW|ML|MR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SN', 'SEN', '686', 'Senegal', 'officially-assigned', 1, 'Republic of Senegal', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '221', '.sn', 'fra', 'GM|GN|GW|ML|MR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SN/
@@ -1782,7 +1782,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SO', 'SOM', '706', 'Somalia', 'officially-assigned', 0, 'Federal Republic of Somalia', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '252', '.so', 'ara|som', 'DJ|ET|KE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SO', 'SOM', '706', 'Somalia', 'officially-assigned', 1, 'Federal Republic of Somalia', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '252', '.so', 'ara|som', 'DJ|ET|KE', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SO/
@@ -1791,7 +1791,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SR', 'SUR', '740', 'Suriname', 'officially-assigned', 0, 'Republic of Suriname', 'Americas', 'Latin America and the Caribbean', 'South America', '597', '.sr', 'nld', 'BR|GF|GY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SR', 'SUR', '740', 'Suriname', 'officially-assigned', 1, 'Republic of Suriname', 'Americas', 'Latin America and the Caribbean', 'South America', '597', '.sr', 'nld', 'BR|GF|GY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SR/
@@ -1800,7 +1800,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SS', 'SSD', '728', 'South Sudan', 'officially-assigned', 0, 'Republic of South Sudan', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '211', '.ss', 'eng', 'CD|CF|ET|KE|SD|UG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SS
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SS', 'SSD', '728', 'South Sudan', 'officially-assigned', 1, 'Republic of South Sudan', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '211', '.ss', 'eng', 'CD|CF|ET|KE|SD|UG', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SS/
@@ -1809,7 +1809,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ST', 'STP', '678', 'Sao Tome and Principe', 'officially-assigned', 0, 'Democratic Republic of São Tomé and Príncipe', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '239', '.st', 'por', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ST
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ST', 'STP', '678', 'Sao Tome and Principe', 'officially-assigned', 1, 'Democratic Republic of São Tomé and Príncipe', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '239', '.st', 'por', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ST
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ST
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ST/
@@ -1818,8 +1818,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SU', 'SUN', '810', 'USSR', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-22', '1992-08-30', NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SV', 'SLV', '222', 'El Salvador', 'officially-assigned', 0, 'Republic of El Salvador', 'Americas', 'Latin America and the Caribbean', 'Central America', '503', '.sv', 'spa', 'GT|HN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SV
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SU', 'SUN', '810', 'USSR', 'withdrawn', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-22', '1992-08-30', NULL);
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SV', 'SLV', '222', 'El Salvador', 'officially-assigned', 1, 'Republic of El Salvador', 'Americas', 'Latin America and the Caribbean', 'Central America', '503', '.sv', 'spa', 'GT|HN', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SV
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SV
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SV/
@@ -1837,7 +1837,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SY', 'SYR', '760', 'Syrian Arab Republic', 'officially-assigned', 0, 'Syrian Arab Republic', 'Asia', 'Western Asia', NULL, '963', '.sy', 'ara', 'IL|IQ|JO|LB|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SY', 'SYR', '760', 'Syrian Arab Republic', 'officially-assigned', 1, 'Syrian Arab Republic', 'Asia', 'Western Asia', NULL, '963', '.sy', 'ara', 'IL|IQ|JO|LB|TR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SY/
@@ -1845,7 +1845,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/SY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SZ', 'SWZ', '748', 'Eswatini', 'officially-assigned', 0, 'Kingdom of Eswatini', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '268', '.sz', 'eng|ssw', 'MZ|ZA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('SZ', 'SWZ', '748', 'Eswatini', 'officially-assigned', 1, 'Kingdom of Eswatini', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '268', '.sz', 'eng|ssw', 'MZ|ZA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/SZ/
@@ -1863,7 +1863,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TD', 'TCD', '148', 'Chad', 'officially-assigned', 0, 'Republic of Chad', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '235', '.td', 'ara|fra', 'CF|LY|NE|NG|SD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TD
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TD', 'TCD', '148', 'Chad', 'officially-assigned', 1, 'Republic of Chad', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '235', '.td', 'ara|fra', 'CF|LY|NE|NG|SD', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TD
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TD
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TD/
@@ -1881,7 +1881,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TG', 'TGO', '768', 'Togo', 'officially-assigned', 0, 'Togolese Republic', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '228', '.tg', 'fra', 'BF|BJ|GH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TG', 'TGO', '768', 'Togo', 'officially-assigned', 1, 'Togolese Republic', 'Africa', 'Sub-Saharan Africa', 'Western Africa', '228', '.tg', 'fra', 'BF|BJ|GH', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TG/
@@ -1890,7 +1890,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TH', 'THA', '764', 'Thailand', 'officially-assigned', 0, 'Kingdom of Thailand', 'Asia', 'South-eastern Asia', NULL, '66', '.th', 'tha', 'KH|LA|MM|MY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TH
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TH', 'THA', '764', 'Thailand', 'officially-assigned', 1, 'Kingdom of Thailand', 'Asia', 'South-eastern Asia', NULL, '66', '.th', 'tha', 'KH|LA|MM|MY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TH/
@@ -1898,7 +1898,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TJ', 'TJK', '762', 'Tajikistan', 'officially-assigned', 0, 'Republic of Tajikistan', 'Asia', 'Central Asia', NULL, '992', '.tj', 'rus|tgk', 'AF|CN|KG|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TJ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TJ', 'TJK', '762', 'Tajikistan', 'officially-assigned', 1, 'Republic of Tajikistan', 'Asia', 'Central Asia', NULL, '992', '.tj', 'rus|tgk', 'AF|CN|KG|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TJ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TJ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TJ/
@@ -1914,7 +1914,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TL', 'TLS', '626', 'Timor-Leste', 'officially-assigned', 0, 'Democratic Republic of Timor-Leste', 'Asia', 'South-eastern Asia', NULL, '670', '.tl', 'por|tet', 'ID', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TL
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TL', 'TLS', '626', 'Timor-Leste', 'officially-assigned', 1, 'Democratic Republic of Timor-Leste', 'Asia', 'South-eastern Asia', NULL, '670', '.tl', 'por|tet', 'ID', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TL
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TL/
@@ -1922,7 +1922,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TL/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TM', 'TKM', '795', 'Turkmenistan', 'officially-assigned', 0, 'Turkmenistan', 'Asia', 'Central Asia', NULL, '993', '.tm', 'rus|tuk', 'AF|IR|KZ|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TM', 'TKM', '795', 'Turkmenistan', 'officially-assigned', 1, 'Turkmenistan', 'Asia', 'Central Asia', NULL, '993', '.tm', 'rus|tuk', 'AF|IR|KZ|UZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TM/
@@ -1930,7 +1930,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TM/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TN', 'TUN', '788', 'Tunisia', 'officially-assigned', 0, 'Republic of Tunisia', 'Africa', 'Northern Africa', NULL, '216', '.tn', 'ara', 'DZ|LY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TN', 'TUN', '788', 'Tunisia', 'officially-assigned', 1, 'Republic of Tunisia', 'Africa', 'Northern Africa', NULL, '216', '.tn', 'ara', 'DZ|LY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TN/
@@ -1938,7 +1938,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TN/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TO', 'TON', '776', 'Tonga', 'officially-assigned', 0, 'Kingdom of Tonga', 'Oceania', 'Polynesia', NULL, '676', '.to', 'eng|ton', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TO
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TO', 'TON', '776', 'Tonga', 'officially-assigned', 1, 'Kingdom of Tonga', 'Oceania', 'Polynesia', NULL, '676', '.to', 'eng|ton', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TO/
@@ -1946,8 +1946,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TO/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TP', 'TMP', '626', 'East Timor', 'withdrawn', 0, NULL, NULL, 'South-eastern Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '2002-05-20', 'TL');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TR', 'TUR', '792', 'Türkiye', 'officially-assigned', 0, 'Türkiye', 'Asia', 'Western Asia', NULL, '90', '.tr', 'tur', 'AM|AZ|BG|GE|GR|IQ|IR|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TP', 'TMP', '626', 'East Timor', 'withdrawn', 1, NULL, NULL, 'South-eastern Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '2002-05-20', 'TL');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TR', 'TUR', '792', 'Türkiye', 'officially-assigned', 1, 'Türkiye', 'Asia', 'Western Asia', NULL, '90', '.tr', 'tur', 'AM|AZ|BG|GE|GR|IQ|IR|SY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TR/
@@ -1955,7 +1955,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TR/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TT', 'TTO', '780', 'Trinidad and Tobago', 'officially-assigned', 0, 'Republic of Trinidad and Tobago', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.tt', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TT
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TT', 'TTO', '780', 'Trinidad and Tobago', 'officially-assigned', 1, 'Republic of Trinidad and Tobago', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.tt', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TT
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TT
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TT/
@@ -1964,7 +1964,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TV', 'TUV', '798', 'Tuvalu', 'officially-assigned', 0, 'Tuvalu', 'Oceania', 'Polynesia', NULL, '688', '.tv', 'eng|tvl', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TV
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TV', 'TUV', '798', 'Tuvalu', 'officially-assigned', 1, 'Tuvalu', 'Oceania', 'Polynesia', NULL, '688', '.tv', 'eng|tvl', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TV
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TV
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TV/
@@ -1980,7 +1980,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/TW/
 tlds source: https://www.iana.org/domains/root/db
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source
 Taiwan. The UN M49 does not list Taiwan; no subregion applies.', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TZ', 'TZA', '834', 'United Republic of Tanzania', 'officially-assigned', 0, 'United Republic of Tanzania', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '255', '.tz', 'eng|swa', 'BI|CD|KE|MW|MZ|RW|UG|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('TZ', 'TZA', '834', 'United Republic of Tanzania', 'officially-assigned', 1, 'United Republic of Tanzania', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '255', '.tz', 'eng|swa', 'BI|CD|KE|MW|MZ|RW|UG|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:TZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/TZ/
@@ -1989,7 +1989,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UA', 'UKR', '804', 'Ukraine', 'officially-assigned', 0, 'Ukraine', 'Europe', 'Eastern Europe', NULL, '380', '.ua', 'ukr', 'BY|HU|MD|PL|RO|RU|SK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UA', 'UKR', '804', 'Ukraine', 'officially-assigned', 1, 'Ukraine', 'Europe', 'Eastern Europe', NULL, '380', '.ua', 'ukr', 'BY|HU|MD|PL|RO|RU|SK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:UA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/UA/
@@ -1997,7 +1997,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/UA/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UG', 'UGA', '800', 'Uganda', 'officially-assigned', 0, 'Republic of Uganda', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '256', '.ug', 'eng|swa', 'CD|KE|RW|SS|TZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UG
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UG', 'UGA', '800', 'Uganda', 'officially-assigned', 1, 'Republic of Uganda', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '256', '.ug', 'eng|swa', 'CD|KE|RW|SS|TZ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:UG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/UG/
@@ -2022,7 +2022,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/US/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UY', 'URY', '858', 'Uruguay', 'officially-assigned', 0, 'Eastern Republic of Uruguay', 'Americas', 'Latin America and the Caribbean', 'South America', '598', '.uy', 'spa', 'AR|BR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UY
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UY', 'URY', '858', 'Uruguay', 'officially-assigned', 1, 'Eastern Republic of Uruguay', 'Americas', 'Latin America and the Caribbean', 'South America', '598', '.uy', 'spa', 'AR|BR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:UY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/UY/
@@ -2031,7 +2031,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UZ', 'UZB', '860', 'Uzbekistan', 'officially-assigned', 0, 'Republic of Uzbekistan', 'Asia', 'Central Asia', NULL, '998', '.uz', 'rus|uzb', 'AF|KG|KZ|TJ|TM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UZ
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('UZ', 'UZB', '860', 'Uzbekistan', 'officially-assigned', 1, 'Republic of Uzbekistan', 'Asia', 'Central Asia', NULL, '998', '.uz', 'rus|uzb', 'AF|KG|KZ|TJ|TM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:UZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:UZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/UZ/
@@ -2039,7 +2039,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/UZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VA', 'VAT', '336', 'Holy See', 'officially-assigned', 0, 'Holy See', 'Europe', 'Southern Europe', NULL, '39', '.va', 'ita', 'IT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VA', 'VAT', '336', 'Holy See', 'officially-assigned', 1, 'Holy See', 'Europe', 'Southern Europe', NULL, '39', '.va', 'ita', 'IT', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:VA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/VA/
@@ -2047,7 +2047,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/VA/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VC', 'VCT', '670', 'Saint Vincent and the Grenadines', 'officially-assigned', 0, 'Saint Vincent and the Grenadines', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.vc', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VC
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VC', 'VCT', '670', 'Saint Vincent and the Grenadines', 'officially-assigned', 1, 'Saint Vincent and the Grenadines', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.vc', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VC
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:VC
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/VC/
@@ -2056,8 +2056,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VD', 'VDR', '000', 'North Vietnam', 'withdrawn', 0, NULL, NULL, 'South-eastern Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1976-07-02', 'VN');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VE', 'VEN', '862', 'Venezuela (Bolivarian Republic of)', 'officially-assigned', 0, 'Bolivarian Republic of Venezuela', 'Americas', 'Latin America and the Caribbean', 'South America', '58', '.ve', 'spa', 'BR|CO|GY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VD', 'VDR', '000', 'North Vietnam', 'withdrawn', 1, NULL, NULL, 'South-eastern Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1976-07-02', 'VN');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VE', 'VEN', '862', 'Venezuela (Bolivarian Republic of)', 'officially-assigned', 1, 'Bolivarian Republic of Venezuela', 'Americas', 'Latin America and the Caribbean', 'South America', '58', '.ve', 'spa', 'BR|CO|GY', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:VE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/VE/
@@ -2084,7 +2084,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VN', 'VNM', '704', 'Viet Nam', 'officially-assigned', 0, 'Socialist Republic of Viet Nam', 'Asia', 'South-eastern Asia', NULL, '84', '.vn', 'vie', 'CN|KH|LA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VN
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VN', 'VNM', '704', 'Viet Nam', 'officially-assigned', 1, 'Socialist Republic of Viet Nam', 'Asia', 'South-eastern Asia', NULL, '84', '.vn', 'vie', 'CN|KH|LA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VN
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:VN
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/VN/
@@ -2092,7 +2092,7 @@ languages source: https://www.cia.gov/the-world-factbook/countries/VN/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VU', 'VUT', '548', 'Vanuatu', 'officially-assigned', 0, 'Republic of Vanuatu', 'Oceania', 'Melanesia', NULL, '678', '.vu', 'bis|eng|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VU
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('VU', 'VUT', '548', 'Vanuatu', 'officially-assigned', 1, 'Republic of Vanuatu', 'Oceania', 'Melanesia', NULL, '678', '.vu', 'bis|eng|fra', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:VU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/VU/
@@ -2109,7 +2109,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('WK', 'WAK', '000', 'Wake Island', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: https://www.iso.org/obp/ui/#iso:code:3166:WK', '2026-09-23', '1986-01-01', NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('WS', 'WSM', '882', 'Samoa', 'officially-assigned', 0, 'Independent State of Samoa', 'Oceania', 'Polynesia', NULL, '685', '.ws', 'eng|smo', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:WS
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('WS', 'WSM', '882', 'Samoa', 'officially-assigned', 1, 'Independent State of Samoa', 'Oceania', 'Polynesia', NULL, '685', '.ws', 'eng|smo', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:WS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:WS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/WS/
@@ -2119,8 +2119,8 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('XK', 'XKX', '000', 'Kosovo', 'user-assigned', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AL|ME|MK|RS', 'User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production.
 borders source: https://www.cia.gov/the-world-factbook/countries/XK/', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('YD', 'YMD', '720', 'South Yemen', 'withdrawn', 0, NULL, NULL, 'Western Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1990-05-22', 'YE');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('YE', 'YEM', '887', 'Yemen', 'officially-assigned', 0, 'Republic of Yemen', 'Asia', 'Western Asia', NULL, '967', '.ye', 'ara', 'OM|SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:YE
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('YD', 'YMD', '720', 'South Yemen', 'withdrawn', 1, NULL, NULL, 'Western Asia', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1990-05-22', 'YE');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('YE', 'YEM', '887', 'Yemen', 'officially-assigned', 1, 'Republic of Yemen', 'Asia', 'Western Asia', NULL, '967', '.ye', 'ara', 'OM|SA', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:YE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:YE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/YE/
@@ -2137,7 +2137,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('YU', 'YUG', '890', 'Yugoslavia', 'withdrawn', 0, NULL, NULL, 'Southern Europe', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '2003-07-23', 'CS');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('YU', 'YUG', '890', 'Yugoslavia', 'withdrawn', 1, NULL, NULL, 'Southern Europe', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '2003-07-23', 'CS');
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZA', 'ZAF', '710', 'South Africa', 'officially-assigned', 1, 'Republic of South Africa', 'Africa', 'Sub-Saharan Africa', 'Southern Africa', '27', '.za', 'afr|eng|xho|zul', 'BW|LS|MZ|NA|SZ|ZW', 'currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ZA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ZA/
@@ -2146,7 +2146,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZM', 'ZMB', '894', 'Zambia', 'officially-assigned', 0, 'Republic of Zambia', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '260', '.zm', 'eng', 'AO|BW|CD|MW|MZ|NA|TZ|ZW', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ZM
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZM', 'ZMB', '894', 'Zambia', 'officially-assigned', 1, 'Republic of Zambia', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '260', '.zm', 'eng', 'AO|BW|CD|MW|MZ|NA|TZ|ZW', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ZM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ZM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ZM/
@@ -2155,8 +2155,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZR', 'ZAR', '180', 'Zaire', 'withdrawn', 0, NULL, NULL, 'Middle Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1997-05-17', 'CD');
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZW', 'ZWE', '716', 'Zimbabwe', 'officially-assigned', 0, 'Republic of Zimbabwe', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '263', '.zw', 'eng|nde|sna', 'BW|MZ|ZA|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ZW
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZR', 'ZAR', '180', 'Zaire', 'withdrawn', 1, NULL, NULL, 'Middle Africa', NULL, NULL, NULL, NULL, NULL, 'source: https://unstats.un.org/unsd/methodology/m49/', '2026-09-23', '1997-05-17', 'CD');
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('ZW', 'ZWE', '716', 'Zimbabwe', 'officially-assigned', 1, 'Republic of Zimbabwe', 'Africa', 'Sub-Saharan Africa', 'Eastern Africa', '263', '.zw', 'eng|nde|sna', 'BW|MZ|ZA|ZM', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ZW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ZW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ZW/
