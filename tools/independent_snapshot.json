@@ -2,7 +2,1266 @@
   "meta": {
     "source": "ISO 3166-1 Online Browsing Platform",
     "schema_version": "1.0.0",
-    "extracted_at": null
+    "extracted_at": "2026-10-21T13:33:25Z"
   },
-  "entries": {}
+  "entries": {
+    "AD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AF": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AI": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AQ": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AQ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AS": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AW": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AX": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AX",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "AZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:AZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BB": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BB",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BF": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BJ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BJ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BL": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BM": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BQ": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BQ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BS": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BV": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BV",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "BZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:BZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CC": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CF": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CK": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CV": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CV",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CW": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CX": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CX",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "CZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:CZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "DE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:DE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "DJ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:DJ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "DK": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:DK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "DM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:DM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "DO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:DO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "DZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:DZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "EC": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:EC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "EE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:EE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "EG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:EG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "EH": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:EH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ER": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ER",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ES": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ES",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ET": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ET",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "EU": {
+      "value": false,
+      "source_url": null,
+      "extracted_at": "2026-10-21T13:33:25Z",
+      "override": "supranational organisation, not a sovereign state"
+    },
+    "FI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "FJ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FJ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "FK": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "FM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "FO": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "FR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GB": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GB",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GF": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GG": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GI": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GL": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GP": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GP",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GQ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GQ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GS": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GU": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "GY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:GY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "HK": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:HK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "HM": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:HM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "HN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:HN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "HR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:HR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "HT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:HT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "HU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:HU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ID": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ID",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IM": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IO": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IQ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IQ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IS": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "IT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:IT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "JE": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:JE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "JM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:JM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "JO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:JO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "JP": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:JP",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KP": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KP",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KY": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "KZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:KZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LB": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LB",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LC": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LK": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LS": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LV": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LV",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "LY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:LY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MC": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ME": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ME",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MF": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MK": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ML": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ML",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MO": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MP": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MP",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MQ": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MQ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MS": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MV": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MV",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MX": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MX",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "MZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:MZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NC": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NF": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NP": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NP",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NU": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "NZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:NZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "OM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:OM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PF": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PK": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PM": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PN": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PR": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PS": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "PY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:PY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "QA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:QA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "RE": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:RE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "RO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:RO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "RS": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:RS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "RU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:RU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "RW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:RW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SB": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SB",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SC": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SH": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SI": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SJ": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SJ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SK": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SS": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ST": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ST",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SV": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SV",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SX": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SX",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "SZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:SZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TC": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TD": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TD",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TF": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TH": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TH",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TJ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TJ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TK": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TK",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TL": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TL",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TO": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TO",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TR": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TR",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TT": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TV": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TV",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "TW": {
+      "value": false,
+      "source_url": null,
+      "extracted_at": "2026-10-21T13:33:25Z",
+      "override": "ISO 3166-1 treats Taiwan as a Province of China"
+    },
+    "TZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:TZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "UA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:UA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "UG": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:UG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "UM": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:UM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "US": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:US",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "UY": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:UY",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "UZ": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:UZ",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VC": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VC",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VG": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VG",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VI": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VI",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VN": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VN",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "VU": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:VU",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "WF": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:WF",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "WS": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:WS",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "XK": {
+      "value": true,
+      "source_url": null,
+      "extracted_at": "2026-10-21T13:33:25Z",
+      "override": "user-assigned code; independence recognised by most states"
+    },
+    "YE": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:YE",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "YT": {
+      "value": false,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:YT",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ZA": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ZA",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ZM": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ZM",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    },
+    "ZW": {
+      "value": true,
+      "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:ZW",
+      "extracted_at": "2026-10-21T13:33:25Z"
+    }
+  }
 }

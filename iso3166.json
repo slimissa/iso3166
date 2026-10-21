@@ -14,7 +14,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "cat"
@@ -46,7 +46,7 @@
         "currency_codes": [
           "AED"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -82,7 +82,7 @@
         "currency_codes": [
           "AFN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "prs",
@@ -112,7 +112,7 @@
         "currency_codes": [
           "XCD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -175,7 +175,7 @@
         "currency_codes": [
           "ALL"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "sqi"
@@ -209,7 +209,7 @@
         "currency_codes": [
           "AMD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "hye"
@@ -243,7 +243,7 @@
         "currency_codes": [
           "AOA"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "por"
@@ -303,7 +303,7 @@
         "currency_codes": [
           "ARS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "spa"
@@ -371,7 +371,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "deu"
@@ -400,7 +400,7 @@
         "currency_codes": [
           "AUD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng"
@@ -494,7 +494,7 @@
         "currency_codes": [
           "AZN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "aze"
@@ -527,7 +527,7 @@
         "currency_codes": [
           "BAM"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "bos",
@@ -558,7 +558,7 @@
         "currency_codes": [
           "BBD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -590,7 +590,7 @@
         "currency_codes": [
           "BDT"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ben"
@@ -624,7 +624,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "deu",
@@ -662,7 +662,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -697,7 +697,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "bul"
@@ -726,7 +726,7 @@
         "currency_codes": [
           "BHD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -759,7 +759,7 @@
         "currency_codes": [
           "BIF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "fra",
@@ -794,7 +794,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -881,7 +881,7 @@
         "currency_codes": [
           "BND"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "msa"
@@ -916,7 +916,7 @@
         "currency_codes": [
           "BOB"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "aym",
@@ -1014,7 +1014,7 @@
         "currency_codes": [
           "BSD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -1046,7 +1046,7 @@
         "currency_codes": [
           "BTN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "dzo"
@@ -1109,7 +1109,7 @@
         "currency_codes": [
           "BWP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Southern Africa",
         "languages": [
           "eng",
@@ -1145,7 +1145,7 @@
         "currency_codes": [
           "BYN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "bel",
@@ -1178,7 +1178,7 @@
         "currency_codes": [
           "BZD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "eng"
@@ -1209,7 +1209,7 @@
         "currency_codes": [
           "CAD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -1278,7 +1278,7 @@
         "currency_codes": [
           "CDF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "fra",
@@ -1316,7 +1316,7 @@
         "currency_codes": [
           "XAF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "fra",
@@ -1352,7 +1352,7 @@
         "currency_codes": [
           "XAF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "fra",
@@ -1388,7 +1388,7 @@
         "currency_codes": [
           "CHF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "deu",
@@ -1426,7 +1426,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -1489,7 +1489,7 @@
         "currency_codes": [
           "CLP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "spa"
@@ -1524,7 +1524,7 @@
         "currency_codes": [
           "XAF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "eng",
@@ -1606,7 +1606,7 @@
         "currency_codes": [
           "COP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "spa"
@@ -1638,7 +1638,7 @@
         "currency_codes": [
           "CRC"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -1667,7 +1667,7 @@
         "currency_codes": [
           "CUP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "spa"
@@ -1696,7 +1696,7 @@
         "currency_codes": [
           "CVE"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "por"
@@ -1784,7 +1784,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ell",
@@ -1819,7 +1819,7 @@
         "currency_codes": [
           "CZK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ces"
@@ -1891,7 +1891,7 @@
         "currency_codes": [
           "DJF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "ara",
@@ -1923,7 +1923,7 @@
         "currency_codes": [
           "DKK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "dan"
@@ -1952,7 +1952,7 @@
         "currency_codes": [
           "XCD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -1983,7 +1983,7 @@
         "currency_codes": [
           "DOP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "spa"
@@ -2020,7 +2020,7 @@
         "currency_codes": [
           "DZD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -2052,7 +2052,7 @@
         "currency_codes": [
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "spa"
@@ -2084,7 +2084,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "est"
@@ -2118,7 +2118,7 @@
         "currency_codes": [
           "EGP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -2181,7 +2181,7 @@
         "currency_codes": [
           "ERN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "ara",
@@ -2218,7 +2218,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "spa"
@@ -2254,7 +2254,7 @@
         "currency_codes": [
           "ETB"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "amh"
@@ -2308,7 +2308,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "fin",
@@ -2338,7 +2338,7 @@
         "currency_codes": [
           "FJD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -2398,7 +2398,7 @@
         "currency_codes": [
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng"
@@ -2499,7 +2499,7 @@
         "currency_codes": [
           "XAF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "fra"
@@ -2559,7 +2559,7 @@
         "currency_codes": [
           "XCD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -2593,7 +2593,7 @@
         "currency_codes": [
           "GEL"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "kat"
@@ -2687,7 +2687,7 @@
         "currency_codes": [
           "GHS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "eng"
@@ -2779,7 +2779,7 @@
         "currency_codes": [
           "GMD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "eng"
@@ -2815,7 +2815,7 @@
         "currency_codes": [
           "GNF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -2876,7 +2876,7 @@
         "currency_codes": [
           "XAF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "fra",
@@ -2912,7 +2912,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ell"
@@ -2975,7 +2975,7 @@
         "currency_codes": [
           "GTQ"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -3037,7 +3037,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "por"
@@ -3070,7 +3070,7 @@
         "currency_codes": [
           "GYD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "eng"
@@ -3164,7 +3164,7 @@
         "currency_codes": [
           "HNL"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -3199,7 +3199,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "hrv"
@@ -3230,7 +3230,7 @@
         "currency_codes": [
           "HTG"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "fra",
@@ -3268,7 +3268,7 @@
         "currency_codes": [
           "HUF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "hun"
@@ -3301,7 +3301,7 @@
         "currency_codes": [
           "IDR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ind"
@@ -3332,7 +3332,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -3368,7 +3368,7 @@
         "currency_codes": [
           "ILS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara",
@@ -3501,7 +3501,7 @@
         "currency_codes": [
           "IQD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara",
@@ -3539,7 +3539,7 @@
         "currency_codes": [
           "IRR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "pes"
@@ -3568,7 +3568,7 @@
         "currency_codes": [
           "ISK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "isl"
@@ -3604,7 +3604,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ita"
@@ -3662,7 +3662,7 @@
         "currency_codes": [
           "JMD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -3697,7 +3697,7 @@
         "currency_codes": [
           "JOD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -3761,7 +3761,7 @@
         "currency_codes": [
           "KES"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -3796,7 +3796,7 @@
         "currency_codes": [
           "KGS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "kir",
@@ -3830,7 +3830,7 @@
         "currency_codes": [
           "KHR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "khm"
@@ -3859,7 +3859,7 @@
         "currency_codes": [
           "AUD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -3889,7 +3889,7 @@
         "currency_codes": [
           "KMF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "ara",
@@ -3919,7 +3919,7 @@
         "currency_codes": [
           "XCD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -3952,7 +3952,7 @@
         "currency_codes": [
           "KPW"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "kor"
@@ -3983,7 +3983,7 @@
         "currency_codes": [
           "KRW"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "kor"
@@ -4015,7 +4015,7 @@
         "currency_codes": [
           "KWD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -4079,7 +4079,7 @@
         "currency_codes": [
           "KZT"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "kaz",
@@ -4115,7 +4115,7 @@
         "currency_codes": [
           "LAK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "lao"
@@ -4147,7 +4147,7 @@
         "currency_codes": [
           "LBP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara",
@@ -4177,7 +4177,7 @@
         "currency_codes": [
           "XCD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -4209,7 +4209,7 @@
         "currency_codes": [
           "CHF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "deu"
@@ -4238,7 +4238,7 @@
         "currency_codes": [
           "LKR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "sin",
@@ -4272,7 +4272,7 @@
         "currency_codes": [
           "LRD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "eng"
@@ -4303,7 +4303,7 @@
         "currency_codes": [
           "LSL"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Southern Africa",
         "languages": [
           "eng",
@@ -4338,7 +4338,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "lit"
@@ -4371,7 +4371,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "deu",
@@ -4407,7 +4407,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "lav"
@@ -4443,7 +4443,7 @@
         "currency_codes": [
           "LYD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -4476,7 +4476,7 @@
         "currency_codes": [
           "MAD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -4507,7 +4507,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "fra"
@@ -4539,7 +4539,7 @@
         "currency_codes": [
           "MDL"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ron"
@@ -4574,7 +4574,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "cnr"
@@ -4630,7 +4630,7 @@
         "currency_codes": [
           "MGA"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "fra",
@@ -4660,7 +4660,7 @@
         "currency_codes": [
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -4696,7 +4696,7 @@
         "currency_codes": [
           "MKD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "mkd"
@@ -4733,7 +4733,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -4768,7 +4768,7 @@
         "currency_codes": [
           "MMK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "mya"
@@ -4800,7 +4800,7 @@
         "currency_codes": [
           "MNT"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "mon"
@@ -4924,7 +4924,7 @@
         "currency_codes": [
           "MRU"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "ara"
@@ -4982,7 +4982,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -5012,7 +5012,7 @@
         "currency_codes": [
           "MUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -5042,7 +5042,7 @@
         "currency_codes": [
           "MVR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "div"
@@ -5075,7 +5075,7 @@
         "currency_codes": [
           "MWK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -5109,7 +5109,7 @@
         "currency_codes": [
           "MXN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -5142,7 +5142,7 @@
         "currency_codes": [
           "MYR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "msa"
@@ -5178,7 +5178,7 @@
         "currency_codes": [
           "MZN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "por"
@@ -5212,7 +5212,7 @@
         "currency_codes": [
           "NAD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Southern Africa",
         "languages": [
           "eng"
@@ -5278,7 +5278,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -5341,7 +5341,7 @@
         "currency_codes": [
           "NGN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "eng"
@@ -5373,7 +5373,7 @@
         "currency_codes": [
           "NIO"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -5405,7 +5405,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "nld"
@@ -5438,7 +5438,7 @@
         "currency_codes": [
           "NOK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "nor"
@@ -5470,7 +5470,7 @@
         "currency_codes": [
           "NPR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "nep"
@@ -5499,7 +5499,7 @@
         "currency_codes": [
           "AUD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -5559,7 +5559,7 @@
         "currency_codes": [
           "NZD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -5593,7 +5593,7 @@
         "currency_codes": [
           "OMR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -5626,7 +5626,7 @@
           "PAB",
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -5661,7 +5661,7 @@
         "currency_codes": [
           "PEN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "aym",
@@ -5723,7 +5723,7 @@
         "currency_codes": [
           "PGK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -5754,7 +5754,7 @@
         "currency_codes": [
           "PHP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -5789,7 +5789,7 @@
         "currency_codes": [
           "PKR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -5827,7 +5827,7 @@
         "currency_codes": [
           "PLN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "pol"
@@ -5979,7 +5979,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "por"
@@ -6008,7 +6008,7 @@
         "currency_codes": [
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -6042,7 +6042,7 @@
         "currency_codes": [
           "PYG"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "grn",
@@ -6074,7 +6074,7 @@
         "currency_codes": [
           "QAR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -6138,7 +6138,7 @@
         "currency_codes": [
           "RON"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ron"
@@ -6176,7 +6176,7 @@
         "currency_codes": [
           "RSD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "srp"
@@ -6254,7 +6254,7 @@
         "currency_codes": [
           "RWF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -6293,7 +6293,7 @@
         "currency_codes": [
           "SAR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -6322,7 +6322,7 @@
         "currency_codes": [
           "SBD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng"
@@ -6351,7 +6351,7 @@
         "currency_codes": [
           "SCR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -6389,7 +6389,7 @@
         "currency_codes": [
           "SDG"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara",
@@ -6422,7 +6422,7 @@
         "currency_codes": [
           "SEK"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "swe"
@@ -6451,7 +6451,7 @@
         "currency_codes": [
           "SGD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "cmn",
@@ -6517,7 +6517,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "slv"
@@ -6581,7 +6581,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "slk"
@@ -6613,7 +6613,7 @@
         "currency_codes": [
           "SLE"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "eng"
@@ -6644,7 +6644,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ita"
@@ -6679,7 +6679,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -6712,7 +6712,7 @@
         "currency_codes": [
           "SOS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "ara",
@@ -6746,7 +6746,7 @@
         "currency_codes": [
           "SRD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "nld"
@@ -6782,7 +6782,7 @@
         "currency_codes": [
           "SSP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng"
@@ -6811,7 +6811,7 @@
         "currency_codes": [
           "STN"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "por"
@@ -6843,7 +6843,7 @@
         "currency_codes": [
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Central America",
         "languages": [
           "spa"
@@ -6908,7 +6908,7 @@
         "currency_codes": [
           "SYP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -6940,7 +6940,7 @@
         "currency_codes": [
           "SZL"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Southern Africa",
         "languages": [
           "eng",
@@ -7005,7 +7005,7 @@
         "currency_codes": [
           "XAF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Middle Africa",
         "languages": [
           "ara",
@@ -7068,7 +7068,7 @@
         "currency_codes": [
           "XOF"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Western Africa",
         "languages": [
           "fra"
@@ -7102,7 +7102,7 @@
         "currency_codes": [
           "THB"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "tha"
@@ -7136,7 +7136,7 @@
         "currency_codes": [
           "TJS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "rus",
@@ -7198,7 +7198,7 @@
         "currency_codes": [
           "USD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "por",
@@ -7233,7 +7233,7 @@
         "currency_codes": [
           "TMT"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "rus",
@@ -7266,7 +7266,7 @@
         "currency_codes": [
           "TND"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -7295,7 +7295,7 @@
         "currency_codes": [
           "TOP"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -7334,7 +7334,7 @@
         "currency_codes": [
           "TRY"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "tur"
@@ -7363,7 +7363,7 @@
         "currency_codes": [
           "TTD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -7392,7 +7392,7 @@
         "currency_codes": [
           "AUD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -7460,7 +7460,7 @@
         "currency_codes": [
           "TZS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -7498,7 +7498,7 @@
         "currency_codes": [
           "UAH"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ukr"
@@ -7533,7 +7533,7 @@
         "currency_codes": [
           "UGX"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -7646,7 +7646,7 @@
         "currency_codes": [
           "UYU"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "spa"
@@ -7681,7 +7681,7 @@
         "currency_codes": [
           "UZS"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "rus",
@@ -7713,7 +7713,7 @@
         "currency_codes": [
           "EUR"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ita"
@@ -7742,7 +7742,7 @@
         "currency_codes": [
           "XCD"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Caribbean",
         "languages": [
           "eng"
@@ -7775,7 +7775,7 @@
         "currency_codes": [
           "VES"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "South America",
         "languages": [
           "spa"
@@ -7866,7 +7866,7 @@
         "currency_codes": [
           "VND"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "vie"
@@ -7895,7 +7895,7 @@
         "currency_codes": [
           "VUV"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "bis",
@@ -7955,7 +7955,7 @@
         "currency_codes": [
           "WST"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "eng",
@@ -8014,7 +8014,7 @@
         "currency_codes": [
           "YER"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": [
           "ara"
@@ -8120,7 +8120,7 @@
         "currency_codes": [
           "ZMW"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng"
@@ -8154,7 +8154,7 @@
         "currency_codes": [
           "ZWG"
         ],
-        "independent": false,
+        "independent": true,
         "intermediate_region": "Eastern Africa",
         "languages": [
           "eng",
@@ -8231,7 +8231,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8254,7 +8254,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8301,7 +8301,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8324,7 +8324,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8370,7 +8370,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8597,7 +8597,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-22",
@@ -8618,7 +8618,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8641,7 +8641,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8685,7 +8685,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8708,7 +8708,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
@@ -8731,7 +8731,7 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
-        "independent": false,
+        "independent": true,
         "intermediate_region": null,
         "languages": null,
         "last_verified": "2026-09-23",
