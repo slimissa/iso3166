@@ -51,7 +51,7 @@ POLLED_WORKFLOWS=(
 )
 CI_POLL_INTERVAL=20
 CI_POLL_MAX=90     # 30 minutes max
-CI_START_TIMEOUT=60  # die if no CI run appears within this many seconds
+CI_START_TIMEOUT=180  # die if no CI run appears within this many seconds
 
 
 check_workflows_covered() {
