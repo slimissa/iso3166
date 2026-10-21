@@ -56,7 +56,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Validate (six layers, strict count)
-        run: python3 tools/validate.py iso3166.json --strict-count --verbose
+        run: python3 tools/validate.py iso3166.json --strict-count --strict-independent --verbose
 
       - name: Run root test suite
         run: python3 -m pytest tests/ -v
