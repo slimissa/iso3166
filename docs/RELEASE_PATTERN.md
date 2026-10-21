@@ -500,6 +500,14 @@ and cancels any pending workflow run. Let the wait finish; if it must be
 stopped, treat it as the partial-release state described under "Tagged
 releases are immutable" and recover manually.
 
+### 18. CI Queueing Latency
+
+GitHub Actions does not register a workflow run instantly. A 60-second timeout is too aggressive and causes false-positive "no CI run appeared" failures (as happened in ISO 3166 v1.7.3). Set `CI_START_TIMEOUT` to at least 180 seconds.
+
+### 19. Split Releases by Decision Dependency
+
+If a release contains a tool (no decision needed) and data (requires a semantic decision or external fetch), split them. Ship the tool in `vN`, and the data in `vN+1`. A blocked data decision should never block a shippable tool fix.
+
 ## The vendored-snapshot `review_by` shape
 
 When registry A vendors a byte-for-byte snapshot of registry B, and
