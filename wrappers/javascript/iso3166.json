@@ -990,9 +990,9 @@
         "languages": [
           "por"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "Brazil",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BR\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/BR/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/BR/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\nintermediate_region source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BR\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/BR/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/BR/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\nintermediate_region source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:BR",
         "numeric": "076",
         "official_name": "Federative Republic of Brazil",
         "region": "Americas",
@@ -1576,9 +1576,9 @@
         "languages": [
           "cmn"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "China",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CN\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/CN/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/CN/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CN\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/CN/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/CN/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:CN",
         "numeric": "156",
         "official_name": "People's Republic of China",
         "region": "Asia",
@@ -1863,9 +1863,9 @@
         "languages": [
           "deu"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "Germany",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DE\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/DE/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/DE/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DE\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/DE/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/DE/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:DE",
         "numeric": "276",
         "official_name": "Federal Republic of Germany",
         "region": "Europe",
@@ -2471,9 +2471,9 @@
         "languages": [
           "fra"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "France",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:FR\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/FR/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/FR/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:FR\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/FR/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/FR/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:FR",
         "numeric": "250",
         "official_name": "French Republic",
         "region": "Europe",
@@ -2535,9 +2535,9 @@
         "languages": [
           "eng"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "United Kingdom of Great Britain and Northern Ireland",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GB\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/GB/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/GB/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GB\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/GB/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/GB/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:GB",
         "numeric": "826",
         "official_name": "United Kingdom of Great Britain and Northern Ireland",
         "region": "Europe",
@@ -3441,9 +3441,9 @@
           "eng",
           "hin"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "India",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IN\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/IN/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/IN/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:IN\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/IN/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/IN/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:IN",
         "numeric": "356",
         "official_name": "Republic of India",
         "region": "Asia",
@@ -3731,9 +3731,9 @@
         "languages": [
           "jpn"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "Japan",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:JP\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/JP/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/JP/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:JP\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/JP/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/JP/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:JP",
         "numeric": "392",
         "official_name": "Japan",
         "region": "Asia",
@@ -6225,9 +6225,9 @@
         "languages": [
           "rus"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "Russian Federation",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:RU\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/RU/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/RU/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:RU\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/RU/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/RU/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:RU",
         "numeric": "643",
         "official_name": "Russian Federation",
         "region": "Europe",
@@ -7427,9 +7427,9 @@
         "languages": [
           "cmn"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "Taiwan, Province of China",
-        "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.\ncurrency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TW\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/TW/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/TW/\ntlds source: https://www.iana.org/domains/root/db\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nTaiwan. The UN M49 does not list Taiwan; no subregion applies.",
+        "note": "ISO 3166-1 officially assigned code. Not present in the UN M49 export because the UN treats Taiwan as a province of China. Supplied manually from the ISO 3166-1 official list.\ncurrency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:TW\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/TW/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/TW/\ntlds source: https://www.iana.org/domains/root/db\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nTaiwan. The UN M49 does not list Taiwan; no subregion applies.\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:TW",
         "numeric": "158",
         "official_name": "Taiwan, Province of China",
         "region": null,
@@ -7619,9 +7619,9 @@
         "languages": [
           "eng"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "United States of America",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:US\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/US/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/US/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:US\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/US/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/US/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:US",
         "numeric": "840",
         "official_name": "United States of America",
         "region": "Americas",
@@ -8087,9 +8087,9 @@
           "xho",
           "zul"
         ],
-        "last_verified": "2026-09-23",
+        "last_verified": "2026-10-21",
         "name": "South Africa",
-        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ZA\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/ZA/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/ZA/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\nintermediate_region source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ZA\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/ZA/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/ZA/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\nintermediate_region source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nofficial_name source: https://www.iso.org/obp/ui/#iso:code:3166:ZA",
         "numeric": "710",
         "official_name": "Republic of South Africa",
         "region": "Africa",
