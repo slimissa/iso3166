@@ -43,3 +43,6 @@ exchange_calendar.json
 
 # Release patch bundles (kept outside the repo)
 v[0-9]*.[0-9]*.[0-9]*-patches/
+
+# Manual harvest artifacts
+pages/
