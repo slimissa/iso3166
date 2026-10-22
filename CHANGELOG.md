@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.8.0] — 2026-10-DD
+## [1.8.0] — 2026-10-22
 
 Input contract. The four language wrappers now agree on empty strings,
 sentinel numeric codes, and withdrawn-entry behavior. Breaking changes
