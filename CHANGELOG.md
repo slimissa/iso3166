@@ -8,6 +8,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.1] — 2026-10-DD
+
+Pattern documentation parity with ISO 4217 and ISO 10383. No code
+or data changes.
+
+### Changed
+
+- `docs/RELEASE_PATTERN.md` adopts A10 (three-file split: rules,
+  tool inventory, rewrite receipts) and A11 (CURATED compares bytes;
+  AGGREGATED compares logical content, with `assert_frame_equal` as
+  the reference implementation).
+
+### Added
+
+- `docs/AUDIT.md` — tool inventory: producers, validators, enrichers.
+  Each row records whether the tool runs in CI and in the release gate;
+  producers and enrichers also record whether a `--check` mode exists.
+- `docs/README-AUDIT-NOTES.md` — receipts for rules 16-19 and A10-A12,
+  plus F31 (upstream-drift detection, deferred to v1.9.1).
+
+### Notes
+
+- This release is documentation only. It does not change `iso3166.json`,
+  the wrappers, the CLI, or the release script.
+- The three-file split matches the shape adopted by ISO 4217 v1.8.4
+  and ISO 10383 v1.0.4. Receipts and audit inventory are repo-specific.
+- `docs/AUDIT.md` records four gaps and this release does not close
+  them: `gen_iso4217_snapshot.py` and `enrich_independent.py` run in
+  neither CI nor the release gate; `check_release_claims.py` runs in the
+  gate only; `parse_source.py --verify` runs in CI only.
+- `tools/export_parquet.py` compares bytes in `--check` but its docstring
+  still says it compares logical content. The mismatch is recorded in
+  `docs/README-AUDIT-NOTES.md` (A11) and not corrected here.
+- F31 (upstream-drift detection): ISO 4217 held their snapshot at
+  v1.6.9 through our v1.8.0 because their freshness check is
+  calendar-based, not release-based. Deferred to v1.9.1 as their
+  audit-closure follow-up.
+
 ## [1.8.0] — 2026-10-22
 
 Input contract. The four language wrappers now agree on empty strings,
