@@ -25,7 +25,7 @@ func main() {
 	}
 
 	c := reg.Active(os.Args[1])
-	if c == nil {
+	if !c.Exists() {
 		fmt.Fprintln(os.Stderr, "not found:", os.Args[1])
 		os.Exit(1)
 	}

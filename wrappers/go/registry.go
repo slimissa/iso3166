@@ -6,15 +6,19 @@
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
-//	if us := reg.Active("US"); us != nil {
+//	if us := reg.Active("US"); us.Exists() {
 //	    fmt.Println(us.Alpha3, us.Name)
 //	}
 //
 // The registry file is bundled inside the package (iso3166.json).
 // An alternative path can be passed to LoadFrom.
 //
-// Every lookup returns nil (or an empty slice) on a miss; only Load and
-// LoadFrom return an error. This mirrors the Python and JavaScript
+// Active, ByAlpha2, ByAlpha3 and ByNumeric return a Country by value; a
+// miss returns the zero Country, for which Exists reports false. The
+// value owns private copies of its slice and pointer fields, so
+// changing it cannot change the registry. The list queries return nil
+// (or an empty slice) on a miss. Only Load and LoadFrom return an
+// error. This mirrors the Python and JavaScript
 // wrappers, whose cross-language contract is checked against the same
 // fixture (tests/cross_language_consistency.json).
 package iso3166
@@ -29,6 +33,10 @@ import (
 
 //go:embed iso3166.json
 var bundledRegistry []byte
+
+// sentinelNumeric is the placeholder numeric code shared by entries that
+// have no assigned numeric code.
+const sentinelNumeric = "000"
 
 // Country is one entry from the registry. All pointer fields are nil
 // when the registry entry has no value for them.
@@ -54,8 +62,48 @@ type Country struct {
 	ReplacedBy         []string `json:"replaced_by"`
 }
 
+// Exists reports whether the Country came from a successful lookup. The
+// zero Country, returned on a miss, has an empty Alpha2.
+func (c Country) Exists() bool { return c.Alpha2 != "" }
+
+// clone returns a copy that shares no slice or pointer with c.
+func (c *Country) clone() Country {
+	out := *c
+	out.OfficialName = cloneStringPtr(c.OfficialName)
+	out.Region = cloneStringPtr(c.Region)
+	out.Subregion = cloneStringPtr(c.Subregion)
+	out.IntermediateRegion = cloneStringPtr(c.IntermediateRegion)
+	out.Note = cloneStringPtr(c.Note)
+	out.LastVerified = cloneStringPtr(c.LastVerified)
+	out.WithdrawalDate = cloneStringPtr(c.WithdrawalDate)
+	out.CurrencyCodes = cloneStrings(c.CurrencyCodes)
+	out.CallingCodes = cloneStrings(c.CallingCodes)
+	out.TLDs = cloneStrings(c.TLDs)
+	out.Languages = cloneStrings(c.Languages)
+	out.Borders = cloneStrings(c.Borders)
+	out.ReplacedBy = cloneStrings(c.ReplacedBy)
+	return out
+}
+
+func cloneStrings(in []string) []string {
+	if in == nil {
+		return nil
+	}
+	out := make([]string, len(in))
+	copy(out, in)
+	return out
+}
+
+func cloneStringPtr(in *string) *string {
+	if in == nil {
+		return nil
+	}
+	v := *in
+	return &v
+}
+
 // IsActive reports whether the entry is one of the three active statuses.
-func (c *Country) IsActive() bool {
+func (c Country) IsActive() bool {
 	switch c.Status {
 	case "officially-assigned", "user-assigned", "exceptionally-reserved":
 		return true
@@ -159,7 +207,11 @@ func LoadFrom(path string) (*CountryRegistry, error) {
 	}
 	r.byNumeric = make(map[string]*Country, len(r.active))
 	for _, c := range r.active {
-		r.byNumeric[c.Numeric] = c
+		// "000" is a placeholder shared by several entries (XK, EU, UK,
+		// ...); it is never a valid key.
+		if c.Numeric != sentinelNumeric {
+			r.byNumeric[c.Numeric] = c
+		}
 	}
 
 	return r, nil
@@ -198,19 +250,23 @@ func (r *CountryRegistry) AllWithdrawn() []*Country {
 	return out
 }
 
-// Active looks up an alpha-2 code. Case-insensitive. Returns nil if
-// absent. Only active entries; withdrawn codes are reachable via
-// WithAlpha2.
-func (r *CountryRegistry) Active(alpha2 string) *Country {
+// Active looks up an alpha-2 code. Case-insensitive. A miss returns the
+// zero Country (Exists reports false). Only active entries; withdrawn
+// codes are reachable via WithAlpha2.
+func (r *CountryRegistry) Active(alpha2 string) Country {
 	if alpha2 == "" {
-		return nil
+		return Country{}
 	}
-	return r.byAlpha2[strings.ToUpper(alpha2)]
+	c, ok := r.byAlpha2[strings.ToUpper(alpha2)]
+	if !ok {
+		return Country{}
+	}
+	return c.clone()
 }
 
 // WithAlpha2 returns all entries (active and withdrawn) with this
 // alpha-2 code. A small number of codes appear twice because ISO
-// reassigned them (AI, SK).
+// reassigned them (AI, SK); the active entry comes first.
 func (r *CountryRegistry) WithAlpha2(alpha2 string) []*Country {
 	if alpha2 == "" {
 		return nil
@@ -225,38 +281,94 @@ func (r *CountryRegistry) WithAlpha2(alpha2 string) []*Country {
 	return out
 }
 
-// ByAlpha2 is an alias for Active.
-func (r *CountryRegistry) ByAlpha2(alpha2 string) *Country {
-	return r.Active(alpha2)
-}
-
-// ByAlpha3 looks up an alpha-3 code. Case-insensitive. Returns nil if
-// absent.
-func (r *CountryRegistry) ByAlpha3(alpha3 string) *Country {
+// WithAlpha3 returns all entries (active and withdrawn) with this
+// alpha-3 code. Case-insensitive.
+func (r *CountryRegistry) WithAlpha3(alpha3 string) []*Country {
 	if alpha3 == "" {
 		return nil
 	}
-	return r.byAlpha3[strings.ToUpper(alpha3)]
+	upper := strings.ToUpper(alpha3)
+	var out []*Country
+	for _, c := range r.all {
+		if c.Alpha3 == upper {
+			out = append(out, c)
+		}
+	}
+	return out
+}
+
+// WithNumeric returns all entries (active and withdrawn) with this
+// numeric code. The argument is zero-padded like ByNumeric; the
+// sentinel "000" matches nothing.
+func (r *CountryRegistry) WithNumeric(numeric string) []*Country {
+	padded, ok := padNumeric(numeric)
+	if !ok {
+		return nil
+	}
+	var out []*Country
+	for _, c := range r.all {
+		if c.Numeric == padded {
+			out = append(out, c)
+		}
+	}
+	return out
+}
+
+// ByAlpha2 is an alias for Active.
+func (r *CountryRegistry) ByAlpha2(alpha2 string) Country {
+	return r.Active(alpha2)
+}
+
+// ByAlpha3 looks up an alpha-3 code. Case-insensitive. A miss returns
+// the zero Country. Only active entries.
+func (r *CountryRegistry) ByAlpha3(alpha3 string) Country {
+	if alpha3 == "" {
+		return Country{}
+	}
+	c, ok := r.byAlpha3[strings.ToUpper(alpha3)]
+	if !ok {
+		return Country{}
+	}
+	return c.clone()
 }
 
 // ByNumeric looks up a numeric code. The argument is zero-padded to
-// three digits, so "20" and "020" are equivalent.
-func (r *CountryRegistry) ByNumeric(numeric string) *Country {
+// three digits, so "20" and "020" are equivalent. "", "0" and "000"
+// return the zero Country, and whitespace is not trimmed. Only active
+// entries.
+func (r *CountryRegistry) ByNumeric(numeric string) Country {
+	padded, ok := padNumeric(numeric)
+	if !ok {
+		return Country{}
+	}
+	c, ok := r.byNumeric[padded]
+	if !ok {
+		return Country{}
+	}
+	return c.clone()
+}
+
+// padNumeric left-pads a numeric code to three digits. It reports false
+// for "" and for the sentinel "000" (so "0" is rejected too).
+func padNumeric(numeric string) (string, bool) {
 	if numeric == "" {
-		return nil
+		return "", false
 	}
 	padded := numeric
 	for len(padded) < 3 {
 		padded = "0" + padded
 	}
-	return r.byNumeric[padded]
+	if padded == sentinelNumeric {
+		return "", false
+	}
+	return padded, true
 }
 
 // Currencies returns the currency codes in circulation in a country.
 // Returns nil if the country is unknown or has none.
 func (r *CountryRegistry) Currencies(alpha2 string) []string {
-	c := r.Active(alpha2)
-	if c == nil || c.CurrencyCodes == nil {
+	c, ok := r.byAlpha2[strings.ToUpper(alpha2)]
+	if alpha2 == "" || !ok || c.CurrencyCodes == nil {
 		return nil
 	}
 	out := make([]string, len(c.CurrencyCodes))

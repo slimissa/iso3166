@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -38,7 +40,7 @@ func TestLoads(t *testing.T) {
 
 func TestUSEntry(t *testing.T) {
 	us := mustLoad(t).Active("US")
-	if us == nil {
+	if !us.Exists() {
 		t.Fatal("Active(US) is nil")
 	}
 	if us.Alpha2 != "US" || us.Alpha3 != "USA" || us.Numeric != "840" {
@@ -60,26 +62,26 @@ func TestUSEntry(t *testing.T) {
 
 func TestCaseInsensitive(t *testing.T) {
 	reg := mustLoad(t)
-	if reg.Active("us") != reg.Active("US") {
+	if !reflect.DeepEqual(reg.Active("us"), reg.Active("US")) {
 		t.Fatal("active('us') != active('US')")
 	}
-	if reg.ByAlpha3("usa") != reg.ByAlpha3("USA") {
+	if !reflect.DeepEqual(reg.ByAlpha3("usa"), reg.ByAlpha3("USA")) {
 		t.Fatal("byAlpha3 casing mismatch")
 	}
 }
 
 func TestMissing(t *testing.T) {
 	reg := mustLoad(t)
-	if reg.Active("XX") != nil {
+	if reg.Active("XX").Exists() {
 		t.Fatal("active(XX) should be nil")
 	}
-	if reg.ByAlpha3("XXX") != nil {
+	if reg.ByAlpha3("XXX").Exists() {
 		t.Fatal("byAlpha3(XXX) should be nil")
 	}
-	if reg.ByNumeric("999") != nil {
+	if reg.ByNumeric("999").Exists() {
 		t.Fatal("byNumeric(999) should be nil")
 	}
-	if reg.Active("") != nil {
+	if reg.Active("").Exists() {
 		t.Fatal("active('') should be nil")
 	}
 }
@@ -88,10 +90,10 @@ func TestByNumericZeroPads(t *testing.T) {
 	reg := mustLoad(t)
 	a := reg.ByNumeric("20")
 	b := reg.ByNumeric("020")
-	if a == nil || b == nil {
-		t.Fatal("byNumeric returned nil")
+	if !a.Exists() || !b.Exists() {
+		t.Fatal("byNumeric returned no entry")
 	}
-	if a != b {
+	if !reflect.DeepEqual(a, b) {
 		t.Fatal("byNumeric('20') != byNumeric('020')")
 	}
 	if a.Alpha2 != "AD" {
@@ -101,7 +103,7 @@ func TestByNumericZeroPads(t *testing.T) {
 
 func TestWithdrawnNotActive(t *testing.T) {
 	reg := mustLoad(t)
-	if reg.Active("AN") != nil {
+	if reg.Active("AN").Exists() {
 		t.Fatal("AN should not be active")
 	}
 	matches := reg.WithAlpha2("AN")
@@ -266,7 +268,7 @@ func TestFixtureLookupAlpha2(t *testing.T) {
 	reg := mustLoad(t)
 	for _, c := range loadFixture(t).LookupAlpha2 {
 		got := reg.Active(c.Input)
-		if got == nil {
+		if !got.Exists() {
 			t.Fatalf("active(%q) is nil", c.Input)
 		}
 		if got.Alpha2 != c.Alpha2 || got.Alpha3 != c.Alpha3 || got.Numeric != c.Numeric {
@@ -296,7 +298,7 @@ func TestFixtureLookupAlpha2(t *testing.T) {
 func TestFixtureLookupAlpha2Missing(t *testing.T) {
 	reg := mustLoad(t)
 	for _, code := range loadFixture(t).LookupAlpha2Missing {
-		if reg.Active(code) != nil {
+		if reg.Active(code).Exists() {
 			t.Fatalf("active(%q) should be nil", code)
 		}
 	}
@@ -306,7 +308,7 @@ func TestFixtureLookupAlpha3(t *testing.T) {
 	reg := mustLoad(t)
 	for _, c := range loadFixture(t).LookupAlpha3 {
 		got := reg.ByAlpha3(c.Input)
-		if got == nil {
+		if !got.Exists() {
 			t.Fatalf("byAlpha3(%q) is nil", c.Input)
 		}
 		if got.Alpha2 != c.Alpha2 {
@@ -319,7 +321,7 @@ func TestFixtureLookupNumeric(t *testing.T) {
 	reg := mustLoad(t)
 	for _, c := range loadFixture(t).LookupNumeric {
 		got := reg.ByNumeric(c.Input)
-		if got == nil {
+		if !got.Exists() {
 			t.Fatalf("byNumeric(%q) is nil", c.Input)
 		}
 		if got.Alpha2 != c.Alpha2 {
@@ -449,7 +451,7 @@ func TestFixtureLookupFields(t *testing.T) {
 	reg := mustLoad(t)
 	for _, c := range loadFixture(t).LookupFields {
 		got := reg.Active(c.Input)
-		if got == nil {
+		if !got.Exists() {
 			t.Fatalf("%s missing", c.Input)
 		}
 		if !strPtrEq(got.OfficialName, c.OfficialName) {
@@ -477,7 +479,7 @@ func TestOptionalAbsent(t *testing.T) {
 
 	for _, c := range fixture.OptionalAbsent {
 		country := reg.Active(c.Input)
-		if country == nil {
+		if !country.Exists() {
 			t.Fatalf("%s missing", c.Input)
 		}
 
@@ -536,7 +538,7 @@ func TestFixtureIndependent(t *testing.T) {
 	reg := mustLoad(t)
 	for _, code := range c.True {
 		got := reg.Active(code)
-		if got == nil {
+		if !got.Exists() {
 			t.Fatalf("%s missing", code)
 		}
 		if !got.Independent {
@@ -545,7 +547,7 @@ func TestFixtureIndependent(t *testing.T) {
 	}
 	for _, code := range c.False {
 		got := reg.Active(code)
-		if got == nil {
+		if !got.Exists() {
 			t.Fatalf("%s missing", code)
 		}
 		if got.Independent {
@@ -560,5 +562,293 @@ func TestFixtureIndependent(t *testing.T) {
 	}
 	if n < c.CountTrueMin || n > c.CountTrueMax {
 		t.Fatalf("independent=true count %d outside [%d, %d]", n, c.CountTrueMin, c.CountTrueMax)
+	}
+}
+
+// ---------------------------------------------------------------------
+// Input contract (v1.8.0). Wrapper-local tests: they do not read the
+// shared fixture, so they run unconditionally.
+// ---------------------------------------------------------------------
+
+func TestExists(t *testing.T) {
+	reg := mustLoad(t)
+	if !reg.Active("US").Exists() {
+		t.Fatal("Active(US) should exist")
+	}
+	if reg.Active("XX").Exists() || (Country{}).Exists() {
+		t.Fatal("miss should not exist")
+	}
+}
+
+func TestByNumericSentinelEmptyAndWhitespace(t *testing.T) {
+	reg := mustLoad(t)
+	for _, v := range []string{"", "000", "0", " 20", "020 ", "530"} {
+		if reg.ByNumeric(v).Exists() {
+			t.Fatalf("ByNumeric(%q) should not exist", v)
+		}
+	}
+	if reg.ByNumeric("20").Alpha2 != "AD" || reg.ByNumeric("020").Alpha2 != "AD" {
+		t.Fatal("ByNumeric(20/020) should be AD")
+	}
+}
+
+func TestEmptyStringLookupsAndQueries(t *testing.T) {
+	reg := mustLoad(t)
+	if reg.Active("").Exists() || reg.ByAlpha2("").Exists() ||
+		reg.ByAlpha3("").Exists() || reg.ByNumeric("").Exists() {
+		t.Fatal("empty-string lookups should not exist")
+	}
+	if len(reg.Region("")) != 0 || len(reg.Subregion("")) != 0 ||
+		len(reg.Search("")) != 0 || len(reg.CountriesWith("")) != 0 ||
+		len(reg.WithAlpha2("")) != 0 || len(reg.WithAlpha3("")) != 0 ||
+		len(reg.WithNumeric("")) != 0 {
+		t.Fatal("empty-string queries should be empty")
+	}
+}
+
+func TestWithdrawnSymmetry(t *testing.T) {
+	reg := mustLoad(t)
+	if reg.ByAlpha3("ANT").Exists() || reg.ByNumeric("530").Exists() {
+		t.Fatal("withdrawn codes must not be active lookups")
+	}
+	for name, got := range map[string][]*Country{
+		"WithAlpha3(ANT)":  reg.WithAlpha3("ant"),
+		"WithNumeric(530)": reg.WithNumeric("530"),
+	} {
+		if len(got) != 1 || got[0].Alpha2 != "AN" {
+			t.Fatalf("%s: got %d entries", name, len(got))
+		}
+	}
+	if len(reg.WithNumeric("000")) != 0 {
+		t.Fatal("WithNumeric(000) should be empty")
+	}
+}
+
+func TestWithAlpha2ActiveFirst(t *testing.T) {
+	reg := mustLoad(t)
+	for _, code := range []string{"AI", "SK"} {
+		m := reg.WithAlpha2(code)
+		if len(m) != 2 || !m[0].IsActive() || m[1].IsActive() {
+			t.Fatalf("%s: want [active, withdrawn]", code)
+		}
+	}
+}
+
+func TestLookupReturnsPrivateCopy(t *testing.T) {
+	reg := mustLoad(t)
+	us := reg.Active("US")
+	if len(us.CurrencyCodes) == 0 || us.Region == nil {
+		t.Fatal("US should have currency codes and a region")
+	}
+	us.CurrencyCodes[0] = "XXX"
+	*us.Region = "Mutated"
+	again := reg.Active("US")
+	if again.CurrencyCodes[0] == "XXX" || *again.Region == "Mutated" {
+		t.Fatal("mutating a returned Country must not change the registry")
+	}
+	if reg.ByAlpha3("USA").CurrencyCodes[0] == "XXX" || reg.ByNumeric("840").CurrencyCodes[0] == "XXX" {
+		t.Fatal("registry was corrupted through a lookup result")
+	}
+}
+
+// ---------------------------------------------------------------------
+// Input contract: fixture-driven. Each test skips while its fixture
+// section has enforced=false, so a wrapper can land before the others.
+// ---------------------------------------------------------------------
+
+type gatedFixture struct {
+	EmptyInputs struct {
+		Enforced bool `json:"enforced"`
+		Cases    []struct {
+			Method   string          `json:"method"`
+			Input    string          `json:"input"`
+			Expected json.RawMessage `json:"expected"`
+		} `json:"cases"`
+	} `json:"empty_inputs"`
+	NumericAbsent struct {
+		Enforced bool     `json:"enforced"`
+		Cases    []string `json:"cases"`
+	} `json:"lookup_numeric_absent"`
+	Alpha2Ambiguous struct {
+		Enforced bool `json:"enforced"`
+		Cases    map[string]struct {
+			First string `json:"first"`
+			Count int    `json:"count"`
+		} `json:"cases"`
+	} `json:"lookup_alpha2_ambiguous"`
+	Successors struct {
+		Enforced bool `json:"enforced"`
+		Cases    []struct {
+			Input    string   `json:"input"`
+			Terminal []string `json:"terminal"`
+		} `json:"cases"`
+	} `json:"successors"`
+	Predecessors struct {
+		Enforced bool `json:"enforced"`
+		Cases    []struct {
+			Input        string   `json:"input"`
+			Predecessors []string `json:"predecessors"`
+		} `json:"cases"`
+	} `json:"predecessors"`
+}
+
+func loadGatedFixture(t *testing.T) gatedFixture {
+	t.Helper()
+	path := filepath.Join("..", "..", "tests", "cross_language_consistency.json")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read fixture: %v", err)
+	}
+	var doc gatedFixture
+	if err := json.Unmarshal(data, &doc); err != nil {
+		t.Fatalf("parse fixture: %v", err)
+	}
+	return doc
+}
+
+// terminals returns the active codes reachable from code through
+// replaced_by (the active entry wins for AI and SK).
+func terminals(reg *CountryRegistry, code string, seen map[string]bool) map[string]bool {
+	out := map[string]bool{}
+	if seen[code] {
+		return out
+	}
+	seen[code] = true
+	if reg.Active(code).Exists() {
+		out[code] = true
+		return out
+	}
+	for _, e := range reg.WithAlpha2(code) {
+		for _, next := range e.ReplacedBy {
+			for k := range terminals(reg, next, seen) {
+				out[k] = true
+			}
+		}
+	}
+	return out
+}
+
+func sortedKeys(m map[string]bool) []string {
+	out := make([]string, 0, len(m))
+	for k := range m {
+		out = append(out, k)
+	}
+	sort.Strings(out)
+	return out
+}
+
+func TestFixtureEmptyInputs(t *testing.T) {
+	fx := loadGatedFixture(t).EmptyInputs
+	if !fx.Enforced {
+		t.Skip("empty_inputs enforced=false until all wrappers updated")
+	}
+	reg := mustLoad(t)
+	for _, c := range fx.Cases {
+		var n int
+		exists := false
+		switch c.Method {
+		case "active":
+			exists = reg.Active(c.Input).Exists()
+		case "by_alpha3":
+			exists = reg.ByAlpha3(c.Input).Exists()
+		case "by_numeric":
+			exists = reg.ByNumeric(c.Input).Exists()
+		case "region":
+			n = len(reg.Region(c.Input))
+		case "subregion":
+			n = len(reg.Subregion(c.Input))
+		case "search":
+			n = len(reg.Search(c.Input))
+		case "countries_with":
+			n = len(reg.CountriesWith(c.Input))
+		default:
+			t.Fatalf("unknown method %s", c.Method)
+		}
+		switch string(c.Expected) {
+		case "null":
+			if exists {
+				t.Fatalf("%s(%q) should be nil", c.Method, c.Input)
+			}
+		case "[]":
+			if n != 0 {
+				t.Fatalf("%s(%q) should be empty, got %d", c.Method, c.Input, n)
+			}
+		default:
+			t.Fatalf("unsupported expected %s", c.Expected)
+		}
+	}
+}
+
+func TestFixtureNumericSentinel(t *testing.T) {
+	fx := loadGatedFixture(t).NumericAbsent
+	if !fx.Enforced {
+		t.Skip("lookup_numeric_absent enforced=false until all wrappers updated")
+	}
+	reg := mustLoad(t)
+	for _, v := range fx.Cases {
+		if reg.ByNumeric(v).Exists() {
+			t.Fatalf("ByNumeric(%q) should not exist", v)
+		}
+	}
+}
+
+func TestFixtureAlpha2Ambiguous(t *testing.T) {
+	fx := loadGatedFixture(t).Alpha2Ambiguous
+	if !fx.Enforced {
+		t.Skip("lookup_alpha2_ambiguous enforced=false until all wrappers updated")
+	}
+	reg := mustLoad(t)
+	for code, c := range fx.Cases {
+		m := reg.WithAlpha2(code)
+		if len(m) != c.Count {
+			t.Fatalf("%s: got %d entries, want %d", code, len(m), c.Count)
+		}
+		first := "withdrawn"
+		if m[0].IsActive() {
+			first = "active"
+		}
+		if first != c.First {
+			t.Fatalf("%s: first entry is %s, want %s", code, first, c.First)
+		}
+	}
+}
+
+func TestFixtureSuccessors(t *testing.T) {
+	fx := loadGatedFixture(t).Successors
+	if !fx.Enforced {
+		t.Skip("successors enforced=false until all wrappers updated")
+	}
+	reg := mustLoad(t)
+	for _, c := range fx.Cases {
+		got := sortedKeys(terminals(reg, c.Input, map[string]bool{}))
+		if !sliceEq(got, c.Terminal) {
+			t.Fatalf("%s: terminals %v, want %v", c.Input, got, c.Terminal)
+		}
+	}
+}
+
+func TestFixturePredecessors(t *testing.T) {
+	fx := loadGatedFixture(t).Predecessors
+	if !fx.Enforced {
+		t.Skip("predecessors enforced=false until all wrappers updated")
+	}
+	reg := mustLoad(t)
+	for _, c := range fx.Cases {
+		got := []string{}
+		for _, e := range reg.AllWithdrawn() {
+			if e.Alpha2 == c.Input {
+				continue
+			}
+			for _, next := range e.ReplacedBy {
+				if terminals(reg, next, map[string]bool{})[c.Input] {
+					got = append(got, e.Alpha2)
+					break
+				}
+			}
+		}
+		sort.Strings(got)
+		if !sliceEq(got, c.Predecessors) {
+			t.Fatalf("%s: predecessors %v, want %v", c.Input, got, c.Predecessors)
+		}
 	}
 }
