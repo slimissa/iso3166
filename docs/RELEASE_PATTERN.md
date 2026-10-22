@@ -508,6 +508,44 @@ GitHub Actions does not register a workflow run instantly. A 60-second timeout i
 
 If a release contains a tool (no decision needed) and data (requires a semantic decision or external fetch), split them. Ship the tool in `vN`, and the data in `vN+1`. A blocked data decision should never block a shippable tool fix.
 
+### A10. Three files, three lifetimes
+
+The pattern is documented in three files, not one:
+
+- `RELEASE_PATTERN.md` holds the rules.
+- `AUDIT.md` is the tool inventory: which tools exist, whether each has
+  a `--check` mode, and whether each runs in CI and in the release gate.
+- `README-AUDIT-NOTES.md` holds the receipts: the specific failure
+  behind each rule and each audit gap.
+
+Each file has its own lifetime. Rules change when a failure class
+recurs. The audit changes when a tool is added, removed, or wired into
+or out of CI or the gate. Receipts are append-only and never edited; a
+correction is a new entry. Keeping them apart lets a rule stay stable
+while tool state moves, and keeps incident narrative out of rule text.
+
+### A11. CURATED checks compare exactly; AGGREGATED checks compare content
+
+Every producer's `--check` mode uses one of two comparisons, and the
+layer decides which. This extends the CURATED vs. AGGREGATED paragraph
+under "Version-pinned byte outputs".
+
+CURATED artifacts are compared exactly: byte-for-byte for
+`export_parquet.py` and `sync_wrappers.py`, exact text for
+`export_sql.py` and `export_csv.py`. A CURATED artifact is the source of
+truth for its content, so any change in its bytes is a change of state,
+and a library upgrade that alters them must fail the check. Pin the tool.
+
+AGGREGATED artifacts are compared by logical content. They are queries
+over CURATED; their invariant is that the same query gives the same
+answer. `export_aggregated.py --check` uses `pd.testing.assert_frame_equal`
+and is the AGGREGATED reference implementation (ISO 3166). A byte
+comparison would tie the aggregate to the writer library's version for
+no benefit, and a content comparison on a CURATED file would let silent
+drift through.
+
+ISO 4217's `export_parquet.py` is the CURATED reference implementation.
+
 ## The vendored-snapshot `review_by` shape
 
 When registry A vendors a byte-for-byte snapshot of registry B, and
