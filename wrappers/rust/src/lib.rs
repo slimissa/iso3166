@@ -174,6 +174,25 @@ struct CountriesSection {
 }
 
 // ============================================================
+// Helpers
+// ============================================================
+
+/// Left-pad a numeric code to three digits. Returns `None` for `""` and
+/// for the sentinel `"000"` (so `"0"` is rejected too). Whitespace is
+/// not trimmed.
+fn pad_numeric(numeric: &str) -> Option<String> {
+    if numeric.is_empty() {
+        return None;
+    }
+    let padded = format!("{:0>3}", numeric);
+    if padded == "000" {
+        None
+    } else {
+        Some(padded)
+    }
+}
+
+// ============================================================
 // Registry
 // ============================================================
 
@@ -218,7 +237,11 @@ impl CountryRegistry {
         for (i, c) in file.countries.active.iter().enumerate() {
             by_alpha2.insert(c.alpha_2.clone(), i);
             by_alpha3.insert(c.alpha_3.clone(), i);
-            by_numeric.insert(c.numeric.clone(), i);
+            // "000" is a placeholder shared by several entries (XK, EU,
+            // UK, ...); it is never a valid key.
+            if c.numeric != "000" {
+                by_numeric.insert(c.numeric.clone(), i);
+            }
         }
 
         Ok(CountryRegistry {
@@ -269,6 +292,9 @@ impl CountryRegistry {
     /// absent. Only active entries; withdrawn codes are reachable via
     /// [`with_alpha2`](Self::with_alpha2).
     pub fn active(&self, alpha_2: &str) -> Option<&Country> {
+        if alpha_2.is_empty() {
+            return None;
+        }
         let key = alpha_2.to_ascii_uppercase();
         self.by_alpha2.get(&key).map(|&i| &self.active[i])
     }
@@ -280,8 +306,11 @@ impl CountryRegistry {
 
     /// All entries (active and withdrawn) with this alpha-2 code. A
     /// small number of codes appear twice because ISO reassigned them
-    /// (AI, SK).
+    /// (AI, SK); the active entry comes first.
     pub fn with_alpha2(&self, alpha_2: &str) -> Vec<&Country> {
+        if alpha_2.is_empty() {
+            return Vec::new();
+        }
         let key = alpha_2.to_ascii_uppercase();
         let mut out = Vec::new();
         for c in &self.active {
@@ -297,16 +326,50 @@ impl CountryRegistry {
         out
     }
 
-    /// Look up an alpha-3 code. Case-insensitive.
+    /// All entries (active and withdrawn) with this alpha-3 code.
+    /// Case-insensitive.
+    pub fn with_alpha3(&self, alpha_3: &str) -> Vec<&Country> {
+        if alpha_3.is_empty() {
+            return Vec::new();
+        }
+        let key = alpha_3.to_ascii_uppercase();
+        self.active
+            .iter()
+            .chain(self.withdrawn.iter())
+            .filter(|c| c.alpha_3 == key)
+            .collect()
+    }
+
+    /// All entries (active and withdrawn) with this numeric code.
+    /// Zero-padded like [`by_numeric`](Self::by_numeric); the sentinel
+    /// `"000"` matches nothing.
+    pub fn with_numeric(&self, numeric: &str) -> Vec<&Country> {
+        match pad_numeric(numeric) {
+            None => Vec::new(),
+            Some(padded) => self
+                .active
+                .iter()
+                .chain(self.withdrawn.iter())
+                .filter(|c| c.numeric == padded)
+                .collect(),
+        }
+    }
+
+    /// Look up an alpha-3 code. Case-insensitive. Returns `None` if
+    /// absent or empty.
     pub fn by_alpha3(&self, alpha_3: &str) -> Option<&Country> {
+        if alpha_3.is_empty() {
+            return None;
+        }
         let key = alpha_3.to_ascii_uppercase();
         self.by_alpha3.get(&key).map(|&i| &self.active[i])
     }
 
     /// Look up a numeric code. The argument is zero-padded to three
-    /// digits, so `"20"` and `"020"` are equivalent.
+    /// digits, so `"20"` and `"020"` are equivalent. `""`, `"0"` and
+    /// `"000"` return `None`, and whitespace is not trimmed.
     pub fn by_numeric(&self, numeric: &str) -> Option<&Country> {
-        let padded = format!("{:0>3}", numeric);
+        let padded = pad_numeric(numeric)?;
         self.by_numeric.get(&padded).map(|&i| &self.active[i])
     }
 
@@ -328,6 +391,9 @@ impl CountryRegistry {
 
     /// Active countries where a currency circulates.
     pub fn countries_with(&self, currency_code: &str) -> Vec<&Country> {
+        if currency_code.is_empty() {
+            return Vec::new();
+        }
         let target = currency_code.to_ascii_uppercase();
         self.active
             .iter()
@@ -341,6 +407,9 @@ impl CountryRegistry {
 
     /// Active countries in a macro-region. Case-insensitive.
     pub fn region(&self, region_name: &str) -> Vec<&Country> {
+        if region_name.is_empty() {
+            return Vec::new();
+        }
         let target = region_name.to_ascii_lowercase();
         self.active
             .iter()
@@ -354,6 +423,9 @@ impl CountryRegistry {
 
     /// Active countries in a sub-region. Case-insensitive.
     pub fn subregion(&self, subregion_name: &str) -> Vec<&Country> {
+        if subregion_name.is_empty() {
+            return Vec::new();
+        }
         let target = subregion_name.to_ascii_lowercase();
         self.active
             .iter()
@@ -368,6 +440,9 @@ impl CountryRegistry {
     /// Case-insensitive substring search on name, official_name,
     /// alpha_2, and alpha_3. Searches both active and withdrawn.
     pub fn search(&self, query: &str) -> Vec<&Country> {
+        if query.is_empty() {
+            return Vec::new();
+        }
         let q = query.to_ascii_lowercase();
         let mut out = Vec::new();
         for c in self.active.iter().chain(self.withdrawn.iter()) {
@@ -403,6 +478,63 @@ impl CountryRegistry {
             active: self.active.len(),
             withdrawn: self.withdrawn.len(),
             by_status,
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    //! Wrapper-local input-contract tests. They do not read the shared
+    //! fixture, so they run unconditionally.
+    use super::*;
+
+    fn reg() -> CountryRegistry {
+        CountryRegistry::load().expect("load bundled registry")
+    }
+
+    #[test]
+    fn by_numeric_sentinel_empty_and_whitespace() {
+        let r = reg();
+        for v in ["", "000", "0", " 20", "020 ", "530"] {
+            assert!(r.by_numeric(v).is_none(), "by_numeric({:?})", v);
+        }
+        assert_eq!(r.by_numeric("20").unwrap().alpha_2, "AD");
+        assert_eq!(r.by_numeric("020").unwrap().alpha_2, "AD");
+    }
+
+    #[test]
+    fn empty_string_lookups_and_queries() {
+        let r = reg();
+        assert!(r.active("").is_none());
+        assert!(r.by_alpha2("").is_none());
+        assert!(r.by_alpha3("").is_none());
+        assert!(r.region("").is_empty());
+        assert!(r.subregion("").is_empty());
+        assert!(r.search("").is_empty());
+        assert!(r.countries_with("").is_empty());
+        assert!(r.with_alpha2("").is_empty());
+        assert!(r.with_alpha3("").is_empty());
+        assert!(r.with_numeric("").is_empty());
+    }
+
+    #[test]
+    fn withdrawn_symmetry() {
+        let r = reg();
+        assert!(r.by_alpha3("ANT").is_none());
+        assert!(r.by_numeric("530").is_none());
+        let a3: Vec<&str> = r.with_alpha3("ant").iter().map(|c| c.alpha_2.as_str()).collect();
+        assert_eq!(a3, vec!["AN"]);
+        let num: Vec<&str> = r.with_numeric("530").iter().map(|c| c.alpha_2.as_str()).collect();
+        assert_eq!(num, vec!["AN"]);
+        assert!(r.with_numeric("000").is_empty());
+    }
+
+    #[test]
+    fn with_alpha2_lists_active_first() {
+        let r = reg();
+        for code in ["AI", "SK"] {
+            let flags: Vec<bool> = r.with_alpha2(code).iter().map(|c| c.is_active()).collect();
+            assert_eq!(flags, vec![true, false], "{}", code);
         }
     }
 }

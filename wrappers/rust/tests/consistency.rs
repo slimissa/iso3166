@@ -4,7 +4,7 @@
 //! this file) and asserts the Rust wrapper satisfies every case. The
 //! same fixture is read by the Python, JavaScript, and Go suites.
 
-use std::collections::HashMap;
+use std::collections::{BTreeSet, HashMap};
 use std::path::PathBuf;
 
 use iso3166_registry::CountryRegistry;
@@ -91,6 +91,38 @@ struct LookupField {
     borders: Vec<String>,
 }
 
+/// A fixture section gated by the per-section `enforced` flag.
+#[derive(Deserialize)]
+struct Gated<T> {
+    enforced: bool,
+    cases: T,
+}
+
+#[derive(Deserialize)]
+struct EmptyInputCase {
+    method: String,
+    input: String,
+    expected: serde_json::Value,
+}
+
+#[derive(Deserialize)]
+struct AmbiguousCase {
+    first: String,
+    count: usize,
+}
+
+#[derive(Deserialize)]
+struct SuccessorCase {
+    input: String,
+    terminal: Vec<String>,
+}
+
+#[derive(Deserialize)]
+struct PredecessorCase {
+    input: String,
+    predecessors: Vec<String>,
+}
+
 #[derive(Deserialize)]
 struct Fixture {
     lookup_alpha2: Vec<LookupAlpha2>,
@@ -110,6 +142,11 @@ struct Fixture {
     lookup_withdrawn: Vec<LookupWithdrawn>,
     search: Vec<SearchCase>,
     independent: IndependentCase,
+    empty_inputs: Gated<Vec<EmptyInputCase>>,
+    lookup_numeric_absent: Gated<Vec<String>>,
+    lookup_alpha2_ambiguous: Gated<HashMap<String, AmbiguousCase>>,
+    successors: Gated<Vec<SuccessorCase>>,
+    predecessors: Gated<Vec<PredecessorCase>>,
 }
 
 #[derive(Deserialize)]
@@ -409,4 +446,127 @@ fn independent() {
         case.count_true_min,
         case.count_true_max
     );
+}
+
+// ---------------------------------------------------------------------
+// Input contract (v1.8.0). Each test returns early while its fixture
+// section has enforced=false, so a wrapper can land before the others.
+// ---------------------------------------------------------------------
+
+fn terminals(reg: &CountryRegistry, code: &str, seen: &mut BTreeSet<String>) -> BTreeSet<String> {
+    let mut out = BTreeSet::new();
+    if !seen.insert(code.to_string()) {
+        return out;
+    }
+    if reg.active(code).is_some() {
+        out.insert(code.to_string());
+        return out;
+    }
+    for entry in reg.with_alpha2(code) {
+        for next in entry.replaced_by.iter().flatten() {
+            out.extend(terminals(reg, next, seen));
+        }
+    }
+    out
+}
+
+#[test]
+fn empty_inputs() {
+    let fixture = load_fixture();
+    if !fixture.empty_inputs.enforced {
+        eprintln!("empty_inputs enforced=false until all wrappers updated; skipping");
+        return;
+    }
+    let reg = reg();
+    for c in &fixture.empty_inputs.cases {
+        let i = c.input.as_str();
+        // Lookups map to Some(1) on a hit, None on a miss; list queries
+        // map to Some(len). Expected null means None, expected [] means
+        // Some(0).
+        let got: Option<usize> = match c.method.as_str() {
+            "active" => reg.active(i).map(|_| 1),
+            "by_alpha3" => reg.by_alpha3(i).map(|_| 1),
+            "by_numeric" => reg.by_numeric(i).map(|_| 1),
+            "region" => Some(reg.region(i).len()),
+            "subregion" => Some(reg.subregion(i).len()),
+            "search" => Some(reg.search(i).len()),
+            "countries_with" => Some(reg.countries_with(i).len()),
+            other => panic!("unknown method {}", other),
+        };
+        let want = match &c.expected {
+            serde_json::Value::Null => None,
+            serde_json::Value::Array(a) if a.is_empty() => Some(0),
+            other => panic!("unsupported expected value {}", other),
+        };
+        assert_eq!(got, want, "{}({:?})", c.method, c.input);
+    }
+}
+
+#[test]
+fn numeric_sentinel() {
+    let fixture = load_fixture();
+    if !fixture.lookup_numeric_absent.enforced {
+        eprintln!("lookup_numeric_absent enforced=false until all wrappers updated; skipping");
+        return;
+    }
+    let reg = reg();
+    for v in &fixture.lookup_numeric_absent.cases {
+        assert!(reg.by_numeric(v).is_none(), "by_numeric({:?}) should be None", v);
+    }
+}
+
+#[test]
+fn alpha2_ambiguous() {
+    let fixture = load_fixture();
+    if !fixture.lookup_alpha2_ambiguous.enforced {
+        eprintln!("lookup_alpha2_ambiguous enforced=false until all wrappers updated; skipping");
+        return;
+    }
+    let reg = reg();
+    for (code, c) in &fixture.lookup_alpha2_ambiguous.cases {
+        let matches = reg.with_alpha2(code);
+        assert_eq!(matches.len(), c.count, "{}: entry count", code);
+        let first = if matches[0].is_active() { "active" } else { "withdrawn" };
+        assert_eq!(first, c.first, "{}: first entry", code);
+    }
+}
+
+#[test]
+fn successors() {
+    let fixture = load_fixture();
+    if !fixture.successors.enforced {
+        eprintln!("successors enforced=false until all wrappers updated; skipping");
+        return;
+    }
+    let reg = reg();
+    for c in &fixture.successors.cases {
+        let got: Vec<String> = terminals(&reg, &c.input, &mut BTreeSet::new()).into_iter().collect();
+        assert_eq!(got, c.terminal, "{}", c.input);
+    }
+}
+
+#[test]
+fn predecessors() {
+    let fixture = load_fixture();
+    if !fixture.predecessors.enforced {
+        eprintln!("predecessors enforced=false until all wrappers updated; skipping");
+        return;
+    }
+    let reg = reg();
+    for c in &fixture.predecessors.cases {
+        let mut got: Vec<String> = reg
+            .all_withdrawn()
+            .iter()
+            .filter(|e| e.alpha_2 != c.input)
+            .filter(|e| {
+                e.replaced_by
+                    .iter()
+                    .flatten()
+                    .any(|n| terminals(&reg, n, &mut BTreeSet::new()).contains(&c.input))
+            })
+            .map(|e| e.alpha_2.clone())
+            .collect();
+        got.sort();
+        assert_eq!(got, c.predecessors, "{}", c.input);
+    }
 }
