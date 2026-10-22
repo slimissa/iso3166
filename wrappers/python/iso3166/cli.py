@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
-tools/iso3166_cli.py
+iso3166.cli
 
-Command-line interface to the ISO 3166 country registry.
+Command-line interface to the ISO 3166 country registry. Every query goes
+through iso3166.registry.CountryRegistry; the CLI does not read the
+registry JSON itself.
 
-Eight subcommands:
+Ten subcommands:
 
-    lookup CC              All fields for one country
+    lookup CC              All fields for one country (withdrawn codes
+                           included; --active-only excludes them)
     list                   Filter across the registry
     currency CC            Currencies in circulation in a country
     country CURRENCY       Countries where a currency circulates
@@ -14,6 +17,8 @@ Eight subcommands:
     info                   Registry metadata
     validate CC...         Exit 0 if all codes exist, 1 otherwise
     search QUERY           Substring search on names and codes
+    successors CC          Follow replaced_by to terminal successors
+    predecessors CC        Withdrawn codes that lead to this code
 
 Five output modes, mutually exclusive:
 
@@ -21,11 +26,15 @@ Five output modes, mutually exclusive:
     --jsonl                One JSON object per line
     --csv                  Columns match iso3166.csv byte for byte
     --tsv                  Same columns, tab-delimited
-    --raw FIELD            Bare values, one per line
+    --raw FIELD            Bare values, one per line. A missing value
+                           (null) or an empty list prints one empty line,
+                           so a scalar field keeps one line per entry.
+                           A non-empty list prints one line per item.
 
 Exit codes:
     0  Success
-    1  Code not found (lookup, currency, country, validate)
+    1  Code not found (lookup, currency, country, validate, successors,
+       predecessors)
     2  Usage error (bad flag, missing argument)
     3  Registry file missing or invalid
 
@@ -47,8 +56,11 @@ import io
 import json
 import os
 import sys
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Iterable, Sequence
+
+from .registry import Country, CountryRegistry, RegistryError
 
 
 # ============================================================
@@ -76,6 +88,9 @@ ACTIVE_STATUSES = (
     "user-assigned",
     "exceptionally-reserved",
 )
+
+# --raw on `info` selects a key of the registry's meta block.
+INFO_RAW_FIELDS = frozenset({"version", "updated", "source", "schema_version"})
 
 VALID_RAW_FIELDS = frozenset({
     "alpha_2", "alpha_3", "numeric", "name", "status", "independent",
@@ -117,10 +132,6 @@ def csv_render_row(entry):
 # Registry loading
 # ============================================================
 
-class RegistryError(Exception):
-    """Raised when the registry cannot be located or parsed."""
-
-
 def resolve_registry_path(explicit: Path | None) -> Path:
     """Return the path to the registry, following the documented order.
 
@@ -154,15 +165,6 @@ def resolve_registry_path(explicit: Path | None) -> Path:
         "  ./iso3166.json\n"
         "Set --registry PATH or $ISO3166_REGISTRY."
     )
-
-
-def load_registry(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        raise RegistryError(f"registry not found: {path}")
-    try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise RegistryError(f"{path}: invalid JSON: {exc}") from exc
 
 
 # ============================================================
@@ -214,28 +216,29 @@ def resolve_color_enabled(flag: str | None, stream) -> bool:
 # Registry accessors
 # ============================================================
 
-def all_entries(reg: dict[str, Any]) -> list[dict[str, Any]]:
-    countries = reg.get("countries", {})
-    entries = list(countries.get("active", [])) + list(countries.get("withdrawn", []))
-    entries.sort(key=lambda e: e.get("alpha_2", ""))
-    return entries
+def _entry(c: Country) -> dict[str, Any]:
+    """A Country as a plain dict: tuples become lists, keys keep order."""
+    return {k: (list(v) if isinstance(v, tuple) else v) for k, v in asdict(c).items()}
 
 
-def active_entries(reg: dict[str, Any]) -> list[dict[str, Any]]:
-    return [e for e in all_entries(reg) if e.get("status") in ACTIVE_STATUSES]
+def _entries(countries: Iterable[Country]) -> list[dict[str, Any]]:
+    return [_entry(c) for c in countries]
 
 
-def find_entry(reg: dict[str, Any], code: str) -> dict[str, Any] | None:
-    """Look up a single entry by alpha_2. Prefers active entries."""
-    code = code.upper()
-    matches = [e for e in all_entries(reg) if e.get("alpha_2") == code]
-    if not matches:
-        return None
-    # Prefer an active entry; AI and SK each have two.
-    for e in matches:
-        if e.get("status") in ACTIVE_STATUSES:
-            return e
-    return matches[0]
+def _by_alpha2(countries: Iterable[Country]) -> list[Country]:
+    """Sort by alpha_2. The sort is stable, so for AI and SK the active
+    entry stays ahead of the withdrawn one."""
+    return sorted(countries, key=lambda c: c.alpha_2)
+
+
+def _resolve(reg: CountryRegistry, code: str) -> Country | None:
+    """The entry for an alpha-2 code: active if there is one, else the
+    first withdrawn entry. None if the code is not in the registry."""
+    c = reg.active(code)
+    if c is not None:
+        return c
+    matches = reg.with_alpha2(code)
+    return matches[0] if matches else None
 
 
 # ============================================================
@@ -314,9 +317,15 @@ def write_csv(entries: list[dict[str, Any]], *, delimiter: str) -> None:
 
 
 def write_raw(entries: list[dict[str, Any]], field: str) -> None:
+    """Bare values of one field, one per line.
+
+    Convention: a missing value (null) and an empty list both print one
+    empty line, so scalar fields keep one line per entry. A non-empty
+    list prints one line per item.
+    """
     for e in entries:
         v = e.get(field)
-        if v is None:
+        if v is None or v == []:
             sys.stdout.write("\n")
         elif isinstance(v, list):
             for item in v:
@@ -367,92 +376,95 @@ def emit(
 # Subcommand handlers
 # ============================================================
 
-def cmd_lookup(reg, args) -> int:
-    entry = find_entry(reg, args.code)
-    if entry is None:
+def cmd_lookup(reg: CountryRegistry, args) -> int:
+    if args.active_only:
+        c = reg.active(args.code)
+    else:
+        c = _resolve(reg, args.code)
+    if c is None:
         print(f"error: not found: {args.code}", file=sys.stderr)
         return EXIT_NOT_FOUND
-    emit([entry], args, single=True)
+    emit([_entry(c)], args, single=True)
     return EXIT_SUCCESS
 
 
-def cmd_list(reg, args) -> int:
-    pool = all_entries(reg)
-
+def cmd_list(reg: CountryRegistry, args) -> int:
     if args.active and args.withdrawn:
         print("error: --active and --withdrawn are mutually exclusive",
               file=sys.stderr)
         return EXIT_USAGE
+
     if args.active:
-        pool = [e for e in pool if e.get("status") in ACTIVE_STATUSES]
+        pool = _by_alpha2(reg.all_active())
     elif args.withdrawn:
-        pool = [e for e in pool if e.get("status") == "withdrawn"]
+        pool = _by_alpha2(reg.all_withdrawn())
+    else:
+        pool = _by_alpha2(reg.all())
 
     if args.status:
-        pool = [e for e in pool if e.get("status") == args.status]
+        pool = [c for c in pool if c.status == args.status]
     if args.region:
-        pool = [e for e in pool if (e.get("region") or "").lower() == args.region.lower()]
+        pool = [c for c in pool if (c.region or "").lower() == args.region.lower()]
     if args.subregion:
-        pool = [e for e in pool if (e.get("subregion") or "").lower() == args.subregion.lower()]
+        pool = [c for c in pool if (c.subregion or "").lower() == args.subregion.lower()]
     if args.currency:
-        c = args.currency.upper()
-        pool = [e for e in pool if c in (e.get("currency_codes") or [])]
+        code = args.currency.upper()
+        pool = [c for c in pool if code in (c.currency_codes or ())]
 
     if args.independent is True:
-        pool = [e for e in pool if e.get("independent") is True]
+        pool = [c for c in pool if c.independent is True]
     elif args.independent is False:
-        pool = [e for e in pool if e.get("independent") is False]
+        pool = [c for c in pool if c.independent is False]
 
     if args.limit is not None and args.limit >= 0:
         pool = pool[:args.limit]
 
-    emit(pool, args)
+    emit(_entries(pool), args)
     return EXIT_SUCCESS
 
 
-def cmd_currency(reg, args) -> int:
-    entry = find_entry(reg, args.country)
-    if entry is None:
+def cmd_currency(reg: CountryRegistry, args) -> int:
+    c = _resolve(reg, args.country)
+    if c is None:
         print(f"error: not found: {args.country}", file=sys.stderr)
         return EXIT_NOT_FOUND
 
-    codes = entry.get("currency_codes") or []
+    codes = list(c.currency_codes or ())
     if args.json:
-        write_json({"country": entry["alpha_2"], "currency_codes": codes})
+        write_json({"country": c.alpha_2, "currency_codes": codes})
     elif args.jsonl:
-        for c in codes:
-            sys.stdout.write(json.dumps({"country": entry["alpha_2"], "currency": c},
+        for cc in codes:
+            sys.stdout.write(json.dumps({"country": c.alpha_2, "currency": cc},
                                         sort_keys=True) + "\n")
     elif args.raw:
         # --raw on currency means "the currency code", no field needed.
-        for c in codes:
-            sys.stdout.write(f"{c}\n")
+        for cc in codes:
+            sys.stdout.write(f"{cc}\n")
     elif args.csv or args.tsv:
         delim = "," if args.csv else "\t"
         buf = io.StringIO(newline="")
         w = csv.writer(buf, delimiter=delim, lineterminator="\n")
         w.writerow(["country_alpha_2", "currency_code"])
-        for c in codes:
-            w.writerow([entry["alpha_2"], c])
+        for cc in codes:
+            w.writerow([c.alpha_2, cc])
         sys.stdout.write(buf.getvalue())
     else:
         style = Style(resolve_color_enabled(args.color, sys.stdout))
         if not codes:
-            print(f"{style.bold(entry['alpha_2'])}  {entry.get('name', '')}: (no currencies in registry)")
+            print(f"{style.bold(c.alpha_2)}  {c.name}: (no currencies in registry)")
         else:
-            print(f"{style.bold(entry['alpha_2'])}  {entry.get('name', '')}")
-            for c in codes:
-                print(f"  {style.cyan(c)}")
+            print(f"{style.bold(c.alpha_2)}  {c.name}")
+            for cc in codes:
+                print(f"  {style.cyan(cc)}")
 
     return EXIT_SUCCESS
 
 
-def cmd_country(reg, args) -> int:
+def cmd_country(reg: CountryRegistry, args) -> int:
     target = args.currency.upper()
-    matches = [e for e in active_entries(reg)
-               if target in (e.get("currency_codes") or [])]
+    matches = reg.countries_with(target)
     if not matches:
-        # Valid query, no results. Exit 1 so scripts can branch — a
+        # Valid query, no results. Exit 1 so scripts can branch: a
         # currency that no country in the registry uses is not "not found"
         # in the code sense, but the caller asked for a match and got none.
         if args.json:
@@ -460,36 +472,33 @@ def cmd_country(reg, args) -> int:
         elif not (args.jsonl or args.csv or args.tsv or args.raw):
             print(f"(no countries use {target})")
         return EXIT_NOT_FOUND
-    emit(matches, args)
+    emit(_entries(matches), args)
     return EXIT_SUCCESS
 
 
-def cmd_region(reg, args) -> int:
-    target = args.region.lower()
-    matches = [e for e in active_entries(reg)
-               if (e.get("region") or "").lower() == target]
+def cmd_region(reg: CountryRegistry, args) -> int:
+    matches = reg.region(args.region)
     if not matches:
         print(f"error: no countries in region: {args.region}", file=sys.stderr)
         return EXIT_NOT_FOUND
-    emit(matches, args)
+    emit(_entries(matches), args)
     return EXIT_SUCCESS
 
 
-def cmd_info(reg, args) -> int:
-    meta = reg.get("meta", {})
-    entries = all_entries(reg)
+def cmd_info(reg: CountryRegistry, args) -> int:
+    meta = reg.meta
+    summary = reg.summary()
     by_status: dict[str, int] = {s: 0 for s in VALID_STATUSES}
-    for e in entries:
-        s = e.get("status")
-        if s in by_status:
-            by_status[s] += 1
+    for status, n in summary["by_status"].items():
+        if status in by_status:
+            by_status[status] = n
 
     if args.json:
         write_json({
             "meta": meta,
             "counts": {
-                "total": len(entries),
-                "active": len(active_entries(reg)),
+                "total": summary["total"],
+                "active": summary["active"],
                 "by_status": by_status,
             },
         })
@@ -512,19 +521,18 @@ def cmd_info(reg, args) -> int:
     print(f"  schema        {meta.get('schema_version', '?')}")
     print()
     print(style.bold("Counts"))
-    print(f"  total         {len(entries)}")
-    print(f"  active        {len(active_entries(reg))}")
+    print(f"  total         {summary['total']}")
+    print(f"  active        {summary['active']}")
     for s in VALID_STATUSES:
         print(f"    {s:<24} {by_status[s]}")
     return EXIT_SUCCESS
 
 
-def cmd_validate(reg, args) -> int:
+def cmd_validate(reg: CountryRegistry, args) -> int:
     results: list[tuple[str, bool]] = []
     for raw in args.codes:
         code = raw.upper()
-        entry = find_entry(reg, code)
-        results.append((code, entry is not None))
+        results.append((code, bool(reg.with_alpha2(code))))
 
     all_valid = all(v for _, v in results)
     valid = [c for c, v in results if v]
@@ -565,23 +573,192 @@ def cmd_validate(reg, args) -> int:
     return EXIT_SUCCESS if all_valid else EXIT_NOT_FOUND
 
 
-def cmd_search(reg, args) -> int:
-    q = args.query.lower()
-    pool = all_entries(reg)
-
-    matches = []
-    for e in pool:
-        haystack = " ".join([
-            e.get("name") or "",
-            e.get("official_name") or "",
-            e.get("alpha_2") or "",
-            e.get("alpha_3") or "",
-        ]).lower()
-        if q in haystack:
-            matches.append(e)
-
-    emit(matches, args)
+def cmd_search(reg: CountryRegistry, args) -> int:
+    matches = _by_alpha2(reg.search(args.query))
+    emit(_entries(matches), args)
     return EXIT_SUCCESS if matches else EXIT_NOT_FOUND
+
+
+# ============================================================
+# Succession queries
+# ============================================================
+#
+# Both commands resolve a code to the withdrawn entry when a code is
+# held by an active and a withdrawn entry (AI, SK): the question being
+# asked is about succession, and only withdrawn entries have any.
+
+def _succession_index(reg: CountryRegistry) -> dict[str, Country]:
+    """alpha_2 -> entry; withdrawn wins over active for AI and SK."""
+    return {c.alpha_2: c for c in reg.all()}
+
+
+def _terminal_successors(entry: Country, by_a2: dict[str, Country]) -> set[str]:
+    """Terminal successors of an entry.
+
+    A terminal successor is a code reachable via `replaced_by` that is
+    not itself further replaced. An active code is terminal. A
+    withdrawn code with no `replaced_by` is terminal. A code that is
+    not present in the registry is terminal.
+    """
+    terminals: set[str] = set()
+    seen: set[str] = set()
+
+    def walk(code: str) -> None:
+        if code in seen:
+            return
+        seen.add(code)
+        e = by_a2.get(code)
+        if e is None:
+            terminals.add(code)
+            return
+        succ = list(e.replaced_by or ())
+        if not succ:
+            terminals.add(code)
+            return
+        for s in succ:
+            walk(s)
+
+    walk(entry.alpha_2)
+    return terminals
+
+
+def cmd_successors(reg: CountryRegistry, args) -> int:
+    code = args.code.upper()
+    by_a2 = _succession_index(reg)
+    entry = by_a2.get(code)
+    if entry is None:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+
+    chain: list[str] = []
+    terminals: set[str] = set()
+    seen: set[str] = set()
+
+    def walk(cur: str) -> None:
+        if cur in seen:
+            return
+        seen.add(cur)
+        e = by_a2.get(cur)
+        if e is None:
+            terminals.add(cur)
+            return
+        succ = list(e.replaced_by or ())
+        if e.status == "withdrawn" and succ:
+            chain.append(cur)
+            for s in succ:
+                walk(s)
+        else:
+            terminals.add(cur)
+
+    walk(code)
+
+    def link(c: str) -> dict[str, Any]:
+        e = by_a2[c]
+        return {
+            "alpha_2": c,
+            "name": e.name,
+            "withdrawal_date": e.withdrawal_date,
+            "replaced_by": list(e.replaced_by or ()),
+        }
+
+    if args.json:
+        write_json({
+            "code": code,
+            "chain": [link(c) for c in chain],
+            "terminal_successors": sorted(terminals),
+        })
+        return EXIT_SUCCESS
+
+    if args.jsonl:
+        for c in chain:
+            sys.stdout.write(json.dumps(link(c), sort_keys=True) + "\n")
+        return EXIT_SUCCESS
+
+    if args.raw:
+        for t in sorted(terminals):
+            sys.stdout.write(f"{t}\n")
+        return EXIT_SUCCESS
+
+    if args.csv or args.tsv:
+        delim = "," if args.csv else "\t"
+        buf = io.StringIO(newline="")
+        w = csv.writer(buf, delimiter=delim, lineterminator="\n")
+        w.writerow(["alpha_2", "name", "withdrawal_date", "replaced_by"])
+        for c in chain:
+            e = by_a2[c]
+            w.writerow([
+                c,
+                e.name or "",
+                e.withdrawal_date or "",
+                ",".join(e.replaced_by or ()),
+            ])
+        sys.stdout.write(buf.getvalue())
+        return EXIT_SUCCESS
+
+    style = Style(resolve_color_enabled(args.color, sys.stdout))
+    if not chain:
+        print(f"{style.cyan(code)} — {entry.name} has no successors.")
+        return EXIT_SUCCESS
+
+    for c in chain:
+        e = by_a2[c]
+        succ = ", ".join(e.replaced_by or ()) or "—"
+        wd_str = f" (withdrawn {e.withdrawal_date})" if e.withdrawal_date else ""
+        print(f"{style.cyan(c)} — {e.name}{wd_str} -> {succ}")
+
+    print()
+    if terminals:
+        print(f"Terminal successors: {', '.join(sorted(terminals))}")
+    else:
+        print("Terminal successors: (none)")
+    return EXIT_SUCCESS
+
+
+def cmd_predecessors(reg: CountryRegistry, args) -> int:
+    code = args.code.upper()
+    by_a2 = _succession_index(reg)
+    if code not in by_a2:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+
+    predecessors = sorted(
+        e.alpha_2 for e in reg.all_withdrawn()
+        if e.alpha_2 != code and code in _terminal_successors(e, by_a2)
+    )
+
+    if args.json:
+        write_json({"code": code, "predecessors": predecessors})
+        return EXIT_SUCCESS
+
+    if args.jsonl:
+        for p in predecessors:
+            sys.stdout.write(json.dumps(
+                {"code": code, "predecessor": p}, sort_keys=True,
+            ) + "\n")
+        return EXIT_SUCCESS
+
+    if args.raw:
+        for p in predecessors:
+            sys.stdout.write(f"{p}\n")
+        return EXIT_SUCCESS
+
+    if args.csv or args.tsv:
+        delim = "," if args.csv else "\t"
+        buf = io.StringIO(newline="")
+        w = csv.writer(buf, delimiter=delim, lineterminator="\n")
+        w.writerow(["predecessor"])
+        for p in predecessors:
+            w.writerow([p])
+        sys.stdout.write(buf.getvalue())
+        return EXIT_SUCCESS
+
+    style = Style(resolve_color_enabled(args.color, sys.stdout))
+    if not predecessors:
+        print(f"{style.cyan(code)} has no withdrawn predecessors.")
+    else:
+        print(f"{style.cyan(code)} is a terminal successor of: "
+              f"{', '.join(predecessors)}")
+    return EXIT_SUCCESS
 
 
 # ============================================================
@@ -636,6 +813,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("lookup", parents=[common], help="All fields for one country.")
     sp.add_argument("code", help="alpha-2 code (case-insensitive).")
+    sp.add_argument("--active-only", action="store_true",
+                    help="Do not return withdrawn codes; exit 1 for them, "
+                         "like the library's active().")
     sp.set_defaults(func=cmd_lookup)
 
     sp = sub.add_parser("list", parents=[common], help="Filter across the registry.")
@@ -680,6 +860,16 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("query")
     sp.set_defaults(func=cmd_search)
 
+    sp = sub.add_parser("successors", parents=[common],
+                        help="Follow replaced_by transitively to terminal successors.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_successors)
+
+    sp = sub.add_parser("predecessors", parents=[common],
+                        help="Withdrawn codes whose terminal successors include this code.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_predecessors)
+
     return p
 
 
@@ -721,11 +911,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return EXIT_USAGE
 
-    if args.raw and args.raw not in VALID_RAW_FIELDS and args.command != "validate":
+    if args.raw and args.command == "info":
+        if args.raw not in INFO_RAW_FIELDS:
+            print(
+                f"error: --raw field {args.raw!r} is not valid for info.\n"
+                f"  valid fields: {', '.join(sorted(INFO_RAW_FIELDS))}",
+                file=sys.stderr,
+            )
+            return EXIT_USAGE
+    elif args.raw and args.raw not in VALID_RAW_FIELDS and args.command != "validate":
         print(
             f"error: --raw field {args.raw!r} is not a valid field.\n"
             f"  valid fields: {', '.join(sorted(VALID_RAW_FIELDS))}\n"
-            f"  (validate accepts 'code' or 'valid')",
+            f"  (validate accepts 'code' or 'valid'; "
+            f"info accepts {', '.join(sorted(INFO_RAW_FIELDS))})",
             file=sys.stderr,
         )
         return EXIT_USAGE
@@ -737,7 +936,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return EXIT_REGISTRY
 
     try:
-        reg = load_registry(path)
+        reg = CountryRegistry(path)
     except RegistryError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return EXIT_REGISTRY
