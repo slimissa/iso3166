@@ -158,5 +158,30 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.7.0]"
     }
+  ],
+  "1.8.0": [
+    {
+      "file": "docs/decisions/input-contract.md"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "\"enforced\": true"
+    },
+    {
+      "file": "tools/gen_consistency_fixture.py",
+      "contains": "ENFORCE_INPUT_CONTRACT = True"
+    },
+    {
+      "file": "wrappers/python/iso3166/registry.py",
+      "contains": "tuple[str"
+    },
+    {
+      "file": "wrappers/go/registry.go",
+      "contains": "func (r *CountryRegistry) WithAlpha3"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.8.0]"
+    }
   ]
 }
