@@ -33,9 +33,18 @@ class RegistryError(Exception):
     """Raised when the registry file cannot be loaded."""
 
 
+def _as_tuple(value: Optional[Iterable[str]]) -> Optional[tuple[str, ...]]:
+    """Convert a JSON list to a tuple; None stays None."""
+    return None if value is None else tuple(value)
+
+
 @dataclass(frozen=True)
 class Country:
-    """One country entry from the registry."""
+    """One country entry from the registry.
+
+    The six list-valued fields are tuples, so an entry cannot be changed
+    through them.
+    """
 
     alpha_2: str
     alpha_3: str
@@ -47,15 +56,15 @@ class Country:
     region: Optional[str] = None
     subregion: Optional[str] = None
     intermediate_region: Optional[str] = None
-    currency_codes: Optional[list[str]] = None
-    calling_codes: Optional[list[str]] = None
-    tlds: Optional[list[str]] = None
-    languages: Optional[list[str]] = None
-    borders: Optional[list[str]] = None
+    currency_codes: Optional[tuple[str, ...]] = None
+    calling_codes: Optional[tuple[str, ...]] = None
+    tlds: Optional[tuple[str, ...]] = None
+    languages: Optional[tuple[str, ...]] = None
+    borders: Optional[tuple[str, ...]] = None
     note: Optional[str] = None
     last_verified: Optional[str] = None
     withdrawal_date: Optional[str] = None
-    replaced_by: Optional[list[str]] = None
+    replaced_by: Optional[tuple[str, ...]] = None
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Country":
@@ -70,15 +79,15 @@ class Country:
             region=d.get("region"),
             subregion=d.get("subregion"),
             intermediate_region=d.get("intermediate_region"),
-            currency_codes=d.get("currency_codes"),
-            calling_codes=d.get("calling_codes"),
-            tlds=d.get("tlds"),
-            languages=d.get("languages"),
-            borders=d.get("borders"),
+            currency_codes=_as_tuple(d.get("currency_codes")),
+            calling_codes=_as_tuple(d.get("calling_codes")),
+            tlds=_as_tuple(d.get("tlds")),
+            languages=_as_tuple(d.get("languages")),
+            borders=_as_tuple(d.get("borders")),
             note=d.get("note"),
             last_verified=d.get("last_verified"),
             withdrawal_date=d.get("withdrawal_date"),
-            replaced_by=d.get("replaced_by"),
+            replaced_by=_as_tuple(d.get("replaced_by")),
         )
 
     @property
@@ -123,7 +132,11 @@ class CountryRegistry:
         for c in self._active:
             self._by_alpha2[c.alpha_2] = c
         self._by_alpha3: dict[str, Country] = {c.alpha_3: c for c in self._active}
-        self._by_numeric: dict[str, Country] = {c.numeric: c for c in self._active}
+        # "000" is a placeholder shared by several entries (XK, EU, UK, ...);
+        # it is never a valid key.
+        self._by_numeric: dict[str, Country] = {
+            c.numeric: c for c in self._active if c.numeric != "000"
+        }
 
     # ------------------------------------------------------------
     # Metadata
@@ -175,26 +188,63 @@ class CountryRegistry:
         Only active entries are returned; withdrawn codes are reachable
         via with_alpha2.
         """
+        if not alpha_2:
+            return None
         return self._by_alpha2.get(alpha_2.upper())
 
     def with_alpha2(self, alpha_2: str) -> list[Country]:
         """All entries (active and withdrawn) with this alpha-2 code.
 
         A small number of codes appear twice because ISO reassigned them
-        (AI, SK). Callers who want a single entry should use active().
+        (AI, SK). The active entry comes first. Callers who want a single
+        entry should use active().
         """
+        if not alpha_2:
+            return []
         code = alpha_2.upper()
         return [c for c in self._all if c.alpha_2 == code]
+
+    def with_alpha3(self, alpha_3: str) -> list[Country]:
+        """All entries (active and withdrawn) with this alpha-3 code."""
+        if not alpha_3:
+            return []
+        code = alpha_3.upper()
+        return [c for c in self._all if c.alpha_3 == code]
+
+    def with_numeric(self, numeric: str) -> list[Country]:
+        """All entries (active and withdrawn) with this numeric code.
+
+        Zero-padded like by_numeric. The sentinel "000" matches nothing.
+        """
+        if not numeric:
+            return []
+        padded = str(numeric).zfill(3)
+        if padded == "000":
+            return []
+        return [c for c in self._all if c.numeric == padded]
 
     def by_alpha2(self, alpha_2: str) -> Optional[Country]:
         """Alias for active(). Kept for API symmetry with by_alpha3/by_numeric."""
         return self.active(alpha_2)
 
     def by_alpha3(self, alpha_3: str) -> Optional[Country]:
+        """Active entry for an alpha-3 code, or None."""
+        if not alpha_3:
+            return None
         return self._by_alpha3.get(alpha_3.upper())
 
     def by_numeric(self, numeric: str) -> Optional[Country]:
-        return self._by_numeric.get(str(numeric).zfill(3))
+        """Active entry for a numeric code, or None.
+
+        Short codes are left-padded ("20" == "020"); ints are coerced.
+        "", "0" and "000" return None. Whitespace is not trimmed.
+        """
+        if not numeric:
+            return None
+        padded = str(numeric).zfill(3)
+        if padded == "000":
+            return None
+        return self._by_numeric.get(padded)
 
     # ------------------------------------------------------------
     # Queries
@@ -207,6 +257,8 @@ class CountryRegistry:
         return list(c.currency_codes)
 
     def countries_with(self, currency_code: str) -> list[Country]:
+        if not currency_code:
+            return []
         code = currency_code.upper()
         return [
             c for c in self._active
@@ -214,6 +266,8 @@ class CountryRegistry:
         ]
 
     def region(self, region_name: str) -> list[Country]:
+        if not region_name:
+            return []
         target = region_name.lower()
         return [
             c for c in self._active
@@ -221,6 +275,8 @@ class CountryRegistry:
         ]
 
     def subregion(self, subregion_name: str) -> list[Country]:
+        if not subregion_name:
+            return []
         target = subregion_name.lower()
         return [
             c for c in self._active
@@ -229,6 +285,8 @@ class CountryRegistry:
 
     def search(self, query: str) -> list[Country]:
         """Substring search on name, official_name, alpha_2, alpha_3."""
+        if not query:
+            return []
         q = query.lower()
         out: list[Country] = []
         for c in self._all:

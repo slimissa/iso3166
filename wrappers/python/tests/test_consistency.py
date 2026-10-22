@@ -119,9 +119,9 @@ def test_lookup_fields(fixture, reg):
         c = reg.active(case["input"])
         assert c is not None, f"{case['input']} missing"
         assert c.official_name == case["official_name"]
-        assert (c.currency_codes or []) == case["currency_codes"]
-        assert (c.calling_codes or []) == case["calling_codes"]
-        assert (c.tlds or []) == case["tlds"]
+        assert list(c.currency_codes or []) == case["currency_codes"]
+        assert list(c.calling_codes or []) == case["calling_codes"]
+        assert list(c.tlds or []) == case["tlds"]
 
 def test_lookup_withdrawn_fields(fixture, reg):
     for case in fixture.get("lookup_withdrawn_fields", []):
@@ -143,7 +143,7 @@ def test_optional_absent(fixture, reg):
                 f"got {c.official_name!r}, expected {case['expected']!r}"
             )
         elif case["field"] == "borders":
-            actual = c.borders or []
+            actual = list(c.borders or [])
             assert actual == case["expected"], (
                 f"{case['input']}.borders: "
                 f"got {actual!r}, expected {case['expected']!r}"
@@ -170,3 +170,71 @@ def test_independent(fixture, reg):
         f"independent=true count {n} outside "
         f"[{case['count_true_min']}, {case['count_true_max']}]"
     )
+
+
+# ---------------------------------------------------------------------
+# Input contract (v1.8.0). Each test skips while its fixture section has
+# enforced=false, so a wrapper can land before the others.
+# ---------------------------------------------------------------------
+
+def _require_enforced(fixture, key):
+    if not fixture[key]["enforced"]:
+        pytest.skip(f"{key} enforced=false until all wrappers updated")
+    return fixture[key]["cases"]
+
+
+def _terminals(reg, code, _seen=None):
+    """Active codes reachable through replaced_by (active wins for AI, SK)."""
+    seen = _seen if _seen is not None else set()
+    if code in seen:
+        return set()
+    seen.add(code)
+    if reg.active(code) is not None:
+        return {code}
+    out = set()
+    for entry in reg.with_alpha2(code):
+        for nxt in entry.replaced_by or ():
+            out |= _terminals(reg, nxt, seen)
+    return out
+
+
+def test_empty_inputs(fixture, reg):
+    for case in _require_enforced(fixture, "empty_inputs"):
+        got = getattr(reg, case["method"])(case["input"])
+        if case["expected"] is None:
+            assert got is None, f"{case['method']}({case['input']!r}) should be None"
+        else:
+            assert list(got) == case["expected"], \
+                f"{case['method']}({case['input']!r}) should be {case['expected']!r}"
+
+
+def test_numeric_sentinel(fixture, reg):
+    for value in _require_enforced(fixture, "lookup_numeric_absent"):
+        assert reg.by_numeric(value) is None, f"by_numeric({value!r}) should be None"
+
+
+def test_alpha2_ambiguous(fixture, reg):
+    for code, case in _require_enforced(fixture, "lookup_alpha2_ambiguous").items():
+        matches = reg.with_alpha2(code)
+        assert len(matches) == case["count"], f"{code}: got {len(matches)} entries"
+        first = "active" if matches[0].is_active else "withdrawn"
+        assert first == case["first"], f"{code}: first entry is {first}"
+
+
+def test_successors(fixture, reg):
+    for case in _require_enforced(fixture, "successors"):
+        got = sorted(_terminals(reg, case["input"]))
+        assert got == case["terminal"], \
+            f"{case['input']}: terminals {got}, expected {case['terminal']}"
+
+
+def test_predecessors(fixture, reg):
+    for case in _require_enforced(fixture, "predecessors"):
+        code = case["input"]
+        got = sorted(
+            e.alpha_2 for e in reg.all_withdrawn()
+            if e.alpha_2 != code
+            and code in set().union(*(_terminals(reg, n) for n in e.replaced_by or ()))
+        )
+        assert got == case["predecessors"], \
+            f"{code}: predecessors {got}, expected {case['predecessors']}"
