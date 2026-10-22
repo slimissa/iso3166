@@ -37,12 +37,29 @@ class RegistryError extends Error {
 }
 
 /**
+ * Freeze every array-valued property of obj (and arrays nested inside
+ * those arrays' objects). The list fields of a Country cannot be
+ * mutated through the registry.
+ */
+function deepFreezeArrays(obj) {
+  for (const v of Object.values(obj)) {
+    if (Array.isArray(v)) {
+      Object.freeze(v);
+      v.forEach((item) => {
+        if (item && typeof item === "object") deepFreezeArrays(item);
+      });
+    }
+  }
+  return obj;
+}
+
+/**
  * Build a frozen Country from a raw registry entry. Extra keys are
  * ignored; missing keys become null so every Country has the same
- * shape.
+ * shape. List fields are frozen too.
  */
 function makeCountry(raw) {
-  return Object.freeze({
+  return deepFreezeArrays(Object.freeze({
     alpha_2: raw.alpha_2,
     alpha_3: raw.alpha_3,
     numeric: raw.numeric,
@@ -62,7 +79,19 @@ function makeCountry(raw) {
     last_verified: raw.last_verified ?? null,
     withdrawal_date: raw.withdrawal_date ?? null,
     replaced_by: raw.replaced_by ?? null,
-  });
+  }));
+}
+
+/**
+ * Normalize a numeric-code argument: coerce to string, left-pad to 3
+ * digits. Returns null for null/undefined, "" and the sentinel "000".
+ */
+function padNumeric(numeric) {
+  if (numeric === null || numeric === undefined) return null;
+  const s = String(numeric);
+  if (s === "") return null;
+  const padded = s.padStart(3, "0");
+  return padded === "000" ? null : padded;
 }
 
 class CountryRegistry {
@@ -99,7 +128,11 @@ class CountryRegistry {
     this._byAlpha2 = new Map();
     for (const c of this._active) this._byAlpha2.set(c.alpha_2, c);
     this._byAlpha3 = new Map(this._active.map((c) => [c.alpha_3, c]));
-    this._byNumeric = new Map(this._active.map((c) => [c.numeric, c]));
+    // "000" is a placeholder shared by several entries (XK, EU, UK, ...);
+    // it is never a valid key.
+    this._byNumeric = new Map(
+      this._active.filter((c) => c.numeric !== "000").map((c) => [c.numeric, c]),
+    );
   }
 
   // ----------------------------------------------------------------
@@ -148,19 +181,37 @@ class CountryRegistry {
    * Only active entries; withdrawn codes are reachable via withAlpha2.
    */
   active(code) {
-    if (typeof code !== "string") return null;
+    if (typeof code !== "string" || code === "") return null;
     return this._byAlpha2.get(code.toUpperCase()) ?? null;
   }
 
   /**
    * All entries (active and withdrawn) with this alpha-2 code.
    * A small number of codes appear twice because ISO reassigned them
-   * (AI, SK). Callers who want a single entry should use active().
+   * (AI, SK); the active entry comes first. Callers who want a single
+   * entry should use active().
    */
   withAlpha2(code) {
-    if (typeof code !== "string") return [];
+    if (typeof code !== "string" || code === "") return [];
     const upper = code.toUpperCase();
     return this._all.filter((c) => c.alpha_2 === upper);
+  }
+
+  /** All entries (active and withdrawn) with this alpha-3 code. */
+  withAlpha3(code) {
+    if (typeof code !== "string" || code === "") return [];
+    const upper = code.toUpperCase();
+    return this._all.filter((c) => c.alpha_3 === upper);
+  }
+
+  /**
+   * All entries (active and withdrawn) with this numeric code.
+   * Zero-padded like byNumeric; the sentinel "000" matches nothing.
+   */
+  withNumeric(numeric) {
+    const padded = padNumeric(numeric);
+    if (padded === null) return [];
+    return this._all.filter((c) => c.numeric === padded);
   }
 
   /** Alias for active(). Kept for API symmetry. */
@@ -169,13 +220,18 @@ class CountryRegistry {
   }
 
   byAlpha3(code) {
-    if (typeof code !== "string") return null;
+    if (typeof code !== "string" || code === "") return null;
     return this._byAlpha3.get(code.toUpperCase()) ?? null;
   }
 
+  /**
+   * Active entry for a numeric code, or null. Short codes are
+   * left-padded ("20" === "020"); numbers are coerced. "", "0" and
+   * "000" return null. Whitespace is not trimmed.
+   */
   byNumeric(numeric) {
-    if (numeric === null || numeric === undefined) return null;
-    const padded = String(numeric).padStart(3, "0");
+    const padded = padNumeric(numeric);
+    if (padded === null) return null;
     return this._byNumeric.get(padded) ?? null;
   }
 
@@ -192,7 +248,7 @@ class CountryRegistry {
 
   /** Countries where a currency circulates. Returns [] if none. */
   countriesWith(currencyCode) {
-    if (typeof currencyCode !== "string") return [];
+    if (typeof currencyCode !== "string" || currencyCode === "") return [];
     const target = currencyCode.toUpperCase();
     return this._active.filter(
       (c) => c.currency_codes && c.currency_codes.includes(target),
@@ -201,7 +257,7 @@ class CountryRegistry {
 
   /** Countries in a macro-region. Case-insensitive. */
   region(regionName) {
-    if (typeof regionName !== "string") return [];
+    if (typeof regionName !== "string" || regionName === "") return [];
     const target = regionName.toLowerCase();
     return this._active.filter(
       (c) => (c.region ?? "").toLowerCase() === target,
@@ -210,7 +266,7 @@ class CountryRegistry {
 
   /** Countries in a sub-region. Case-insensitive. */
   subregion(subregionName) {
-    if (typeof subregionName !== "string") return [];
+    if (typeof subregionName !== "string" || subregionName === "") return [];
     const target = subregionName.toLowerCase();
     return this._active.filter(
       (c) => (c.subregion ?? "").toLowerCase() === target,
@@ -219,7 +275,7 @@ class CountryRegistry {
 
   /** Substring search on name, official_name, alpha_2, alpha_3. */
   search(query) {
-    if (typeof query !== "string") return [];
+    if (typeof query !== "string" || query === "") return [];
     const q = query.toLowerCase();
     const out = [];
     for (const c of this._all) {

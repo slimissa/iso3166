@@ -198,3 +198,77 @@ test(
     );
   },
 );
+
+// ---------------------------------------------------------------------
+// Input contract (v1.8.0). Each test is skipped while its fixture
+// section has enforced=false, so a wrapper can land before the others.
+// ---------------------------------------------------------------------
+
+function skipUnless(key) {
+  return {
+    skip: !fixture[key].enforced && `${key} enforced=false until all wrappers updated`,
+  };
+}
+
+function terminals(code, seen = new Set()) {
+  if (seen.has(code)) return new Set();
+  seen.add(code);
+  if (reg.active(code)) return new Set([code]);
+  const out = new Set();
+  for (const entry of reg.withAlpha2(code)) {
+    for (const next of entry.replaced_by ?? []) {
+      for (const t of terminals(next, seen)) out.add(t);
+    }
+  }
+  return out;
+}
+
+const METHODS = {
+  active: (x) => reg.active(x),
+  by_alpha3: (x) => reg.byAlpha3(x),
+  by_numeric: (x) => reg.byNumeric(x),
+  region: (x) => reg.region(x),
+  subregion: (x) => reg.subregion(x),
+  search: (x) => reg.search(x),
+  countries_with: (x) => reg.countriesWith(x),
+};
+
+test("empty_inputs", skipUnless("empty_inputs"), () => {
+  for (const c of fixture.empty_inputs.cases) {
+    const got = METHODS[c.method](c.input);
+    assert.deepEqual(got, c.expected,
+      `${c.method}(${JSON.stringify(c.input)}) should be ${JSON.stringify(c.expected)}`);
+  }
+});
+
+test("numeric_sentinel", skipUnless("lookup_numeric_absent"), () => {
+  for (const v of fixture.lookup_numeric_absent.cases) {
+    assert.equal(reg.byNumeric(v), null, `byNumeric(${JSON.stringify(v)}) should be null`);
+  }
+});
+
+test("alpha2_ambiguous", skipUnless("lookup_alpha2_ambiguous"), () => {
+  for (const [code, c] of Object.entries(fixture.lookup_alpha2_ambiguous.cases)) {
+    const matches = reg.withAlpha2(code);
+    assert.equal(matches.length, c.count, `${code}: entry count`);
+    const first = matches[0].status === "withdrawn" ? "withdrawn" : "active";
+    assert.equal(first, c.first, `${code}: first entry`);
+  }
+});
+
+test("successors", skipUnless("successors"), () => {
+  for (const c of fixture.successors.cases) {
+    assert.deepEqual([...terminals(c.input)].sort(), c.terminal, c.input);
+  }
+});
+
+test("predecessors", skipUnless("predecessors"), () => {
+  for (const c of fixture.predecessors.cases) {
+    const got = reg.allWithdrawn()
+      .filter((e) => e.alpha_2 !== c.input &&
+        (e.replaced_by ?? []).some((n) => terminals(n).has(c.input)))
+      .map((e) => e.alpha_2)
+      .sort();
+    assert.deepEqual(got, c.predecessors, c.input);
+  }
+});
