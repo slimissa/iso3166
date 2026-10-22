@@ -1,0 +1,76 @@
+# Audit notes
+
+This file holds the receipts: for each rule in
+[`RELEASE_PATTERN.md`](./RELEASE_PATTERN.md) and each gap in
+[`AUDIT.md`](./AUDIT.md), the specific failure that motivated it.
+
+It is append-only. An entry is never edited after it is written; a
+correction is a new entry. Facts about this repository trace to
+`CHANGELOG.md` and the `docs/vX.Y.Z-verification.md` reports. Facts about
+other registries (F31, and ISO 4217 in A11) come from cross-registry
+coordination and cannot be checked from this repository.
+
+### Rule 16 — Never reset VERSION to re-run release.sh
+
+v1.7.2's first release attempt (`86b799f`) was cancelled. For the second
+attempt `VERSION` was reset to 1.7.1 in `a269aaf` while every other
+version site stayed at 1.7.2, so CI on HEAD went red and the release was
+blocked. The reset was reverted in `1c31328` and the tag was created by
+hand (`docs/v1.7.2-verification.md`).
+
+### Rule 17 — Never Ctrl+C during the CI wait in step 4
+
+v1.7.2's first release attempt (`86b799f`) was cancelled when the CI wait
+was interrupted. That left `main` holding an untagged release commit and
+started the partial-release recovery described in
+`docs/v1.7.2-verification.md`.
+
+### Rule 18 — CI queueing latency: CI_START_TIMEOUT of at least 180 seconds
+
+v1.7.3's release commit (`845807a`) was pushed by `release.sh`, but the
+60-second CI-start timeout fired before GitHub registered the run, which
+started at about 90 seconds. The tag was created by hand once CI was
+green. v1.7.4 raised `CI_START_TIMEOUT` from 60 to 180 seconds.
+
+### Rule 19 — Split releases by decision dependency
+
+v1.7.2 shipped the `enrich_field.py` citation fix and the note migration,
+which needed no data decision, and deferred the `independent` correction.
+v1.7.3 then carried that data, harvested from 249 manually saved ISO OBP
+pages. The rule was codified in v1.7.4 from these two recoveries.
+
+### A10 — Three-file split: rules, audit, receipts
+
+From v1.6.5 through v1.6.8 the CHANGELOG records repeated additions to
+`RELEASE_PATTERN.md` (rule 6b, the attribution convention, the
+`[Unreleased]` convention, reviewer-block updates). By v1.8.0 the file
+mixed rules, incident narratives and tool state, and the tool state had
+drifted: its opening list gives ISO 3166 eight version sites and its
+closing section says eleven. v1.8.1 splits it into `RELEASE_PATTERN.md`,
+`AUDIT.md` and this file.
+
+### A11 — CURATED vs AGGREGATED checks
+
+v1.7.0 added the AGGREGATED layer and the CURATED (byte) versus
+AGGREGATED (content) distinction to the pattern. In this repository
+`tools/export_parquet.py --check` compares bytes (`read_bytes()`), but the
+module docstring still says it compares "logical content, not bytes".
+A11 fixes which reading is correct (CURATED compares exactly), so the
+docstring is the error; v1.8.1 changes no code and does not correct it.
+
+### A12 — Verify the tag message before pushing the tag
+
+In v1.7.0, `release.sh` was interrupted during tag-message verification by
+a trailing-newline false positive, and the GitHub release was created by
+hand. v1.7.1 adopted ISO 4217's A12: verify the tag message before push
+and delete the local tag on any verification failure. The v1.7.2 and
+v1.7.3 tags were created by hand for other reasons, and the v1.7.1, v1.7.4
+and v1.8.0 reports record CI green before the tag but not the tag-message
+check, so this repository holds no recorded confirmation of it.
+
+### F31 — Upstream-drift detection
+
+ISO 4217 held its vendored copy of this registry at v1.6.9 through
+v1.8.0, a gap of six releases (v1.7.0 to v1.7.4, then v1.8.0). Its
+`review_by` check is calendar-based, not release-based, so it did not flag
+the gap. Upstream-drift detection is deferred to v1.9.1.
