@@ -183,5 +183,25 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.8.0]"
     }
+  ],
+  "1.8.1": [
+    {
+      "file": "docs/AUDIT.md"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "A10"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "A11"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.8.1]"
+    }
   ]
 }
