@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.8.1] — 2026-10-DD
+## [1.8.1] — 2026-10-22
 
 Pattern documentation parity with ISO 4217 and ISO 10383. No code
 or data changes.
