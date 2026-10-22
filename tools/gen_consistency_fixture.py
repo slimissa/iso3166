@@ -40,10 +40,10 @@ INDEPENDENT_COUNT_TRUE_MIN = 185
 INDEPENDENT_COUNT_TRUE_MAX = 205
 
 # Input-contract cases (v1.8.0, docs/decisions/input-contract.md).
-# False while any wrapper still has the old behavior: each wrapper's
-# test reads the per-case `enforced` flag and skips when it is false.
-# Flipped to True in the commit that lands after all four wrappers.
-ENFORCE_INPUT_CONTRACT = False
+# Each wrapper's test reads the per-section `enforced` flag and skips
+# when it is false. It was False while the wrappers landed one by one;
+# it is True now that all four implement the contract (v1.8.0).
+ENFORCE_INPUT_CONTRACT = True
 
 SUCCESSOR_INPUTS = ["YU", "CS", "US", "SU"]
 PREDECESSOR_INPUTS = ["ME", "RS", "US"]

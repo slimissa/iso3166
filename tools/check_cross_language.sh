@@ -12,6 +12,11 @@
 #
 # Default code: US
 #
+# A code that no wrapper finds (for example a withdrawn code such as AN,
+# which active() does not return) counts as agreement: every wrapper
+# exits 1 for "not found". A wrapper that exits with any other non-zero
+# status, or that finds the code while another does not, is a mismatch.
+#
 # Exit codes:
 #   0  All wrappers agreed on every code.
 #   1  At least one code produced different output across wrappers.
@@ -156,9 +161,14 @@ for code in "${CODES[@]}"; do
 
     for lang in "${WRAPPERS[@]}"; do
         runner="${RUNNERS[$lang]}"
-        if out="$("$runner" "$code" 2>/dev/null)"; then
+        rc=0
+        out="$("$runner" "$code" 2>/dev/null)" || rc=$?
+        if [ "$rc" -eq 0 ]; then
             outputs[$lang]="$out"
             status[$lang]="ok"
+        elif [ "$rc" -eq 1 ]; then
+            outputs[$lang]="(not found)"
+            status[$lang]="absent"
         else
             outputs[$lang]="(failed)"
             status[$lang]="FAILED"
@@ -173,22 +183,23 @@ for code in "${CODES[@]}"; do
     # Compare. Pick the first wrapper as the reference, then require the
     # rest to match it exactly.
     reference="${outputs[python]}"
-    reference_ok="${status[python]}"
+    reference_status="${status[python]}"
 
     mismatch=0
-    if [ "$reference_ok" != "ok" ]; then
+    if [ "$reference_status" = "FAILED" ]; then
         mismatch=1
         echo "  >> Python failed; cannot establish a reference" >&2
     fi
 
     for lang in "${WRAPPERS[@]}"; do
         [ "$lang" = "python" ] && continue
-        if [ "${status[$lang]}" != "ok" ]; then
+        if [ "${status[$lang]}" = "FAILED" ]; then
             mismatch=1
             echo "  >> $lang failed to run" >&2
             continue
         fi
-        if [ "${outputs[$lang]}" != "$reference" ]; then
+        if [ "${status[$lang]}" != "$reference_status" ] \
+            || [ "${outputs[$lang]}" != "$reference" ]; then
             mismatch=1
             echo "  >> $lang disagrees with python" >&2
             echo "     python: $reference" >&2

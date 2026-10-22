@@ -619,7 +619,7 @@
   },
   "empty_inputs": {
     "_comment": "Empty string -> nil/empty for every lookup (DEC-2).",
-    "enforced": false,
+    "enforced": true,
     "cases": [
       {
         "method": "active",
@@ -660,7 +660,7 @@
   },
   "lookup_numeric_absent": {
     "_comment": "by_numeric returns None: empty, sentinel 000, single-digit 0 (pads to 000), and whitespace-padded input (not trimmed).",
-    "enforced": false,
+    "enforced": true,
     "cases": [
       "",
       "000",
@@ -671,7 +671,7 @@
   },
   "lookup_alpha2_ambiguous": {
     "_comment": "AI and SK appear in both active and withdrawn. with_alpha2 must return the active entry first, count 2.",
-    "enforced": false,
+    "enforced": true,
     "cases": {
       "AI": {
         "first": "active",
@@ -685,7 +685,7 @@
   },
   "successors": {
     "_comment": "Active terminal successors via replaced_by, sorted. The wrappers have no successors API yet; their tests compute this from the replaced_by field.",
-    "enforced": false,
+    "enforced": true,
     "cases": [
       {
         "input": "YU",
@@ -715,7 +715,7 @@
   },
   "predecessors": {
     "_comment": "Withdrawn codes whose terminal successors include the input, sorted alphabetically.",
-    "enforced": false,
+    "enforced": true,
     "cases": [
       {
         "input": "ME",
