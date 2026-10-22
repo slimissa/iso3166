@@ -39,6 +39,17 @@ INDEPENDENT_FALSE = ["AQ", "AW", "BM", "BQ", "EU", "GL", "HK", "MO", "PR", "TW"]
 INDEPENDENT_COUNT_TRUE_MIN = 185
 INDEPENDENT_COUNT_TRUE_MAX = 205
 
+# Input-contract cases (v1.8.0, docs/decisions/input-contract.md).
+# False while any wrapper still has the old behavior: each wrapper's
+# test reads the per-case `enforced` flag and skips when it is false.
+# Flipped to True in the commit that lands after all four wrappers.
+ENFORCE_INPUT_CONTRACT = False
+
+SUCCESSOR_INPUTS = ["YU", "CS", "US", "SU"]
+PREDECESSOR_INPUTS = ["ME", "RS", "US"]
+AMBIGUOUS_ALPHA2 = ["AI", "SK"]
+NUMERIC_ABSENT_INPUTS = ["", "000", "0", " 20", "020 "]
+
 
 def _summarize(entry: dict[str, Any]) -> dict[str, Any]:
     return {
@@ -215,6 +226,11 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
         ],
         "optional_absent": collect_optional_absent(reg),
         "independent": independent_case(reg),
+        "empty_inputs": empty_inputs_case(),
+        "lookup_numeric_absent": numeric_absent_case(),
+        "lookup_alpha2_ambiguous": alpha2_ambiguous_case(reg),
+        "successors": successors_case(reg),
+        "predecessors": predecessors_case(reg),
     }
 
 def independent_case(reg: dict[str, Any]) -> dict[str, Any]:
@@ -239,6 +255,137 @@ def independent_case(reg: dict[str, Any]) -> dict[str, Any]:
         "false": list(INDEPENDENT_FALSE),
         "count_true_min": INDEPENDENT_COUNT_TRUE_MIN,
         "count_true_max": INDEPENDENT_COUNT_TRUE_MAX,
+    }
+
+
+def empty_inputs_case() -> dict[str, Any]:
+    """Empty string -> None/null/nil for lookups, [] for list queries."""
+    cases = [
+        {"method": m, "input": "", "expected": None}
+        for m in ("active", "by_alpha3", "by_numeric")
+    ] + [
+        {"method": m, "input": "", "expected": []}
+        for m in ("region", "subregion", "search", "countries_with")
+    ]
+    return {
+        "_comment": "Empty string -> nil/empty for every lookup (DEC-2).",
+        "enforced": ENFORCE_INPUT_CONTRACT,
+        "cases": cases,
+    }
+
+
+def numeric_absent_case() -> dict[str, Any]:
+    """Inputs for which by_numeric must return None."""
+    return {
+        "_comment": (
+            "by_numeric returns None: empty, sentinel 000, single-digit 0 "
+            "(pads to 000), and whitespace-padded input (not trimmed)."
+        ),
+        "enforced": ENFORCE_INPUT_CONTRACT,
+        "cases": list(NUMERIC_ABSENT_INPUTS),
+    }
+
+
+def alpha2_ambiguous_case(reg: dict[str, Any]) -> dict[str, Any]:
+    """Codes present in both active and withdrawn: active entry first."""
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
+    cases: dict[str, Any] = {}
+    for code in AMBIGUOUS_ALPHA2:
+        n_withdrawn = sum(
+            1 for e in reg["countries"]["withdrawn"] if e["alpha_2"] == code
+        )
+        if code not in active or n_withdrawn != 1:
+            raise SystemExit(f"alpha2_ambiguous: {code} is not active+withdrawn")
+        cases[code] = {"first": "active", "count": 2}
+    return {
+        "_comment": (
+            "AI and SK appear in both active and withdrawn. with_alpha2 "
+            "must return the active entry first, count 2."
+        ),
+        "enforced": ENFORCE_INPUT_CONTRACT,
+        "cases": cases,
+    }
+
+
+def _walk_terminals(
+    start: list[str], by_a2: dict[str, Any], active: set[str]
+) -> list[str]:
+    """Active codes reachable from `start` through replaced_by, sorted.
+
+    A code that is active is its own terminal (active wins for AI and
+    SK, which are also withdrawn codes). A withdrawn code with no active
+    descendant (e.g. SU) contributes nothing.
+    """
+    out: set[str] = set()
+    seen: set[str] = set()
+
+    def walk(c: str) -> None:
+        if c in seen:
+            return
+        seen.add(c)
+        if c in active:
+            out.add(c)
+            return
+        e = by_a2.get(c)
+        for s in (e.get("replaced_by") or []) if e else []:
+            walk(s)
+
+    for c in start:
+        walk(c)
+    return sorted(out)
+
+
+def _by_withdrawn_a2(reg: dict[str, Any]) -> dict[str, Any]:
+    return {e["alpha_2"]: e for e in reg["countries"]["withdrawn"]}
+
+
+def successors_case(reg: dict[str, Any]) -> dict[str, Any]:
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
+    by_wd = _by_withdrawn_a2(reg)
+    cases = []
+    for code in SUCCESSOR_INPUTS:
+        if code in active:
+            terminal = [code]
+        elif code in by_wd:
+            terminal = _walk_terminals(
+                list(by_wd[code].get("replaced_by") or []), by_wd, active
+            )
+        else:
+            raise SystemExit(f"successors: {code} not in registry")
+        cases.append({"input": code, "terminal": terminal})
+    return {
+        "_comment": (
+            "Active terminal successors via replaced_by, sorted. The "
+            "wrappers have no successors API yet; their tests compute this "
+            "from the replaced_by field."
+        ),
+        "enforced": ENFORCE_INPUT_CONTRACT,
+        "cases": cases,
+    }
+
+
+def predecessors_case(reg: dict[str, Any]) -> dict[str, Any]:
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
+    by_wd = _by_withdrawn_a2(reg)
+    cases = []
+    for code in PREDECESSOR_INPUTS:
+        # Start from each withdrawn *entry's* replaced_by, never from its
+        # code: SK is both Slovakia (active) and Sikkim (withdrawn).
+        preds = sorted(
+            e["alpha_2"] for e in reg["countries"]["withdrawn"]
+            if e["alpha_2"] != code
+            and code in _walk_terminals(
+                list(e.get("replaced_by") or []), by_wd, active
+            )
+        )
+        cases.append({"input": code, "predecessors": preds})
+    return {
+        "_comment": (
+            "Withdrawn codes whose terminal successors include the input, "
+            "sorted alphabetically."
+        ),
+        "enforced": ENFORCE_INPUT_CONTRACT,
+        "cases": cases,
     }
 
 
