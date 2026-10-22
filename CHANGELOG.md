@@ -8,6 +8,75 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] — 2026-10-DD
+
+Input contract. The four language wrappers now agree on empty strings,
+sentinel numeric codes, and withdrawn-entry behavior. Breaking changes
+in all four wrappers; migration notes below and in
+`docs/decisions/input-contract.md`.
+
+### BREAKING
+
+- **Python**: `Country.currency_codes`, `calling_codes`, `tlds`,
+  `languages`, `borders`, `replaced_by` are now `tuple[str, ...]`
+  instead of `list[str]`. Consumers that do `isinstance(x, list)`
+  must switch to `isinstance(x, tuple)`. Indexing, iteration, and
+  `in` are unchanged. Use `list(x)` where a mutable copy is needed.
+- **JavaScript**: `Country` list fields are now deep-frozen. Consumers
+  that did `us.currency_codes.push(...)` will throw. Use `.slice()`
+  or spread `[...us.currency_codes]` to copy first.
+- **Go**: `Active`, `ByAlpha2`, `ByAlpha3`, `ByNumeric` now return
+  `Country` (value) instead of `*Country` (pointer). Consumers that
+  compare with `== nil` must switch to `country.Alpha2 == ""` or
+  check a new `Exists() bool` method. The returned value owns private
+  copies of its slices and string pointers, so mutating it can no
+  longer corrupt the registry.
+- **Rust**: no signature changes; `by_numeric` and `with_numeric` now
+  reject `""` and the sentinel `"000"` as documented in the ADR.
+- **All wrappers**: `by_numeric("000")` and `by_numeric("0")` now
+  return null/nil/None. They previously returned Kosovo (`XK`), whose
+  numeric code is the placeholder `"000"`. `by_numeric("")` now
+  returns null/nil/None in Python, JavaScript and Rust (it previously
+  returned `XK`; Go already returned nil). `search("")` now returns an
+  empty list in Python, JavaScript and Rust (it previously returned
+  every entry). `region("")` and `subregion("")` now return an empty
+  list in Python and JavaScript (they previously returned the entries
+  that have no region or sub-region).
+
+### Added
+
+- **DEC-2 ADR** at `docs/decisions/input-contract.md`.
+- `with_alpha3`, `with_numeric` (Python/Rust), `withAlpha3`,
+  `withNumeric` (JavaScript), `WithAlpha3`, `WithNumeric` (Go) —
+  symmetric to the existing `with_alpha2`. They return withdrawn
+  entries as well as active ones.
+- Go: `Country.Exists()`.
+- Python wrapper CLI: `successors` and `predecessors` subcommands,
+  a `--active-only` flag on `lookup`, and `--raw version|updated|
+  source|schema_version` on `info`.
+- Fixture cases: `empty_inputs`, `lookup_numeric_absent`,
+  `lookup_alpha2_ambiguous`, `successors`, `predecessors`, each with
+  its own `enforced` flag.
+
+### Fixed
+
+- Python wrapper CLI now uses `CountryRegistry` (previously
+  reimplemented queries, causing `lookup` and `active()` to
+  disagree on withdrawn codes). `lookup` still returns withdrawn
+  entries by default; `--active-only` matches `active()`.
+- Python wrapper CLI: `--raw` prints one empty line for a missing
+  value and for an empty list (an empty list previously printed
+  nothing). `search ""` now matches nothing instead of everything.
+- `tools/check_cross_language.sh` treats a code that all four
+  wrappers report as not found (for example a withdrawn code such as
+  `AN`) as agreement instead of a failure.
+
+### Notes
+
+- This is the input contract release. Consumers can now rely on
+  empty-string and sentinel-code behavior being identical across
+  all four wrappers, enforced by the shared fixture.
+
 ## [1.7.4] — 2026-10-21
 
 Release-pipeline robustness and citation completeness.
