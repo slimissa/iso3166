@@ -8,6 +8,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.3] — 2026-10-DD
+
+Release correctness. Three defects in `release.sh` and the enrichment
+and export tools that made checks pass when they should have failed, or
+fail on a correct tree. `iso3166.json`, the schema and the wrapper APIs
+are unchanged.
+
+### Fixed
+
+- `scripts/release.sh` — the preflight now refuses unless every CI run
+  on HEAD concluded `success`. It names `failure`, `cancelled`,
+  `timed_out` and `startup_failure` in its message, and refuses any
+  other conclusion too (`skipped`, `neutral`, `action_required`,
+  `stale`, none). Before, it matched only `failure`: a `cancelled` run,
+  which is what `cancel-in-progress` produces when a newer push
+  supersedes it, passed with "CI on HEAD is green", and a `--dry-run`
+  ran to the end. Step 4 already refused non-success conclusions, so no
+  tag could be created on unverified code; the preflight now stops the
+  release before it bumps and pushes the release commit. Found in
+  v1.8.2 verification.
+- `tools/enrich_field.py --check` — `subregion` accepts `AQ` and `TW` as
+  legitimately null (UN M49 assigns them no subregion), and
+  `intermediate_region` is required only where M49 defines one, under
+  Sub-Saharan Africa and Latin America and the Caribbean. Before, both
+  exited 1 on a correct tree (2 and 144 entries flagged). A missing value
+  on any entry that does need one is still reported. `--list-missing`
+  follows the same rule.
+- `tools/export_aggregated.py` — added `--input` and `--output`, and its
+  default paths now resolve against the repository root, so it works from
+  any directory (v1.8.2 left this tool out because its tests depended on
+  the current directory). The tests pass explicit paths into a temporary
+  directory instead of changing directory, and check that the committed
+  `countries_by_region.parquet` is not touched. Messages for the default
+  paths are unchanged.
+
+### Added
+
+- `docs/RELEASE_PATTERN.md` — rule 23: the preflight refuses on any
+  non-success CI conclusion.
+- `docs/README-AUDIT-NOTES.md` — rule 23 receipt.
+
+### Notes
+
+- This is the last release in the v1.8.x "correctness" phase. v1.9.0
+  begins the "state" phase with `docs/STATE.md` and `check_state_doc.py`.
+- Hyphenated calling codes (`1-340`) are accepted by `tools/validate.py`
+  and `tools/enrich_field.py` since v1.8.2, but `schema.json` still
+  requires digits only, so the schema layer would reject one. Deferred
+  to a v1.9.x schema ADR.
+
 ## [1.8.2] — 2026-10-22
 
 Tool correctness. Small defect fixes across the toolkit found during
