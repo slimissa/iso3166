@@ -8,15 +8,15 @@ Sources checked:
     1. VERSION                                   (file content)
     2. iso3166.json -> meta.version              (registry data)
     3. CHANGELOG.md -> top [x.y.z] heading       (release notes)
-    4. README.md -> "Status: v0.X.Y" (optional)  (human-facing)
+    4. README.md -> registry-X.Y.Z-<color> badge (optional) (human-facing)
     5. iso3166.parquet -> iso3166.version        (artifact metadata)
     6. wrappers/python/pyproject.toml            (required)
     7. wrappers/python/iso3166/__init__.py       (required)
     8. wrappers/javascript/package.json          (required)
     9. wrappers/rust/Cargo.toml                  (required)
 
-Not checked here: wrappers/rust/Cargo.lock and the README registry badge
-(scripts/release.sh compares the former; the latter is unchecked).
+Also checked: wrappers/rust/Cargo.lock (via the cargolock extractor)
+and the README registry badge (via the README_STATUS_RE regex).
 
 Pre-release exception
 ---------------------
@@ -73,7 +73,8 @@ PARQUET = PROJECT_ROOT / "iso3166.parquet"
 
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 CHANGELOG_HEADING_RE = re.compile(r"^## \[([0-9]+\.[0-9]+\.[0-9]+|Unreleased)\]", re.MULTILINE)
-README_STATUS_RE = re.compile(r"registry-(\d+\.\d+\.\d+)-orange", re.IGNORECASE)
+# Any badge colour: shields.io accepts names (orange, blue) and hex (007ec6).
+README_STATUS_RE = re.compile(r"registry-(\d+\.\d+\.\d+)-\w+", re.IGNORECASE)
 
 class FatalError(SystemExit):
     def __init__(self, message: str, code: int = 2) -> None:
