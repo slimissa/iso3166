@@ -156,8 +156,18 @@ fi
 if echo "$HEAD_RUNS" | grep -qE '^(queued|in_progress|pending|waiting) '; then
     die "CI on HEAD ($LOCAL_SHA) is still running; wait for it to complete"
 fi
-if echo "$HEAD_RUNS" | grep -q ' failure$'; then
-    die "CI on HEAD ($LOCAL_SHA) is red; fix and push before releasing"
+# Every run on HEAD must have concluded "success". The named conclusions
+# first, for a clear message; GitHub's "cancelled" is what cancel-in-progress
+# produces, and "startup_failure" is a runner that never started.
+if echo "$HEAD_RUNS" | grep -qE ' (failure|cancelled|timed_out|startup_failure)$'; then
+    die "CI on HEAD ($LOCAL_SHA) is not green (failure, cancelled, timed_out, or startup_failure); fix and push before releasing"
+fi
+# Anything else that is not exactly "completed success" (skipped, neutral,
+# action_required, stale, a status such as "requested") did not verify HEAD
+# either; a list of bad conclusions cannot be complete, so this one is not.
+if echo "$HEAD_RUNS" | grep -qvx 'completed success'; then
+    BAD_RUNS=$(echo "$HEAD_RUNS" | grep -vx 'completed success' | sort -u | paste -sd, -)
+    die "CI on HEAD ($LOCAL_SHA) did not conclude 'success' (got: $BAD_RUNS); fix and push before releasing"
 fi
 echo "  CI on HEAD is green"
 
