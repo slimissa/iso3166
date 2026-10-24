@@ -55,6 +55,16 @@ if str(_HERE) not in sys.path:
 import parse_source  # noqa: E402
 
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
 LAYER_NAMES = (
     "schema",
     "integrity",
@@ -751,31 +761,31 @@ def build_parser() -> argparse.ArgumentParser:
         "registry",
         type=Path,
         nargs="?",
-        default=Path("iso3166.json"),
+        default=PROJECT_ROOT / "iso3166.json",
         help="Path to the registry (default: iso3166.json).",
     )
     p.add_argument(
         "--schema",
         type=Path,
-        default=Path("schema.json"),
+        default=PROJECT_ROOT / "schema.json",
         help="Path to the JSON Schema (default: schema.json).",
     )
     p.add_argument(
         "--snapshot",
         type=Path,
-        default=Path("tools/iso4217_snapshot.json"),
+        default=PROJECT_ROOT / "tools/iso4217_snapshot.json",
         help="Path to the ISO 4217 snapshot (default: tools/iso4217_snapshot.json).",
     )
     p.add_argument(
         "--version-file",
         type=Path,
-        default=Path("VERSION"),
+        default=PROJECT_ROOT / "VERSION",
         help="Path to the VERSION file (default: VERSION).",
     )
     p.add_argument(
         "--changelog",
         type=Path,
-        default=Path("CHANGELOG.md"),
+        default=PROJECT_ROOT / "CHANGELOG.md",
         help="Path to the CHANGELOG (default: CHANGELOG.md).",
     )
     p.add_argument(

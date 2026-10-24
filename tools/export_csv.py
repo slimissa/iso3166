@@ -42,6 +42,16 @@ from pathlib import Path
 from typing import Any
 
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
 # ============================================================
 # Constants
 # ============================================================
@@ -202,7 +212,7 @@ def build_parser() -> argparse.ArgumentParser:
         prog="export_csv",
         description="Generate CSV/TSV exports from iso3166.json.",
     )
-    p.add_argument("--registry", type=Path, default=Path("iso3166.json"),
+    p.add_argument("--registry", type=Path, default=PROJECT_ROOT / "iso3166.json",
                    help="Path to the registry (default: iso3166.json).")
     p.add_argument("--variant", choices=VARIANTS, default=None,
                    help="Only generate the named variant.")
@@ -222,7 +232,7 @@ def main(argv: list[str] | None = None) -> int:
     stale: list[str] = []
     for v in variants:
         content = generate(v, reg)
-        path = Path(OUTPUT_NAME[v])
+        path = PROJECT_ROOT / OUTPUT_NAME[v]
         if args.check:
             if check_file(path, content):
                 info(f"  {path}: OK", quiet=args.quiet)

@@ -41,7 +41,17 @@ from pathlib import Path
 from typing import Any
 
 
-OUTPUT = Path("tools/iso4217_snapshot.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+OUTPUT = PROJECT_ROOT / "tools/iso4217_snapshot.json"
 
 # Only 3-letter alphabetic codes are currencies. ISO 4217's
 # active array contains synthetic identifiers (MXN_OLD, and

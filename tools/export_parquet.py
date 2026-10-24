@@ -45,7 +45,17 @@ from pathlib import Path
 from typing import Any
 
 
-OUTPUT = Path("iso3166.parquet")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+OUTPUT = PROJECT_ROOT / "iso3166.parquet"
 
 COLUMNS = (
     "alpha_2",
@@ -217,7 +227,7 @@ def build_parser() -> argparse.ArgumentParser:
         prog="export_parquet",
         description="Generate a Parquet export from iso3166.json.",
     )
-    p.add_argument("--registry", type=Path, default=Path("iso3166.json"))
+    p.add_argument("--registry", type=Path, default=PROJECT_ROOT / "iso3166.json")
     p.add_argument("--check", action="store_true")
     p.add_argument("--quiet", action="store_true")
     return p

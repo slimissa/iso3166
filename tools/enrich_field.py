@@ -62,7 +62,17 @@ from pathlib import Path
 from typing import Any
 
 
-REGISTRY = Path("iso3166.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+REGISTRY = PROJECT_ROOT / "iso3166.json"
 
 
 @dataclass(frozen=True)
@@ -81,7 +91,7 @@ FIELDS: dict[str, FieldConfig] = {
     "currency_codes": FieldConfig(
         name="currency_codes",
         item_pattern=r"^[A-Z]{3}$",
-        snapshot_path=Path("tools/iso4217_snapshot.json"),
+        snapshot_path=PROJECT_ROOT / "tools/iso4217_snapshot.json",
         snapshot_key="active",
         # Per-entry ISO OBP page.
         source_template="https://www.iso.org/obp/ui/#iso:code:3166:{code}",
@@ -91,7 +101,7 @@ FIELDS: dict[str, FieldConfig] = {
         name="calling_codes",
         # Allow "1-340" for sub-prefixes under a shared root.
         item_pattern=r"^[0-9]+(-[0-9]+)?$",
-        snapshot_path=Path("tools/itu_calling_code_snapshot.json"),
+        snapshot_path=PROJECT_ROOT / "tools/itu_calling_code_snapshot.json",
         snapshot_key="codes",
         # One URL for the whole ITU list.
         source_template="https://www.itu.int/oth/T02020000E8/en",
@@ -100,7 +110,7 @@ FIELDS: dict[str, FieldConfig] = {
     "borders": FieldConfig(
         name="borders",
         item_pattern=r"^[A-Z]{2}$",
-        snapshot_path=Path("iso3166.json"),
+        snapshot_path=PROJECT_ROOT / "iso3166.json",
         snapshot_key=None,
         source_template="https://www.cia.gov/the-world-factbook/countries/{code}/",
         describe="adjacent country alpha-2 codes",
@@ -108,7 +118,7 @@ FIELDS: dict[str, FieldConfig] = {
     "languages": FieldConfig(
         name="languages",
         item_pattern=r"^[a-z]{3}$",
-        snapshot_path=Path("tools/iso639_3_snapshot.json"),
+        snapshot_path=PROJECT_ROOT / "tools/iso639_3_snapshot.json",
         snapshot_key="languages",
         source_template="https://www.cia.gov/the-world-factbook/countries/{code}/",
         describe="ISO 639-3 language codes",
@@ -116,7 +126,7 @@ FIELDS: dict[str, FieldConfig] = {
     "tlds": FieldConfig(
         name="tlds",
         item_pattern=r"^\.[a-z]{2,}$",
-        snapshot_path=Path("tools/iana_tld_snapshot.json"),
+        snapshot_path=PROJECT_ROOT / "tools/iana_tld_snapshot.json",
         snapshot_key="tlds",
         source_template="https://www.iana.org/domains/root/db",
         describe="IANA country-code top-level domains",
@@ -124,7 +134,7 @@ FIELDS: dict[str, FieldConfig] = {
     "subregion": FieldConfig(
         name="subregion",
         item_pattern=r"^[A-Za-z][A-Za-z \-]*$",
-        snapshot_path=Path("tools/m49_subregion_snapshot.json"),
+        snapshot_path=PROJECT_ROOT / "tools/m49_subregion_snapshot.json",
         snapshot_key="subregions",
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 subregion name",
@@ -133,7 +143,7 @@ FIELDS: dict[str, FieldConfig] = {
     "intermediate_region": FieldConfig(
         name="intermediate_region",
         item_pattern=r"^[A-Za-z][A-Za-z \-]*$",
-        snapshot_path=Path("tools/m49_intermediate_region_snapshot.json"),
+        snapshot_path=PROJECT_ROOT / "tools/m49_intermediate_region_snapshot.json",
         snapshot_key="intermediate_regions",
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 intermediate region name",

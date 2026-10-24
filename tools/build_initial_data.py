@@ -71,6 +71,16 @@ from pathlib import Path
 from typing import Any
 
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
 # ============================================================
 # Constants
 # ============================================================
@@ -701,13 +711,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="Path to the UN M49 overview CSV.",
     )
     parser.add_argument(
-        "--exceptions", type=Path, default=Path("tools/initial_exceptions.json"),
+        "--exceptions", type=Path, default=PROJECT_ROOT / "tools/initial_exceptions.json",
         metavar="PATH",
         help="Path to the hand-maintained exceptions file "
              "(default: tools/initial_exceptions.json).",
     )
     parser.add_argument(
-        "--out", type=Path, default=Path("iso3166.json"), metavar="PATH",
+        "--out", type=Path, default=PROJECT_ROOT / "iso3166.json", metavar="PATH",
         help="Where to write the registry (default: iso3166.json).",
     )
     parser.add_argument(

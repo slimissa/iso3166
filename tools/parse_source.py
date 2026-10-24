@@ -108,6 +108,16 @@ from pathlib import Path
 from typing import Any
 
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
 # ============================================================
 # Frozen ground-truth sets
 # ============================================================
@@ -580,7 +590,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--exceptions",
         metavar="PATH",
         type=Path,
-        default=Path("tools/initial_exceptions.json"),
+        default=PROJECT_ROOT / "tools/initial_exceptions.json",
         help="Path to the exceptions file "
              "(default: tools/initial_exceptions.json).",
     )

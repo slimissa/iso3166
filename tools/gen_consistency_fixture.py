@@ -24,8 +24,18 @@ from pathlib import Path
 from typing import Any
 
 
-FIXTURE = Path("tests/cross_language_consistency.json")
-REGISTRY = Path("iso3166.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+FIXTURE = PROJECT_ROOT / "tests/cross_language_consistency.json"
+REGISTRY = PROJECT_ROOT / "iso3166.json"
 INDEPENDENT_SNAPSHOT = Path(__file__).resolve().parent / "independent_snapshot.json"
 
 # independent case (v1.7.3). Codes below are pinned by hand; every one

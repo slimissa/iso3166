@@ -70,7 +70,17 @@ from datetime import date, datetime
 from pathlib import Path
 
 
-REGISTRY = Path("iso3166.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+REGISTRY = PROJECT_ROOT / "iso3166.json"
 ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 SOURCE_LINE_RE = re.compile(r"^source: .*$", re.MULTILINE)
 ALPHA_2_RE = re.compile(r"^[A-Z]{2}$")

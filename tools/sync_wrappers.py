@@ -32,13 +32,23 @@ import sys
 from pathlib import Path
 
 
-SOURCE = Path("iso3166.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+SOURCE = PROJECT_ROOT / "iso3166.json"
 
 TARGETS = (
-    Path("wrappers/python/iso3166/iso3166.json"),
-    Path("wrappers/javascript/iso3166.json"),
-    Path("wrappers/go/iso3166.json"),
-    Path("wrappers/rust/iso3166.json"),
+    PROJECT_ROOT / "wrappers/python/iso3166/iso3166.json",
+    PROJECT_ROOT / "wrappers/javascript/iso3166.json",
+    PROJECT_ROOT / "wrappers/go/iso3166.json",
+    PROJECT_ROOT / "wrappers/rust/iso3166.json",
 )
 
 

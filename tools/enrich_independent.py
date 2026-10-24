@@ -52,7 +52,17 @@ from typing import Any, Callable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import enrich_field as ef  # noqa: E402  (registry load/write helpers)
 
-SNAPSHOT = Path("tools/independent_snapshot.json")
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+SNAPSHOT = PROJECT_ROOT / "tools/independent_snapshot.json"
 OBP_URL = "https://www.iso.org/obp/ui/#iso:code:3166:{code}"
 SNAPSHOT_SOURCE = "ISO 3166-1 Online Browsing Platform"
 SNAPSHOT_SCHEMA_VERSION = "1.0.0"

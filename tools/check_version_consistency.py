@@ -55,11 +55,21 @@ from pathlib import Path
 from typing import Any
 
 
-VERSION_FILE = Path("VERSION")
-REGISTRY = Path("iso3166.json")
-CHANGELOG = Path("CHANGELOG.md")
-README = Path("README.md")
-PARQUET = Path("iso3166.parquet")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+VERSION_FILE = PROJECT_ROOT / "VERSION"
+REGISTRY = PROJECT_ROOT / "iso3166.json"
+CHANGELOG = PROJECT_ROOT / "CHANGELOG.md"
+README = PROJECT_ROOT / "README.md"
+PARQUET = PROJECT_ROOT / "iso3166.parquet"
 
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 CHANGELOG_HEADING_RE = re.compile(r"^## \[([0-9]+\.[0-9]+\.[0-9]+|Unreleased)\]", re.MULTILINE)
@@ -171,7 +181,7 @@ _PYINIT_VERSION_RE = re.compile(r'^__version__\s*=\s*"([^"]+)"', re.MULTILINE)
 
 
 def read_wrapper_version(path: str, kind: str) -> tuple[str | None, str]:
-    p = Path(path)
+    p = PROJECT_ROOT / path
     if not p.exists():
         return None, f"{path}: file not found"
     try:

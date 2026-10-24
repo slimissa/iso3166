@@ -22,7 +22,17 @@ import sys
 from pathlib import Path
 
 
-SNAPSHOT = Path("tools/iso4217_snapshot.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+SNAPSHOT = PROJECT_ROOT / "tools/iso4217_snapshot.json"
 CODE_RE = re.compile(r"^[A-Z]{3}$")
 
 

@@ -52,7 +52,17 @@ from datetime import date
 from pathlib import Path
 
 
-REGISTRY = Path("iso3166.json")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+REGISTRY = PROJECT_ROOT / "iso3166.json"
 OFFICIAL_NAME_SOURCE_RE = re.compile(r"^official_name source: .*$", re.MULTILINE)
 OBP_URL_TEMPLATE = "https://www.iso.org/obp/ui/#iso:code:3166:{code}"
 

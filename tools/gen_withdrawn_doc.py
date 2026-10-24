@@ -18,8 +18,18 @@ import sys
 from pathlib import Path
 
 
-REGISTRY = Path("iso3166.json")
-OUTPUT = Path("docs/WITHDRAWN.md")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not (PROJECT_ROOT / "iso3166.json").is_file():
+    print(
+        f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
+        "this tool must run from a repository checkout.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+REGISTRY = PROJECT_ROOT / "iso3166.json"
+OUTPUT = PROJECT_ROOT / "docs/WITHDRAWN.md"
 
 
 class FatalError(SystemExit):
