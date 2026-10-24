@@ -88,6 +88,12 @@ class FieldConfig:
     source_template: str
     describe: str
     is_scalar: bool = False
+    # alpha_2 codes for which a null value is correct, not a gap.
+    legitimately_null: frozenset[str] = frozenset()
+    # When set, the field is required only on entries whose subregion is in
+    # this set; every other entry is legitimately null. M49 defines
+    # intermediate regions under two subregions only.
+    required_for_subregions: frozenset[str] | None = None
 
 
 FIELDS: dict[str, FieldConfig] = {
@@ -141,6 +147,8 @@ FIELDS: dict[str, FieldConfig] = {
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 subregion name",
         is_scalar=True,
+        # docs/ENRICHMENT.md: M49 assigns no subregion to Antarctica or Taiwan.
+        legitimately_null=frozenset({"AQ", "TW"}),
     ),
     "intermediate_region": FieldConfig(
         name="intermediate_region",
@@ -150,6 +158,11 @@ FIELDS: dict[str, FieldConfig] = {
         source_template="https://unstats.un.org/unsd/methodology/m49/",
         describe="UN M49 intermediate region name",
         is_scalar=True,
+        # docs/ENRICHMENT.md: populated only where M49 defines one, which is
+        # under these two subregions; everywhere else it is null.
+        required_for_subregions=frozenset(
+            {"Sub-Saharan Africa", "Latin America and the Caribbean"}
+        ),
     ),
 }
 
@@ -408,15 +421,31 @@ def _active_assigned(reg: dict[str, Any]) -> list[dict[str, Any]]:
             if e["status"] == "officially-assigned"]
 
 
+def _requires_value(cfg: FieldConfig, entry: dict[str, Any]) -> bool:
+    """True if a null cfg.name on this entry is a defect, not a legitimate null."""
+    if entry["alpha_2"] in cfg.legitimately_null:
+        return False
+    if cfg.required_for_subregions is not None:
+        return entry.get("subregion") in cfg.required_for_subregions
+    return True
+
+
+def _missing(cfg: FieldConfig, assigned: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [e for e in assigned
+            if e.get(cfg.name) is None and _requires_value(cfg, e)]
+
+
 def mode_list_missing(args: argparse.Namespace) -> int:
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
     assigned = _active_assigned(reg)
-    missing = [e for e in assigned if e.get(cfg.name) is None]
+    missing = _missing(cfg, assigned)
 
     if not missing:
+        nulls = sum(1 for e in assigned if e.get(cfg.name) is None)
+        suffix = f" ({nulls} legitimately null)" if nulls else ""
         print(f"all {len(assigned)} officially-assigned entries have "
-              f"{cfg.name}", file=sys.stderr)
+              f"{cfg.name}{suffix}", file=sys.stderr)
         return 0
 
     for e in missing:
@@ -443,7 +472,7 @@ def mode_check(args: argparse.Namespace) -> int:
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
     assigned = _active_assigned(reg)
-    missing = [e for e in assigned if e.get(cfg.name) is None]
+    missing = _missing(cfg, assigned)
 
     if missing:
         print(
@@ -455,8 +484,14 @@ def mode_check(args: argparse.Namespace) -> int:
             print(f"  {e['alpha_2']}  {e['name']}", file=sys.stderr)
         return 1
 
-    print(f"OK: {len(assigned)} of {len(assigned)} officially-assigned "
-          f"entries have {cfg.name}")
+    nulls = [e for e in assigned if e.get(cfg.name) is None]
+    if nulls:
+        print(f"OK: {len(assigned) - len(nulls)} of {len(assigned)} "
+              f"officially-assigned entries have {cfg.name}; "
+              f"{len(nulls)} legitimately null")
+    else:
+        print(f"OK: {len(assigned)} of {len(assigned)} officially-assigned "
+              f"entries have {cfg.name}")
     return 0
 
 
