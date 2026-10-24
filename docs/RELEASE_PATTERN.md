@@ -508,6 +508,35 @@ GitHub Actions does not register a workflow run instantly. A 60-second timeout i
 
 If a release contains a tool (no decision needed) and data (requires a semantic decision or external fetch), split them. Ship the tool in `vN`, and the data in `vN+1`. A blocked data decision should never block a shippable tool fix.
 
+### 20. Bundle Layout Guard
+
+Rule 20: every patch bundle's `apply.sh` checks, before it applies
+anything, that `commit-messages/NN-*.txt` exists for the item it is about
+to apply. If the message files sit flat in the bundle root, `apply.sh`
+moves them into `commit-messages/` and carries on; if a message file is
+still missing after that, it stops. Delivery pipelines can flatten
+subdirectories, so the guard repairs the layout itself instead of
+trusting it. Seen in ISO 3166 v1.7.3, v1.8.0 and v1.8.1.
+
+### 21. Bundle Delivery Format
+
+Rule 21: deliver a patch bundle as one `.tar.gz` that contains the whole
+directory tree. Loose files get flattened by the delivery pipeline, so
+Rule 20 is the backstop, not the plan. Extract with `tar -xzf`; do not
+copy files by hand out of a downloads folder. Seen in the same three
+bundles.
+
+### 22. A Preflight "CI Is Still Running" Refusal Is Normal
+
+Rule 22: `release.sh` step 0 refuses while CI on HEAD has not completed
+("CI on HEAD (...) is still running; wait for it to complete"). That is
+correct behavior, not a stuck script. CI takes a few minutes. Wait with
+`gh run watch`, then run `release.sh` again. Do not cancel the run or
+push again to hurry it: `validate.yml` cancels an in-progress run when a
+new commit arrives on the same ref, so that restarts the wait. See also
+Rule 18 (`CI_START_TIMEOUT`) and v1.8.1, whose release was refused three
+times while CI ran.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:
