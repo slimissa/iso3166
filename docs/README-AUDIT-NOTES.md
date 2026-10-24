@@ -39,6 +39,32 @@ which needed no data decision, and deferred the `independent` correction.
 v1.7.3 then carried that data, harvested from 249 manually saved ISO OBP
 pages. The rule was codified in v1.7.4 from these two recoveries.
 
+### Rule 20 — Bundle layout guard
+
+v1.7.3, v1.8.0, and v1.8.1 all shipped with `commit-messages/*.txt`
+flat in the bundle root instead of in `commit-messages/`. The
+delivery pipeline flattens subdirectories. `apply.sh`'s layout check
+caught each case and refused before applying anything. v1.8.2's
+`apply.sh` self-heals (moves the files into `commit-messages/`)
+rather than refusing, because the layout is a delivery artifact,
+not a content defect.
+
+### Rule 21 — Bundle delivery format
+
+The three flat-layout incidents were delivery-mechanism failures,
+not bundle-content failures. Delivering as `vX.Y.Z-patches.tar.gz`
+preserves subdirectory structure through extraction; delivering as
+loose files does not. v1.8.2 is the first bundle delivered as a
+`.tar.gz`.
+
+### Rule 22 — Preflight "CI running" is normal
+
+v1.8.1 hit three consecutive `release.sh` refusals within 10 seconds
+of pushing. The script correctly saw `CI on HEAD is still running`
+each time. The script is not stuck; CI takes 3-4 minutes (Rust test
+dominates). Attempting to retry or cancel interrupts a working run
+and makes the wait longer. Use `gh run watch` and wait for green.
+
 ### A10 — Three-file split: rules, audit, receipts
 
 From v1.6.5 through v1.6.8 the CHANGELOG records repeated additions to
