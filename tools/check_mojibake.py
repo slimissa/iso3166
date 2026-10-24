@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""
+r"""
 Mojibake detector for text files in the repository.
 
 Mojibake is UTF-8 bytes reinterpreted as Latin-1/Windows-1252 and
-re-saved as UTF-8. Six byte patterns are checked: five literal
-signatures and one regex range covering every accented Latin-1
-character.
+re-saved as UTF-8. Seven byte patterns are checked: five literal
+signatures and two regex ranges.
 
   Literal signatures:
     \xe2\x80\x9a          U+201A single low-9 quotation mark; a
@@ -20,16 +19,21 @@ character.
     \xef\xbf\xbd          U+FFFD replacement character; from a
                           lossy decode upstream of this file
 
-  Range signature:
+  Range signatures:
     \xc3[\x83-\x89]\xc2[\x80-\xbf]
-      Covers every Latin-1 accented character round-trip in one
-      rule. A two-byte accented character such as the circumflexed
-      o in a French city name becomes four bytes when a file is
-      decoded as Latin-1 and re-encoded as UTF-8. Same for the
-      cedilla-c in a Portuguese name, the tilde-n in Spanish. 
-      when a file is decoded as Latin-1 and re-encoded as UTF-8.
-      Same for the cedilla-c in a Portuguese name, the tilde-n 
-      in Spanish, and so on.
+      Covers every accented Latin-1 letter round-trip in one rule. A
+      two-byte accented character such as the circumflexed o in a
+      French city name becomes four bytes when a file is decoded as
+      Latin-1 and re-encoded as UTF-8. The same corruption affects the
+      cedilla-c in a Portuguese name, the tilde-n in Spanish, and any
+      other Latin-1 letter above U+007F.
+
+    \xc3\x82\xc2[\x80-\xbf]
+      This pattern catches Latin-1 punctuation and currency symbols
+      (¢ £ ¥ ¿ ¼ ½ ¾) that corrupt to Â+something,
+      which the accented-letter range does not match. It covers the
+      whole U+0080-U+00BF block, so it also catches the copyright
+      sign, the degree sign and the guillemets.
 
 Any hit is a real bug: the file is valid UTF-8, but a human reading it
 sees garbage and downstream tools (grep, sed, diff) silently fail to
@@ -96,6 +100,7 @@ MOJIBAKE_PATTERNS: tuple[bytes, ...] = (
     rb"\xc3\xa2\xc2\x88",
     rb"\xc3\xa2\xc2\x80",
     rb"\xc3[\x83-\x89]\xc2[\x80-\xbf]",
+    rb"\xc3\x82\xc2[\x80-\xbf]",   # Â followed by C2xx: symbol and currency corruption class
     rb"\xc3\xa2\xe2\x82\xac",  # cp1252 em-dash prefix (latin-1 -> cp1252 round-trip)
     rb"\xef\xbf\xbd",          # U+FFFD replacement character
 )
