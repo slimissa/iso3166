@@ -240,5 +240,47 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.8.2]"
     }
+  ],
+  "1.8.3": [
+    {
+      "file": "scripts/release.sh",
+      "contains": "cancelled|timed_out|startup_failure"
+    },
+    {
+      "file": "scripts/release.sh",
+      "absent": "grep -q ' failure$'"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "grep -qvx 'completed success'"
+    },
+    {
+      "file": "tools/enrich_field.py",
+      "contains": "legitimately_null"
+    },
+    {
+      "file": "tools/enrich_field.py",
+      "contains": "required_for_subregions"
+    },
+    {
+      "file": "tools/export_aggregated.py",
+      "contains": "PROJECT_ROOT"
+    },
+    {
+      "file": "tools/export_aggregated.py",
+      "contains": "\"--output\""
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 23"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md",
+      "contains": "Rule 23"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.8.3]"
+    }
   ]
 }
