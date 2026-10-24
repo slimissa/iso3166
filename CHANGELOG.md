@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.8.2] — 2026-10-DD
+## [1.8.2] — 2026-10-22
 
 Tool correctness. Small defect fixes across the toolkit found during
 the v1.7.x-v1.8.x audit. `iso3166.json`, the schema and the wrapper APIs
