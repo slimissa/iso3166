@@ -12,6 +12,12 @@ not import the `json` module.
 Usage:
     python3 tools/export_aggregated.py
     python3 tools/export_aggregated.py --check
+    python3 tools/export_aggregated.py --input IN.parquet --output OUT.parquet
+
+By default the input and output are resolved against the repository root,
+not the current directory, so the tool works from any directory. --input
+and --output override them; the tests use them to run against a temporary
+directory without touching the committed files.
 
 Exit codes:
     0  Success (write or --check matched)
@@ -26,33 +32,44 @@ from pathlib import Path
 
 import pandas as pd
 
-CURATED_INPUT = Path("iso3166.parquet")
-AGGREGATED_OUTPUT = Path("countries_by_region.parquet")
+# No iso3166.json fail-fast check here, unlike the other tools:
+# tests/test_architecture.py forbids this file from naming the RAW layer.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+CURATED_INPUT = PROJECT_ROOT / "iso3166.parquet"
+AGGREGATED_OUTPUT = PROJECT_ROOT / "countries_by_region.parquet"
 
 REQUIRED_COLUMNS = {"alpha_2", "region", "subregion", "independent"}
 
 
-def build_aggregated() -> pd.DataFrame:
+def _shown(path: Path) -> str:
+    """A path for messages: relative to the repository root when inside it."""
+    try:
+        return str(path.resolve().relative_to(PROJECT_ROOT))
+    except ValueError:
+        return str(path)
+
+
+def build_aggregated(input_path: Path = CURATED_INPUT) -> pd.DataFrame:
     """Read the CURATED layer and build the AGGREGATED dataframe."""
-    if not CURATED_INPUT.exists():
+    if not input_path.exists():
         print(
-            f"error: {CURATED_INPUT} not found. Run tools/export_parquet.py first.",
+            f"error: {_shown(input_path)} not found. Run tools/export_parquet.py first.",
             file=sys.stderr,
         )
         sys.exit(2)
 
     # Read CURATED layer
     try:
-        df = pd.read_parquet(CURATED_INPUT)
+        df = pd.read_parquet(input_path)
     except Exception as exc:
-        print(f"error: failed to read {CURATED_INPUT}: {exc}", file=sys.stderr)
+        print(f"error: failed to read {_shown(input_path)}: {exc}", file=sys.stderr)
         sys.exit(2)
 
     # Validate CURATED schema
     missing = REQUIRED_COLUMNS - set(df.columns)
     if missing:
         print(
-            f"error: {CURATED_INPUT} is missing required columns: {', '.join(missing)}",
+            f"error: {_shown(input_path)} is missing required columns: {', '.join(missing)}",
             file=sys.stderr,
         )
         sys.exit(2)
@@ -93,17 +110,31 @@ def main() -> int:
         action="store_true",
         help="Suppress success output.",
     )
+    parser.add_argument(
+        "--input",
+        type=Path,
+        default=None,
+        help=f"CURATED parquet to read (default: {_shown(CURATED_INPUT)} in the repository root).",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help=f"AGGREGATED parquet to write or check (default: {_shown(AGGREGATED_OUTPUT)} in the repository root).",
+    )
     args = parser.parse_args()
 
-    new_df = build_aggregated()
+    input_path = args.input or CURATED_INPUT
+    output_path = args.output or AGGREGATED_OUTPUT
+    new_df = build_aggregated(input_path)
 
     if args.check:
-        if not AGGREGATED_OUTPUT.exists():
-            print(f"  {AGGREGATED_OUTPUT}: STALE (missing)", file=sys.stderr)
+        if not output_path.exists():
+            print(f"  {_shown(output_path)}: STALE (missing)", file=sys.stderr)
             return 1
 
         try:
-            existing_df = pd.read_parquet(AGGREGATED_OUTPUT)
+            existing_df = pd.read_parquet(output_path)
             # assert_frame_equal checks column names, types, and values.
             # We sort the existing_df just in case to ensure logical equality.
             existing_df = existing_df.sort_values(
@@ -113,21 +144,21 @@ def main() -> int:
             pd.testing.assert_frame_equal(new_df, existing_df, check_dtype=True)
             
             if not args.quiet:
-                print(f"  {AGGREGATED_OUTPUT}: OK")
+                print(f"  {_shown(output_path)}: OK")
             return 0
         except AssertionError as exc:
-            print(f"  {AGGREGATED_OUTPUT}: STALE (content mismatch)", file=sys.stderr)
+            print(f"  {_shown(output_path)}: STALE (content mismatch)", file=sys.stderr)
             print(f"\n{exc}", file=sys.stderr)
             return 1
         except Exception as exc:
-            print(f"  {AGGREGATED_OUTPUT}: STALE (read error: {exc})", file=sys.stderr)
+            print(f"  {_shown(output_path)}: STALE (read error: {exc})", file=sys.stderr)
             return 1
 
     # Write mode
-    new_df.to_parquet(AGGREGATED_OUTPUT, index=False)
+    new_df.to_parquet(output_path, index=False)
     if not args.quiet:
         print(
-            f"  wrote {AGGREGATED_OUTPUT} "
+            f"  wrote {_shown(output_path)} "
             f"({len(new_df)} rows, "
             f"{new_df['country_count'].sum()} countries)"
         )
