@@ -19,10 +19,12 @@ Depends on pyarrow. If pyarrow is not installed, the tool prints a
 warning and exits 0 (advisory). Phase 7's CI installs pyarrow, so the
 artifact is regenerated and checked there.
 
-Deterministic: rows sorted by alpha_2. Parquet files are not guaranteed
-byte-identical across runs (file metadata includes row group statistics
-that are stable, but the writer may embed timestamps). The --check mode
-therefore compares logical content, not bytes.
+Deterministic: rows sorted by alpha_2. Parquet files are byte-identical
+across runs when the pyarrow version is pinned (see requirements-dev.txt).
+The --check mode compares bytes exactly, on the assumption that the
+pinned pyarrow version produces deterministic output. If a future pyarrow
+version introduces non-determinism, the pin is the fix, not loosening the
+check.
 
 Usage:
     python3 tools/export_parquet.py
