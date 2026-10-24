@@ -36,7 +36,6 @@ import argparse
 import json
 import re
 import sys
-from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -148,7 +147,10 @@ def build_snapshot(source_path: Path) -> dict[str, Any]:
             "tools/gen_iso4217_snapshot.py on every ISO 4217 release."
         ),
         "meta": {
-            "generated": str(date.today()),
+            # No `generated` field: --check compares the whole file, so a
+            # date stamped at generation time would make it fail the day
+            # after. `iso4217_version` and `iso4217_updated`, copied from
+            # the source registry, are the freshness signals.
             "source": "slimissa/iso4217",
             "iso4217_version": str(source_meta.get("version", "")),
             "iso4217_updated": str(source_meta.get("updated", "")),
