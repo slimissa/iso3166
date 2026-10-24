@@ -8,6 +8,87 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.2] — 2026-10-DD
+
+Tool correctness. Small defect fixes across the toolkit found during
+the v1.7.x-v1.8.x audit. `iso3166.json`, the schema and the wrapper APIs
+are unchanged.
+
+### Fixed
+
+- `tools/check_mojibake.py` — corrected the duplicated and truncated
+  range-signature docstring, and made it a raw string so the byte
+  patterns it quotes print as written. Added the
+  `\xc3\x82\xc2[\x80-\xbf]` pattern for `Â`+C2xx corruption. The
+  accented-letter range missed the whole U+0080-U+00BF block (64 code
+  points: currency symbols `¢ £ ¥`, `¿ ¼ ½ ¾`, the copyright and degree
+  signs, guillemets).
+- `tools/check_version_consistency.py` — corrected the docstring
+  (Cargo.lock and the README badge are both checked; the prior text said
+  they weren't). Relaxed the badge regex from `-orange` only to any
+  colour name or hex value. Before, a badge in another colour was
+  silently skipped, so a wrong README version passed.
+- `tools/gen_iso4217_snapshot.py` — removed `"generated": date.today()`
+  from the output. `--check` compares the whole file, so it failed the
+  day after generation. `--check` is now deterministic. The `generated`
+  key is also removed from `tools/iso4217_snapshot.json`, which must
+  match the generator's output.
+- `tools/validate.py`, `tools/enrich_field.py` — `CALLING_CODE_RE` now
+  lives in `tools/patterns.py` and both tools use it. `validate.py`
+  accepted only digits while `enrich_field.py` accepted `1-340`-style
+  sub-prefixes. No data uses the hyphen form. `schema.json` still
+  requires `^[0-9]+$`, so the schema layer would still reject a hyphen
+  form; that is a schema change and is not made here.
+- `tools/export_parquet.py` — module docstring corrected to match the
+  implementation (byte comparison, with pyarrow pinned in
+  `requirements-dev.txt`). It promised "logical content, not bytes"
+  while `--check` used `read_bytes() ==`.
+- `README.md` — the `docs/`, `tools/` and `tests/` trees were stale
+  (listed `v1.6.7-verification.md`; omitted `input-contract.md`,
+  `AUDIT.md`, `README-AUDIT-NOTES.md`, four tools and the test files).
+
+### Changed
+
+- **`PROJECT_ROOT` consistency.** 17 tools (`audit_languages.py`,
+  `build_initial_data.py`, `check_iso4217_snapshot.py`,
+  `check_version_consistency.py`, `enrich_field.py`,
+  `enrich_independent.py`, `enrich_official_name.py`,
+  `enrich_withdrawn.py`, `export_csv.py`, `export_sql.py`,
+  `export_parquet.py`, `gen_consistency_fixture.py`,
+  `gen_withdrawn_doc.py`, `gen_iso4217_snapshot.py`, `parse_source.py`,
+  `sync_wrappers.py`, `validate.py`) now resolve repository files with
+  `Path(__file__).resolve().parent.parent` instead of relative
+  `Path("iso3166.json")`, so they work from any directory. They exit 2
+  with a message if `iso3166.json` is not beside `tools/`. A path given
+  on the command line still resolves against the current directory.
+  Messages that name a file now print its absolute path.
+  `export_aggregated.py` and `iso3166_cli.py` are deliberately left
+  CWD-relative: the tests for the first run it in an isolated directory.
+
+### Added
+
+- `tools/patterns.py` — shared regex module. Currently exports
+  `CALLING_CODE_RE`. Tools import it as `from patterns import ...`.
+- `tools/check_release_claims.py` — supports `{file, absent}` claims
+  (the docstring documented only `contains`). A claim may combine
+  `contains` and `absent`. Unknown keys and empty or non-string needles
+  now fail instead of degrading to an existence check, and a binary
+  file fails cleanly instead of raising `UnicodeDecodeError`.
+  Existence-only claims never read the file.
+- `docs/RELEASE_PATTERN.md` — rules 20 (bundle layout guard), 21
+  (deliver as `.tar.gz`), 22 (preflight "CI running" is normal, not
+  stuck).
+
+### Notes
+
+- The `absent` claim type is self-tested by this release's manifest
+  (3 claims use it).
+- `tools/patterns.py` is the first shared module. It exists because
+  `validate.py` and `enrich_field.py` had divergent patterns for
+  calling codes; any future shared regex gets the same treatment.
+- F31 (upstream-drift detection, from the ISO 4217 v1.9.x thread) is
+  deferred to a future release. Not in scope here.
+
 ## [1.8.1] — 2026-10-22
 
 Pattern documentation parity with ISO 4217 and ISO 10383. No code
