@@ -53,6 +53,7 @@ if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))
 
 import parse_source  # noqa: E402
+from patterns import CALLING_CODE_RE  # noqa: E402
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -97,7 +98,6 @@ ALPHA_2_RE = re.compile(r"^[A-Z]{2}$")
 ALPHA_3_RE = re.compile(r"^[A-Z]{3}$")
 NUMERIC_RE = re.compile(r"^[0-9]{3}$")
 ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-CALLING_CODE_RE = re.compile(r"^[0-9]+$")
 TLD_RE = re.compile(r"^\.[a-z]{2,}$")
 LANGUAGE_RE = re.compile(r"^[a-z]{3}$")
 
@@ -297,7 +297,7 @@ def layer_integrity(reg: dict[str, Any]) -> LayerResult:
                     r.error(f"{where}: replaced_by {code!r} is not ^[A-Z]{{2}}$")
             for code in entry.get("calling_codes") or []:
                 if not CALLING_CODE_RE.fullmatch(code):
-                    r.error(f"{where}: calling_code {code!r} is not ^[0-9]+$")
+                    r.error(f"{where}: calling_code {code!r} does not match {CALLING_CODE_RE.pattern}")
             for tld in entry.get("tlds") or []:
                 if not TLD_RE.fullmatch(tld):
                     r.error(f"{where}: tld {tld!r} is not ^\\.[a-z]{{2,}}$")

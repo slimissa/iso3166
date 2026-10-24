@@ -61,6 +61,9 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from patterns import CALLING_CODE_RE  # noqa: E402
+
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if not (PROJECT_ROOT / "iso3166.json").is_file():
@@ -99,8 +102,7 @@ FIELDS: dict[str, FieldConfig] = {
     ),
     "calling_codes": FieldConfig(
         name="calling_codes",
-        # Allow "1-340" for sub-prefixes under a shared root.
-        item_pattern=r"^[0-9]+(-[0-9]+)?$",
+        item_pattern=CALLING_CODE_RE.pattern,
         snapshot_path=PROJECT_ROOT / "tools/itu_calling_code_snapshot.json",
         snapshot_key="codes",
         # One URL for the whole ITU list.
