@@ -228,10 +228,13 @@ iso3166/
 │   ├── ENRICHMENT.md            # Per-field sourcing and edge cases
 │   ├── LAYERS.md                # RAW / CURATED / AGGREGATED model
 │   ├── WITHDRAWN.md             # Generated table of withdrawn entries
+│   ├── AUDIT.md                 # Tool inventory (v1.8.1)
+│   ├── README-AUDIT-NOTES.md    # Rule receipts (v1.8.1)
 │   ├── RELEASE_PATTERN.md       # Shared release-pattern document
-│   ├── v1.6.7-verification.md   # Current release verification report
+│   ├── v*-verification.md       # One per release
 │   └── decisions/
 │       ├── v1.0.0-decisions.md  # D1–D8
+│       ├── input-contract.md    # Input contract ADR (v1.8.0)
 │       ├── withdrawn-codes.md   # ADR for ISO 3166-3 successor handling
 │       ├── languages-borders-sources.md
 │       ├── languages-audit-2026-09.md
@@ -255,24 +258,30 @@ iso3166/
 │   ├── enrich_official_name.py  # Populate official_name (per-entry OBP)
 │   ├── enrich_withdrawn.py      # Populate withdrawn entries
 │   ├── enrich_field.py          # Populate 7 list- and scalar-typed fields
+│   ├── enrich_independent.py    # Populate independent (OBP snapshot, audit trail)
+│   ├── migrate_notes_to_per_field.py  # One-shot note migration (v1.7.2, archival)
 │   ├── audit_languages.py       # Classify entries' language lists
 │   ├── export_sql.py            # SQL exporter (--check for CI)
 │   ├── export_csv.py            # CSV/TSV exporter (--check)
 │   ├── export_parquet.py        # Parquet exporter (--check)
+│   ├── export_aggregated.py     # AGGREGATED exporter (--check)
 │   ├── sync_wrappers.py         # Bundled JSON sync (--check)
 │   ├── gen_consistency_fixture.py
 │   ├── check_version_consistency.py
 │   ├── check_mojibake.py        # UTF-8/Latin-1 round-trip detector
+│   ├── patterns.py              # Regexes shared by more than one tool
 │   ├── check_snapshot_freshness.py  # review_by check on vendored snapshots
 │   ├── check_release_claims.py  # per-version claims verifier
 │   ├── release_claims.json      # manifest of per-version claims
 │   ├── version_axes.json        # declarative version-site contract
 │   ├── gen_withdrawn_doc.py     # Generate docs/WITHDRAWN.md (--check)
 │   ├── gen_iso4217_snapshot.py  # Cross-registry snapshot generator
+│   ├── check_iso4217_snapshot.py  # ISO 4217 snapshot well-formedness (advisory)
 │   ├── iso3166_cli.py           # CLI
 │   ├── check_cross_language.sh  # Four-wrapper agreement check
 │   │
 │   ├── iso4217_snapshot.json    # ISO 4217 codes for cross-reference
+│   ├── independent_snapshot.json  # Per-entry OBP independence values
 │   ├── iso639_3_snapshot.json   # ISO 639-3 language codes
 │   ├── itu_calling_code_snapshot.json
 │   ├── iana_tld_snapshot.json
@@ -283,7 +292,8 @@ iso3166/
 │   └── release.sh               # Deterministic release pipeline
 │
 ├── tests/
-│   └── cross_language_consistency.json
+│   ├── cross_language_consistency.json
+│   └── test_*.py                # pytest suite (run in CI)
 │
 ├── wrappers/
 │   ├── python/                  # pip install -e wrappers/python
