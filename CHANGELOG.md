@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.8.3] — 2026-10-DD
+## [1.8.3] — 2026-10-22
 
 Release correctness. Three defects in `release.sh` and the enrichment
 and export tools that made checks pass when they should have failed, or
