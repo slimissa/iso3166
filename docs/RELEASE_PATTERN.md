@@ -537,6 +537,24 @@ new commit arrives on the same ref, so that restarts the wait. See also
 Rule 18 (`CI_START_TIMEOUT`) and v1.8.1, whose release was refused three
 times while CI ran.
 
+### 23. Preflight Refuses Any Non-Success CI Conclusion
+
+Rule 23: the `release.sh` preflight refuses unless every CI run on HEAD
+completed with `success`. It names `failure`, `cancelled`, `timed_out` and
+`startup_failure` in its message, and it refuses every other conclusion
+too (`skipped`, `neutral`, `action_required`, `stale`, none), because a
+list of bad conclusions cannot be complete. `cancelled` is what GitHub's
+`cancel-in-progress` setting produces when a newer push supersedes a run;
+`startup_failure` is a workflow that never started. Neither is green.
+Step 4 already refused any non-success conclusion, but only after the
+release commit had been pushed to `main`. The preflight is what stops the
+release before it bumps and pushes.
+
+Reference: ISO 3166 v1.8.3. The v1.7.2 preflight matched only
+`' failure$'`, so a HEAD run that ended `cancelled` passed it. A
+scratch-repo `--dry-run` with a fake `gh` reported "CI on HEAD is green"
+and ran to the end.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:

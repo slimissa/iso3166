@@ -100,3 +100,14 @@ ISO 4217 held its vendored copy of this registry at v1.6.9 through
 v1.8.0, a gap of six releases (v1.7.0 to v1.7.4, then v1.8.0). Its
 `review_by` check is calendar-based, not release-based, so it did not flag
 the gap. Upstream-drift detection is deferred to v1.9.1.
+
+### Rule 23 — Preflight refuses any non-success CI conclusion
+
+The CI check in the `release.sh` preflight was added in v1.7.2, after a
+run was cancelled when the release commit pushed, but it matched only
+`failure`, so `cancelled`, `timed_out` and `startup_failure` still
+passed. Found in v1.8.2 verification by reading the script, and
+reproduced in v1.8.3: a `--dry-run` in a scratch repo with a fake `gh`
+printed "CI on HEAD is green" for a `cancelled` run. Step 4 already
+refused non-success conclusions, so no tag could be created on unverified
+code; the cost was a release commit pushed to `main` first.
