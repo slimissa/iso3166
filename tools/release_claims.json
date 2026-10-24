@@ -203,5 +203,42 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.8.1]"
     }
+  ],
+  "1.8.2": [
+    {
+      "file": "tools/patterns.py"
+    },
+    {
+      "file": "tools/check_mojibake.py",
+      "contains": "\\xc3\\x82\\xc2"
+    },
+    {
+      "file": "tools/gen_iso4217_snapshot.py",
+      "absent": "date.today()"
+    },
+    {
+      "file": "tools/iso4217_snapshot.json",
+      "absent": "\"generated\""
+    },
+    {
+      "file": "tools/export_parquet.py",
+      "absent": "logical content, not bytes"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 20"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 21"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 22"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.8.2]"
+    }
   ]
 }
