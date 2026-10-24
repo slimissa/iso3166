@@ -9,6 +9,13 @@ Each claim is one of:
 
   {"file": "path"}                     — path must exist
   {"file": "path", "contains": "text"} — path must exist and include text
+  {"file": "path", "absent": "text"}   — path must exist and NOT include text
+
+"contains" and "absent" may be combined in one claim. Both need a
+non-empty string. A claim with any other key fails, so a misspelled key
+cannot silently turn into a bare existence check. Existence-only claims
+never read the file, so they work for binary artifacts; "contains" and
+"absent" claims read it as UTF-8 and fail cleanly on a binary file.
 
 Usage:
     python3 tools/check_release_claims.py 1.6.5
@@ -47,18 +54,45 @@ def load_manifest() -> dict:
         raise FatalError(f"{MANIFEST}: invalid JSON: {exc}") from exc
 
 
+CLAIM_KEYS = frozenset({"file", "contains", "absent"})
+
+
 def check_claim(claim: dict) -> tuple[bool, str]:
     if "file" not in claim:
         return False, "claim has no 'file' key"
-    path = PROJECT_ROOT / claim["file"]
+    name = claim["file"]
+    if not isinstance(name, str):
+        return False, f"'file' must be a string, got {name!r}"
+    unknown = sorted(set(claim) - CLAIM_KEYS)
+    if unknown:
+        return False, f"{name}: unknown claim key(s): {', '.join(unknown)}"
+    for key in ("contains", "absent"):
+        if key in claim and (not isinstance(claim[key], str) or not claim[key]):
+            return False, f"{name}: '{key}' must be a non-empty string"
+
+    path = PROJECT_ROOT / name
     if not path.exists():
-        return False, f"missing file: {claim['file']}"
+        return False, f"missing file: {name}"
+    if "contains" not in claim and "absent" not in claim:
+        return True, f"{name} exists"
+
+    try:
+        content = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return False, f"{name}: binary file, cannot read as UTF-8"
+
+    details = []
     if "contains" in claim:
         needle = claim["contains"]
-        if needle not in path.read_text(encoding="utf-8"):
-            return False, f"{claim['file']} does not contain {needle!r}"
-        return True, f"{claim['file']} contains {needle!r}"
-    return True, f"{claim['file']} exists"
+        if needle not in content:
+            return False, f"{name} does not contain {needle!r}"
+        details.append(f"contains {needle!r}")
+    if "absent" in claim:
+        needle = claim["absent"]
+        if needle in content:
+            return False, f"{name} contains forbidden {needle!r}"
+        details.append(f"does not contain {needle!r}")
+    return True, f"{name} " + " and ".join(details)
 
 
 def main(argv: list[str] | None = None) -> int:
