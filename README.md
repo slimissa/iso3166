@@ -304,7 +304,7 @@ iso3166/
 ├── bin/
 │   └── iso3166                  # Shell wrapper (prefers installed CLI)
 │
-└── .github/workflows/validate.yml  # 20 CI jobs
+└── .github/workflows/validate.yml  # 21 CI jobs
 ```
 
 ---
@@ -433,7 +433,7 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 
 **Bump** — the eight version sites, verified to agree afterward.
 
-**Gate** — a fail-fast subshell with `set -e`. 26 checks run in sequence; the first failure stops the release:
+**Gate** — a fail-fast subshell with `set -e`. 27 checks run in sequence; the first failure stops the release:
 
 1. `check_version_consistency.py`
 2. `check_release_claims.py <version>`
@@ -442,15 +442,16 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 5. `check_registry_freshness.py`
 6. `validate.py --strict-count --strict-independent`
 7. `check_state_doc.py --strict`
-8. `enrich_official_name.py --check` and `enrich_withdrawn.py --check` (two invocations)
-9. Seven `enrich_field.py --check` invocations
-10. Four `export_*.py --check` invocations (SQL, CSV, Parquet, aggregated Parquet)
-11. `sync_wrappers.py --check`
-12. `gen_consistency_fixture.py --check`
-13. `gen_withdrawn_doc.py --check`
-14. Root test suite (`pytest tests/`)
-15. Python wrapper test suite
-16. `check_cross_language.sh US GB JP`
+8. `check_docs_match_tree.py`
+9. `enrich_official_name.py --check` and `enrich_withdrawn.py --check` (two invocations)
+10. Seven `enrich_field.py --check` invocations
+11. Four `export_*.py --check` invocations (SQL, CSV, Parquet, aggregated Parquet)
+12. `sync_wrappers.py --check`
+13. `gen_consistency_fixture.py --check`
+14. `gen_withdrawn_doc.py --check`
+15. Root test suite (`pytest tests/`)
+16. Python wrapper test suite
+17. `check_cross_language.sh US GB JP`
 
 **Commit, push, wait** — polls every per-push workflow on the pushed SHA until all report `completed success`.
 
@@ -520,7 +521,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md). The short version:
 2. Data corrections go through an enrichment tool, not hand-edits.
 3. Run `python3 tools/validate.py iso3166.json --strict-count` — must exit 0.
 4. Run `bash tools/check_cross_language.sh US` — must exit 0.
-5. Submit a PR. CI runs 20 jobs.
+5. Submit a PR. CI runs 21 jobs.
 
 **No third-party sources.** Wikipedia, countrycode.org, aggregator CSVs, and blog posts are not acceptable as the origin of a field.
 

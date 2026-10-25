@@ -394,6 +394,22 @@ jobs:
         run: python3 tools/check_state_doc.py --strict
 
   # =================================================================
+  # 8d. Prose docs match the tree.
+  # =================================================================
+  check-docs-match-tree:
+    name: check docs match tree
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS match the tree
+        run: python3 tools/check_docs_match_tree.py
+
+  # =================================================================
   # 9. Mojibake scan. Every text file in the repo is checked for
   #    UTF-8 / Latin-1 round-trip corruption. Sub-second.
   # =================================================================
