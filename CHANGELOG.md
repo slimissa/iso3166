@@ -8,6 +8,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] — 2026-10-25
+
+State documentation. The registry is now externally auditable: a
+single state document, machine-verified on every push.
+
+### Added
+
+- `docs/STATE.md` — current state as of v1.9.0: registry data counts,
+  per-field populated counts, cross-registry snapshot versions,
+  CI summary, and known limitations. Every number is computed.
+- `tools/gen_state_doc.py` — generates `docs/STATE.md` from the tree;
+  re-run it on each release.
+- `tools/check_state_doc.py` — verifies every numeric claim in
+  `docs/STATE.md` against the tree (registry counts, per-field counts
+  and missing-lists, snapshot versions and review dates, CI job and
+  gate counts, title version). Fails CI on drift. New `check-state-doc`
+  CI job and a gate step in `scripts/release.sh`.
+- `tools/check_registry_freshness.py` — enforces `last_verified`
+  within 365 days across all entries. `--today` flag for testing,
+  `--warn` mode for advisory use. Not wired into CI or the gate.
+- `docs/RELEASE_PATTERN.md` — rule 24: state docs are generated and
+  verified. `docs/README-AUDIT-NOTES.md` gains the receipt, and
+  `tests/test_release_pattern.py` pins the rule.
+
+### Changed
+
+- `iso3166.json` — `AI` (Anguilla) `subregion` corrected from
+  `"Caribbean"` to `"Latin America and the Caribbean"` (the M49
+  subregion name; the other 27 Caribbean entries already used this
+  form). `note` records the correction. The CSV, TSV, SQL, Parquet and
+  wrapper copies, and `countries_by_region.parquet` (which had a
+  separate `Caribbean` group of one), are regenerated from it.
+- `.github/workflows/validate.yml` and `scripts/release.sh` — the
+  `enrich_field.py --check` runs for `subregion` and
+  `intermediate_region` are now in the `check-fields` job and the
+  release gate. Previously they had working `--check` modes (v1.8.3)
+  but were not wired into either.
+
+### Notes
+
+- This is the last release before the ecosystem release (v1.10.0).
+  After v1.10.0, all four registries share one `RELEASE_PATTERN.md`
+  ruleset with receipts and one `AUDIT.md` tool inventory.
+- `check_registry_freshness.py` uses a 365-day threshold. ISO
+  3166-1 amends every 1-3 years; a year of staleness is the
+  threshold that forces annual re-attestation without being
+  over-aggressive.
+- The `ISO 4217` snapshot `review_by` is 2026-12-26;
+  `check_snapshot_freshness.py` fails after that date unless the
+  snapshot is refreshed.
+
 ## [1.8.3] — 2026-10-22
 
 Release correctness. Three defects in `release.sh` and the enrichment
