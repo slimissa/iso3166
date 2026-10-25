@@ -282,5 +282,51 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.8.3]"
     }
+  ],
+  "1.9.0": [
+    {
+      "file": "docs/STATE.md"
+    },
+    {
+      "file": "tools/gen_state_doc.py"
+    },
+    {
+      "file": "tools/check_state_doc.py"
+    },
+    {
+      "file": "tools/check_registry_freshness.py"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "subregion corrected 2026-10-25"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "Check subregion completeness"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "check-state-doc"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "subregion --check"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "grep -qvx 'completed success'"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 24"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md",
+      "contains": "Rule 24"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.9.0]"
+    }
   ]
 }
