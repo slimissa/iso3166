@@ -4,6 +4,12 @@ Every field in `iso3166.json` traces to a first-party source. This
 document records those sources, the refresh cadence, the audit
 procedure, and the known gaps in v1.0.0.
 
+This document is current as of v1.9.2 for the sections "Sources", "Current
+sources and refresh" and "Refresh cadence". The sections titled "Known
+gaps in v1.0.0" and "Known limitations in v1.0.0" are a historical record
+of the first release; the present state of the registry is in
+[`STATE.md`](./STATE.md).
+
 ## Sources
 
 | Field(s) | Source | URL |
@@ -11,11 +17,32 @@ procedure, and the known gaps in v1.0.0.
 | `alpha_2`, `alpha_3`, `numeric`, `name`, `independent` | ISO 3166-1:2020 | https://www.iso.org/iso-3166-country-codes.html |
 | `region`, `subregion`, `intermediate_region` | UN M49 | https://unstats.un.org/unsd/methodology/m49/ |
 | `withdrawal_date`, `replaced_by` | ISO 3166-3:2013 | https://www.iso.org/standard/63545.html |
-| `currency_codes` (future) | ISO 4217, via committed snapshot | https://github.com/slimissa/iso4217 |
+| `currency_codes` | ISO 4217, via committed snapshot | https://github.com/slimissa/iso4217 |
 | `tools/iso4217_snapshot.json` | ISO 4217, regenerated from the sibling registry | https://github.com/slimissa/iso4217 |
-| `tlds` (future) | IANA ccTLD registry | https://www.iana.org/domains/root/db |
-| `calling_codes` (future) | ITU-T E.164 | https://www.itu.int/ |
-| `languages` (future) | ISO 639-3 | https://iso639-3.sil.org/ |
+| `tlds` | IANA ccTLD registry | https://www.iana.org/domains/root/db |
+| `calling_codes` | ITU-T E.164 | https://www.itu.int/ |
+| `official_name` | ISO 3166-1 Online Browsing Platform | https://www.iso.org/obp/ui/ |
+| `languages` | CIA World Factbook; codes are ISO 639-3 | https://www.cia.gov/the-world-factbook/ |
+| `borders` | CIA World Factbook, land boundaries | https://www.cia.gov/the-world-factbook/ |
+
+## Current sources and refresh
+
+Per enriched field: where it comes from and when it was last refreshed.
+For snapshot-backed fields the date is the snapshot's own date. Fields
+sourced per entry carry no snapshot, so the date is the newest
+`last_verified` among entries that have the field populated. Cadence is as
+documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
+
+| Field | Source | Last refreshed | Cadence |
+|-------|--------|----------------|---------|
+| `official_name` | ISO 3166-1 Online Browsing Platform, per entry | 2026-10-21 (newest `last_verified` among populated entries) | per amendment |
+| `currency_codes` | ISO 4217 snapshot (v1.8.0) | 2026-10-16 (snapshot date) | per amendment |
+| `calling_codes` | ITU-T E.164 snapshot | 2026-09-23 (snapshot generated) | rare |
+| `tlds` | IANA snapshot | 2026-09-23 (snapshot generated) | rare |
+| `languages` | CIA World Factbook, codes validated against ISO 639-3 snapshot | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
+| `borders` | CIA World Factbook, land boundaries | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
+| `subregion` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
+| `intermediate_region` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
 
 ## What is a first-party source
 
@@ -37,7 +64,7 @@ field is honest; a wrong field is not.
 | ISO publishes an amendment to ISO 3166-3 | Manual update within 30 days; new patch release |
 | UN M49 publishes an update | Manual cross-check; update `region` fields if changed |
 | ISO 4217 publishes a new version | Snapshot refresh (see D5); patch release if `currency_codes` change |
-| Quarterly | Audit sweep: re-verify `last_verified` on curated entries; flag any older than 18 months |
+| Quarterly | Audit sweep: re-verify `last_verified` on curated entries; `tools/check_registry_freshness.py` fails the release gate for any entry older than 365 days |
 
 There is no automatic sync. Every update is a human-reviewed commit
 with the source cited in the commit message and the CHANGELOG entry.
