@@ -8,6 +8,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.3] — 2026-10-26
+
+Tool truth. The CI toolchain is pinned and current, the docs listed in the
+v1.9.2 follow-ups are corrected, and `check_docs_match_tree.py` checks
+three more of them. The version-string policy is recorded in
+`docs/decisions/v1.9.3-version-policy.md`.
+
+### Fixed
+
+- `.github/workflows/validate.yml` — `govulncheck` is pinned to `v1.1.4`
+  instead of `@latest`. `govulncheck` v1.2.0 and later require Go 1.25 or
+  newer, while the Go wrapper job runs Go 1.23 and 1.24, so `@latest`
+  made `go install` download a newer toolchain mid-job. v1.1.4 declares
+  Go 1.22.0.
+- `.github/workflows/validate.yml` — `actions/checkout` v4 -> v5,
+  `actions/setup-python` v5 -> v6, `actions/setup-node` v4 -> v5 and
+  `actions/setup-go` v5 -> v6, all of which run on Node 24 (the old
+  majors run on Node 20).
+- `README.md` — "four auxiliary checks" is now eight, and the table lists
+  each check with where it runs (CI, release gate, or both).
+- `docs/LAYERS.md` — the CURATED table gains the consistency fixture,
+  `docs/WITHDRAWN.md` and `docs/STATE.md`, which `release.sh` step 2
+  regenerates.
+- `docs/ENRICHMENT.md` — the `subregion` section now lists all five
+  active entries whose subregion is null (AQ, EU, TW, UK, XK) and drops
+  the claim that each carries an explanatory note.
+
+### Added
+
+- `tools/check_docs_match_tree.py` — three more checks: the README's
+  auxiliary-check count and table, `docs/LAYERS.md` naming every
+  generator `release.sh` step 2 runs, and `docs/ENRICHMENT.md` naming
+  every entry with a null `subregion`.
+- `docs/decisions/v1.9.3-version-policy.md` — records how
+  `PROVENANCE.md` and `CONTRIBUTING.md` carry a version string, and the
+  alternative.
+
+### Notes
+
+- `dtolnay/rust-toolchain@stable` is unchanged: it is a rolling channel
+  by design, not `@latest`. Newer majors of the four bumped actions
+  (v7 at the time of writing) were not evaluated.
+
 ## [1.9.2] — 2026-10-25
 
 Documentation truth. The docs now match the tree, and a new check keeps
