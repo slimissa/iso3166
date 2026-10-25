@@ -111,3 +111,11 @@ reproduced in v1.8.3: a `--dry-run` in a scratch repo with a fake `gh`
 printed "CI on HEAD is green" for a `cancelled` run. Step 4 already
 refused non-success conclusions, so no tag could be created on unverified
 code; the cost was a release commit pushed to `main` first.
+
+### Rule 24 — State docs are generated and verified
+
+`docs/PROVENANCE.md` still described the known gaps in v1.0.0 while the
+registry shipped v1.8.x. `docs/ENRICHMENT.md` said "four enriched fields"
+while the registry carried more. Neither was checked by any tool.
+STATE.md plus `check_state_doc.py` (v1.9.0) close the class: a single
+state doc that is machine-verified on every push.

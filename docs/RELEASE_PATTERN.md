@@ -555,6 +555,23 @@ Reference: ISO 3166 v1.8.3. The v1.7.2 preflight matched only
 scratch-repo `--dry-run` with a fake `gh` reported "CI on HEAD is green"
 and ran to the end.
 
+### 24. State Docs Are Generated and Verified
+
+Rule 24: every registry ships a `docs/STATE.md` that answers "what is the
+state of this registry right now?" It is generated from the registry data
+(or manually curated with per-field counts), and `check_state_doc.py`
+verifies every numeric claim against the tree on every push. When
+STATE.md drifts, CI fails.
+
+The doc is required because a reader who reads dozens of
+`docs/v*-verification.md` files to reconstruct state is a reader who will
+miss something. One document, verifiable by one command, is the contract.
+
+Reference: ISO 3166 v1.9.0. Before v1.9.0, `PROVENANCE.md` still listed
+the "known gaps in v1.0.0" and `ENRICHMENT.md` still said "four enriched
+fields" while the registry carried more. Neither was checked. STATE.md
+and its checker close that class.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:
