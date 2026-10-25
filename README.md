@@ -433,19 +433,24 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 
 **Bump** — the eight version sites, verified to agree afterward.
 
-**Gate** — a fail-fast subshell with `set -e`. Fourteen checks run in sequence; the first failure stops the release:
+**Gate** — a fail-fast subshell with `set -e`. 26 checks run in sequence; the first failure stops the release:
 
 1. `check_version_consistency.py`
 2. `check_release_claims.py <version>`
 3. `check_mojibake.py`
 4. `check_snapshot_freshness.py`
-5. `validate.py --strict-count`
-6. Seven `enrich_field.py --check` invocations
-7. Four `export_*.py --check` invocations
-8. `sync_wrappers.py --check`
-9. `gen_consistency_fixture.py --check`
-10. `gen_withdrawn_doc.py --check`
-11. Python wrapper test suite
+5. `check_registry_freshness.py`
+6. `validate.py --strict-count --strict-independent`
+7. `check_state_doc.py --strict`
+8. `enrich_official_name.py --check` and `enrich_withdrawn.py --check` (two invocations)
+9. Seven `enrich_field.py --check` invocations
+10. Four `export_*.py --check` invocations (SQL, CSV, Parquet, aggregated Parquet)
+11. `sync_wrappers.py --check`
+12. `gen_consistency_fixture.py --check`
+13. `gen_withdrawn_doc.py --check`
+14. Root test suite (`pytest tests/`)
+15. Python wrapper test suite
+16. `check_cross_language.sh US GB JP`
 
 **Commit, push, wait** — polls every per-push workflow on the pushed SHA until all report `completed success`.
 
