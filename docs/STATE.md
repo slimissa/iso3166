@@ -34,7 +34,7 @@ A list field counts as populated when it is non-empty; any other field when it i
 
 | Snapshot | Version | File | Review by |
 |----------|---------|------|-----------|
-| ISO 4217 | 1.8.0 | tools/iso4217_snapshot.json | 2026-12-26 |
+| ISO 4217 | 1.8.0 | tools/iso4217_snapshot.json | 2027-10-25 |
 | ISO 639-3 | 7927 codes | tools/iso639_3_snapshot.json | 2027-09-27 |
 | ITU calling codes | 204 codes | tools/itu_calling_code_snapshot.json | 2027-09-27 |
 | IANA ccTLDs | 248 TLDs | tools/iana_tld_snapshot.json | 2027-09-27 |
