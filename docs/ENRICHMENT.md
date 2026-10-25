@@ -264,8 +264,13 @@ single subregion applies.
   Southern and Antarctic Territories), SU (USSR).
 - Uninhabited entries stay null: CT, JT, MI, NQ, WK.
 - The UN M49 does not assign a subregion to AQ (Antarctica) or to
-  TW (Taiwan). Both stay null on the active side.
-- Each null entry carries a note explaining why.
+  TW (Taiwan). Both stay null; they are the legitimate nulls that
+  `enrich_field.py --field subregion --check` accepts.
+- EU and UK (exceptionally-reserved) and XK (user-assigned) are not
+  officially assigned by ISO 3166-1 and carry no M49 subregion here.
+  They are also null, and `--check` does not examine them: it covers
+  officially-assigned entries only.
+- Null on the active side: AQ, EU, TW, UK, XK.
 
 **Refresh.** Rare. The UN M49 subregion list is closed: 22 names.
 

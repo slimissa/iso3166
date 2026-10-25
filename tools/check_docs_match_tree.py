@@ -20,6 +20,7 @@ Checks:
   (i) README.md "N auxiliary checks" == rows of its auxiliary-check table,
       and every tools/check_*.py is a row of that table.
   (h) LAYERS.md names every generator that release.sh step 2 runs.
+  (j) ENRICHMENT.md names every entry whose subregion is null.
 
 "Matches VERSION" means: equal to VERSION, or equal to the newest
 CHANGELOG heading when that is newer (staged release, as in
@@ -34,6 +35,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import json
 import re
 import sys
 from pathlib import Path
@@ -182,6 +184,14 @@ def run(root: Path) -> list[tuple[bool, str]]:
     miss = [g for g in gens if g not in layers]
     rec(not miss, "LAYERS.md names every generator release.sh step 2 runs",
         f"missing {miss}", f"{len(gens)} generators")
+    # (j)
+    reg = json.loads(read(root, "iso3166.json"))["countries"]
+    sec = enr.split("## `subregion`", 1)[-1].split("## `intermediate_region`", 1)[0]
+    nulls = [e["alpha_2"] for k in ("active", "withdrawn") for e in reg[k]
+             if e.get("subregion") is None]
+    miss = [c for c in nulls if not re.search(rf"\b{c}\b", sec)]
+    rec(not miss, "ENRICHMENT.md names every entry with a null subregion",
+        f"missing {miss}", f"{len(nulls)} null entries")
     return out
 
 
