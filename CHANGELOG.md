@@ -8,6 +8,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.2] — 2026-10-25
+
+Documentation truth. The docs now match the tree, and a new check keeps
+them matching: `check_docs_match_tree.py` runs in CI and in the release
+gate.
+
+### Fixed
+
+- `README.md` — the release gate section said "Fourteen checks" and
+  listed eleven groups. It now says 27 checks (26 plus the new
+  `check_docs_match_tree.py` below) and lists every gate step, including
+  `check_registry_freshness.py`, `check_state_doc.py` and the aggregated
+  Parquet check. The CI job count reads 21, including the new job below.
+- `docs/ENRICHMENT.md` — said "four enriched fields" and listed four
+  fields in its tables; it documents eight. The field table, the CI gates
+  list (now eight `check-fields` steps) and the refresh policy table
+  cover all eight.
+- `docs/PROVENANCE.md` — gains "current as of" and a per-field source and
+  refresh table. The sources table no longer marks populated fields
+  "(future)", lists the actual sources of `languages` (CIA World Factbook)
+  and `borders`, and the quarterly audit threshold reads 365 days, the
+  limit `check_registry_freshness.py` enforces (it said 18 months).
+- `CONTRIBUTING.md` — said every push runs 14 jobs and listed 14. It now
+  states 21 and lists them all.
+
+### Added
+
+- `tools/check_docs_match_tree.py` — checks the README gate and CI job
+  counts, the ENRICHMENT.md field count, the PROVENANCE.md and
+  CONTRIBUTING.md versions, that LAYERS.md names every root Parquet file,
+  and that CONTRIBUTING.md names every CI job. New `check-docs-match-tree`
+  CI job and a gate step in `scripts/release.sh`.
+- `docs/decisions/v1.9.2-amendments.md` — records where the tree differs
+  from decisions D2, D3, D5 and D7 of `v1.0.0-decisions.md`.
+- `docs/README-AUDIT-NOTES.md` — receipts for the doc-truth fixes.
+
+### Notes
+
+- `PROVENANCE.md` and `CONTRIBUTING.md` carry a version string that the
+  new check ties to `VERSION`: each release must update both, or the gate
+  fails. That is the intended forcing function.
+- `docs/LAYERS.md` already listed `countries_by_region.parquet` in its
+  AGGREGATED section; no change was needed.
+
 ## [1.9.1] — 2026-10-25
 
 Release gate hardening. The release pipeline now enforces three things
