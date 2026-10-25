@@ -78,7 +78,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
-INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AI', 'AIA', '660', 'Anguilla', 'officially-assigned', 0, 'Anguilla', 'Americas', 'Caribbean', 'Caribbean', '1', '.ai', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AI', 'AIA', '660', 'Anguilla', 'officially-assigned', 0, 'Anguilla', 'Americas', 'Latin America and the Caribbean', 'Caribbean', '1', '.ai', 'eng', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AI/
@@ -86,7 +86,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AI/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL);
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source
+subregion corrected 2026-10-25: Caribbean -> Latin America and the Caribbean (M49 subregion name; the 27 other Caribbean entries already used this form)', '2026-09-23', NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AI', 'AFI', '000', 'French Afars and Issas', 'withdrawn', 0, NULL, NULL, 'Eastern Africa', NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-22', '1977-06-27', 'DJ');
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by) VALUES ('AL', 'ALB', '008', 'Albania', 'officially-assigned', 1, 'Republic of Albania', 'Europe', 'Southern Europe', NULL, '355', '.al', 'sqi', 'GR|ME|MK|XK', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AL

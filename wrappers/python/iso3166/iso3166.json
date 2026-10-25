@@ -148,13 +148,13 @@
         ],
         "last_verified": "2026-09-23",
         "name": "Anguilla",
-        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI\ncurrency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AI\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/AI/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/AI/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\nintermediate_region source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source",
+        "note": "official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI\ncurrency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AI\ncalling_codes source: https://www.itu.int/oth/T02020000E8/en\nborders source: https://www.cia.gov/the-world-factbook/countries/AI/\nlanguages source: https://www.cia.gov/the-world-factbook/countries/AI/\ntlds source: https://www.iana.org/domains/root/db\nsubregion source: https://unstats.un.org/unsd/methodology/m49/\nintermediate_region source: https://unstats.un.org/unsd/methodology/m49/\n# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source\nsubregion corrected 2026-10-25: Caribbean -> Latin America and the Caribbean (M49 subregion name; the 27 other Caribbean entries already used this form)",
         "numeric": "660",
         "official_name": "Anguilla",
         "region": "Americas",
         "replaced_by": null,
         "status": "officially-assigned",
-        "subregion": "Caribbean",
+        "subregion": "Latin America and the Caribbean",
         "tlds": [
           ".ai"
         ],

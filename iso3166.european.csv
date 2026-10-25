@@ -32,7 +32,7 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;
-AI;AIA;660;Anguilla;officially-assigned;false;Anguilla;Americas;Caribbean;Caribbean;XCD;1;.ai;eng;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI
+AI;AIA;660;Anguilla;officially-assigned;false;Anguilla;Americas;Latin America and the Caribbean;Caribbean;XCD;1;.ai;eng;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AI
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AI
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/AI/
@@ -40,7 +40,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/AI/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source
+subregion corrected 2026-10-25: Caribbean -> Latin America and the Caribbean (M49 subregion name; the 27 other Caribbean entries already used this form)";2026-09-23;;
 AI;AFI;000;French Afars and Issas;withdrawn;false;;;Eastern Africa;;;;;;;;2026-09-22;1977-06-27;DJ
 AL;ALB;008;Albania;officially-assigned;true;Republic of Albania;Europe;Southern Europe;;ALL;355;.al;sqi;GR|ME|MK|XK;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AL
