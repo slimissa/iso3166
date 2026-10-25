@@ -19,6 +19,7 @@ Checks:
   (g) CONTRIBUTING.md names every CI job id.
   (i) README.md "N auxiliary checks" == rows of its auxiliary-check table,
       and every tools/check_*.py is a row of that table.
+  (h) LAYERS.md names every generator that release.sh step 2 runs.
 
 "Matches VERSION" means: equal to VERSION, or equal to the newest
 CHANGELOG heading when that is newer (staged release, as in
@@ -172,6 +173,15 @@ def run(root: Path) -> list[tuple[bool, str]]:
     miss += [n for n in names if n.endswith(".py") and n not in rows and n not in miss]
     rec(not miss, "README table lists every tools/check_*.py and names every check tool",
         f"missing {sorted(set(miss))}", f"{len(names)} check tools")
+    # (h)
+    rs = read(root, "scripts/release.sh")
+    seg = rs.split("    python3 tools/export_sql.py\n", 1)
+    gens = ["tools/export_sql.py"] + (
+        re.findall(r"^    python3 (tools/[A-Za-z0-9_]+\.py)\s*$",
+                   seg[1].split("GATE_LOG=", 1)[0], re.M) if len(seg) == 2 else [])
+    miss = [g for g in gens if g not in layers]
+    rec(not miss, "LAYERS.md names every generator release.sh step 2 runs",
+        f"missing {miss}", f"{len(gens)} generators")
     return out
 
 

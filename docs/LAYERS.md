@@ -31,6 +31,9 @@ Every CURATED artifact is regenerable from RAW by a single command, producing by
 | `iso3166.parquet` | `tools/export_parquet.py` | ✅ |
 | CLI output | `tools/iso3166_cli.py` | via `check-cli` CI job |
 | Bundled JSON in wrappers | `tools/sync_wrappers.py` | ✅ |
+| `tests/cross_language_consistency.json` | `tools/gen_consistency_fixture.py` | ✅ |
+| `docs/WITHDRAWN.md` | `tools/gen_withdrawn_doc.py` | ✅ |
+| `docs/STATE.md` (also reads the CI workflow, release script and snapshots) | `tools/gen_state_doc.py` | via `tools/check_state_doc.py`, which compares numbers, not bytes |
 
 **Determinism rules:**
 
