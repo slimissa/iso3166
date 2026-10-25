@@ -1,0 +1,230 @@
+#!/usr/bin/env python3
+"""
+tools/gen_state_doc.py
+
+Generate docs/STATE.md, the single "current state" document, from the
+tree. Every number in the document is computed here; none is typed by
+hand. tools/check_state_doc.py verifies the result.
+
+Counting rules (the checker applies the same ones):
+  - a list field counts as populated when it is non-empty;
+  - any other field counts as populated when it is not null;
+  - `independent` counts the entries where it is true.
+
+Usage:
+    python3 tools/gen_state_doc.py                  # write docs/STATE.md
+    python3 tools/gen_state_doc.py --check          # exit 1 if it differs
+    python3 tools/gen_state_doc.py --stdout
+    python3 tools/gen_state_doc.py --version 1.9.0 --date 2026-10-25
+
+Defaults: --version is the top versioned CHANGELOG heading (so the
+document can be written before release.sh bumps VERSION); --date is
+meta.updated.
+
+Exit codes: 0 ok; 1 --check found a difference; 2 usage or input error.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "docs" / "STATE.md"
+
+LIST_FIELDS = ("currency_codes", "calling_codes", "tlds", "languages", "borders")
+# (row label, fields in the row, denominator key, free-text note)
+ROWS = [
+    ("alpha_2, alpha_3, numeric, name, status",
+     ("alpha_2", "alpha_3", "numeric", "name", "status"), "active", "required"),
+    ("independent", ("independent",), "active", "count of entries where it is true"),
+    ("official_name", ("official_name",), "assigned", "officially-assigned entries"),
+    ("currency_codes", ("currency_codes",), "active", ""),
+    ("calling_codes", ("calling_codes",), "active", ""),
+    ("tlds", ("tlds",), "active", ""),
+    ("languages", ("languages",), "active", ""),
+    ("borders", ("borders",), "active", "non-empty; islands and enclaves have []"),
+    ("subregion", ("subregion",), "active", ""),
+    ("intermediate_region", ("intermediate_region",), "active",
+     "defined by M49 only under Sub-Saharan Africa and Latin America and the Caribbean"),
+]
+
+
+def populated(entry: dict, field: str) -> bool:
+    v = entry.get(field)
+    if field == "independent":
+        return v is True
+    if field in LIST_FIELDS:
+        return bool(v)
+    return v is not None
+
+
+def load(root: Path):
+    d = json.loads((root / "iso3166.json").read_text(encoding="utf-8"))
+    return d["meta"], d["countries"]["active"], d["countries"]["withdrawn"]
+
+
+def top_changelog_version(root: Path) -> str:
+    text = (root / "CHANGELOG.md").read_text(encoding="utf-8")
+    m = re.search(r"^## \[(\d+\.\d+\.\d+)\]", text, re.M)
+    if not m:
+        sys.exit("error: CHANGELOG.md has no versioned heading")
+    return m.group(1)
+
+
+def count_jobs(root: Path) -> int:
+    y = (root / ".github" / "workflows" / "validate.yml").read_text(encoding="utf-8")
+    body = y.split("\njobs:\n", 1)[1]
+    return len(re.findall(r"^  [A-Za-z0-9_-]+:\s*$", body, re.M))
+
+
+def count_gate(root: Path) -> int:
+    s = (root / "scripts" / "release.sh").read_text(encoding="utf-8")
+    gate = s.split("set -e\n", 1)[1].split(') > "$GATE_LOG"', 1)[0]
+    return len([ln for ln in gate.splitlines() if ln.strip()])
+
+
+def snapshot_rows(root: Path):
+    t = root / "tools"
+
+    def meta(name):
+        return json.loads((t / name).read_text(encoding="utf-8"))
+
+    s4217 = meta("iso4217_snapshot.json")["meta"]
+    s639 = meta("iso639_3_snapshot.json")
+    itu = meta("itu_calling_code_snapshot.json")
+    iana = meta("iana_tld_snapshot.json")
+    sub = meta("m49_subregion_snapshot.json")
+    inter = meta("m49_intermediate_region_snapshot.json")
+    return [
+        ("ISO 4217", s4217["iso4217_version"], "tools/iso4217_snapshot.json",
+         s4217["review_by"]),
+        ("ISO 639-3", f"{len(s639['languages'])} codes",
+         "tools/iso639_3_snapshot.json", s639["meta"]["review_by"]),
+        ("ITU calling codes", f"{len(itu['codes'])} codes",
+         "tools/itu_calling_code_snapshot.json", itu["meta"]["review_by"]),
+        ("IANA ccTLDs", f"{len(iana['tlds'])} TLDs",
+         "tools/iana_tld_snapshot.json", iana["meta"]["review_by"]),
+        ("UN M49 subregion", f"{len(sub['subregions'])} names",
+         "tools/m49_subregion_snapshot.json", sub["meta"]["review_by"]),
+        ("UN M49 intermediate", f"{len(inter['intermediate_regions'])} names",
+         "tools/m49_intermediate_region_snapshot.json", inter["meta"]["review_by"]),
+    ]
+
+
+def render(root: Path, version: str, date: str) -> str:
+    meta, active, withdrawn = load(root)
+    by_status = {}
+    for e in active:
+        by_status[e["status"]] = by_status.get(e["status"], 0) + 1
+    assigned = by_status.get("officially-assigned", 0)
+    denom = {"active": len(active), "assigned": assigned}
+
+    L: list[str] = []
+    L.append(f"# Current state — v{version} ({date})")
+    L.append("")
+    L.append("Generated by `tools/gen_state_doc.py`; every number below is verified "
+             "against the tree by `tools/check_state_doc.py`. Do not edit numbers "
+             "by hand: re-run the generator.")
+    L.append("")
+    L.append("## Registry data")
+    L.append("")
+    L.append("| Metric | Value |")
+    L.append("|--------|-------|")
+    L.append(f"| Active entries | {len(active)} |")
+    L.append(f"| Officially-assigned | {by_status.get('officially-assigned', 0)} |")
+    L.append(f"| Exceptionally-reserved | {by_status.get('exceptionally-reserved', 0)} |")
+    L.append(f"| User-assigned | {by_status.get('user-assigned', 0)} |")
+    L.append(f"| Withdrawn entries | {len(withdrawn)} |")
+    L.append(f"| Total entries | {len(active) + len(withdrawn)} |")
+    L.append("")
+    L.append("## Populated fields")
+    L.append("")
+    L.append("A list field counts as populated when it is non-empty; any other "
+             "field when it is not null. Active entries only.")
+    L.append("")
+    L.append("| Field | Populated | Notes |")
+    L.append("|-------|-----------|-------|")
+    for label, fields, dkey, note in ROWS:
+        n = sum(1 for e in active if all(populated(e, f) for f in fields))
+        d = denom[dkey]
+        notes = note
+        if label not in ("independent",) and len(fields) == 1 and n != d:
+            miss = [e["alpha_2"] for e in active if not populated(e, fields[0])
+                    if dkey == "active" or e["status"] == "officially-assigned"]
+            if 0 < len(miss) <= 12:
+                m = "missing " + ", ".join(miss)
+                notes = f"{note}; {m}" if note else m
+        L.append(f"| {label} | {n}/{d} | {notes} |")
+    L.append("")
+    L.append("## Cross-registry snapshots vendored")
+    L.append("")
+    L.append("| Snapshot | Version | File | Review by |")
+    L.append("|----------|---------|------|-----------|")
+    for name, ver, f, rb in snapshot_rows(root):
+        L.append(f"| {name} | {ver} | {f} | {rb} |")
+    L.append("")
+    L.append("## CI")
+    L.append("")
+    L.append(f"{count_jobs(root)} jobs (see `.github/workflows/validate.yml`). "
+             f"Release gate has {count_gate(root)} checks (`scripts/release.sh`, step 2).")
+    L.append("")
+    L.append("## Known limitations")
+    L.append("")
+    indep_snap = json.loads((root / "tools" / "independent_snapshot.json")
+                            .read_text(encoding="utf-8"))["entries"]
+    not_in_snap = sorted(e["alpha_2"] for e in active if e["alpha_2"] not in indep_snap)
+    null_sub = sorted(e["alpha_2"] for e in active if e.get("subregion") is None)
+    L.append(f"1. `independent` has no ISO OBP extract for {', '.join(not_in_snap)} "
+             "(`tools/independent_snapshot.json`), so that value has no OBP source.")
+    L.append("2. Withdrawn entries carry `withdrawal_date` only. There is no "
+             "`code_lifetime` field and no assignment date is recorded.")
+    L.append(f"3. `subregion` is null for {', '.join(null_sub)}. AQ and TW have no UN M49 "
+             "subregion; the others are not officially-assigned.")
+    L.append("4. The `--strict-independent` rule blocks Northern America regressions; "
+             "other regions are not yet enforced.")
+    L.append("5. `tools/check_registry_freshness.py` is not wired into CI or the "
+             "release gate; run it by hand.")
+    L.append("")
+    return "\n".join(L)
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--root", type=Path, default=ROOT)
+    ap.add_argument("--output", type=Path)
+    ap.add_argument("--version")
+    ap.add_argument("--date")
+    ap.add_argument("--stdout", action="store_true")
+    ap.add_argument("--check", action="store_true")
+    a = ap.parse_args(argv)
+    root = a.root.resolve()
+    out = a.output or (root / "docs" / "STATE.md")
+    try:
+        meta, _, _ = load(root)
+        version = a.version or top_changelog_version(root)
+        date = a.date or meta["updated"]
+        text = render(root, version, date)
+    except (OSError, KeyError, ValueError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    if a.stdout:
+        sys.stdout.write(text)
+        return 0
+    if a.check:
+        cur = out.read_text(encoding="utf-8") if out.exists() else None
+        if cur != text:
+            print(f"FAIL: {out} differs from generated output", file=sys.stderr)
+            return 1
+        print(f"OK: {out} matches generated output")
+        return 0
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(text, encoding="utf-8")
+    print(f"wrote {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
