@@ -17,3 +17,12 @@ def test_rule_24_present():
     notes = Path("docs/README-AUDIT-NOTES.md").read_text(encoding="utf-8")
     assert "Rule 24" in pattern, "Missing Rule 24 in RELEASE_PATTERN.md"
     assert "Rule 24" in notes, "Missing Rule 24 receipt in README-AUDIT-NOTES.md"
+
+
+def test_rules_25_and_26_present():
+    """Pin rules 25 and 26 in both the pattern and the receipts."""
+    pattern = Path("docs/RELEASE_PATTERN.md").read_text(encoding="utf-8")
+    notes = Path("docs/README-AUDIT-NOTES.md").read_text(encoding="utf-8")
+    for rule in ("Rule 25", "Rule 26"):
+        assert rule in pattern, f"Missing {rule} in RELEASE_PATTERN.md"
+        assert rule in notes, f"Missing {rule} receipt in README-AUDIT-NOTES.md"
