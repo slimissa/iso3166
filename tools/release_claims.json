@@ -328,5 +328,51 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.9.0]"
     }
+  ],
+  "1.9.1": [
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/check_registry_freshness.py\n"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/export_parquet.py\n    python3 tools/export_aggregated.py\n"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/gen_state_doc.py\n"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "grep -qvx 'completed success'"
+    },
+    {
+      "file": "tools/iso4217_snapshot.json",
+      "contains": "\"review_by\": \"2027-10-25\""
+    },
+    {
+      "file": "tools/iso4217_snapshot.json",
+      "absent": "\"review_by\": \"2026-12-26\""
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 25"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "Rule 26"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md",
+      "contains": "Rule 25"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md",
+      "contains": "Rule 26"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.9.1]"
+    }
   ]
 }
