@@ -372,6 +372,22 @@ jobs:
         run: python3 tools/enrich_field.py --field borders --check
 
   # =================================================================
+  # 8c. docs/STATE.md matches the tree.
+  # =================================================================
+  check-state-doc:
+    name: check STATE.md
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: STATE.md claims match the tree
+        run: python3 tools/check_state_doc.py --strict
+
+  # =================================================================
   # 9. Mojibake scan. Every text file in the repo is checked for
   #    UTF-8 / Latin-1 round-trip corruption. Sub-second.
   # =================================================================
