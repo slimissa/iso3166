@@ -134,3 +134,38 @@ v1.9.0's AI subregion fix changed `countries_by_region.parquet`, which
 Only the gate's `export_aggregated.py --check` would have caught a
 forgotten regeneration, and only after the release was already under way.
 The same gap applied to `docs/STATE.md`. v1.9.1 regenerates both in step 2.
+
+### Doc truth 1 — README gate count
+
+The README said "Fourteen checks run in sequence" and listed eleven
+groups, while the gate subshell in `scripts/release.sh` runs 26. The count
+had been written once and never checked; v1.9.2 corrects it and
+`check_docs_match_tree.py` compares it on every push.
+
+### Doc truth 2 — ENRICHMENT.md field count
+
+`docs/ENRICHMENT.md` said "four enriched fields" and its tables listed
+four, while it documents eight sections and `check-fields` runs eight
+checks. This is the same drift Rule 24's receipt records; v1.9.2 fixes the
+text and the checker derives the count from `tools/enrich_field.py`.
+
+### Doc truth 3 — PROVENANCE.md was a v1.0.0 snapshot
+
+`docs/PROVENANCE.md` marked populated fields "(future)", named the wrong
+source for `languages`, omitted `official_name` and `borders`, and set an
+18-month audit threshold while the freshness gate enforces 365 days.
+v1.9.2 keeps the v1.0.0 sections as history and adds a current-as-of
+version that the checker ties to VERSION.
+
+### Doc truth 4 — CONTRIBUTING.md CI job list
+
+`CONTRIBUTING.md` said every push runs 14 jobs; `validate.yml` had 20.
+Six jobs were unlisted. v1.9.2 lists them all and the checker requires
+every job id to be named.
+
+### Doc truth 5 — Decisions drifted without a record
+
+D2's approximate counts, D3's field count and D7's five version sites no
+longer match the tree, and nothing recorded it. `docs/decisions/
+v1.9.2-amendments.md` records the divergence and the release where the
+repository evidences it; it does not edit the original decisions.
