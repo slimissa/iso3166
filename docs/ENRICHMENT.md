@@ -1,9 +1,10 @@
 # Enrichment
 
-How the four enriched fields in `iso3166.json` are populated, from what
+How the eight enriched fields in `iso3166.json` are populated, from what
 sources, and where the naive rule breaks down.
 
-The fields are populated by three tools:
+The fields are populated by two tools, `enrich_official_name.py` and
+`enrich_field.py`:
 
 | Field | Tool | Snapshot |
 |-------|------|----------|
@@ -11,9 +12,13 @@ The fields are populated by three tools:
 | `currency_codes` | `tools/enrich_field.py --field currency_codes` | `tools/iso4217_snapshot.json` |
 | `calling_codes` | `tools/enrich_field.py --field calling_codes` | `tools/itu_calling_code_snapshot.json` |
 | `tlds` | `tools/enrich_field.py --field tlds` | `tools/iana_tld_snapshot.json` |
+| `languages` | `tools/enrich_field.py --field languages` | `tools/iso639_3_snapshot.json` (code validation) |
+| `borders` | `tools/enrich_field.py --field borders` | none (validated against `iso3166.json`) |
+| `subregion` | `tools/enrich_field.py --field subregion` | `tools/m49_subregion_snapshot.json` |
+| `intermediate_region` | `tools/enrich_field.py --field intermediate_region` | `tools/m49_intermediate_region_snapshot.json` |
 
-Every field has a `--check` mode. All four are blocking in CI as of
-v1.2.0 (the `check-fields` job).
+Every field has a `--check` mode. All eight are blocking in CI (the
+`check-fields` job).
 
 ---
 
@@ -168,11 +173,15 @@ Two runs on the same input produce byte-identical output. The
 
 ## CI gates
 
-As of v1.2.0, the `check-fields` job runs four blocking checks:
+The `check-fields` job runs eight blocking checks:
 python3 tools/enrich_official_name.py --check
 python3 tools/enrich_field.py --field currency_codes --check
 python3 tools/enrich_field.py --field calling_codes --check
 python3 tools/enrich_field.py --field tlds --check
+python3 tools/enrich_field.py --field languages --check
+python3 tools/enrich_field.py --field borders --check
+python3 tools/enrich_field.py --field subregion --check
+python3 tools/enrich_field.py --field intermediate_region --check
 
 
 A red job names the entries that are still missing a field. The
@@ -181,7 +190,7 @@ the result.
 
 ## Refresh policy
 
-Every field's source is a standards body. Each has its own cadence:
+Each field's source has its own cadence:
 
 | Field | Source | Cadence |
 |-------|--------|---------|
@@ -189,6 +198,10 @@ Every field's source is a standards body. Each has its own cadence:
 | `currency_codes` | ISO 4217 | per amendment |
 | `calling_codes` | ITU-T E.164 | rare |
 | `tlds` | IANA | rare |
+| `languages` | CIA World Factbook | approximately annual |
+| `borders` | CIA World Factbook | approximately annual |
+| `subregion` | UN M49 | rare (closed list) |
+| `intermediate_region` | UN M49 | rare (closed list) |
 
 There is no automatic sync. Every refresh is a human-reviewed commit
 with the source citation recorded in the entry's `note` field.
