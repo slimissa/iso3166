@@ -200,7 +200,7 @@ of the registry data.
 
 ## CI
 
-Every push to `main` runs 14 jobs:
+As of v1.9.2, every push to `main` runs 20 jobs:
 
 - `validate-json` — six-layer validator + ground-truth verify, on a
   matrix of Ubuntu × Python versions.
@@ -214,6 +214,12 @@ Every push to `main` runs 14 jobs:
 - `check-cli` — exit codes 0/1/2/3; `--csv` byte-identical to
   `iso3166.csv`.
 - `check-docs` — README counts match `iso3166.json`.
+- `check-withdrawn` — the withdrawn set is complete.
+- `check-withdrawn-doc` — `docs/WITHDRAWN.md` is current.
+- `check-fields` — every enriched field is complete (eight `--check` runs).
+- `check-state-doc` — `docs/STATE.md` matches the tree.
+- `check-mojibake` — no UTF-8/Latin-1 corruption in text files.
+- `check-snapshot-freshness` — no vendored snapshot is past its `review_by`.
 - `cross-language` — all four wrappers agree.
 - `wrapper-python`, `wrapper-javascript`, `wrapper-go`, `wrapper-rust`
   — language-specific test suites.
