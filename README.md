@@ -404,16 +404,20 @@ Runs the same lookup through all four wrappers, diffs the output literally, and 
 
 ### Additional checks
 
-Beyond the six-layer validator, the repo carries four auxiliary checks:
+Beyond the six-layer validator, the repo carries eight auxiliary checks:
 
-| Tool | Purpose |
-|------|---------|
-| `tools/check_version_consistency.py` | Reads all eight version sites on the registry axis; fails on any disagreement. |
-| `tools/check_mojibake.py` | Scans every text file for UTF-8/Latin-1 round-trip corruption. Fails on any hit. |
-| `tools/check_snapshot_freshness.py` | Reads `meta.review_by` on each `tools/*_snapshot.json`; fails on any date in the past. |
-| `tools/check_release_claims.py` | Verifies machine-checkable claims about the version being released. Runs at release time, not on every push. |
+| Tool | Purpose | Runs in |
+|------|---------|---------|
+| `tools/check_version_consistency.py` | Reads all eight version sites on the registry axis; fails on any disagreement. | CI and release gate |
+| `tools/check_mojibake.py` | Scans every text file for UTF-8/Latin-1 round-trip corruption. Fails on any hit. | CI and release gate |
+| `tools/check_snapshot_freshness.py` | Reads `meta.review_by` on each `tools/*_snapshot.json`; fails on any date in the past. | CI and release gate |
+| `tools/check_iso4217_snapshot.py` | Well-formedness of `tools/iso4217_snapshot.json`: parses, no duplicate codes, meta counts agree. | CI only |
+| `tools/check_release_claims.py` | Verifies machine-checkable claims about the version being released. | release gate only |
+| `tools/check_registry_freshness.py` | Fails when any entry's `last_verified` is older than 365 days. | release gate only |
+| `tools/check_state_doc.py` | Verifies every number in `docs/STATE.md` against the tree. | CI and release gate |
+| `tools/check_docs_match_tree.py` | Verifies the counts, versions and lists that the README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS docs state about the tree. | CI and release gate |
 
-The first three run in CI on every push. The fourth runs in the release gate.
+The last column says where each one runs: in CI on every push, in the release gate, or both. Cross-language agreement is checked separately by `tools/check_cross_language.sh`.
 
 ---
 

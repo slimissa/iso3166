@@ -17,6 +17,8 @@ Checks:
   (e) CONTRIBUTING.md "As of vX.Y.Z" matches VERSION.
   (f) docs/LAYERS.md mentions every top-level *.parquet file.
   (g) CONTRIBUTING.md names every CI job id.
+  (i) README.md "N auxiliary checks" == rows of its auxiliary-check table,
+      and every tools/check_*.py is a row of that table.
 
 "Matches VERSION" means: equal to VERSION, or equal to the newest
 CHANGELOG heading when that is newer (staged release, as in
@@ -155,6 +157,21 @@ def run(root: Path) -> list[tuple[bool, str]]:
     miss = [j for j in jobs if f"`{j}`" not in contrib]
     rec(not miss, "CONTRIBUTING.md names every CI job", f"missing {miss}",
         f"{len(jobs)} jobs")
+    # (i)
+    m = re.search(r"carries (\w+) auxiliary checks", readme)
+    sect = readme.split("### Additional checks", 1)[-1].split("\n---", 1)[0]
+    rows = re.findall(r"^\| `tools/(check_[A-Za-z0-9_]+\.(?:py|sh))` \|", sect, re.M)
+    claimed = None
+    if m:
+        w = m.group(1).lower()
+        claimed = WORDS.get(w, int(w) if w.isdigit() else None)
+    rec(claimed == len(rows), "README auxiliary-check count matches its table",
+        m.group(1) if m else "no 'N auxiliary checks'", len(rows))
+    names = sorted(p.name for p in (root / "tools").glob("check_*"))
+    miss = [n for n in names if n not in rows and n not in readme]
+    miss += [n for n in names if n.endswith(".py") and n not in rows and n not in miss]
+    rec(not miss, "README table lists every tools/check_*.py and names every check tool",
+        f"missing {sorted(set(miss))}", f"{len(names)} check tools")
     return out
 
 
