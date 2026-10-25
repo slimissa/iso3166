@@ -426,5 +426,74 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.9.2]"
     }
+  ],
+  "1.9.3": [
+    {
+      "file": ".github/workflows/validate.yml",
+      "absent": "@latest"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "govulncheck@v1.1.4"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "absent": "actions/checkout@v4"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "absent": "actions/setup-python@v5"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "absent": "actions/setup-node@v4"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "absent": "actions/setup-go@v5"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "actions/checkout@v5"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "actions/setup-python@v6"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "actions/setup-node@v5"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "actions/setup-go@v6"
+    },
+    {
+      "file": "README.md",
+      "contains": "eight auxiliary checks"
+    },
+    {
+      "file": "README.md",
+      "absent": "four auxiliary checks"
+    },
+    {
+      "file": "docs/LAYERS.md",
+      "contains": "tools/gen_withdrawn_doc.py"
+    },
+    {
+      "file": "docs/ENRICHMENT.md",
+      "contains": "Null on the active side: AQ, EU, TW, UK, XK."
+    },
+    {
+      "file": "docs/decisions/v1.9.3-version-policy.md"
+    },
+    {
+      "file": "tools/check_docs_match_tree.py",
+      "contains": "LAYERS.md names every generator"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.9.3]"
+    }
   ]
 }
