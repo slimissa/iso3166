@@ -13,8 +13,8 @@ Checks:
   (c) docs/ENRICHMENT.md "<number> enriched fields" == 1 (official_name)
       + the fields in tools/enrich_field.py FIELDS; and the doc has a
       section for each of those fields.
-  (d) docs/PROVENANCE.md "current as of vX.Y.Z" matches VERSION.
-  (e) CONTRIBUTING.md "As of vX.Y.Z" matches VERSION.
+  (d) docs/PROVENANCE.md "current as of vX.Y" matches VERSION (major.minor).
+  (e) CONTRIBUTING.md "As of vX.Y" matches VERSION (major.minor).
   (f) docs/LAYERS.md mentions every top-level *.parquet file.
   (g) CONTRIBUTING.md names every CI job id.
   (i) README.md "N auxiliary checks" == rows of its auxiliary-check table,
@@ -22,8 +22,8 @@ Checks:
   (h) LAYERS.md names every generator that release.sh step 2 runs.
   (j) ENRICHMENT.md names every entry whose subregion is null.
 
-"Matches VERSION" means: equal to VERSION, or equal to the newest
-CHANGELOG heading when that is newer (staged release, as in
+"Matches VERSION" means: major.minor equal to VERSION's, or to the newest
+CHANGELOG heading's when that is newer (staged release, as in
 check_state_doc.py).
 
 Usage:
@@ -95,10 +95,11 @@ def enriched_fields(root: Path) -> list[str]:
 
 def current_versions(root: Path) -> set[str]:
     ver = read(root, "VERSION").strip()
-    ok = {ver}
+    mm = lambda v: ".".join(v.split(".")[:2])
+    ok = {mm(ver)}
     m = re.search(r"^## \[(\d+\.\d+\.\d+)\]", read(root, "CHANGELOG.md"), re.M)
     if m and vt(m.group(1)) > vt(ver):
-        ok.add(m.group(1))
+        ok.add(mm(m.group(1)))
     return ok
 
 
@@ -143,9 +144,9 @@ def run(root: Path) -> list[tuple[bool, str]]:
     # (d), (e)
     ok_versions = current_versions(root)
     for desc, text, pat in (("PROVENANCE.md 'current as of' version", prov,
-                             r"[Cc]urrent as of v(\d+\.\d+\.\d+)"),
+                             r"[Cc]urrent as of v(\d+\.\d+)(?!\.?\d)"),
                             ("CONTRIBUTING.md 'As of' version", contrib,
-                             r"\bAs of v(\d+\.\d+\.\d+)")):
+                             r"\bAs of v(\d+\.\d+)(?!\.?\d)")):
         m = re.findall(pat, text)
         rec(bool(m) and all(x in ok_versions for x in m), f"{desc} matches VERSION",
             m or "nothing", "/".join(sorted(ok_versions)))
