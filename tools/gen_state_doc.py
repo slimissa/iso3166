@@ -185,8 +185,17 @@ def render(root: Path, version: str, date: str) -> str:
              "subregion; the others are not officially-assigned.")
     L.append("4. The `--strict-independent` rule blocks Northern America regressions; "
              "other regions are not yet enforced.")
-    L.append("5. `tools/check_registry_freshness.py` is not wired into CI or the "
-             "release gate; run it by hand.")
+    wf = (root / ".github" / "workflows" / "validate.yml").read_text(encoding="utf-8")
+    rs = (root / "scripts" / "release.sh").read_text(encoding="utf-8")
+    gate = rs.split("set -e\n", 1)[1].split(') > "$GATE_LOG"', 1)[0]
+    fr_gate = "check_registry_freshness.py" in gate
+    fr_ci = "check_registry_freshness.py" in wf
+    where = ("the release gate and CI" if fr_gate and fr_ci else
+             "the release gate only, not CI" if fr_gate else
+             "CI only, not the release gate" if fr_ci else
+             "neither CI nor the release gate")
+    L.append(f"5. `tools/check_registry_freshness.py` runs in {where}; "
+             "entries older than 365 days fail the check.")
     L.append("")
     return "\n".join(L)
 

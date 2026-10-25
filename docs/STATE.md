@@ -43,7 +43,7 @@ A list field counts as populated when it is non-empty; any other field when it i
 
 ## CI
 
-20 jobs (see `.github/workflows/validate.yml`). Release gate has 25 checks (`scripts/release.sh`, step 2).
+20 jobs (see `.github/workflows/validate.yml`). Release gate has 26 checks (`scripts/release.sh`, step 2).
 
 ## Known limitations
 
@@ -51,4 +51,4 @@ A list field counts as populated when it is non-empty; any other field when it i
 2. Withdrawn entries carry `withdrawal_date` only. There is no `code_lifetime` field and no assignment date is recorded.
 3. `subregion` is null for AQ, EU, TW, UK, XK. AQ and TW have no UN M49 subregion; the others are not officially-assigned.
 4. The `--strict-independent` rule blocks Northern America regressions; other regions are not yet enforced.
-5. `tools/check_registry_freshness.py` is not wired into CI or the release gate; run it by hand.
+5. `tools/check_registry_freshness.py` runs in the release gate only, not CI; entries older than 365 days fail the check.
