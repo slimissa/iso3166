@@ -374,5 +374,57 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.9.1]"
     }
+  ],
+  "1.9.2": [
+    {
+      "file": "README.md",
+      "contains": "27 checks run in sequence"
+    },
+    {
+      "file": "README.md",
+      "absent": "Fourteen checks"
+    },
+    {
+      "file": "README.md",
+      "contains": "21 CI jobs"
+    },
+    {
+      "file": "docs/ENRICHMENT.md",
+      "contains": "eight enriched fields"
+    },
+    {
+      "file": "docs/ENRICHMENT.md",
+      "absent": "four enriched fields"
+    },
+    {
+      "file": "docs/PROVENANCE.md",
+      "contains": "current as of v1.9.2"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "As of v1.9.2"
+    },
+    {
+      "file": "docs/LAYERS.md",
+      "contains": "countries_by_region"
+    },
+    {
+      "file": "docs/decisions/v1.9.2-amendments.md"
+    },
+    {
+      "file": "tools/check_docs_match_tree.py"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "check-docs-match-tree"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/check_docs_match_tree.py\n"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.9.2]"
+    }
   ]
 }
