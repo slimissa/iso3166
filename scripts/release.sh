@@ -294,6 +294,8 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/enrich_field.py --field tlds --check
         python3 tools/enrich_field.py --field languages --check
         python3 tools/enrich_field.py --field borders --check
+        python3 tools/enrich_field.py --field subregion --check
+        python3 tools/enrich_field.py --field intermediate_region --check
         python3 tools/export_sql.py --check
         python3 tools/export_csv.py --check
         python3 tools/export_parquet.py --check

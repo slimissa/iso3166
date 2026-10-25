@@ -371,6 +371,12 @@ jobs:
       - name: borders
         run: python3 tools/enrich_field.py --field borders --check
 
+      - name: Check subregion completeness
+        run: python3 tools/enrich_field.py --field subregion --check
+
+      - name: Check intermediate_region completeness
+        run: python3 tools/enrich_field.py --field intermediate_region --check
+
   # =================================================================
   # 8c. docs/STATE.md matches the tree.
   # =================================================================
