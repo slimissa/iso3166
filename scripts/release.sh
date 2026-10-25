@@ -274,9 +274,11 @@ if [ "$DRY_RUN" = "0" ]; then
     python3 tools/export_sql.py
     python3 tools/export_csv.py
     python3 tools/export_parquet.py
+    python3 tools/export_aggregated.py
     python3 tools/sync_wrappers.py
     python3 tools/gen_consistency_fixture.py
     python3 tools/gen_withdrawn_doc.py
+    python3 tools/gen_state_doc.py
 
     GATE_LOG=/tmp/release-gate.log
     (
