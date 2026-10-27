@@ -18,6 +18,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Optional
 
+from .derived import DerivedQueries
+
 
 __all__ = ["Country", "CountryRegistry", "RegistryError"]
 
@@ -99,7 +101,7 @@ def _default_registry_path() -> Path:
     return Path(__file__).resolve().parent / "iso3166.json"
 
 
-class CountryRegistry:
+class CountryRegistry(DerivedQueries):
     """Load and query the ISO 3166 registry.
 
     The registry is loaded once at construction. All lookups return
