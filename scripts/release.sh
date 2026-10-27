@@ -2,12 +2,23 @@
 #
 # scripts/release.sh — deterministic release for the ISO 3166 registry.
 #
-# Usage:  scripts/release.sh <version> [--dry-run]
+# Usage:  scripts/release.sh <version> [--dry-run | --force]
 #
 # Verifies preconditions, bumps the version sites, regenerates
 # artifacts, runs the gate, commits, pushes, waits for CI to complete
 # green, tags, creates the GitHub release, and writes the verification
 # report.
+#
+# --force: resume from a post-commit state. When VERSION already
+#   equals the target (because a previous run committed the release
+#   but did not reach the tag, e.g. CI failed after the commit), the
+#   script normally refuses with "VERSION already reads X; nothing to
+#   do". With --force, it skips the bump, commit, and push steps
+#   (they have already happened), verifies a 'chore: release vX.Y.Z'
+#   commit exists in history and HEAD is on origin/main, runs the
+#   gate, then tags, creates the release, and writes the verification
+#   report. The gate and the CI check are NOT bypassed. --force and
+#   --dry-run are mutually exclusive.
 #
 # Requires: bash 4+, git, gh, python3, cargo, GNU coreutils. The
 # working tree must be clean and on main.
@@ -25,15 +36,29 @@ set -euo pipefail
 
 # --- arguments ---------------------------------------------------------
 
-if [ $# -lt 1 ] || [ $# -gt 2 ]; then
-    echo "usage: $0 <version> [--dry-run]" >&2
+if [ $# -lt 1 ] || [ $# -gt 3 ]; then
+    echo "usage: $0 <version> [--dry-run | --force]" >&2
     exit 2
 fi
 
 VERSION="$1"
 DRY_RUN=0
-if [ "${2:-}" = "--dry-run" ]; then
-    DRY_RUN=1
+FORCE=0
+shift
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --dry-run) DRY_RUN=1; shift ;;
+        --force)   FORCE=1;   shift ;;
+        *)
+            echo "error: unknown flag: $1 (expected --dry-run or --force)" >&2
+            exit 2
+            ;;
+    esac
+done
+
+if [ "$DRY_RUN" = "1" ] && [ "$FORCE" = "1" ]; then
+    echo "error: --dry-run and --force are mutually exclusive" >&2
+    exit 2
 fi
 
 if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -174,10 +199,20 @@ echo "  CI on HEAD is green"
 grep -q "^## \[$VERSION\]" CHANGELOG.md \
     || die "CHANGELOG.md has no '## [$VERSION]' section; write it before releasing"
 
-# Current version must differ from target.
+# Current version must differ from target, unless --force.
 CURRENT_VERSION=$(cat VERSION)
-[ "$CURRENT_VERSION" != "$VERSION" ] \
-    || die "VERSION already reads $VERSION; nothing to do"
+RESUME_MODE=0
+if [ "$CURRENT_VERSION" = "$VERSION" ]; then
+    if [ "$FORCE" = "0" ]; then
+        die "VERSION already reads $VERSION; nothing to do (use --force to resume from post-commit state)"
+    fi
+    RESUME_MODE=1
+    echo "  VERSION already $VERSION; resuming in post-commit mode (--force)"
+else
+    if [ "$FORCE" = "1" ]; then
+        echo "  --force given but VERSION ($CURRENT_VERSION) != target ($VERSION); running as normal release"
+    fi
+fi
 
 # Tag must not exist locally or on origin.
 if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null 2>&1; then
@@ -198,7 +233,9 @@ echo "  current version: $CURRENT_VERSION; tag v$VERSION is free"
 
 step "1/7 bump version sites to $VERSION"
 
-if [ "$DRY_RUN" = "0" ]; then
+if [ "$RESUME_MODE" = "1" ]; then
+    echo "  (skipped: VERSION already $VERSION, resume mode)"
+elif [ "$DRY_RUN" = "0" ]; then
     printf '%s\n' "$VERSION" > VERSION
 
     python3 - "$VERSION" <<'PYEOF'
@@ -249,7 +286,9 @@ else
 fi
 
 # Verify all eight sites agree.
-if [ "$DRY_RUN" = "0" ]; then
+if [ "$RESUME_MODE" = "1" ]; then
+    echo "  (sites already verified by the previous release attempt, resume mode)"
+elif [ "$DRY_RUN" = "0" ]; then
     declare -a SITES=(
         "$(cat VERSION)"
         "$(python3 -c "import json; print(json.load(open('iso3166.json'))['meta']['version'])")"
@@ -323,7 +362,12 @@ fi
 
 step "3/7 commit release"
 
-if [ "$DRY_RUN" = "0" ]; then
+if [ "$RESUME_MODE" = "1" ]; then
+    if ! git log --format=%s | grep -qx "chore: release v$VERSION"; then
+        die "resume mode: no 'chore: release v$VERSION' commit in history; --force can only resume from a post-commit state"
+    fi
+    echo "  (skipped: release commit already in history, HEAD at $(git rev-parse --short HEAD), resume mode)"
+elif [ "$DRY_RUN" = "0" ]; then
     git add -A
     if [ -z "$(git diff --cached --name-only)" ]; then
         die "nothing staged; version sites may already be correct"
@@ -354,7 +398,15 @@ fi
 
 step "4/7 push and wait for CI"
 
-if [ "$DRY_RUN" = "0" ]; then
+if [ "$RESUME_MODE" = "1" ]; then
+    git fetch origin main --quiet
+    LOCAL_SHA=$(git rev-parse HEAD)
+    ORIGIN_SHA=$(git rev-parse origin/main)
+    if [ "$LOCAL_SHA" != "$ORIGIN_SHA" ]; then
+        die "resume mode: HEAD $LOCAL_SHA is not on origin/main ($ORIGIN_SHA); push first"
+    fi
+    echo "  (skipped: HEAD already pushed at $LOCAL_SHA, resume mode)"
+elif [ "$DRY_RUN" = "0" ]; then
     git push origin main
 
     RELEASE_SHA=$(git rev-parse HEAD)
