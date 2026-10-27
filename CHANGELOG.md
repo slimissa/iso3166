@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   by `bin/iso3166` when no installed script is found) is updated. The
   packaged script catches up in v1.10.1.
 
-## [1.10.0] — 2026-10-DD
+## [1.10.0] — 2026-10-27
 
 The registry answers questions, not just carries fields. Eleven derived
 queries are available in the Python, JavaScript, Rust and Go wrappers and in
