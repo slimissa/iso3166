@@ -28,6 +28,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -462,4 +463,361 @@ func (r *CountryRegistry) Summary() Summary {
 		Withdrawn: len(r.withdrawn),
 		ByStatus:  byStatus,
 	}
+}
+
+// ============================================================
+// Derived queries (v1.10.0 — design in docs/QUERIES.md)
+//
+// docs/QUERIES.md is the contract; each method names its section.
+//
+// Mirrors wrappers/python/iso3166/derived.py. Unknown codes are not
+// errors: bool queries return false, list queries return an empty
+// non-nil slice, optional queries return ok == false. Active entries
+// win over withdrawn ones (AI and SK exist twice); the succession
+// graph is built from withdrawn entries only.
+//
+// Approximate: IsEU, IsEEA, IsEurozone (deprecated by v1.12.0's
+// is_eu_member_at) and CurrencyAt (deprecated by v1.11.0's
+// introduced field).
+// ============================================================
+
+// knownEUMembers is the 27 EU member states at v1.9.3. It is the only
+// hardcoded list in the registry; it is not a tree fact, which is why
+// IsEU is deprecated in v1.12.0.
+var knownEUMembers = map[string]bool{
+	"AT": true, "BE": true, "BG": true, "HR": true, "CY": true, "CZ": true,
+	"DK": true, "EE": true, "FI": true, "FR": true, "DE": true, "GR": true,
+	"HU": true, "IE": true, "IT": true, "LV": true, "LT": true, "LU": true,
+	"MT": true, "NL": true, "PL": true, "PT": true, "RO": true, "SK": true,
+	"SI": true, "ES": true, "SE": true,
+}
+
+// eeaNonEU lists the EEA members that are not EU members.
+var eeaNonEU = map[string]bool{"IS": true, "LI": true, "NO": true}
+
+func dqNorm(code string) string { return strings.ToUpper(strings.TrimSpace(code)) }
+
+func dqSorted(set map[string]bool) []string {
+	out := make([]string, 0, len(set))
+	for k := range set {
+		out = append(out, k)
+	}
+	sort.Strings(out)
+	return out
+}
+
+// dqEntry returns the active entry for code, else the withdrawn one.
+func (r *CountryRegistry) dqEntry(code string) *Country {
+	c := dqNorm(code)
+	if c == "" {
+		return nil
+	}
+	if e, ok := r.byAlpha2[c]; ok {
+		return e
+	}
+	for _, w := range r.withdrawn {
+		if w.Alpha2 == c {
+			return w
+		}
+	}
+	return nil
+}
+
+// dqEdges maps each withdrawn code to its replaced_by codes.
+func (r *CountryRegistry) dqEdges() map[string][]string {
+	edges := make(map[string][]string)
+	for _, w := range r.withdrawn {
+		if len(w.ReplacedBy) > 0 {
+			edges[w.Alpha2] = w.ReplacedBy
+		}
+	}
+	return edges
+}
+
+func dqClosure(start string, edges map[string][]string) []string {
+	seen := make(map[string]bool)
+	stack := []string{start}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		for _, n := range edges[cur] {
+			if n != start && !seen[n] {
+				seen[n] = true
+				stack = append(stack, n)
+			}
+		}
+	}
+	return dqSorted(seen)
+}
+
+// IsEU reports whether code is one of the 27 EU member states. It is
+// approximate: the list is a v1.9.3 snapshot. Deprecated by
+// is_eu_member_at in v1.12.0. See docs/QUERIES.md, "Query 1".
+func (r *CountryRegistry) IsEU(code string) bool { return knownEUMembers[dqNorm(code)] }
+
+// IsEEA reports whether code is an EU member or IS, LI or NO.
+// Approximate; deprecated together with IsEU. See docs/QUERIES.md,
+// "Query 1".
+func (r *CountryRegistry) IsEEA(code string) bool {
+	c := dqNorm(code)
+	return knownEUMembers[c] || eeaNonEU[c]
+}
+
+// IsEurozone reports whether code is an EU member whose active entry
+// has currency_codes == ["EUR"]. Approximate: overseas territories
+// that use the euro (GF, GP, MQ, RE, YT, AX, ...) are separate codes
+// and return false. See docs/QUERIES.md, "Query 1".
+func (r *CountryRegistry) IsEurozone(code string) bool {
+	c := dqNorm(code)
+	if !knownEUMembers[c] {
+		return false
+	}
+	e, ok := r.byAlpha2[c]
+	return ok && len(e.CurrencyCodes) == 1 && e.CurrencyCodes[0] == "EUR"
+}
+
+// RegionTree returns [region, subregion, intermediate_region] with
+// null entries removed. An unknown code returns an empty slice. See
+// docs/QUERIES.md, "Query 2".
+func (r *CountryRegistry) RegionTree(code string) []string {
+	out := []string{}
+	e := r.dqEntry(code)
+	if e == nil {
+		return out
+	}
+	for _, v := range []*string{e.Region, e.Subregion, e.IntermediateRegion} {
+		if v != nil && *v != "" {
+			out = append(out, *v)
+		}
+	}
+	return out
+}
+
+// BordersTransitively returns the sorted codes within maxHops of code
+// through borders, excluding code itself. See docs/QUERIES.md, "Query 3".
+func (r *CountryRegistry) BordersTransitively(code string, maxHops int) []string {
+	start := dqNorm(code)
+	if start == "" || maxHops < 1 || r.dqEntry(start) == nil {
+		return []string{}
+	}
+	seen := map[string]bool{start: true}
+	frontier := []string{start}
+	for i := 0; i < maxHops; i++ {
+		var next []string
+		for _, cur := range frontier {
+			if e, ok := r.byAlpha2[cur]; ok {
+				for _, b := range e.Borders {
+					if !seen[b] {
+						seen[b] = true
+						next = append(next, b)
+					}
+				}
+			}
+		}
+		if len(next) == 0 {
+			break
+		}
+		frontier = next
+	}
+	delete(seen, start)
+	return dqSorted(seen)
+}
+
+// SuccessionPath returns the shortest replaced_by path from fromCode
+// to toCode, both endpoints included. ok is false if there is no path
+// or either code is unknown. See docs/QUERIES.md, "Query 4".
+func (r *CountryRegistry) SuccessionPath(fromCode, toCode string) ([]string, bool) {
+	a, b := dqNorm(fromCode), dqNorm(toCode)
+	if r.dqEntry(a) == nil || r.dqEntry(b) == nil {
+		return nil, false
+	}
+	if a == b {
+		return []string{a}, true
+	}
+	edges := r.dqEdges()
+	prev := map[string]string{a: ""}
+	queue := []string{a}
+	for len(queue) > 0 {
+		cur := queue[0]
+		queue = queue[1:]
+		for _, n := range edges[cur] {
+			if _, seen := prev[n]; seen {
+				continue
+			}
+			prev[n] = cur
+			if n == b {
+				path := []string{b}
+				for prev[path[len(path)-1]] != "" {
+					path = append(path, prev[path[len(path)-1]])
+				}
+				for i, j := 0, len(path)-1; i < j; i, j = i+1, j-1 {
+					path[i], path[j] = path[j], path[i]
+				}
+				return path, true
+			}
+			queue = append(queue, n)
+		}
+	}
+	return nil, false
+}
+
+// Successors returns all descendants: the transitive closure of
+// replaced_by, intermediate codes included, excluding code, sorted. The
+// CLI returns the same set. See docs/QUERIES.md, "Query 5".
+func (r *CountryRegistry) Successors(code string) []string {
+	c := dqNorm(code)
+	if c == "" {
+		return []string{}
+	}
+	return dqClosure(c, r.dqEdges())
+}
+
+// Predecessors returns all ancestors: every withdrawn code from which
+// code is reachable through replaced_by, sorted. See docs/QUERIES.md,
+// "Query 5".
+func (r *CountryRegistry) Predecessors(code string) []string {
+	c := dqNorm(code)
+	if c == "" {
+		return []string{}
+	}
+	rev := make(map[string][]string)
+	for src, dsts := range r.dqEdges() {
+		for _, d := range dsts {
+			rev[d] = append(rev[d], src)
+		}
+	}
+	return dqClosure(c, rev)
+}
+
+// CallingCodeFor returns the sorted codes whose calling_codes is a
+// prefix of the number's digits. Country level only: "+44" returns GB,
+// GG, IM and JE, and "+1" returns every NANP entry. See
+// docs/QUERIES.md, "Query 6".
+func (r *CountryRegistry) CallingCodeFor(number string) []string {
+	var digits strings.Builder
+	for _, ch := range number {
+		switch ch {
+		case ' ', '-', '(', ')', '.', '+':
+		default:
+			if ch < '0' || ch > '9' {
+				return []string{}
+			}
+			digits.WriteRune(ch)
+		}
+	}
+	d := digits.String()
+	if d == "" {
+		return []string{}
+	}
+	out := make(map[string]bool)
+	for _, e := range r.active {
+		for _, cc := range e.CallingCodes {
+			if strings.HasPrefix(d, cc) {
+				out[e.Alpha2] = true
+			}
+		}
+	}
+	return dqSorted(out)
+}
+
+// dqValidDate reports whether s is a real YYYY-MM-DD date, year >= 1.
+func dqValidDate(s string) bool {
+	if len(s) != 10 || s[4] != '-' || s[7] != '-' {
+		return false
+	}
+	num := func(a, b int) int {
+		n := 0
+		for i := a; i < b; i++ {
+			if s[i] < '0' || s[i] > '9' {
+				return -1
+			}
+			n = n*10 + int(s[i]-'0')
+		}
+		return n
+	}
+	y, m, d := num(0, 4), num(5, 7), num(8, 10)
+	if y < 1 || m < 1 || m > 12 || d < 1 {
+		return false
+	}
+	feb := 28
+	if (y%4 == 0 && y%100 != 0) || y%400 == 0 {
+		feb = 29
+	}
+	dim := []int{31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}[m-1]
+	return d <= dim
+}
+
+// CurrencyAt returns the approximate currency in force on date
+// (YYYY-MM-DD). Active codes return their current currency_codes for
+// every date. Withdrawn codes return ok == false before
+// withdrawal_date and the terminal successors' current currencies from
+// then on. ok == false means "cannot answer" (unknown code, malformed
+// date, no data). Deprecated by v1.11.0's introduced field. See
+// docs/QUERIES.md, "Query 7".
+func (r *CountryRegistry) CurrencyAt(code, date string) ([]string, bool) {
+	if !dqValidDate(date) {
+		return nil, false
+	}
+	c := dqNorm(code)
+	if e, ok := r.byAlpha2[c]; ok {
+		if e.CurrencyCodes == nil {
+			return nil, false
+		}
+		return append([]string{}, e.CurrencyCodes...), true
+	}
+	var wd *Country
+	for _, w := range r.withdrawn {
+		if w.Alpha2 == c {
+			wd = w
+			break
+		}
+	}
+	if wd == nil || wd.WithdrawalDate == nil || date < *wd.WithdrawalDate {
+		return nil, false
+	}
+	edges := r.dqEdges()
+	out := make(map[string]bool)
+	seen := make(map[string]bool)
+	stack := []string{c}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if seen[cur] {
+			continue
+		}
+		seen[cur] = true
+		if e, ok := r.byAlpha2[cur]; ok {
+			for _, cc := range e.CurrencyCodes {
+				out[cc] = true
+			}
+		} else {
+			stack = append(stack, edges[cur]...)
+		}
+	}
+	if len(out) == 0 {
+		return nil, false
+	}
+	return dqSorted(out), true
+}
+
+// RegionCountries returns the sorted codes of active entries in region
+// and, if subregion is not empty, in subregion. Case-insensitive. See
+// docs/QUERIES.md, "Query 8".
+func (r *CountryRegistry) RegionCountries(region, subregion string) []string {
+	if region == "" {
+		return []string{}
+	}
+	rl, sl := strings.ToLower(region), strings.ToLower(subregion)
+	out := []string{}
+	for _, e := range r.active {
+		if e.Region == nil || strings.ToLower(*e.Region) != rl {
+			continue
+		}
+		if sl != "" && (e.Subregion == nil || strings.ToLower(*e.Subregion) != sl) {
+			continue
+		}
+		out = append(out, e.Alpha2)
+	}
+	sort.Strings(out)
+	return out
 }
