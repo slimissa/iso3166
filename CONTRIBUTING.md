@@ -200,7 +200,7 @@ of the registry data.
 
 ## CI
 
-As of v1.9, every push to `main` runs 21 jobs:
+As of v1.10, every push to `main` runs 21 jobs:
 
 - `validate-json` — six-layer validator + ground-truth verify, on a
   matrix of Ubuntu × Python versions.
