@@ -363,7 +363,7 @@ fi
 step "3/7 commit release"
 
 if [ "$RESUME_MODE" = "1" ]; then
-    if ! git log --format=%s | grep -qx "chore: release v$VERSION"; then
+    if ! git log --format=%s | grep -Fqx "chore: release v$VERSION"; then
         die "resume mode: no 'chore: release v$VERSION' commit in history; --force can only resume from a post-commit state"
     fi
     echo "  (skipped: release commit already in history, HEAD at $(git rev-parse --short HEAD), resume mode)"
