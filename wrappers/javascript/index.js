@@ -22,6 +22,7 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
+const derived = require("./derived");
 
 const ACTIVE_STATUSES = new Set([
   "officially-assigned",
@@ -316,8 +317,12 @@ class CountryRegistry {
   }
 }
 
+derived.install(CountryRegistry);
+
 module.exports = {
   CountryRegistry,
+  DerivedQueries: derived.DerivedQueries,
+  KNOWN_EU_MEMBERS: derived.KNOWN_EU_MEMBERS,
   RegistryError,
   ACTIVE_STATUSES,
 };
