@@ -15,4 +15,4 @@ from .derived import DerivedQueries
 from .registry import Country, CountryRegistry, RegistryError
 
 __all__ = ["Country", "CountryRegistry", "DerivedQueries", "RegistryError"]
-__version__ = "1.9.3"
+__version__ = "1.10.0"
