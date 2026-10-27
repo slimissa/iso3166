@@ -98,6 +98,59 @@ See [the CLI reference](#command-line-interface) below.
 
 ---
 
+## Derived queries
+
+Eleven methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in `tools/iso3166_cli.py` (run through `bin/iso3166` when no `iso3166` console script is installed). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
+
+```python
+reg.is_eu("DE")                       # True    (approximate)
+reg.successors("YU")                  # ['CS', 'ME', 'RS']   all descendants
+reg.currency_at("DD", "1990-01-01")   # None    DD has no currency_codes in the tree
+```
+```js
+reg.isEu("DE");                       // true    (approximate)
+```
+```rust
+reg.is_eu("DE");                      // true    (approximate)
+```
+```go
+reg.IsEU("DE")                        // true    (approximate)
+```
+```console
+$ bin/iso3166 is-eu DE
+true
+$ echo $?
+0
+$ bin/iso3166 is-eu GB
+false
+$ echo $?
+0
+$ bin/iso3166 is-eu XX
+error: not found: XX
+$ echo $?
+1
+$ bin/iso3166 successors YU --raw alpha_2   # CS, ME, RS (one per line)
+```
+
+`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout. The exit code is the CLI's standard one, as for every other subcommand: 0 if the code exists (true or false), 1 if it is not found, 2 on a usage error, 3 if the registry is missing. The boolean is the answer; the exit code is the plumbing. With `--json` the output is `{"code": "DE", "is_eu": true, "result": "true"}`.
+
+| Query | Python / CLI | Answer | Deprecated by |
+|---|---|---|---|
+| EU, EEA, eurozone membership | `is_eu`, `is_eea`, `is_eurozone` / `is-eu`, `is-eea`, `is-eurozone` | **approximate** | `is_eu_member_at` in v1.12.0 |
+| Region hierarchy | `region_tree` / `region-tree` | exact | n/a |
+| Countries in a region | `region_countries` / `region-countries` | exact | n/a |
+| Border neighbours within N hops | `borders_transitively` / `borders-transitively` | exact | n/a |
+| Shortest `replaced_by` path | `succession_path` / `succession-path` | exact | n/a |
+| All descendants and all ancestors (transitive closure) | `successors`, `predecessors` | exact | n/a |
+| Countries for a phone number | `calling_code_for` / `calling-code-for` | exact, country level only | n/a |
+| Currency on a date | `currency_at` / `currency-at` | **approximate** | the `introduced` field in v1.11.0 |
+
+The approximate queries say so in their docstrings and CLI help. `is_eu`, `is_eea` and `is_eurozone` use a hardcoded list of the 27 EU members at v1.9.3. `currency_at` returns an active country's current currency for every date, because the tree has no `introduced` field, and returns `None` where the tree has no currency at all (every withdrawn entry before its withdrawal).
+
+**Breaking change in v1.10.0.** `successors` and `predecessors` return the full transitive closure on every surface, so `successors("YU")` is `["CS", "ME", "RS"]` in the wrappers and in `tools/iso3166_cli.py`. Before v1.10.0 the CLI returned terminal successors only.
+
+---
+
 ## Registry contents
 
 | Layer | Count | Purpose |
@@ -173,8 +226,8 @@ The `iso3166` command is installed by the Python wrapper. Ten subcommands:
 | `info` | Registry metadata |
 | `validate CC...` | Exit 0 if all codes exist, 1 otherwise |
 | `search QUERY` | Substring search on names and codes |
-| `successors CC` | Follow `replaced_by` transitively to terminal successors |
-| `predecessors CC` | Withdrawn codes whose terminal successors include this code |
+| `successors CC` | Follow `replaced_by` transitively. The installed script lists terminal successors only until v1.10.1; `tools/iso3166_cli.py` returns all descendants (transitive closure) |
+| `predecessors CC` | Withdrawn codes that lead to this code. The installed script lists terminal-successor matches only until v1.10.1; `tools/iso3166_cli.py` returns all ancestors |
 
 `list` accepts `--withdrawn-since DATE` and `--withdrawn-before DATE` filters.
 
