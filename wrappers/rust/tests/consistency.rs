@@ -4,7 +4,7 @@
 //! this file) and asserts the Rust wrapper satisfies every case. The
 //! same fixture is read by the Python, JavaScript, and Go suites.
 
-use std::collections::{BTreeSet, HashMap};
+use std::collections::HashMap;
 use std::path::PathBuf;
 
 use iso3166_registry::CountryRegistry;
