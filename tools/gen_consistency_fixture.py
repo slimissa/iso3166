@@ -55,8 +55,8 @@ INDEPENDENT_COUNT_TRUE_MAX = 205
 # it is True now that all four implement the contract (v1.8.0).
 ENFORCE_INPUT_CONTRACT = True
 
-SUCCESSOR_INPUTS = ["YU", "CS", "US", "SU"]
-PREDECESSOR_INPUTS = ["ME", "RS", "US"]
+SUCCESSOR_INPUTS = ["YU", "CS", "AN", "SK", "RS", "US", "SU"]
+PREDECESSOR_INPUTS = ["ME", "RS", "CS", "YU", "IN", "US"]
 AMBIGUOUS_ALPHA2 = ["AI", "SK"]
 NUMERIC_ABSENT_INPUTS = ["", "000", "0", " 20", "020 "]
 
@@ -241,7 +241,123 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
         "lookup_alpha2_ambiguous": alpha2_ambiguous_case(reg),
         "successors": successors_case(reg),
         "predecessors": predecessors_case(reg),
+        "derived_queries": derived_queries_case(reg),
     }
+
+# Literal expected values for the v1.10.0 derived queries. They are typed
+# here, not computed by any wrapper, so the wrappers are checked against
+# an independent source, and they are the same cases as the "Worked
+# examples index" in docs/QUERIES.md (test-derived-queries.sh test 22
+# checks that every index row appears here).
+def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
+    cases: list[tuple[str, list[Any], Any]] = [
+        ('is_eu', ['DE'], True),
+        ('is_eu', ['de'], True),
+        ('is_eu', ['GB'], False),
+        ('is_eu', ['CH'], False),
+        ('is_eu', ['XK'], False),
+        ('is_eu', ['UK'], False),
+        ('is_eu', ['EU'], False),
+        ('is_eu', ['ZZ'], False),
+        ('is_eea', ['DE'], True),
+        ('is_eea', ['NO'], True),
+        ('is_eea', ['IS'], True),
+        ('is_eea', ['LI'], True),
+        ('is_eea', ['CH'], False),
+        ('is_eurozone', ['DE'], True),
+        ('is_eurozone', ['BG'], True),
+        ('is_eurozone', ['SE'], False),
+        ('is_eurozone', ['AD'], False),
+        ('is_eurozone', ['ME'], False),
+        ('is_eurozone', ['GF'], False),
+        ('is_eurozone', ['GB'], False),
+        ('region_tree', ['FR'], ['Europe', 'Western Europe']),
+        ('region_tree', ['US'], ['Americas', 'Northern America']),
+        ('region_tree', ['MX'], ['Americas', 'Latin America and the Caribbean', 'Central America']),
+        ('region_tree', ['YU'], ['Southern Europe']),
+        ('region_tree', ['DD'], ['Western Europe']),
+        ('region_tree', ['TW'], []),
+        ('region_tree', ['AQ'], []),
+        ('region_tree', ['ZZ'], []),
+        ('borders_transitively', ['US', 1], ['CA', 'MX']),
+        ('borders_transitively', ['DE', 1], ['AT', 'BE', 'CH', 'CZ', 'DK', 'FR', 'LU', 'NL', 'PL']),
+        ('borders_transitively', ['DE', 2], ['AD', 'AT', 'BE', 'BY', 'CH', 'CZ', 'DK', 'ES', 'FR', 'HU', 'IT', 'LI', 'LT', 'LU', 'MC', 'NL', 'PL', 'RU', 'SI', 'SK', 'UA']),
+        ('borders_transitively', ['LI', 2], ['AT', 'CH', 'CZ', 'DE', 'FR', 'HU', 'IT', 'SI', 'SK']),
+        ('borders_transitively', ['AQ', 2], []),
+        ('borders_transitively', ['US', 0], []),
+        ('borders_transitively', ['DD', 2], []),
+        ('succession_path', ['YU', 'RS'], ['YU', 'CS', 'RS']),
+        ('succession_path', ['YU', 'ME'], ['YU', 'CS', 'ME']),
+        ('succession_path', ['YU', 'YU'], ['YU']),
+        ('succession_path', ['DD', 'DE'], ['DD', 'DE']),
+        ('succession_path', ['AN', 'CW'], ['AN', 'CW']),
+        ('succession_path', ['SK', 'IN'], ['SK', 'IN']),
+        ('succession_path', ['SU', 'RU'], None),
+        ('succession_path', ['US', 'GB'], None),
+        ('succession_path', ['YU', 'ZZ'], None),
+        ('successors', ['YU'], ['CS', 'ME', 'RS']),
+        ('successors', ['CS'], ['ME', 'RS']),
+        ('successors', ['AN'], ['BQ', 'CW', 'SX']),
+        ('successors', ['SK'], ['IN']),
+        ('successors', ['RS'], []),
+        ('successors', ['US'], []),
+        ('successors', ['SU'], []),
+        ('predecessors', ['RS'], ['CS', 'YU']),
+        ('predecessors', ['ME'], ['CS', 'YU']),
+        ('predecessors', ['CS'], ['YU']),
+        ('predecessors', ['CW'], ['AN']),
+        ('predecessors', ['IN'], ['SK']),
+        ('predecessors', ['YU'], []),
+        ('predecessors', ['US'], []),
+        ('calling_code_for', ['+44 20 7946 0958'], ['GB', 'GG', 'IM', 'JE']),
+        ('calling_code_for', ['44 20 7946 0958'], ['GB', 'GG', 'IM', 'JE']),
+        ('calling_code_for', ['+44 (0) 20.7946.0958'], ['GB', 'GG', 'IM', 'JE']),
+        ('calling_code_for', ['+49 30 1234567'], ['DE']),
+        ('calling_code_for', ['+7 495 123 4567'], ['KZ', 'RU']),
+        ('calling_code_for', ['+1 202 555 0100'], ['AG', 'AI', 'AS', 'BB', 'BM', 'BS', 'CA', 'DM', 'DO', 'GD', 'GU', 'JM', 'KN', 'KY', 'LC', 'MP', 'MS', 'PR', 'SX', 'TC', 'TT', 'UM', 'US', 'VC', 'VG', 'VI']),
+        ('calling_code_for', ['+1-867-555-0100'], ['AG', 'AI', 'AS', 'BB', 'BM', 'BS', 'CA', 'DM', 'DO', 'GD', 'GU', 'JM', 'KN', 'KY', 'LC', 'MP', 'MS', 'PR', 'SX', 'TC', 'TT', 'UM', 'US', 'VC', 'VG', 'VI']),
+        ('calling_code_for', ['+999 123'], []),
+        ('calling_code_for', ['nonsense'], []),
+        ('calling_code_for', [''], []),
+        ('currency_at', ['DE', '2000-01-01'], ['EUR']),
+        ('currency_at', ['DE', '1990-01-01'], ['EUR']),
+        ('currency_at', ['PA', '2000-01-01'], ['PAB', 'USD']),
+        ('currency_at', ['AQ', '2000-01-01'], []),
+        ('currency_at', ['EU', '2000-01-01'], None),
+        ('currency_at', ['DD', '1990-01-01'], None),
+        ('currency_at', ['DD', '1990-10-03'], ['EUR']),
+        ('currency_at', ['DD', '1991-01-01'], ['EUR']),
+        ('currency_at', ['YU', '2004-01-01'], ['EUR', 'RSD']),
+        ('currency_at', ['AN', '2010-11-30'], None),
+        ('currency_at', ['AN', '2010-12-01'], ['ANG', 'USD']),
+        ('currency_at', ['SU', '2000-01-01'], None),
+        ('currency_at', ['DE', '2000-13-01'], None),
+        ('currency_at', ['ZZ', '2000-01-01'], None),
+        ('region_countries', ['Europe', 'Western Europe'], ['AT', 'BE', 'CH', 'DE', 'FR', 'LI', 'LU', 'MC', 'NL']),
+        ('region_countries', ['europe', 'western europe'], ['AT', 'BE', 'CH', 'DE', 'FR', 'LI', 'LU', 'MC', 'NL']),
+        ('region_countries', ['Americas', 'Northern America'], ['BM', 'CA', 'GL', 'PM', 'US']),
+        ('region_countries', ['Antarctica'], []),
+        ('region_countries', ['Nonexistent'], []),
+    ]
+    codes = {e["alpha_2"] for e in reg["countries"]["active"]} | {
+        e["alpha_2"] for e in reg["countries"]["withdrawn"]
+    }
+    for q, args, _ in cases:
+        if q == "succession_path" and args[1] != "ZZ" and not all(a in codes for a in args):
+            raise SystemExit(f"derived_queries: unknown code in {q} {args}")
+    return {
+        "_comment": (
+            "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a "
+            "method name in snake_case, string/int arguments, and the "
+            "expected JSON result. Every wrapper and the CLI must produce "
+            "it. is_eu, is_eea, is_eurozone and currency_at are approximate."
+        ),
+        "enforced": True,
+        "cases": [
+            {"query": q, "args": a, "expected": x} for q, a, x in cases
+        ],
+    }
+
 
 def independent_case(reg: dict[str, Any]) -> dict[str, Any]:
     """Fixture case pinning the independent field for all wrappers.
@@ -317,57 +433,43 @@ def alpha2_ambiguous_case(reg: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _walk_terminals(
-    start: list[str], by_a2: dict[str, Any], active: set[str]
-) -> list[str]:
-    """Active codes reachable from `start` through replaced_by, sorted.
-
-    A code that is active is its own terminal (active wins for AI and
-    SK, which are also withdrawn codes). A withdrawn code with no active
-    descendant (e.g. SU) contributes nothing.
-    """
-    out: set[str] = set()
+def _closure(start: str, edges: dict[str, list[str]]) -> list[str]:
+    """Transitive closure over `edges` from `start`, excluding it, sorted."""
     seen: set[str] = set()
-
-    def walk(c: str) -> None:
-        if c in seen:
-            return
-        seen.add(c)
-        if c in active:
-            out.add(c)
-            return
-        e = by_a2.get(c)
-        for s in (e.get("replaced_by") or []) if e else []:
-            walk(s)
-
-    for c in start:
-        walk(c)
-    return sorted(out)
+    stack = [start]
+    while stack:
+        cur = stack.pop()
+        for nxt in edges.get(cur, ()):
+            if nxt != start and nxt not in seen:
+                seen.add(nxt)
+                stack.append(nxt)
+    return sorted(seen)
 
 
-def _by_withdrawn_a2(reg: dict[str, Any]) -> dict[str, Any]:
-    return {e["alpha_2"]: e for e in reg["countries"]["withdrawn"]}
+def _forward_edges(reg: dict[str, Any]) -> dict[str, list[str]]:
+    return {
+        e["alpha_2"]: list(e["replaced_by"])
+        for e in reg["countries"]["withdrawn"] if e.get("replaced_by")
+    }
 
 
 def successors_case(reg: dict[str, Any]) -> dict[str, Any]:
-    active = {e["alpha_2"] for e in reg["countries"]["active"]}
-    by_wd = _by_withdrawn_a2(reg)
+    """All descendants (transitive closure) of each input, v1.10.0."""
+    known = {e["alpha_2"] for e in reg["countries"]["active"]} | {
+        e["alpha_2"] for e in reg["countries"]["withdrawn"]
+    }
+    edges = _forward_edges(reg)
     cases = []
     for code in SUCCESSOR_INPUTS:
-        if code in active:
-            terminal = [code]
-        elif code in by_wd:
-            terminal = _walk_terminals(
-                list(by_wd[code].get("replaced_by") or []), by_wd, active
-            )
-        else:
+        if code not in known:
             raise SystemExit(f"successors: {code} not in registry")
-        cases.append({"input": code, "terminal": terminal})
+        cases.append({"input": code, "successors": _closure(code, edges)})
     return {
         "_comment": (
-            "Active terminal successors via replaced_by, sorted. The "
-            "wrappers have no successors API yet; their tests compute this "
-            "from the replaced_by field."
+            "All descendants of the input: the transitive closure of "
+            "replaced_by, intermediate codes included, excluding the input, "
+            "sorted. Changed in v1.10.0 from terminal successors only "
+            "(a breaking change for the CLI); see docs/QUERIES.md, Query 5."
         ),
         "enforced": ENFORCE_INPUT_CONTRACT,
         "cases": cases,
@@ -375,24 +477,20 @@ def successors_case(reg: dict[str, Any]) -> dict[str, Any]:
 
 
 def predecessors_case(reg: dict[str, Any]) -> dict[str, Any]:
-    active = {e["alpha_2"] for e in reg["countries"]["active"]}
-    by_wd = _by_withdrawn_a2(reg)
-    cases = []
-    for code in PREDECESSOR_INPUTS:
-        # Start from each withdrawn *entry's* replaced_by, never from its
-        # code: SK is both Slovakia (active) and Sikkim (withdrawn).
-        preds = sorted(
-            e["alpha_2"] for e in reg["countries"]["withdrawn"]
-            if e["alpha_2"] != code
-            and code in _walk_terminals(
-                list(e.get("replaced_by") or []), by_wd, active
-            )
-        )
-        cases.append({"input": code, "predecessors": preds})
+    """All ancestors (transitive closure, reversed) of each input, v1.10.0."""
+    reverse: dict[str, list[str]] = {}
+    for src, dsts in _forward_edges(reg).items():
+        for d in dsts:
+            reverse.setdefault(d, []).append(src)
+    cases = [
+        {"input": code, "predecessors": _closure(code, reverse)}
+        for code in PREDECESSOR_INPUTS
+    ]
     return {
         "_comment": (
-            "Withdrawn codes whose terminal successors include the input, "
-            "sorted alphabetically."
+            "All ancestors of the input: every withdrawn code from which it "
+            "is reachable through replaced_by, sorted. Changed in v1.10.0 "
+            "from terminal-only; see docs/QUERIES.md, Query 5."
         ),
         "enforced": ENFORCE_INPUT_CONTRACT,
         "cases": cases,

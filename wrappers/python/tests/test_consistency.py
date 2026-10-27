@@ -183,21 +183,6 @@ def _require_enforced(fixture, key):
     return fixture[key]["cases"]
 
 
-def _terminals(reg, code, _seen=None):
-    """Active codes reachable through replaced_by (active wins for AI, SK)."""
-    seen = _seen if _seen is not None else set()
-    if code in seen:
-        return set()
-    seen.add(code)
-    if reg.active(code) is not None:
-        return {code}
-    out = set()
-    for entry in reg.with_alpha2(code):
-        for nxt in entry.replaced_by or ():
-            out |= _terminals(reg, nxt, seen)
-    return out
-
-
 def test_empty_inputs(fixture, reg):
     for case in _require_enforced(fixture, "empty_inputs"):
         got = getattr(reg, case["method"])(case["input"])
@@ -222,19 +207,16 @@ def test_alpha2_ambiguous(fixture, reg):
 
 
 def test_successors(fixture, reg):
+    # All descendants (transitive closure) since v1.10.0; see docs/QUERIES.md.
     for case in _require_enforced(fixture, "successors"):
-        got = sorted(_terminals(reg, case["input"]))
-        assert got == case["terminal"], \
-            f"{case['input']}: terminals {got}, expected {case['terminal']}"
+        got = reg.successors(case["input"])
+        assert got == case["successors"], \
+            f"{case['input']}: successors {got}, expected {case['successors']}"
 
 
 def test_predecessors(fixture, reg):
+    # All ancestors (transitive closure) since v1.10.0; see docs/QUERIES.md.
     for case in _require_enforced(fixture, "predecessors"):
-        code = case["input"]
-        got = sorted(
-            e.alpha_2 for e in reg.all_withdrawn()
-            if e.alpha_2 != code
-            and code in set().union(*(_terminals(reg, n) for n in e.replaced_by or ()))
-        )
+        got = reg.predecessors(case["input"])
         assert got == case["predecessors"], \
-            f"{code}: predecessors {got}, expected {case['predecessors']}"
+            f"{case['input']}: predecessors {got}, expected {case['predecessors']}"

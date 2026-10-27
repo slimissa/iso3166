@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"sort"
 	"testing"
 )
 
@@ -679,8 +678,8 @@ type gatedFixture struct {
 	Successors struct {
 		Enforced bool `json:"enforced"`
 		Cases    []struct {
-			Input    string   `json:"input"`
-			Terminal []string `json:"terminal"`
+			Input      string   `json:"input"`
+			Successors []string `json:"successors"`
 		} `json:"cases"`
 	} `json:"successors"`
 	Predecessors struct {
@@ -704,37 +703,6 @@ func loadGatedFixture(t *testing.T) gatedFixture {
 		t.Fatalf("parse fixture: %v", err)
 	}
 	return doc
-}
-
-// terminals returns the active codes reachable from code through
-// replaced_by (the active entry wins for AI and SK).
-func terminals(reg *CountryRegistry, code string, seen map[string]bool) map[string]bool {
-	out := map[string]bool{}
-	if seen[code] {
-		return out
-	}
-	seen[code] = true
-	if reg.Active(code).Exists() {
-		out[code] = true
-		return out
-	}
-	for _, e := range reg.WithAlpha2(code) {
-		for _, next := range e.ReplacedBy {
-			for k := range terminals(reg, next, seen) {
-				out[k] = true
-			}
-		}
-	}
-	return out
-}
-
-func sortedKeys(m map[string]bool) []string {
-	out := make([]string, 0, len(m))
-	for k := range m {
-		out = append(out, k)
-	}
-	sort.Strings(out)
-	return out
 }
 
 func TestFixtureEmptyInputs(t *testing.T) {
@@ -814,39 +782,29 @@ func TestFixtureAlpha2Ambiguous(t *testing.T) {
 }
 
 func TestFixtureSuccessors(t *testing.T) {
+	// All descendants (transitive closure) since v1.10.0; see docs/QUERIES.md.
 	fx := loadGatedFixture(t).Successors
 	if !fx.Enforced {
 		t.Skip("successors enforced=false until all wrappers updated")
 	}
 	reg := mustLoad(t)
 	for _, c := range fx.Cases {
-		got := sortedKeys(terminals(reg, c.Input, map[string]bool{}))
-		if !sliceEq(got, c.Terminal) {
-			t.Fatalf("%s: terminals %v, want %v", c.Input, got, c.Terminal)
+		got := reg.Successors(c.Input)
+		if !sliceEq(got, c.Successors) {
+			t.Fatalf("%s: successors %v, want %v", c.Input, got, c.Successors)
 		}
 	}
 }
 
 func TestFixturePredecessors(t *testing.T) {
+	// All ancestors (transitive closure) since v1.10.0; see docs/QUERIES.md.
 	fx := loadGatedFixture(t).Predecessors
 	if !fx.Enforced {
 		t.Skip("predecessors enforced=false until all wrappers updated")
 	}
 	reg := mustLoad(t)
 	for _, c := range fx.Cases {
-		got := []string{}
-		for _, e := range reg.AllWithdrawn() {
-			if e.Alpha2 == c.Input {
-				continue
-			}
-			for _, next := range e.ReplacedBy {
-				if terminals(reg, next, map[string]bool{})[c.Input] {
-					got = append(got, e.Alpha2)
-					break
-				}
-			}
-		}
-		sort.Strings(got)
+		got := reg.Predecessors(c.Input)
 		if !sliceEq(got, c.Predecessors) {
 			t.Fatalf("%s: predecessors %v, want %v", c.Input, got, c.Predecessors)
 		}

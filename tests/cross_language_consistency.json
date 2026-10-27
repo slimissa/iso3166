@@ -684,37 +684,54 @@
     }
   },
   "successors": {
-    "_comment": "Active terminal successors via replaced_by, sorted. The wrappers have no successors API yet; their tests compute this from the replaced_by field.",
+    "_comment": "All descendants of the input: the transitive closure of replaced_by, intermediate codes included, excluding the input, sorted. Changed in v1.10.0 from terminal successors only (a breaking change for the CLI); see docs/QUERIES.md, Query 5.",
     "enforced": true,
     "cases": [
       {
         "input": "YU",
-        "terminal": [
+        "successors": [
+          "CS",
           "ME",
           "RS"
         ]
       },
       {
         "input": "CS",
-        "terminal": [
+        "successors": [
           "ME",
           "RS"
         ]
       },
       {
-        "input": "US",
-        "terminal": [
-          "US"
+        "input": "AN",
+        "successors": [
+          "BQ",
+          "CW",
+          "SX"
         ]
       },
       {
+        "input": "SK",
+        "successors": [
+          "IN"
+        ]
+      },
+      {
+        "input": "RS",
+        "successors": []
+      },
+      {
+        "input": "US",
+        "successors": []
+      },
+      {
         "input": "SU",
-        "terminal": []
+        "successors": []
       }
     ]
   },
   "predecessors": {
-    "_comment": "Withdrawn codes whose terminal successors include the input, sorted alphabetically.",
+    "_comment": "All ancestors of the input: every withdrawn code from which it is reachable through replaced_by, sorted. Changed in v1.10.0 from terminal-only; see docs/QUERIES.md, Query 5.",
     "enforced": true,
     "cases": [
       {
@@ -732,8 +749,892 @@
         ]
       },
       {
+        "input": "CS",
+        "predecessors": [
+          "YU"
+        ]
+      },
+      {
+        "input": "YU",
+        "predecessors": []
+      },
+      {
+        "input": "IN",
+        "predecessors": [
+          "SK"
+        ]
+      },
+      {
         "input": "US",
         "predecessors": []
+      }
+    ]
+  },
+  "derived_queries": {
+    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. is_eu, is_eea, is_eurozone and currency_at are approximate.",
+    "enforced": true,
+    "cases": [
+      {
+        "query": "is_eu",
+        "args": [
+          "DE"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "de"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "GB"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "CH"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "XK"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "UK"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "EU"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu",
+        "args": [
+          "ZZ"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eea",
+        "args": [
+          "DE"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea",
+        "args": [
+          "NO"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea",
+        "args": [
+          "IS"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea",
+        "args": [
+          "LI"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea",
+        "args": [
+          "CH"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "DE"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "BG"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "SE"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "AD"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "ME"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "GF"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone",
+        "args": [
+          "GB"
+        ],
+        "expected": false
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "FR"
+        ],
+        "expected": [
+          "Europe",
+          "Western Europe"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "US"
+        ],
+        "expected": [
+          "Americas",
+          "Northern America"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "MX"
+        ],
+        "expected": [
+          "Americas",
+          "Latin America and the Caribbean",
+          "Central America"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "YU"
+        ],
+        "expected": [
+          "Southern Europe"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "DD"
+        ],
+        "expected": [
+          "Western Europe"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "TW"
+        ],
+        "expected": []
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "AQ"
+        ],
+        "expected": []
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "ZZ"
+        ],
+        "expected": []
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "US",
+          1
+        ],
+        "expected": [
+          "CA",
+          "MX"
+        ]
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "DE",
+          1
+        ],
+        "expected": [
+          "AT",
+          "BE",
+          "CH",
+          "CZ",
+          "DK",
+          "FR",
+          "LU",
+          "NL",
+          "PL"
+        ]
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "DE",
+          2
+        ],
+        "expected": [
+          "AD",
+          "AT",
+          "BE",
+          "BY",
+          "CH",
+          "CZ",
+          "DK",
+          "ES",
+          "FR",
+          "HU",
+          "IT",
+          "LI",
+          "LT",
+          "LU",
+          "MC",
+          "NL",
+          "PL",
+          "RU",
+          "SI",
+          "SK",
+          "UA"
+        ]
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "LI",
+          2
+        ],
+        "expected": [
+          "AT",
+          "CH",
+          "CZ",
+          "DE",
+          "FR",
+          "HU",
+          "IT",
+          "SI",
+          "SK"
+        ]
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "AQ",
+          2
+        ],
+        "expected": []
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "US",
+          0
+        ],
+        "expected": []
+      },
+      {
+        "query": "borders_transitively",
+        "args": [
+          "DD",
+          2
+        ],
+        "expected": []
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "YU",
+          "RS"
+        ],
+        "expected": [
+          "YU",
+          "CS",
+          "RS"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "YU",
+          "ME"
+        ],
+        "expected": [
+          "YU",
+          "CS",
+          "ME"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "YU",
+          "YU"
+        ],
+        "expected": [
+          "YU"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "DD",
+          "DE"
+        ],
+        "expected": [
+          "DD",
+          "DE"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "AN",
+          "CW"
+        ],
+        "expected": [
+          "AN",
+          "CW"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "SK",
+          "IN"
+        ],
+        "expected": [
+          "SK",
+          "IN"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "SU",
+          "RU"
+        ],
+        "expected": null
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "US",
+          "GB"
+        ],
+        "expected": null
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "YU",
+          "ZZ"
+        ],
+        "expected": null
+      },
+      {
+        "query": "successors",
+        "args": [
+          "YU"
+        ],
+        "expected": [
+          "CS",
+          "ME",
+          "RS"
+        ]
+      },
+      {
+        "query": "successors",
+        "args": [
+          "CS"
+        ],
+        "expected": [
+          "ME",
+          "RS"
+        ]
+      },
+      {
+        "query": "successors",
+        "args": [
+          "AN"
+        ],
+        "expected": [
+          "BQ",
+          "CW",
+          "SX"
+        ]
+      },
+      {
+        "query": "successors",
+        "args": [
+          "SK"
+        ],
+        "expected": [
+          "IN"
+        ]
+      },
+      {
+        "query": "successors",
+        "args": [
+          "RS"
+        ],
+        "expected": []
+      },
+      {
+        "query": "successors",
+        "args": [
+          "US"
+        ],
+        "expected": []
+      },
+      {
+        "query": "successors",
+        "args": [
+          "SU"
+        ],
+        "expected": []
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "RS"
+        ],
+        "expected": [
+          "CS",
+          "YU"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "ME"
+        ],
+        "expected": [
+          "CS",
+          "YU"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "CS"
+        ],
+        "expected": [
+          "YU"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "CW"
+        ],
+        "expected": [
+          "AN"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "IN"
+        ],
+        "expected": [
+          "SK"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "YU"
+        ],
+        "expected": []
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "US"
+        ],
+        "expected": []
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+44 20 7946 0958"
+        ],
+        "expected": [
+          "GB",
+          "GG",
+          "IM",
+          "JE"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "44 20 7946 0958"
+        ],
+        "expected": [
+          "GB",
+          "GG",
+          "IM",
+          "JE"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+44 (0) 20.7946.0958"
+        ],
+        "expected": [
+          "GB",
+          "GG",
+          "IM",
+          "JE"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+49 30 1234567"
+        ],
+        "expected": [
+          "DE"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+7 495 123 4567"
+        ],
+        "expected": [
+          "KZ",
+          "RU"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+1 202 555 0100"
+        ],
+        "expected": [
+          "AG",
+          "AI",
+          "AS",
+          "BB",
+          "BM",
+          "BS",
+          "CA",
+          "DM",
+          "DO",
+          "GD",
+          "GU",
+          "JM",
+          "KN",
+          "KY",
+          "LC",
+          "MP",
+          "MS",
+          "PR",
+          "SX",
+          "TC",
+          "TT",
+          "UM",
+          "US",
+          "VC",
+          "VG",
+          "VI"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+1-867-555-0100"
+        ],
+        "expected": [
+          "AG",
+          "AI",
+          "AS",
+          "BB",
+          "BM",
+          "BS",
+          "CA",
+          "DM",
+          "DO",
+          "GD",
+          "GU",
+          "JM",
+          "KN",
+          "KY",
+          "LC",
+          "MP",
+          "MS",
+          "PR",
+          "SX",
+          "TC",
+          "TT",
+          "UM",
+          "US",
+          "VC",
+          "VG",
+          "VI"
+        ]
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "+999 123"
+        ],
+        "expected": []
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          "nonsense"
+        ],
+        "expected": []
+      },
+      {
+        "query": "calling_code_for",
+        "args": [
+          ""
+        ],
+        "expected": []
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DE",
+          "2000-01-01"
+        ],
+        "expected": [
+          "EUR"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DE",
+          "1990-01-01"
+        ],
+        "expected": [
+          "EUR"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "PA",
+          "2000-01-01"
+        ],
+        "expected": [
+          "PAB",
+          "USD"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "AQ",
+          "2000-01-01"
+        ],
+        "expected": []
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "EU",
+          "2000-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DD",
+          "1990-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DD",
+          "1990-10-03"
+        ],
+        "expected": [
+          "EUR"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DD",
+          "1991-01-01"
+        ],
+        "expected": [
+          "EUR"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "YU",
+          "2004-01-01"
+        ],
+        "expected": [
+          "EUR",
+          "RSD"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "AN",
+          "2010-11-30"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "AN",
+          "2010-12-01"
+        ],
+        "expected": [
+          "ANG",
+          "USD"
+        ]
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "SU",
+          "2000-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DE",
+          "2000-13-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "ZZ",
+          "2000-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "region_countries",
+        "args": [
+          "Europe",
+          "Western Europe"
+        ],
+        "expected": [
+          "AT",
+          "BE",
+          "CH",
+          "DE",
+          "FR",
+          "LI",
+          "LU",
+          "MC",
+          "NL"
+        ]
+      },
+      {
+        "query": "region_countries",
+        "args": [
+          "europe",
+          "western europe"
+        ],
+        "expected": [
+          "AT",
+          "BE",
+          "CH",
+          "DE",
+          "FR",
+          "LI",
+          "LU",
+          "MC",
+          "NL"
+        ]
+      },
+      {
+        "query": "region_countries",
+        "args": [
+          "Americas",
+          "Northern America"
+        ],
+        "expected": [
+          "BM",
+          "CA",
+          "GL",
+          "PM",
+          "US"
+        ]
+      },
+      {
+        "query": "region_countries",
+        "args": [
+          "Antarctica"
+        ],
+        "expected": []
+      },
+      {
+        "query": "region_countries",
+        "args": [
+          "Nonexistent"
+        ],
+        "expected": []
       }
     ]
   }

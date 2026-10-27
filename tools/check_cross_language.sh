@@ -222,5 +222,12 @@ if [ "$failures" -gt 0 ]; then
     exit 1
 fi
 
+# Derived queries (v1.10.0): every fixture case through all four wrappers
+# and the CLI. Skipped when the user named explicit codes to spot-check.
+if [ $# -eq 0 ]; then
+    echo "Checking derived queries..." >&2
+    "$PY" tools/cross_language_derived.py || exit $?
+fi
+
 echo "OK: all codes agree across Python, JavaScript, Go, and Rust"
 exit 0

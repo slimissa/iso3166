@@ -210,19 +210,6 @@ function skipUnless(key) {
   };
 }
 
-function terminals(code, seen = new Set()) {
-  if (seen.has(code)) return new Set();
-  seen.add(code);
-  if (reg.active(code)) return new Set([code]);
-  const out = new Set();
-  for (const entry of reg.withAlpha2(code)) {
-    for (const next of entry.replaced_by ?? []) {
-      for (const t of terminals(next, seen)) out.add(t);
-    }
-  }
-  return out;
-}
-
 const METHODS = {
   active: (x) => reg.active(x),
   by_alpha3: (x) => reg.byAlpha3(x),
@@ -257,18 +244,15 @@ test("alpha2_ambiguous", skipUnless("lookup_alpha2_ambiguous"), () => {
 });
 
 test("successors", skipUnless("successors"), () => {
+  // All descendants (transitive closure) since v1.10.0; see docs/QUERIES.md.
   for (const c of fixture.successors.cases) {
-    assert.deepEqual([...terminals(c.input)].sort(), c.terminal, c.input);
+    assert.deepEqual([...reg.successors(c.input)], c.successors, c.input);
   }
 });
 
 test("predecessors", skipUnless("predecessors"), () => {
+  // All ancestors (transitive closure) since v1.10.0; see docs/QUERIES.md.
   for (const c of fixture.predecessors.cases) {
-    const got = reg.allWithdrawn()
-      .filter((e) => e.alpha_2 !== c.input &&
-        (e.replaced_by ?? []).some((n) => terminals(n).has(c.input)))
-      .map((e) => e.alpha_2)
-      .sort();
-    assert.deepEqual(got, c.predecessors, c.input);
+    assert.deepEqual([...reg.predecessors(c.input)], c.predecessors, c.input);
   }
 });

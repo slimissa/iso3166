@@ -114,7 +114,7 @@ struct AmbiguousCase {
 #[derive(Deserialize)]
 struct SuccessorCase {
     input: String,
-    terminal: Vec<String>,
+    successors: Vec<String>,
 }
 
 #[derive(Deserialize)]
@@ -453,23 +453,6 @@ fn independent() {
 // section has enforced=false, so a wrapper can land before the others.
 // ---------------------------------------------------------------------
 
-fn terminals(reg: &CountryRegistry, code: &str, seen: &mut BTreeSet<String>) -> BTreeSet<String> {
-    let mut out = BTreeSet::new();
-    if !seen.insert(code.to_string()) {
-        return out;
-    }
-    if reg.active(code).is_some() {
-        out.insert(code.to_string());
-        return out;
-    }
-    for entry in reg.with_alpha2(code) {
-        for next in entry.replaced_by.iter().flatten() {
-            out.extend(terminals(reg, next, seen));
-        }
-    }
-    out
-}
-
 #[test]
 fn empty_inputs() {
     let fixture = load_fixture();
@@ -533,6 +516,7 @@ fn alpha2_ambiguous() {
 
 #[test]
 fn successors() {
+    // All descendants (transitive closure) since v1.10.0; see docs/QUERIES.md.
     let fixture = load_fixture();
     if !fixture.successors.enforced {
         eprintln!("successors enforced=false until all wrappers updated; skipping");
@@ -540,13 +524,13 @@ fn successors() {
     }
     let reg = reg();
     for c in &fixture.successors.cases {
-        let got: Vec<String> = terminals(&reg, &c.input, &mut BTreeSet::new()).into_iter().collect();
-        assert_eq!(got, c.terminal, "{}", c.input);
+        assert_eq!(reg.successors(&c.input), c.successors, "{}", c.input);
     }
 }
 
 #[test]
 fn predecessors() {
+    // All ancestors (transitive closure) since v1.10.0; see docs/QUERIES.md.
     let fixture = load_fixture();
     if !fixture.predecessors.enforced {
         eprintln!("predecessors enforced=false until all wrappers updated; skipping");
@@ -554,19 +538,6 @@ fn predecessors() {
     }
     let reg = reg();
     for c in &fixture.predecessors.cases {
-        let mut got: Vec<String> = reg
-            .all_withdrawn()
-            .iter()
-            .filter(|e| e.alpha_2 != c.input)
-            .filter(|e| {
-                e.replaced_by
-                    .iter()
-                    .flatten()
-                    .any(|n| terminals(&reg, n, &mut BTreeSet::new()).contains(&c.input))
-            })
-            .map(|e| e.alpha_2.clone())
-            .collect();
-        got.sort();
-        assert_eq!(got, c.predecessors, "{}", c.input);
+        assert_eq!(reg.predecessors(&c.input), c.predecessors, "{}", c.input);
     }
 }
