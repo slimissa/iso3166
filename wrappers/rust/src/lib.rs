@@ -37,6 +37,41 @@ const ACTIVE_STATUSES: &[&str] = &[
     "exceptionally-reserved",
 ];
 
+/// The 27 EU member states at v1.9.3. The only hardcoded list in the
+/// registry; it is not a tree fact, which is why `is_eu` is deprecated
+/// by `is_eu_member_at` in v1.12.0.
+pub const KNOWN_EU_MEMBERS: [&str; 27] = [
+    "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT",
+    "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
+];
+
+/// EEA members that are not EU members.
+pub const EEA_NON_EU: [&str; 3] = ["IS", "LI", "NO"];
+
+fn dq_norm(code: &str) -> String {
+    code.trim().to_uppercase()
+}
+
+/// True for a real calendar date written as YYYY-MM-DD, year >= 1.
+fn dq_valid_date(s: &str) -> bool {
+    let b = s.as_bytes();
+    if b.len() != 10 || b[4] != b'-' || b[7] != b'-' {
+        return false;
+    }
+    if !b.iter().enumerate().all(|(i, c)| i == 4 || i == 7 || c.is_ascii_digit()) {
+        return false;
+    }
+    let y: u32 = s[0..4].parse().unwrap_or(0);
+    let m: u32 = s[5..7].parse().unwrap_or(0);
+    let d: u32 = s[8..10].parse().unwrap_or(0);
+    if y < 1 || !(1..=12).contains(&m) || d < 1 {
+        return false;
+    }
+    let leap = (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
+    let dim = [31, if leap { 29 } else { 28 }, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][(m - 1) as usize];
+    d <= dim
+}
+
 // ============================================================
 // Errors
 // ============================================================
@@ -480,6 +515,287 @@ impl CountryRegistry {
             by_status,
         }
     }
+
+    // ------------------------------------------------------------
+    // Derived queries (v1.10.0 — design in docs/QUERIES.md)
+    //
+    // docs/QUERIES.md is the contract; each method names its section.
+    //
+    // Mirrors wrappers/python/iso3166/derived.py. Unknown codes are not
+    // errors: bool queries return false, list queries return an empty
+    // Vec, optional queries return None. Active entries win over
+    // withdrawn ones (AI and SK exist twice); the succession graph is
+    // built from withdrawn entries only.
+    //
+    // Approximate: is_eu, is_eea, is_eurozone (deprecated by v1.12.0)
+    // and currency_at (deprecated by v1.11.0).
+    // ------------------------------------------------------------
+
+    fn dq_entry(&self, code: &str) -> Option<&Country> {
+        let c = dq_norm(code);
+        if c.is_empty() {
+            return None;
+        }
+        if let Some(&i) = self.by_alpha2.get(&c) {
+            return Some(&self.active[i]);
+        }
+        self.withdrawn.iter().find(|w| w.alpha_2 == c)
+    }
+
+    fn dq_edges(&self) -> std::collections::HashMap<&str, Vec<&str>> {
+        let mut m = std::collections::HashMap::new();
+        for w in &self.withdrawn {
+            if let Some(rb) = &w.replaced_by {
+                if !rb.is_empty() {
+                    m.insert(w.alpha_2.as_str(), rb.iter().map(String::as_str).collect());
+                }
+            }
+        }
+        m
+    }
+
+    fn dq_closure(
+        start: &str,
+        edges: &std::collections::HashMap<&str, Vec<&str>>,
+    ) -> Vec<String> {
+        let mut seen: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        let mut stack = vec![start.to_string()];
+        while let Some(cur) = stack.pop() {
+            if let Some(next) = edges.get(cur.as_str()) {
+                for n in next {
+                    if *n != start && seen.insert((*n).to_string()) {
+                        stack.push((*n).to_string());
+                    }
+                }
+            }
+        }
+        seen.into_iter().collect()
+    }
+
+    /// True for the 27 EU member states. Approximate: the list is a
+    /// v1.9.3 snapshot. Deprecated by `is_eu_member_at` in v1.12.0.
+    /// See docs/QUERIES.md, "Query 1".
+    pub fn is_eu(&self, code: &str) -> bool {
+        KNOWN_EU_MEMBERS.contains(&dq_norm(code).as_str())
+    }
+
+    /// EU members plus IS, LI and NO. Approximate; deprecated with `is_eu`.
+    /// See docs/QUERIES.md, "Query 1".
+    pub fn is_eea(&self, code: &str) -> bool {
+        let c = dq_norm(code);
+        KNOWN_EU_MEMBERS.contains(&c.as_str()) || EEA_NON_EU.contains(&c.as_str())
+    }
+
+    /// EU member whose active entry has `currency_codes == ["EUR"]`.
+    /// Approximate: overseas territories that use the euro (GF, GP, MQ,
+    /// RE, YT, AX, ...) are separate codes and return false.
+    /// See docs/QUERIES.md, "Query 1".
+    pub fn is_eurozone(&self, code: &str) -> bool {
+        let c = dq_norm(code);
+        if !KNOWN_EU_MEMBERS.contains(&c.as_str()) {
+            return false;
+        }
+        match self.by_alpha2.get(&c).map(|&i| &self.active[i]) {
+            Some(e) => matches!(&e.currency_codes, Some(cc) if cc.len() == 1 && cc[0] == "EUR"),
+            None => false,
+        }
+    }
+
+    /// `[region, subregion, intermediate_region]` with nulls dropped.
+    /// See docs/QUERIES.md, "Query 2".
+    pub fn region_tree(&self, code: &str) -> Vec<String> {
+        match self.dq_entry(code) {
+            None => Vec::new(),
+            Some(e) => [&e.region, &e.subregion, &e.intermediate_region]
+                .into_iter()
+                .filter_map(|v| v.as_ref())
+                .filter(|v| !v.is_empty())
+                .cloned()
+                .collect(),
+        }
+    }
+
+    /// Sorted codes within `max_hops` of `code` through `borders`,
+    /// excluding `code` itself. See docs/QUERIES.md, "Query 3".
+    pub fn borders_transitively(&self, code: &str, max_hops: usize) -> Vec<String> {
+        let start = dq_norm(code);
+        if start.is_empty() || max_hops < 1 || self.dq_entry(&start).is_none() {
+            return Vec::new();
+        }
+        let mut seen: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        seen.insert(start.clone());
+        let mut frontier = vec![start.clone()];
+        for _ in 0..max_hops {
+            let mut next = Vec::new();
+            for cur in &frontier {
+                if let Some(&i) = self.by_alpha2.get(cur) {
+                    for b in self.active[i].borders.iter().flatten() {
+                        if seen.insert(b.clone()) {
+                            next.push(b.clone());
+                        }
+                    }
+                }
+            }
+            if next.is_empty() {
+                break;
+            }
+            frontier = next;
+        }
+        seen.remove(&start);
+        seen.into_iter().collect()
+    }
+
+    /// Shortest `replaced_by` path, both endpoints included, or `None`.
+    /// See docs/QUERIES.md, "Query 4".
+    pub fn succession_path(&self, from: &str, to: &str) -> Option<Vec<String>> {
+        let a = dq_norm(from);
+        let b = dq_norm(to);
+        self.dq_entry(&a)?;
+        self.dq_entry(&b)?;
+        if a == b {
+            return Some(vec![a]);
+        }
+        let edges = self.dq_edges();
+        let mut prev: std::collections::HashMap<String, Option<String>> =
+            std::collections::HashMap::new();
+        prev.insert(a.clone(), None);
+        let mut q = std::collections::VecDeque::new();
+        q.push_back(a);
+        while let Some(cur) = q.pop_front() {
+            if let Some(next) = edges.get(cur.as_str()) {
+                for n in next {
+                    if prev.contains_key(*n) {
+                        continue;
+                    }
+                    prev.insert((*n).to_string(), Some(cur.clone()));
+                    if *n == b {
+                        let mut path = vec![b.clone()];
+                        while let Some(Some(p)) = prev.get(path.last().unwrap()) {
+                            path.push(p.clone());
+                        }
+                        path.reverse();
+                        return Some(path);
+                    }
+                    q.push_back((*n).to_string());
+                }
+            }
+        }
+        None
+    }
+
+    /// Returns all descendants: the transitive closure of `replaced_by`,
+    /// intermediate codes included, excluding `code`, sorted. The CLI
+    /// returns the same set. See docs/QUERIES.md, "Query 5".
+    pub fn successors(&self, code: &str) -> Vec<String> {
+        let c = dq_norm(code);
+        if c.is_empty() {
+            return Vec::new();
+        }
+        Self::dq_closure(&c, &self.dq_edges())
+    }
+
+    /// Returns all ancestors: every withdrawn code from which `code` is
+    /// reachable through `replaced_by`, sorted. See docs/QUERIES.md,
+    /// "Query 5".
+    pub fn predecessors(&self, code: &str) -> Vec<String> {
+        let c = dq_norm(code);
+        if c.is_empty() {
+            return Vec::new();
+        }
+        let mut rev: std::collections::HashMap<&str, Vec<&str>> = std::collections::HashMap::new();
+        for (src, dsts) in self.dq_edges() {
+            for d in dsts {
+                rev.entry(d).or_default().push(src);
+            }
+        }
+        Self::dq_closure(&c, &rev)
+    }
+
+    /// Sorted codes whose `calling_codes` is a prefix of the number's
+    /// digits. Country level only: "+44" returns GB, GG, IM and JE, and
+    /// "+1" returns every NANP entry. See docs/QUERIES.md, "Query 6".
+    pub fn calling_code_for(&self, number: &str) -> Vec<String> {
+        let digits: String = number
+            .chars()
+            .filter(|ch| !matches!(ch, ' ' | '-' | '(' | ')' | '.' | '+'))
+            .collect();
+        if digits.is_empty() || !digits.chars().all(|ch| ch.is_ascii_digit()) {
+            return Vec::new();
+        }
+        let mut out: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        for e in &self.active {
+            for cc in e.calling_codes.iter().flatten() {
+                if digits.starts_with(cc.as_str()) {
+                    out.insert(e.alpha_2.clone());
+                }
+            }
+        }
+        out.into_iter().collect()
+    }
+
+    /// Approximate currency in force on `date` (YYYY-MM-DD).
+    ///
+    /// Active codes return their current `currency_codes` for every
+    /// date. Withdrawn codes return `None` before `withdrawal_date` and
+    /// the terminal successors' current currencies from then on.
+    /// `None` means "cannot answer" (unknown code, malformed date, no
+    /// data). Deprecated by v1.11.0's `introduced` field. See
+    /// docs/QUERIES.md, "Query 7".
+    pub fn currency_at(&self, code: &str, date: &str) -> Option<Vec<String>> {
+        if !dq_valid_date(date) {
+            return None;
+        }
+        let c = dq_norm(code);
+        if let Some(&i) = self.by_alpha2.get(&c) {
+            return self.active[i].currency_codes.clone();
+        }
+        let wd = self.withdrawn.iter().find(|w| w.alpha_2 == c)?;
+        match &wd.withdrawal_date {
+            Some(d) if date >= d.as_str() => {}
+            _ => return None,
+        }
+        let edges = self.dq_edges();
+        let mut out: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
+        let mut seen: std::collections::HashSet<String> = std::collections::HashSet::new();
+        let mut stack = vec![c];
+        while let Some(cur) = stack.pop() {
+            if !seen.insert(cur.clone()) {
+                continue;
+            }
+            if let Some(&i) = self.by_alpha2.get(&cur) {
+                out.extend(self.active[i].currency_codes.iter().flatten().cloned());
+            } else if let Some(next) = edges.get(cur.as_str()) {
+                stack.extend(next.iter().map(|s| s.to_string()));
+            }
+        }
+        if out.is_empty() {
+            None
+        } else {
+            Some(out.into_iter().collect())
+        }
+    }
+
+    /// Sorted active codes in `region` (and `subregion`). Case-insensitive.
+    /// See docs/QUERIES.md, "Query 8".
+    pub fn region_countries(&self, region: &str, subregion: Option<&str>) -> Vec<String> {
+        if region.is_empty() {
+            return Vec::new();
+        }
+        let r = region.to_lowercase();
+        let s = subregion.filter(|s| !s.is_empty()).map(str::to_lowercase);
+        let mut out: Vec<String> = self
+            .active
+            .iter()
+            .filter(|e| e.region.as_deref().unwrap_or("").to_lowercase() == r)
+            .filter(|e| match &s {
+                None => true,
+                Some(s) => e.subregion.as_deref().unwrap_or("").to_lowercase() == *s,
+            })
+            .map(|e| e.alpha_2.clone())
+            .collect();
+        out.sort();
+        out
+    }
 }
 
 #[cfg(test)]
@@ -536,5 +852,36 @@ mod tests {
             let flags: Vec<bool> = r.with_alpha2(code).iter().map(|c| c.is_active()).collect();
             assert_eq!(flags, vec![true, false], "{}", code);
         }
+    }
+    #[test]
+    fn derived_queries_worked_examples() {
+        let r = reg();
+        assert!(r.is_eu("DE") && r.is_eu("de"));
+        assert!(!r.is_eu("GB") && !r.is_eu("CH") && !r.is_eu("XK"));
+        assert!(r.is_eea("NO") && !r.is_eea("CH"));
+        assert!(r.is_eurozone("DE") && r.is_eurozone("BG"));
+        assert!(!r.is_eurozone("AD") && !r.is_eurozone("ME") && !r.is_eurozone("GB"));
+        assert_eq!(r.region_tree("FR"), ["Europe", "Western Europe"]);
+        assert!(r.region_tree("TW").is_empty() && r.region_tree("AQ").is_empty());
+        assert_eq!(r.borders_transitively("US", 1), ["CA", "MX"]);
+        assert!(r.borders_transitively("AQ", 2).is_empty());
+        assert_eq!(r.succession_path("YU", "RS").unwrap(), ["YU", "CS", "RS"]);
+        assert_eq!(r.succession_path("YU", "YU").unwrap(), ["YU"]);
+        assert!(r.succession_path("US", "GB").is_none());
+        assert!(r.succession_path("SU", "RU").is_none());
+        assert_eq!(r.successors("YU"), ["CS", "ME", "RS"]);
+        assert_eq!(r.predecessors("RS"), ["CS", "YU"]);
+        assert_eq!(r.calling_code_for("+44 20 7946 0958"), ["GB", "GG", "IM", "JE"]);
+        assert!(r.calling_code_for("+999 123").is_empty());
+        assert!(r.calling_code_for("nonsense").is_empty());
+        assert_eq!(r.currency_at("DE", "2000-01-01").unwrap(), ["EUR"]);
+        assert!(r.currency_at("DD", "1990-01-01").is_none());
+        assert_eq!(r.currency_at("DD", "1991-01-01").unwrap(), ["EUR"]);
+        assert!(r.currency_at("DE", "2000-13-01").is_none());
+        assert_eq!(
+            r.region_countries("Europe", Some("Western Europe")),
+            ["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]
+        );
+        assert!(r.region_countries("Antarctica", None).is_empty());
     }
 }
