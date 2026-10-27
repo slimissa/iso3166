@@ -495,5 +495,30 @@
       "file": "CHANGELOG.md",
       "contains": "## [1.9.3]"
     }
+  ],
+  "1.10.0": [
+    {"file": "docs/QUERIES.md"},
+    {"file": "docs/QUERIES-DECISIONS.md"},
+    {"file": "docs/QUERIES.md", "contains": "transitive closure"},
+    {"file": "docs/QUERIES.md", "contains": "approximate"},
+    {"file": "docs/QUERIES.md", "contains": "currency_at"},
+    {"file": "wrappers/python/iso3166/derived.py"},
+    {"file": "wrappers/python/iso3166/derived.py", "contains": "all descendants"},
+    {"file": "wrappers/javascript/derived.js", "contains": "isEu"},
+    {"file": "wrappers/rust/src/lib.rs", "contains": "fn is_eu"},
+    {"file": "wrappers/go/registry.go", "contains": "func (r *CountryRegistry) IsEU"},
+    {"file": "tools/iso3166_cli.py", "contains": "successors"},
+    {"file": "tools/iso3166_cli.py", "contains": "all descendants"},
+    {"file": "tests/cross_language_consistency.json", "contains": "successors"},
+    {"file": "README.md", "contains": "Derived queries"},
+    {"file": "README.md", "contains": "docs/QUERIES.md"},
+    {"file": "CHANGELOG.md", "contains": "## [1.10.0]"},
+    {"file": "CHANGELOG.md", "contains": "breaking change"},
+    {"file": "tools/iso3166_cli.py", "contains": "Prints true or false to stdout"},
+    {"file": "tools/iso3166_cli.py", "contains": "Exit 0 if CODE exists (true or false)"},
+    {"file": "docs/QUERIES.md", "contains": "prints true/false to stdout"},
+    {"file": "docs/QUERIES-DECISIONS.md", "contains": "Deprecated by v1.11.0's `introduced` field"},
+    {"file": "README.md", "contains": "`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout"},
+    {"file": "CHANGELOG.md", "contains": "print true/false to\n  stdout"}
   ]
 }
