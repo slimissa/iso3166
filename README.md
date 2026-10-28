@@ -240,7 +240,7 @@ The nine derived subcommands are specified in [docs/QUERIES.md](docs/QUERIES.md)
 
 `list` accepts `--withdrawn-since DATE` and `--withdrawn-before DATE` filters.
 
-Five output modes, mutually exclusive: `--json`, `--jsonl`, `--csv`, `--tsv`, `--raw FIELD`.
+Five output modes, mutually exclusive: `--json`, `--jsonl`, `--csv`, `--tsv`, `--raw [FIELD]` (bare `--raw` means `alpha_2`; `validate` uses `code`; `info` needs a field).
 
 Exit codes: **0** success, **1** code not found, **2** usage error, **3** registry missing or invalid.
 

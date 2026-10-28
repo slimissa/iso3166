@@ -78,6 +78,10 @@ ACTIVE_STATUSES = (
     "exceptionally-reserved",
 )
 
+# Value of a bare `--raw` (no FIELD). Contains NUL, so no command line can
+# type it; main() replaces it with the command's default field.
+RAW_DEFAULT = "\x00default"
+
 VALID_RAW_FIELDS = frozenset({
     "alpha_2", "alpha_3", "numeric", "name", "status", "independent",
     "official_name", "region", "subregion", "intermediate_region",
@@ -1038,8 +1042,11 @@ def add_common_args(
                    help="Emit CSV with the same columns as iso3166.csv.")
     g.add_argument("--tsv", action="store_true", default=d_false,
                    help="Emit tab-delimited values with the same columns as iso3166.csv.")
-    g.add_argument("--raw", metavar="FIELD", default=d_none,
-                   help="Emit bare values for one field, one per line.")
+    g.add_argument("--raw", metavar="FIELD", nargs="?", const=RAW_DEFAULT,
+                   default=d_none,
+                   help="Emit bare values for one field, one per line. FIELD is "
+                        "optional: bare --raw means alpha_2 ('code' for validate; "
+                        "info needs a FIELD).")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -1217,6 +1224,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             file=sys.stderr,
         )
         return EXIT_USAGE
+
+    if args.raw == RAW_DEFAULT:
+        # Bare --raw: pick the command's natural field (v1.10.2).
+        if args.command == "info":
+            print("error: --raw needs a FIELD for info", file=sys.stderr)
+            return EXIT_USAGE
+        args.raw = "code" if args.command == "validate" else "alpha_2"
 
     if args.raw and args.raw not in VALID_RAW_FIELDS and args.command != "validate":
         print(

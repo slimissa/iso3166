@@ -143,6 +143,30 @@ def test_successors_json_key_is_successors():
     assert json.loads(proc.stdout)["successors"] == ["CS", "ME", "RS"]
 
 
+
+# --- bare --raw (v1.10.2) ------------------------------------------------
+
+def test_bare_raw_defaults_to_alpha_2():
+    bare = _run("successors", "YU", "--raw")
+    assert bare.returncode == 0, bare.stderr
+    assert bare.stdout.split() == ["CS", "ME", "RS"]
+    assert bare.stdout == _run("successors", "YU", "--raw", "alpha_2").stdout
+    assert _run("lookup", "DE", "--raw").stdout == "DE\n"
+    assert _run("predecessors", "RS", "--raw").stdout.split() == ["CS", "YU"]
+
+
+def test_bare_raw_validate_uses_code_and_info_needs_a_field():
+    assert _run("validate", "DE", "--raw").stdout == _run("validate", "DE", "--raw", "code").stdout
+    info = _run("info", "--raw")
+    assert info.returncode == 2 and "needs a FIELD for info" in info.stderr
+
+
+def test_raw_code_is_still_not_a_field_outside_validate():
+    # `code` is not a registry field (it is alpha_2); only validate accepts it.
+    proc = _run("successors", "YU", "--raw", "code")
+    assert proc.returncode == 2 and "not a valid field" in proc.stderr
+
+
 # --- derived queries (v1.10.0; docs/QUERIES.md) --------------------------
 
 def test_is_eu_prints_the_boolean_and_exits_0():
