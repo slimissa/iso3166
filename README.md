@@ -100,7 +100,7 @@ See [the CLI reference](#command-line-interface) below.
 
 ## Derived queries
 
-Eleven methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in `tools/iso3166_cli.py` (run through `bin/iso3166` when no `iso3166` console script is installed). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
+Eleven methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in the command line (the installed `iso3166` script and `tools/iso3166_cli.py`, which `bin/iso3166` runs from a checkout). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
 
 ```python
 reg.is_eu("DE")                       # True    (approximate)
@@ -214,7 +214,7 @@ Every entry has `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, and `independ
 
 ## Command-line interface
 
-The `iso3166` command is installed by the Python wrapper. Ten subcommands:
+The `iso3166` command is installed by the Python wrapper. Nineteen subcommands (ten original, nine derived queries):
 
 | Subcommand | Purpose |
 |------------|---------|
@@ -226,8 +226,17 @@ The `iso3166` command is installed by the Python wrapper. Ten subcommands:
 | `info` | Registry metadata |
 | `validate CC...` | Exit 0 if all codes exist, 1 otherwise |
 | `search QUERY` | Substring search on names and codes |
-| `successors CC` | Follow `replaced_by` transitively. The installed script lists terminal successors only until v1.10.1; `tools/iso3166_cli.py` returns all descendants (transitive closure) |
-| `predecessors CC` | Withdrawn codes that lead to this code. The installed script lists terminal-successor matches only until v1.10.1; `tools/iso3166_cli.py` returns all ancestors |
+| `successors CC` | All descendants (transitive closure) via `replaced_by`. Before v1.10.0 this listed terminal successors only |
+| `predecessors CC` | All ancestors (transitive closure): withdrawn codes that lead to this code |
+| `is-eu CC`, `is-eea CC`, `is-eurozone CC` | Print `true` or `false` (approximate); exit 0 whenever the code exists |
+| `region-tree CC` | Region, subregion, intermediate region |
+| `borders-transitively CC [--max-hops N]` | Codes within N border hops |
+| `succession-path FROM TO` | Shortest `replaced_by` path |
+| `calling-code-for NUMBER` | Countries whose calling code prefixes the number |
+| `currency-at CC DATE` | Currency on a date (approximate for active entries) |
+| `region-countries REGION [--subregion S]` | Active countries in a region |
+
+The nine derived subcommands are specified in [docs/QUERIES.md](docs/QUERIES.md).
 
 `list` accepts `--withdrawn-since DATE` and `--withdrawn-before DATE` filters.
 

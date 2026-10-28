@@ -113,9 +113,9 @@ def test_successors_yu():
     proc = _run("successors", "YU")
     assert proc.returncode == 0, proc.stderr
     assert "YU" in proc.stdout and "CS" in proc.stdout
-    assert "Terminal successors: ME, RS" in proc.stdout
+    assert "Successors (all descendants): CS, ME, RS" in proc.stdout
     raw = _run("successors", "YU", "--raw", "alpha_2")
-    assert raw.stdout.split() == ["ME", "RS"]
+    assert raw.stdout.split() == ["CS", "ME", "RS"]   # all descendants, v1.10.0
 
 
 def test_successors_without_successors():
@@ -128,6 +128,76 @@ def test_predecessors_me():
     proc = _run("predecessors", "ME", "--raw", "alpha_2")
     assert proc.returncode == 0, proc.stderr
     assert proc.stdout.split() == ["CS", "YU"]
+
+
+def test_predecessors_intermediate_code_has_ancestors():
+    # All ancestors (transitive closure), v1.10.0: CS was replaced from YU.
+    proc = _run("predecessors", "CS", "--raw", "alpha_2")
+    assert proc.returncode == 0, proc.stderr
+    assert proc.stdout.split() == ["YU"]
+
+
+def test_successors_json_key_is_successors():
+    import json
+    proc = _run("successors", "YU", "--json")
+    assert json.loads(proc.stdout)["successors"] == ["CS", "ME", "RS"]
+
+
+# --- derived queries (v1.10.0; docs/QUERIES.md) --------------------------
+
+def test_is_eu_prints_the_boolean_and_exits_0():
+    de = _run("is-eu", "DE")
+    assert (de.stdout, de.returncode) == ("true\n", 0)
+    gb = _run("is-eu", "GB")
+    assert (gb.stdout, gb.returncode) == ("false\n", 0)   # GB exists: exit 0
+
+
+def test_is_eu_unknown_code_exit_1_and_usage_error_exit_2():
+    xx = _run("is-eu", "XX")
+    assert xx.returncode == 1 and "not found: XX" in xx.stderr
+    assert xx.stdout == ""
+    bogus = _run("is-eu", "--bogus")
+    assert bogus.returncode == 2 and "usage: iso3166 is-eu" in bogus.stderr
+
+
+def test_is_eea_and_is_eurozone():
+    assert _run("is-eea", "NO").stdout == "true\n"
+    assert _run("is-eea", "CH").stdout == "false\n"
+    assert _run("is-eurozone", "DE").stdout == "true\n"
+    assert _run("is-eurozone", "AD").stdout == "false\n"
+    assert _run("is-eurozone", "XX").returncode == 1
+
+
+def test_is_eu_json_shape():
+    import json
+    out = json.loads(_run("is-eu", "DE", "--json").stdout)
+    assert out == {"code": "DE", "is_eu": True, "result": "true"}
+
+
+def test_is_eu_missing_registry_exit_3():
+    assert _run("is-eu", "DE", "--registry", "/nonexistent/iso3166.json").returncode == 3
+
+
+def test_region_tree_and_region_countries():
+    assert _run("region-tree", "FR").stdout == "Europe, Western Europe\n"
+    assert _run("region-tree", "AQ").stdout == "\n"
+    wc = _run("region-countries", "Europe", "--subregion", "Western Europe")
+    assert wc.stdout.split() == ["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]
+    assert _run("region-countries", "Antarctica").returncode == 1
+
+
+def test_borders_transitively_and_succession_path():
+    assert _run("borders-transitively", "US", "--max-hops", "1").stdout.split() == ["CA", "MX"]
+    assert _run("succession-path", "YU", "RS").stdout == "YU -> CS -> RS\n"
+    assert _run("succession-path", "SU", "RU").returncode == 1
+
+
+def test_calling_code_for_and_currency_at():
+    assert _run("calling-code-for", "+44 20 7946 0958").stdout.split() == ["GB", "GG", "IM", "JE"]
+    assert _run("calling-code-for", "+999 123").returncode == 1
+    assert _run("currency-at", "DE", "2000-01-01").stdout == "EUR\n"   # approximate
+    dd = _run("currency-at", "DD", "1990-01-01")
+    assert dd.returncode == 1 and dd.stdout == ""   # the tree has no DD currency
 
 
 def test_succession_unknown_code_exit_1():

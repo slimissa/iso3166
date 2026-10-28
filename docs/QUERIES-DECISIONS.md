@@ -157,13 +157,15 @@ two meanings inside one CLI. The answer is data, the exit code is plumbing, and
 this matches the wrappers, where the boolean is the return value and an unknown
 code is a separate case.
 
-**Known divergence, deferred to v1.10.1.** The `iso3166` console script that
-`pip install` creates is `wrappers/python/iso3166/cli.py`, a different file
-from `tools/iso3166_cli.py`. v1.10.0 changes only the latter (and
-`bin/iso3166`, which runs it when no installed script is found). The packaged
-script keeps its v1.9.x subcommands and terminal-only `successors` until
-v1.10.1 brings it in line. The divergence is recorded in CHANGELOG
-`[Unreleased]`.
+**Known divergence in v1.10.0, closed in v1.10.1.** The `iso3166` console
+script that `pip install` creates is `wrappers/python/iso3166/cli.py`, a
+different file from `tools/iso3166_cli.py`. v1.10.0 changed only the latter
+(and `bin/iso3166`, which runs it when no installed script is found), so the
+packaged script kept its v1.9.x subcommands and terminal-only `successors`.
+v1.10.1 ports the nine subcommands and the closure semantics into the packaged
+script. It calls the matching `CountryRegistry` methods instead of
+reimplementing them, because `tools/` is not part of the pip package and a
+wrapper that imported it would break outside a checkout.
 
 ## Why alpha-2 collisions resolve to the active entry
 
@@ -196,7 +198,7 @@ document is a claim a machine has checked.
 | `population_of`, `gdp_of` | never | The registry is identity, not demographics |
 | `flag_emoji(code)` | never | Derivable from `alpha_2`; not a registry concern |
 | Area-code narrowing for `calling_code_for` | not scheduled | Needs numbering-plan data the tree does not carry |
-| Packaged `iso3166` console script parity | v1.10.1 | Out of scope for this release (see above) |
+| Packaged `iso3166` console script parity | done in v1.10.1 | Was out of scope for v1.10.0 (see above) |
 
 ## When someone asks for a ninth query
 

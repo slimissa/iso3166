@@ -6,7 +6,8 @@ Command-line interface to the ISO 3166 country registry. Every query goes
 through iso3166.registry.CountryRegistry; the CLI does not read the
 registry JSON itself.
 
-Ten subcommands:
+Nineteen subcommands (ten original, nine derived queries; see
+docs/QUERIES.md):
 
     lookup CC              All fields for one country (withdrawn codes
                            included; --active-only excludes them)
@@ -17,8 +18,17 @@ Ten subcommands:
     info                   Registry metadata
     validate CC...         Exit 0 if all codes exist, 1 otherwise
     search QUERY           Substring search on names and codes
-    successors CC          Follow replaced_by to terminal successors
-    predecessors CC        Withdrawn codes that lead to this code
+    successors CC          All descendants via replaced_by (transitive closure)
+    predecessors CC        All ancestors: withdrawn codes that lead to this code
+    is-eu CC               Prints true or false (approximate; exit 0 if CC exists)
+    is-eea CC              Same, EEA (approximate)
+    is-eurozone CC         Same, eurozone (approximate)
+    region-tree CC         Region, subregion, intermediate region
+    borders-transitively CC [--max-hops N]
+    succession-path FROM TO
+    calling-code-for NUMBER
+    currency-at CC DATE    Approximate for active entries
+    region-countries REGION [--subregion S]
 
 Five output modes, mutually exclusive:
 
@@ -34,7 +44,7 @@ Five output modes, mutually exclusive:
 Exit codes:
     0  Success
     1  Code not found (lookup, currency, country, validate, successors,
-       predecessors)
+       predecessors, is-eu, is-eea, is-eurozone, region-tree, ...)
     2  Usage error (bad flag, missing argument)
     3  Registry file missing or invalid
 
@@ -592,36 +602,6 @@ def _succession_index(reg: CountryRegistry) -> dict[str, Country]:
     return {c.alpha_2: c for c in reg.all()}
 
 
-def _terminal_successors(entry: Country, by_a2: dict[str, Country]) -> set[str]:
-    """Terminal successors of an entry.
-
-    A terminal successor is a code reachable via `replaced_by` that is
-    not itself further replaced. An active code is terminal. A
-    withdrawn code with no `replaced_by` is terminal. A code that is
-    not present in the registry is terminal.
-    """
-    terminals: set[str] = set()
-    seen: set[str] = set()
-
-    def walk(code: str) -> None:
-        if code in seen:
-            return
-        seen.add(code)
-        e = by_a2.get(code)
-        if e is None:
-            terminals.add(code)
-            return
-        succ = list(e.replaced_by or ())
-        if not succ:
-            terminals.add(code)
-            return
-        for s in succ:
-            walk(s)
-
-    walk(entry.alpha_2)
-    return terminals
-
-
 def cmd_successors(reg: CountryRegistry, args) -> int:
     code = args.code.upper()
     by_a2 = _succession_index(reg)
@@ -631,7 +611,6 @@ def cmd_successors(reg: CountryRegistry, args) -> int:
         return EXIT_NOT_FOUND
 
     chain: list[str] = []
-    terminals: set[str] = set()
     seen: set[str] = set()
 
     def walk(cur: str) -> None:
@@ -640,17 +619,17 @@ def cmd_successors(reg: CountryRegistry, args) -> int:
         seen.add(cur)
         e = by_a2.get(cur)
         if e is None:
-            terminals.add(cur)
             return
         succ = list(e.replaced_by or ())
         if e.status == "withdrawn" and succ:
             chain.append(cur)
             for s in succ:
                 walk(s)
-        else:
-            terminals.add(cur)
 
     walk(code)
+    # All descendants: the transitive closure (docs/QUERIES.md, Query 5).
+    # Changed in v1.10.0 from terminal successors only.
+    successors = reg.successors(code)
 
     def link(c: str) -> dict[str, Any]:
         e = by_a2[c]
@@ -665,7 +644,7 @@ def cmd_successors(reg: CountryRegistry, args) -> int:
         write_json({
             "code": code,
             "chain": [link(c) for c in chain],
-            "terminal_successors": sorted(terminals),
+            "successors": successors,
         })
         return EXIT_SUCCESS
 
@@ -675,7 +654,7 @@ def cmd_successors(reg: CountryRegistry, args) -> int:
         return EXIT_SUCCESS
 
     if args.raw:
-        for t in sorted(terminals):
+        for t in successors:
             sys.stdout.write(f"{t}\n")
         return EXIT_SUCCESS
 
@@ -707,10 +686,7 @@ def cmd_successors(reg: CountryRegistry, args) -> int:
         print(f"{style.cyan(c)} — {e.name}{wd_str} -> {succ}")
 
     print()
-    if terminals:
-        print(f"Terminal successors: {', '.join(sorted(terminals))}")
-    else:
-        print("Terminal successors: (none)")
+    print(f"Successors (all descendants): {', '.join(successors)}")
     return EXIT_SUCCESS
 
 
@@ -721,10 +697,9 @@ def cmd_predecessors(reg: CountryRegistry, args) -> int:
         print(f"error: not found: {args.code}", file=sys.stderr)
         return EXIT_NOT_FOUND
 
-    predecessors = sorted(
-        e.alpha_2 for e in reg.all_withdrawn()
-        if e.alpha_2 != code and code in _terminal_successors(e, by_a2)
-    )
+    # All ancestors: the transitive closure, read backwards
+    # (docs/QUERIES.md, Query 5). Changed in v1.10.0 from terminal-only.
+    predecessors = reg.predecessors(code)
 
     if args.json:
         write_json({"code": code, "predecessors": predecessors})
@@ -756,9 +731,107 @@ def cmd_predecessors(reg: CountryRegistry, args) -> int:
     if not predecessors:
         print(f"{style.cyan(code)} has no withdrawn predecessors.")
     else:
-        print(f"{style.cyan(code)} is a terminal successor of: "
+        print(f"{style.cyan(code)} has predecessors (all ancestors): "
               f"{', '.join(predecessors)}")
     return EXIT_SUCCESS
+
+
+# ============================================================
+# Derived queries (v1.10.0; design in docs/QUERIES.md)
+#
+# Each command calls the matching CountryRegistry method, so this CLI,
+# tools/iso3166_cli.py and the four wrappers answer from one contract.
+#
+# is-eu, is-eea and is-eurozone print "true" or "false" and exit 0
+# whenever the code exists; 1 if it is not in the registry; 2 on a usage
+# error; 3 if the registry is missing. The boolean is the answer, the
+# exit code is the plumbing.
+# ============================================================
+
+def _dq_emit(args, value, *, human: str | None = None) -> None:
+    if args.json:
+        write_json(value)
+    elif human is not None:
+        print(human)
+    elif isinstance(value, list):
+        for v in value:
+            print(v)
+    else:
+        print(value)
+
+
+def _dq_predicate(reg: CountryRegistry, args, method: str) -> int:
+    if _resolve(reg, args.code.strip().upper()) is None:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+    result = bool(getattr(reg, method)(args.code))
+    text = "true" if result else "false"
+    if args.json:
+        write_json({"code": args.code.strip().upper(), method: result, "result": text})
+    else:
+        print(text)
+    return EXIT_SUCCESS
+
+
+def cmd_is_eu(reg: CountryRegistry, args) -> int:
+    return _dq_predicate(reg, args, "is_eu")
+
+
+def cmd_is_eea(reg: CountryRegistry, args) -> int:
+    return _dq_predicate(reg, args, "is_eea")
+
+
+def cmd_is_eurozone(reg: CountryRegistry, args) -> int:
+    return _dq_predicate(reg, args, "is_eurozone")
+
+
+def cmd_region_tree(reg: CountryRegistry, args) -> int:
+    if _resolve(reg, args.code.strip().upper()) is None:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+    tree = reg.region_tree(args.code)
+    _dq_emit(args, tree, human=", ".join(tree))
+    return EXIT_SUCCESS
+
+
+def cmd_borders_transitively(reg: CountryRegistry, args) -> int:
+    if _resolve(reg, args.code.strip().upper()) is None:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+    _dq_emit(args, reg.borders_transitively(args.code, args.max_hops))
+    return EXIT_SUCCESS
+
+
+def cmd_succession_path(reg: CountryRegistry, args) -> int:
+    path = reg.succession_path(args.from_code, args.to_code)
+    if path is None:
+        if args.json:
+            write_json(None)
+        return EXIT_NOT_FOUND
+    _dq_emit(args, path, human=" -> ".join(path))
+    return EXIT_SUCCESS
+
+
+def cmd_calling_code_for(reg: CountryRegistry, args) -> int:
+    out = reg.calling_code_for(args.number)
+    _dq_emit(args, out)
+    return EXIT_SUCCESS if out else EXIT_NOT_FOUND
+
+
+def cmd_currency_at(reg: CountryRegistry, args) -> int:
+    result = reg.currency_at(args.code, args.date)
+    if result is None:
+        if args.json:
+            write_json(None)
+        return EXIT_NOT_FOUND
+    _dq_emit(args, result)
+    return EXIT_SUCCESS
+
+
+def cmd_region_countries(reg: CountryRegistry, args) -> int:
+    out = reg.region_countries(args.region, args.subregion)
+    _dq_emit(args, out)
+    return EXIT_SUCCESS if out else EXIT_NOT_FOUND
 
 
 # ============================================================
@@ -861,14 +934,77 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_search)
 
     sp = sub.add_parser("successors", parents=[common],
-                        help="Follow replaced_by transitively to terminal successors.")
+                        help="All descendants (transitive closure) of CODE via replaced_by. "
+                             "Breaking change in v1.10.0: was terminal successors only. "
+                             "See docs/QUERIES.md, Query 5.")
     sp.add_argument("code", help="alpha-2 code.")
     sp.set_defaults(func=cmd_successors)
 
     sp = sub.add_parser("predecessors", parents=[common],
-                        help="Withdrawn codes whose terminal successors include this code.")
+                        help="All ancestors (transitive closure): withdrawn codes that lead to "
+                             "CODE via replaced_by. Breaking change in v1.10.0. "
+                             "See docs/QUERIES.md, Query 5.")
     sp.add_argument("code", help="alpha-2 code.")
     sp.set_defaults(func=cmd_predecessors)
+
+    # -- Derived queries (v1.10.0; docs/QUERIES.md) --
+    for name, fn, text in (
+        ("is-eu", cmd_is_eu,
+         "Is CODE an EU member? Prints true or false to stdout. Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
+         "Approximate: hardcoded v1.9.3 list; deprecated by v1.12.0. "
+         "See docs/QUERIES.md, Query 1."),
+        ("is-eea", cmd_is_eea,
+         "Is CODE in the EEA? Prints true or false to stdout. Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
+         "Approximate; deprecated by v1.12.0. See docs/QUERIES.md, Query 1."),
+        ("is-eurozone", cmd_is_eurozone,
+         "Is CODE an EU member using EUR? Prints true or false to stdout. Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
+         "Approximate; deprecated by v1.12.0. See docs/QUERIES.md, Query 1."),
+    ):
+        sp = sub.add_parser(name, parents=[common], help=text, description=text)
+        sp.add_argument("code", help="alpha-2 code.")
+        sp.set_defaults(func=fn)
+
+    sp = sub.add_parser("region-tree", parents=[common],
+                        help="Region, subregion, intermediate region (nulls dropped). "
+                             "See docs/QUERIES.md, Query 2.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_region_tree)
+
+    sp = sub.add_parser("borders-transitively", parents=[common],
+                        help="Codes within N border hops, excluding CODE. "
+                             "See docs/QUERIES.md, Query 3.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.add_argument("--max-hops", type=int, default=2, help="Hop limit (default 2).")
+    sp.set_defaults(func=cmd_borders_transitively)
+
+    sp = sub.add_parser("succession-path", parents=[common],
+                        help="Shortest replaced_by path FROM to TO; exit 1 if none. "
+                             "See docs/QUERIES.md, Query 4.")
+    sp.add_argument("from_code", metavar="FROM", help="alpha-2 code.")
+    sp.add_argument("to_code", metavar="TO", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_succession_path)
+
+    sp = sub.add_parser("calling-code-for", parents=[common],
+                        help="Countries whose calling code prefixes NUMBER "
+                             "(country level; +1 and +44 are shared). "
+                             "See docs/QUERIES.md, Query 6.")
+    sp.add_argument("number", help='Phone number, e.g. "+44 20 7946 0958".')
+    sp.set_defaults(func=cmd_calling_code_for)
+
+    sp = sub.add_parser("currency-at", parents=[common],
+                        help="Currency at DATE (YYYY-MM-DD). Approximate for "
+                             "active entries: current currency for every date. "
+                             "Deprecated by v1.11.0. See docs/QUERIES.md, Query 7.")
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.add_argument("date", help="YYYY-MM-DD.")
+    sp.set_defaults(func=cmd_currency_at)
+
+    sp = sub.add_parser("region-countries", parents=[common],
+                        help="Active countries in a region (and subregion). "
+                             "See docs/QUERIES.md, Query 8.")
+    sp.add_argument("region", help="Region name, e.g. Europe.")
+    sp.add_argument("--subregion", default=None, help="Subregion name.")
+    sp.set_defaults(func=cmd_region_countries)
 
     return p
 
