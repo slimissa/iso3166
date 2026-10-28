@@ -8,14 +8,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Known divergence
+## [1.10.1] — 2026-10-DD
 
-- The `iso3166` console script that `pip install` creates
-  (`wrappers/python/iso3166/cli.py`) is not updated in v1.10.0: it has none
-  of the nine new subcommands, and its `successors` and `predecessors` still
-  return terminal successors and ancestors only. `tools/iso3166_cli.py` (run
-  by `bin/iso3166` when no installed script is found) is updated. The
-  packaged script catches up in v1.10.1.
+The release process tests itself. A tooling release: no registry data, no new
+queries, no new fields. Each item answers a specific failure from v1.10.0,
+which took six `release.sh` attempts.
+
+### Added
+
+- `tests/test_release_force.sh` — runs `scripts/release.sh --force` in a
+  throwaway repository (stub `gh`, stub tools, a 6000-commit history). It
+  checks that a plain re-run refuses, that `--force --dry-run` is rejected,
+  that `--force` resumes from the post-commit state and tags, and that
+  `--force` without a release commit fails cleanly. It also rewrites the
+  resume check back to the `git log | grep` pipeline form and requires the
+  long-history scenario to fail, so the test is known to catch the SIGPIPE
+  bug fixed in v1.10.0 (`63e9d1c`).
+- `docs/RELEASE_PATTERN.md` Rule 27, `set -euo pipefail` with
+  `if ! cmd | grep` is broken, and its receipt in
+  `docs/README-AUDIT-NOTES.md`.
+
+### Changed
+
+- `scripts/release.sh` gate runs `cargo clippy --all-targets -- -D warnings`
+  in `wrappers/rust`, as CI already did. v1.10.0's CI failed on an unused
+  import that `cargo test` does not report. The README gate list and count
+  (28) and `docs/STATE.md` follow.
+- **BREAKING for users of the installed `iso3166` script:** the packaged
+  command line (`wrappers/python/iso3166/cli.py`) now has the nine derived
+  subcommands (`is-eu`, `is-eea`, `is-eurozone`, `region-tree`,
+  `borders-transitively`, `succession-path`, `calling-code-for`,
+  `currency-at`, `region-countries`) and matches `tools/iso3166_cli.py`. Its
+  `successors` and `predecessors` now return the full transitive closure
+  (they returned terminal successors and ancestors only), and
+  `successors --json` has a `successors` key in place of
+  `terminal_successors`. `is-eu`, `is-eea` and `is-eurozone` print
+  true/false to stdout and exit 0 whenever the code exists. The packaged
+  script calls the `CountryRegistry` methods; it does not import `tools/`,
+  which the pip package does not contain. This closes the divergence that
+  v1.10.0 recorded under `[Unreleased]`.
+
+### Already in place
+
+- `check_docs_match_tree.py` was already in the `release.sh` gate (after
+  `check_state_doc.py`) and in CI; nothing to add.
 
 ## [1.10.0] — 2026-10-27
 
