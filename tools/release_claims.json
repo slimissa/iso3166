@@ -533,5 +533,18 @@
     {"file": "wrappers/python/tests/test_cli.py", "contains": "is-eu"},
     {"file": "README.md", "contains": "Nineteen subcommands"},
     {"file": "CHANGELOG.md", "contains": "## [1.10.1]"}
+  ],
+  "1.10.2": [
+    {"file": "wrappers/python/iso3166/cli.py", "contains": "nargs=\"?\""},
+    {"file": "wrappers/python/iso3166/cli.py", "contains": "RAW_DEFAULT"},
+    {"file": "tools/iso3166_cli.py", "contains": "nargs=\"?\""},
+    {"file": "tools/iso3166_cli.py", "contains": "RAW_DEFAULT"},
+    {"file": "CONTRIBUTING.md", "contains": "rustup component add clippy"},
+    {"file": "CONTRIBUTING.md", "contains": "## Release prerequisites"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "### 28. `gh run list` Can Be Empty Right After a Push"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "CI_START_TIMEOUT"},
+    {"file": "docs/README-AUDIT-NOTES.md", "contains": "### Rule 28"},
+    {"file": "wrappers/python/tests/test_cli.py", "contains": "test_bare_raw_defaults_to_alpha_2"},
+    {"file": "CHANGELOG.md", "contains": "## [1.10.2]"}
   ]
 }
