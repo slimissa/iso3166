@@ -8,6 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.2] — 2026-10-DD
+
+Clear the deck. A polish release: no registry data, no new queries, no new
+fields. Three gaps that v1.10.1 left open.
+
+### Changed
+
+- `--raw` takes an optional FIELD in `wrappers/python/iso3166/cli.py` and
+  `tools/iso3166_cli.py` (`nargs="?"`). Bare `--raw` means `alpha_2`
+  (`code` for `validate`); `info --raw` without a field is a usage error
+  (exit 2). `iso3166 successors YU --raw` now prints `CS`, `ME`, `RS`, the
+  same as `--raw alpha_2`. `--raw code` is still rejected outside `validate`,
+  because `code` is not a registry field. Both CLIs had the same
+  required-argument behavior; they stay identical.
+
+### Documentation
+
+- `CONTRIBUTING.md` — new "Release prerequisites" section: `gh`
+  (authenticated), python3, cargo with `rustup component add clippy` (the
+  gate has run `cargo clippy` since v1.10.1), node and go (the
+  cross-language check), and `requirements-dev.txt`.
+- `docs/RELEASE_PATTERN.md` Rule 28, `gh run list` can be empty right after a
+  push (a manual `gh run watch` failed with `HTTP 404` in v1.10.0 and
+  v1.10.1; `release.sh` polls through it), with its receipt in
+  `docs/README-AUDIT-NOTES.md`.
+
 ## [1.10.1] — 2026-10-28
 
 The release process tests itself. A tooling release: no registry data, no new
