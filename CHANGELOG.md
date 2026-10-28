@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.10.1] — 2026-10-DD
+## [1.10.1] — 2026-10-28
 
 The release process tests itself. A tooling release: no registry data, no new
 queries, no new fields. Each item answers a specific failure from v1.10.0,
