@@ -228,6 +228,21 @@ As of v1.10, every push to `main` runs 21 jobs:
 A red job names the failing command and the exact assertion. Every
 command the CI runs is also runnable locally.
 
+## Release prerequisites
+
+To run `scripts/release.sh <version>` on a fresh machine, install:
+
+- bash, git, `gh` (authenticated: `gh auth status`), python3
+- `cargo`, and the clippy component: `rustup component add clippy`
+  (the gate runs `cargo clippy --all-targets -- -D warnings`; needed since
+  v1.10.1)
+- node and go, which `tools/check_cross_language.sh` runs in the gate
+- `pip install -r requirements-dev.txt` inside a virtualenv (see Tooling)
+
+CI installs all of these by default. A local release machine needs them added
+once. `scripts/release.sh` does not need bash 4 features: it uses no
+associative arrays or `mapfile`.
+
 ## Release claims
 
 Every CHANGELOG version must have a matching entry in
