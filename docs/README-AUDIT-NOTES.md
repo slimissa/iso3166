@@ -181,3 +181,12 @@ commit on a tree that had one. Commit `63e9d1c` replaced the pipeline with
 process substitution. The bug was only found by running `--force` on the
 real tree, because `--force` had no test; v1.10.1 adds
 `tests/test_release_force.sh`.
+
+### Rule 28 — `gh run list` can be empty right after a push
+
+v1.10.0 and v1.10.1 each hit this during the release push. A manual
+`gh run watch` taken straight after `git push` failed with `HTTP 404: Not
+Found`, because `gh run list` returned no run for the new commit yet and the
+run ID was empty. `release.sh` was never affected: it polls and allows
+`CI_START_TIMEOUT` seconds. The rule documents the delay and the wait loop
+for manual use.

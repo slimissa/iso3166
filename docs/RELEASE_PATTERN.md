@@ -628,6 +628,32 @@ process substitution (commit 63e9d1c). v1.10.1 adds
 throwaway repository with a long history and rewrites the check back to the
 pipeline form to prove the test fails on the bug.
 
+### 28. `gh run list` Can Be Empty Right After a Push
+
+Rule 28: for a short time after a push, `gh run list` returns nothing for the
+new commit, because GitHub has not created the workflow run yet. A command
+that takes a run ID from that output gets an empty ID, and `gh run watch`
+with it fails at once with `HTTP 404: Not Found`. Observed delay: roughly 5 to
+30 seconds.
+
+`scripts/release.sh` already handles this. It sleeps `CI_POLL_INTERVAL` (20 s)
+before each poll, prints `no runs yet`, and dies only after `CI_START_TIMEOUT`
+(180 s) with `no CI run for <sha> appeared`. A manual check does not, so wait
+for the run to exist before watching it:
+
+    SHA=$(git rev-parse HEAD)
+    until RUN_ID=$(gh run list --commit "$SHA" --limit 1 \
+            --json databaseId --jq '.[0].databaseId // empty') \
+          && [ -n "$RUN_ID" ]; do sleep 5; done
+    gh run watch "$RUN_ID"
+
+With more than one per-push workflow, this watches only the first run for the
+SHA; Rule 6 still applies (assert every run for the SHA is
+`completed success`).
+
+Reference: ISO 3166 v1.10.0 and v1.10.1. Both releases hit the empty list in a
+manual `gh run watch` after the release push.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:
