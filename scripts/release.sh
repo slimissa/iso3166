@@ -349,6 +349,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 -m pytest tests/ -v
         python3 -m pytest wrappers/python/tests/ -q
         bash tools/check_cross_language.sh US GB JP
+        (cd wrappers/rust && cargo clippy --all-targets -- -D warnings)
     ) > "$GATE_LOG" 2>&1 \
         || { tail -20 "$GATE_LOG"; die "gate failed; see $GATE_LOG"; }
 

@@ -490,7 +490,7 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 
 **Bump** — the eight version sites, verified to agree afterward.
 
-**Gate** — a fail-fast subshell with `set -e`. 27 checks run in sequence; the first failure stops the release:
+**Gate** — a fail-fast subshell with `set -e`. 28 checks run in sequence; the first failure stops the release:
 
 1. `check_version_consistency.py`
 2. `check_release_claims.py <version>`
@@ -509,6 +509,7 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 15. Root test suite (`pytest tests/`)
 16. Python wrapper test suite
 17. `check_cross_language.sh US GB JP`
+18. `cargo clippy --all-targets -- -D warnings` in `wrappers/rust`
 
 **Commit, push, wait** — polls every per-push workflow on the pushed SHA until all report `completed success`.
 
