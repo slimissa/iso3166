@@ -520,5 +520,18 @@
     {"file": "docs/QUERIES-DECISIONS.md", "contains": "Deprecated by v1.11.0's `introduced` field"},
     {"file": "README.md", "contains": "`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout"},
     {"file": "CHANGELOG.md", "contains": "print true/false to\n  stdout"}
+  ],
+  "1.10.1": [
+    {"file": "tests/test_release_force.sh"},
+    {"file": "tests/test_release_force.sh", "contains": "--force"},
+    {"file": "scripts/release.sh", "contains": "cargo clippy --all-targets -- -D warnings"},
+    {"file": "scripts/release.sh", "contains": "check_docs_match_tree"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "pipefail"},
+    {"file": "docs/README-AUDIT-NOTES.md", "contains": "pipefail"},
+    {"file": "wrappers/python/iso3166/cli.py", "contains": "is-eu"},
+    {"file": "wrappers/python/iso3166/cli.py", "contains": "all descendants"},
+    {"file": "wrappers/python/tests/test_cli.py", "contains": "is-eu"},
+    {"file": "README.md", "contains": "Nineteen subcommands"},
+    {"file": "CHANGELOG.md", "contains": "## [1.10.1]"}
   ]
 }
