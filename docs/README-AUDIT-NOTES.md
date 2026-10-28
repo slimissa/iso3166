@@ -169,3 +169,15 @@ D2's approximate counts, D3's field count and D7's five version sites no
 longer match the tree, and nothing recorded it. `docs/decisions/
 v1.9.2-amendments.md` records the divergence and the release where the
 repository evidences it; it does not edit the original decisions.
+
+### Rule 27 — `set -euo pipefail` with `if ! cmd | grep` is broken
+
+v1.10.0 needed six `release.sh` attempts. One failed in the `--force`
+resume path: the check that a `chore: release v1.10.0` commit exists was
+`git log --format=%s | grep -Fqx ...`. With `pipefail`, `grep -q` exiting on
+its first match made `git log` die of SIGPIPE, the pipeline status was
+non-zero, `if !` ran the error branch, and the script reported no release
+commit on a tree that had one. Commit `63e9d1c` replaced the pipeline with
+process substitution. The bug was only found by running `--force` on the
+real tree, because `--force` had no test; v1.10.1 adds
+`tests/test_release_force.sh`.

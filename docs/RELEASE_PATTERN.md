@@ -603,6 +603,31 @@ forgotten regeneration and a stale release. `docs/STATE.md` was also not
 regenerated, so its title version would have disagreed with VERSION after
 the bump. v1.9.1 adds both to step 2.
 
+### 27. `set -euo pipefail` With `if ! cmd | grep` Is Broken
+
+Rule 27: under `set -o pipefail`, a check written as
+`if ! upstream | grep -q pattern` reports the wrong answer when `grep`
+matches. `grep -q` exits at the first match, the upstream command is still
+writing and is killed by SIGPIPE, and the pipeline's exit status is the
+upstream's non-zero status. `!` turns that into success, `if` runs the
+error branch, and the script dies although the pattern was found. The
+failure depends on output size (a short history finishes before `grep`
+exits), so it passes on a small test repository and fails on a real one.
+
+Use process substitution, which `pipefail` does not cover:
+
+    if ! grep -Fqx "pattern" <(command); then
+        die "..."
+    fi
+
+Reference: ISO 3166 v1.10.0. The `--force` resume check was
+`git log --format=%s | grep -Fqx "chore: release v$VERSION"` and failed on a
+tree where the release commit existed. v1.10.0 fixed it by switching to
+process substitution (commit 63e9d1c). v1.10.1 adds
+`tests/test_release_force.sh`, which runs `release.sh --force` in a
+throwaway repository with a long history and rewrites the check back to the
+pipeline form to prove the test fails on the bug.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:
