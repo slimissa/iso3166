@@ -100,7 +100,7 @@ See [the CLI reference](#command-line-interface) below.
 
 ## Derived queries
 
-Eleven methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in the command line (the installed `iso3166` script and `tools/iso3166_cli.py`, which `bin/iso3166` runs from a checkout). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
+Twelve methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in the command line (the installed `iso3166` script and `tools/iso3166_cli.py`, which `bin/iso3166` runs from a checkout). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
 
 ```python
 reg.is_eu("DE")                       # True    (approximate)
@@ -180,6 +180,7 @@ Coverage is stable at v1.6.7; the last data change was v1.5.4.
 | `languages` | 248/252 active | ISO 639-3; AQ has none |
 | `borders` | 162/252 active (non-empty) | Island states have `[]` |
 | `last_verified` | 252/252 | ISO date |
+| `introduced` | 176/252 active | Wikipedia ISO 3166-1 "Changes" (documented source-policy exception); null for the rest, with reasons in `tools/introduced_snapshot.json` |
 
 Gaps are documented per-field in [`docs/ENRICHMENT.md`](./docs/ENRICHMENT.md).
 
@@ -215,7 +216,7 @@ Every entry has `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, and `independ
 
 ## Command-line interface
 
-The `iso3166` command is installed by the Python wrapper. Nineteen subcommands (ten original, nine derived queries):
+The `iso3166` command is installed by the Python wrapper. Twenty-one subcommands (ten original, nine derived queries, two temporal):
 
 | Subcommand | Purpose |
 |------------|---------|
@@ -236,8 +237,10 @@ The `iso3166` command is installed by the Python wrapper. Nineteen subcommands (
 | `calling-code-for NUMBER` | Countries whose calling code prefixes the number |
 | `currency-at CC DATE` | Currency on a date (approximate for active entries) |
 | `region-countries REGION [--subregion S]` | Active countries in a region |
+| `introduced CC` | Date ISO 3166-1 added the code; prints `unknown` and exits 4 when null |
+| `is-active-on CC DATE` | Tri-state: prints `true`, `false`, or `unknown`; exit 0, 1, 4 |
 
-The nine derived subcommands are specified in [docs/QUERIES.md](docs/QUERIES.md).
+The nine derived subcommands and the two temporal ones (`introduced`, `is-active-on`) are specified in [docs/QUERIES.md](docs/QUERIES.md).
 
 `list` accepts `--withdrawn-since DATE` and `--withdrawn-before DATE` filters.
 
@@ -397,6 +400,7 @@ Twelve required-or-optional fields per entry, plus three for withdrawn:
 | `last_verified` | string\|null | ISO date of last manual check. |
 | `withdrawal_date` | string\|null | Withdrawn entries only. |
 | `replaced_by` | list\|null | Withdrawn entries only. |
+| `introduced` | string\|null | Date ISO 3166-1 added the code (`YYYY-MM-DD`), or null when unsourced. All 25 withdrawn entries are null. |
 
 `numeric` is a string, not an integer, because `numeric` is a reserved word in SQL and because leading zeros (`004` for Afghanistan) are meaningful.
 
