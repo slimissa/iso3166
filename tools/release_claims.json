@@ -558,5 +558,11 @@
     {"file": "tests/cross_language_consistency.json", "contains": "is_active_on"},
     {"file": "CHANGELOG.md", "contains": "## [1.11.0]"},
     {"file": "docs/QUERIES.md", "contains": "Query 9"}
+  ],
+  "1.11.1": [
+    {"file": "docs/QUERIES.md", "contains": "exact for active entries"},
+    {"file": "docs/QUERIES-DECISIONS.md", "contains": "exact for dated entries"},
+    {"file": "wrappers/python/iso3166/derived.py", "contains": "introduced"},
+    {"file": "CHANGELOG.md", "contains": "## [1.11.1]"}
   ]
 }
