@@ -14,7 +14,8 @@ reveal. Examples of what the tree said when asked:
 
 - The design expected `currency_at("DD", "1990-01-01")` to return the East
   German mark. All 25 withdrawn entries have `currency_codes: null`; the
-  currency is not in the tree, so the query returns `None`.
+  currency is not in the tree, so the query returns the successor's current
+  currency (`["EUR"]`, v1.11.1) and documents that it is not the mark.
 - The design expected `region_tree("TW")` to be `["Asia"]` and
   `region_countries("Antarctica")` to be `["AQ"]`. Both `TW` and `AQ` have
   `region: null`.
@@ -53,7 +54,8 @@ closures count once each as a family.
 ## Why the approximate queries are approximate, and why they ship anyway
 
 `is_eu`, `is_eea` and `is_eurozone` need membership facts the tree does not
-carry. `currency_at` needs an `introduced` date the tree does not carry. There
+carry. (`currency_at` was in this group in v1.10.0, when the tree carried no
+`introduced` date; see "Why currency_at is exact for dated entries".) There
 were three options:
 
 1. **Do not ship them until the fields exist** (v1.11.0, v1.12.0). Rejected:
@@ -73,15 +75,16 @@ withdrawal), the query returns `None` instead of inventing one. Where the tree
 has a current answer but not a dated one (an active entry), the query returns
 the current answer and says so; `currency_at("DE", "1990-01-01")` returns
 `["EUR"]`, which is the tree's answer and approximate for that date (Germany used
-`DEM`); this is the confirmed v1.10.0 contract, documented as approximate. The
+`DEM`); this was the v1.10.0 contract, documented as approximate. The
 alternative, returning `None` for every active entry, would make the query
 useless for the common case of a recent date, so the documented
-approximation was preferred.
+approximation was preferred. v1.11.1 keeps that choice for the currency
+itself and bounds the answer by the entry's lifetime.
 
 **Replacements.** `is_eu`, `is_eea` and `is_eurozone` are deprecated by
 `is_eu_member_at(code, date)` in v1.12.0, which needs an `eu_membership[]`
-field. `currency_at`: Deprecated by v1.11.1, which builds on v1.11.0's `introduced` field to make
-currency_at exact for active entries. That sentence is the deprecation trigger. Each replacement is named in the same release notes that
+field. `currency_at` is no longer deprecated: v1.11.1 makes it exact for dated
+entries (below). Each replacement is named in the same release notes that
 introduce the approximation.
 
 **The single hardcoded list.** `KNOWN_EU_MEMBERS` is the only data in the
@@ -211,12 +214,47 @@ answer is `null`, not `true`. The floor is `1974-01-01` rather than
 September date belongs to the edition, not to a given code. The floor does
 not apply to active entries, which are answered by their own `introduced`.
 
+## Why currency_at is exact for dated entries
+
+v1.10.0 shipped `currency_at` as an approximation because the tree had no
+temporal anchor: an active entry returned its current currency for every date,
+including dates before the country existed. v1.11.0 added `introduced`
+(176 of 252 active entries have a date). v1.11.1 uses it.
+
+"Exact" here means exact about *when the code exists*, and nothing more:
+
+- An active entry with `introduced` returns `None` before it and its current
+  `currency_codes` from then on. `currency_at("DE", "1970-01-01")` is `None`.
+- A withdrawn entry with `withdrawal_date` returns the successor's current
+  currency up to and including `withdrawal_date`, and `None` after it, because
+  the code no longer exists.
+- An active entry whose `introduced` is null returns `None`: the source is
+  silent, so the registry will not guess. That is 76 entries (27 quarantined, 46
+  source silent, 3 not officially assigned). The "approximation for active
+  entries without `introduced`" is gone for them, replaced by `None`.
+
+What is **not** exact is the currency. The tree stores no currency history, so
+`currency_at("DE", "1990-01-01")` returns `["EUR"]` and
+`currency_at("DD", "1990-01-01")` returns the successor's `["EUR"]`, although
+the euro did not exist in 1990 and East Germany used the East German mark. The
+docstring of every wrapper and the CLI help say so. The withdrawn rule is the
+reverse of v1.11.0's, which returned `None` before `withdrawal_date` and the
+successor's currency after it. The new rule treats the withdrawn code's
+lifetime as the span in which it was valid; it trades one approximation (a
+successor's currency after the code is gone) for another (a successor's
+currency while the code was alive).
+
+`currency_at` is not deprecated. v1.12.0 (club memberships) leaves it as is.
+If a later release wants the historical currency of a withdrawn entry, that is
+a separate release and needs a source for currency history, which the tree
+does not have.
+
 ## Why is_active_on is the first exact temporal query
 
-`currency_at` is approximate because it needs a currency history the tree
-does not have. `is_active_on` needs one date per code, which `introduced` and
-`withdrawal_date` provide. Where those dates exist it is exact; where they do
-not it says so.
+`currency_at` needs a currency history the tree does not have, so it is exact
+only about the entry's lifetime. `is_active_on` needs one date per code, which
+`introduced` and `withdrawal_date` provide. Where those dates exist it is
+exact; where they do not it says so.
 
 ## What is deferred, and why
 
@@ -224,7 +262,8 @@ not it says so.
 |---|---|---|
 | `is_eu_member_at(code, date)` | v1.12.0 | Needs an `eu_membership[]` field |
 | `is_active_on(code, date)` | done in v1.11.0 | Needed an `introduced` field |
-| `currency_at` (exact) | v1.11.1 | Depends on `introduced`; v1.11.0 ships the field only |
+| `currency_at` (lifetime-bounded) | done in v1.11.1 | Uses `introduced` and `withdrawal_date` |
+| `currency_at` with historical currencies | a later release | Needs a source for currency history; none is in the tree |
 | `is_sanctioned_at(code, regime, date)` | v1.13.0 | Needs a `sanctions_regime[]` field |
 | `timezone_of(code)` | v1.14.0 | Needs a `timezones[]` field |
 | `subdivisions_of(code)` | v1.16.0 | Needs a `subdivisions.json` companion |

@@ -105,7 +105,7 @@ Twelve methods answer questions a consumer would otherwise compute from the raw 
 ```python
 reg.is_eu("DE")                       # True    (approximate)
 reg.successors("YU")                  # ['CS', 'ME', 'RS']   all descendants
-reg.currency_at("DD", "1990-01-01")   # None    DD has no currency_codes in the tree
+reg.currency_at("DD", "1990-01-01")   # ['EUR']  the successor's currency; the East German mark is not in the tree
 ```
 ```js
 reg.isEu("DE");                       // true    (approximate)
@@ -143,10 +143,10 @@ $ bin/iso3166 successors YU --raw alpha_2   # CS, ME, RS (one per line)
 | Shortest `replaced_by` path | `succession_path` / `succession-path` | exact | n/a |
 | All descendants and all ancestors (transitive closure) | `successors`, `predecessors` | exact | n/a |
 | Countries for a phone number | `calling_code_for` / `calling-code-for` | exact, country level only | n/a |
-| Currency on a date | `currency_at` / `currency-at` | **approximate** | an exact implementation in v1.11.1 (built on `introduced`) |
+| Currency on a date | `currency_at` / `currency-at` | exact about the entry's lifetime; current currency (no history) | n/a |
 | Code assigned on a date | `is_active_on` / `is-active-on` | tri-state (true, false, unknown) | n/a |
 
-The approximate queries say so in their docstrings and CLI help. `is_eu`, `is_eea` and `is_eurozone` use a hardcoded list of the 27 EU members at v1.9.3. `currency_at` returns an active country's current currency for every date, because it does not read the `introduced` field yet (v1.11.1), and returns `None` where the tree has no currency at all (every withdrawn entry before its withdrawal).
+The approximate queries say so in their docstrings and CLI help. `is_eu`, `is_eea` and `is_eurozone` use a hardcoded list of the 27 EU members at v1.9.3. `currency_at` (v1.11.1) returns `None` outside an entry's lifetime and where `introduced` is null, and otherwise the entry's *current* currency: the tree stores no currency history, so `currency_at("DE", "1990-01-01")` is `["EUR"]`, not DEM.
 
 **Breaking change in v1.10.0.** `successors` and `predecessors` return the full transitive closure on every surface, so `successors("YU")` is `["CS", "ME", "RS"]` in the wrappers and in `tools/iso3166_cli.py`. Before v1.10.0 the CLI returned terminal successors only.
 
@@ -235,7 +235,7 @@ The `iso3166` command is installed by the Python wrapper. Twenty-one subcommands
 | `borders-transitively CC [--max-hops N]` | Codes within N border hops |
 | `succession-path FROM TO` | Shortest `replaced_by` path |
 | `calling-code-for NUMBER` | Countries whose calling code prefixes the number |
-| `currency-at CC DATE` | Currency on a date (approximate for active entries) |
+| `currency-at CC DATE` | Currency on a date (current currency, bounded by lifetime); exit 4 when unknown |
 | `region-countries REGION [--subregion S]` | Active countries in a region |
 | `introduced CC` | Date ISO 3166-1 added the code; prints `unknown` and exits 4 when null |
 | `is-active-on CC DATE` | Tri-state: prints `true`, `false`, or `unknown`; exit 0, 1, 4 |

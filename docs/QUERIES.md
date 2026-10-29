@@ -90,34 +90,38 @@ field and array the answer is read from.
 | E66 | `calling_code_for` | `["+999 123"]` | `[]` | exact | `calling_codes` (active) |
 | E67 | `calling_code_for` | `["nonsense"]` | `[]` | exact | `calling_codes` (active) |
 | E68 | `calling_code_for` | `[""]` | `[]` | exact | `calling_codes` (active) |
-| E69 | `currency_at` | `["DE", "2000-01-01"]` | `["EUR"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E70 | `currency_at` | `["DE", "1990-01-01"]` | `["EUR"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E71 | `currency_at` | `["PA", "2000-01-01"]` | `["PAB", "USD"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E72 | `currency_at` | `["AQ", "2000-01-01"]` | `[]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E73 | `currency_at` | `["EU", "2000-01-01"]` | `null` | exact | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E74 | `currency_at` | `["DD", "1990-01-01"]` | `null` | exact | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E75 | `currency_at` | `["DD", "1990-10-03"]` | `["EUR"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E76 | `currency_at` | `["DD", "1991-01-01"]` | `["EUR"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E77 | `currency_at` | `["YU", "2004-01-01"]` | `["EUR", "RSD"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E78 | `currency_at` | `["AN", "2010-11-30"]` | `null` | exact | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E79 | `currency_at` | `["AN", "2010-12-01"]` | `["ANG", "USD"]` | approximate | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E80 | `currency_at` | `["SU", "2000-01-01"]` | `null` | exact | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E81 | `currency_at` | `["DE", "2000-13-01"]` | `null` | exact | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E82 | `currency_at` | `["ZZ", "2000-01-01"]` | `null` | exact | `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E83 | `region_countries` | `["Europe", "Western Europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
-| E84 | `region_countries` | `["europe", "western europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
-| E85 | `region_countries` | `["Americas", "Northern America"]` | `["BM", "CA", "GL", "PM", "US"]` | exact | `region`, `subregion` (active) |
-| E86 | `region_countries` | `["Antarctica"]` | `[]` | exact | `region`, `subregion` (active) |
-| E87 | `region_countries` | `["Nonexistent"]` | `[]` | exact | `region`, `subregion` (active) |
-| E88 | `is_active_on` | `["DE", "1990-01-01"]` | `true` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E89 | `is_active_on` | `["DE", "1970-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E90 | `is_active_on` | `["BJ", "2000-01-01"]` | `null` | unknown (source silent) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E91 | `is_active_on` | `["DD", "1990-01-01"]` | `true` | exact (withdrawn: end date only) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E92 | `is_active_on` | `["DD", "1990-10-04"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E93 | `is_active_on` | `["YU", "2010-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E94 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E95 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E96 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E69 | `currency_at` | `["DE", "2000-01-01"]` | `["EUR"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E70 | `currency_at` | `["DE", "1990-01-01"]` | `["EUR"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E71 | `currency_at` | `["PA", "2000-01-01"]` | `["PAB", "USD"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E72 | `currency_at` | `["DE", "1970-01-01"]` | `null` | exact (before `introduced`) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E73 | `currency_at` | `["BJ", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E74 | `currency_at` | `["AQ", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E75 | `currency_at` | `["EU", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E76 | `currency_at` | `["DD", "1990-01-01"]` | `["EUR"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E77 | `currency_at` | `["DD", "1990-10-03"]` | `["EUR"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E78 | `currency_at` | `["DD", "1990-10-04"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E79 | `currency_at` | `["DD", "1991-01-01"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E80 | `currency_at` | `["YU", "2003-07-23"]` | `["EUR", "RSD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E81 | `currency_at` | `["YU", "2004-01-01"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E82 | `currency_at` | `["AN", "2010-11-30"]` | `["ANG", "USD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E83 | `currency_at` | `["AN", "2010-12-01"]` | `["ANG", "USD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E84 | `currency_at` | `["SU", "2000-01-01"]` | `null` | unknown (no successor) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E85 | `currency_at` | `["DE", "2000-13-01"]` | `null` | exact (malformed date) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E86 | `currency_at` | `["ZZ", "2000-01-01"]` | `null` | exact (unknown code) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E87 | `region_countries` | `["Europe", "Western Europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
+| E88 | `region_countries` | `["europe", "western europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
+| E89 | `region_countries` | `["Americas", "Northern America"]` | `["BM", "CA", "GL", "PM", "US"]` | exact | `region`, `subregion` (active) |
+| E90 | `region_countries` | `["Antarctica"]` | `[]` | exact | `region`, `subregion` (active) |
+| E91 | `region_countries` | `["Nonexistent"]` | `[]` | exact | `region`, `subregion` (active) |
+| E92 | `is_active_on` | `["DE", "1990-01-01"]` | `true` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E93 | `is_active_on` | `["DE", "1970-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E94 | `is_active_on` | `["BJ", "2000-01-01"]` | `null` | unknown (source silent) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E95 | `is_active_on` | `["DD", "1990-01-01"]` | `true` | exact (withdrawn: end date only) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E96 | `is_active_on` | `["DD", "1990-10-04"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E97 | `is_active_on` | `["YU", "2010-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E98 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E99 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E100 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
 
 ## Conventions that apply to every query
 
@@ -563,13 +567,7 @@ country calling codes only (for example `"1"`, `"44"`), this is a
 a number (needs area-code data the tree does not carry), whether a number is
 valid, or whether it is mobile or landline.
 
-## Query 7 — `currency_at` (approximate)
-
-**Deprecated by** v1.11.1's exact implementation. In v1.11.0, `currency_at`
-remains approximate for active entries; the approximation is documented per
-entry below. The `introduced` field exists as of v1.11.0, but this query does
-not read it yet. Until v1.11.1, `currency_at` is exact only where the answer
-is `null` (unknown code, malformed date, withdrawn before its date).
+## Query 7 — `currency_at` (lifetime-bounded)
 
 **Signatures.**
 
@@ -587,78 +585,90 @@ reg.CurrencyAt(code, date string) ([]string, bool)   // bool is false for "no an
 ```
 ```bash
 iso3166 currency-at DE 2000-01-01
-# one code per line; --json prints a list or null; exit 0 if answered, 1 if not
-# help text: "approximate for active entries"
+# one code per line; --json prints a list or null
+# exit 0 list, 4 unknown (None), 1 code not found, 2 malformed DATE
 ```
 
-**Semantics.** The currency in force on `date`, **approximate**. The tree's
-`introduced` field (v1.11.0) is the date a code was added to ISO 3166-1, not
-the date a currency was adopted, and this query does not read it. So it cannot
-say when an active country adopted its current currency. The query therefore applies these rules in order:
+**Exactness.** `currency_at` is exact for active entries with `introduced` set
+and exact for withdrawn entries with `withdrawal_date` set, in one respect:
+*when the code exists*. Before `introduced` or after `withdrawal_date` the
+answer is `None`. It is unknown (`None`) where `introduced` is null. The
+currency itself is the **current** one: the tree stores no currency history,
+so `currency_at("DE", "1990-01-01")` returns `["EUR"]` although Germany used
+the Deutsche Mark then. Callers who need the currency actually in force on a
+past date must not rely on this query; a source for historical currencies is
+a separate release.
 
-1. A malformed date → `None`.
-2. If the code is **active**, return a copy of its current `currency_codes`
-   whatever the date (or `None` if `currency_codes` is null). This is the
-   approximation: it is right only for dates after the current currency was
-   adopted.
-3. If the code is **withdrawn** and its `withdrawal_date` is missing or after
-   the date → `None`. The tree has no currency for any withdrawn entry
-   (all 25 have `currency_codes: null`), so nothing is known before
-   withdrawal.
-4. If the code is withdrawn and the date is on or after `withdrawal_date`,
-   follow `replaced_by` transitively and return the sorted union of the
-   **current** `currency_codes` of the active codes reached. This is also
-   approximate: the successor's current currency is not necessarily the one
-   used on that date. If no currency is found, `None`.
-5. Unknown code → `None`.
+**Semantics.** In order:
 
-**Data read.** `currency_codes` of active entries; `withdrawal_date` and
-`replaced_by` of withdrawn entries.
+1. A malformed date → `None`. Unknown code → `None`.
+2. **Active** entry (an active entry wins when a code is in both arrays, AI and
+   SK):
+   a. `introduced` null → `None` (source silent; 76 of 252 entries).
+   b. `date < introduced` → `None`.
+   c. Otherwise a copy of its current `currency_codes` (`None` if null).
+3. **Withdrawn** entry:
+   a. `date > withdrawal_date` → `None` (the code no longer exists; the
+      withdrawal date itself counts as inside the lifetime).
+   b. `introduced` set and `date < introduced` → `None`. All 25 withdrawn
+      entries have a null `introduced`, so this never fires today.
+   c. Otherwise follow `replaced_by` transitively and return the sorted union
+      of the **current** `currency_codes` of the active codes reached, or
+      `None` if there are none. For withdrawn entries, this is the successor's
+      current currency; the withdrawn entry's historical currency is not in
+      the tree. For null `introduced`, it may differ from the withdrawn entry's
+      historical currency.
+
+**Data read.** `introduced`, `currency_codes` of active entries;
+`withdrawal_date`, `introduced` and `replaced_by` of withdrawn entries.
 
 **Edge cases, with the tree's values.**
 
-- `currency_at("DE", "2000-01-01")` → `["EUR"]` (**approximate**). Germany
-  adopted the euro in 2002; on that date the true answer was `DEM`. The tree
-  cannot say so, and the query returns the current currency instead of
-  failing.
-- `currency_at("DE", "1990-01-01")` → `["EUR"]` (**approximate**). This is the
-  tree's answer for an active entry: `introduced` does not hold currency history, so it
-  cannot say that Germany used `DEM` in 1990, and the contract is to return the
-  current currency, labeled approximate, rather than to refuse. Callers who need
-  a historical answer must not rely on it before v1.11.1.
-- `currency_at("DD", "1990-01-01")` → `null`. East Germany (`DD`) was
-  withdrawn on 1990-10-03, the date is earlier, and the tree has no
-  currency for `DD` (`currency_codes: null`). The East German mark is not in
-  the tree, so the query returns `None`. This is a limitation of the tree,
-  not a bug in the query.
-- `currency_at("DD", "1990-10-03")` → `["EUR"]` (approximate): the withdrawal
-  date itself counts, and the answer is Germany's current currency.
-- `currency_at("DD", "1991-01-01")` → `["EUR"]` (approximate; true answer
-  `DEM`).
-- `currency_at("YU", "2004-01-01")` → `["EUR", "RSD"]` (approximate): `YU`
-  → `CS` → `RS` (`RSD`) and `ME` (`EUR`).
-- `currency_at("AN", "2010-11-30")` → `null` (one day before the Netherlands
-  Antilles' `withdrawal_date`, 2010-12-01); `currency_at("AN", "2010-12-01")`
-  → `["ANG", "USD"]` (approximate): `BQ` has `USD`, `CW` and `SX` have `ANG`.
-- `currency_at("PA", "2000-01-01")` → `["PAB", "USD"]` (approximate): a
-  multi-currency active entry.
-- `currency_at("AQ", "2000-01-01")` → `[]`: the tree gives Antarctica an
-  empty `currency_codes` list. (Empty means "no currency", `null` means
-  "unknown".)
-- `currency_at("EU", "2000-01-01")` → `null`: `EU` has `currency_codes:
-  null`; `UK` and `XK` likewise.
+- `currency_at("DE", "2000-01-01")` → `["EUR"]` (exact lifetime; current currency).
+  Germany adopted the euro in 2002, so on that date the true answer was `DEM`.
+- `currency_at("DE", "1970-01-01")` → `null` (exact): before `DE`'s `introduced`
+  date, 1974-09-15.
+- `currency_at("DE", "1990-01-01")` → `["EUR"]`: current currency, not `DEM`.
+- `currency_at("DD", "1990-01-01")` → `["EUR"]` (successor's currency; approximation
+  documented). East Germany (`DD`) was withdrawn on 1990-10-03 and its own
+  currency, the East German mark, is not in the tree. `DE` is its successor and
+  the euro did not exist in 1990.
+- `currency_at("DD", "1990-10-03")` → `["EUR"]`: the withdrawal date itself counts.
+- `currency_at("DD", "1990-10-04")` → `null` (exact): after `withdrawal_date`.
+- `currency_at("YU", "2003-07-23")` → `["EUR", "RSD"]` (successor's currency):
+  `YU` → `CS` → `RS` (`RSD`) and `ME` (`EUR`); `currency_at("YU", "2004-01-01")`
+  → `null` (after withdrawal).
+- `currency_at("AN", "2010-11-30")` and `("AN", "2010-12-01")` →
+  `["ANG", "USD"]` (successor's currency): `BQ` has `USD`, `CW` and `SX` have
+  `ANG`; the withdrawal date, 2010-12-01, is inside the lifetime.
+- `currency_at("BJ", "2000-01-01")` → `null` (unknown): `BJ`'s `introduced` is
+  null (quarantined).
+- `currency_at("PA", "2000-01-01")` → `["PAB", "USD"]`: a multi-currency active
+  entry.
+- `currency_at("AQ", "2000-01-01")` → `null` (unknown): `AQ`'s `introduced` is
+  null, so the empty `currency_codes` list is not reached. v1.11.0 returned `[]`.
+- `currency_at("EU", "2000-01-01")` → `null`: `EU` is not officially assigned, so
+  `introduced` is null; `UK` and `XK` likewise.
 - `currency_at("SU", "2000-01-01")` → `null`: withdrawn, no successor.
-- `currency_at("DE", "2000-13-01")` → `null`: malformed date.
-- `currency_at("ZZ", "2000-01-01")` → `null`: unknown code.
+- `currency_at("DE", "2000-13-01")` → `null`: malformed date (the CLI exits 2).
+- `currency_at("ZZ", "2000-01-01")` → `null`: unknown code (the CLI exits 1).
 
-**Deprecation trigger.** `currency_at` is deprecated by v1.11.1, which
-replaces the approximation with an exact answer built on `introduced`.
-v1.11.0 ships the field and `is_active_on`; it does not change this query.
+**CLI exit codes.** 0 a list was returned, 4 the answer is unknown (`None`), 1
+the code is in neither array, 2 a malformed `DATE`. The EU predicates differ:
+they exit 0 whenever the code exists.
 
-**What it does not answer.** Any currency before the current one for an
-active entry (the tree has no history), any currency for a withdrawn entry
-before its withdrawal, or which of several currencies in a multi-currency
-entry is primary.
+**Changed in v1.11.1.** v1.11.0 returned the current currency of an active
+entry for every date (`DE` in 1970, `BJ`, and `AQ` as `[]`) and `None` for a
+withdrawn entry before its withdrawal; it now returns the successor's
+currency up to `withdrawal_date` and `None` after it. This reverses the
+withdrawn rule: `("DD", "1991-01-01")` and `("YU", "2004-01-01")` were
+`["EUR"]` and `["EUR", "RSD"]` and are now `null`. Deprecation: none. The
+approximation for withdrawn entries stays until a historical-currency source
+exists.
+
+**What it does not answer.** Any currency before the current one (the tree has
+no history), the currency of a withdrawn entry itself, or which of several
+currencies in a multi-currency entry is primary.
 
 ## Query 8 — `region_countries`
 
