@@ -70,6 +70,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any, Iterable, Sequence
 
+from .derived import _valid_date
 from .registry import Country, CountryRegistry, RegistryError
 
 
@@ -81,6 +82,7 @@ EXIT_SUCCESS = 0
 EXIT_NOT_FOUND = 1
 EXIT_USAGE = 2
 EXIT_REGISTRY = 3
+EXIT_UNKNOWN = 4  # tri-state: the registry has no answer (null)
 
 
 # ============================================================
@@ -832,6 +834,36 @@ def cmd_currency_at(reg: CountryRegistry, args) -> int:
     return EXIT_SUCCESS
 
 
+def cmd_introduced(reg: CountryRegistry, args) -> int:
+    code = args.code.strip().upper()
+    found = reg.with_alpha2(code)
+    if not found:
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+    value = found[0].introduced  # with_alpha2 lists the active entry first
+    if args.json:
+        write_json({"code": code, "introduced": value,
+                    "result": "unknown" if value is None else value})
+    else:
+        print("unknown" if value is None else value)
+    return EXIT_UNKNOWN if value is None else EXIT_SUCCESS
+
+
+def cmd_is_active_on(reg: CountryRegistry, args) -> int:
+    code, date = args.code.strip().upper(), args.date
+    if not _valid_date(date):
+        print(f"error: malformed date: {date!r} (want YYYY-MM-DD)", file=sys.stderr)
+        return EXIT_USAGE
+    result = reg.is_active_on(code, date)
+    text = "unknown" if result is None else ("true" if result else "false")
+    if args.json:
+        write_json({"code": code, "date": date,
+                    "is_active_on": result, "result": text})
+    else:
+        print(text)
+    return EXIT_UNKNOWN if result is None else (EXIT_SUCCESS if result else EXIT_NOT_FOUND)
+
+
 def cmd_region_countries(reg: CountryRegistry, args) -> int:
     out = reg.region_countries(args.region, args.subregion)
     _dq_emit(args, out)
@@ -1001,7 +1033,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp = sub.add_parser("currency-at", parents=[common],
                         help="Currency at DATE (YYYY-MM-DD). Approximate for "
                              "active entries: current currency for every date. "
-                             "Deprecated by v1.11.0. See docs/QUERIES.md, Query 7.")
+                             "Deprecated by v1.11.1 (approximate in v1.11.0). See docs/QUERIES.md, Query 7.")
     sp.add_argument("code", help="alpha-2 code.")
     sp.add_argument("date", help="YYYY-MM-DD.")
     sp.set_defaults(func=cmd_currency_at)
@@ -1012,6 +1044,18 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("region", help="Region name, e.g. Europe.")
     sp.add_argument("--subregion", default=None, help="Subregion name.")
     sp.set_defaults(func=cmd_region_countries)
+
+    # -- Temporal fields (v1.11.0) --
+    sp = sub.add_parser("introduced", parents=[common],
+                        help='Introduction date of CODE (YYYY-MM-DD): when ISO 3166-1 added the code. Tri-state: prints the date, or unknown. Exit 0 if known, 4 if unknown (null), 1 if CODE not found, 2 on usage error, 3 if the registry is missing. See docs/QUERIES.md, Known Nulls.', description='Introduction date of CODE (YYYY-MM-DD): when ISO 3166-1 added the code. Tri-state: prints the date, or unknown. Exit 0 if known, 4 if unknown (null), 1 if CODE not found, 2 on usage error, 3 if the registry is missing. See docs/QUERIES.md, Known Nulls.')
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.set_defaults(func=cmd_introduced)
+
+    sp = sub.add_parser("is-active-on", parents=[common],
+                        help='Was CODE assigned on DATE (YYYY-MM-DD)? Tri-state: prints true, false, or unknown. Exit 0 true, 1 false, 4 unknown; 2 on a malformed DATE or usage error, 3 if the registry is missing. See docs/QUERIES.md, Query 9.', description='Was CODE assigned on DATE (YYYY-MM-DD)? Tri-state: prints true, false, or unknown. Exit 0 true, 1 false, 4 unknown; 2 on a malformed DATE or usage error, 3 if the registry is missing. See docs/QUERIES.md, Query 9.')
+    sp.add_argument("code", help="alpha-2 code.")
+    sp.add_argument("date", help="YYYY-MM-DD.")
+    sp.set_defaults(func=cmd_is_active_on)
 
     return p
 
