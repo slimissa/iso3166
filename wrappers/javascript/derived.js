@@ -13,9 +13,11 @@
  * error: bool queries return false, list queries return [], optional
  * queries return null.
  *
+ * isActiveOn (v1.11.0) is tri-state: true, false or null (unknown).
+ *
  * Approximate queries: isEu, isEea, isEurozone and currencyAt. See
  * docs/QUERIES.md. isEu/isEea/isEurozone are deprecated by v1.12.0
- * (isEuMemberAt); currencyAt is deprecated by v1.11.0 (the
+ * (isEuMemberAt); currencyAt is deprecated by v1.11.1 (an exact answer built on the
  * `introduced` field).
  *
  * AI and SK exist twice (active and withdrawn). Field lookups use the
@@ -244,7 +246,7 @@ const DerivedQueries = {
    * codes return current currency_codes for every date; withdrawn
    * codes return null before withdrawal_date and the terminal
    * successors' current currencies from then on. null means "cannot
-   * answer". Deprecated by v1.11.0. See docs/QUERIES.md, "Query 7".
+   * answer". Deprecated by v1.11.1 (approximate in v1.11.0). See docs/QUERIES.md, "Query 7".
    */
   currencyAt(code, date) {
     if (!validDate(date)) return null;
@@ -269,6 +271,38 @@ const DerivedQueries = {
       }
     }
     return out.size ? frozen([...out].sort()) : null;
+  },
+
+  /**
+   * isActiveOn(code, date) -> boolean | null   [tri-state]
+   *
+   * false: malformed date, unknown code, a date before `introduced`, or
+   * after a withdrawn entry's `withdrawal_date`. true: in force on that
+   * date. null: unknown (an active entry whose `introduced` is null).
+   * Active entries are resolved first (AI and SK exist twice). A
+   * withdrawn entry has no sourced start date, so it is true up to and
+   * including `withdrawal_date`; a date before 1974 is also true for
+   * such a code and should not be relied on.
+   *
+   *   isActiveOn("DE", "1990-01-01") // true
+   *   isActiveOn("DE", "1970-01-01") // false
+   *   isActiveOn("BJ", "2000-01-01") // null
+   *
+   * See docs/QUERIES.md, "Query 9".
+   */
+  isActiveOn(code, date) {
+    if (!validDate(date)) return false;
+    const c = norm(code);
+    const act = this._byAlpha2.get(c);
+    if (act) {
+      if (act.introduced == null) return null;
+      return date >= act.introduced;
+    }
+    const wd = this._withdrawn.find((w) => w.alpha_2 === c);
+    if (!wd || !wd.withdrawal_date) return false;
+    if (date > wd.withdrawal_date) return false;
+    if (wd.introduced == null) return true;
+    return wd.introduced <= date;
   },
 
   // -- Query 8 ----------------------------------------------------

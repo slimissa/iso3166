@@ -80,6 +80,7 @@ function makeCountry(raw) {
     last_verified: raw.last_verified ?? null,
     withdrawal_date: raw.withdrawal_date ?? null,
     replaced_by: raw.replaced_by ?? null,
+    introduced: raw.introduced ?? null,
   }));
 }
 
