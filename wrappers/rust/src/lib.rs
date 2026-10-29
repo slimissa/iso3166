@@ -159,6 +159,8 @@ pub struct Country {
     pub withdrawal_date: Option<String>,
     #[serde(default)]
     pub replaced_by: Option<Vec<String>>,
+    #[serde(default)]
+    pub introduced: Option<String>,
 }
 
 impl Country {
@@ -528,7 +530,7 @@ impl CountryRegistry {
     // built from withdrawn entries only.
     //
     // Approximate: is_eu, is_eea, is_eurozone (deprecated by v1.12.0)
-    // and currency_at (deprecated by v1.11.0).
+    // and currency_at (deprecated by v1.11.1).
     // ------------------------------------------------------------
 
     fn dq_entry(&self, code: &str) -> Option<&Country> {
@@ -739,7 +741,7 @@ impl CountryRegistry {
     /// date. Withdrawn codes return `None` before `withdrawal_date` and
     /// the terminal successors' current currencies from then on.
     /// `None` means "cannot answer" (unknown code, malformed date, no
-    /// data). Deprecated by v1.11.0's `introduced` field. See
+    /// data). Deprecated by v1.11.1 (approximate in v1.11.0). See
     /// docs/QUERIES.md, "Query 7".
     pub fn currency_at(&self, code: &str, date: &str) -> Option<Vec<String>> {
         if !dq_valid_date(date) {
@@ -772,6 +774,49 @@ impl CountryRegistry {
             None
         } else {
             Some(out.into_iter().collect())
+        }
+    }
+
+    /// Was `code` an assigned ISO 3166-1 code on `date` (YYYY-MM-DD)?
+    ///
+    /// Tri-state: `Some(false)` for a malformed date, an unknown code, a
+    /// date before `introduced`, or a date after a withdrawn entry's
+    /// `withdrawal_date`; `Some(true)` when the code was in force;
+    /// `None` (unknown) for an active entry whose `introduced` is null.
+    /// Active entries are resolved first (AI and SK exist twice). A
+    /// withdrawn entry has no sourced start date, so it is `true` up to
+    /// and including `withdrawal_date`; a date before 1974 is also
+    /// `true` for such a code and should not be relied on.
+    ///
+    /// `is_active_on("DE", "1990-01-01")` is `Some(true)`,
+    /// `is_active_on("DE", "1970-01-01")` is `Some(false)` and
+    /// `is_active_on("BJ", "2000-01-01")` is `None`.
+    /// See docs/QUERIES.md, "Query 9".
+    pub fn is_active_on(&self, code: &str, date: &str) -> Option<bool> {
+        if !dq_valid_date(date) {
+            return Some(false);
+        }
+        let c = dq_norm(code);
+        if let Some(&i) = self.by_alpha2.get(&c) {
+            return self.active[i]
+                .introduced
+                .as_deref()
+                .map(|intro| date >= intro);
+        }
+        let wd = match self.withdrawn.iter().find(|w| w.alpha_2 == c) {
+            Some(w) => w,
+            None => return Some(false),
+        };
+        let end = match wd.withdrawal_date.as_deref() {
+            Some(d) => d,
+            None => return Some(false),
+        };
+        if date > end {
+            return Some(false);
+        }
+        match wd.introduced.as_deref() {
+            Some(intro) => Some(intro <= date),
+            None => Some(true),
         }
     }
 
