@@ -546,5 +546,17 @@
     {"file": "docs/README-AUDIT-NOTES.md", "contains": "### Rule 28"},
     {"file": "wrappers/python/tests/test_cli.py", "contains": "test_bare_raw_defaults_to_alpha_2"},
     {"file": "CHANGELOG.md", "contains": "## [1.10.2]"}
+  ],
+  "1.11.0": [
+    {"file": "tools/introduced_snapshot.json"},
+    {"file": "iso3166.json", "contains": "\"introduced\""},
+    {"file": "wrappers/python/iso3166/derived.py", "contains": "is_active_on"},
+    {"file": "wrappers/javascript/derived.js", "contains": "isActiveOn"},
+    {"file": "wrappers/rust/src/lib.rs", "contains": "is_active_on"},
+    {"file": "wrappers/go/registry.go", "contains": "IsActiveOn"},
+    {"file": "tools/iso3166_cli.py", "contains": "is-active-on"},
+    {"file": "tests/cross_language_consistency.json", "contains": "is_active_on"},
+    {"file": "CHANGELOG.md", "contains": "## [1.11.0]"},
+    {"file": "docs/QUERIES.md", "contains": "Query 9"}
   ]
 }

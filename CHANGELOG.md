@@ -8,6 +8,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] — 2026-10-DD
+
+Time becomes a fact, not an approximation. The first data-enrichment release:
+a new `introduced` field and the first exact temporal query.
+
+### Added
+
+- The `introduced` field on every active and withdrawn entry in
+  `iso3166.json`, `schema.json` and the four wrapper data copies. It is the
+  date the ISO 3166-1 standard added the code, or `null`. 176 of 252 active
+  entries have a date; 76 active entries and all 25 withdrawn entries are
+  null. The source is Wikipedia's ISO 3166-1 "Changes" table, an explicit
+  source-policy exception (docs/decisions/introduced-field.md).
+- `is_active_on(code, date)` in Python, JavaScript (`isActiveOn`), Rust and Go
+  (`IsActiveOn`), and the `is-active-on` and `introduced` CLI subcommands in
+  `tools/iso3166_cli.py` and the packaged `iso3166` script. The query is
+  tri-state: true, false, or unknown (`None` / `null` / `nil`).
+  See docs/QUERIES.md, Query 9.
+- Exit code 4 ("unknown") for the two tri-state CLI subcommands.
+- Eight `is_active_on` cases in `tests/cross_language_consistency.json`.
+
+### Deprecated
+
+- `currency_at`'s approximation is deprecated. v1.11.1 replaces it with an
+  exact implementation built on `introduced`; v1.11.0 does not change the
+  query.
+
+### Known Nulls
+
+- 76 active entries (27 quarantined, 46 source silent, 3 not officially
+  assigned) and 25 withdrawn entries have a null `introduced`. Reasons are in
+  `tools/introduced_snapshot.json` (`meta.null_reasons`) and
+  docs/decisions/introduced-field.md.
+
 ## [1.10.2] — 2026-10-28
 
 Clear the deck. A polish release: no registry data, no new queries, no new
