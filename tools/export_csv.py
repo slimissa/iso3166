@@ -94,6 +94,7 @@ COLUMNS = (
     "last_verified",
     "withdrawal_date",
     "replaced_by",
+    "introduced",
 )
 
 

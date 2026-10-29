@@ -10,7 +10,8 @@ Typed columns (via pyarrow):
     official_name, region, subregion, intermediate_region,
     currency_codes (list<string>), calling_codes (list<string>),
     tlds (list<string>), languages (list<string>), borders (list<string>),
-    note, last_verified, withdrawal_date, replaced_by (list<string>)
+    note, last_verified, withdrawal_date, replaced_by (list<string>),
+    introduced
 
 Footer metadata carries iso3166.version, iso3166.updated,
 iso3166.schema_version.
@@ -79,6 +80,7 @@ COLUMNS = (
     "last_verified",
     "withdrawal_date",
     "replaced_by",
+    "introduced",
 )
 
 
@@ -160,6 +162,7 @@ def build_table(reg: dict[str, Any]):
         pa.field("last_verified",       pa.string()),
         pa.field("withdrawal_date",     pa.string()),
         pa.field("replaced_by",         pa.list_(pa.string())),
+        pa.field("introduced",          pa.string()),
     ]
 
     schema = pa.schema(fields)

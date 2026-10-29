@@ -86,6 +86,7 @@ COUNTRY_COLUMNS = (
     "last_verified",
     "withdrawal_date",
     "replaced_by",
+    "introduced",
 )
 
 
@@ -214,6 +215,7 @@ def country_types(dialect: str) -> dict[str, str]:
         "last_verified":       "CHAR(10)",
         "withdrawal_date":     "CHAR(10)",
         "replaced_by":         "VARCHAR(80)",
+        "introduced":          "CHAR(10)",
     }
 
     if dialect in ("ansi", "postgresql"):
