@@ -161,6 +161,13 @@
             { "type": "null" }
           ]
         },
+        "introduced": {
+          "anyOf": [
+            { "$ref": "#/definitions/isoDate" },
+            { "type": "null" }
+          ],
+          "description": "Date the ISO 3166-1 standard added this code, or null when unsourced. See docs/decisions/introduced-field.md."
+        },
         "withdrawal_date": {
           "anyOf": [
             { "$ref": "#/definitions/isoDate" },

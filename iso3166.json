@@ -16,6 +16,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "cat"
         ],
@@ -48,6 +49,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -84,6 +86,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "prs",
           "pus"
@@ -114,6 +117,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -143,6 +147,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -177,6 +182,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "sqi"
         ],
@@ -211,6 +217,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "hye"
         ],
@@ -245,6 +252,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -272,6 +280,7 @@
         "currency_codes": [],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [],
         "last_verified": "2026-09-23",
         "name": "Antarctica",
@@ -305,6 +314,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -334,6 +344,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng",
           "smo"
@@ -373,6 +384,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "deu"
         ],
@@ -402,6 +414,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -431,6 +444,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "nld",
           "pap"
@@ -461,6 +475,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "2004-02-13",
         "languages": [
           "swe"
         ],
@@ -496,6 +511,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "aze"
         ],
@@ -529,6 +545,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "bos",
           "hrv",
@@ -560,6 +577,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -592,6 +610,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ben"
         ],
@@ -626,6 +645,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "deu",
           "fra",
@@ -664,6 +684,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -699,6 +720,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "bul"
         ],
@@ -728,6 +750,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -761,6 +784,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra",
           "run"
@@ -796,6 +820,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -825,6 +850,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": "2007-09-21",
         "languages": [
           "fra"
         ],
@@ -852,6 +878,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -883,6 +910,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "msa"
         ],
@@ -918,6 +946,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "aym",
           "que",
@@ -949,6 +978,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": "2010-12-15",
         "languages": [
           "nld"
         ],
@@ -987,6 +1017,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -1016,6 +1047,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -1048,6 +1080,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "dzo"
         ],
@@ -1077,6 +1110,7 @@
         ],
         "independent": false,
         "intermediate_region": "South America",
+        "introduced": null,
         "languages": [
           "nor"
         ],
@@ -1111,6 +1145,7 @@
         ],
         "independent": true,
         "intermediate_region": "Southern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "tsn"
@@ -1147,6 +1182,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "bel",
           "rus"
@@ -1180,6 +1216,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -1211,6 +1248,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fra"
@@ -1241,6 +1279,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -1280,6 +1319,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": null,
         "languages": [
           "fra",
           "lin",
@@ -1318,6 +1358,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra",
           "sag"
@@ -1354,6 +1395,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra",
           "lin"
@@ -1390,6 +1432,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "deu",
           "fra",
@@ -1428,6 +1471,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -1457,6 +1501,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng",
           "rar"
@@ -1491,6 +1536,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -1526,6 +1572,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fra"
@@ -1573,6 +1620,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "cmn"
         ],
@@ -1608,6 +1656,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -1640,6 +1689,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -1669,6 +1719,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -1698,6 +1749,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -1727,6 +1779,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": "2010-12-15",
         "languages": [
           "nld",
           "pap"
@@ -1757,6 +1810,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -1786,6 +1840,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ell",
           "tur"
@@ -1821,6 +1876,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "ces"
         ],
@@ -1860,6 +1916,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "deu"
         ],
@@ -1893,6 +1950,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "ara",
           "fra"
@@ -1925,6 +1983,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "dan"
         ],
@@ -1954,6 +2013,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -1985,6 +2045,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -2022,6 +2083,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -2054,6 +2116,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -2086,6 +2149,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "est"
         ],
@@ -2120,6 +2184,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -2152,6 +2217,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "ara"
         ],
@@ -2183,6 +2249,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "ara",
           "eng",
@@ -2220,6 +2287,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -2256,6 +2324,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "amh"
         ],
@@ -2281,6 +2350,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-22",
         "name": "European Union",
@@ -2310,6 +2380,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "fin",
           "swe"
@@ -2340,6 +2411,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fij",
@@ -2371,6 +2443,7 @@
         ],
         "independent": false,
         "intermediate_region": "South America",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -2400,6 +2473,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -2429,6 +2503,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "dan",
           "fao"
@@ -2468,6 +2543,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -2501,6 +2577,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -2532,6 +2609,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -2561,6 +2639,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -2595,6 +2674,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "kat"
         ],
@@ -2627,6 +2707,7 @@
         ],
         "independent": false,
         "intermediate_region": "South America",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -2656,6 +2737,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "2006-03-29",
         "languages": [
           "eng"
         ],
@@ -2689,6 +2771,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -2720,6 +2803,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -2749,6 +2833,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "dan",
           "kal"
@@ -2781,6 +2866,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -2817,6 +2903,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -2846,6 +2933,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -2878,6 +2966,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra",
           "por",
@@ -2914,6 +3003,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ell"
         ],
@@ -2943,6 +3033,7 @@
         ],
         "independent": false,
         "intermediate_region": "South America",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -2977,6 +3068,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -3006,6 +3098,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "cha",
           "eng"
@@ -3039,6 +3132,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -3072,6 +3166,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -3103,6 +3198,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "cmn",
           "eng"
@@ -3133,6 +3229,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -3166,6 +3263,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -3201,6 +3299,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "hrv"
         ],
@@ -3232,6 +3331,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "fra",
           "hat"
@@ -3270,6 +3370,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "hun"
         ],
@@ -3303,6 +3404,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ind"
         ],
@@ -3334,6 +3436,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "gle"
@@ -3370,6 +3473,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "heb"
@@ -3400,6 +3504,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "2006-03-29",
         "languages": [
           "eng",
           "glv"
@@ -3437,6 +3542,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "hin"
@@ -3467,6 +3573,7 @@
         ],
         "independent": false,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -3503,6 +3610,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "kur"
@@ -3541,6 +3649,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "pes"
         ],
@@ -3570,6 +3679,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "isl"
         ],
@@ -3606,6 +3716,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ita"
         ],
@@ -3635,6 +3746,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "2006-03-29",
         "languages": [
           "eng"
         ],
@@ -3664,6 +3776,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -3699,6 +3812,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -3728,6 +3842,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "jpn"
         ],
@@ -3763,6 +3878,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "swa"
@@ -3798,6 +3914,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "kir",
           "rus"
@@ -3832,6 +3949,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "khm"
         ],
@@ -3861,6 +3979,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng",
           "gil"
@@ -3891,6 +4010,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "fra"
@@ -3921,6 +4041,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -3954,6 +4075,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "kor"
         ],
@@ -3985,6 +4107,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "kor"
         ],
@@ -4017,6 +4140,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -4046,6 +4170,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -4081,6 +4206,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "kaz",
           "rus"
@@ -4117,6 +4243,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "lao"
         ],
@@ -4149,6 +4276,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "fra"
@@ -4179,6 +4307,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -4211,6 +4340,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "deu"
         ],
@@ -4240,6 +4370,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "sin",
           "tam"
@@ -4274,6 +4405,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -4305,6 +4437,7 @@
         ],
         "independent": true,
         "intermediate_region": "Southern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "sot"
@@ -4340,6 +4473,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "lit"
         ],
@@ -4373,6 +4507,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "deu",
           "fra",
@@ -4409,6 +4544,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "lav"
         ],
@@ -4445,6 +4581,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -4478,6 +4615,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -4509,6 +4647,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -4541,6 +4680,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "ron"
         ],
@@ -4576,6 +4716,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "2006-09-26",
         "languages": [
           "cnr"
         ],
@@ -4605,6 +4746,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": "2007-09-21",
         "languages": [
           "fra"
         ],
@@ -4632,6 +4774,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra",
           "mlg"
@@ -4662,6 +4805,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng",
           "mah"
@@ -4698,6 +4842,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "mkd"
         ],
@@ -4735,6 +4880,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -4770,6 +4916,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "mya"
         ],
@@ -4802,6 +4949,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "mon"
         ],
@@ -4833,6 +4981,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "cmn",
           "por"
@@ -4863,6 +5012,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "cha",
           "eng"
@@ -4893,6 +5043,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -4926,6 +5077,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -4955,6 +5107,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -4984,6 +5137,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "mlt"
@@ -5014,6 +5168,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fra"
@@ -5044,6 +5199,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "div"
         ],
@@ -5077,6 +5233,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "nya"
@@ -5111,6 +5268,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -5144,6 +5302,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "msa"
         ],
@@ -5180,6 +5339,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -5214,6 +5374,7 @@
         ],
         "independent": true,
         "intermediate_region": "Southern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -5243,6 +5404,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -5280,6 +5442,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -5309,6 +5472,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -5343,6 +5507,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -5375,6 +5540,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -5407,6 +5573,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "nld"
         ],
@@ -5440,6 +5607,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "nor"
         ],
@@ -5472,6 +5640,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "nep"
         ],
@@ -5501,6 +5670,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "nau"
@@ -5531,6 +5701,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "2002-05-20",
         "languages": [
           "eng",
           "niu"
@@ -5561,6 +5732,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "mri"
@@ -5595,6 +5767,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -5628,6 +5801,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -5663,6 +5837,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "aym",
           "que",
@@ -5694,6 +5869,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -5725,6 +5901,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "hmo",
@@ -5756,6 +5933,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fil"
@@ -5791,6 +5969,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "urd"
@@ -5829,6 +6008,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "pol"
         ],
@@ -5858,6 +6038,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -5887,6 +6068,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -5916,6 +6098,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng",
           "spa"
@@ -5950,6 +6133,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "1999-10-01",
         "languages": [
           "ara"
         ],
@@ -5981,6 +6165,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -6010,6 +6195,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng",
           "pau"
@@ -6044,6 +6230,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "grn",
           "spa"
@@ -6076,6 +6263,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -6105,6 +6293,7 @@
         ],
         "independent": false,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -6140,6 +6329,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ron"
         ],
@@ -6178,6 +6368,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "2006-09-26",
         "languages": [
           "srp"
         ],
@@ -6222,6 +6413,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "rus"
         ],
@@ -6256,6 +6448,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fra",
@@ -6295,6 +6488,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -6324,6 +6518,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -6353,6 +6548,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "fra"
@@ -6391,6 +6587,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "eng"
@@ -6424,6 +6621,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "swe"
         ],
@@ -6453,6 +6651,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "cmn",
           "eng",
@@ -6485,6 +6684,7 @@
         ],
         "independent": false,
         "intermediate_region": "Western Africa",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -6519,6 +6719,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "slv"
         ],
@@ -6548,6 +6749,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "nor"
         ],
@@ -6583,6 +6785,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "slk"
         ],
@@ -6615,6 +6818,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -6646,6 +6850,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ita"
         ],
@@ -6681,6 +6886,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -6714,6 +6920,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "som"
@@ -6748,6 +6955,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "nld"
         ],
@@ -6784,6 +6992,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "2011-08-09",
         "languages": [
           "eng"
         ],
@@ -6813,6 +7022,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "por"
         ],
@@ -6845,6 +7055,7 @@
         ],
         "independent": true,
         "intermediate_region": "Central America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -6874,6 +7085,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": "2010-12-15",
         "languages": [
           "eng",
           "nld"
@@ -6910,6 +7122,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -6942,6 +7155,7 @@
         ],
         "independent": true,
         "intermediate_region": "Southern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "ssw"
@@ -6972,6 +7186,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -7007,6 +7222,7 @@
         ],
         "independent": true,
         "intermediate_region": "Middle Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "ara",
           "fra"
@@ -7037,6 +7253,7 @@
         ],
         "independent": false,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -7070,6 +7287,7 @@
         ],
         "independent": true,
         "intermediate_region": "Western Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "fra"
         ],
@@ -7104,6 +7322,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "tha"
         ],
@@ -7138,6 +7357,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "rus",
           "tgk"
@@ -7168,6 +7388,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng",
           "tkl"
@@ -7200,6 +7421,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "2002-05-20",
         "languages": [
           "por",
           "tet"
@@ -7235,6 +7457,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "rus",
           "tuk"
@@ -7268,6 +7491,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -7297,6 +7521,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "ton"
@@ -7336,6 +7561,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "tur"
         ],
@@ -7365,6 +7591,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -7394,6 +7621,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "tvl"
@@ -7424,6 +7652,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "cmn"
         ],
@@ -7462,6 +7691,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "swa"
@@ -7500,6 +7730,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "ukr"
         ],
@@ -7535,6 +7766,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "swa"
@@ -7561,6 +7793,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-22",
         "name": "United Kingdom (exceptionally reserved)",
@@ -7586,6 +7819,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -7616,6 +7850,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -7648,6 +7883,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -7683,6 +7919,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "rus",
           "uzb"
@@ -7715,6 +7952,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ita"
         ],
@@ -7744,6 +7982,7 @@
         ],
         "independent": true,
         "intermediate_region": "Caribbean",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -7777,6 +8016,7 @@
         ],
         "independent": true,
         "intermediate_region": "South America",
+        "introduced": "1974-09-15",
         "languages": [
           "spa"
         ],
@@ -7806,6 +8046,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -7835,6 +8076,7 @@
         ],
         "independent": false,
         "intermediate_region": "Caribbean",
+        "introduced": null,
         "languages": [
           "eng"
         ],
@@ -7868,6 +8110,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "vie"
         ],
@@ -7897,6 +8140,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "bis",
           "eng",
@@ -7928,6 +8172,7 @@
         ],
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -7957,6 +8202,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "eng",
           "smo"
@@ -7988,6 +8234,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Kosovo",
@@ -8016,6 +8263,7 @@
         ],
         "independent": true,
         "intermediate_region": null,
+        "introduced": "1974-09-15",
         "languages": [
           "ara"
         ],
@@ -8045,6 +8293,7 @@
         ],
         "independent": false,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "fra"
         ],
@@ -8081,6 +8330,7 @@
         ],
         "independent": true,
         "intermediate_region": "Southern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "afr",
           "eng",
@@ -8122,6 +8372,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": "1974-09-15",
         "languages": [
           "eng"
         ],
@@ -8156,6 +8407,7 @@
         ],
         "independent": true,
         "intermediate_region": "Eastern Africa",
+        "introduced": null,
         "languages": [
           "eng",
           "nde",
@@ -8185,6 +8437,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-22",
         "name": "French Afars and Issas",
@@ -8208,6 +8461,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Netherlands Antilles",
@@ -8233,6 +8487,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Burma",
@@ -8256,6 +8511,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Serbia and Montenegro",
@@ -8280,6 +8536,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Canton and Enderbury Islands",
@@ -8303,6 +8560,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "East Germany",
@@ -8326,6 +8584,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Dahomey",
@@ -8349,6 +8608,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "French Southern and Antarctic Territories",
@@ -8372,6 +8632,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Upper Volta",
@@ -8395,6 +8656,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Johnston Island",
@@ -8416,6 +8678,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Midway Islands",
@@ -8437,6 +8700,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "New Hebrides",
@@ -8460,6 +8724,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Dronning Maud Land",
@@ -8483,6 +8748,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Neutral Zone",
@@ -8504,6 +8770,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Pacific Islands (Trust Territory)",
@@ -8530,6 +8797,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Panama Canal Zone",
@@ -8553,6 +8821,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Southern Rhodesia",
@@ -8576,6 +8845,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-22",
         "name": "Sikkim",
@@ -8599,6 +8869,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-22",
         "name": "USSR",
@@ -8620,6 +8891,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "East Timor",
@@ -8643,6 +8915,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "North Vietnam",
@@ -8666,6 +8939,7 @@
         "currency_codes": null,
         "independent": false,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Wake Island",
@@ -8687,6 +8961,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "South Yemen",
@@ -8710,6 +8985,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Yugoslavia",
@@ -8733,6 +9009,7 @@
         "currency_codes": null,
         "independent": true,
         "intermediate_region": null,
+        "introduced": null,
         "languages": null,
         "last_verified": "2026-09-23",
         "name": "Zaire",
