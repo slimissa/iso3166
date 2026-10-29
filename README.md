@@ -377,7 +377,7 @@ iso3166/
 
 ## Data model
 
-Twelve required-or-optional fields per entry, plus three for withdrawn:
+Eighteen required-or-optional fields per entry, plus two for withdrawn:
 
 | Field | Type | Notes |
 |-------|------|-------|
