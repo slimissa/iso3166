@@ -966,33 +966,52 @@ def _dq_valid_date(s) -> bool:
     return True
 
 
+def _dq_currency_at(reg, code, date):
+    """List or None. Mirrors CountryRegistry.currency_at (v1.11.1)."""
+    act = _dq_active(reg).get(code)
+    if act is not None:
+        intro = act.get("introduced")
+        if intro is None or date < intro:
+            return None
+        cc = act.get("currency_codes")
+        return None if cc is None else list(cc)
+    wd = next((w for w in reg["countries"]["withdrawn"]
+               if w["alpha_2"] == code), None)
+    if wd is None or not wd.get("withdrawal_date") or date > wd["withdrawal_date"]:
+        return None
+    intro = wd.get("introduced")
+    if intro is not None and date < intro:
+        return None
+    edges, out, seen, stack = _dq_edges(reg), set(), set(), [code]
+    while stack:
+        cur = stack.pop()
+        if cur in seen:
+            continue
+        seen.add(cur)
+        if cur in _dq_active(reg):
+            out.update(_dq_active(reg)[cur].get("currency_codes") or ())
+        else:
+            stack.extend(edges.get(cur, ()))
+    return sorted(out) or None
+
+
 def cmd_currency_at(reg, args) -> int:
     code, date = args.code.strip().upper(), args.date
-    result = None
-    act = _dq_active(reg)
-    if _dq_valid_date(date):
-        if code in act:
-            cc = act[code].get("currency_codes")
-            result = None if cc is None else list(cc)
-        else:
-            wd = next((w for w in reg["countries"]["withdrawn"]
-                       if w["alpha_2"] == code), None)
-            if wd and wd.get("withdrawal_date") and date >= wd["withdrawal_date"]:
-                edges, out, seen, stack = _dq_edges(reg), set(), set(), [code]
-                while stack:
-                    cur = stack.pop()
-                    if cur in seen:
-                        continue
-                    seen.add(cur)
-                    if cur in act:
-                        out.update(act[cur].get("currency_codes") or ())
-                    else:
-                        stack.extend(edges.get(cur, ()))
-                result = sorted(out) or None
+    if not _dq_valid_date(date):
+        print(f"error: malformed date: {date!r} (want YYYY-MM-DD)", file=sys.stderr)
+        return EXIT_USAGE
+    known = code in _dq_active(reg) or any(
+        w["alpha_2"] == code for w in reg["countries"]["withdrawn"])
+    if not known:
+        if args.json:
+            write_json(None)
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+    result = _dq_currency_at(reg, code, date)
     if result is None:
         if args.json:
             write_json(None)
-        return EXIT_NOT_FOUND
+        return EXIT_UNKNOWN
     _dq_emit(args, result)
     return EXIT_SUCCESS
 
@@ -1222,9 +1241,11 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_calling_code_for)
 
     sp = sub.add_parser("currency-at", parents=[common],
-                        help="Currency at DATE (YYYY-MM-DD). Approximate for "
-                             "active entries: current currency for every date. "
-                             "Deprecated by v1.11.1 (approximate in v1.11.0). See docs/QUERIES.md, Query 7.")
+                        help="Currency at DATE (YYYY-MM-DD), bounded by the entry's lifetime "
+                             "(v1.11.1). Returns the entry's current currency (no "
+                             "history is stored); withdrawn codes return the "
+                             "successor's. Exit 0 list, 4 unknown (None), 1 code "
+                             "not found, 2 malformed DATE. See docs/QUERIES.md, Query 7.")
     sp.add_argument("code", help="alpha-2 code.")
     sp.add_argument("date", help="YYYY-MM-DD.")
     sp.set_defaults(func=cmd_currency_at)

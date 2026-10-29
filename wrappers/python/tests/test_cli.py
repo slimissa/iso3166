@@ -219,9 +219,12 @@ def test_borders_transitively_and_succession_path():
 def test_calling_code_for_and_currency_at():
     assert _run("calling-code-for", "+44 20 7946 0958").stdout.split() == ["GB", "GG", "IM", "JE"]
     assert _run("calling-code-for", "+999 123").returncode == 1
-    assert _run("currency-at", "DE", "2000-01-01").stdout == "EUR\n"   # approximate
-    dd = _run("currency-at", "DD", "1990-01-01")
-    assert dd.returncode == 1 and dd.stdout == ""   # the tree has no DD currency
+    assert _run("currency-at", "DE", "2000-01-01").stdout == "EUR\n"   # current currency
+    dd = _run("currency-at", "DD", "1990-10-04")
+    assert dd.returncode == 4 and dd.stdout == ""   # after withdrawal: unknown
+    assert _run("currency-at", "BJ", "2000-01-01").returncode == 4   # introduced is null
+    assert _run("currency-at", "ZZ", "2000-01-01").returncode == 1   # not found
+    assert _run("currency-at", "DE", "2000-13-01").returncode == 2   # malformed date
 
 
 def test_succession_unknown_code_exit_1():

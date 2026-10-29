@@ -27,7 +27,7 @@ docs/QUERIES.md):
     borders-transitively CC [--max-hops N]
     succession-path FROM TO
     calling-code-for NUMBER
-    currency-at CC DATE    Approximate for active entries
+    currency-at CC DATE    Lifetime-bounded; exit 4 when unknown
     region-countries REGION [--subregion S]
 
 Five output modes, mutually exclusive:
@@ -825,11 +825,20 @@ def cmd_calling_code_for(reg: CountryRegistry, args) -> int:
 
 
 def cmd_currency_at(reg: CountryRegistry, args) -> int:
-    result = reg.currency_at(args.code, args.date)
+    code, date = args.code.strip().upper(), args.date
+    if not _valid_date(date):
+        print(f"error: malformed date: {date!r} (want YYYY-MM-DD)", file=sys.stderr)
+        return EXIT_USAGE
+    if not reg.with_alpha2(code):
+        if args.json:
+            write_json(None)
+        print(f"error: not found: {args.code}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+    result = reg.currency_at(code, date)
     if result is None:
         if args.json:
             write_json(None)
-        return EXIT_NOT_FOUND
+        return EXIT_UNKNOWN
     _dq_emit(args, result)
     return EXIT_SUCCESS
 
@@ -1031,9 +1040,11 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_calling_code_for)
 
     sp = sub.add_parser("currency-at", parents=[common],
-                        help="Currency at DATE (YYYY-MM-DD). Approximate for "
-                             "active entries: current currency for every date. "
-                             "Deprecated by v1.11.1 (approximate in v1.11.0). See docs/QUERIES.md, Query 7.")
+                        help="Currency at DATE (YYYY-MM-DD), bounded by the entry's lifetime "
+                             "(v1.11.1). Returns the entry's current currency (no "
+                             "history is stored); withdrawn codes return the "
+                             "successor's. Exit 0 list, 4 unknown (None), 1 code "
+                             "not found, 2 malformed DATE. See docs/QUERIES.md, Query 7.")
     sp.add_argument("code", help="alpha-2 code.")
     sp.add_argument("date", help="YYYY-MM-DD.")
     sp.set_defaults(func=cmd_currency_at)
