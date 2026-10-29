@@ -6,7 +6,7 @@ docs/QUERIES-DECISIONS.md). That document is the contract: every
 signature, edge case and worked example below is taken from it, and
 each docstring names its section.
 
-Eleven methods (the eight queries of docs/QUERIES.md; the EU
+Twelve methods (the nine queries of docs/QUERIES.md; the EU
 predicates and the succession pair count once each as a family),
 mixed into CountryRegistry:
 
@@ -17,6 +17,7 @@ mixed into CountryRegistry:
     predecessors                          exact
     calling_code_for                      exact (country-level only)
     currency_at                           approximate
+    is_active_on                          tri-state (v1.11.0)
 
 Conventions
 -----------
@@ -416,8 +417,8 @@ class DerivedQueries:
         (not a real YYYY-MM-DD), no currency data, or no successor.
         An empty list means "no currency" (AQ).
 
-        Deprecated: replaced by an exact answer once v1.11.0 adds
-        ``introduced``.
+        Deprecated: replaced by an exact answer in v1.11.1, built on
+        ``introduced``. In v1.11.0 it remains approximate.
 
         >>> reg.currency_at("DE", "2000-01-01")  # approximate
         ['EUR']
@@ -451,6 +452,55 @@ class DerivedQueries:
             elif cur in edges:
                 stack.extend(edges[cur])
         return sorted(out) or None
+
+    # ------------------------------------------------------------
+    # Query 9 — is_active_on
+    # ------------------------------------------------------------
+
+    def is_active_on(self, code: str, date: str) -> Optional[bool]:
+        """is_active_on(code: str, date: str) -> bool | None   [tri-state]
+
+        Was ``code`` an assigned ISO 3166-1 code on ``date``?
+
+        * ``False``: malformed date (not a real YYYY-MM-DD), unknown
+          code, a date before an entry's ``introduced``, or a date
+          after a withdrawn entry's ``withdrawal_date``.
+        * ``True``: the code was in force on that date.
+        * ``None``: unknown. An active entry whose ``introduced`` is
+          null (76 of 252; see docs/QUERIES.md, "Known Nulls") cannot
+          be answered, because the source is silent.
+
+        An active entry is resolved first (AI and SK exist twice). A
+        withdrawn entry has no sourced start date, so it is True up to
+        and including ``withdrawal_date`` and False after it. That
+        start is unknown, so a date before 1974 also returns True for
+        a withdrawn code; do not rely on it.
+
+        >>> reg.is_active_on("DE", "1990-01-01")
+        True
+        >>> reg.is_active_on("DE", "1970-01-01")
+        False
+        >>> reg.is_active_on("BJ", "2000-01-01") is None  # unknown
+        True
+
+        See docs/QUERIES.md, "Query 9".
+        """
+        if not _valid_date(date):
+            return False
+        c = _norm(code)
+        act = self._by_alpha2.get(c)
+        if act is not None:
+            if act.introduced is None:
+                return None
+            return date >= act.introduced
+        wd = next((w for w in self._withdrawn if w.alpha_2 == c), None)
+        if wd is None or not wd.withdrawal_date:
+            return False
+        if date > wd.withdrawal_date:
+            return False
+        if wd.introduced is None:
+            return True
+        return wd.introduced <= date
 
     # ------------------------------------------------------------
     # Query 8 — region_countries

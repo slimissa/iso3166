@@ -67,6 +67,7 @@ class Country:
     last_verified: Optional[str] = None
     withdrawal_date: Optional[str] = None
     replaced_by: Optional[tuple[str, ...]] = None
+    introduced: Optional[str] = None
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Country":
@@ -90,6 +91,7 @@ class Country:
             last_verified=d.get("last_verified"),
             withdrawal_date=d.get("withdrawal_date"),
             replaced_by=_as_tuple(d.get("replaced_by")),
+            introduced=d.get("introduced"),
         )
 
     @property
