@@ -322,13 +322,18 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('currency_at', ['DE', '2000-01-01'], ['EUR']),
         ('currency_at', ['DE', '1990-01-01'], ['EUR']),
         ('currency_at', ['PA', '2000-01-01'], ['PAB', 'USD']),
-        ('currency_at', ['AQ', '2000-01-01'], []),
+        # v1.11.1: bounded by the entry's lifetime (introduced / withdrawal_date).
+        ('currency_at', ['DE', '1970-01-01'], None),
+        ('currency_at', ['BJ', '2000-01-01'], None),
+        ('currency_at', ['AQ', '2000-01-01'], None),
         ('currency_at', ['EU', '2000-01-01'], None),
-        ('currency_at', ['DD', '1990-01-01'], None),
+        ('currency_at', ['DD', '1990-01-01'], ['EUR']),
         ('currency_at', ['DD', '1990-10-03'], ['EUR']),
-        ('currency_at', ['DD', '1991-01-01'], ['EUR']),
-        ('currency_at', ['YU', '2004-01-01'], ['EUR', 'RSD']),
-        ('currency_at', ['AN', '2010-11-30'], None),
+        ('currency_at', ['DD', '1990-10-04'], None),
+        ('currency_at', ['DD', '1991-01-01'], None),
+        ('currency_at', ['YU', '2003-07-23'], ['EUR', 'RSD']),
+        ('currency_at', ['YU', '2004-01-01'], None),
+        ('currency_at', ['AN', '2010-11-30'], ['ANG', 'USD']),
         ('currency_at', ['AN', '2010-12-01'], ['ANG', 'USD']),
         ('currency_at', ['SU', '2000-01-01'], None),
         ('currency_at', ['DE', '2000-13-01'], None),
@@ -360,7 +365,8 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
             "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a "
             "method name in snake_case, string/int arguments, and the "
             "expected JSON result. Every wrapper and the CLI must produce "
-            "it. is_eu, is_eea, is_eurozone and currency_at are approximate. "
+            "it. is_eu, is_eea and is_eurozone are approximate. currency_at "
+            "(v1.11.1) is bounded by lifetime but returns current currencies. "
             "is_active_on (v1.11.0) is tri-state: null means unknown."
         ),
         "enforced": True,

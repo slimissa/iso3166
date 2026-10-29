@@ -771,7 +771,7 @@
     ]
   },
   "derived_queries": {
-    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. is_eu, is_eea, is_eurozone and currency_at are approximate. is_active_on (v1.11.0) is tri-state: null means unknown.",
+    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. is_eu, is_eea and is_eurozone are approximate. currency_at (v1.11.1) is bounded by lifetime but returns current currencies. is_active_on (v1.11.0) is tri-state: null means unknown.",
     "enforced": true,
     "cases": [
       {
@@ -1477,10 +1477,26 @@
       {
         "query": "currency_at",
         "args": [
+          "DE",
+          "1970-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "BJ",
+          "2000-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
           "AQ",
           "2000-01-01"
         ],
-        "expected": []
+        "expected": null
       },
       {
         "query": "currency_at",
@@ -1496,7 +1512,9 @@
           "DD",
           "1990-01-01"
         ],
-        "expected": null
+        "expected": [
+          "EUR"
+        ]
       },
       {
         "query": "currency_at",
@@ -1512,17 +1530,23 @@
         "query": "currency_at",
         "args": [
           "DD",
+          "1990-10-04"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
+          "DD",
           "1991-01-01"
         ],
-        "expected": [
-          "EUR"
-        ]
+        "expected": null
       },
       {
         "query": "currency_at",
         "args": [
           "YU",
-          "2004-01-01"
+          "2003-07-23"
         ],
         "expected": [
           "EUR",
@@ -1532,10 +1556,21 @@
       {
         "query": "currency_at",
         "args": [
+          "YU",
+          "2004-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "currency_at",
+        "args": [
           "AN",
           "2010-11-30"
         ],
-        "expected": null
+        "expected": [
+          "ANG",
+          "USD"
+        ]
       },
       {
         "query": "currency_at",

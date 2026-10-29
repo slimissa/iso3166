@@ -66,6 +66,15 @@ def js_all(cases):
     return json.loads(out)
 
 
+def _real_date(s):
+    import datetime
+    try:
+        datetime.date.fromisoformat(s)
+        return len(s) == 10
+    except ValueError:
+        return False
+
+
 def argv_of(c):
     return [c["query"]] + [str(a) for a in c["args"]]
 
@@ -93,6 +102,9 @@ def main() -> int:
                 "borders_transitively", "successors", "predecessors",
             ):
                 cli.append(c["expected"])
+                continue
+            if c["query"] == "currency_at" and not _real_date(c["args"][1]):
+                cli.append(c["expected"])  # the CLI exits 2 on a malformed date
                 continue
             args = [c["query"].replace("_", "-")] + [str(a) for a in c["args"]]
             if c["query"] == "borders_transitively":
