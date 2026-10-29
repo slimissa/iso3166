@@ -73,6 +73,8 @@ func main() {
 		emit(reg.CallingCodeFor(a(2)))
 	case "currency_at":
 		emit(opt(reg.CurrencyAt(a(2), a(3))))
+	case "is_active_on":
+		emit(reg.IsActiveOn(a(2), a(3)))
 	case "region_countries":
 		emit(reg.RegionCountries(a(2), a(3)))
 	default:

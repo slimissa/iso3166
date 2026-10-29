@@ -61,6 +61,7 @@ type Country struct {
 	LastVerified       *string  `json:"last_verified"`
 	WithdrawalDate     *string  `json:"withdrawal_date"`
 	ReplacedBy         []string `json:"replaced_by"`
+	Introduced         *string  `json:"introduced"`
 }
 
 // Exists reports whether the Country came from a successful lookup. The
@@ -77,6 +78,7 @@ func (c *Country) clone() Country {
 	out.Note = cloneStringPtr(c.Note)
 	out.LastVerified = cloneStringPtr(c.LastVerified)
 	out.WithdrawalDate = cloneStringPtr(c.WithdrawalDate)
+	out.Introduced = cloneStringPtr(c.Introduced)
 	out.CurrencyCodes = cloneStrings(c.CurrencyCodes)
 	out.CallingCodes = cloneStrings(c.CallingCodes)
 	out.TLDs = cloneStrings(c.TLDs)
@@ -477,7 +479,7 @@ func (r *CountryRegistry) Summary() Summary {
 // graph is built from withdrawn entries only.
 //
 // Approximate: IsEU, IsEEA, IsEurozone (deprecated by v1.12.0's
-// is_eu_member_at) and CurrencyAt (deprecated by v1.11.0's
+// is_eu_member_at) and CurrencyAt (deprecated by v1.11.1's
 // introduced field).
 // ============================================================
 
@@ -747,12 +749,56 @@ func dqValidDate(s string) bool {
 	return d <= dim
 }
 
+// IsActiveOn reports whether code was an assigned ISO 3166-1 code on
+// date (YYYY-MM-DD). The result is tri-state: a pointer to false for a
+// malformed date, an unknown code, a date before Introduced, or a date
+// after a withdrawn entry's withdrawal_date; a pointer to true when the
+// code was in force; nil (unknown) for an active entry whose Introduced
+// is nil. Active entries are resolved first (AI and SK exist twice). A
+// withdrawn entry has no sourced start date, so it is true up to and
+// including withdrawal_date; a date before 1974 is also true for such a
+// code and should not be relied on. See docs/QUERIES.md, "Query 9".
+//
+//	IsActiveOn("DE", "1990-01-01") // true
+//	IsActiveOn("DE", "1970-01-01") // false
+//	IsActiveOn("BJ", "2000-01-01") // nil
+func (r *CountryRegistry) IsActiveOn(code, date string) *bool {
+	yes, no := true, false
+	if !dqValidDate(date) {
+		return &no
+	}
+	c := dqNorm(code)
+	if e, ok := r.byAlpha2[c]; ok {
+		if e.Introduced == nil {
+			return nil
+		}
+		if date >= *e.Introduced {
+			return &yes
+		}
+		return &no
+	}
+	var wd *Country
+	for _, w := range r.withdrawn {
+		if w.Alpha2 == c {
+			wd = w
+			break
+		}
+	}
+	if wd == nil || wd.WithdrawalDate == nil || date > *wd.WithdrawalDate {
+		return &no
+	}
+	if wd.Introduced != nil && date < *wd.Introduced {
+		return &no
+	}
+	return &yes
+}
+
 // CurrencyAt returns the approximate currency in force on date
 // (YYYY-MM-DD). Active codes return their current currency_codes for
 // every date. Withdrawn codes return ok == false before
 // withdrawal_date and the terminal successors' current currencies from
 // then on. ok == false means "cannot answer" (unknown code, malformed
-// date, no data). Deprecated by v1.11.0's introduced field. See
+// date, no data). Deprecated by v1.11.1 (approximate in v1.11.0). See
 // docs/QUERIES.md, "Query 7".
 func (r *CountryRegistry) CurrencyAt(code, date string) ([]string, bool) {
 	if !dqValidDate(date) {
