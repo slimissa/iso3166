@@ -347,6 +347,7 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('is_active_on', ['YU', '2010-01-01'], False),
         ('is_active_on', ['ZZ', '2000-01-01'], False),
         ('is_active_on', ['EU', '2000-01-01'], None),
+        ('is_active_on', ['DD', '1800-01-01'], None),
     ]
     codes = {e["alpha_2"] for e in reg["countries"]["active"]} | {
         e["alpha_2"] for e in reg["countries"]["withdrawn"]

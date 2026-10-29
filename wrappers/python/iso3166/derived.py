@@ -471,16 +471,18 @@ class DerivedQueries:
           be answered, because the source is silent.
 
         An active entry is resolved first (AI and SK exist twice). A
-        withdrawn entry has no sourced start date, so it is True up to
-        and including ``withdrawal_date`` and False after it. That
-        start is unknown, so a date before 1974 also returns True for
-        a withdrawn code; do not rely on it.
+        withdrawn entry has no sourced start date: it is False after
+        ``withdrawal_date``, None before 1974-01-01 (ISO 3166 did not
+        exist, so the registry cannot say), and True from 1974-01-01
+        up to and including ``withdrawal_date``.
 
         >>> reg.is_active_on("DE", "1990-01-01")
         True
         >>> reg.is_active_on("DE", "1970-01-01")
         False
         >>> reg.is_active_on("BJ", "2000-01-01") is None  # unknown
+        True
+        >>> reg.is_active_on("DD", "1800-01-01") is None   # before 1974
         True
 
         See docs/QUERIES.md, "Query 9".
@@ -499,7 +501,8 @@ class DerivedQueries:
         if date > wd.withdrawal_date:
             return False
         if wd.introduced is None:
-            return True
+            # Start unknown: ISO 3166 began in 1974, so nothing earlier is known.
+            return None if date < "1974-01-01" else True
         return wd.introduced <= date
 
     # ------------------------------------------------------------

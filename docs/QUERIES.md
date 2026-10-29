@@ -117,6 +117,7 @@ field and array the answer is read from.
 | E93 | `is_active_on` | `["YU", "2010-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
 | E94 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
 | E95 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E96 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
 
 ## Conventions that apply to every query
 
@@ -741,10 +742,12 @@ not turn "the source is silent" into a confident answer. In order:
 3. The code is **active** (an active entry wins when a code is in both arrays,
    AI and SK): `introduced` null → `null`; else `date >= introduced`.
 4. The code is **withdrawn**: `date > withdrawal_date` → `false`. Otherwise,
-   `introduced` is set → `introduced <= date`; null → `true`. All 25 withdrawn
-   entries have a null `introduced`, so the withdrawn answer is `true` up to
-   and including `withdrawal_date`. The start is unknown, so a date before the
-   code existed (before 1974) also returns `true`. Do not rely on that.
+   `introduced` is set → `introduced <= date`. If `introduced` is null (all 25
+   withdrawn entries): `date < 1974-01-01` → `null`; else `true`. The start is
+   unknown, but ISO 3166 did not exist before 1974, so the registry cannot
+   answer for earlier dates and says so. From 1974-01-01 up to and including
+   `withdrawal_date` the answer is `true`: the code existed at some point
+   before withdrawal, but the exact start is not sourced.
 
 `introduced` is the date the ISO 3166-1 standard added the code (see
 [docs/decisions/introduced-field.md](decisions/introduced-field.md)). It is not
@@ -759,6 +762,7 @@ the date a country became independent or adopted a currency.
 - `is_active_on("BJ", "2000-01-01")` → `null`: `BJ` is quarantined, so its
   `introduced` is null.
 - `is_active_on("DD", "1990-01-01")` → `true`: withdrawn 1990-10-03, start unknown.
+- `is_active_on("DD", "1800-01-01")` → `null`: before 1974, the floor for ISO 3166.
 - `is_active_on("DD", "1990-10-04")` → `false`: after `withdrawal_date`. The
   withdrawal date itself is inclusive (`DD` on 1990-10-03 is `true`).
 - `is_active_on("YU", "2010-01-01")` → `false`: `YU` was withdrawn 2003-07-23.
@@ -773,8 +777,10 @@ This differs from the EU predicates, which exit 0 for both `true` and `false`.
 
 **Deprecation trigger.** None.
 
-**What it does not answer.** When a withdrawn code started, or whether any
-code existed before 1974. Dates are as sourced by the Wikipedia exception in
+**What it does not answer.** When a withdrawn code started (a date between
+1974-01-01 and its withdrawal is `true` even if the code was assigned later),
+or whether any code existed before 1974 (that is always `null` for withdrawn
+codes and `false` for active ones with an `introduced` date). Dates are as sourced by the Wikipedia exception in
 the ADR, not by ISO.
 
 ## Known Nulls

@@ -1012,7 +1012,10 @@ def _dq_is_active_on(reg, code, date):
     if date > wd["withdrawal_date"]:
         return False
     intro = wd.get("introduced")
-    return True if intro is None else intro <= date
+    if intro is None:
+        # Start unknown: ISO 3166 began in 1974, nothing earlier is known.
+        return None if date < "1974-01-01" else True
+    return intro <= date
 
 
 def cmd_introduced(reg, args) -> int:

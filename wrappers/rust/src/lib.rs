@@ -784,13 +784,15 @@ impl CountryRegistry {
     /// `withdrawal_date`; `Some(true)` when the code was in force;
     /// `None` (unknown) for an active entry whose `introduced` is null.
     /// Active entries are resolved first (AI and SK exist twice). A
-    /// withdrawn entry has no sourced start date, so it is `true` up to
-    /// and including `withdrawal_date`; a date before 1974 is also
-    /// `true` for such a code and should not be relied on.
+    /// withdrawn entry has no sourced start date: `false` after
+    /// `withdrawal_date`, `None` before 1974-01-01 (ISO 3166 did not
+    /// exist), and `true` from 1974-01-01 up to and including
+    /// `withdrawal_date`.
     ///
     /// `is_active_on("DE", "1990-01-01")` is `Some(true)`,
     /// `is_active_on("DE", "1970-01-01")` is `Some(false)` and
-    /// `is_active_on("BJ", "2000-01-01")` is `None`.
+    /// `is_active_on("BJ", "2000-01-01")` is `None`, and so is
+    /// `is_active_on("DD", "1800-01-01")` (before 1974).
     /// See docs/QUERIES.md, "Query 9".
     pub fn is_active_on(&self, code: &str, date: &str) -> Option<bool> {
         if !dq_valid_date(date) {
@@ -816,6 +818,8 @@ impl CountryRegistry {
         }
         match wd.introduced.as_deref() {
             Some(intro) => Some(intro <= date),
+            // Start unknown: ISO 3166 began in 1974, nothing earlier is known.
+            None if date < "1974-01-01" => None,
             None => Some(true),
         }
     }

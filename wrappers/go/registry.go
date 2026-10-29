@@ -755,13 +755,15 @@ func dqValidDate(s string) bool {
 // after a withdrawn entry's withdrawal_date; a pointer to true when the
 // code was in force; nil (unknown) for an active entry whose Introduced
 // is nil. Active entries are resolved first (AI and SK exist twice). A
-// withdrawn entry has no sourced start date, so it is true up to and
-// including withdrawal_date; a date before 1974 is also true for such a
-// code and should not be relied on. See docs/QUERIES.md, "Query 9".
+// withdrawn entry has no sourced start date: false after
+// withdrawal_date, nil before 1974-01-01 (ISO 3166 did not exist), and
+// true from 1974-01-01 up to and including withdrawal_date.
+// See docs/QUERIES.md, "Query 9".
 //
 //	IsActiveOn("DE", "1990-01-01") // true
 //	IsActiveOn("DE", "1970-01-01") // false
 //	IsActiveOn("BJ", "2000-01-01") // nil
+//	IsActiveOn("DD", "1800-01-01") // nil (before 1974)
 func (r *CountryRegistry) IsActiveOn(code, date string) *bool {
 	yes, no := true, false
 	if !dqValidDate(date) {
@@ -787,8 +789,15 @@ func (r *CountryRegistry) IsActiveOn(code, date string) *bool {
 	if wd == nil || wd.WithdrawalDate == nil || date > *wd.WithdrawalDate {
 		return &no
 	}
-	if wd.Introduced != nil && date < *wd.Introduced {
-		return &no
+	if wd.Introduced != nil {
+		if date < *wd.Introduced {
+			return &no
+		}
+		return &yes
+	}
+	// Start unknown: ISO 3166 began in 1974, nothing earlier is known.
+	if date < "1974-01-01" {
+		return nil
 	}
 	return &yes
 }

@@ -1699,6 +1699,14 @@
           "2000-01-01"
         ],
         "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DD",
+          "1800-01-01"
+        ],
+        "expected": null
       }
     ]
   }

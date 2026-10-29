@@ -193,10 +193,23 @@ the query returns `false` only when the answer is known to be no (before
 `introduced`, after `withdrawal_date`, unknown code, malformed date), `true`
 when it is known to be yes, and `None` / `null` / `nil` / `Option::None` when
 the registry does not know. The snapshot's null is honest, so the query must
-not lie. The withdrawn case is the exception: it is `true` up to
-`withdrawal_date` even though the start is unknown. That is the one place the
-query can mislead (a date before 1974), and the contract says so rather than
-returning `null` for every withdrawn code.
+not lie. Withdrawn codes have no sourced start. The query returns `true`
+between 1974-01-01 and `withdrawal_date`, which is a weaker claim ("it
+existed at some point before withdrawal") than the active case, and `null`
+before 1974-01-01.
+
+## Why 1974 is the floor
+
+ISO 3166 was first published in 1974, so no alpha-2 code existed before then,
+and the 1974 edition is the earliest date any registry entry can carry (the
+snapshot's own earliest `introduced` is `1974-09-15`). The first version of
+this query returned `true` for any date up to `withdrawal_date`, so
+`is_active_on("DD", "1800-01-01")` said East Germany's code was active in 1800.
+That is a false positive the registry can avoid at no cost: before 1974 the
+answer is `null`, not `true`. The floor is `1974-01-01` rather than
+`1974-09-15` because the withdrawn entries have no start date at all; the
+September date belongs to the edition, not to a given code. The floor does
+not apply to active entries, which are answered by their own `introduced`.
 
 ## Why is_active_on is the first exact temporal query
 
