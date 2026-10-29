@@ -8,6 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.1] — 2026-10-DD
+
+The approximation retires. `currency_at` now uses `introduced` and
+`withdrawal_date` to bound its answer to the entry's lifetime.
+
+### Changed
+
+- `currency_at` is now exact for active entries with `introduced` set: it
+  returns `None` before `introduced` and the entry's current `currency_codes`
+  from then on. For entries without `introduced` (source silent), it returns
+  `None`.
+- For withdrawn entries, `currency_at` returns the successor's current currency
+  (documented as an approximation; the withdrawn entry's historical currency is
+  not in the tree) up to and including `withdrawal_date`, and `None` after it.
+  v1.11.0 returned `None` before `withdrawal_date` and the successor's currency
+  from then on, so `currency_at("DD", "1991-01-01")` and
+  `currency_at("YU", "2004-01-01")` are now `None`.
+- The 76 active entries with a null `introduced` (27 quarantined, 46 source
+  silent, 3 not officially assigned) now return `None`; `AQ` was `[]` and `BJ`
+  was `["XOF"]`. The returned currency is still the current one: the tree has
+  no currency history, so `currency_at("DE", "1990-01-01")` is `["EUR"]`.
+- The `currency-at` CLI subcommand exits 0 for a list, 4 for unknown (`None`),
+  1 for a code that is in neither array, and 2 for a malformed date. It
+  previously exited 1 for every `None`.
+- `currency_at` is no longer deprecated.
+
 ## [1.11.0] — 2026-10-29
 
 Time becomes a fact, not an approximation. The first data-enrichment release:
