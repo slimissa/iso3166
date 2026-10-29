@@ -109,6 +109,14 @@ field and array the answer is read from.
 | E85 | `region_countries` | `["Americas", "Northern America"]` | `["BM", "CA", "GL", "PM", "US"]` | exact | `region`, `subregion` (active) |
 | E86 | `region_countries` | `["Antarctica"]` | `[]` | exact | `region`, `subregion` (active) |
 | E87 | `region_countries` | `["Nonexistent"]` | `[]` | exact | `region`, `subregion` (active) |
+| E88 | `is_active_on` | `["DE", "1990-01-01"]` | `true` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E89 | `is_active_on` | `["DE", "1970-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E90 | `is_active_on` | `["BJ", "2000-01-01"]` | `null` | unknown (source silent) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E91 | `is_active_on` | `["DD", "1990-01-01"]` | `true` | exact (withdrawn: end date only) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E92 | `is_active_on` | `["DD", "1990-10-04"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E93 | `is_active_on` | `["YU", "2010-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E94 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E95 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
 
 ## Conventions that apply to every query
 
@@ -164,6 +172,8 @@ as strings, which is correct for this format.
 | Phone number lookup | `calling_code_for` | `callingCodeFor` | `CallingCodeFor` | `calling-code-for` |
 | Currency on a date | `currency_at` | `currencyAt` | `CurrencyAt` | `currency-at` |
 | Countries in a region | `region_countries` | `regionCountries` | `RegionCountries` | `region-countries` |
+| Code assigned on a date | `is_active_on` | `isActiveOn` | `IsActiveOn` | `is-active-on` |
+| Date a code was added | field `introduced` | `introduced` | `Introduced` | `introduced` |
 
 **Examples inside sections** are written language-neutrally as
 `` `query(args)` → `result` `` using JSON literals (`true`, `false`,
@@ -554,6 +564,12 @@ valid, or whether it is mobile or landline.
 
 ## Query 7 — `currency_at` (approximate)
 
+**Deprecated by** v1.11.1's exact implementation. In v1.11.0, `currency_at`
+remains approximate for active entries; the approximation is documented per
+entry below. The `introduced` field exists as of v1.11.0, but this query does
+not read it yet. Until v1.11.1, `currency_at` is exact only where the answer
+is `null` (unknown code, malformed date, withdrawn before its date).
+
 **Signatures.**
 
 ```python
@@ -574,9 +590,10 @@ iso3166 currency-at DE 2000-01-01
 # help text: "approximate for active entries"
 ```
 
-**Semantics.** The currency in force on `date`, **approximate**. The tree has
-no `introduced` field, so it cannot say when an active country adopted its
-current currency. The query therefore applies these rules in order:
+**Semantics.** The currency in force on `date`, **approximate**. The tree's
+`introduced` field (v1.11.0) is the date a code was added to ISO 3166-1, not
+the date a currency was adopted, and this query does not read it. So it cannot
+say when an active country adopted its current currency. The query therefore applies these rules in order:
 
 1. A malformed date → `None`.
 2. If the code is **active**, return a copy of its current `currency_codes`
@@ -604,10 +621,10 @@ current currency. The query therefore applies these rules in order:
   cannot say so, and the query returns the current currency instead of
   failing.
 - `currency_at("DE", "1990-01-01")` → `["EUR"]` (**approximate**). This is the
-  tree's answer for an active entry: the tree has no `introduced` field, so it
+  tree's answer for an active entry: `introduced` does not hold currency history, so it
   cannot say that Germany used `DEM` in 1990, and the contract is to return the
   current currency, labeled approximate, rather than to refuse. Callers who need
-  a historical answer must not rely on it before v1.11.0.
+  a historical answer must not rely on it before v1.11.1.
 - `currency_at("DD", "1990-01-01")` → `null`. East Germany (`DD`) was
   withdrawn on 1990-10-03, the date is earlier, and the tree has no
   currency for `DD` (`currency_codes: null`). The East German mark is not in
@@ -633,8 +650,9 @@ current currency. The query therefore applies these rules in order:
 - `currency_at("DE", "2000-13-01")` → `null`: malformed date.
 - `currency_at("ZZ", "2000-01-01")` → `null`: unknown code.
 
-**Deprecation trigger.** `currency_at` is deprecated the day v1.11.0 ships
-the `introduced` field, which lets an exact `currency_at` replace it.
+**Deprecation trigger.** `currency_at` is deprecated by v1.11.1, which
+replaces the approximation with an exact answer built on `introduced`.
+v1.11.0 ships the field and `is_active_on`; it does not change this query.
 
 **What it does not answer.** Any currency before the current one for an
 active entry (the tree has no history), any currency for a withdrawn entry
@@ -688,6 +706,84 @@ entries are never returned.
 **What it does not answer.** Membership of null-region entries in any
 region, or anything about withdrawn codes.
 
+## Query 9 — `is_active_on` (tri-state)
+
+**Signatures.**
+
+```python
+reg.is_active_on(code: str, date: str) -> bool | None
+```
+```js
+reg.isActiveOn(code, date) -> boolean | null
+```
+```rust
+reg.is_active_on(code: &str, date: &str) -> Option<bool>
+```
+```go
+reg.IsActiveOn(code, date string) *bool   // nil means unknown
+```
+```bash
+iso3166 is-active-on DE 1990-01-01
+# prints true, false or unknown; --json prints
+# {"code", "date", "is_active_on": true|false|null, "result": "true|false|unknown"}
+# exit 0 true, 1 false, 4 unknown, 2 on a malformed DATE or usage error
+# help text: "tri-state: prints true, false, or unknown"
+iso3166 introduced DE
+# prints the date, or "unknown"; exit 0 known, 4 unknown (null), 1 code not found
+```
+
+**Semantics.** Was `code` an assigned ISO 3166-1 code on `date`? The answer is
+tri-state, because `introduced` is null for some entries and the registry must
+not turn "the source is silent" into a confident answer. In order:
+
+1. A date that is not a real `YYYY-MM-DD` → `false`.
+2. Code in neither array → `false`.
+3. The code is **active** (an active entry wins when a code is in both arrays,
+   AI and SK): `introduced` null → `null`; else `date >= introduced`.
+4. The code is **withdrawn**: `date > withdrawal_date` → `false`. Otherwise,
+   `introduced` is set → `introduced <= date`; null → `true`. All 25 withdrawn
+   entries have a null `introduced`, so the withdrawn answer is `true` up to
+   and including `withdrawal_date`. The start is unknown, so a date before the
+   code existed (before 1974) also returns `true`. Do not rely on that.
+
+`introduced` is the date the ISO 3166-1 standard added the code (see
+[docs/decisions/introduced-field.md](decisions/introduced-field.md)). It is not
+the date a country became independent or adopted a currency.
+
+**Data read.** `introduced` of active entries; `withdrawal_date` and
+`introduced` of withdrawn entries.
+
+**Edge cases, with the tree's values.**
+- `is_active_on("DE", "1990-01-01")` → `true`: `DE` was introduced 1974-09-15.
+- `is_active_on("DE", "1970-01-01")` → `false`: before `introduced`.
+- `is_active_on("BJ", "2000-01-01")` → `null`: `BJ` is quarantined, so its
+  `introduced` is null.
+- `is_active_on("DD", "1990-01-01")` → `true`: withdrawn 1990-10-03, start unknown.
+- `is_active_on("DD", "1990-10-04")` → `false`: after `withdrawal_date`. The
+  withdrawal date itself is inclusive (`DD` on 1990-10-03 is `true`).
+- `is_active_on("YU", "2010-01-01")` → `false`: `YU` was withdrawn 2003-07-23.
+- `is_active_on("ZZ", "2000-01-01")` → `false`: unknown code.
+- `is_active_on("EU", "2000-01-01")` → `null`: not officially assigned.
+- `is_active_on("DE", "1990-13-01")` → `false`: malformed date. The CLI exits 2
+  instead, as a usage error.
+
+**CLI.** `is-active-on` exits 0 for `true`, 1 for `false` and 4 for `unknown`.
+This differs from the EU predicates, which exit 0 for both `true` and `false`.
+`introduced` exits 0 when known, 4 when null and 1 when the code is not found.
+
+**Deprecation trigger.** None.
+
+**What it does not answer.** When a withdrawn code started, or whether any
+code existed before 1974. Dates are as sourced by the Wikipedia exception in
+the ADR, not by ISO.
+
+## Known Nulls
+
+The `introduced` field is null for 76 active entries (27 quarantined, 46 source
+silent, 3 not officially assigned) and 25 withdrawn entries. Reasons are in
+`tools/introduced_snapshot.json`'s `meta.null_reasons`. 176 active entries have
+a date. `is_active_on` returns `null` for the 76 active nulls.
+
 ## What no query answers
 
 These are not registry facts and are out of scope for v1.10.0: whether a
@@ -707,4 +803,5 @@ JavaScript, Go and Rust wrappers and the CLI. The CLI differs from the
 wrappers only in presentation: text output, and that an unknown code is
 reported on stderr with exit code 1 instead of an empty, false or `None`
 result. Exit codes are the CLI's standard ones for every subcommand: 0
-success, 1 not found, 2 usage error, 3 registry missing.
+success, 1 not found, 2 usage error, 3 registry missing. The tri-state
+subcommands (`is-active-on`, `introduced`) add 4, unknown.

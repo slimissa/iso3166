@@ -338,6 +338,15 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('region_countries', ['Americas', 'Northern America'], ['BM', 'CA', 'GL', 'PM', 'US']),
         ('region_countries', ['Antarctica'], []),
         ('region_countries', ['Nonexistent'], []),
+        # v1.11.0: tri-state. null = unknown (introduced is null).
+        ('is_active_on', ['DE', '1990-01-01'], True),
+        ('is_active_on', ['DE', '1970-01-01'], False),
+        ('is_active_on', ['BJ', '2000-01-01'], None),
+        ('is_active_on', ['DD', '1990-01-01'], True),
+        ('is_active_on', ['DD', '1990-10-04'], False),
+        ('is_active_on', ['YU', '2010-01-01'], False),
+        ('is_active_on', ['ZZ', '2000-01-01'], False),
+        ('is_active_on', ['EU', '2000-01-01'], None),
     ]
     codes = {e["alpha_2"] for e in reg["countries"]["active"]} | {
         e["alpha_2"] for e in reg["countries"]["withdrawn"]
@@ -350,7 +359,8 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
             "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a "
             "method name in snake_case, string/int arguments, and the "
             "expected JSON result. Every wrapper and the CLI must produce "
-            "it. is_eu, is_eea, is_eurozone and currency_at are approximate."
+            "it. is_eu, is_eea, is_eurozone and currency_at are approximate. "
+            "is_active_on (v1.11.0) is tri-state: null means unknown."
         ),
         "enforced": True,
         "cases": [

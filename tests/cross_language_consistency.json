@@ -771,7 +771,7 @@
     ]
   },
   "derived_queries": {
-    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. is_eu, is_eea, is_eurozone and currency_at are approximate.",
+    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. is_eu, is_eea, is_eurozone and currency_at are approximate. is_active_on (v1.11.0) is tri-state: null means unknown.",
     "enforced": true,
     "cases": [
       {
@@ -1635,6 +1635,70 @@
           "Nonexistent"
         ],
         "expected": []
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "1990-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "1970-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "BJ",
+          "2000-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DD",
+          "1990-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DD",
+          "1990-10-04"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "YU",
+          "2010-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "ZZ",
+          "2000-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "EU",
+          "2000-01-01"
+        ],
+        "expected": null
       }
     ]
   }

@@ -30,7 +30,7 @@ FIXTURE = ROOT / "tests" / "cross_language_consistency.json"
 
 def run(cmd, cwd=None) -> str:
     p = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
-    if p.returncode not in (0, 1):
+    if p.returncode not in (0, 1, 4):  # 4: the CLI's tri-state "unknown"
         raise RuntimeError(f"{cmd[0]} exited {p.returncode}: {p.stderr.strip()}")
     return p.stdout
 
@@ -52,7 +52,8 @@ const m = {is_eu:'isEu',is_eea:'isEea',is_eurozone:'isEurozone',
   region_tree:'regionTree',borders_transitively:'bordersTransitively',
   succession_path:'successionPath',successors:'successors',
   predecessors:'predecessors',calling_code_for:'callingCodeFor',
-  currency_at:'currencyAt',region_countries:'regionCountries'};
+  currency_at:'currencyAt',region_countries:'regionCountries',
+  is_active_on:'isActiveOn'};
 const reg = new CountryRegistry();
 const cases = JSON.parse(process.argv[2]);
 console.log(JSON.stringify(cases.map(c => reg[m[c.query]](...c.args))));

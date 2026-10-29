@@ -80,7 +80,7 @@ approximation was preferred.
 
 **Replacements.** `is_eu`, `is_eea` and `is_eurozone` are deprecated by
 `is_eu_member_at(code, date)` in v1.12.0, which needs an `eu_membership[]`
-field. `currency_at`: Deprecated by v1.11.0's `introduced` field, which makes
+field. `currency_at`: Deprecated by v1.11.1, which builds on v1.11.0's `introduced` field to make
 currency_at exact for active entries. That sentence is the deprecation trigger. Each replacement is named in the same release notes that
 introduce the approximation.
 
@@ -184,13 +184,34 @@ re-runs every row and every inline example against the tree, and checks that
 each row also appears in the cross-language fixture. A claim in the
 document is a claim a machine has checked.
 
+## Why is_active_on is tri-state
+
+`introduced` is null for 76 of 252 active entries, because the source is silent
+or contradicted by the tree. A boolean query would have to turn each null into
+`true` or `false`, and either answer is a claim the registry cannot back. So
+the query returns `false` only when the answer is known to be no (before
+`introduced`, after `withdrawal_date`, unknown code, malformed date), `true`
+when it is known to be yes, and `None` / `null` / `nil` / `Option::None` when
+the registry does not know. The snapshot's null is honest, so the query must
+not lie. The withdrawn case is the exception: it is `true` up to
+`withdrawal_date` even though the start is unknown. That is the one place the
+query can mislead (a date before 1974), and the contract says so rather than
+returning `null` for every withdrawn code.
+
+## Why is_active_on is the first exact temporal query
+
+`currency_at` is approximate because it needs a currency history the tree
+does not have. `is_active_on` needs one date per code, which `introduced` and
+`withdrawal_date` provide. Where those dates exist it is exact; where they do
+not it says so.
+
 ## What is deferred, and why
 
 | Query | Deferred to | Reason |
 |---|---|---|
 | `is_eu_member_at(code, date)` | v1.12.0 | Needs an `eu_membership[]` field |
-| `is_active_on(code, date)` | v1.11.0 | Needs an `introduced` field |
-| `currency_at` (exact) | v1.11.0 | Depends on `introduced` |
+| `is_active_on(code, date)` | done in v1.11.0 | Needed an `introduced` field |
+| `currency_at` (exact) | v1.11.1 | Depends on `introduced`; v1.11.0 ships the field only |
 | `is_sanctioned_at(code, regime, date)` | v1.13.0 | Needs a `sanctions_regime[]` field |
 | `timezone_of(code)` | v1.14.0 | Needs a `timezones[]` field |
 | `subdivisions_of(code)` | v1.16.0 | Needs a `subdivisions.json` companion |

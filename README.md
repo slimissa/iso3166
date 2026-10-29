@@ -143,9 +143,10 @@ $ bin/iso3166 successors YU --raw alpha_2   # CS, ME, RS (one per line)
 | Shortest `replaced_by` path | `succession_path` / `succession-path` | exact | n/a |
 | All descendants and all ancestors (transitive closure) | `successors`, `predecessors` | exact | n/a |
 | Countries for a phone number | `calling_code_for` / `calling-code-for` | exact, country level only | n/a |
-| Currency on a date | `currency_at` / `currency-at` | **approximate** | the `introduced` field in v1.11.0 |
+| Currency on a date | `currency_at` / `currency-at` | **approximate** | an exact implementation in v1.11.1 (built on `introduced`) |
+| Code assigned on a date | `is_active_on` / `is-active-on` | tri-state (true, false, unknown) | n/a |
 
-The approximate queries say so in their docstrings and CLI help. `is_eu`, `is_eea` and `is_eurozone` use a hardcoded list of the 27 EU members at v1.9.3. `currency_at` returns an active country's current currency for every date, because the tree has no `introduced` field, and returns `None` where the tree has no currency at all (every withdrawn entry before its withdrawal).
+The approximate queries say so in their docstrings and CLI help. `is_eu`, `is_eea` and `is_eurozone` use a hardcoded list of the 27 EU members at v1.9.3. `currency_at` returns an active country's current currency for every date, because it does not read the `introduced` field yet (v1.11.1), and returns `None` where the tree has no currency at all (every withdrawn entry before its withdrawal).
 
 **Breaking change in v1.10.0.** `successors` and `predecessors` return the full transitive closure on every surface, so `successors("YU")` is `["CS", "ME", "RS"]` in the wrappers and in `tools/iso3166_cli.py`. Before v1.10.0 the CLI returned terminal successors only.
 
