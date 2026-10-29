@@ -16,7 +16,7 @@ mixed into CountryRegistry:
     succession_path, successors,
     predecessors                          exact
     calling_code_for                      exact (country-level only)
-    currency_at                           approximate
+    currency_at                           bounded by lifetime (v1.11.1)
     is_active_on                          tri-state (v1.11.0)
 
 Conventions
@@ -397,47 +397,58 @@ class DerivedQueries:
         return sorted(out)
 
     # ------------------------------------------------------------
-    # Query 7 — currency_at (approximate)
+    # Query 7 — currency_at (lifetime-bounded)
     # ------------------------------------------------------------
 
     def currency_at(self, code: str, date: str) -> Optional[list]:
-        """currency_at(code: str, date: str) -> list[str] | None   [approximate]
+        """currency_at(code: str, date: str) -> list[str] | None
 
-        Approximate for active entries: the tree has no ``introduced``
-        field, so an active code returns its current ``currency_codes``
-        for every date (DE in 1990 returns ['EUR'], not DEM).
+        Currency in force on ``date``, bounded by the entry's lifetime
+        (v1.11.1). The tree stores no currency history, so the list is
+        the entry's *current* ``currency_codes``.
 
-        Withdrawn entries carry no currency_codes in the tree, so
-        nothing is known before ``withdrawal_date`` (None). From that
-        date on, the answer is the sorted union of the *current*
-        currencies of the terminal successors, which is also
-        approximate (DD in 1991 returns ['EUR'], not DEM).
+        * Active entry with ``introduced``: None before ``introduced``,
+          else its ``currency_codes`` (DE in 1990 returns ['EUR'], not
+          DEM: the lifetime is exact, the currency is not historical).
+        * Active entry without ``introduced`` (source silent): None.
+        * Withdrawn entry: None after ``withdrawal_date`` (or before a
+          known ``introduced``); otherwise the sorted union of the
+          current currencies of the terminal successors. For withdrawn
+          entries, returns the successor's current currency; the
+          withdrawn entry's historical currency is not in the tree. For
+          null ``introduced`` (all 25), it may differ from the withdrawn
+          entry's historical currency.
 
-        None means "cannot answer": unknown code, malformed date
-        (not a real YYYY-MM-DD), no currency data, or no successor.
-        An empty list means "no currency" (AQ).
+        None means "cannot answer": unknown code, malformed date (not a
+        real YYYY-MM-DD), outside the lifetime, no currency data, or no
+        successor. An empty list means "no currency" (not reachable
+        today: AQ has a null ``introduced``).
 
-        Deprecated: replaced by an exact answer in v1.11.1, built on
-        ``introduced``. In v1.11.0 it remains approximate.
-
-        >>> reg.currency_at("DE", "2000-01-01")  # approximate
+        >>> reg.currency_at("DE", "2000-01-01")
         ['EUR']
-        >>> reg.currency_at("DD", "1991-01-01")  # approximate
+        >>> reg.currency_at("DE", "1970-01-01") is None  # before introduced
+        True
+        >>> reg.currency_at("DD", "1990-01-01")  # successor's currency
         ['EUR']
-        >>> reg.currency_at("DD", "1990-01-01") is None   # unknown
+        >>> reg.currency_at("DD", "1990-10-04") is None  # after withdrawal
+        True
+        >>> reg.currency_at("BJ", "2000-01-01") is None  # introduced is null
         True
 
-        The tree has no currency for DD (a limitation of the tree, not a
-        bug in the query). See docs/QUERIES.md, "Query 7".
+        See docs/QUERIES.md, "Query 7".
         """
         if not _valid_date(date):
             return None
         c = _norm(code)
         act = self._by_alpha2.get(c)
         if act is not None:
+            if act.introduced is None or date < act.introduced:
+                return None
             return None if act.currency_codes is None else list(act.currency_codes)
         wd = next((w for w in self._withdrawn if w.alpha_2 == c), None)
-        if wd is None or not wd.withdrawal_date or date < wd.withdrawal_date:
+        if wd is None or not wd.withdrawal_date or date > wd.withdrawal_date:
+            return None
+        if wd.introduced is not None and date < wd.introduced:
             return None
         edges = self._succession_edges()
         out, seen, stack = set(), set(), [c]

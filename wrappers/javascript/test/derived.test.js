@@ -33,7 +33,10 @@ test("callingCodeFor, currencyAt, regionCountries", () => {
   assert.deepEqual([...reg.callingCodeFor("+44 20 7946 0958")], ["GB", "GG", "IM", "JE"]);
   assert.deepEqual([...reg.callingCodeFor("+999 123")], []);
   assert.deepEqual([...reg.currencyAt("DE", "2000-01-01")], ["EUR"]);
-  assert.equal(reg.currencyAt("DD", "1990-01-01"), null);
+  assert.equal(reg.currencyAt("DE", "1970-01-01"), null);
+  assert.deepEqual([...reg.currencyAt("DD", "1990-01-01")], ["EUR"]);
+  assert.equal(reg.currencyAt("DD", "1990-10-04"), null);
+  assert.equal(reg.currencyAt("BJ", "2000-01-01"), null);
   assert.deepEqual(
     [...reg.regionCountries("Europe", "Western Europe")],
     ["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"],

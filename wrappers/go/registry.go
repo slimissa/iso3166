@@ -479,8 +479,9 @@ func (r *CountryRegistry) Summary() Summary {
 // graph is built from withdrawn entries only.
 //
 // Approximate: IsEU, IsEEA, IsEurozone (deprecated by v1.12.0's
-// is_eu_member_at) and CurrencyAt (deprecated by v1.11.1's
-// introduced field).
+// is_eu_member_at). CurrencyAt (v1.11.1) is bounded by the entry's
+// lifetime but returns current currencies: the tree stores no currency
+// history.
 // ============================================================
 
 // knownEUMembers is the 27 EU member states at v1.9.3. It is the only
@@ -802,20 +803,26 @@ func (r *CountryRegistry) IsActiveOn(code, date string) *bool {
 	return &yes
 }
 
-// CurrencyAt returns the approximate currency in force on date
-// (YYYY-MM-DD). Active codes return their current currency_codes for
-// every date. Withdrawn codes return ok == false before
-// withdrawal_date and the terminal successors' current currencies from
-// then on. ok == false means "cannot answer" (unknown code, malformed
-// date, no data). Deprecated by v1.11.1 (approximate in v1.11.0). See
-// docs/QUERIES.md, "Query 7".
+// CurrencyAt returns the currency in force on date (YYYY-MM-DD),
+// bounded by the entry's lifetime. The tree stores no currency history,
+// so the list is the entry's current currency_codes.
+//
+// Active with Introduced: ok == false before it, else CurrencyCodes (DE
+// in 1990 returns ["EUR"], not DEM). Active without Introduced (source
+// silent): ok == false. Withdrawn: ok == false after withdrawal_date (or
+// before a known Introduced), else the union of the terminal
+// successors' current currencies. For withdrawn entries, returns the
+// successor's current currency; the withdrawn entry's historical
+// currency is not in the tree. For nil Introduced (all 25) it may
+// differ from the withdrawn entry's historical currency. ok == false
+// means "cannot answer". See docs/QUERIES.md, "Query 7".
 func (r *CountryRegistry) CurrencyAt(code, date string) ([]string, bool) {
 	if !dqValidDate(date) {
 		return nil, false
 	}
 	c := dqNorm(code)
 	if e, ok := r.byAlpha2[c]; ok {
-		if e.CurrencyCodes == nil {
+		if e.Introduced == nil || date < *e.Introduced || e.CurrencyCodes == nil {
 			return nil, false
 		}
 		return append([]string{}, e.CurrencyCodes...), true
@@ -827,7 +834,10 @@ func (r *CountryRegistry) CurrencyAt(code, date string) ([]string, bool) {
 			break
 		}
 	}
-	if wd == nil || wd.WithdrawalDate == nil || date < *wd.WithdrawalDate {
+	if wd == nil || wd.WithdrawalDate == nil || date > *wd.WithdrawalDate {
+		return nil, false
+	}
+	if wd.Introduced != nil && date < *wd.Introduced {
 		return nil, false
 	}
 	edges := r.dqEdges()

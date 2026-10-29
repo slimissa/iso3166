@@ -50,13 +50,19 @@ func TestDerivedQueriesWorkedExamples(t *testing.T) {
 	} else {
 		eq("CurrencyAt(DE)", c, []string{"EUR"})
 	}
-	if _, ok := r.CurrencyAt("DD", "1990-01-01"); ok {
-		t.Error("CurrencyAt(DD,1990-01-01) must be unknown")
+	if _, ok := r.CurrencyAt("DE", "1970-01-01"); ok {
+		t.Error("CurrencyAt(DE,1970) must be unknown (before introduced)")
 	}
-	if c, ok := r.CurrencyAt("DD", "1991-01-01"); !ok {
-		t.Error("CurrencyAt(DD,1991) not ok")
+	if c, ok := r.CurrencyAt("DD", "1990-01-01"); !ok {
+		t.Error("CurrencyAt(DD,1990-01-01) not ok")
 	} else {
-		eq("CurrencyAt(DD,1991)", c, []string{"EUR"})
+		eq("CurrencyAt(DD,1990)", c, []string{"EUR"})
+	}
+	if _, ok := r.CurrencyAt("DD", "1990-10-04"); ok {
+		t.Error("CurrencyAt(DD,1990-10-04) must be unknown (after withdrawal)")
+	}
+	if _, ok := r.CurrencyAt("BJ", "2000-01-01"); ok {
+		t.Error("CurrencyAt(BJ) must be unknown (introduced is null)")
 	}
 	if _, ok := r.CurrencyAt("DE", "2000-13-01"); ok {
 		t.Error("malformed date must be unknown")

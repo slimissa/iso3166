@@ -529,8 +529,9 @@ impl CountryRegistry {
     // withdrawn ones (AI and SK exist twice); the succession graph is
     // built from withdrawn entries only.
     //
-    // Approximate: is_eu, is_eea, is_eurozone (deprecated by v1.12.0)
-    // and currency_at (deprecated by v1.11.1).
+    // Approximate: is_eu, is_eea, is_eurozone (deprecated by v1.12.0).
+    // currency_at (v1.11.1) is bounded by the entry's lifetime but
+    // returns current currencies: the tree stores no currency history.
     // ------------------------------------------------------------
 
     fn dq_entry(&self, code: &str) -> Option<&Country> {
@@ -735,26 +736,41 @@ impl CountryRegistry {
         out.into_iter().collect()
     }
 
-    /// Approximate currency in force on `date` (YYYY-MM-DD).
+    /// Currency in force on `date` (YYYY-MM-DD), bounded by the entry's
+    /// lifetime. The tree stores no currency history, so the list is the
+    /// entry's current `currency_codes`.
     ///
-    /// Active codes return their current `currency_codes` for every
-    /// date. Withdrawn codes return `None` before `withdrawal_date` and
-    /// the terminal successors' current currencies from then on.
-    /// `None` means "cannot answer" (unknown code, malformed date, no
-    /// data). Deprecated by v1.11.1 (approximate in v1.11.0). See
-    /// docs/QUERIES.md, "Query 7".
+    /// Active with `introduced`: `None` before it, else `currency_codes`
+    /// (DE in 1990 returns `["EUR"]`, not DEM). Active without
+    /// `introduced` (source silent): `None`. Withdrawn: `None` after
+    /// `withdrawal_date` (or before a known `introduced`), else the
+    /// union of the terminal successors' current currencies. For
+    /// withdrawn entries, returns the successor's current currency; the
+    /// withdrawn entry's historical currency is not in the tree. For
+    /// null `introduced` (all 25) it may differ from the withdrawn
+    /// entry's historical currency. `None` means "cannot answer".
+    /// See docs/QUERIES.md, "Query 7".
     pub fn currency_at(&self, code: &str, date: &str) -> Option<Vec<String>> {
         if !dq_valid_date(date) {
             return None;
         }
         let c = dq_norm(code);
         if let Some(&i) = self.by_alpha2.get(&c) {
-            return self.active[i].currency_codes.clone();
+            let e = &self.active[i];
+            return match e.introduced.as_deref() {
+                Some(intro) if date >= intro => e.currency_codes.clone(),
+                _ => None,
+            };
         }
         let wd = self.withdrawn.iter().find(|w| w.alpha_2 == c)?;
         match &wd.withdrawal_date {
-            Some(d) if date >= d.as_str() => {}
+            Some(d) if date <= d.as_str() => {}
             _ => return None,
+        }
+        if let Some(intro) = wd.introduced.as_deref() {
+            if date < intro {
+                return None;
+            }
         }
         let edges = self.dq_edges();
         let mut out: std::collections::BTreeSet<String> = std::collections::BTreeSet::new();
@@ -924,8 +940,10 @@ mod tests {
         assert!(r.calling_code_for("+999 123").is_empty());
         assert!(r.calling_code_for("nonsense").is_empty());
         assert_eq!(r.currency_at("DE", "2000-01-01").unwrap(), ["EUR"]);
-        assert!(r.currency_at("DD", "1990-01-01").is_none());
-        assert_eq!(r.currency_at("DD", "1991-01-01").unwrap(), ["EUR"]);
+        assert!(r.currency_at("DE", "1970-01-01").is_none());
+        assert_eq!(r.currency_at("DD", "1990-01-01").unwrap(), ["EUR"]);
+        assert!(r.currency_at("DD", "1990-10-04").is_none());
+        assert!(r.currency_at("BJ", "2000-01-01").is_none());
         assert!(r.currency_at("DE", "2000-13-01").is_none());
         assert_eq!(
             r.region_countries("Europe", Some("Western Europe")),

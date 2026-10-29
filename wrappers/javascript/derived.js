@@ -15,10 +15,10 @@
  *
  * isActiveOn (v1.11.0) is tri-state: true, false or null (unknown).
  *
- * Approximate queries: isEu, isEea, isEurozone and currencyAt. See
- * docs/QUERIES.md. isEu/isEea/isEurozone are deprecated by v1.12.0
- * (isEuMemberAt); currencyAt is deprecated by v1.11.1 (an exact answer built on the
- * `introduced` field).
+ * Approximate queries: isEu, isEea and isEurozone. See docs/QUERIES.md;
+ * they are deprecated by v1.12.0 (isEuMemberAt). currencyAt (v1.11.1) is
+ * bounded by the entry's lifetime (`introduced`, `withdrawal_date`) but
+ * returns current currencies: the tree stores no currency history.
  *
  * AI and SK exist twice (active and withdrawn). Field lookups use the
  * active entry; the succession graph is built from withdrawn entries
@@ -239,22 +239,41 @@ const DerivedQueries = {
     return frozen([...out].sort());
   },
 
-  // -- Query 7: approximate ---------------------------------------
+  // -- Query 7: lifetime-bounded ----------------------------------
 
   /**
-   * Approximate currency in force on `date` (YYYY-MM-DD). Active
-   * codes return current currency_codes for every date; withdrawn
-   * codes return null before withdrawal_date and the terminal
-   * successors' current currencies from then on. null means "cannot
-   * answer". Deprecated by v1.11.1 (approximate in v1.11.0). See docs/QUERIES.md, "Query 7".
+   * Currency in force on `date` (YYYY-MM-DD), bounded by the entry's
+   * lifetime. The tree stores no currency history, so the list is the
+   * entry's current currency_codes.
+   *
+   * Active with `introduced`: null before it, else currency_codes (DE in
+   * 1990 returns ["EUR"], not DEM). Active without `introduced` (source
+   * silent): null. Withdrawn: null after `withdrawal_date` (or before a
+   * known `introduced`), else the union of the terminal successors'
+   * current currencies. For withdrawn entries, returns the successor's
+   * current currency; the withdrawn entry's historical currency is not
+   * in the tree. For null `introduced` (all 25) it may differ from the
+   * withdrawn entry's historical currency. null means "cannot answer".
+   *
+   *   currencyAt("DE", "2000-01-01") // ["EUR"]
+   *   currencyAt("DE", "1970-01-01") // null (before introduced)
+   *   currencyAt("DD", "1990-01-01") // ["EUR"] (successor's currency)
+   *   currencyAt("DD", "1990-10-04") // null (after withdrawal)
+   *   currencyAt("BJ", "2000-01-01") // null (introduced is null)
+   *
+   * See docs/QUERIES.md, "Query 7".
    */
   currencyAt(code, date) {
     if (!validDate(date)) return null;
     const c = norm(code);
     const act = this._byAlpha2.get(c);
-    if (act) return act.currency_codes == null ? null : frozen(act.currency_codes);
+    if (act) {
+      if (act.introduced == null || date < act.introduced) return null;
+      return act.currency_codes == null ? null : frozen(act.currency_codes);
+    }
     const wd = this._withdrawn.find((w) => w.alpha_2 === c);
-    if (!wd || !wd.withdrawal_date || date < wd.withdrawal_date) return null;
+    if (!wd || !wd.withdrawal_date || date > wd.withdrawal_date) return null;
+    if (wd.introduced != null && date < wd.introduced) return null;
     const edges = this._edges();
     const out = new Set();
     const seen = new Set();

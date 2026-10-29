@@ -53,9 +53,11 @@ def test_calling_code_for(reg):
 
 
 def test_currency_at(reg):
-    assert reg.currency_at("DE", "2000-01-01") == ["EUR"]   # approximate
-    assert reg.currency_at("DD", "1990-01-01") is None      # tree has no DDM
-    assert reg.currency_at("DD", "1991-01-01") == ["EUR"]   # approximate
+    assert reg.currency_at("DE", "2000-01-01") == ["EUR"]   # current currency
+    assert reg.currency_at("DE", "1970-01-01") is None      # before introduced
+    assert reg.currency_at("DD", "1990-01-01") == ["EUR"]   # successor's currency
+    assert reg.currency_at("DD", "1990-10-04") is None      # after withdrawal
+    assert reg.currency_at("BJ", "2000-01-01") is None      # introduced is null
     assert reg.currency_at("DE", "2000-13-01") is None
 
 
