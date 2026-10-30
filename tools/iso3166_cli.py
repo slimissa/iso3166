@@ -795,12 +795,10 @@ def cmd_predecessors(reg, args) -> int:
 import re as _re
 from datetime import date as _date
 
-# The only hardcoded list: the 27 EU member states at v1.9.3.
-KNOWN_EU_MEMBERS = frozenset(
-    "AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO "
-    "SK SI ES SE".split()
-)
-EEA_NON_EU = frozenset({"IS", "LI", "NO"})
+# Club membership fields (v1.12.0): date-scoped {from, to} ranges on every
+# active entry. This file reads them from the raw dict, on purpose
+# independent of the wrappers' implementation.
+CLUB_FIELDS = ("eu_membership", "eea_membership", "eurozone_membership", "customs_union")
 
 
 def _dq_active(reg):
@@ -856,17 +854,33 @@ def _dq_predicate(reg, args, fn, key) -> int:
     return EXIT_SUCCESS
 
 
+def _dq_club_now(reg, code, field):
+    """Current member: some range of the active entry has to == null."""
+    e = _dq_active(reg).get(code)
+    return bool(e) and any(r["to"] is None for r in e.get(field) or ())
+
+
+def _dq_club_at(reg, code, field, date):
+    """from <= date <= to for some range (to null = open). Never None."""
+    if not _dq_valid_date(date):
+        return False
+    e = _dq_active(reg).get(code)
+    return bool(e) and any(
+        r["from"] <= date and (r["to"] is None or date <= r["to"])
+        for r in e.get(field) or ()
+    )
+
+
 def _dq_is_eu(reg, code):
-    return code in KNOWN_EU_MEMBERS
+    return _dq_club_now(reg, code, "eu_membership")
 
 
 def _dq_is_eea(reg, code):
-    return code in KNOWN_EU_MEMBERS or code in EEA_NON_EU
+    return _dq_club_now(reg, code, "eea_membership")
 
 
 def _dq_is_eurozone(reg, code):
-    e = _dq_active(reg).get(code)
-    return code in KNOWN_EU_MEMBERS and bool(e) and e.get("currency_codes") == ["EUR"]
+    return _dq_club_now(reg, code, "eurozone_membership")
 
 
 def cmd_is_eu(reg, args) -> int:
@@ -879,6 +893,42 @@ def cmd_is_eea(reg, args) -> int:
 
 def cmd_is_eurozone(reg, args) -> int:
     return _dq_predicate(reg, args, _dq_is_eurozone, "is_eurozone")
+
+
+def _dq_member_at(reg, args, key, field) -> int:
+    """Date-scoped club membership (v1.12.0, docs/QUERIES.md, Query 10).
+
+    Prints "true" or "false". Exit 0 true, 1 false (an unknown code is in no
+    club), 2 on a malformed DATE. Exit 4 is reserved for a tri-state
+    "unknown" that no input reaches today.
+    """
+    code, date = args.code.strip().upper(), args.date
+    if not _dq_valid_date(date):
+        print(f"error: malformed date: {date!r} (want YYYY-MM-DD)", file=sys.stderr)
+        return EXIT_USAGE
+    result = _dq_club_at(reg, code, field, date)
+    text = "true" if result else "false"
+    if args.json:
+        write_json({"code": code, "date": date, key: result, "result": text})
+    else:
+        print(text)
+    return EXIT_SUCCESS if result else EXIT_NOT_FOUND
+
+
+def cmd_is_eu_member_at(reg, args) -> int:
+    return _dq_member_at(reg, args, "is_eu_member_at", "eu_membership")
+
+
+def cmd_is_eea_member_at(reg, args) -> int:
+    return _dq_member_at(reg, args, "is_eea_member_at", "eea_membership")
+
+
+def cmd_is_eurozone_member_at(reg, args) -> int:
+    return _dq_member_at(reg, args, "is_eurozone_member_at", "eurozone_membership")
+
+
+def cmd_is_in_customs_union_at(reg, args) -> int:
+    return _dq_member_at(reg, args, "is_in_customs_union_at", "customs_union")
 
 
 def cmd_region_tree(reg, args) -> int:
@@ -1199,15 +1249,17 @@ def build_parser() -> argparse.ArgumentParser:
     # -- Derived queries (v1.10.0) --
     for name, fn, text in (
         ("is-eu", cmd_is_eu,
-         "Is CODE an EU member? Prints true or false to stdout. Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
-         "Approximate: hardcoded v1.9.3 list; deprecated by v1.12.0. "
+         "Is CODE a current EU member? Prints true or false to stdout. Current member only; see is-eu-member-at for dated membership. "
+         "Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
          "See docs/QUERIES.md, Query 1."),
         ("is-eea", cmd_is_eea,
-         "Is CODE in the EEA? Prints true or false to stdout. Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
-         "Approximate; deprecated by v1.12.0. See docs/QUERIES.md, Query 1."),
+         "Is CODE a current EEA member? Prints true or false to stdout. Current member only; see is-eea-member-at for dated membership. "
+         "Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
+         "See docs/QUERIES.md, Query 1."),
         ("is-eurozone", cmd_is_eurozone,
-         "Is CODE an EU member using EUR? Prints true or false to stdout. Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
-         "Approximate; deprecated by v1.12.0. See docs/QUERIES.md, Query 1."),
+         "Is CODE a current eurozone member? Prints true or false to stdout. Current member only; see is-eurozone-member-at for dated membership. "
+         "Exit 0 if CODE exists (true or false), 1 if not found, 2 on usage error, 3 if the registry is missing. "
+         "See docs/QUERIES.md, Query 1."),
     ):
         sp = sub.add_parser(name, parents=[common], help=text, description=text)
         sp.add_argument("code", help="alpha-2 code.")
@@ -1262,6 +1314,23 @@ def build_parser() -> argparse.ArgumentParser:
                         help='Introduction date of CODE (YYYY-MM-DD): when ISO 3166-1 added the code. Tri-state: prints the date, or unknown. Exit 0 if known, 4 if unknown (null), 1 if CODE not found, 2 on usage error, 3 if the registry is missing. See docs/QUERIES.md, Known Nulls.', description='Introduction date of CODE (YYYY-MM-DD): when ISO 3166-1 added the code. Tri-state: prints the date, or unknown. Exit 0 if known, 4 if unknown (null), 1 if CODE not found, 2 on usage error, 3 if the registry is missing. See docs/QUERIES.md, Known Nulls.')
     sp.add_argument("code", help="alpha-2 code.")
     sp.set_defaults(func=cmd_introduced)
+
+    # -- Club memberships (v1.12.0; docs/QUERIES.md, Query 10) --
+    for name, fn, what in (
+        ("is-eu-member-at", cmd_is_eu_member_at, "an EU member state"),
+        ("is-eea-member-at", cmd_is_eea_member_at, "a party to the EEA Agreement"),
+        ("is-eurozone-member-at", cmd_is_eurozone_member_at, "in the eurozone"),
+        ("is-in-customs-union-at", cmd_is_in_customs_union_at, "in the EU customs union"),
+    ):
+        text = (f"Was CODE {what} on DATE (YYYY-MM-DD)? Prints true or false. "
+                "Exit 0 true, 1 false (an unknown code is in no club, so false), "
+                "4 reserved for unknown (never reached today); 2 on a malformed DATE "
+                "or usage error, 3 if the registry is missing. "
+                "See docs/QUERIES.md, Query 10.")
+        sp = sub.add_parser(name, parents=[common], help=text, description=text)
+        sp.add_argument("code", help="alpha-2 code.")
+        sp.add_argument("date", help="YYYY-MM-DD.")
+        sp.set_defaults(func=fn)
 
     sp = sub.add_parser("is-active-on", parents=[common],
                         help='Was CODE assigned on DATE (YYYY-MM-DD)? Tri-state: prints true, false, or unknown. Exit 0 true, 1 false, 4 unknown; 2 on a malformed DATE or usage error, 3 if the registry is missing. See docs/QUERIES.md, Query 9.', description='Was CODE assigned on DATE (YYYY-MM-DD)? Tri-state: prints true, false, or unknown. Exit 0 true, 1 false, 4 unknown; 2 on a malformed DATE or usage error, 3 if the registry is missing. See docs/QUERIES.md, Query 9.')

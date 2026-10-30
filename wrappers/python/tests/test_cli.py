@@ -258,3 +258,33 @@ def test_raw_missing_value_and_empty_list_print_one_blank_line():
 
 def test_search_empty_query_matches_nothing():
     assert _run("search", "").returncode == 1
+
+
+def test_member_at_prints_the_boolean_with_exit_0_or_1():
+    cases = [
+        ("is-eu-member-at", "GB", "2010-01-01", "true\n", 0),
+        ("is-eu-member-at", "GB", "2023-01-01", "false\n", 1),
+        ("is-eea-member-at", "NO", "2000-01-01", "true\n", 0),
+        ("is-eurozone-member-at", "GR", "2000-01-01", "false\n", 1),
+        ("is-eurozone-member-at", "GR", "2002-01-01", "true\n", 0),
+        ("is-in-customs-union-at", "GB", "2010-01-01", "true\n", 0),
+        ("is-in-customs-union-at", "GB", "2023-01-01", "false\n", 1),
+        ("is-eu-member-at", "ZZ", "2010-01-01", "false\n", 1),   # unknown code: in no club
+    ]
+    for cmd, code, date, out, rc in cases:
+        r = _run(cmd, code, date)
+        assert (r.stdout, r.returncode) == (out, rc), (cmd, code, date)
+
+
+def test_member_at_malformed_date_exit_2_and_json_shape():
+    import json
+    bad = _run("is-eu-member-at", "GB", "2010-13-01")
+    assert bad.returncode == 2 and "malformed date" in bad.stderr and bad.stdout == ""
+    out = json.loads(_run("is-eu-member-at", "GB", "2010-01-01", "--json").stdout)
+    assert out == {"code": "GB", "date": "2010-01-01",
+                   "is_eu_member_at": True, "result": "true"}
+
+
+def test_is_eu_help_says_current_member_only():
+    h = " ".join(_run("is-eu", "--help").stdout.split())
+    assert "Current member only" in h and "is-eu-member-at" in h
