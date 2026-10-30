@@ -10,7 +10,9 @@ Twelve methods (the nine queries of docs/QUERIES.md; the EU
 predicates and the succession pair count once each as a family),
 mixed into CountryRegistry:
 
-    is_eu, is_eea, is_eurozone            approximate
+    is_eu, is_eea, is_eurozone            current status (v1.12.0: exact,
+                                          read from the membership arrays;
+                                          see iso3166.clubs for *_at)
     region_tree, region_countries         exact
     borders_transitively                  exact
     succession_path, successors,
@@ -46,16 +48,18 @@ from typing import Optional
 __all__ = ["DerivedQueries", "KNOWN_EU_MEMBERS", "EEA_NON_EU"]
 
 
-# The only hardcoded list in the registry. It is the 27 EU member states
-# at v1.9.3 and is not a tree fact, so check_docs_match_tree.py cannot
-# verify it. This is why is_eu is deprecated in v1.12.0 (is_eu_member_at).
+# Deprecated since v1.12.0 and no longer consulted: is_eu, is_eea and
+# is_eurozone now read the date-scoped membership arrays in iso3166.json.
+# KNOWN_EU_MEMBERS is the 27 EU member states at v1.9.3. Both names are
+# kept only so that ``from iso3166.derived import KNOWN_EU_MEMBERS`` keeps
+# importing. They are a frozen snapshot and will not be updated.
 KNOWN_EU_MEMBERS = frozenset({
     "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
     "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK",
     "SI", "ES", "SE",
 })
 
-# EEA members that are not EU members.
+# EEA members that are not EU members (same status as KNOWN_EU_MEMBERS).
 EEA_NON_EU = frozenset({"IS", "LI", "NO"})
 
 _DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -133,18 +137,20 @@ class DerivedQueries:
         return sorted(seen)
 
     # ------------------------------------------------------------
-    # Query 1 — is_eu / is_eea / is_eurozone (approximate)
+    # Query 1 — is_eu / is_eea / is_eurozone (current status)
     # ------------------------------------------------------------
 
     def is_eu(self, code: str) -> bool:
-        """is_eu(code: str) -> bool   [approximate]
+        """is_eu(code: str) -> bool   [current status]
 
-        True if ``code`` is one of the 27 EU member states, taken from
-        the hardcoded KNOWN_EU_MEMBERS list. This is an approximate
-        answer: membership is not a field of the tree, so the list is
-        the only source and it is a snapshot at v1.9.3, with no dates.
+        True if ``code`` is an EU member state today: its
+        ``eu_membership`` array has a range whose ``to`` is null.
+        Unlike v1.10.0 to v1.11.1 this reads the registry data, not a
+        hardcoded list, and it follows ``eu_membership`` when a state
+        joins or leaves.
 
-        Deprecated: replaced by is_eu_member_at(code, date) in v1.12.0.
+        See is_eu_member_at for date-scoped membership. (The v1.10.0
+        approximation is retired; this method is a current-status alias.)
 
         >>> CountryRegistry().is_eu("DE")
         True
@@ -157,13 +163,15 @@ class DerivedQueries:
 
         See docs/QUERIES.md, "Query 1".
         """
-        return _norm(code) in KNOWN_EU_MEMBERS
+        return self._club_now("eu_membership", code)
 
     def is_eea(self, code: str) -> bool:
-        """is_eea(code: str) -> bool   [approximate]
+        """is_eea(code: str) -> bool   [current status]
 
-        True for the 27 EU members plus IS, LI and NO. Approximate for
-        the same reason as is_eu, and deprecated with it.
+        True if ``code`` is a party to the EEA Agreement today (its
+        ``eea_membership`` array has an open-ended range): the 27 EU
+        members plus IS, LI and NO. See is_eea_member_at for
+        date-scoped membership.
 
         >>> CountryRegistry().is_eea("NO")
         True
@@ -172,21 +180,17 @@ class DerivedQueries:
 
         See docs/QUERIES.md, "Query 1".
         """
-        c = _norm(code)
-        return c in KNOWN_EU_MEMBERS or c in EEA_NON_EU
+        return self._club_now("eea_membership", code)
 
     def is_eurozone(self, code: str) -> bool:
-        """is_eurozone(code: str) -> bool   [approximate]
+        """is_eurozone(code: str) -> bool   [current status]
 
-        True if ``code`` is an EU member (KNOWN_EU_MEMBERS) whose
-        active entry has ``currency_codes == ["EUR"]``. Approximate:
-        the EU list is a v1.9.3 snapshot, and French/Finnish overseas
-        territories that use the euro (GF, GP, MQ, RE, YT, AX, ...) are
-        separate ISO codes that are not EU members here, so they
-        return False. Microstates and ME use the euro without being in
-        the eurozone and also return False.
-
-        Deprecated together with is_eu.
+        True if ``code`` is in the eurozone today (its
+        ``eurozone_membership`` array has an open-ended range). Entries
+        that use the euro without being members (AD, MC, SM, VA, ME, XK)
+        and the French and Finnish overseas codes (GF, GP, MQ, RE, YT,
+        AX, ...) return False. See is_eurozone_member_at for
+        date-scoped membership.
 
         >>> CountryRegistry().is_eurozone("DE")
         True
@@ -197,12 +201,7 @@ class DerivedQueries:
 
         See docs/QUERIES.md, "Query 1".
         """
-        c = _norm(code)
-        if c not in KNOWN_EU_MEMBERS:
-            return False
-        e = self._by_alpha2.get(c)
-        return bool(e and e.currency_codes is not None
-                    and list(e.currency_codes) == ["EUR"])
+        return self._club_now("eurozone_membership", code)
 
     # ------------------------------------------------------------
     # Query 2 — region_tree

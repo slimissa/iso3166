@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Optional
 
+from .clubs import ClubMemberships
 from .derived import DerivedQueries
 
 
@@ -103,7 +104,7 @@ def _default_registry_path() -> Path:
     return Path(__file__).resolve().parent / "iso3166.json"
 
 
-class CountryRegistry(DerivedQueries):
+class CountryRegistry(DerivedQueries, ClubMemberships):
     """Load and query the ISO 3166 registry.
 
     The registry is loaded once at construction. All lookups return
@@ -130,6 +131,8 @@ class CountryRegistry(DerivedQueries):
             Country.from_dict(e) for e in countries.get("withdrawn", [])
         ]
         self._all: list[Country] = self._active + self._withdrawn
+        # v1.12.0: club membership ranges (active entries only).
+        self._init_clubs(countries.get("active", []))
 
         # Indexes: preferred (active) entry per key.
         self._by_alpha2: dict[str, Country] = {}

@@ -11,8 +11,15 @@ Public API:
 
 The bundled registry file is iso3166.json, shipped inside this package.
 """
+from .clubs import ClubMemberships
 from .derived import DerivedQueries
 from .registry import Country, CountryRegistry, RegistryError
 
-__all__ = ["Country", "CountryRegistry", "DerivedQueries", "RegistryError"]
+__all__ = [
+    "ClubMemberships",
+    "Country",
+    "CountryRegistry",
+    "DerivedQueries",
+    "RegistryError",
+]
 __version__ = "1.11.1"
