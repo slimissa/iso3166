@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "source": "Wikipedia: Member state of the European Union (member and withdrawal tables)",
+    "source_permalink": "https://en.wikipedia.org/wiki/Member_state_of_the_European_Union",
+    "permalink_note": "Canonical title URL, not an oldid permalink: the research tool returned page text without revision ids. Pin an oldid at the next review.",
+    "accessed_at": "2026-10-29",
+    "review_by": "2027-10-29",
+    "refresh_cadence": "annual",
+    "generator": "tools/build_club_snapshots.py",
+    "count": 28,
+    "semantics": "from = first day of membership; to = last day of membership, inclusive",
+    "founders_date_note": "Table says 'Founder' without a date. 1958-01-01 = EEC in force. ECSC began 1952-07-23; Treaty of Rome signed 1957-03-25. [Likely]",
+    "precision": {
+      "1958-01-01": "likely"
+    }
+  },
+  "data": {
+    "AT": [
+      {
+        "from": "1995-01-01",
+        "to": null
+      }
+    ],
+    "BE": [
+      {
+        "from": "1958-01-01",
+        "to": null
+      }
+    ],
+    "BG": [
+      {
+        "from": "2007-01-01",
+        "to": null
+      }
+    ],
+    "CY": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "CZ": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "DE": [
+      {
+        "from": "1958-01-01",
+        "to": null
+      }
+    ],
+    "DK": [
+      {
+        "from": "1973-01-01",
+        "to": null
+      }
+    ],
+    "EE": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "ES": [
+      {
+        "from": "1986-01-01",
+        "to": null
+      }
+    ],
+    "FI": [
+      {
+        "from": "1995-01-01",
+        "to": null
+      }
+    ],
+    "FR": [
+      {
+        "from": "1958-01-01",
+        "to": null
+      }
+    ],
+    "GB": [
+      {
+        "from": "1973-01-01",
+        "to": "2020-01-31"
+      }
+    ],
+    "GR": [
+      {
+        "from": "1981-01-01",
+        "to": null
+      }
+    ],
+    "HR": [
+      {
+        "from": "2013-07-01",
+        "to": null
+      }
+    ],
+    "HU": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "IE": [
+      {
+        "from": "1973-01-01",
+        "to": null
+      }
+    ],
+    "IT": [
+      {
+        "from": "1958-01-01",
+        "to": null
+      }
+    ],
+    "LT": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "LU": [
+      {
+        "from": "1958-01-01",
+        "to": null
+      }
+    ],
+    "LV": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "MT": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "NL": [
+      {
+        "from": "1958-01-01",
+        "to": null
+      }
+    ],
+    "PL": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "PT": [
+      {
+        "from": "1986-01-01",
+        "to": null
+      }
+    ],
+    "RO": [
+      {
+        "from": "2007-01-01",
+        "to": null
+      }
+    ],
+    "SE": [
+      {
+        "from": "1995-01-01",
+        "to": null
+      }
+    ],
+    "SI": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ],
+    "SK": [
+      {
+        "from": "2004-05-01",
+        "to": null
+      }
+    ]
+  }
+}

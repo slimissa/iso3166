@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "source": "Wikipedia: European Economic Area (state table, 'Entered into force' column)",
+    "source_permalink": "https://en.wikipedia.org/wiki/European_Economic_Area",
+    "permalink_note": "Canonical title URL, not an oldid permalink: the research tool returned page text without revision ids. Pin an oldid at the next review.",
+    "accessed_at": "2026-10-29",
+    "review_by": "2027-10-29",
+    "refresh_cadence": "annual",
+    "generator": "tools/build_club_snapshots.py",
+    "count": 31,
+    "semantics": "from = formal entry into force of the EEA Agreement for that state; to = last day, inclusive",
+    "gb_end_note": "State table says Exit 31 January 2020; the page prose and the 'United Kingdom membership of the EEA' page say the EEA Agreement applied to the UK until 31 December 2020. 2020-12-31 used. [Likely]",
+    "provisional_application": {
+      "2004-05-01": {
+        "codes": [
+          "CY",
+          "CZ",
+          "EE",
+          "HU",
+          "LT",
+          "LV",
+          "MT",
+          "PL",
+          "SI",
+          "SK"
+        ],
+        "formal": "2005-12-06"
+      },
+      "2007-08-01": {
+        "codes": [
+          "BG",
+          "RO"
+        ],
+        "formal": "2011-11-09"
+      },
+      "unknown_in_source": {
+        "codes": [
+          "HR"
+        ],
+        "formal": "2025-02-19",
+        "note": "Wikipedia says 'provisionally applied' after the April 2014 signing, with no date"
+      }
+    },
+    "cyprus_note": "Application suspended in Northern Cyprus."
+  },
+  "data": {
+    "AT": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "BE": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "BG": [
+      {
+        "from": "2011-11-09",
+        "to": null
+      }
+    ],
+    "CY": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "CZ": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "DE": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "DK": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "EE": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "ES": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "FI": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "FR": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "GB": [
+      {
+        "from": "1994-01-01",
+        "to": "2020-12-31"
+      }
+    ],
+    "GR": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "HR": [
+      {
+        "from": "2025-02-19",
+        "to": null
+      }
+    ],
+    "HU": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "IE": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "IS": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "IT": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "LI": [
+      {
+        "from": "1995-05-01",
+        "to": null
+      }
+    ],
+    "LT": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "LU": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "LV": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "MT": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "NL": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "NO": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "PL": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "PT": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "RO": [
+      {
+        "from": "2011-11-09",
+        "to": null
+      }
+    ],
+    "SE": [
+      {
+        "from": "1994-01-01",
+        "to": null
+      }
+    ],
+    "SI": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ],
+    "SK": [
+      {
+        "from": "2005-12-06",
+        "to": null
+      }
+    ]
+  }
+}

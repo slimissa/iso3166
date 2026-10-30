@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "source": "Wikipedia: Eurozone (Euro area), prose on enlargements; cross-checked against the Council of the EU 'Timeline - Joining the euro area' page",
+    "source_permalink": "https://en.wikipedia.org/wiki/Euro_area",
+    "permalink_note": "Canonical title URL, not an oldid permalink: the research tool returned page text without revision ids. Pin an oldid at the next review.",
+    "accessed_at": "2026-10-29",
+    "review_by": "2027-10-29",
+    "refresh_cadence": "annual",
+    "generator": "tools/build_club_snapshots.py",
+    "count": 21,
+    "semantics": "from = 1 January of the adoption year; to = null (no state has left)",
+    "founding_note": "1999-01-01 is the launch of the euro as book-entry currency. Notes and coins: 2002-01-01.",
+    "excluded": "AD, MC, SM, VA (formal monetary agreements) and XK, ME (unilateral) use the euro but are not eurozone members per ECB; not in data."
+  },
+  "data": {
+    "AT": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "BE": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "BG": [
+      {
+        "from": "2026-01-01",
+        "to": null
+      }
+    ],
+    "CY": [
+      {
+        "from": "2008-01-01",
+        "to": null
+      }
+    ],
+    "DE": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "EE": [
+      {
+        "from": "2011-01-01",
+        "to": null
+      }
+    ],
+    "ES": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "FI": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "FR": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "GR": [
+      {
+        "from": "2001-01-01",
+        "to": null
+      }
+    ],
+    "HR": [
+      {
+        "from": "2023-01-01",
+        "to": null
+      }
+    ],
+    "IE": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "IT": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "LT": [
+      {
+        "from": "2015-01-01",
+        "to": null
+      }
+    ],
+    "LU": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "LV": [
+      {
+        "from": "2014-01-01",
+        "to": null
+      }
+    ],
+    "MT": [
+      {
+        "from": "2008-01-01",
+        "to": null
+      }
+    ],
+    "NL": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "PT": [
+      {
+        "from": "1999-01-01",
+        "to": null
+      }
+    ],
+    "SI": [
+      {
+        "from": "2007-01-01",
+        "to": null
+      }
+    ],
+    "SK": [
+      {
+        "from": "2009-01-01",
+        "to": null
+      }
+    ]
+  }
+}
