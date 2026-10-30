@@ -45,6 +45,10 @@ fn main() -> ExitCode {
         "calling_code_for" => json(&reg.calling_code_for(a(2))),
         "currency_at" => json(&reg.currency_at(a(2), a(3))),
         "is_active_on" => json(&reg.is_active_on(a(2), a(3))),
+        "is_eu_member_at" => json(&reg.is_eu_member_at(a(2), a(3))),
+        "is_eea_member_at" => json(&reg.is_eea_member_at(a(2), a(3))),
+        "is_eurozone_member_at" => json(&reg.is_eurozone_member_at(a(2), a(3))),
+        "is_in_customs_union_at" => json(&reg.is_in_customs_union_at(a(2), a(3))),
         "region_countries" => {
             let sub = if args.len() > 3 { Some(a(3)) } else { None };
             json(&reg.region_countries(a(2), sub))

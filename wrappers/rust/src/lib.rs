@@ -37,16 +37,28 @@ const ACTIVE_STATUSES: &[&str] = &[
     "exceptionally-reserved",
 ];
 
-/// The 27 EU member states at v1.9.3. The only hardcoded list in the
-/// registry; it is not a tree fact, which is why `is_eu` is deprecated
-/// by `is_eu_member_at` in v1.12.0.
+/// The 27 EU member states at v1.9.3. Deprecated since v1.12.0 and no
+/// longer consulted: `is_eu`, `is_eea` and `is_eurozone` read the
+/// date-scoped membership arrays. Kept so existing imports compile; it
+/// is a frozen snapshot and is not updated.
 pub const KNOWN_EU_MEMBERS: [&str; 27] = [
     "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT",
     "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
 ];
 
-/// EEA members that are not EU members.
+/// EEA members that are not EU members (same status as
+/// [`KNOWN_EU_MEMBERS`]).
 pub const EEA_NON_EU: [&str; 3] = ["IS", "LI", "NO"];
+
+/// One inclusive club-membership range (v1.12.0): `from` is the first
+/// day of membership and `to` the last day, or `None` while the entry is
+/// still a member. Not part of the public API: the queries return bools.
+#[derive(Debug, Clone, Deserialize)]
+pub(crate) struct MembershipRange {
+    pub(crate) from: String,
+    #[serde(default)]
+    pub(crate) to: Option<String>,
+}
 
 fn dq_norm(code: &str) -> String {
     code.trim().to_uppercase()
@@ -161,6 +173,15 @@ pub struct Country {
     pub replaced_by: Option<Vec<String>>,
     #[serde(default)]
     pub introduced: Option<String>,
+    // v1.12.0 club memberships (active entries only; absent = empty).
+    #[serde(default)]
+    pub(crate) eu_membership: Vec<MembershipRange>,
+    #[serde(default)]
+    pub(crate) eea_membership: Vec<MembershipRange>,
+    #[serde(default)]
+    pub(crate) eurozone_membership: Vec<MembershipRange>,
+    #[serde(default)]
+    pub(crate) customs_union: Vec<MembershipRange>,
 }
 
 impl Country {
@@ -529,7 +550,8 @@ impl CountryRegistry {
     // withdrawn ones (AI and SK exist twice); the succession graph is
     // built from withdrawn entries only.
     //
-    // Approximate: is_eu, is_eea, is_eurozone (deprecated by v1.12.0).
+    // is_eu, is_eea, is_eurozone are current-status aliases since v1.12.0;
+    // the *_at club queries are exact (docs/QUERIES.md, "Query 10").
     // currency_at (v1.11.1) is bounded by the entry's lifetime but
     // returns current currencies: the tree stores no currency history.
     // ------------------------------------------------------------
@@ -575,33 +597,95 @@ impl CountryRegistry {
         seen.into_iter().collect()
     }
 
-    /// True for the 27 EU member states. Approximate: the list is a
-    /// v1.9.3 snapshot. Deprecated by `is_eu_member_at` in v1.12.0.
-    /// See docs/QUERIES.md, "Query 1".
-    pub fn is_eu(&self, code: &str) -> bool {
-        KNOWN_EU_MEMBERS.contains(&dq_norm(code).as_str())
+    /// Ranges of one club for an active entry; empty for any other code.
+    fn club_ranges(
+        &self,
+        pick: fn(&Country) -> &[MembershipRange],
+        code: &str,
+    ) -> &[MembershipRange] {
+        match self.by_alpha2.get(&dq_norm(code)) {
+            Some(&i) => pick(&self.active[i]),
+            None => &[],
+        }
     }
 
-    /// EU members plus IS, LI and NO. Approximate; deprecated with `is_eu`.
-    /// See docs/QUERIES.md, "Query 1".
-    pub fn is_eea(&self, code: &str) -> bool {
-        let c = dq_norm(code);
-        KNOWN_EU_MEMBERS.contains(&c.as_str()) || EEA_NON_EU.contains(&c.as_str())
-    }
-
-    /// EU member whose active entry has `currency_codes == ["EUR"]`.
-    /// Approximate: overseas territories that use the euro (GF, GP, MQ,
-    /// RE, YT, AX, ...) are separate codes and return false.
-    /// See docs/QUERIES.md, "Query 1".
-    pub fn is_eurozone(&self, code: &str) -> bool {
-        let c = dq_norm(code);
-        if !KNOWN_EU_MEMBERS.contains(&c.as_str()) {
+    /// `from <= date <= to` for some range (`to` None = open-ended). A
+    /// malformed date, an unknown code or a code in no range is false.
+    fn club_at(
+        &self,
+        pick: fn(&Country) -> &[MembershipRange],
+        code: &str,
+        date: &str,
+    ) -> bool {
+        if !dq_valid_date(date) {
             return false;
         }
-        match self.by_alpha2.get(&c).map(|&i| &self.active[i]) {
-            Some(e) => matches!(&e.currency_codes, Some(cc) if cc.len() == 1 && cc[0] == "EUR"),
-            None => false,
-        }
+        self.club_ranges(pick, code).iter().any(|r| {
+            r.from.as_str() <= date
+                && match r.to.as_deref() {
+                    None => true,
+                    Some(to) => date <= to,
+                }
+        })
+    }
+
+    /// Current member: some range is open-ended.
+    fn club_now(&self, pick: fn(&Country) -> &[MembershipRange], code: &str) -> bool {
+        self.club_ranges(pick, code).iter().any(|r| r.to.is_none())
+    }
+
+    /// True if `code` is an EU member state today (its `eu_membership`
+    /// array has an open-ended range). Current-status alias; see
+    /// [`is_eu_member_at`](Self::is_eu_member_at) for date-scoped
+    /// membership. See docs/QUERIES.md, "Query 1".
+    pub fn is_eu(&self, code: &str) -> bool {
+        self.club_now(|c| &c.eu_membership, code)
+    }
+
+    /// True if `code` is a party to the EEA Agreement today. Current-status
+    /// alias; see [`is_eea_member_at`](Self::is_eea_member_at).
+    /// See docs/QUERIES.md, "Query 1".
+    pub fn is_eea(&self, code: &str) -> bool {
+        self.club_now(|c| &c.eea_membership, code)
+    }
+
+    /// True if `code` is in the eurozone today. Euro users that are not
+    /// members (AD, MC, SM, VA, ME, XK) and overseas codes (GF, GP, MQ, RE,
+    /// YT, AX, ...) are false. Current-status alias; see
+    /// [`is_eurozone_member_at`](Self::is_eurozone_member_at).
+    /// See docs/QUERIES.md, "Query 1".
+    pub fn is_eurozone(&self, code: &str) -> bool {
+        self.club_now(|c| &c.eurozone_membership, code)
+    }
+
+    /// Was `code` an EU member state on `date`? Founders count from
+    /// 1958-01-01 (the EEC). Both ends of a range are inclusive, so GB is
+    /// a member on 2020-01-31 and not on 2020-02-01. A malformed date, an
+    /// unknown code, or a code in no range is `false`; the answer is
+    /// never unknown. See docs/QUERIES.md, "Query 10".
+    pub fn is_eu_member_at(&self, code: &str, date: &str) -> bool {
+        self.club_at(|c| &c.eu_membership, code, date)
+    }
+
+    /// Was `code` a party to the EEA Agreement on `date`? Dates are the
+    /// formal entry into force (BG, RO, the 2004 ten and HR applied it
+    /// provisionally earlier; see docs/decisions/club-memberships.md).
+    /// See docs/QUERIES.md, "Query 10".
+    pub fn is_eea_member_at(&self, code: &str, date: &str) -> bool {
+        self.club_at(|c| &c.eea_membership, code, date)
+    }
+
+    /// Was `code` in the eurozone on `date`? Members count from 1 January
+    /// of their adoption year. See docs/QUERIES.md, "Query 10".
+    pub fn is_eurozone_member_at(&self, code: &str, date: &str) -> bool {
+        self.club_at(|c| &c.eurozone_membership, code, date)
+    }
+
+    /// Was `code` in the EU customs union on `date`? AD and TR cover
+    /// industrial goods only (scope is in the snapshot meta).
+    /// See docs/QUERIES.md, "Query 10".
+    pub fn is_in_customs_union_at(&self, code: &str, date: &str) -> bool {
+        self.club_at(|c| &c.customs_union, code, date)
     }
 
     /// `[region, subregion, intermediate_region]` with nulls dropped.
@@ -918,6 +1002,52 @@ mod tests {
             assert_eq!(flags, vec![true, false], "{}", code);
         }
     }
+    #[test]
+    fn club_memberships_are_date_scoped() {
+        let r = reg();
+        assert!(r.is_eu_member_at("GB", "2010-01-01"));
+        assert!(!r.is_eu_member_at("GB", "2023-01-01"));
+        assert!(r.is_eu_member_at("GB", "2020-01-31"));
+        assert!(!r.is_eu_member_at("GB", "2020-02-01"));
+        assert!(!r.is_eu_member_at("GR", "1980-01-01"));
+        assert!(r.is_eu_member_at("GR", "2000-01-01"));
+        assert!(!r.is_eurozone_member_at("GR", "2000-01-01"));
+        assert!(!r.is_eurozone_member_at("GR", "2000-12-31"));
+        assert!(r.is_eurozone_member_at("GR", "2001-01-01"));
+        assert!(r.is_eurozone_member_at("GR", "2002-01-01"));
+        assert!(!r.is_eu_member_at("DE", "1950-01-01"));
+        assert!(r.is_in_customs_union_at("GB", "2010-01-01"));
+        assert!(!r.is_in_customs_union_at("GB", "2023-01-01"));
+        assert!(r.is_eea_member_at("GB", "2020-12-31"));
+        assert!(!r.is_eea_member_at("GB", "2021-01-01"));
+        for bad in ["2000-13-01", "2000-1-1", ""] {
+            assert!(!r.is_eu_member_at("DE", bad));
+        }
+        assert!(!r.is_eu_member_at("ZZ", "2000-01-01"));
+        assert!(!r.is_eu_member_at("", "2000-01-01"));
+        assert!(r.is_eu_member_at(" gb ", "2010-01-01"));
+    }
+
+    #[test]
+    fn aliases_match_the_v1_11_1_lists_for_every_code() {
+        let r = reg();
+        let mut codes: Vec<String> = r.all_active().iter().map(|c| c.alpha_2.clone()).collect();
+        codes.push("ZZ".to_string());
+        for c in &codes {
+            let eu = KNOWN_EU_MEMBERS.contains(&c.as_str());
+            let ea = eu || EEA_NON_EU.contains(&c.as_str());
+            let ez = eu
+                && r.active(c).is_some_and(|e| {
+                    matches!(&e.currency_codes, Some(cc) if cc.len() == 1 && cc[0] == "EUR")
+                });
+            assert_eq!((r.is_eu(c), r.is_eea(c), r.is_eurozone(c)), (eu, ea, ez), "{}", c);
+        }
+        let n = |f: fn(&CountryRegistry, &str) -> bool| {
+            r.all_active().iter().filter(|c| f(&r, &c.alpha_2)).count()
+        };
+        assert_eq!((n(CountryRegistry::is_eu), n(CountryRegistry::is_eea), n(CountryRegistry::is_eurozone)), (27, 30, 21));
+    }
+
     #[test]
     fn derived_queries_worked_examples() {
         let r = reg();
