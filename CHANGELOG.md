@@ -8,6 +8,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] — 2026-10-30
+
+v1.12.0 adds exact date-scoped club membership arrays. is_eu/is_eea/is_eurozone remain as current-status aliases.
+
+### Added
+
+- Four arrays on every active entry of `iso3166.json`: `eu_membership`,
+  `eea_membership`, `eurozone_membership` and `customs_union`. Each is a list of
+  inclusive `{from, to}` ranges (`to` is the last day of membership, `null`
+  while the entry is a member); `[]` means never a member. Withdrawn entries do
+  not carry them. Source: Wikipedia, as an explicit exception to the ISO-only
+  rule; see `docs/decisions/club-memberships.md` for the source, the null
+  policy, the annual refresh and the five date decisions a reader should know
+  about (EEA ranges start at formal entry into force, so BG is not in the EEA in
+  2010; the six founders start 1958-01-01; the UK's EEA and customs-union ranges
+  end 2020-12-31; the customs union starts 1968-07-01; Monaco's day is a guess).
+- `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and
+  `is_in_customs_union_at` (Query 10) in the Python, JavaScript, Rust and Go
+  wrappers (`isEuMemberAt` ... , `IsEUMemberAt` ...). They return a plain
+  boolean, never null: a malformed date, an unknown code and a date outside
+  every range are `false`, and both ends of a range are inclusive.
+- CLI subcommands `is-eu-member-at`, `is-eea-member-at`,
+  `is-eurozone-member-at` and `is-in-customs-union-at` in the packaged script
+  and in `tools/iso3166_cli.py`: exit 0 true, 1 false, 2 on a malformed date.
+  Exit 4 is reserved for the tri-state contract and is not reached.
+- `tools/enrich_club_memberships.py` (`--check` / `--write`), wired into
+  `release.sh` and CI; `membership` definition and the four properties in
+  `schema.json`; range checks in `validate.py`.
+- 23 fixture cases and index rows E101 to E123 in `docs/QUERIES.md`.
+
+### Changed
+
+- `is_eu`, `is_eea` and `is_eurozone` (and the `is-eu`, `is-eea`,
+  `is-eurozone` subcommands) read the membership arrays instead of a hardcoded
+  list. They answer exactly as in v1.11.1 for every code in the registry and
+  mean "current member only". They are no longer approximate or deprecated.
+- `KNOWN_EU_MEMBERS` and `EEA_NON_EU` are no longer consulted. They are still
+  exported so existing imports keep working, and are a frozen v1.9.3 snapshot.
+- `iso3166.json` grows by four arrays per active entry. The CSV, TSV, SQL and
+  Parquet exports are unchanged: they do not carry the arrays.
+
+### Known limits
+
+- Membership is per ISO code. `GF`, `GP`, `MQ`, `RE`, `YT`, `AX` and `GL` are
+  `[]`, so the queries return `false` for them (Greenland was in the Community
+  from 1973 to 1985).
+- Gibraltar's customs-union arrangement and Northern Ireland under the Windsor
+  Framework are not modelled.
+- The permalink in each snapshot's meta is the canonical page URL, not an
+  `oldid`. Pin one at the first review (`review_by` 2027-10-29).
+
 ## [1.11.1] — 2026-10-29
 
 The approximation retires. `currency_at` now uses `introduced` and

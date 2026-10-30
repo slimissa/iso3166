@@ -376,6 +376,8 @@ jobs:
 
       - name: Check intermediate_region completeness
         run: python3 tools/enrich_field.py --field intermediate_region --check
+      - name: Club memberships match the snapshots
+        run: python3 tools/enrich_club_memberships.py --check
 
   # =================================================================
   # 8c. docs/STATE.md matches the tree.

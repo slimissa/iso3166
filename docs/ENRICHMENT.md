@@ -20,6 +20,14 @@ The fields are populated by two tools, `enrich_official_name.py` and
 Every field has a `--check` mode. All eight are blocking in CI (the
 `check-fields` job).
 
+The four club membership arrays (`eu_membership`, `eea_membership`,
+`eurozone_membership`, `customs_union`, v1.12.0) are populated by
+`tools/enrich_club_memberships.py` from the four `tools/*_snapshot.json` files
+named in [decisions/club-memberships.md](decisions/club-memberships.md). The
+snapshots are written by `tools/build_club_snapshots.py` and refreshed
+annually. The tool has `--check` and `--write` and is blocking in the release
+gate and in CI.
+
 ---
 
 ## `official_name`

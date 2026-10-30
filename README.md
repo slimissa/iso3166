@@ -334,6 +334,7 @@ iso3166/
 │   ├── validate.py              # Six-layer validator
 │   ├── enrich_official_name.py  # Populate official_name (per-entry OBP)
 │   ├── enrich_withdrawn.py      # Populate withdrawn entries
+│   ├── enrich_club_memberships.py  # Populate the four club membership arrays (v1.12.0)
 │   ├── enrich_field.py          # Populate 7 list- and scalar-typed fields
 │   ├── enrich_independent.py    # Populate independent (OBP snapshot, audit trail)
 │   ├── migrate_notes_to_per_field.py  # One-shot note migration (v1.7.2, archival)
@@ -515,7 +516,7 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 
 **Bump** — the eight version sites, verified to agree afterward.
 
-**Gate** — a fail-fast subshell with `set -e`. 28 checks run in sequence; the first failure stops the release:
+**Gate** — a fail-fast subshell with `set -e`. 29 checks run in sequence; the first failure stops the release:
 
 1. `check_version_consistency.py`
 2. `check_release_claims.py <version>`
@@ -527,14 +528,15 @@ Releases are cut by `scripts/release.sh <version>`. The script enforces seven st
 8. `check_docs_match_tree.py`
 9. `enrich_official_name.py --check` and `enrich_withdrawn.py --check` (two invocations)
 10. Seven `enrich_field.py --check` invocations
-11. Four `export_*.py --check` invocations (SQL, CSV, Parquet, aggregated Parquet)
-12. `sync_wrappers.py --check`
-13. `gen_consistency_fixture.py --check`
-14. `gen_withdrawn_doc.py --check`
-15. Root test suite (`pytest tests/`)
-16. Python wrapper test suite
-17. `check_cross_language.sh US GB JP`
-18. `cargo clippy --all-targets -- -D warnings` in `wrappers/rust`
+11. `enrich_club_memberships.py --check`
+12. Four `export_*.py --check` invocations (SQL, CSV, Parquet, aggregated Parquet)
+13. `sync_wrappers.py --check`
+14. `gen_consistency_fixture.py --check`
+15. `gen_withdrawn_doc.py --check`
+16. Root test suite (`pytest tests/`)
+17. Python wrapper test suite
+18. `check_cross_language.sh US GB JP`
+19. `cargo clippy --all-targets -- -D warnings` in `wrappers/rust`
 
 **Commit, push, wait** — polls every per-push workflow on the pushed SHA until all report `completed success`.
 
