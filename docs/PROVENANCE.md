@@ -4,7 +4,7 @@ Every field in `iso3166.json` traces to a first-party source. This
 document records those sources, the refresh cadence, the audit
 procedure, and the known gaps in v1.0.0.
 
-This document is current as of v1.11 for the sections "Sources", "Current
+This document is current as of v1.12 for the sections "Sources", "Current
 sources and refresh" and "Refresh cadence". The sections titled "Known
 gaps in v1.0.0" and "Known limitations in v1.0.0" are a historical record
 of the first release; the present state of the registry is in
