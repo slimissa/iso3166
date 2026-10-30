@@ -75,6 +75,14 @@ func main() {
 		emit(opt(reg.CurrencyAt(a(2), a(3))))
 	case "is_active_on":
 		emit(reg.IsActiveOn(a(2), a(3)))
+	case "is_eu_member_at":
+		emit(reg.IsEUMemberAt(a(2), a(3)))
+	case "is_eea_member_at":
+		emit(reg.IsEEAMemberAt(a(2), a(3)))
+	case "is_eurozone_member_at":
+		emit(reg.IsEurozoneMemberAt(a(2), a(3)))
+	case "is_in_customs_union_at":
+		emit(reg.IsInCustomsUnionAt(a(2), a(3)))
 	case "region_countries":
 		emit(reg.RegionCountries(a(2), a(3)))
 	default:

@@ -154,6 +154,9 @@ type CountryRegistry struct {
 	byAlpha3  map[string]*Country
 	byNumeric map[string]*Country
 
+	// clubs holds the v1.12.0 membership ranges of active entries (clubs.go).
+	clubs map[string]clubSet
+
 	path string
 }
 
@@ -182,9 +185,15 @@ func LoadFrom(path string) (*CountryRegistry, error) {
 		return nil, fmt.Errorf("invalid registry JSON: %w", err)
 	}
 
+	clubs, err := loadClubs(data)
+	if err != nil {
+		return nil, err
+	}
+
 	r := &CountryRegistry{
-		meta: file.Meta,
-		path: path,
+		meta:  file.Meta,
+		path:  path,
+		clubs: clubs,
 	}
 
 	r.active = make([]*Country, len(file.Countries.Active))
@@ -478,15 +487,16 @@ func (r *CountryRegistry) Summary() Summary {
 // win over withdrawn ones (AI and SK exist twice); the succession
 // graph is built from withdrawn entries only.
 //
-// Approximate: IsEU, IsEEA, IsEurozone (deprecated by v1.12.0's
-// is_eu_member_at). CurrencyAt (v1.11.1) is bounded by the entry's
-// lifetime but returns current currencies: the tree stores no currency
-// history.
+// IsEU, IsEEA and IsEurozone are current-status aliases since v1.12.0
+// (see clubs.go for the date-scoped *At queries). CurrencyAt (v1.11.1)
+// is bounded by the entry's lifetime but returns current currencies: the
+// tree stores no currency history.
 // ============================================================
 
-// knownEUMembers is the 27 EU member states at v1.9.3. It is the only
-// hardcoded list in the registry; it is not a tree fact, which is why
-// IsEU is deprecated in v1.12.0.
+// knownEUMembers is the 27 EU member states at v1.9.3. Deprecated since
+// v1.12.0 and no longer consulted: IsEU, IsEEA and IsEurozone read the
+// membership arrays. It is a frozen snapshot, kept only for tests that
+// compare the aliases with the v1.11.1 answers.
 var knownEUMembers = map[string]bool{
 	"AT": true, "BE": true, "BG": true, "HR": true, "CY": true, "CZ": true,
 	"DK": true, "EE": true, "FI": true, "FR": true, "DE": true, "GR": true,
@@ -495,7 +505,8 @@ var knownEUMembers = map[string]bool{
 	"SI": true, "ES": true, "SE": true,
 }
 
-// eeaNonEU lists the EEA members that are not EU members.
+// eeaNonEU lists the EEA members that are not EU members (same status as
+// knownEUMembers).
 var eeaNonEU = map[string]bool{"IS": true, "LI": true, "NO": true}
 
 func dqNorm(code string) string { return strings.ToUpper(strings.TrimSpace(code)) }
@@ -553,30 +564,23 @@ func dqClosure(start string, edges map[string][]string) []string {
 	return dqSorted(seen)
 }
 
-// IsEU reports whether code is one of the 27 EU member states. It is
-// approximate: the list is a v1.9.3 snapshot. Deprecated by
-// is_eu_member_at in v1.12.0. See docs/QUERIES.md, "Query 1".
-func (r *CountryRegistry) IsEU(code string) bool { return knownEUMembers[dqNorm(code)] }
+// IsEU reports whether code is an EU member state today: its
+// eu_membership array has a range whose `to` is null. It is a
+// current-status alias; see IsEUMemberAt for date-scoped membership. See
+// docs/QUERIES.md, "Query 1".
+func (r *CountryRegistry) IsEU(code string) bool { return clubNow(r.clubs[dqNorm(code)].eu) }
 
-// IsEEA reports whether code is an EU member or IS, LI or NO.
-// Approximate; deprecated together with IsEU. See docs/QUERIES.md,
-// "Query 1".
-func (r *CountryRegistry) IsEEA(code string) bool {
-	c := dqNorm(code)
-	return knownEUMembers[c] || eeaNonEU[c]
-}
+// IsEEA reports whether code is a party to the EEA Agreement today (the 27
+// EU members plus IS, LI and NO). Current-status alias; see
+// IsEEAMemberAt. See docs/QUERIES.md, "Query 1".
+func (r *CountryRegistry) IsEEA(code string) bool { return clubNow(r.clubs[dqNorm(code)].eea) }
 
-// IsEurozone reports whether code is an EU member whose active entry
-// has currency_codes == ["EUR"]. Approximate: overseas territories
-// that use the euro (GF, GP, MQ, RE, YT, AX, ...) are separate codes
-// and return false. See docs/QUERIES.md, "Query 1".
+// IsEurozone reports whether code is in the eurozone today. Euro users
+// that are not members (AD, MC, SM, VA, ME, XK) and overseas codes (GF,
+// GP, MQ, RE, YT, AX, ...) return false. Current-status alias; see
+// IsEurozoneMemberAt. See docs/QUERIES.md, "Query 1".
 func (r *CountryRegistry) IsEurozone(code string) bool {
-	c := dqNorm(code)
-	if !knownEUMembers[c] {
-		return false
-	}
-	e, ok := r.byAlpha2[c]
-	return ok && len(e.CurrencyCodes) == 1 && e.CurrencyCodes[0] == "EUR"
+	return clubNow(r.clubs[dqNorm(code)].eurozone)
 }
 
 // RegionTree returns [region, subregion, intermediate_region] with
