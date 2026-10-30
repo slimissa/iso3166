@@ -23,6 +23,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const derived = require("./derived");
+const clubs = require("./clubs");
 
 const ACTIVE_STATUSES = new Set([
   "officially-assigned",
@@ -124,6 +125,8 @@ class CountryRegistry {
     this._active = (countries.active ?? []).map(makeCountry);
     this._withdrawn = (countries.withdrawn ?? []).map(makeCountry);
     this._all = [...this._active, ...this._withdrawn];
+    // v1.12.0: club membership ranges (active entries only).
+    clubs.initClubs(this, countries.active ?? []);
 
     // Preferred (active) entry per key. AI and SK each have two entries
     // overall; active wins for the simple lookups.
@@ -319,6 +322,7 @@ class CountryRegistry {
 }
 
 derived.install(CountryRegistry);
+clubs.install(CountryRegistry);
 
 module.exports = {
   CountryRegistry,

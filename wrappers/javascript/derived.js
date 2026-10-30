@@ -15,8 +15,9 @@
  *
  * isActiveOn (v1.11.0) is tri-state: true, false or null (unknown).
  *
- * Approximate queries: isEu, isEea and isEurozone. See docs/QUERIES.md;
- * they are deprecated by v1.12.0 (isEuMemberAt). currencyAt (v1.11.1) is
+ * isEu, isEea and isEurozone are current-status aliases since v1.12.0:
+ * they read the membership arrays (see clubs.js and isEuMemberAt for the
+ * date-scoped queries). currencyAt (v1.11.1) is
  * bounded by the entry's lifetime (`introduced`, `withdrawal_date`) but
  * returns current currencies: the tree stores no currency history.
  *
@@ -25,8 +26,10 @@
  * only, so successors("SK") follows Sikkim's replaced_by (IN).
  */
 
-// The only hardcoded list: the 27 EU member states at v1.9.3. Not a
-// tree fact, which is why isEu is deprecated in v1.12.0.
+// Deprecated since v1.12.0 and no longer consulted: isEu, isEea and
+// isEurozone read the date-scoped membership arrays. KNOWN_EU_MEMBERS is
+// the 27 EU member states at v1.9.3. Both are kept only so existing
+// imports keep working; they are a frozen snapshot and are not updated.
 const KNOWN_EU_MEMBERS = Object.freeze(new Set([
   "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
   "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK",
@@ -106,31 +109,30 @@ const DerivedQueries = {
     return frozen([...seen].sort());
   },
 
-  // -- Query 1: approximate --------------------------------------
+  // -- Query 1: current status ------------------------------------
 
-  /** True for the 27 EU members. Approximate; deprecated by v1.12.0. See docs/QUERIES.md, "Query 1". */
+  /**
+   * True if `code` is an EU member state today (its eu_membership array
+   * has an open-ended range). See isEuMemberAt for date-scoped
+   * membership. See docs/QUERIES.md, "Query 1".
+   */
   isEu(code) {
-    return KNOWN_EU_MEMBERS.has(norm(code));
+    return this._clubNow("eu_membership", code);
   },
 
-  /** EU members plus IS, LI, NO. Approximate; deprecated with isEu. See docs/QUERIES.md, "Query 1". */
+  /** True if `code` is in the EEA today. See isEeaMemberAt. See docs/QUERIES.md, "Query 1". */
   isEea(code) {
-    const c = norm(code);
-    return KNOWN_EU_MEMBERS.has(c) || EEA_NON_EU.has(c);
+    return this._clubNow("eea_membership", code);
   },
 
   /**
-   * EU member whose active entry has currency_codes == ["EUR"].
-   * Approximate: overseas territories that use the euro (GF, GP, MQ,
-   * RE, YT, AX, ...) are separate codes and return false.
+   * True if `code` is in the eurozone today. Euro users that are not
+   * members (AD, MC, SM, VA, ME, XK) and overseas codes (GF, GP, MQ, RE,
+   * YT, AX, ...) are false. See isEurozoneMemberAt.
    * See docs/QUERIES.md, "Query 1".
    */
   isEurozone(code) {
-    const c = norm(code);
-    if (!KNOWN_EU_MEMBERS.has(c)) return false;
-    const e = this._byAlpha2.get(c);
-    const cc = e && e.currency_codes;
-    return Boolean(cc && cc.length === 1 && cc[0] === "EUR");
+    return this._clubNow("eurozone_membership", code);
   },
 
   // -- Query 2 ----------------------------------------------------
