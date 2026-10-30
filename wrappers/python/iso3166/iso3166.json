@@ -14,6 +14,15 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1991-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -47,6 +56,10 @@
         "currency_codes": [
           "AED"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -84,6 +97,10 @@
         "currency_codes": [
           "AFN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -115,6 +132,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -145,6 +166,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -180,6 +205,10 @@
         "currency_codes": [
           "ALL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -215,6 +244,10 @@
         "currency_codes": [
           "AMD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -250,6 +283,10 @@
         "currency_codes": [
           "AOA"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -278,6 +315,10 @@
           "672"
         ],
         "currency_codes": [],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -312,6 +353,10 @@
         "currency_codes": [
           "ARS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -342,6 +387,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -382,6 +431,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1995-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1995-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -412,6 +485,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -442,6 +519,10 @@
         "currency_codes": [
           "AWG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -473,6 +554,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "2004-02-13",
@@ -509,6 +594,10 @@
         "currency_codes": [
           "AZN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -543,6 +632,10 @@
         "currency_codes": [
           "BAM"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -575,6 +668,10 @@
         "currency_codes": [
           "BBD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -608,6 +705,10 @@
         "currency_codes": [
           "BDT"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -642,6 +743,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1958-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -682,6 +807,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": null,
@@ -718,6 +847,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2007-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2011-11-09",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2007-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2026-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -748,6 +901,10 @@
         "currency_codes": [
           "BHD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -782,6 +939,10 @@
         "currency_codes": [
           "BIF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -818,6 +979,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": null,
@@ -848,6 +1013,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": "2007-09-21",
@@ -876,6 +1045,10 @@
         "currency_codes": [
           "BMD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -908,6 +1081,10 @@
         "currency_codes": [
           "BND"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -944,6 +1121,10 @@
         "currency_codes": [
           "BOB"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -976,6 +1157,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": "2010-12-15",
@@ -1015,6 +1200,10 @@
         "currency_codes": [
           "BRL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -1045,6 +1234,10 @@
         "currency_codes": [
           "BSD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -1078,6 +1271,10 @@
         "currency_codes": [
           "BTN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -1108,6 +1305,10 @@
         "currency_codes": [
           "NOK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "South America",
         "introduced": null,
@@ -1143,6 +1344,10 @@
         "currency_codes": [
           "BWP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Southern Africa",
         "introduced": "1974-09-15",
@@ -1180,6 +1385,10 @@
         "currency_codes": [
           "BYN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -1214,6 +1423,10 @@
         "currency_codes": [
           "BZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -1246,6 +1459,10 @@
         "currency_codes": [
           "CAD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -1277,6 +1494,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -1317,6 +1538,10 @@
         "currency_codes": [
           "CDF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": null,
@@ -1356,6 +1581,10 @@
         "currency_codes": [
           "XAF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -1393,6 +1622,10 @@
         "currency_codes": [
           "XAF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -1430,6 +1663,10 @@
         "currency_codes": [
           "CHF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -1469,6 +1706,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -1499,6 +1740,10 @@
         "currency_codes": [
           "NZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -1534,6 +1779,10 @@
         "currency_codes": [
           "CLP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -1570,6 +1819,10 @@
         "currency_codes": [
           "XAF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -1618,6 +1871,10 @@
         "currency_codes": [
           "CNY"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -1654,6 +1911,10 @@
         "currency_codes": [
           "COP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -1687,6 +1948,10 @@
         "currency_codes": [
           "CRC"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -1717,6 +1982,10 @@
         "currency_codes": [
           "CUP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -1747,6 +2016,10 @@
         "currency_codes": [
           "CVE"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -1777,6 +2050,10 @@
         "currency_codes": [
           "ANG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": "2010-12-15",
@@ -1808,6 +2085,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -1837,6 +2118,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2008-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -1874,6 +2179,25 @@
         "currency_codes": [
           "CZK"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -1914,6 +2238,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1958-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -1948,6 +2296,10 @@
         "currency_codes": [
           "DJF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": null,
@@ -1981,6 +2333,25 @@
         "currency_codes": [
           "DKK"
         ],
+        "customs_union": [
+          {
+            "from": "1973-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1973-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2011,6 +2382,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -2043,6 +2418,10 @@
         "currency_codes": [
           "DOP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -2081,6 +2460,10 @@
         "currency_codes": [
           "DZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2114,6 +2497,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -2146,6 +2533,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2011-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -2182,6 +2593,10 @@
         "currency_codes": [
           "EGP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2215,6 +2630,10 @@
         "currency_codes": [
           "MAD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -2247,6 +2666,10 @@
         "currency_codes": [
           "ERN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": null,
@@ -2285,6 +2708,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1986-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1986-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2322,6 +2769,10 @@
         "currency_codes": [
           "ETB"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -2348,6 +2799,10 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -2377,6 +2832,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "1995-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1995-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -2409,6 +2888,10 @@
         "currency_codes": [
           "FJD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2441,6 +2924,10 @@
         "currency_codes": [
           "FKP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "South America",
         "introduced": null,
@@ -2471,6 +2958,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -2501,6 +2992,10 @@
         "currency_codes": [
           "DKK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -2541,6 +3036,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1958-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2575,6 +3094,10 @@
         "currency_codes": [
           "XAF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -2607,6 +3130,25 @@
         "currency_codes": [
           "GBP"
         ],
+        "customs_union": [
+          {
+            "from": "1973-01-01",
+            "to": "2020-12-31"
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": "2020-12-31"
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1973-01-01",
+            "to": "2020-01-31"
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2637,6 +3179,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -2672,6 +3218,10 @@
         "currency_codes": [
           "GEL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -2705,6 +3255,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "South America",
         "introduced": null,
@@ -2735,6 +3289,10 @@
         "currency_codes": [
           "GBP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "2006-03-29",
@@ -2769,6 +3327,10 @@
         "currency_codes": [
           "GHS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -2801,6 +3363,10 @@
         "currency_codes": [
           "GIP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -2831,6 +3397,10 @@
         "currency_codes": [
           "DKK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -2864,6 +3434,10 @@
         "currency_codes": [
           "GMD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -2901,6 +3475,10 @@
         "currency_codes": [
           "GNF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -2931,6 +3509,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -2964,6 +3546,10 @@
         "currency_codes": [
           "XAF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -3001,6 +3587,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1981-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1981-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2001-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3031,6 +3641,10 @@
         "currency_codes": [
           "FKP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "South America",
         "introduced": null,
@@ -3066,6 +3680,10 @@
         "currency_codes": [
           "GTQ"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -3096,6 +3714,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -3130,6 +3752,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -3164,6 +3790,10 @@
         "currency_codes": [
           "GYD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -3196,6 +3826,10 @@
         "currency_codes": [
           "HKD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3227,6 +3861,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -3261,6 +3899,10 @@
         "currency_codes": [
           "HNL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -3297,6 +3939,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2013-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2025-02-19",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2013-07-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2023-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -3329,6 +3995,10 @@
         "currency_codes": [
           "HTG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -3368,6 +4038,25 @@
         "currency_codes": [
           "HUF"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3402,6 +4091,10 @@
         "currency_codes": [
           "IDR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3433,6 +4126,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "1973-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1973-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -3471,6 +4188,10 @@
         "currency_codes": [
           "ILS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3502,6 +4223,10 @@
         "currency_codes": [
           "GBP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "2006-03-29",
@@ -3540,6 +4265,10 @@
         "currency_codes": [
           "INR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3571,6 +4300,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Eastern Africa",
         "introduced": null,
@@ -3608,6 +4341,10 @@
         "currency_codes": [
           "IQD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3647,6 +4384,10 @@
         "currency_codes": [
           "IRR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3677,6 +4418,15 @@
         "currency_codes": [
           "ISK"
         ],
+        "customs_union": [],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3714,6 +4464,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1958-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3744,6 +4518,10 @@
         "currency_codes": [
           "GBP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "2006-03-29",
@@ -3774,6 +4552,10 @@
         "currency_codes": [
           "JMD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -3810,6 +4592,10 @@
         "currency_codes": [
           "JOD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3840,6 +4626,10 @@
         "currency_codes": [
           "JPY"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3876,6 +4666,10 @@
         "currency_codes": [
           "KES"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -3912,6 +4706,10 @@
         "currency_codes": [
           "KGS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -3947,6 +4745,10 @@
         "currency_codes": [
           "KHR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -3977,6 +4779,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4008,6 +4814,10 @@
         "currency_codes": [
           "KMF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -4039,6 +4849,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -4073,6 +4887,10 @@
         "currency_codes": [
           "KPW"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4105,6 +4923,10 @@
         "currency_codes": [
           "KRW"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4138,6 +4960,10 @@
         "currency_codes": [
           "KWD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4168,6 +4994,10 @@
         "currency_codes": [
           "KYD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -4204,6 +5034,10 @@
         "currency_codes": [
           "KZT"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4241,6 +5075,10 @@
         "currency_codes": [
           "LAK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4274,6 +5112,10 @@
         "currency_codes": [
           "LBP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4305,6 +5147,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -4338,6 +5184,15 @@
         "currency_codes": [
           "CHF"
         ],
+        "customs_union": [],
+        "eea_membership": [
+          {
+            "from": "1995-05-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4368,6 +5223,10 @@
         "currency_codes": [
           "LKR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4403,6 +5262,10 @@
         "currency_codes": [
           "LRD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -4435,6 +5298,10 @@
         "currency_codes": [
           "LSL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Southern Africa",
         "introduced": "1974-09-15",
@@ -4471,6 +5338,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2015-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4504,6 +5395,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1958-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -4542,6 +5457,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2014-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4579,6 +5518,10 @@
         "currency_codes": [
           "LYD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4613,6 +5556,10 @@
         "currency_codes": [
           "MAD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4645,6 +5592,15 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4678,6 +5634,10 @@
         "currency_codes": [
           "MDL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4714,6 +5674,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "2006-09-26",
@@ -4744,6 +5708,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": "2007-09-21",
@@ -4772,6 +5740,10 @@
         "currency_codes": [
           "MGA"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -4803,6 +5775,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4840,6 +5816,10 @@
         "currency_codes": [
           "MKD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4878,6 +5858,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -4914,6 +5898,10 @@
         "currency_codes": [
           "MMK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -4947,6 +5935,10 @@
         "currency_codes": [
           "MNT"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -4979,6 +5971,10 @@
         "currency_codes": [
           "MOP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5010,6 +6006,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -5041,6 +6041,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -5075,6 +6079,10 @@
         "currency_codes": [
           "MRU"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -5105,6 +6113,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -5134,6 +6146,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2008-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -5166,6 +6202,10 @@
         "currency_codes": [
           "MUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -5197,6 +6237,10 @@
         "currency_codes": [
           "MVR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5231,6 +6275,10 @@
         "currency_codes": [
           "MWK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -5266,6 +6314,10 @@
         "currency_codes": [
           "MXN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -5300,6 +6352,10 @@
         "currency_codes": [
           "MYR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5337,6 +6393,10 @@
         "currency_codes": [
           "MZN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -5372,6 +6432,10 @@
         "currency_codes": [
           "NAD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Southern Africa",
         "introduced": "1974-09-15",
@@ -5402,6 +6466,10 @@
         "currency_codes": [
           "XPF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -5440,6 +6508,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -5470,6 +6542,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -5505,6 +6581,10 @@
         "currency_codes": [
           "NGN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -5538,6 +6618,10 @@
         "currency_codes": [
           "NIO"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -5570,6 +6654,30 @@
         ],
         "currency_codes": [
           "EUR"
+        ],
+        "customs_union": [
+          {
+            "from": "1968-07-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1958-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
         ],
         "independent": true,
         "intermediate_region": null,
@@ -5605,6 +6713,15 @@
         "currency_codes": [
           "NOK"
         ],
+        "customs_union": [],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5638,6 +6755,10 @@
         "currency_codes": [
           "NPR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5668,6 +6789,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5699,6 +6824,10 @@
         "currency_codes": [
           "NZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "2002-05-20",
@@ -5730,6 +6859,10 @@
         "currency_codes": [
           "NZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5765,6 +6898,10 @@
         "currency_codes": [
           "OMR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5799,6 +6936,10 @@
           "PAB",
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -5835,6 +6976,10 @@
         "currency_codes": [
           "PEN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -5867,6 +7012,10 @@
         "currency_codes": [
           "XPF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -5899,6 +7048,10 @@
         "currency_codes": [
           "PGK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5931,6 +7084,10 @@
         "currency_codes": [
           "PHP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -5967,6 +7124,10 @@
         "currency_codes": [
           "PKR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6006,6 +7167,25 @@
         "currency_codes": [
           "PLN"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6036,6 +7216,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -6066,6 +7250,10 @@
         "currency_codes": [
           "NZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -6096,6 +7284,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -6131,6 +7323,10 @@
         "currency_codes": [
           "ILS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "1999-10-01",
@@ -6163,6 +7359,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "1986-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1986-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "1999-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6193,6 +7413,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -6228,6 +7452,10 @@
         "currency_codes": [
           "PYG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -6261,6 +7489,10 @@
         "currency_codes": [
           "QAR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6291,6 +7523,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Eastern Africa",
         "introduced": null,
@@ -6327,6 +7563,25 @@
         "currency_codes": [
           "RON"
         ],
+        "customs_union": [
+          {
+            "from": "2007-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2011-11-09",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2007-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6366,6 +7621,10 @@
         "currency_codes": [
           "RSD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "2006-09-26",
@@ -6411,6 +7670,10 @@
         "currency_codes": [
           "RUB"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -6446,6 +7709,10 @@
         "currency_codes": [
           "RWF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -6486,6 +7753,10 @@
         "currency_codes": [
           "SAR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6516,6 +7787,10 @@
         "currency_codes": [
           "SBD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6546,6 +7821,10 @@
         "currency_codes": [
           "SCR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -6585,6 +7864,10 @@
         "currency_codes": [
           "SDG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6619,6 +7902,25 @@
         "currency_codes": [
           "SEK"
         ],
+        "customs_union": [
+          {
+            "from": "1995-01-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "1994-01-01",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "1995-01-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6649,6 +7951,10 @@
         "currency_codes": [
           "SGD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6682,6 +7988,10 @@
         "currency_codes": [
           "SHP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Western Africa",
         "introduced": null,
@@ -6717,6 +8027,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2007-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -6747,6 +8081,10 @@
         "currency_codes": [
           "NOK"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -6783,6 +8121,30 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [
+          {
+            "from": "2005-12-06",
+            "to": null
+          }
+        ],
+        "eu_membership": [
+          {
+            "from": "2004-05-01",
+            "to": null
+          }
+        ],
+        "eurozone_membership": [
+          {
+            "from": "2009-01-01",
+            "to": null
+          }
+        ],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -6816,6 +8178,10 @@
         "currency_codes": [
           "SLE"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -6848,6 +8214,15 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [
+          {
+            "from": "2002-04-01",
+            "to": null
+          }
+        ],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -6884,6 +8259,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -6918,6 +8297,10 @@
         "currency_codes": [
           "SOS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -6953,6 +8336,10 @@
         "currency_codes": [
           "SRD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -6990,6 +8377,10 @@
         "currency_codes": [
           "SSP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "2011-08-09",
@@ -7020,6 +8411,10 @@
         "currency_codes": [
           "STN"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -7053,6 +8448,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Central America",
         "introduced": "1974-09-15",
@@ -7083,6 +8482,10 @@
         "currency_codes": [
           "ANG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": "2010-12-15",
@@ -7120,6 +8523,10 @@
         "currency_codes": [
           "SYP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7153,6 +8560,10 @@
         "currency_codes": [
           "SZL"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Southern Africa",
         "introduced": "1974-09-15",
@@ -7184,6 +8595,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -7220,6 +8635,10 @@
         "currency_codes": [
           "XAF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Middle Africa",
         "introduced": "1974-09-15",
@@ -7251,6 +8670,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Eastern Africa",
         "introduced": null,
@@ -7285,6 +8708,10 @@
         "currency_codes": [
           "XOF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Western Africa",
         "introduced": "1974-09-15",
@@ -7320,6 +8747,10 @@
         "currency_codes": [
           "THB"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7355,6 +8786,10 @@
         "currency_codes": [
           "TJS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -7386,6 +8821,10 @@
         "currency_codes": [
           "NZD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -7419,6 +8858,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "2002-05-20",
@@ -7455,6 +8898,10 @@
         "currency_codes": [
           "TMT"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -7489,6 +8936,10 @@
         "currency_codes": [
           "TND"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7519,6 +8970,10 @@
         "currency_codes": [
           "TOP"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7559,6 +9014,15 @@
         "currency_codes": [
           "TRY"
         ],
+        "customs_union": [
+          {
+            "from": "1995-12-31",
+            "to": null
+          }
+        ],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7589,6 +9053,10 @@
         "currency_codes": [
           "TTD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -7619,6 +9087,10 @@
         "currency_codes": [
           "AUD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7650,6 +9122,10 @@
         "currency_codes": [
           "TWD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7689,6 +9165,10 @@
         "currency_codes": [
           "TZS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -7728,6 +9208,10 @@
         "currency_codes": [
           "UAH"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -7764,6 +9248,10 @@
         "currency_codes": [
           "UGX"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -7791,6 +9279,10 @@
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -7817,6 +9309,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -7848,6 +9344,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7881,6 +9381,10 @@
         "currency_codes": [
           "UYU"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -7917,6 +9421,10 @@
         "currency_codes": [
           "UZS"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -7950,6 +9458,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -7980,6 +9492,10 @@
         "currency_codes": [
           "XCD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Caribbean",
         "introduced": "1974-09-15",
@@ -8014,6 +9530,10 @@
         "currency_codes": [
           "VES"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "South America",
         "introduced": "1974-09-15",
@@ -8044,6 +9564,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -8074,6 +9598,10 @@
         "currency_codes": [
           "USD"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Caribbean",
         "introduced": null,
@@ -8108,6 +9636,10 @@
         "currency_codes": [
           "VND"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -8138,6 +9670,10 @@
         "currency_codes": [
           "VUV"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -8170,6 +9706,10 @@
         "currency_codes": [
           "XPF"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": null,
         "introduced": null,
@@ -8200,6 +9740,10 @@
         "currency_codes": [
           "WST"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -8232,6 +9776,10 @@
         ],
         "calling_codes": null,
         "currency_codes": null,
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": null,
@@ -8261,6 +9809,10 @@
         "currency_codes": [
           "YER"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": null,
         "introduced": "1974-09-15",
@@ -8291,6 +9843,10 @@
         "currency_codes": [
           "EUR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": false,
         "intermediate_region": "Eastern Africa",
         "introduced": null,
@@ -8328,6 +9884,10 @@
         "currency_codes": [
           "ZAR"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Southern Africa",
         "introduced": "1974-09-15",
@@ -8370,6 +9930,10 @@
         "currency_codes": [
           "ZMW"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": "1974-09-15",
@@ -8405,6 +9969,10 @@
         "currency_codes": [
           "ZWG"
         ],
+        "customs_union": [],
+        "eea_membership": [],
+        "eu_membership": [],
+        "eurozone_membership": [],
         "independent": true,
         "intermediate_region": "Eastern Africa",
         "introduced": null,

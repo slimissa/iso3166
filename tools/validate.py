@@ -233,6 +233,37 @@ def _is_valid_iso_date(value: str) -> bool:
         return False
 
 
+CLUB_FIELDS = ("eu_membership", "eea_membership", "eurozone_membership", "customs_union")
+
+
+def _check_membership(r: "LayerResult", where: str, field: str, ranges: Any) -> None:
+    """Ranges are {from, to}: real dates, from <= to, sorted, disjoint,
+    and only the last range may be open-ended (to is null)."""
+    if not isinstance(ranges, list):
+        r.error(f"{where}: {field} must be a list")
+        return
+    prev_to: str | None = None
+    for j, rg in enumerate(ranges):
+        if not isinstance(rg, dict) or set(rg) != {"from", "to"}:
+            r.error(f"{where}: {field}[{j}] must have exactly the keys from, to")
+            return
+        frm, to = rg["from"], rg["to"]
+        if not isinstance(frm, str) or not _is_valid_iso_date(frm):
+            r.error(f"{where}: {field}[{j}].from {frm!r} is not a valid ISO date")
+            return
+        if to is not None and (not isinstance(to, str) or not _is_valid_iso_date(to)):
+            r.error(f"{where}: {field}[{j}].to {to!r} is not a valid ISO date or null")
+            return
+        if to is not None and to < frm:
+            r.error(f"{where}: {field}[{j}] ends before it starts")
+        if j > 0:
+            if prev_to is None:
+                r.error(f"{where}: {field}[{j}] follows an open-ended range")
+            elif frm <= prev_to:
+                r.error(f"{where}: {field}[{j}] overlaps or is out of order")
+        prev_to = to
+
+
 def layer_integrity(reg: dict[str, Any]) -> LayerResult:
     r = LayerResult("integrity")
     countries = reg.get("countries", {})
@@ -328,6 +359,20 @@ def layer_integrity(reg: dict[str, Any]) -> LayerResult:
                 f"withdrawn[{i}] ({entry.get('alpha_2')}): "
                 f"withdrawal_date {wd} is in the future"
             )
+
+    # Club memberships (v1.12.0): date-scoped ranges on active entries only.
+    for section in ("active", "withdrawn"):
+        for i, entry in enumerate(countries.get(section, [])):
+            where = f"{section}[{i}] ({entry.get('alpha_2', '?')})"
+            for f in CLUB_FIELDS:
+                if section == "withdrawn":
+                    if f in entry:
+                        r.error(f"{where}: {f} is only allowed on active entries")
+                    continue
+                if f not in entry:
+                    r.error(f"{where}: missing {f} (use [] for no membership)")
+                    continue
+                _check_membership(r, where, f, entry[f])
 
     if not r.errors:
         total = sum(len(countries.get(s, [])) for s in ("active", "withdrawn"))

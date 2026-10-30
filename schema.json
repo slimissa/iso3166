@@ -86,6 +86,24 @@
       "pattern": "^[A-Z]{2,3}$",
       "description": "Either an alpha-2 or alpha-3 code."
     },
+    "membership": {
+      "type": "array",
+      "description": "Date-scoped club membership. Each range is inclusive: `from` is the first day of membership and `to` the last day, or null while the entry is still a member. Empty list: never a member. Ranges are sorted and do not overlap. See docs/decisions/club-memberships.md.",
+      "items": {
+        "type": "object",
+        "required": ["from", "to"],
+        "additionalProperties": false,
+        "properties": {
+          "from": { "$ref": "#/definitions/isoDate" },
+          "to": {
+            "anyOf": [
+              { "$ref": "#/definitions/isoDate" },
+              { "type": "null" }
+            ]
+          }
+        }
+      }
+    },
     "commonFields": {
       "type": "object",
       "required": ["alpha_2", "alpha_3", "numeric", "name", "status", "independent"],
@@ -177,13 +195,18 @@
         "replaced_by": {
           "type": ["array", "null"],
           "items": { "$ref": "#/definitions/alpha2" }
-        }
+        },
+        "eu_membership": { "$ref": "#/definitions/membership" },
+        "eea_membership": { "$ref": "#/definitions/membership" },
+        "eurozone_membership": { "$ref": "#/definitions/membership" },
+        "customs_union": { "$ref": "#/definitions/membership" }
       }
     },
     "active": {
       "allOf": [
         { "$ref": "#/definitions/commonFields" },
         {
+          "required": ["eu_membership", "eea_membership", "eurozone_membership", "customs_union"],
           "properties": {
             "status": {
               "enum": [
@@ -203,6 +226,14 @@
         { "$ref": "#/definitions/commonFields" },
         {
           "required": ["withdrawal_date"],
+          "not": {
+            "anyOf": [
+              { "required": ["eu_membership"] },
+              { "required": ["eea_membership"] },
+              { "required": ["eurozone_membership"] },
+              { "required": ["customs_union"] }
+            ]
+          },
           "properties": {
             "status": { "const": "withdrawn" }
           }
