@@ -5,6 +5,10 @@ rationale, not the specification. The specification, with every signature,
 edge case and worked example, is [QUERIES.md](QUERIES.md); where the two
 differ, QUERIES.md wins and this file is wrong.
 
+v1.12.0 added Query 10 (club memberships) and retired the approximation of
+Query 1; the sections "Why the approximate queries are approximate" and
+"Why club memberships are arrays on the entry" record both.
+
 ## The rule everything follows from
 
 A derived query is a hypothesis until it has been run against the tree.
@@ -81,13 +85,14 @@ useless for the common case of a recent date, so the documented
 approximation was preferred. v1.11.1 keeps that choice for the currency
 itself and bounds the answer by the entry's lifetime.
 
-**Replacements.** `is_eu`, `is_eea` and `is_eurozone` are deprecated by
-`is_eu_member_at(code, date)` in v1.12.0, which needs an `eu_membership[]`
-field. `currency_at` is no longer deprecated: v1.11.1 makes it exact for dated
+**Replacements.** (Resolved in v1.12.0; this paragraph is the v1.10.0 plan.)
+`is_eu`, `is_eea` and `is_eurozone` were to be deprecated by
+`is_eu_member_at(code, date)`, which needs an `eu_membership[]` field. `currency_at` is no longer deprecated: v1.11.1 makes it exact for dated
 entries (below). Each replacement is named in the same release notes that
 introduce the approximation.
 
-**The single hardcoded list.** `KNOWN_EU_MEMBERS` is the only data in the
+**The single hardcoded list** (retired in v1.12.0; see "Why club memberships
+are arrays on the entry"). `KNOWN_EU_MEMBERS` was the only data in the
 registry that is not read from `iso3166.json`. It is the reason
 `check_docs_match_tree.py` cannot check the EU answers, and therefore the
 reason they are deprecated rather than maintained. `is_eurozone` is built
@@ -249,6 +254,88 @@ If a later release wants the historical currency of a withdrawn entry, that is
 a separate release and needs a source for currency history, which the tree
 does not have.
 
+## Why club memberships are arrays on the entry
+
+The four clubs (EU, EEA, eurozone, EU customs union) are stored on every active
+entry of `iso3166.json` as lists of `{from, to}` ranges. Three alternatives were
+considered.
+
+1. **A separate `clubs.json` companion.** Rejected: the gates, the schema and
+   the wrapper copies already work on `iso3166.json`, and a companion would be
+   a second file that can disagree with it about which codes exist.
+2. **One `club_memberships` object per entry, keyed by club.** Rejected: four
+   top-level arrays keep each club a plain list, one schema definition
+   (`membership`), and a one-line read in every language. A fifth club costs one
+   field, not a change to the shape.
+3. **Four arrays, `[]` for non-members.** Chosen. The snapshots stay the source
+   of truth (their null policy is "no key"); the tree gets `[]` so a field is
+   never absent on an active entry, and `validate.py` can require it.
+
+Ranges, not a single date, because the UK left, and a future member may leave and
+rejoin: the array has several ranges then. `to` is the **last day** and
+inclusive, so `GB` is a member on 2020-01-31, the day it left, and a reader
+never has to decide whether `to` is exclusive.
+
+Withdrawn entries carry none of the four: a withdrawn ISO code was never a
+member of anything that exists today, and the schema forbids the fields there.
+
+**The hardcoded list is gone.** `KNOWN_EU_MEMBERS` and `EEA_NON_EU` are no
+longer read. The three EU predicates read the arrays and answer exactly what
+they answered at v1.11.1 for every code in the registry (a test compares them
+code by code), so v1.10.0 callers see no change. The two constants stay
+exported, unused, so that imports do not break; they are not updated.
+
+**Territories.** Membership is per ISO code and does not inherit from the
+sovereign state, so `GF`, `GP`, `MQ`, `RE`, `YT` and `AX` have `[]` and the
+queries return `false` for them, the same limitation the approximate versions
+had. Greenland (`GL`, in the Community 1973 to 1985) is also `[]`. These are
+documented false negatives, not facts the registry asserts.
+
+## Why the dated queries never return null
+
+`is_active_on` is tri-state because `introduced` is null for 76 active entries:
+the source is silent and the registry says so. Membership is different. The
+snapshot states membership for every active entry, and `[]` is a statement.
+There is no input for which the registry "does not know", so `null` would be a
+value nothing returns. The four queries return a plain boolean in every
+language (no `Option`, no pointer), and a malformed date, an unknown code and a
+date outside every range are all `false`.
+
+The CLI still lists exit code 4 for the tri-state contract, so that a script
+that handles 0, 1 and 4 for `is-active-on` handles these commands too. Nothing
+produces it today. If a future snapshot is allowed to say "unknown" (for
+example, a quarantined date), that is when a `null` appears, in every surface at
+once.
+
+## Why the dated CLI commands exit 1 for false
+
+`is-eu` exits 0 for both answers and uses the exit code for "not found", the
+v1.10.0 contract. The dated commands follow `is-active-on` instead: 0 true, 1
+false, 2 malformed date. An unknown code is `false` (exit 1), not "not found",
+because the library's answer for it is `false` and the CLI must agree with the
+library. The cross-language check enforces that agreement.
+
+## Why EEA ranges start at entry into force
+
+The EEA Agreement was applied provisionally to the 2004 members from 2004-05-01,
+to BG and RO from 2007-08-01, and to HR from its signing in 2014, and entered
+into force later (2005-12-06, 2011-11-09, 2025-02-19). Wikipedia's state table
+lists the entry-into-force dates, and those are used. This makes
+`is_eea_member_at("BG", "2010-01-01")` false although EU law applied to BG
+then.
+
+The alternative, effective application, is arguably more useful, but the
+source gives no provisional date for HR, and the registry may not invent one.
+The provisional dates that the source does give are recorded in the EEA
+snapshot's `meta.provisional_application`. Switching semantics is a data
+change (new `from` dates for 13 states) plus a fixture change
+(`is_eea_member_at BG 2010-01-01`), and the fixture pins the current choice so
+that the change is deliberate.
+
+Three other dates are inferences, listed in docs/decisions/club-memberships.md:
+1958-01-01 for the six founders, 2020-12-31 for the UK's EEA and customs-union
+end, and 1968-07-01 for the customs union's start.
+
 ## Why is_active_on is the first exact temporal query
 
 `currency_at` needs a currency history the tree does not have, so it is exact
@@ -260,7 +347,7 @@ exact; where they do not it says so.
 
 | Query | Deferred to | Reason |
 |---|---|---|
-| `is_eu_member_at(code, date)` | v1.12.0 | Needs an `eu_membership[]` field |
+| `is_eu_member_at(code, date)` and the three sibling club queries | done in v1.12.0 | Needed the four membership arrays |
 | `is_active_on(code, date)` | done in v1.11.0 | Needed an `introduced` field |
 | `currency_at` (lifetime-bounded) | done in v1.11.1 | Uses `introduced` and `withdrawal_date` |
 | `currency_at` with historical currencies | a later release | Needs a source for currency history; none is in the tree |

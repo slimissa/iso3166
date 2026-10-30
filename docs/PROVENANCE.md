@@ -43,6 +43,10 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 | `borders` | CIA World Factbook, land boundaries | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
 | `subregion` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
 | `intermediate_region` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
+| `eu_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eu_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
+| `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
+| `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
+| `customs_union` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/customs_union_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
 
 ## What is a first-party source
 

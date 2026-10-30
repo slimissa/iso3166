@@ -771,7 +771,7 @@
     ]
   },
   "derived_queries": {
-    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. is_eu, is_eea and is_eurozone are approximate. currency_at (v1.11.1) is bounded by lifetime but returns current currencies. is_active_on (v1.11.0) is tri-state: null means unknown.",
+    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. currency_at (v1.11.1) is bounded by lifetime but returns current currencies. is_active_on (v1.11.0) is tri-state: null means unknown. is_eu, is_eea and is_eurozone are current-status aliases (v1.12.0); the four *_at club queries are exact and never null.",
     "enforced": true,
     "cases": [
       {
@@ -1742,6 +1742,190 @@
           "1800-01-01"
         ],
         "expected": null
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "GB",
+          "2010-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "GB",
+          "2023-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "GB",
+          "2020-01-31"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "GB",
+          "2020-02-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "GR",
+          "1980-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "GR",
+          "2000-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "1950-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2000-13-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "ZZ",
+          "2000-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "GB",
+          "2020-12-31"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "GB",
+          "2021-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "BG",
+          "2010-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "NO",
+          "1994-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "GR",
+          "2000-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "GR",
+          "2000-12-31"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "GR",
+          "2001-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "GR",
+          "2002-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "BG",
+          "2025-12-31"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "BG",
+          "2026-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "GB",
+          "2010-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "GB",
+          "2023-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "TR",
+          "1995-12-30"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "TR",
+          "1995-12-31"
+        ],
+        "expected": true
       }
     ]
   }

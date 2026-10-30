@@ -64,3 +64,15 @@ Known next event: none scheduled in source as of the access date.
 ## Consequences
 Phase 2 can replace the heuristics with date-scoped lookups. A wrong date here is a wrong answer
 there, so decisions 1 to 4 should be settled before Phase 2 starts.
+
+## Consumption (v1.12.0, Phase 2)
+`tools/enrich_club_memberships.py` copies each snapshot's ranges onto the active entries of
+`iso3166.json` as `eu_membership`, `eea_membership`, `eurozone_membership` and `customs_union`.
+Codes absent from a snapshot get `[]`. Withdrawn entries carry none of the four. The snapshots stay
+the source of truth: `--check` fails if the tree drifts from them, and it runs in the release gate and in CI.
+The wrappers and CLIs read the arrays (docs/QUERIES.md, Query 10); `is_eu`, `is_eea` and `is_eurozone`
+are current-status aliases over the same arrays.
+
+Refresh: edit the tables in `tools/build_club_snapshots.py`, then run it, then
+`python3 tools/enrich_club_memberships.py --write`, `python3 tools/sync_wrappers.py` and
+`python3 tools/gen_consistency_fixture.py`.

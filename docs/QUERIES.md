@@ -1,12 +1,15 @@
 # Derived Queries — v1.10.0 Design
 
-**Status:** the contract for v1.10.0. The wrappers, the CLI, the README,
+**Status:** the contract for v1.10.0, with Query 10 (club memberships) added
+in v1.12.0. The wrappers, the CLI, the README,
 the docstrings and the tests all implement and point at this document.
 **Rationale:** [QUERIES-DECISIONS.md](QUERIES-DECISIONS.md) explains why the
 queries are what they are. This file says what they do.
 **Data:** `iso3166.json` at v1.9.3 (252 active entries, 25 withdrawn entries).
 Every example in this file was produced from that file and reproduces on it;
 `test-derived-queries.sh` test 22 re-runs the index and every inline example.
+Query 10 and the rewritten Query 1 reproduce on `iso3166.json` at v1.12.0, which
+carries the four membership arrays.
 
 A reader who reads only this file can predict the return value of every
 query on every input. If you find an input this file does not let you
@@ -22,26 +25,26 @@ field and array the answer is read from.
 
 | # | Query | Input (JSON arguments) | Expected (JSON) | Exact / approximate | Tree source |
 |---|---|---|---|---|---|
-| E01 | `is_eu` | `["DE"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E02 | `is_eu` | `["de"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E03 | `is_eu` | `["GB"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E04 | `is_eu` | `["CH"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E05 | `is_eu` | `["XK"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E06 | `is_eu` | `["UK"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E07 | `is_eu` | `["EU"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E08 | `is_eu` | `["ZZ"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` (not a tree field) |
-| E09 | `is_eea` | `["DE"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `{IS, LI, NO}` (not tree fields) |
-| E10 | `is_eea` | `["NO"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `{IS, LI, NO}` (not tree fields) |
-| E11 | `is_eea` | `["IS"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `{IS, LI, NO}` (not tree fields) |
-| E12 | `is_eea` | `["LI"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `{IS, LI, NO}` (not tree fields) |
-| E13 | `is_eea` | `["CH"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `{IS, LI, NO}` (not tree fields) |
-| E14 | `is_eurozone` | `["DE"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
-| E15 | `is_eurozone` | `["BG"]` | `true` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
-| E16 | `is_eurozone` | `["SE"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
-| E17 | `is_eurozone` | `["AD"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
-| E18 | `is_eurozone` | `["ME"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
-| E19 | `is_eurozone` | `["GF"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
-| E20 | `is_eurozone` | `["GB"]` | `false` | approximate | hardcoded `KNOWN_EU_MEMBERS` + `currency_codes` (active) |
+| E01 | `is_eu` | `["DE"]` | `true` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E02 | `is_eu` | `["de"]` | `true` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E03 | `is_eu` | `["GB"]` | `false` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E04 | `is_eu` | `["CH"]` | `false` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E05 | `is_eu` | `["XK"]` | `false` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E06 | `is_eu` | `["UK"]` | `false` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E07 | `is_eu` | `["EU"]` | `false` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E08 | `is_eu` | `["ZZ"]` | `false` | exact (current status) | `eu_membership` (active; open-ended range) |
+| E09 | `is_eea` | `["DE"]` | `true` | exact (current status) | `eea_membership` (active; open-ended range) |
+| E10 | `is_eea` | `["NO"]` | `true` | exact (current status) | `eea_membership` (active; open-ended range) |
+| E11 | `is_eea` | `["IS"]` | `true` | exact (current status) | `eea_membership` (active; open-ended range) |
+| E12 | `is_eea` | `["LI"]` | `true` | exact (current status) | `eea_membership` (active; open-ended range) |
+| E13 | `is_eea` | `["CH"]` | `false` | exact (current status) | `eea_membership` (active; open-ended range) |
+| E14 | `is_eurozone` | `["DE"]` | `true` | exact (current status) | `eurozone_membership` (active; open-ended range) |
+| E15 | `is_eurozone` | `["BG"]` | `true` | exact (current status) | `eurozone_membership` (active; open-ended range) |
+| E16 | `is_eurozone` | `["SE"]` | `false` | exact (current status) | `eurozone_membership` (active; open-ended range) |
+| E17 | `is_eurozone` | `["AD"]` | `false` | exact (current status) | `eurozone_membership` (active; open-ended range) |
+| E18 | `is_eurozone` | `["ME"]` | `false` | exact (current status) | `eurozone_membership` (active; open-ended range) |
+| E19 | `is_eurozone` | `["GF"]` | `false` | exact (current status) | `eurozone_membership` (active; open-ended range) |
+| E20 | `is_eurozone` | `["GB"]` | `false` | exact (current status) | `eurozone_membership` (active; open-ended range) |
 | E21 | `region_tree` | `["FR"]` | `["Europe", "Western Europe"]` | exact | `region`, `subregion`, `intermediate_region` |
 | E22 | `region_tree` | `["US"]` | `["Americas", "Northern America"]` | exact | `region`, `subregion`, `intermediate_region` |
 | E23 | `region_tree` | `["MX"]` | `["Americas", "Latin America and the Caribbean", "Central America"]` | exact | `region`, `subregion`, `intermediate_region` |
@@ -122,6 +125,29 @@ field and array the answer is read from.
 | E98 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
 | E99 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
 | E100 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E101 | `is_eu_member_at` | `["GB", "2010-01-01"]` | `true` | exact | `eu_membership` (active) |
+| E102 | `is_eu_member_at` | `["GB", "2023-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E103 | `is_eu_member_at` | `["GB", "2020-01-31"]` | `true` | exact (range boundary, inclusive) | `eu_membership` (active) |
+| E104 | `is_eu_member_at` | `["GB", "2020-02-01"]` | `false` | exact | `eu_membership` (active) |
+| E105 | `is_eu_member_at` | `["GR", "1980-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E106 | `is_eu_member_at` | `["GR", "2000-01-01"]` | `true` | exact | `eu_membership` (active) |
+| E107 | `is_eu_member_at` | `["DE", "1950-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E108 | `is_eu_member_at` | `["DE", "2000-13-01"]` | `false` | exact (malformed date) | `eu_membership` (active) |
+| E109 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
+| E110 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
+| E111 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
+| E112 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `false` | exact (formal entry into force) | `eea_membership` (active) |
+| E113 | `is_eea_member_at` | `["NO", "1994-01-01"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
+| E114 | `is_eurozone_member_at` | `["GR", "2000-01-01"]` | `false` | exact | `eurozone_membership` (active) |
+| E115 | `is_eurozone_member_at` | `["GR", "2000-12-31"]` | `false` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E116 | `is_eurozone_member_at` | `["GR", "2001-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E117 | `is_eurozone_member_at` | `["GR", "2002-01-01"]` | `true` | exact | `eurozone_membership` (active) |
+| E118 | `is_eurozone_member_at` | `["BG", "2025-12-31"]` | `false` | exact | `eurozone_membership` (active) |
+| E119 | `is_eurozone_member_at` | `["BG", "2026-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E120 | `is_in_customs_union_at` | `["GB", "2010-01-01"]` | `true` | exact | `customs_union` (active) |
+| E121 | `is_in_customs_union_at` | `["GB", "2023-01-01"]` | `false` | exact | `customs_union` (active) |
+| E122 | `is_in_customs_union_at` | `["TR", "1995-12-30"]` | `false` | exact | `customs_union` (active) |
+| E123 | `is_in_customs_union_at` | `["TR", "1995-12-31"]` | `true` | exact (range boundary, inclusive) | `customs_union` (active) |
 
 ## Conventions that apply to every query
 
@@ -159,8 +185,9 @@ case.
 
 **Dates** are strings in the form `YYYY-MM-DD`, a real calendar date, year
 1 or later. Anything else (`"2000-13-01"`, `"20000101"`, `"2000-1-1"`) is a
-malformed date and yields `None`, the same as "cannot answer". Dates compare
-as strings, which is correct for this format.
+malformed date and yields `None`, the same as "cannot answer", except in
+Query 9 and Query 10, which return `false` (the CLI exits 2 in both). Dates
+compare as strings, which is correct for this format.
 
 **Naming across surfaces.**
 
@@ -178,21 +205,25 @@ as strings, which is correct for this format.
 | Currency on a date | `currency_at` | `currencyAt` | `CurrencyAt` | `currency-at` |
 | Countries in a region | `region_countries` | `regionCountries` | `RegionCountries` | `region-countries` |
 | Code assigned on a date | `is_active_on` | `isActiveOn` | `IsActiveOn` | `is-active-on` |
+| EU member on a date | `is_eu_member_at` | `isEuMemberAt` | `IsEUMemberAt` | `is-eu-member-at` |
+| EEA member on a date | `is_eea_member_at` | `isEeaMemberAt` | `IsEEAMemberAt` | `is-eea-member-at` |
+| Eurozone member on a date | `is_eurozone_member_at` | `isEurozoneMemberAt` | `IsEurozoneMemberAt` | `is-eurozone-member-at` |
+| Customs union member on a date | `is_in_customs_union_at` | `isInCustomsUnionAt` | `IsInCustomsUnionAt` | `is-in-customs-union-at` |
 | Date a code was added | field `introduced` | `introduced` | `Introduced` | `introduced` |
 
 **Examples inside sections** are written language-neutrally as
 `` `query(args)` → `result` `` using JSON literals (`true`, `false`,
 `null`, lists). They are the same cases as the index, in prose context.
 
-**The one hardcoded list.** `KNOWN_EU_MEMBERS` is the 27 EU member states
-as of v1.9.3: `AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL
-PL PT RO SK SI ES SE`. It is not a field of the tree, so
-`check_docs_match_tree.py` cannot verify it and it carries no dates. It is
-the only data in the registry that is not read from `iso3166.json`, and it
-is the reason the three EU queries are approximate and deprecated (below).
-`EEA_NON_EU` is `IS LI NO`.
+**No hardcoded lists.** Until v1.11.1 the three EU predicates read a
+hardcoded list, `KNOWN_EU_MEMBERS` (27 states at v1.9.3), plus `EEA_NON_EU`
+(`IS LI NO`). v1.12.0 retires them: membership is read from four arrays on
+every active entry (`eu_membership`, `eea_membership`, `eurozone_membership`,
+`customs_union`), which `check_docs_match_tree.py` and `validate.py` can check.
+The two constants are still exported, unused, so that existing imports keep
+compiling; they are a frozen v1.9.3 snapshot and are not updated.
 
-## Query 1 — `is_eu`, `is_eea`, `is_eurozone` (approximate)
+## Query 1 — `is_eu`, `is_eea`, `is_eurozone` (current status)
 
 **Signatures.**
 
@@ -214,15 +245,20 @@ reg.IsEU(code string) bool              // Go (also IsEEA, IsEurozone)
 iso3166 is-eu DE        # CLI (also is-eea, is-eurozone)
 # prints true or false to stdout; exit code 0 on success (whether true or false),
 # 1 if the code is not found, 2 on usage error, 3 if the registry is missing
+# help text: "Current member only; see is-eu-member-at for dated membership."
 ```
 
-**Semantics.** These three answers are **approximate**. The tree has no
-membership field, so the answers come from the hardcoded `KNOWN_EU_MEMBERS`
-list described above, a snapshot with no dates. `is_eu(code)` is true
-exactly when the normalized code is in that list. `is_eea(code)` is true when
-`is_eu(code)` is true or the code is `IS`, `LI` or `NO`. `is_eurozone(code)`
-is true when the code is in `KNOWN_EU_MEMBERS` **and** the active entry's
-`currency_codes` is exactly `["EUR"]`. All three are false for unknown codes.
+**Semantics.** Current-status aliases for Query 10, kept so v1.10.0 callers
+keep working. `is_eu(code)` is true exactly when the active entry's
+`eu_membership` has a range whose `to` is `null`. `is_eea(code)` and
+`is_eurozone(code)` do the same on `eea_membership` and `eurozone_membership`.
+All three are false for unknown codes and for codes with `[]`. The answer does
+not depend on the clock: it changes when the data changes (a state joins, or
+a range gets its `to`), not on a date. For a date, use Query 10.
+
+Before v1.12.0 these were approximate (a hardcoded v1.9.3 list). Their
+answers are unchanged for every code in the registry; the difference is that
+they now follow the data.
 
 **CLI contract.** The CLI prints true/false to stdout; the boolean is the
 answer and the exit code is the plumbing, the same as for every other
@@ -233,56 +269,44 @@ is-eu XX` prints `error: not found: XX` on stderr and exits 1; `iso3166 is-eu
 `--json` the output is `{"code": "DE", "is_eu": true, "result": "true"}` (the
 key is `is_eea` or `is_eurozone` for the other two). The wrappers return the
 same boolean as a value. A shell script that needs the answer reads stdout, not
-`$?`.
+`$?`. The dated subcommands of Query 10 differ: they exit 1 for `false`.
 
-**Data read.** `KNOWN_EU_MEMBERS` and `EEA_NON_EU` (hardcoded, not in the
-tree), and for `is_eurozone` only, `currency_codes` of the active entry.
+**Data read.** `eu_membership`, `eea_membership` or `eurozone_membership` of
+the active entry.
 
 **Edge cases, with the tree's values.**
 
-- `is_eu("GB")` → `false`. The United Kingdom left the EU in 2020, and `GB`
-  is not in the list. The tree also has an active entry `UK`
-  (exceptionally reserved), and `is_eu("UK")` → `false`.
+- `is_eu("GB")` → `false`: the range ended 2020-01-31. The tree also has an
+  active entry `UK` (exceptionally reserved), and `is_eu("UK")` → `false`.
 - `is_eu("CH")` → `false`: European, not a member.
-- `is_eu("XK")` → `false`: Kosovo has `region: null` and no
-  `currency_codes` entry (null) in the tree, and is not in the list.
+- `is_eu("XK")` → `false`: Kosovo has `eu_membership` `[]`.
 - `is_eu("EU")` → `false`: `EU` is an active (exceptionally reserved) entry
   for the European Union itself; the Union is not one of its own members.
 - `is_eu("ZZ")` → `false`: unknown code. (The CLI prints `error: not found: ZZ`
   on stderr and exits 1 here.)
 - `is_eurozone("AD")` → `false`: Andorra's `currency_codes` is `["EUR"]` but
-  it is not in `KNOWN_EU_MEMBERS`. The same holds for `MC`, `SM`, `VA`
-  and `ME`, which all use the euro without being in the eurozone.
+  it is not a eurozone member. The same holds for `MC`, `SM`, `VA` and `ME`,
+  which use the euro without being in the eurozone.
 - `is_eurozone("GF")` → `false`: French Guiana's `currency_codes` is
   `["EUR"]` and legally it is part of the eurozone through France, but it is
-  a separate ISO code that is not in the list. The same holds for `GP`,
-  `MQ`, `RE`, `YT`, `PM`, `BL`, `MF`, `TF` and `AX`. This is a documented
-  false negative of the approximation.
-- `is_eurozone("SE")` → `false`: Sweden is an EU member whose
-  `currency_codes` is `["SEK"]`.
-- `is_eurozone("BG")` → `true`: at v1.9.3 the tree gives Bulgaria
-  `["EUR"]`.
+  a separate ISO code with `eurozone_membership` `[]`. The same holds for
+  `GP`, `MQ`, `RE`, `YT`, `PM`, `BL`, `MF`, `TF` and `AX`. The membership
+  arrays are per ISO code and do not inherit from the sovereign state.
+- `is_eurozone("SE")` → `false`: Sweden is an EU member with `[]` for the
+  eurozone.
+- `is_eurozone("BG")` → `true`: Bulgaria's range starts 2026-01-01 and is open.
 
-**Worked examples** (all in the index):
+**Worked examples** (all in the index): `is_eu("DE")` → `true`;
+`is_eu("GB")` → `false`; `is_eea("NO")` → `true`; `is_eea("CH")` → `false`;
+`is_eurozone("DE")` → `true`; `is_eurozone("AD")` → `false`.
 
-- `is_eu("DE")` → `true` (approximate)
-- `is_eu("GB")` → `false` (approximate)
-- `is_eea("NO")` → `true` (approximate)
-- `is_eea("CH")` → `false` (approximate)
-- `is_eurozone("DE")` → `true` (approximate)
-- `is_eurozone("AD")` → `false` (approximate)
+**Deprecation trigger.** None. The v1.10.0 trigger fired in v1.12.0: the
+approximation is retired and these methods are the current-status view of the
+same data as Query 10. The `is_eu` docstring points at `is_eu_member_at`.
 
-**Deprecation trigger.** `is_eu`, `is_eea` and `is_eurozone` are deprecated
-the day v1.12.0 ships `is_eu_member_at(code, date)`, which is date-scoped and
-backed by an `eu_membership[]` field in the tree. Until then they are the
-best answer the tree supports, and they say "approximate" in their
-docstrings and CLI help.
-
-**What it does not answer.** Whether a country was a member at a past date
-(the list has no dates; needs `is_eu_member_at`). Whether an overseas
-territory is inside the eurozone (separate ISO codes are not in the list).
-Whether a country is in the Schengen area, a customs union or the EEA by a
-mechanism other than the listed codes.
+**What it does not answer.** Whether a country was a member on a past date
+(use Query 10). Whether an overseas territory is inside the eurozone (separate
+ISO codes carry `[]`). Whether a country is in the Schengen area.
 
 ## Query 2 — `region_tree`
 
@@ -793,6 +817,106 @@ or whether any code existed before 1974 (that is always `null` for withdrawn
 codes and `false` for active ones with an `introduced` date). Dates are as sourced by the Wikipedia exception in
 the ADR, not by ISO.
 
+## Query 10 — `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at`, `is_in_customs_union_at`
+
+**Signatures.**
+
+```python
+reg.is_eu_member_at(code: str, date: str) -> bool            # Python
+reg.is_eea_member_at(code: str, date: str) -> bool
+reg.is_eurozone_member_at(code: str, date: str) -> bool
+reg.is_in_customs_union_at(code: str, date: str) -> bool
+```
+```js
+reg.isEuMemberAt(code, date) -> boolean     // also isEeaMemberAt, isEurozoneMemberAt, isInCustomsUnionAt
+```
+```rust
+reg.is_eu_member_at(code: &str, date: &str) -> bool   // also is_eea_member_at, ...
+```
+```go
+reg.IsEUMemberAt(code, date string) bool    // also IsEEAMemberAt, IsEurozoneMemberAt, IsInCustomsUnionAt
+```
+```bash
+iso3166 is-eu-member-at GB 2010-01-01
+# prints true or false; --json prints
+# {"code", "date", "is_eu_member_at": true|false, "result": "true|false"}
+# exit 0 true, 1 false, 2 on a malformed DATE or usage error, 3 registry missing
+# (also is-eea-member-at, is-eurozone-member-at, is-in-customs-union-at)
+```
+
+**Semantics.** Was `code` in the club on `date`? Each club is stored on every
+active entry as a list of inclusive ranges, `[{"from": "YYYY-MM-DD", "to":
+"YYYY-MM-DD" | null}, ...]`. `from` is the first day of membership and `to`
+the last day (`null` while the entry is still a member). An entry that was never a
+member has `[]`. A country that joins, leaves and rejoins has several ranges,
+sorted and disjoint. In order:
+
+1. A date that is not a real `YYYY-MM-DD` → `false`.
+2. An unknown code, a withdrawn code, or a code whose array is `[]` → `false`.
+3. `from <= date` and (`to` is `null` or `date <= to`) for any range → `true`.
+4. Otherwise (before the first range, in a gap, or after the last `to`) → `false`.
+
+The answer is **never** `null`. An empty array is a statement ("not a member"),
+not a silence, so there is no "unknown" state, unlike Query 9. The CLI keeps exit
+code 4 reserved for the tri-state contract; no input reaches it.
+
+**Where the dates come from.** Wikipedia, as an explicit exception to the ISO-only
+rule (docs/decisions/club-memberships.md), through `tools/*_snapshot.json`,
+copied into the tree by `tools/enrich_club_memberships.py`. Annual refresh.
+
+**Data read.** `eu_membership`, `eea_membership`, `eurozone_membership`,
+`customs_union` of the active entry.
+
+**Edge cases, with the tree's values.**
+
+- `is_eu_member_at("GB", "2010-01-01")` → `true`; `"2023-01-01"` → `false`. The
+  range is `1973-01-01` to `2020-01-31`, both days inclusive: `"2020-01-31"` →
+  `true`, `"2020-02-01"` → `false`.
+- `is_eu_member_at("GR", "1980-01-01")` → `false` (joined 1981-01-01);
+  `"2000-01-01"` → `true`.
+- `is_eurozone_member_at("GR", "2000-01-01")` → `false` (adopted 2001-01-01);
+  `"2000-12-31"` → `false`; `"2001-01-01"` and `"2002-01-01"` → `true`.
+- `is_eu_member_at("DE", "1950-01-01")` → `false`: the first range starts
+  1958-01-01 (the EEC). The six founders have no date in Wikipedia's table;
+  1958-01-01 is the EEC's entry into force. The question is about the
+  Community and its successor, not only the Union of 1993.
+- `is_in_customs_union_at("GB", "2010-01-01")` → `true`; `"2023-01-01"` →
+  `false`: the UK's range ends 2020-12-31, the end of the transition period,
+  not 2020-01-31. Northern Ireland's arrangements are not modelled.
+- `is_eea_member_at("GB", "2020-12-31")` → `true`; the table in the source says
+  2020-01-31, its prose says 2020-12-31 (decision 3 in the ADR).
+- `is_eea_member_at("BG", "2010-01-01")` → `false`: EEA ranges start at formal
+  entry into force (2011-11-09 for BG), not at provisional application
+  (2007-08-01). Decision 1 in the ADR; the provisional dates are in the
+  snapshot's `meta`. This is the one answer here that a reader may find
+  surprising.
+- `is_eurozone_member_at("BG", "2025-12-31")` → `false`; `"2026-01-01"` → `true`.
+- `is_in_customs_union_at("TR", "1995-12-31")` → `true`. Turkey's union covers
+  industrial goods only, and so does Andorra's; the boolean does not carry
+  scope.
+- `is_eu_member_at("DE", "2000-13-01")` → `false`: malformed date. The CLI
+  exits 2 instead, as a usage error.
+- `is_eu_member_at("ZZ", "2000-01-01")` → `false`: unknown code. The CLI prints
+  `false` and exits 1; it does not print `error: not found`.
+- `is_eu_member_at(" gb ", "2010-01-01")` → `true`: codes are trimmed and
+  upper-cased.
+
+**CLI.** `is-eu-member-at` and its three siblings exit 0 for `true` and 1 for
+`false`. This differs from `is-eu`, which exits 0 for both and 1 only for an
+unknown code. The reason is the same as for `is-active-on`: a dated question has
+a yes/no answer that scripts want in `$?`.
+
+**Deprecation trigger.** None.
+
+**What it does not answer.** Membership of a territory that has its own ISO
+code but is inside the club through its sovereign state (`GF`, `GP`, `MQ`, `RE`,
+`YT`, `AX`, ...; and Greenland, which was in the Community from 1973 to 1985,
+returns `false` for those years); membership before 1958; the Schengen area;
+partial scope within the customs union (AD, TR); whether the Windsor Framework
+puts Northern Ireland in the union; a state's *candidate* or *applicant*
+status; and any date after the snapshot's `review_by`, which is stale if a state
+has joined or left since.
+
 ## Known Nulls
 
 The `introduced` field is null for 76 active entries (27 quarantined, 46 source
@@ -805,7 +929,7 @@ a date. `is_active_on` returns `null` for the 76 active nulls.
 These are not registry facts and are out of scope for v1.10.0: whether a
 country is a democracy, its population or GDP, its capital, its official
 language (`languages[]` is not "official"), whether it is a member of NATO
-or any club, a country's time zones, subdivisions, sanctions status, or
+or of any club other than the EU, the EEA, the eurozone and the EU customs union, a country's time zones, subdivisions, sanctions status, or
 whether it is landlocked. The ones that need new fields are scheduled in
 [QUERIES-DECISIONS.md](QUERIES-DECISIONS.md).
 
@@ -820,4 +944,7 @@ wrappers only in presentation: text output, and that an unknown code is
 reported on stderr with exit code 1 instead of an empty, false or `None`
 result. Exit codes are the CLI's standard ones for every subcommand: 0
 success, 1 not found, 2 usage error, 3 registry missing. The tri-state
-subcommands (`is-active-on`, `introduced`) add 4, unknown.
+subcommands (`is-active-on`, `introduced`) add 4, unknown. The four dated
+club subcommands (Query 10) exit 0 for `true` and 1 for `false`, including for an
+unknown code, and 2 for a malformed date; they have no unknown state, so the
+exit code 4 is reserved and unreachable.

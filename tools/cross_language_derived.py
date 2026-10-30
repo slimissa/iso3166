@@ -53,7 +53,9 @@ const m = {is_eu:'isEu',is_eea:'isEea',is_eurozone:'isEurozone',
   succession_path:'successionPath',successors:'successors',
   predecessors:'predecessors',calling_code_for:'callingCodeFor',
   currency_at:'currencyAt',region_countries:'regionCountries',
-  is_active_on:'isActiveOn'};
+  is_active_on:'isActiveOn',is_eu_member_at:'isEuMemberAt',
+  is_eea_member_at:'isEeaMemberAt',is_eurozone_member_at:'isEurozoneMemberAt',
+  is_in_customs_union_at:'isInCustomsUnionAt'};
 const reg = new CountryRegistry();
 const cases = JSON.parse(process.argv[2]);
 console.log(JSON.stringify(cases.map(c => reg[m[c.query]](...c.args))));
@@ -103,7 +105,9 @@ def main() -> int:
             ):
                 cli.append(c["expected"])
                 continue
-            if c["query"] == "currency_at" and not _real_date(c["args"][1]):
+            if c["query"] in ("currency_at", "is_eu_member_at", "is_eea_member_at",
+                              "is_eurozone_member_at", "is_in_customs_union_at") \
+                    and not _real_date(c["args"][1]):
                 cli.append(c["expected"])  # the CLI exits 2 on a malformed date
                 continue
             args = [c["query"].replace("_", "-")] + [str(a) for a in c["args"]]

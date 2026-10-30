@@ -100,21 +100,26 @@ See [the CLI reference](#command-line-interface) below.
 
 ## Derived queries
 
-Twelve methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in the command line (the installed `iso3166` script and `tools/iso3166_cli.py`, which `bin/iso3166` runs from a checkout). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
+Sixteen methods answer questions a consumer would otherwise compute from the raw fields. They exist in all four wrappers and in the command line (the installed `iso3166` script and `tools/iso3166_cli.py`, which `bin/iso3166` runs from a checkout). The contract is [docs/QUERIES.md](docs/QUERIES.md): every signature, edge case and worked example, with the tree's values. The rationale is in [docs/QUERIES-DECISIONS.md](docs/QUERIES-DECISIONS.md).
 
 ```python
-reg.is_eu("DE")                       # True    (approximate)
+reg.is_eu("DE")                       # True    (current member)
+reg.is_eu_member_at("GB", "2010-01-01")   # True   the UK left on 2020-01-31
+reg.is_eurozone_member_at("GR", "2000-01-01")   # False  Greece adopted the euro on 2001-01-01
 reg.successors("YU")                  # ['CS', 'ME', 'RS']   all descendants
 reg.currency_at("DD", "1990-01-01")   # ['EUR']  the successor's currency; the East German mark is not in the tree
 ```
 ```js
-reg.isEu("DE");                       // true    (approximate)
+reg.isEu("DE");                       // true    (current member)
+reg.isEuMemberAt("GB", "2010-01-01");  // true
 ```
 ```rust
-reg.is_eu("DE");                      // true    (approximate)
+reg.is_eu("DE");                      // true    (current member)
+reg.is_eu_member_at("GB", "2010-01-01"); // true
 ```
 ```go
-reg.IsEU("DE")                        // true    (approximate)
+reg.IsEU("DE")                        // true    (current member)
+reg.IsEUMemberAt("GB", "2010-01-01")   // true
 ```
 ```console
 $ bin/iso3166 is-eu DE
@@ -129,14 +134,19 @@ $ bin/iso3166 is-eu XX
 error: not found: XX
 $ echo $?
 1
+$ bin/iso3166 is-eu-member-at GB 2023-01-01
+false
+$ echo $?
+1
 $ bin/iso3166 successors YU --raw alpha_2   # CS, ME, RS (one per line)
 ```
 
-`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout. The exit code is the CLI's standard one, as for every other subcommand: 0 if the code exists (true or false), 1 if it is not found, 2 on a usage error, 3 if the registry is missing. The boolean is the answer; the exit code is the plumbing. With `--json` the output is `{"code": "DE", "is_eu": true, "result": "true"}`.
+`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout for a current member only; `is-eu-member-at`, `is-eea-member-at`, `is-eurozone-member-at` and `is-in-customs-union-at` take a date. The exit code is the CLI's standard one, as for every other subcommand: 0 if the code exists (true or false), 1 if it is not found, 2 on a usage error, 3 if the registry is missing. The boolean is the answer; the exit code is the plumbing. With `--json` the output is `{"code": "DE", "is_eu": true, "result": "true"}`.
 
 | Query | Python / CLI | Answer | Deprecated by |
 |---|---|---|---|
-| EU, EEA, eurozone membership | `is_eu`, `is_eea`, `is_eurozone` / `is-eu`, `is-eea`, `is-eurozone` | **approximate** | `is_eu_member_at` in v1.12.0 |
+| EU, EEA, eurozone membership today | `is_eu`, `is_eea`, `is_eurozone` / `is-eu`, `is-eea`, `is-eurozone` | exact, current status (read from the membership arrays since v1.12.0) | n/a |
+| EU, EEA, eurozone, customs union membership on a date | `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at`, `is_in_customs_union_at` / `is-eu-member-at`, ... | exact, never unknown; ranges are inclusive and sourced from Wikipedia | n/a |
 | Region hierarchy | `region_tree` / `region-tree` | exact | n/a |
 | Countries in a region | `region_countries` / `region-countries` | exact | n/a |
 | Border neighbours within N hops | `borders_transitively` / `borders-transitively` | exact | n/a |
@@ -146,7 +156,7 @@ $ bin/iso3166 successors YU --raw alpha_2   # CS, ME, RS (one per line)
 | Currency on a date | `currency_at` / `currency-at` | exact about the entry's lifetime; current currency (no history) | n/a |
 | Code assigned on a date | `is_active_on` / `is-active-on` | tri-state (true, false, unknown) | n/a |
 
-The approximate queries say so in their docstrings and CLI help. `is_eu`, `is_eea` and `is_eurozone` use a hardcoded list of the 27 EU members at v1.9.3. `currency_at` (v1.11.1) returns `None` outside an entry's lifetime and where `introduced` is null, and otherwise the entry's *current* currency: the tree stores no currency history, so `currency_at("DE", "1990-01-01")` is `["EUR"]`, not DEM.
+The membership arrays on each active entry (`eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`) are lists of inclusive `{from, to}` ranges (`to` is the last day, `null` while a member, `[]` for a non-member); see [docs/decisions/club-memberships.md](docs/decisions/club-memberships.md) for the source, the null policy and the date decisions a reader should know about. `currency_at` (v1.11.1) returns `None` outside an entry's lifetime and where `introduced` is null, and otherwise the entry's *current* currency: the tree stores no currency history, so `currency_at("DE", "1990-01-01")` is `["EUR"]`, not DEM.
 
 **Breaking change in v1.10.0.** `successors` and `predecessors` return the full transitive closure on every surface, so `successors("YU")` is `["CS", "ME", "RS"]` in the wrappers and in `tools/iso3166_cli.py`. Before v1.10.0 the CLI returned terminal successors only.
 
@@ -216,7 +226,7 @@ Every entry has `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, and `independ
 
 ## Command-line interface
 
-The `iso3166` command is installed by the Python wrapper. Twenty-one subcommands (ten original, nine derived queries, two temporal):
+The `iso3166` command is installed by the Python wrapper. Twenty-five subcommands (ten original, nine derived queries, two temporal, four dated club memberships):
 
 | Subcommand | Purpose |
 |------------|---------|
@@ -230,7 +240,7 @@ The `iso3166` command is installed by the Python wrapper. Twenty-one subcommands
 | `search QUERY` | Substring search on names and codes |
 | `successors CC` | All descendants (transitive closure) via `replaced_by`. Before v1.10.0 this listed terminal successors only |
 | `predecessors CC` | All ancestors (transitive closure): withdrawn codes that lead to this code |
-| `is-eu CC`, `is-eea CC`, `is-eurozone CC` | Print `true` or `false` (approximate); exit 0 whenever the code exists |
+| `is-eu CC`, `is-eea CC`, `is-eurozone CC` | Print `true` or `false` for a current member only; exit 0 whenever the code exists |
 | `region-tree CC` | Region, subregion, intermediate region |
 | `borders-transitively CC [--max-hops N]` | Codes within N border hops |
 | `succession-path FROM TO` | Shortest `replaced_by` path |
@@ -239,8 +249,9 @@ The `iso3166` command is installed by the Python wrapper. Twenty-one subcommands
 | `region-countries REGION [--subregion S]` | Active countries in a region |
 | `introduced CC` | Date ISO 3166-1 added the code; prints `unknown` and exits 4 when null |
 | `is-active-on CC DATE` | Tri-state: prints `true`, `false`, or `unknown`; exit 0, 1, 4 |
+| `is-eu-member-at CC DATE`, `is-eea-member-at CC DATE`, `is-eurozone-member-at CC DATE`, `is-in-customs-union-at CC DATE` | Prints `true` or `false`; exit 0 true, 1 false, 2 malformed date |
 
-The nine derived subcommands and the two temporal ones (`introduced`, `is-active-on`) are specified in [docs/QUERIES.md](docs/QUERIES.md).
+The nine derived subcommands, the two temporal ones (`introduced`, `is-active-on`) and the four dated club ones are specified in [docs/QUERIES.md](docs/QUERIES.md).
 
 `list` accepts `--withdrawn-since DATE` and `--withdrawn-before DATE` filters.
 

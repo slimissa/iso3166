@@ -353,6 +353,32 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('is_active_on', ['ZZ', '2000-01-01'], False),
         ('is_active_on', ['EU', '2000-01-01'], None),
         ('is_active_on', ['DD', '1800-01-01'], None),
+        # v1.12.0: date-scoped club memberships (docs/QUERIES.md, Query 10).
+        # Never null: a malformed date, an unknown code and a code in no
+        # range are all false. Range ends are inclusive.
+        ('is_eu_member_at', ['GB', '2010-01-01'], True),
+        ('is_eu_member_at', ['GB', '2023-01-01'], False),
+        ('is_eu_member_at', ['GB', '2020-01-31'], True),
+        ('is_eu_member_at', ['GB', '2020-02-01'], False),
+        ('is_eu_member_at', ['GR', '1980-01-01'], False),
+        ('is_eu_member_at', ['GR', '2000-01-01'], True),
+        ('is_eu_member_at', ['DE', '1950-01-01'], False),
+        ('is_eu_member_at', ['DE', '2000-13-01'], False),
+        ('is_eu_member_at', ['ZZ', '2000-01-01'], False),
+        ('is_eea_member_at', ['GB', '2020-12-31'], True),
+        ('is_eea_member_at', ['GB', '2021-01-01'], False),
+        ('is_eea_member_at', ['BG', '2010-01-01'], False),
+        ('is_eea_member_at', ['NO', '1994-01-01'], True),
+        ('is_eurozone_member_at', ['GR', '2000-01-01'], False),
+        ('is_eurozone_member_at', ['GR', '2000-12-31'], False),
+        ('is_eurozone_member_at', ['GR', '2001-01-01'], True),
+        ('is_eurozone_member_at', ['GR', '2002-01-01'], True),
+        ('is_eurozone_member_at', ['BG', '2025-12-31'], False),
+        ('is_eurozone_member_at', ['BG', '2026-01-01'], True),
+        ('is_in_customs_union_at', ['GB', '2010-01-01'], True),
+        ('is_in_customs_union_at', ['GB', '2023-01-01'], False),
+        ('is_in_customs_union_at', ['TR', '1995-12-30'], False),
+        ('is_in_customs_union_at', ['TR', '1995-12-31'], True),
     ]
     codes = {e["alpha_2"] for e in reg["countries"]["active"]} | {
         e["alpha_2"] for e in reg["countries"]["withdrawn"]
@@ -365,9 +391,11 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
             "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a "
             "method name in snake_case, string/int arguments, and the "
             "expected JSON result. Every wrapper and the CLI must produce "
-            "it. is_eu, is_eea and is_eurozone are approximate. currency_at "
+            "it. currency_at "
             "(v1.11.1) is bounded by lifetime but returns current currencies. "
-            "is_active_on (v1.11.0) is tri-state: null means unknown."
+            "is_active_on (v1.11.0) is tri-state: null means unknown. "
+            "is_eu, is_eea and is_eurozone are current-status aliases "
+            "(v1.12.0); the four *_at club queries are exact and never null."
         ),
         "enforced": True,
         "cases": [
