@@ -389,7 +389,7 @@ iso3166/
 
 ## Data model
 
-Eighteen required-or-optional fields per entry, plus two for withdrawn:
+Every active entry carries twenty-four fields, every withdrawn entry twenty: the four club-membership arrays are active-only, and `withdrawal_date` and `replaced_by` are null on active entries.
 
 | Field | Type | Notes |
 |-------|------|-------|
@@ -413,6 +413,12 @@ Eighteen required-or-optional fields per entry, plus two for withdrawn:
 | `withdrawal_date` | string\|null | Withdrawn entries only. |
 | `replaced_by` | list\|null | Withdrawn entries only. |
 | `introduced` | string\|null | Date ISO 3166-1 added the code (`YYYY-MM-DD`), or null when unsourced. All 25 withdrawn entries are null. |
+| `eu_membership` | list | Active entries only. Inclusive `{from, to}` ranges of EU membership; `to` is the last day, null while a member; `[]` for never a member. |
+| `eea_membership` | list | Active entries only. Same shape, for the EEA; counts provisional application (see below). |
+| `eurozone_membership` | list | Active entries only. Same shape, for the eurozone. |
+| `customs_union` | list | Active entries only. Same shape, for the EU customs union. |
+
+The four membership arrays come from Wikipedia, as a documented exception to the ISO-only rule; see [docs/decisions/club-memberships.md](docs/decisions/club-memberships.md) for the source, the null policy and the date decisions. In the CSV, TSV, SQL and Parquet exports each array is one string: `1973-01-01:2020-01-31` is one range, ranges are joined with `|`, an empty end (`2004-05-01:`) means still a member, and a country that was never a member has an empty (CSV, TSV) or NULL (SQL, Parquet) cell.
 
 `numeric` is a string, not an integer, because `numeric` is a reserved word in SQL and because leading zeros (`004` for Afghanistan) are meaningful.
 
