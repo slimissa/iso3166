@@ -367,7 +367,7 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('is_eu_member_at', ['ZZ', '2000-01-01'], False),
         ('is_eea_member_at', ['GB', '2020-12-31'], True),
         ('is_eea_member_at', ['GB', '2021-01-01'], False),
-        ('is_eea_member_at', ['BG', '2010-01-01'], False),
+        ('is_eea_member_at', ['BG', '2010-01-01'], True),
         ('is_eea_member_at', ['NO', '1994-01-01'], True),
         ('is_eurozone_member_at', ['GR', '2000-01-01'], False),
         ('is_eurozone_member_at', ['GR', '2000-12-31'], False),
@@ -379,6 +379,14 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('is_in_customs_union_at', ['GB', '2023-01-01'], False),
         ('is_in_customs_union_at', ['TR', '1995-12-30'], False),
         ('is_in_customs_union_at', ['TR', '1995-12-31'], True),
+        # v1.12.1: EEA rules applied provisionally before the formal entry
+        # into force; eea_membership carries the union of both ranges.
+        ('is_eea_member_at', ['BG', '2012-01-01'], True),
+        ('is_eea_member_at', ['BG', '2005-01-01'], False),
+        ('is_eea_member_at', ['BG', '2007-07-31'], False),
+        ('is_eea_member_at', ['BG', '2007-08-01'], True),
+        ('is_eea_member_at', ['CY', '2005-01-01'], True),
+        ('is_eea_member_at', ['CY', '2003-01-01'], False),
     ]
     codes = {e["alpha_2"] for e in reg["countries"]["active"]} | {
         e["alpha_2"] for e in reg["countries"]["withdrawn"]

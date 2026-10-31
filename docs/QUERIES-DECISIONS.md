@@ -315,22 +315,44 @@ false, 2 malformed date. An unknown code is `false` (exit 1), not "not found",
 because the library's answer for it is `false` and the CLI must agree with the
 library. The cross-language check enforces that agreement.
 
-## Why EEA ranges start at entry into force
+## Why provisional application is included
 
-The EEA Agreement was applied provisionally to the 2004 members from 2004-05-01,
-to BG and RO from 2007-08-01, and to HR from its signing in 2014, and entered
-into force later (2005-12-06, 2011-11-09, 2025-02-19). Wikipedia's state table
-lists the entry-into-force dates, and those are used. This makes
-`is_eea_member_at("BG", "2010-01-01")` false although EU law applied to BG
-then.
+v1.12.0 started every EEA range at the formal entry into force, as Wikipedia's
+state table lists it. That made `is_eea_member_at("BG", "2010-01-01")` false,
+although the EEA Enlargement Agreement had applied to BG since 2007-08-01. A
+reader who asks whether a state was in the EEA on a date wants to know whether
+EEA rules applied then; a treaty that is applied provisionally is applied. So
+v1.12.1 counts provisional application. The EEA agreement for the 2004 ten
+was provisionally applicable from 2004-05-01 and entered into force on
+2005-12-06; for BG and RO, provisionally from 2007-08-01 and in force on
+2011-11-09 (EFTA, EEA Legal Texts, "EEA Enlargement"; Wikipedia, EEA Agreement).
 
-The alternative, effective application, is arguably more useful, but the
-source gives no provisional date for HR, and the registry may not invent one.
-The provisional dates that the source does give are recorded in the EEA
-snapshot's `meta.provisional_application`. Switching semantics is a data
-change (new `from` dates for 13 states) plus a fixture change
-(`is_eea_member_at BG 2010-01-01`), and the fixture pins the current choice so
-that the change is deliberate.
+**Where the union lives.** The wrappers read `iso3166.json`, not the
+snapshots, and the flat exports are a view of the same arrays. Two places to
+check (the array and a side table of provisional ranges) would have meant five
+query implementations that can drift apart, and an export that disagrees with
+the library. So the provisional ranges are unioned into `eea_membership`
+when the tree is built (`tools/enrich_club_memberships.py`), and no wrapper has
+query logic for them. "True for either range" is the union of the two ranges,
+which is one contiguous range. The formal date is not lost: it is the
+snapshot's `data`, and the provisional range is the snapshot's
+`meta.provisional_application`. The cost: the arrays in `iso3166.json` no longer
+equal the snapshot `data` for these twelve states, and `--check` now compares
+against the union.
+
+**Inclusive ends.** Every range in the registry ends on its last day. The
+provisional range therefore ends on the day before the formal entry into force
+(2005-12-05, 2011-11-08), and the enrich tool rejects a provisional range that
+leaves a gap or an overlap with the formal one. That check is a guard against
+a mistyped date, not a formality: a date one year off (2006-12-06) is a
+gap, and it fails.
+
+**Croatia.** HR signed the EEA enlargement agreement on 2014-04-11 and it
+entered into force on 2025-02-19. The sources read for this release give no
+date for any provisional application, so HR has the formal date only and
+`is_eea_member_at("HR", "2020-01-01")` is false. If a primary source dates it,
+add an `HR` entry to `meta.provisional_application` (ending 2025-02-18) and
+the fixture case; nothing else changes.
 
 Three other dates are inferences, listed in docs/decisions/club-memberships.md:
 1958-01-01 for the six founders, 2020-12-31 for the UK's EEA and customs-union

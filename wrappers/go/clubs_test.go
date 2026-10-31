@@ -67,3 +67,24 @@ func TestAliasesMatchV1111ForEveryCode(t *testing.T) {
 		t.Errorf("current members = %d/%d/%d, want 27/30/21", eu, eea, ez)
 	}
 }
+
+func TestEEAProvisionalApplicationCounts(t *testing.T) {
+	r := mustLoad(t)
+	cases := []struct {
+		code, date string
+		want       bool
+	}{
+		{"BG", "2010-01-01", true},
+		{"BG", "2005-01-01", false},
+		{"BG", "2007-07-31", false},
+		{"BG", "2007-08-01", true},
+		{"CY", "2005-01-01", true},
+		{"CY", "2003-01-01", false},
+		{"HR", "2020-01-01", false},
+	}
+	for _, c := range cases {
+		if got := r.IsEEAMemberAt(c.code, c.date); got != c.want {
+			t.Errorf("IsEEAMemberAt(%s, %s) = %v, want %v", c.code, c.date, got, c.want)
+		}
+	}
+}

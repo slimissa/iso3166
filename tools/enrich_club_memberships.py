@@ -15,6 +15,13 @@ An entry that is not in a snapshot gets []. Withdrawn entries do not carry
 these fields. The arrays are copies of the snapshot lists, so the snapshot
 stays the single source of truth.
 
+One exception (v1.12.1): the EEA snapshot may carry
+meta.provisional_application, {code: {"from", "to"}}, the range during
+which the EEA Enlargement Agreement applied provisionally before its formal
+entry into force. It is unioned into eea_membership, so the array says when
+EEA rules applied, formal or provisional. The provisional `to` must be the
+day before the state's first formal `from` (no gap, no overlap).
+
 Modes (exactly one):
   --check   Exit 1 if iso3166.json differs from what --write would produce.
   --write   Rewrite iso3166.json (same formatting as the other enrichers).
@@ -29,7 +36,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -72,6 +79,45 @@ def check_ranges(label: str, code: str, ranges) -> None:
         prev_to = r["to"]
 
 
+def union_ranges(ranges: list) -> list:
+    """Sort and merge overlapping or adjacent ranges (to is inclusive)."""
+    out: list = []
+    for r in sorted(ranges, key=lambda x: x["from"]):
+        if out:
+            prev = out[-1]
+            if prev["to"] is None:
+                continue
+            nxt_day = (date.fromisoformat(prev["to"]) + timedelta(days=1)).isoformat()
+            if r["from"] <= nxt_day:
+                if r["to"] is None or r["to"] > prev["to"]:
+                    prev["to"] = r["to"]
+                continue
+        out.append(dict(r))
+    return out
+
+
+def apply_provisional(rel: str, data: dict, prov) -> dict:
+    """Union meta.provisional_application into the formal ranges."""
+    if prov is None:
+        return data
+    if not isinstance(prov, dict):
+        _die(f"{rel}: meta.provisional_application must be an object", 1)
+    merged = {c: [dict(r) for r in rs] for c, rs in data.items()}
+    for code, r in prov.items():
+        if code not in data:
+            _die(f"{rel}: provisional_application: {code} has no formal range", 1)
+        check_ranges("provisional_application", code, [r])
+        if r["to"] is None:
+            _die(f"{rel}: provisional_application: {code} must end before the formal date", 1)
+        formal_from = data[code][0]["from"]
+        day_after = (date.fromisoformat(r["to"]) + timedelta(days=1)).isoformat()
+        if day_after != formal_from:
+            _die(f"{rel}: provisional_application: {code} ends {r['to']}; the day after is "
+                 f"{day_after}, but the formal range starts {formal_from} (gap or overlap)", 1)
+        merged[code] = union_ranges(merged[code] + [dict(r)])
+    return merged
+
+
 def load_snapshot(field: str, rel: str, active: set) -> dict:
     p = ROOT / rel
     if not p.is_file():
@@ -87,7 +133,7 @@ def load_snapshot(field: str, rel: str, active: set) -> dict:
         if code not in active:
             _die(f"{rel}: {code} is not an active alpha_2 in iso3166.json", 1)
         check_ranges(field, code, ranges)
-    return data
+    return apply_provisional(rel, data, doc.get("meta", {}).get("provisional_application"))
 
 
 def build(reg: dict) -> dict:

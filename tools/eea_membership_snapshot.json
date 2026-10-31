@@ -1,6 +1,6 @@
 {
   "meta": {
-    "source": "Wikipedia: European Economic Area (state table, 'Entered into force' column)",
+    "source": "Wikipedia: European Economic Area (state table, 'Entered into force' column); provisional-application dates from EFTA, EEA Legal Texts (EEA Enlargement) and Wikipedia, EEA Agreement",
     "source_permalink": "https://en.wikipedia.org/wiki/European_Economic_Area",
     "permalink_note": "Canonical title URL, not an oldid permalink: the research tool returned page text without revision ids. Pin an oldid at the next review.",
     "accessed_at": "2026-10-29",
@@ -8,39 +8,60 @@
     "refresh_cadence": "annual",
     "generator": "tools/build_club_snapshots.py",
     "count": 31,
-    "semantics": "from = formal entry into force of the EEA Agreement for that state; to = last day, inclusive",
+    "semantics": "data: from = formal entry into force of the EEA Agreement for that state; to = last day, inclusive",
     "gb_end_note": "State table says Exit 31 January 2020; the page prose and the 'United Kingdom membership of the EEA' page say the EEA Agreement applied to the UK until 31 December 2020. 2020-12-31 used. [Likely]",
     "provisional_application": {
-      "2004-05-01": {
-        "codes": [
-          "CY",
-          "CZ",
-          "EE",
-          "HU",
-          "LT",
-          "LV",
-          "MT",
-          "PL",
-          "SI",
-          "SK"
-        ],
-        "formal": "2005-12-06"
+      "BG": {
+        "from": "2007-08-01",
+        "to": "2011-11-08"
       },
-      "2007-08-01": {
-        "codes": [
-          "BG",
-          "RO"
-        ],
-        "formal": "2011-11-09"
+      "CY": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
       },
-      "unknown_in_source": {
-        "codes": [
-          "HR"
-        ],
-        "formal": "2025-02-19",
-        "note": "Wikipedia says 'provisionally applied' after the April 2014 signing, with no date"
+      "CZ": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "EE": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "HU": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "LT": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "LV": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "MT": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "PL": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "RO": {
+        "from": "2007-08-01",
+        "to": "2011-11-08"
+      },
+      "SI": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
+      },
+      "SK": {
+        "from": "2004-05-01",
+        "to": "2005-12-05"
       }
     },
+    "provisional_accessed_at": "2026-10-31",
+    "provisional_note": "data = formal entry into force. provisional_application = the earlier provisional-application range per state; tools/enrich_club_memberships.py unions the two into eea_membership. HR: provisional application is not dated in the sources read, so HR has formal dates only.",
     "cyprus_note": "Application suspended in Northern Cyprus."
   },
   "data": {

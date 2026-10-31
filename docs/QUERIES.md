@@ -136,7 +136,7 @@ field and array the answer is read from.
 | E109 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
 | E110 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
 | E111 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
-| E112 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `false` | exact (formal entry into force) | `eea_membership` (active) |
+| E112 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
 | E113 | `is_eea_member_at` | `["NO", "1994-01-01"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
 | E114 | `is_eurozone_member_at` | `["GR", "2000-01-01"]` | `false` | exact | `eurozone_membership` (active) |
 | E115 | `is_eurozone_member_at` | `["GR", "2000-12-31"]` | `false` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
@@ -148,6 +148,12 @@ field and array the answer is read from.
 | E121 | `is_in_customs_union_at` | `["GB", "2023-01-01"]` | `false` | exact | `customs_union` (active) |
 | E122 | `is_in_customs_union_at` | `["TR", "1995-12-30"]` | `false` | exact | `customs_union` (active) |
 | E123 | `is_in_customs_union_at` | `["TR", "1995-12-31"]` | `true` | exact (range boundary, inclusive) | `customs_union` (active) |
+| E124 | `is_eea_member_at` | `["BG", "2012-01-01"]` | `true` | exact (formal range) | `eea_membership` (active) |
+| E125 | `is_eea_member_at` | `["BG", "2005-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
+| E126 | `is_eea_member_at` | `["BG", "2007-07-31"]` | `false` | exact (day before provisional application) | `eea_membership` (active) |
+| E127 | `is_eea_member_at` | `["BG", "2007-08-01"]` | `true` | exact (first day of provisional application) | `eea_membership` (active) |
+| E128 | `is_eea_member_at` | `["CY", "2005-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
+| E129 | `is_eea_member_at` | `["CY", "2003-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
 
 ## Conventions that apply to every query
 
@@ -860,9 +866,22 @@ The answer is **never** `null`. An empty array is a statement ("not a member"),
 not a silence, so there is no "unknown" state, unlike Query 9. The CLI keeps exit
 code 4 reserved for the tri-state contract; no input reaches it.
 
+**Provisional application.** The EEA Enlargement Agreements applied
+provisionally before their formal entry into force: to the ten 2004
+members from 2004-05-01 (formal 2005-12-06), and to BG and RO from
+2007-08-01 (formal 2011-11-09). `is_eea_member_at` returns `true` from the
+first day of provisional application, so for those twelve states it is
+`true` for either range. The registry stores the union: `eea_membership`
+for BG is one range from 2007-08-01, and the formal date is in the EEA
+snapshot (`data`; `meta.provisional_application` holds the provisional
+ranges). HR has formal dates only: no source read for this release dates
+its provisional application, and none is invented, so `is_eea_member_at("HR",
+"2020-01-01")` is `false`. The other three clubs have no such distinction.
+
 **Where the dates come from.** Wikipedia, as an explicit exception to the ISO-only
 rule (docs/decisions/club-memberships.md), through `tools/*_snapshot.json`,
-copied into the tree by `tools/enrich_club_memberships.py`. Annual refresh.
+copied into the tree by `tools/enrich_club_memberships.py`; the EEA
+provisional dates also from EFTA's EEA Legal Texts. Annual refresh.
 
 **Data read.** `eu_membership`, `eea_membership`, `eurozone_membership`,
 `customs_union` of the active entry.
@@ -885,11 +904,13 @@ copied into the tree by `tools/enrich_club_memberships.py`. Annual refresh.
   not 2020-01-31. Northern Ireland's arrangements are not modelled.
 - `is_eea_member_at("GB", "2020-12-31")` → `true`; the table in the source says
   2020-01-31, its prose says 2020-12-31 (decision 3 in the ADR).
-- `is_eea_member_at("BG", "2010-01-01")` → `false`: EEA ranges start at formal
-  entry into force (2011-11-09 for BG), not at provisional application
-  (2007-08-01). Decision 1 in the ADR; the provisional dates are in the
-  snapshot's `meta`. This is the one answer here that a reader may find
-  surprising.
+- `is_eea_member_at("BG", "2010-01-01")` → `true`: the EEA Enlargement
+  Agreement applied provisionally from 2007-08-01, before the formal entry
+  into force on 2011-11-09. `"2007-07-31"` and `"2005-01-01"` → `false`;
+  `"2007-08-01"` and `"2012-01-01"` → `true`. (Until v1.12.0 this was
+  `false`; see "Provisional application".)
+- `is_eea_member_at("CY", "2005-01-01")` → `true` (provisional from
+  2004-05-01, formal 2005-12-06); `"2003-01-01"` → `false`.
 - `is_eurozone_member_at("BG", "2025-12-31")` → `false`; `"2026-01-01"` → `true`.
 - `is_in_customs_union_at("TR", "1995-12-31")` → `true`. Turkey's union covers
   industrial goods only, and so does Andorra's; the boolean does not carry

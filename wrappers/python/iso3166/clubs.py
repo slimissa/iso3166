@@ -136,16 +136,22 @@ class ClubMemberships:
     def is_eea_member_at(self, code: str, date: str) -> bool:
         """is_eea_member_at(code: str, date: str) -> bool   [exact]
 
-        Was ``code`` a party to the EEA Agreement on ``date``? Dates are
-        the agreement's formal entry into force for that state, so a
-        state that applied it provisionally earlier (BG, RO, the 2004
-        ten, HR) is False until the formal date. See
-        docs/decisions/club-memberships.md, decision 1.
+        Was ``code`` a party to the EEA Agreement on ``date``, formally or
+        provisionally? The EEA Enlargement Agreements applied provisionally
+        before their formal entry into force (the 2004 ten from 2004-05-01,
+        BG and RO from 2007-08-01), and this is True from the first day of
+        that provisional application. HR has formal dates only (no
+        provisional date in the source). See docs/QUERIES.md, Query 10,
+        "Provisional application".
 
         >>> reg.is_eea_member_at("NO", "1994-01-01")
         True
         >>> reg.is_eea_member_at("GB", "2020-12-31")
         True
+        >>> reg.is_eea_member_at("BG", "2010-01-01")   # provisional
+        True
+        >>> reg.is_eea_member_at("BG", "2005-01-01")
+        False
         >>> reg.is_eea_member_at("CH", "2020-01-01")  # never a member
         False
 

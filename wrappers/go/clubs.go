@@ -113,9 +113,9 @@ func (r *CountryRegistry) IsEUMemberAt(code, date string) bool {
 }
 
 // IsEEAMemberAt reports whether code was a party to the EEA Agreement on
-// date. Dates are the formal entry into force, so states that applied it
-// provisionally earlier (BG, RO, the 2004 ten, HR) are false until the
-// formal date; see docs/decisions/club-memberships.md. See
+// date, formally or provisionally: it is true from the first day the EEA
+// Enlargement Agreement applied provisionally (2004-05-01 for the 2004
+// ten, 2007-08-01 for BG and RO). HR has formal dates only. See
 // docs/QUERIES.md, "Query 10".
 func (r *CountryRegistry) IsEEAMemberAt(code, date string) bool {
 	return clubAt(r.clubs[dqNorm(code)].eea, date)

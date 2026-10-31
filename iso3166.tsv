@@ -184,7 +184,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/BG/
 languages source: https://www.cia.gov/the-world-factbook/countries/BG/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-10-16			1974-09-15	2007-01-01:	2011-11-09:	2026-01-01:	2007-01-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-10-16			1974-09-15	2007-01-01:	2007-08-01:	2026-01-01:	2007-01-01:
 BH	BHR	048	Bahrain	officially-assigned	true	Kingdom of Bahrain	Asia	Western Asia		BHD	973	.bh	ara		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BH
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -473,7 +473,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/CY/
 languages source: https://www.cia.gov/the-world-factbook/countries/CY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2005-12-06:	2008-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2004-05-01:	2008-01-01:	2004-05-01:
 CZ	CZE	203	Czechia	officially-assigned	true	Czech Republic	Europe	Eastern Europe		CZK	420	.cz	ces	AT|DE|PL|SK	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -481,7 +481,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/CZ/
 languages source: https://www.cia.gov/the-world-factbook/countries/CZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2005-12-06:		2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2004-05-01:		2004-05-01:
 DD	DDR	278	East Germany	withdrawn	true			Western Europe							source: https://unstats.un.org/unsd/methodology/m49/	2026-09-23	1990-10-03	DE					
 DE	DEU	276	Germany	officially-assigned	true	Federal Republic of Germany	Europe	Western Europe		EUR	49	.de	deu	AT|BE|CH|CZ|DK|FR|LU|NL|PL	"currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -551,7 +551,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/EE/
 languages source: https://www.cia.gov/the-world-factbook/countries/EE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2005-12-06:	2011-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2004-05-01:	2011-01-01:	2004-05-01:
 EG	EGY	818	Egypt	officially-assigned	true	Arab Republic of Egypt	Africa	Northern Africa		EGP	20	.eg	ara	IL|LY|PS|SD	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:EG
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:EG
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -858,7 +858,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/HU/
 languages source: https://www.cia.gov/the-world-factbook/countries/HU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2005-12-06:		2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2004-05-01:		2004-05-01:
 HV	HVO	854	Upper Volta	withdrawn	true			Western Africa							source: https://unstats.un.org/unsd/methodology/m49/	2026-09-23	1984-08-04	BF					
 ID	IDN	360	Indonesia	officially-assigned	true	Indonesia	Asia	South-eastern Asia		IDR	62	.id	ind	MY|PG|TL	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:ID
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ID
@@ -1133,7 +1133,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/LT/
 languages source: https://www.cia.gov/the-world-factbook/countries/LT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2005-12-06:	2015-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2004-05-01:	2015-01-01:	2004-05-01:
 LU	LUX	442	Luxembourg	officially-assigned	true	Grand Duchy of Luxembourg	Europe	Western Europe		EUR	352	.lu	deu|fra|ltz	BE|DE|FR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1149,7 +1149,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/LV/
 languages source: https://www.cia.gov/the-world-factbook/countries/LV/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2005-12-06:	2014-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2004-05-01:	2014-01-01:	2004-05-01:
 LY	LBY	434	Libya	officially-assigned	true	State of Libya	Africa	Northern Africa		LYD	218	.ly	ara	DZ|EG|NE|SD|TD|TN	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:LY
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:LY
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1300,7 +1300,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/MT/
 languages source: https://www.cia.gov/the-world-factbook/countries/MT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2005-12-06:	2008-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2004-05-01:	2008-01-01:	2004-05-01:
 MU	MUS	480	Mauritius	officially-assigned	true	Republic of Mauritius	Africa	Sub-Saharan Africa	Eastern Africa	MUR	230	.mu	eng|fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1522,7 +1522,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/PL/
 languages source: https://www.cia.gov/the-world-factbook/countries/PL/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2005-12-06:		2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2004-05-01:	2004-05-01:		2004-05-01:
 PM	SPM	666	Saint Pierre and Miquelon	officially-assigned	false	Saint Pierre and Miquelon	Americas	Northern America		EUR	508	.pm	fra		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PM
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PM
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1607,7 +1607,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/RO/
 languages source: https://www.cia.gov/the-world-factbook/countries/RO/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2007-01-01:	2011-11-09:		2007-01-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23			1974-09-15	2007-01-01:	2007-08-01:		2007-01-01:
 RS	SRB	688	Serbia	officially-assigned	true	Republic of Serbia	Europe	Southern Europe		RSD	381	.rs	srp	BA|BG|HR|HU|ME|MK|RO|XK	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:RS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:RS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1698,7 +1698,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/SI/
 languages source: https://www.cia.gov/the-world-factbook/countries/SI/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2005-12-06:	2007-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2004-05-01:	2007-01-01:	2004-05-01:
 SJ	SJM	744	Svalbard and Jan Mayen Islands	officially-assigned	false	Svalbard and Jan Mayen	Europe	Northern Europe		NOK	47	.sj	nor		"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SJ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SJ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1714,7 +1714,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/SK/
 languages source: https://www.cia.gov/the-world-factbook/countries/SK/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2005-12-06:	2009-01-01:	2004-05-01:
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source"	2026-09-23				2004-05-01:	2004-05-01:	2009-01-01:	2004-05-01:
 SK	SKM	000	Sikkim	withdrawn	false			Southern Asia								2026-09-22	1975-05-16	IN					
 SL	SLE	694	Sierra Leone	officially-assigned	true	Republic of Sierra Leone	Africa	Sub-Saharan Africa	Western Africa	SLE	232	.sl	eng	GN|LR	"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:SL
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:SL

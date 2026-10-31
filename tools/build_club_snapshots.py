@@ -68,12 +68,25 @@ EEA_JOIN = {
     "2011-11-09": ["BG", "RO"],
     "2025-02-19": ["HR"],
 }
+# Provisional application of the EEA Enlargement Agreements, per state:
+# {"from": first day applied provisionally, "to": last day before formal
+# entry into force}. `to` is inclusive, like every range in the snapshots, so
+# it is the day BEFORE the formal date and the two ranges are contiguous.
+# tools/enrich_club_memberships.py rejects a gap or an overlap.
+# Sources: EFTA, EEA Legal Texts ("EEA Enlargement": 2004 provisional
+# 1 May 2004, in force 6 December 2005; 2007 provisional 1 August 2007, in
+# force 9 November 2011); Wikipedia, EEA Agreement.
+# HR is absent on purpose: no source read for this release gives a date for
+# its provisional application, and none is invented.
+EEA_PROVISIONAL_COHORTS = (
+    ("2004-05-01", "2005-12-05",
+     ["CY", "CZ", "EE", "HU", "LT", "LV", "MT", "PL", "SI", "SK"]),
+    ("2007-08-01", "2011-11-08", ["BG", "RO"]),
+)
 EEA_PROVISIONAL = {
-    "2004-05-01": {"codes": ["CY", "CZ", "EE", "HU", "LT", "LV", "MT", "PL", "SI", "SK"],
-                   "formal": "2005-12-06"},
-    "2007-08-01": {"codes": ["BG", "RO"], "formal": "2011-11-09"},
-    "unknown_in_source": {"codes": ["HR"], "formal": "2025-02-19",
-                          "note": "Wikipedia says 'provisionally applied' after the April 2014 signing, with no date"},
+    code: {"from": frm, "to": to}
+    for frm, to, codes in EEA_PROVISIONAL_COHORTS
+    for code in sorted(codes)
 }
 
 # ---- Eurozone (Wikipedia: Eurozone / Euro area) -------------------------
@@ -155,12 +168,14 @@ SNAPSHOTS = {
     },
     "eea_membership_snapshot": {
         "build": build_eea,
-        "source": "Wikipedia: European Economic Area (state table, 'Entered into force' column)",
+        "source": "Wikipedia: European Economic Area (state table, 'Entered into force' column); provisional-application dates from EFTA, EEA Legal Texts (EEA Enlargement) and Wikipedia, EEA Agreement",
         "page": "European_Economic_Area",
         "extra": {
-            "semantics": "from = formal entry into force of the EEA Agreement for that state; to = last day, inclusive",
+            "semantics": "data: from = formal entry into force of the EEA Agreement for that state; to = last day, inclusive",
             "gb_end_note": "State table says Exit 31 January 2020; the page prose and the 'United Kingdom membership of the EEA' page say the EEA Agreement applied to the UK until 31 December 2020. 2020-12-31 used. [Likely]",
-            "provisional_application": EEA_PROVISIONAL,
+            "provisional_application": dict(sorted(EEA_PROVISIONAL.items())),
+            "provisional_accessed_at": "2026-10-31",
+            "provisional_note": "data = formal entry into force. provisional_application = the earlier provisional-application range per state; tools/enrich_club_memberships.py unions the two into eea_membership. HR: provisional application is not dated in the sources read, so HR has formal dates only.",
             "cyprus_note": "Application suspended in Northern Cyprus.",
         },
     },

@@ -42,7 +42,7 @@ A country that is not in a club has no key. There is no null array and no empty 
 | Customs union | 32 keys: 27 EU, GB (ended 2020-12-31), MC, AD, TR, SM | |
 
 ## Decisions that need a maintainer's eye
-1. EEA `from` uses the formal entry-into-force date (2005-12-06 for the 2004 ten, 2011-11-09 for BG/RO, 2025-02-19 for HR), as in Wikipedia's table. The EEA enlargement was applied provisionally earlier (2004-05-01 and 2007-08-01; Wikipedia gives no HR date). The provisional dates are in `meta.provisional_application`, not in the ranges. A consumer asking "was BG in the EEA in 2010?" gets false. Reverse this if you want effective-application semantics.
+1. EEA ranges count provisional application (changed in v1.12.1; v1.12.0 used the formal dates only). The snapshot `data` keeps the formal entry-into-force dates (2005-12-06 for the 2004 ten, 2011-11-09 for BG/RO, 2025-02-19 for HR); `meta.provisional_application` holds the earlier provisional ranges (2004-05-01 and 2007-08-01), and `tools/enrich_club_memberships.py` unions them into `eea_membership`. HR has formal dates only: no source read dates its provisional application. See docs/QUERIES-DECISIONS.md, "Why provisional application is included".
 2. EEC founders (BE, DE, FR, IT, LU, NL): the Wikipedia table says "Founder" with no date. 1958-01-01 (EEC in force) is used. [Likely] Alternatives: 1952-07-23 (ECSC), 1957-03-25 (signature).
 3. GB EEA and customs union end 2020-12-31 (transition end), not 2020-01-31. Wikipedia's EEA state table says "31 January 2020" while its prose and the UK-EEA article say 31 December 2020. [Likely]
 4. Customs union start for the founders is 1968-07-01. Monaco's date is year-only in the source; 1968-07-01 is an alignment, flagged [Guess] in `meta.imprecise_dates`.

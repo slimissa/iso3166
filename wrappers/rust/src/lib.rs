@@ -667,9 +667,10 @@ impl CountryRegistry {
         self.club_at(|c| &c.eu_membership, code, date)
     }
 
-    /// Was `code` a party to the EEA Agreement on `date`? Dates are the
-    /// formal entry into force (BG, RO, the 2004 ten and HR applied it
-    /// provisionally earlier; see docs/decisions/club-memberships.md).
+    /// Was `code` a party to the EEA Agreement on `date`, formally or
+    /// provisionally? True from the first day the EEA Enlargement Agreement
+    /// applied provisionally (2004-05-01 for the 2004 ten, 2007-08-01 for BG
+    /// and RO); HR has formal dates only.
     /// See docs/QUERIES.md, "Query 10".
     pub fn is_eea_member_at(&self, code: &str, date: &str) -> bool {
         self.club_at(|c| &c.eea_membership, code, date)
@@ -1026,6 +1027,18 @@ mod tests {
         assert!(!r.is_eu_member_at("ZZ", "2000-01-01"));
         assert!(!r.is_eu_member_at("", "2000-01-01"));
         assert!(r.is_eu_member_at(" gb ", "2010-01-01"));
+    }
+
+    #[test]
+    fn eea_provisional_application_counts() {
+        let r = reg();
+        assert!(r.is_eea_member_at("BG", "2010-01-01"));
+        assert!(!r.is_eea_member_at("BG", "2005-01-01"));
+        assert!(!r.is_eea_member_at("BG", "2007-07-31"));
+        assert!(r.is_eea_member_at("BG", "2007-08-01"));
+        assert!(r.is_eea_member_at("CY", "2005-01-01"));
+        assert!(!r.is_eea_member_at("CY", "2003-01-01"));
+        assert!(!r.is_eea_member_at("HR", "2020-01-01"));
     }
 
     #[test]

@@ -89,3 +89,18 @@ def test_current_members_are_exactly_the_open_ranges(reg):
     assert sum(reg.is_eu(e.alpha_2) for e in reg.all_active()) == 27
     assert sum(reg.is_eea(e.alpha_2) for e in reg.all_active()) == 30
     assert sum(reg.is_eurozone(e.alpha_2) for e in reg.all_active()) == 21
+
+
+def test_eea_provisional_application_counts(reg):
+    """v1.12.1: True from provisional application, not only formal entry into force."""
+    assert reg.is_eea_member_at("BG", "2010-01-01") is True
+    assert reg.is_eea_member_at("BG", "2012-01-01") is True
+    assert reg.is_eea_member_at("BG", "2005-01-01") is False
+    assert reg.is_eea_member_at("BG", "2007-07-31") is False
+    assert reg.is_eea_member_at("BG", "2007-08-01") is True
+    assert reg.is_eea_member_at("CY", "2005-01-01") is True
+    assert reg.is_eea_member_at("CY", "2004-04-30") is False
+    assert reg.is_eea_member_at("CY", "2004-05-01") is True
+    # HR: no provisional date in the source, formal only
+    assert reg.is_eea_member_at("HR", "2020-01-01") is False
+    assert reg.is_eea_member_at("HR", "2025-02-19") is True

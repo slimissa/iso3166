@@ -56,3 +56,13 @@ test("current-status aliases match the v1.11.1 answers for every code", () => {
   assert.equal(reg.allActive().filter((e) => reg.isEea(e.alpha_2)).length, 30);
   assert.equal(reg.allActive().filter((e) => reg.isEurozone(e.alpha_2)).length, 21);
 });
+
+test("EEA provisional application counts (v1.12.1)", () => {
+  assert.equal(reg.isEeaMemberAt("BG", "2010-01-01"), true);
+  assert.equal(reg.isEeaMemberAt("BG", "2005-01-01"), false);
+  assert.equal(reg.isEeaMemberAt("BG", "2007-07-31"), false);
+  assert.equal(reg.isEeaMemberAt("BG", "2007-08-01"), true);
+  assert.equal(reg.isEeaMemberAt("CY", "2005-01-01"), true);
+  assert.equal(reg.isEeaMemberAt("CY", "2003-01-01"), false);
+  assert.equal(reg.isEeaMemberAt("HR", "2020-01-01"), false);
+});

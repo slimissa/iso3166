@@ -83,10 +83,10 @@ const ClubMemberships = {
   },
 
   /**
-   * Was `code` a party to the EEA Agreement on `date`? Dates are the
-   * formal entry into force, so provisionally applying states (BG, RO,
-   * the 2004 ten, HR) are false until the formal date. See
-   * docs/decisions/club-memberships.md. See docs/QUERIES.md, "Query 10".
+   * Was `code` a party to the EEA Agreement on `date`, formally or
+   * provisionally? True from the first day the EEA Enlargement Agreement
+   * applied provisionally (2004-05-01 for the 2004 ten, 2007-08-01 for BG
+   * and RO); HR has formal dates only. See docs/QUERIES.md, "Query 10".
    */
   isEeaMemberAt(code, date) {
     return this._clubAt("eea_membership", code, date);

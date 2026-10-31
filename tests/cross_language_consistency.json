@@ -1837,7 +1837,7 @@
           "BG",
           "2010-01-01"
         ],
-        "expected": false
+        "expected": true
       },
       {
         "query": "is_eea_member_at",
@@ -1926,6 +1926,54 @@
           "1995-12-31"
         ],
         "expected": true
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "BG",
+          "2012-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "BG",
+          "2005-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "BG",
+          "2007-07-31"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "BG",
+          "2007-08-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "CY",
+          "2005-01-01"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "CY",
+          "2003-01-01"
+        ],
+        "expected": false
       }
     ]
   }
