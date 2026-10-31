@@ -67,7 +67,8 @@ def test_csv_matches_fixture_columns():
         "alpha_2,alpha_3,numeric,name,status,independent,"
         "official_name,region,subregion,intermediate_region,"
         "currency_codes,calling_codes,tlds,languages,borders,"
-        "note,last_verified,withdrawal_date,replaced_by"
+        "note,last_verified,withdrawal_date,replaced_by,introduced,"
+        "eu_membership,eea_membership,eurozone_membership,customs_union"
     )
     assert header == expected, f"\n got: {header}\nwant: {expected}"
 
@@ -288,3 +289,35 @@ def test_member_at_malformed_date_exit_2_and_json_shape():
 def test_is_eu_help_says_current_member_only():
     h = " ".join(_run("is-eu", "--help").stdout.split())
     assert "Current member only" in h and "is-eu-member-at" in h
+
+
+def test_csv_and_tsv_are_byte_identical_to_the_root_exports():
+    """README: --csv output is byte-compatible with iso3166.csv (v1.12.1:
+    24 columns, including the four club membership columns)."""
+    import pathlib
+
+    root = pathlib.Path(__file__).resolve().parents[3]
+    for flag, name in (("--csv", "iso3166.csv"), ("--tsv", "iso3166.tsv")):
+        want = root / name
+        if not want.is_file():
+            import pytest
+            pytest.skip(f"{name} not in this checkout")
+        proc = _run("list", flag)
+        assert proc.returncode == 0, proc.stderr
+        assert proc.stdout == want.read_text(encoding="utf-8"), name
+
+
+def test_csv_club_cells_for_a_former_member_a_current_member_and_a_withdrawn_entry():
+    import csv
+    import io
+
+    rows = {}
+    for r in csv.DictReader(io.StringIO(_run("list", "--csv").stdout, newline="")):
+        rows[(r["alpha_2"], r["status"] == "withdrawn")] = r
+    gb = rows[("GB", False)]
+    assert gb["eu_membership"] == "1973-01-01:2020-01-31"
+    assert gb["eurozone_membership"] == ""
+    assert rows[("DE", False)]["eu_membership"] == "1958-01-01:"
+    # AI and SK exist twice; the withdrawn one must not inherit the active ranges.
+    assert rows[("SK", True)]["eu_membership"] == ""
+    assert rows[("SK", False)]["eu_membership"] == "2004-05-01:"

@@ -12,6 +12,11 @@ Two tables:
     countries            one row per entry (active + withdrawn)
     country_currencies   join table (country_alpha_2, currency_code)
 
+The four club membership arrays (eu_membership, eea_membership,
+eurozone_membership, customs_union) are one string each, "from:to" ranges
+joined with "|" (tools/club_format.py); NULL when never a member and for
+withdrawn entries.
+
 All list fields are pipe-delimited in a TEXT column, except currency_codes,
 which lives in the join table. Pipe (|) is chosen because it does not
 appear in any ISO 3166 or ISO 4217 code.
@@ -42,6 +47,9 @@ from typing import Any
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# Shared serializer for the club membership arrays (v1.12.1).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from club_format import CLUB_COLUMNS, format_ranges  # noqa: E402
 if not (PROJECT_ROOT / "iso3166.json").is_file():
     print(
         f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
@@ -87,6 +95,7 @@ COUNTRY_COLUMNS = (
     "withdrawal_date",
     "replaced_by",
     "introduced",
+    *CLUB_COLUMNS,
 )
 
 
@@ -187,6 +196,8 @@ def country_row(entry: dict[str, Any], *, dialect: str) -> list[str]:
         elif col == "currency_codes":
             # handled by join table; not a column here
             continue
+        elif col in CLUB_COLUMNS:
+            value = format_ranges(value)
 
         row.append(sql_quote(value, dialect=dialect, col=col))
     return row
@@ -216,6 +227,10 @@ def country_types(dialect: str) -> dict[str, str]:
         "withdrawal_date":     "CHAR(10)",
         "replaced_by":         "VARCHAR(80)",
         "introduced":          "CHAR(10)",
+        "eu_membership":       "VARCHAR(80)",
+        "eea_membership":      "VARCHAR(80)",
+        "eurozone_membership": "VARCHAR(80)",
+        "customs_union":       "VARCHAR(80)",
     }
 
     if dialect in ("ansi", "postgresql"):

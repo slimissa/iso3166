@@ -76,3 +76,12 @@ are current-status aliases over the same arrays.
 Refresh: edit the tables in `tools/build_club_snapshots.py`, then run it, then
 `python3 tools/enrich_club_memberships.py --write`, `python3 tools/sync_wrappers.py` and
 `python3 tools/gen_consistency_fixture.py`.
+
+## Flat exports (v1.12.1)
+The CSV, TSV, SQL and Parquet exports carry the four arrays as four trailing string columns
+(`eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`). One range is
+`from:to`, an empty `to` means still a member, several ranges are joined with `|` (the delimiter the
+exports already use for lists): `1973-01-01:2020-01-31`, `2004-05-01:`. A country that was never a
+member has an empty cell (CSV, TSV), `NULL` (SQL, Parquet); so does every withdrawn entry. The
+serializer is `tools/club_format.py`; the packaged CLI has a byte-identical copy so that its `--csv`
+and `--tsv` output still equals the root files.

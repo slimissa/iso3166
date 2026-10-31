@@ -121,22 +121,33 @@ VALID_RAW_FIELDS = frozenset({
 })
 
 # The CSV column contract, identical to tools/export_csv.py's COLUMNS.
-# Defined here so the wrapper is self-contained; the two are kept in
-# sync by a cross-language test that reads
-# tests/cross_language_consistency.json and by tools/export_csv.py's
-# own --check.
+# Defined here so the wrapper is self-contained. Nothing but a test keeps
+# the two in sync: tests/test-exports-clubs.sh and test_cli.py compare
+# this CLI's --csv output with iso3166.csv byte for byte.
 CSV_COLUMNS = (
     "alpha_2", "alpha_3", "numeric", "name", "status", "independent",
     "official_name", "region", "subregion", "intermediate_region",
     "currency_codes", "calling_codes", "tlds", "languages", "borders",
-    "note", "last_verified", "withdrawal_date", "replaced_by",
+    "note", "last_verified", "withdrawal_date", "replaced_by", "introduced",
+    "eu_membership", "eea_membership", "eurozone_membership", "customs_union",
 )
+_CLUB_CSV_COLUMNS = CSV_COLUMNS[-4:]
 
 
-def csv_render_row(entry):
-    """Render one registry entry as a row of strings, matching iso3166.csv."""
+def csv_render_row(entry, reg=None):
+    """Render one registry entry as a row of strings, matching iso3166.csv.
+
+    The club cells come from the registry (`reg`), because Country does not
+    carry the ranges; withdrawn entries and a missing `reg` give empty cells.
+    """
+    club = ("",) * 4
+    if reg is not None and entry.get("status") != "withdrawn":
+        club = reg._club_cells(entry.get("alpha_2", ""))
     out = []
     for col in CSV_COLUMNS:
+        if col in _CLUB_CSV_COLUMNS:
+            out.append(club[_CLUB_CSV_COLUMNS.index(col)])
+            continue
         v = entry.get(col)
         if v is None:
             out.append("")
@@ -321,7 +332,7 @@ def write_jsonl(items: Iterable[dict[str, Any]]) -> None:
         sys.stdout.write("\n")
 
 
-def write_csv(entries: list[dict[str, Any]], *, delimiter: str) -> None:
+def write_csv(entries: list[dict[str, Any]], *, delimiter: str, reg=None) -> None:
     """Emit entries as CSV/TSV, byte-compatible with iso3166.csv."""
     buf = io.StringIO(newline="")
     writer = csv.writer(
@@ -333,7 +344,7 @@ def write_csv(entries: list[dict[str, Any]], *, delimiter: str) -> None:
     )
     writer.writerow(CSV_COLUMNS)
     for e in entries:
-        writer.writerow(csv_render_row(e))
+        writer.writerow(csv_render_row(e, reg))
     sys.stdout.write(buf.getvalue())
 
 
@@ -380,9 +391,9 @@ def emit(
     elif args.jsonl:
         write_jsonl(entries)
     elif args.csv:
-        write_csv(entries, delimiter=",")
+        write_csv(entries, delimiter=",", reg=getattr(args, "_reg", None))
     elif args.tsv:
-        write_csv(entries, delimiter="\t")
+        write_csv(entries, delimiter="\t", reg=getattr(args, "_reg", None))
     elif args.raw:
         write_raw(entries, args.raw)
     else:
@@ -1211,6 +1222,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return EXIT_REGISTRY
 
+    args._reg = reg  # for --csv/--tsv: the club cells are read from the registry
     try:
         return args.func(reg, args)
     except BrokenPipeError:

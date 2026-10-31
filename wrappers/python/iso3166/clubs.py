@@ -83,6 +83,20 @@ class ClubMemberships:
             }
         self._clubs = clubs
 
+    def _club_cells(self, code) -> tuple:
+        """The four flat-export cells for an ACTIVE code (CSV rendering).
+
+        "from:to" ranges joined with "|", an empty `to` meaning still a
+        member, "" when never a member. Same bytes as
+        tools/club_format.py; the callers must pass only active entries
+        (a withdrawn alpha_2 can equal an active one: AI, SK).
+        """
+        by_field = self._clubs.get(_norm(code), {})
+        return tuple(
+            "|".join(f"{frm}:{to or ''}" for frm, to in by_field.get(f, ()))
+            for f in CLUB_FIELDS
+        )
+
     def _club_at(self, field: str, code, date) -> bool:
         if not _valid_date(date):
             return False

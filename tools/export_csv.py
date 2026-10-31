@@ -8,9 +8,14 @@ Generate four delimited exports from iso3166.json:
     iso3166.european.csv   semicolon-delimited, no BOM (FR/DE/ES/IT Excel)
     iso3166.tsv            tab-delimited, no BOM
 
-All four have the same 19 columns in the same order. List fields
+All four have the same 24 columns in the same order. List fields
 (calling_codes, tlds, languages, borders, currency_codes, replaced_by)
 are pipe-delimited in a single cell. Empty lists render as empty cells.
+The last four columns are the club membership arrays (eu_membership,
+eea_membership, eurozone_membership, customs_union), one string per
+cell: "1973-01-01:2020-01-31", ranges joined with "|", an empty end
+meaning still a member; see tools/club_format.py. Never a member, and
+every withdrawn entry: empty cell.
 
 No comment header: a leading comment would break pandas.read_csv without
 skiprows and would violate RFC 4180. Version info lives in the JSON.
@@ -43,6 +48,9 @@ from typing import Any
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# Shared serializer for the club membership arrays (v1.12.1).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from club_format import CLUB_COLUMNS, format_ranges  # noqa: E402
 if not (PROJECT_ROOT / "iso3166.json").is_file():
     print(
         f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
@@ -95,6 +103,7 @@ COLUMNS = (
     "withdrawal_date",
     "replaced_by",
     "introduced",
+    *CLUB_COLUMNS,
 )
 
 
@@ -150,7 +159,13 @@ def render_cell(value: Any) -> str:
 
 
 def render_row(entry: dict[str, Any]) -> list[str]:
-    return [render_cell(entry.get(col)) for col in COLUMNS]
+    row = []
+    for col in COLUMNS:
+        if col in CLUB_COLUMNS:
+            row.append(format_ranges(entry.get(col)) or "")
+        else:
+            row.append(render_cell(entry.get(col)))
+    return row
 
 
 # ============================================================

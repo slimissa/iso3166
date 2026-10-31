@@ -11,7 +11,10 @@ Typed columns (via pyarrow):
     currency_codes (list<string>), calling_codes (list<string>),
     tlds (list<string>), languages (list<string>), borders (list<string>),
     note, last_verified, withdrawal_date, replaced_by (list<string>),
-    introduced
+    introduced,
+    eu_membership, eea_membership, eurozone_membership, customs_union
+    (string each: "from:to" ranges joined with "|", an empty end meaning
+    still a member, null when never a member; tools/club_format.py)
 
 Footer metadata carries iso3166.version, iso3166.updated,
 iso3166.schema_version.
@@ -49,6 +52,9 @@ from typing import Any
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# Shared serializer for the club membership arrays (v1.12.1).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from club_format import CLUB_COLUMNS, format_ranges  # noqa: E402
 if not (PROJECT_ROOT / "iso3166.json").is_file():
     print(
         f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
@@ -81,6 +87,7 @@ COLUMNS = (
     "withdrawal_date",
     "replaced_by",
     "introduced",
+    *CLUB_COLUMNS,
 )
 
 
@@ -132,6 +139,8 @@ def to_columns(reg: dict[str, Any]) -> dict[str, list[Any]]:
                 except (TypeError, ValueError):
                     v = None
 
+            if c in CLUB_COLUMNS:
+                v = format_ranges(v)
             cols[c].append(v)
 
     return cols
@@ -163,6 +172,10 @@ def build_table(reg: dict[str, Any]):
         pa.field("withdrawal_date",     pa.string()),
         pa.field("replaced_by",         pa.list_(pa.string())),
         pa.field("introduced",          pa.string()),
+        pa.field("eu_membership",       pa.string()),
+        pa.field("eea_membership",      pa.string()),
+        pa.field("eurozone_membership", pa.string()),
+        pa.field("customs_union",       pa.string()),
     ]
 
     schema = pa.schema(fields)
