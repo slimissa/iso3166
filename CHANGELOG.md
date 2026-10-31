@@ -8,6 +8,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.1] — YYYY-MM-DD
+
+v1.12.1 closes three gaps left by v1.12.0: the club membership arrays are now in the flat exports, `eea_membership` counts provisional application, and the README field table and count are accurate. No new queries, no new fields.
+
+### Added
+
+- Four trailing columns in the CSV, TSV, SQL and Parquet exports (nine files): `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`. Each cell is one string: `1973-01-01:2020-01-31` is one range, ranges are joined with `|`, an empty end (`2004-05-01:`) means still a member. A country that was never a member, and every withdrawn entry, has an empty cell (CSV, TSV) or NULL (SQL, Parquet). The CSV and TSV now have 24 columns (were 20), the Parquet file 24, and the SQL `countries` table 23 (was 19).
+- `tools/club_format.py`, the shared serializer (`format_ranges`, `parse_ranges`).
+
+### Changed
+
+- `eea_membership` counts provisional application. The EEA Enlargement Agreements applied before their formal entry into force: to the 2004 ten (CY, CZ, EE, HU, LV, LT, MT, PL, SK, SI) from 2004-05-01 (formal 2005-12-06), and to BG and RO from 2007-08-01 (formal 2011-11-09). `is_eea_member_at("BG", "2010-01-01")` is now `true` (was `false` in v1.12.0). The provisional ranges are in the EEA snapshot's `meta.provisional_application` and are unioned into the array by `tools/enrich_club_memberships.py`, so no wrapper or CLI query logic changed; the snapshot's `data` keeps the formal dates. The tool rejects a provisional range that leaves a gap or an overlap with the formal one.
+- HR has formal dates only (2025-02-19): no source read for this release dates its provisional application.
+- Fixture: `is_eea_member_at BG 2010-01-01` flips to `true`; six cases added (BG 2012, 2005, 2007-07-31, 2007-08-01; CY 2005, 2003). Index rows E124 to E129 in `docs/QUERIES.md`; E112 flips.
+
+### Fixed
+
+- The packaged CLI's `--csv` and `--tsv` output was not byte-identical to `iso3166.csv`: it had been missing the `introduced` column since v1.11.0. It now has all 24 columns and matches the root files byte for byte (the club cells are read from the registry).
+- README: the field table lacked the four club-membership arrays, and the count sentence ("Eighteen ... plus two for withdrawn") no longer matched. It now says that active entries carry twenty-four fields and withdrawn entries twenty, and the table lists all twenty-four.
+
+### Known limits
+
+- A consumer who reads the flat `eea_membership` column gets the provisional start for the twelve states, not the formal entry-into-force date. The formal date is in the EEA snapshot.
+- The `eea_membership` array in `iso3166.json` no longer equals the snapshot `data` for those twelve states; `enrich_club_memberships.py --check` compares against the union.
+
 ## [1.12.0] — 2026-10-30
 
 v1.12.0 adds exact date-scoped club membership arrays. is_eu/is_eea/is_eurozone remain as current-status aliases.

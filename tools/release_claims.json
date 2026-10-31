@@ -627,6 +627,7 @@
     {"file": "docs/QUERIES.md", "contains": "**Provisional application.**"},
     {"file": "docs/QUERIES-DECISIONS.md", "contains": "Why provisional application is included"},
     {"file": "README.md", "contains": "twenty-four fields"},
-    {"file": "README.md", "absent": "Eighteen required-or-optional"}
+    {"file": "README.md", "absent": "Eighteen required-or-optional"},
+    {"file": "CHANGELOG.md", "contains": "## [1.12.1]"}
   ]
 }
