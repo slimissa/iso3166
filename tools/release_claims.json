@@ -604,5 +604,29 @@
     {"file": "docs/QUERIES.md", "contains": "## Query 10"},
     {"file": "docs/QUERIES-DECISIONS.md", "contains": "Why club memberships are arrays on the entry"},
     {"file": "CHANGELOG.md", "contains": "## [1.12.0]"}
+  ],
+  "1.12.1": [
+    {"file": "tools/club_format.py", "contains": "def format_ranges"},
+    {"file": "tools/export_csv.py", "contains": "CLUB_COLUMNS"},
+    {"file": "tools/export_sql.py", "contains": "CLUB_COLUMNS"},
+    {"file": "tools/export_parquet.py", "contains": "CLUB_COLUMNS"},
+    {"file": "iso3166.csv", "contains": "customs_union"},
+    {"file": "iso3166.excel.csv", "contains": "eurozone_membership"},
+    {"file": "iso3166.european.csv", "contains": "eea_membership"},
+    {"file": "iso3166.tsv", "contains": "eu_membership"},
+    {"file": "iso3166.sql", "contains": "eu_membership"},
+    {"file": "iso3166.postgresql.sql", "contains": "customs_union"},
+    {"file": "iso3166.mysql.sql", "contains": "eurozone_membership"},
+    {"file": "iso3166.sqlite.sql", "contains": "eea_membership"},
+    {"file": "wrappers/python/iso3166/cli.py", "contains": "\"customs_union\""},
+    {"file": "tools/build_club_snapshots.py", "contains": "EEA_PROVISIONAL_COHORTS"},
+    {"file": "tools/enrich_club_memberships.py", "contains": "def apply_provisional"},
+    {"file": "tools/eea_membership_snapshot.json", "contains": "\"provisional_application\""},
+    {"file": "tools/eea_membership_snapshot.json", "contains": "2005-12-05"},
+    {"file": "tests/cross_language_consistency.json", "contains": "2007-08-01"},
+    {"file": "docs/QUERIES.md", "contains": "**Provisional application.**"},
+    {"file": "docs/QUERIES-DECISIONS.md", "contains": "Why provisional application is included"},
+    {"file": "README.md", "contains": "twenty-four fields"},
+    {"file": "README.md", "absent": "Eighteen required-or-optional"}
   ]
 }
