@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.12.1] — YYYY-MM-DD
+## [1.12.1] — 2026-10-31
 
 v1.12.1 closes three gaps left by v1.12.0: the club membership arrays are now in the flat exports, `eea_membership` counts provisional application, and the README field table and count are accurate. No new queries, no new fields.
 
