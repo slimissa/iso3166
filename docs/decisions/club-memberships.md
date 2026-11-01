@@ -1,6 +1,6 @@
 # ADR: Club memberships (EU, EEA, eurozone, customs union)
 
-Status: accepted for v1.12.0 Phase 1 (snapshots only; no wrapper or CLI change)
+Status: accepted and implemented. Phase 1 (v1.12.0) added the snapshots; Phase 2 (v1.12.0) wired them into `iso3166.json`, the wrappers and the CLI (see "Consumption" below)
 
 ## Context
 `is_eu`, `is_eea` and `is_eurozone` are heuristics today. They cannot say that

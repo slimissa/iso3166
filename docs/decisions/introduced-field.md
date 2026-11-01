@@ -14,8 +14,9 @@ approximate because the tree had no temporal anchor.
 ## Decision
 
 Add `introduced` (`YYYY-MM-DD` or `null`) to active entries. It is the
-date the ISO 3166-1 standard added the code. Phase 1 (this ADR) produces
-only the snapshot; wiring it into `iso3166.json` and the wrappers is Phase 2.
+date the ISO 3166-1 standard added the code. Phase 1 (this ADR) produced
+only the snapshot; Phase 2 (v1.11.0) wired `introduced` into `iso3166.json`,
+the wrappers and the CLI.
 
 Algorithm, implemented in `tools/build_introduced_snapshot.py`:
 
