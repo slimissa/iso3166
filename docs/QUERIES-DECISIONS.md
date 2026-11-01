@@ -35,8 +35,9 @@ reveal. Examples of what the tree said when asked:
 
 So the rule is: **where the tree and an idea disagree, the tree wins, and
 the idea is rewritten.** QUERIES.md is written from the tree. Its worked
-examples are re-run against `iso3166.json` by test 22 of
-`test-derived-queries.sh`, so the document cannot drift from the data.
+examples index equals the `derived_queries` cases of the cross-language
+fixture, which every wrapper is checked against. No test yet enforces that
+equality, so the index can drift from the fixture.
 
 ## Why these eight
 

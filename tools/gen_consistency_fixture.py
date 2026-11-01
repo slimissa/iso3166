@@ -247,8 +247,8 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
 # Literal expected values for the v1.10.0 derived queries. They are typed
 # here, not computed by any wrapper, so the wrappers are checked against
 # an independent source, and they are the same cases as the "Worked
-# examples index" in docs/QUERIES.md (test-derived-queries.sh test 22
-# checks that every index row appears here).
+# examples index" in docs/QUERIES.md (equal at v1.12.1; no test enforces
+# that every index row appears here).
 def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
     cases: list[tuple[str, list[Any], Any]] = [
         ('is_eu', ['DE'], True),

@@ -35,8 +35,8 @@ Conventions
 * Returned lists are fresh copies; mutating them cannot affect the
   registry.
 
-docs/QUERIES.md was written from the tree, and its worked examples are
-re-run against iso3166.json by test-derived-queries.sh.
+docs/QUERIES.md was written from the tree, and its worked examples index
+equals the derived_queries cases in tests/cross_language_consistency.json.
 """
 from __future__ import annotations
 

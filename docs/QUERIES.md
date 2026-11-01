@@ -7,8 +7,11 @@ the docstrings and the tests all implement and point at this document.
 queries are what they are. This file says what they do.
 **Data:** `iso3166.json` at v1.12.1 (252 active entries, 25 withdrawn entries).
 The file documents 16 public queries in ten numbered sections (Query 1 to Query 10).
-Every example in this file was produced from that file and reproduces on it;
-`test-derived-queries.sh` test 22 re-runs the index and every inline example.
+The 129 rows of the worked examples index are the same cases as `derived_queries`
+in `tests/cross_language_consistency.json` (verified equal at v1.12.1), and all five
+surfaces are checked against that fixture by `tools/check_cross_language.sh`. Inline
+examples outside the index are not machine-checked, and no test yet enforces that
+the index and the fixture stay equal.
 Query 10 and the rewritten Query 1 reproduce on `iso3166.json` at v1.12.0, which
 carries the four membership arrays.
 
