@@ -88,9 +88,9 @@ To audit a single entry:
 To audit the registry as a whole:
 
 1. `python3 tools/validate.py` — must exit 0.
-2. `python3 tools/validate.py --ground-truth` — must confirm all 249
+2. `python3 tools/validate.py --only ground-truth` — must confirm all 249
    officially-assigned codes are present.
-3. `python3 tools/validate.py --cross-registry` — must confirm every
+3. `python3 tools/validate.py --only cross-reference` — must confirm every
    `currency_codes` entry exists in the ISO 4217 snapshot.
 4. Diff the entry count against the last release:
    `git diff <last-tag> -- iso3166.json | grep -c '^+.*alpha_2'`.
