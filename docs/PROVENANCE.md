@@ -24,6 +24,7 @@ of the first release; the present state of the registry is in
 | `official_name` | ISO 3166-1 Online Browsing Platform | https://www.iso.org/obp/ui/ |
 | `languages` | CIA World Factbook; codes are ISO 639-3 | https://www.cia.gov/the-world-factbook/ |
 | `borders` | CIA World Factbook, land boundaries | https://www.cia.gov/the-world-factbook/ |
+| `introduced` | Wikipedia, ISO 3166-1 "Changes" table (explicit exception, see [introduced-field](decisions/introduced-field.md)) | https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980 |
 
 ## Current sources and refresh
 
@@ -47,6 +48,7 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 | `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
 | `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
 | `customs_union` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/customs_union_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
+| `introduced` | Wikipedia (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json` | 2026-10-28 (snapshot `source_accessed`) | annual (`review_by` 2027-10-28) |
 
 ## What is a first-party source
 
@@ -57,8 +59,12 @@ aggregator CSVs, blog posts — is a third-party source and is not
 acceptable as the origin of a field.
 
 If a field cannot be traced to a first-party source, it is left
-`null`. It is never populated from a third-party source. An empty
-field is honest; a wrong field is not.
+`null`. It is never populated from a third-party source, with one
+recorded exception: `introduced` and the four club-membership arrays
+(`eu_membership`, `eea_membership`, `eurozone_membership`,
+`customs_union`) come from Wikipedia, because ISO does not publish those
+facts. Each exception is justified in its ADR under `docs/decisions/`.
+An empty field is honest; a wrong field is not.
 
 ## Refresh cadence
 
