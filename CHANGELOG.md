@@ -1469,7 +1469,26 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.12.1...HEAD
+[1.12.1]: https://github.com/slimissa/iso3166/releases/tag/v1.12.1
+[1.12.0]: https://github.com/slimissa/iso3166/releases/tag/v1.12.0
+[1.11.1]: https://github.com/slimissa/iso3166/releases/tag/v1.11.1
+[1.11.0]: https://github.com/slimissa/iso3166/releases/tag/v1.11.0
+[1.10.2]: https://github.com/slimissa/iso3166/releases/tag/v1.10.2
+[1.10.1]: https://github.com/slimissa/iso3166/releases/tag/v1.10.1
+[1.10.0]: https://github.com/slimissa/iso3166/releases/tag/v1.10.0
+[1.9.3]: https://github.com/slimissa/iso3166/releases/tag/v1.9.3
+[1.9.2]: https://github.com/slimissa/iso3166/releases/tag/v1.9.2
+[1.9.1]: https://github.com/slimissa/iso3166/releases/tag/v1.9.1
+[1.9.0]: https://github.com/slimissa/iso3166/releases/tag/v1.9.0
+[1.8.3]: https://github.com/slimissa/iso3166/releases/tag/v1.8.3
+[1.8.2]: https://github.com/slimissa/iso3166/releases/tag/v1.8.2
+[1.8.1]: https://github.com/slimissa/iso3166/releases/tag/v1.8.1
+[1.8.0]: https://github.com/slimissa/iso3166/releases/tag/v1.8.0
+[1.7.4]: https://github.com/slimissa/iso3166/releases/tag/v1.7.4
+[1.7.3]: https://github.com/slimissa/iso3166/releases/tag/v1.7.3
+[1.7.2]: https://github.com/slimissa/iso3166/releases/tag/v1.7.2
+[1.7.1]: https://github.com/slimissa/iso3166/releases/tag/v1.7.1
 [1.7.0]: https://github.com/slimissa/iso3166/releases/tag/v1.7.0
 [1.6.9]: https://github.com/slimissa/iso3166/releases/tag/v1.6.9
 [1.6.8]: https://github.com/slimissa/iso3166/releases/tag/v1.6.8
