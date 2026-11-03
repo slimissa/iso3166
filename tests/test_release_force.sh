@@ -2,7 +2,8 @@
 # tests/test_release_force.sh
 #
 # Exercises scripts/release.sh --force in a throwaway git repository with
-# a stub `gh` and stub tools. It never touches the real repository.
+# a stub `gh`, a stub `cargo`, and a stub `pytest` module. It never touches
+# the real repository.
 #
 #   bash tests/test_release_force.sh        # exit 0 on pass, 1 on fail
 #
@@ -35,9 +36,10 @@ fail() { echo "FAIL $1" >&2; fails=$((fails + 1)); }
 
 # --- stubs --------------------------------------------------------------
 mkdir -p "$TMP/bin"
+
+# Stub gh: every CI run is green; release create/view succeed.
 cat > "$TMP/bin/gh" <<'GH'
 #!/usr/bin/env bash
-# Stub: every CI run is green; release create/view succeed.
 case "$1 $2" in
     "run list")     echo "completed success" ;;
     "release view") echo "release body" ;;
@@ -45,9 +47,11 @@ case "$1 $2" in
 esac
 GH
 chmod +x "$TMP/bin/gh"
+
 # Stub cargo: the gate runs `cargo clippy` in wrappers/rust (step 2).
 printf '#!/usr/bin/env bash\nexit 0\n' > "$TMP/bin/cargo"
 chmod +x "$TMP/bin/cargo"
+
 export PATH="$TMP/bin:$PATH"
 export GIT_AUTHOR_NAME=t GIT_AUTHOR_EMAIL=t@t GIT_COMMITTER_NAME=t GIT_COMMITTER_EMAIL=t@t
 
@@ -92,11 +96,22 @@ PY
     )
 }
 
-# run_sh DIR ARGS... : run the repo's release.sh, capture output + exit code
+# run_sh DIR ARGS... : run the repo's release.sh, capture output + exit code.
+#
+# The throwaway repo's Python env has no pytest installed (the stub tests
+# above are stubs, not real pytest tests). The real release.sh gate calls
+# `python3 -m pytest tests/ -q`, so we stub the pytest MODULE (not the
+# binary) by prepending a directory with a `pytest.py` that exits 0.
+# The stub lives OUTSIDE the throwaway repo, so `git status` in the repo
+# never sees it and preflight stays clean.
 run_sh() {
     local dir="$1"; shift
+    mkdir -p "$TMP/.pytest_stub"
+    if [ ! -f "$TMP/.pytest_stub/pytest.py" ]; then
+        printf 'import sys\nsys.exit(0)\n' > "$TMP/.pytest_stub/pytest.py"
+    fi
     set +e
-    OUT="$(cd "$dir" && bash scripts/release.sh "$@" 2>&1)"
+    OUT="$(cd "$dir" && PYTHONPATH="$TMP/.pytest_stub${PYTHONPATH:+:$PYTHONPATH}" bash scripts/release.sh "$@" 2>&1)"
     RC=$?
     set -e
 }
@@ -188,7 +203,6 @@ GATE_GOOD='    ) > "$GATE_LOG" 2>&1
 '
 GATE_BAD='    ) > "$GATE_LOG" 2>&1 || GATE_RC=$?
 '
-# (grep -F would treat the two-line anchor as two patterns; python checks it whole.)
 if ! python3 - "$REAL_SH" "$TMP/release_open.sh" "$GATE_GOOD" "$GATE_BAD" <<'PY'
 import sys
 src, dst, good, bad = sys.argv[1:5]
