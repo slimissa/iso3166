@@ -649,6 +649,7 @@
     {"file": "README.md", "contains": "23 CI jobs"},
     {"file": "docs/STATE.md", "contains": "Release gate has 34 checks"},
     {"file": "scripts/release.sh", "absent": "die \"gate failed; see $GATE_LOG\""},
-    {"file": "README.md", "absent": "29 checks run in sequence"}
+    {"file": "README.md", "absent": "29 checks run in sequence"},
+    {"file": "CHANGELOG.md", "contains": "## [1.12.2]"}
   ]
 }

@@ -8,6 +8,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.2] — YYYY-MM-DD
+
+v1.12.2 closes the four enforcement gaps the v1.12.1 closure audit left open, adds a check for the introduced snapshot's meta file, and fixes the release gate, which did not stop at the first failing check.
+
+### Added
+
+- `tools/check_introduced.py`: every active entry's `introduced` must equal `tools/introduced_snapshot.json`; a null must be null on both sides and have a `meta.null_reasons` entry. The validator's integrity layer runs the same comparison, so a full run, `--strict-count` and `--only integrity` all enforce it.
+- `tools/check_introduced_meta.py`: `tools/introduced_snapshot.meta.json` must carry `review_by`, `source` and `vendored_at` (valid dates, `review_by` not before `vendored_at`) and agree with the snapshot's own `meta` (`review_by`, `source`, `source_permalink`, and `vendored_at` against `source_accessed`). The generator never reads this hand-written file.
+- `tests/test_index_matches_fixture.py`: the `docs/QUERIES.md` worked-examples index must equal `derived_queries.cases` in the cross-language fixture (length, order, query, arguments, expected value) and be numbered without gaps.
+- Release gate: `build_introduced_snapshot.py --check`, `build_club_snapshots.py --check` and `tests/test_release_force.sh`.
+- CI jobs `check-snapshots` (both generators and `check_introduced_meta.py`) and `check-force-test`.
+- `tests/test_release_force.sh` scenarios 6 and 7: a check in the middle of the gate fails and the release must stop with no tag; the old gate form must let that failure through.
+- `docs/RELEASE_PATTERN.md` Rule 29.
+- Release claims for 1.12.2 in `tools/release_claims.json`.
+
+### Fixed
+
+- The release gate did not stop at the first failing check. It was `( set -e; ... ) > log || die`, and bash ignores `set -e` in a subshell whose status `||` tests, so only the last command, `cargo clippy`, could fail the gate. Every earlier check was advisory, although the README said the first failure stops the release. Checks that run only in the gate, such as `check_release_claims.py` and `check_registry_freshness.py`, were not enforced at all. `scripts/release.sh` now runs the gate as a plain statement and reads its status from `$?`. Every existing gate command passes under the new semantics.
+- The throwaway repository in `tests/test_release_force.sh` carries a stub of the test itself; without it, scenarios 3 to 5 fail once the test is in the gate.
+
+### Changed
+
+- Release gate: 29 to 34 checks. CI: 21 to 23 jobs. Test count: 251 to 253 declarations. README, CONTRIBUTING, `docs/STATE.md` and `docs/AUDIT.md` are updated to match.
+- `docs/RELEASE_PATTERN.md` no longer recommends `( set -e; ... ) || die`.
+
+### Known limits
+
+- `build_introduced_snapshot.py --check` still does not read `introduced_snapshot.meta.json`; `check_introduced_meta.py` covers it.
+- `check_introduced.py` has no CI step of its own. CI enforces the same comparison through the validator's integrity layer.
+- `docs/AUDIT.md` still describes the tree as of v1.8.0 outside the rows this release touched.
+
 ## [1.12.1] — 2026-10-31
 
 v1.12.1 closes three gaps left by v1.12.0: the club membership arrays are now in the flat exports, `eea_membership` counts provisional application, and the README field table and count are accurate. No new queries, no new fields.
@@ -1469,7 +1500,8 @@ language wrappers, and CI.
   ISO reassigned them. Documented in
   `docs/decisions/withdrawn-codes.md` and in `parse_source.py`.
 
-[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.12.1...HEAD
+[Unreleased]: https://github.com/slimissa/iso3166/compare/v1.12.2...HEAD
+[1.12.2]: https://github.com/slimissa/iso3166/releases/tag/v1.12.2
 [1.12.1]: https://github.com/slimissa/iso3166/releases/tag/v1.12.1
 [1.12.0]: https://github.com/slimissa/iso3166/releases/tag/v1.12.0
 [1.11.1]: https://github.com/slimissa/iso3166/releases/tag/v1.11.1
