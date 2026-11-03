@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.12.2] — YYYY-MM-DD
+## [1.12.2] — 2026-11-03
 
 v1.12.2 closes the four enforcement gaps the v1.12.1 closure audit left open, adds a check for the introduced snapshot's meta file, and fixes the release gate, which did not stop at the first failing check.
 
