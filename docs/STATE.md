@@ -43,7 +43,7 @@ A list field counts as populated when it is non-empty; any other field when it i
 
 ## CI
 
-23 jobs (see `.github/workflows/validate.yml`). Release gate has 33 checks (`scripts/release.sh`, step 2).
+23 jobs (see `.github/workflows/validate.yml`). Release gate has 34 checks (`scripts/release.sh`, step 2).
 
 ## Known limitations
 

@@ -449,7 +449,9 @@ jobs:
   # =================================================================
   # 10b. Snapshot generators. build_introduced_snapshot.py and
   #      build_club_snapshots.py must reproduce the committed
-  #      snapshots exactly. Both are stdlib-only.
+  #      snapshots exactly, and check_introduced_meta.py checks the
+  #      hand-written introduced_snapshot.meta.json that neither
+  #      generator reads. All stdlib-only.
   # =================================================================
   check-snapshots:
     name: check snapshot generators
@@ -466,6 +468,9 @@ jobs:
 
       - name: Club snapshots reproduce
         run: python3 tools/build_club_snapshots.py --check
+
+      - name: Introduced snapshot meta is complete
+        run: python3 tools/check_introduced_meta.py
 
   # =================================================================
   # 10c. release.sh --force. tests/test_release_force.sh runs the

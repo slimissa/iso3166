@@ -334,6 +334,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/check_registry_freshness.py
         python3 tools/validate.py iso3166.json --strict-count --strict-independent
         python3 tools/check_introduced.py
+        python3 tools/check_introduced_meta.py
         python3 tools/check_state_doc.py --strict
         python3 tools/check_docs_match_tree.py
         python3 tools/enrich_official_name.py --check

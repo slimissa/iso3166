@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 253 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 34 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 253 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.1 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -831,7 +831,7 @@ python3 tools/validate.py iso3166.json --strict-count --strict-independent   # w
 
 Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation. A clean run prints `Summary: 6 OK, 0 WARN, 0 FAIL, 0 SKIP`.
 
-### The release gate: 33 checks
+### The release gate: 34 checks
 
 Everything below runs in the release gate, in this order, inside one `set -e` subshell. The first failure stops the release.
 
@@ -844,32 +844,33 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 5 | `check_registry_freshness.py` | An entry whose `last_verified` is more than 365 days old |
 | 6 | `validate.py iso3166.json --strict-count --strict-independent` | Any of the six validator layers; a count mismatch; an `independent` regression in Northern America |
 | 7 | `check_introduced.py` | An active entry whose `introduced` differs from `tools/introduced_snapshot.json` |
-| 8 | `check_state_doc.py --strict` | A number in `docs/STATE.md` that differs from the tree |
-| 9 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (13 checks) |
-| 10 | `enrich_official_name.py --check` | `official_name` differing from its source |
-| 11 | `enrich_withdrawn.py --check` | The withdrawn array differing from its source |
-| 12 | `enrich_field.py --field currency_codes --check` | `currency_codes` differing from its source |
-| 13 | `enrich_field.py --field calling_codes --check` | `calling_codes` differing from the ITU snapshot |
-| 14 | `enrich_field.py --field tlds --check` | `tlds` differing from the IANA snapshot |
-| 15 | `enrich_field.py --field languages --check` | `languages` differing from its source |
-| 16 | `enrich_field.py --field borders --check` | `borders` differing from its source |
-| 17 | `enrich_field.py --field subregion --check` | `subregion` differing from the M49 snapshot |
-| 18 | `enrich_field.py --field intermediate_region --check` | `intermediate_region` differing from the M49 snapshot |
-| 19 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
-| 20 | `export_sql.py --check` | A stale SQL file |
-| 21 | `export_csv.py --check` | A stale CSV or TSV file |
-| 22 | `export_parquet.py --check` | A stale Parquet file |
-| 23 | `export_aggregated.py --check` | A stale aggregated file (logical comparison) |
-| 24 | `sync_wrappers.py --check` | A wrapper copy that differs from `iso3166.json` |
-| 25 | `gen_consistency_fixture.py --check` | A stale cross-language fixture |
-| 26 | `gen_withdrawn_doc.py --check` | A stale `docs/WITHDRAWN.md` |
-| 27 | `python3 -m pytest tests/ -v` | The root suite (29 tests, including the architecture test and the index-vs-fixture test) |
-| 28 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
-| 29 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the sibling `.meta.json` is hand-written and not compared) |
-| 30 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
-| 31 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 7 scenarios in a throwaway repository, two of them mutations that must be caught |
-| 32 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
-| 33 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
+| 8 | `check_introduced_meta.py` | `introduced_snapshot.meta.json` missing `review_by`, `source` or `vendored_at`, or disagreeing with the snapshot's own `meta` |
+| 9 | `check_state_doc.py --strict` | A number in `docs/STATE.md` that differs from the tree |
+| 10 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (13 checks) |
+| 11 | `enrich_official_name.py --check` | `official_name` differing from its source |
+| 12 | `enrich_withdrawn.py --check` | The withdrawn array differing from its source |
+| 13 | `enrich_field.py --field currency_codes --check` | `currency_codes` differing from its source |
+| 14 | `enrich_field.py --field calling_codes --check` | `calling_codes` differing from the ITU snapshot |
+| 15 | `enrich_field.py --field tlds --check` | `tlds` differing from the IANA snapshot |
+| 16 | `enrich_field.py --field languages --check` | `languages` differing from its source |
+| 17 | `enrich_field.py --field borders --check` | `borders` differing from its source |
+| 18 | `enrich_field.py --field subregion --check` | `subregion` differing from the M49 snapshot |
+| 19 | `enrich_field.py --field intermediate_region --check` | `intermediate_region` differing from the M49 snapshot |
+| 20 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
+| 21 | `export_sql.py --check` | A stale SQL file |
+| 22 | `export_csv.py --check` | A stale CSV or TSV file |
+| 23 | `export_parquet.py --check` | A stale Parquet file |
+| 24 | `export_aggregated.py --check` | A stale aggregated file (logical comparison) |
+| 25 | `sync_wrappers.py --check` | A wrapper copy that differs from `iso3166.json` |
+| 26 | `gen_consistency_fixture.py --check` | A stale cross-language fixture |
+| 27 | `gen_withdrawn_doc.py --check` | A stale `docs/WITHDRAWN.md` |
+| 28 | `python3 -m pytest tests/ -v` | The root suite (29 tests, including the architecture test and the index-vs-fixture test) |
+| 29 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
+| 30 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
+| 31 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
+| 32 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 7 scenarios in a throwaway repository, two of them mutations that must be caught |
+| 33 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
+| 34 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
 
 The gate is not the whole test surface. The JavaScript suite (`npm test`), the Go suite (`go test`) and the Rust suite (`cargo test`) run in CI only, in `wrapper-javascript`, `wrapper-go` and `wrapper-rust`. The full wrapper surface is gated by the CI check the release script waits for before tagging.
 
@@ -886,7 +887,7 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 ### Additional checks
 
-Beyond the six-layer validator, the repo carries nine auxiliary checks, listed with where each one runs. Cross-language agreement is checked separately by `tools/check_cross_language.sh`.
+Beyond the six-layer validator, the repo carries ten auxiliary checks, listed with where each one runs. Cross-language agreement is checked separately by `tools/check_cross_language.sh`.
 
 | Tool | Purpose | Runs in |
 |------|---------|---------|
@@ -899,6 +900,7 @@ Beyond the six-layer validator, the repo carries nine auxiliary checks, listed w
 | `tools/check_state_doc.py` | Verifies every number in `docs/STATE.md` against the tree. | CI and release gate |
 | `tools/check_docs_match_tree.py` | Verifies the counts, versions and lists that the README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS docs state about the tree. | CI and release gate |
 | `tools/check_introduced.py` | Every active entry's `introduced` equals `tools/introduced_snapshot.json`; a null needs a `meta.null_reasons` entry. The same comparison runs in the validator's integrity layer. | release gate; CI through `validate.py` |
+| `tools/check_introduced_meta.py` | `tools/introduced_snapshot.meta.json` has `review_by`, `source` and `vendored_at` (valid dates, `review_by` not before `vendored_at`) and agrees with the snapshot's own `meta` (`review_by`, `source`, `source_permalink`, `source_accessed`). The generator never reads this hand-written file. | release gate and CI (`check-snapshots`) |
 
 ---
 
@@ -926,7 +928,7 @@ There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.
 | `check-docs-match-tree` | `check_docs_match_tree.py` |
 | `check-mojibake` | `check_mojibake.py` |
 | `check-snapshot-freshness` | `check_snapshot_freshness.py` |
-| `check-snapshots` | `build_introduced_snapshot.py --check`, `build_club_snapshots.py --check` |
+| `check-snapshots` | `build_introduced_snapshot.py --check`, `build_club_snapshots.py --check`, `check_introduced_meta.py` |
 | `check-force-test` | `bash tests/test_release_force.sh` |
 | `cross-language` | `check_cross_language.sh US GB JP TW XK UK`; needs `check-wrapper-sync` |
 | `wrapper-python` | Wrapper tests on Python 3.11 and 3.12; `pip-audit` |
@@ -952,7 +954,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 0. **Preflight.** Inside a git repository, tree clean, branch `main`, `HEAD` equal to `origin/main`, CI on `HEAD` complete and green, a `## [<version>]` section in `CHANGELOG.md`, the tag free locally and on `origin`, `VERSION` different from the target, and the release's entry present in `tools/release_claims.json`.
 1. **Bump the version sites** (below).
-2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 33 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
+2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 34 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
 3. **Commit** `chore: release v<version>`, after checking that staged paths are not all ignored by the workflow's `paths-ignore`.
 4. **Push and wait for CI.** Every workflow run for the release SHA must complete with `success`. A run that does not start within 180 seconds, a failed run, or a poll timeout stops the release before the tag exists.
 5. **Tag** `v<version>` only on green. The tag message is read from the changelog section, checked for a header and body, written with `git tag -a -F ... --cleanup=verbatim`, read back with git and compared with the file; a mismatch or a wrong target deletes the local tag and pushes nothing. Then `git push origin v<version>`.
@@ -1051,7 +1053,7 @@ iso3166/
       v1.9.3-version-policy.md              # Version strings in PROVENANCE.md and CONTRIBUTING.md
       withdrawn-codes.md                    # ADR: withdrawn codes and successors
   scripts/
-    release.sh                              # The release pipeline (steps 0 to 7, 33-check gate)
+    release.sh                              # The release pipeline (steps 0 to 7, 34-check gate)
   tests/
     cross_language_consistency.json         # Shared fixture for all four wrappers (generated)
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON
@@ -1069,6 +1071,7 @@ iso3166/
     check_cross_language.sh                 # Run a lookup through all four wrappers and diff the output
     check_docs_match_tree.py                # Prose claims (README, ENRICHMENT, ...) vs the tree
     check_introduced.py                     # Every active entry's `introduced` equals introduced_snapshot.json
+    check_introduced_meta.py                # introduced_snapshot.meta.json is complete and agrees with the snapshot
     check_iso4217_snapshot.py               # Well-formedness of iso4217_snapshot.json
     check_mojibake.py                       # UTF-8 / Latin-1 round-trip corruption detector
     check_registry_freshness.py             # `last_verified` within 365 days on every entry

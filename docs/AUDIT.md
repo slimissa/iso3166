@@ -40,6 +40,7 @@ Tools that verify data.
 | `check_mojibake.py` | yes | yes |
 | `check_snapshot_freshness.py` | yes | yes |
 | `check_introduced.py` | via `validate.py` | yes |
+| `check_introduced_meta.py` | yes | yes |
 | `check_release_claims.py` | no | yes |
 | `check_cross_language.sh` | yes | yes |
 | `parse_source.py --verify` | yes | no |

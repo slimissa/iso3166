@@ -222,7 +222,8 @@ As of v1.12, every push to `main` runs 23 jobs:
 - `check-mojibake` — no UTF-8/Latin-1 corruption in text files.
 - `check-snapshot-freshness` — no vendored snapshot is past its `review_by`.
 - `check-snapshots` — the introduced and club snapshots reproduce from
-  their generators.
+  their generators, and the introduced snapshot's sibling meta file is
+  complete.
 - `check-force-test` — `tests/test_release_force.sh`: `release.sh --force`
   resume mode, in a throwaway repository.
 - `cross-language` — all four wrappers agree.
