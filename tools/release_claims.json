@@ -629,5 +629,26 @@
     {"file": "README.md", "contains": "twenty-four fields"},
     {"file": "README.md", "absent": "Eighteen required-or-optional"},
     {"file": "CHANGELOG.md", "contains": "## [1.12.1]"}
+  ],
+  "1.12.2": [
+    {"file": "tools/check_introduced.py", "contains": "def introduced_mismatches"},
+    {"file": "tools/validate.py", "contains": "introduced_mismatches(reg, introduced_snap)"},
+    {"file": "scripts/release.sh", "contains": "python3 tools/check_introduced.py\n"},
+    {"file": "tests/test_index_matches_fixture.py", "contains": "def test_index_matches_fixture"},
+    {"file": "scripts/release.sh", "contains": "python3 tools/build_introduced_snapshot.py --check"},
+    {"file": "scripts/release.sh", "contains": "python3 tools/build_club_snapshots.py --check"},
+    {"file": ".github/workflows/validate.yml", "contains": "check-snapshots:"},
+    {"file": "scripts/release.sh", "contains": "GATE_RC=$?"},
+    {"file": "scripts/release.sh", "contains": "bash tests/test_release_force.sh"},
+    {"file": ".github/workflows/validate.yml", "contains": "check-force-test:"},
+    {"file": "tests/test_release_force.sh", "contains": "put the gate subshell on the left of"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "### 29. `( set -e; ... ) || die` Does Not Stop at the First Failure"},
+    {"file": "tools/check_introduced_meta.py", "contains": "def meta_problems"},
+    {"file": "scripts/release.sh", "contains": "python3 tools/check_introduced_meta.py"},
+    {"file": "README.md", "contains": "34 checks run in sequence"},
+    {"file": "README.md", "contains": "23 CI jobs"},
+    {"file": "docs/STATE.md", "contains": "Release gate has 34 checks"},
+    {"file": "scripts/release.sh", "absent": "die \"gate failed; see $GATE_LOG\""},
+    {"file": "README.md", "absent": "29 checks run in sequence"}
   ]
 }
