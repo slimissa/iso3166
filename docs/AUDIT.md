@@ -78,6 +78,9 @@ Tools that are not in any category above:
   `iso4217_snapshot.json` is well-formed. It is not run by the gate.
 - `iso3166_cli.py` is the command-line interface. CI exercises it in
   the CLI-contract step; it is not a gate step.
+- `tests/test_release_force.sh` is a shell test, not a tool. It runs
+  `release.sh --force` in a throwaway repository, in CI (`check-force-test`)
+  and in the gate.
 - `audit_languages.py` is advisory, writes nothing, and runs in
   neither CI nor the gate.
 - `build_initial_data.py` and `migrate_notes_to_per_field.py` are

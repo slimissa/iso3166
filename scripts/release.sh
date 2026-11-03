@@ -357,6 +357,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 -m pytest wrappers/python/tests/ -q
         python3 tools/build_introduced_snapshot.py --check
         python3 tools/build_club_snapshots.py --check
+        bash tests/test_release_force.sh
         bash tools/check_cross_language.sh US GB JP
         (cd wrappers/rust && cargo clippy --all-targets -- -D warnings)
     ) > "$GATE_LOG" 2>&1

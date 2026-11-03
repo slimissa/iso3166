@@ -69,6 +69,9 @@ build_repo() {
         done
         printf '#!/usr/bin/env bash\nexit 0\n' > tools/check_cross_language.sh
         printf 'def test_stub():\n    assert True\n' > tests/test_stub.py
+        # The gate names tests/test_release_force.sh (this very test). In the
+        # throwaway repo it is a stub that succeeds, so it cannot recurse.
+        printf '#!/usr/bin/env bash\nexit 0\n' > tests/test_release_force.sh
         printf 'def test_stub():\n    assert True\n' > wrappers/python/tests/test_stub.py
         printf '0.0.0\n' > VERSION
         printf '# Changelog\n\n## [0.0.2] - 2000-01-02\n\n- two\n\n## [0.0.1] - 2000-01-01\n\n- one\n' > CHANGELOG.md

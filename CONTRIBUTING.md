@@ -200,7 +200,7 @@ of the registry data.
 
 ## CI
 
-As of v1.12, every push to `main` runs 22 jobs:
+As of v1.12, every push to `main` runs 23 jobs:
 
 - `validate-json` — six-layer validator + ground-truth verify, on a
   matrix of Ubuntu × Python versions.
@@ -223,6 +223,8 @@ As of v1.12, every push to `main` runs 22 jobs:
 - `check-snapshot-freshness` — no vendored snapshot is past its `review_by`.
 - `check-snapshots` — the introduced and club snapshots reproduce from
   their generators.
+- `check-force-test` — `tests/test_release_force.sh`: `release.sh --force`
+  resume mode, in a throwaway repository.
 - `cross-language` — all four wrappers agree.
 - `wrapper-python`, `wrapper-javascript`, `wrapper-go`, `wrapper-rust`
   — language-specific test suites.

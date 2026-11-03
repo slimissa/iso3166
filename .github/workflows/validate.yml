@@ -468,6 +468,25 @@ jobs:
         run: python3 tools/build_club_snapshots.py --check
 
   # =================================================================
+  # 10c. release.sh --force. tests/test_release_force.sh runs the
+  #      resume mode and the gate's fail-closed behavior in a throwaway
+  #      repository (stub gh, stub tools), including two mutations
+  #      that must be caught. It never touches this repository.
+  # =================================================================
+  check-force-test:
+    name: check release.sh --force
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: release.sh --force scenarios
+        run: bash tests/test_release_force.sh
+
+  # =================================================================
   # 11. Cross-language verification: all four wrappers agree on US.
   # =================================================================
   cross-language:
