@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 21 jobs; the test suites hold 253 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 32 checks run in sequence in the release gate; CI runs 22 jobs; the test suites hold 253 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.1 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -831,7 +831,7 @@ python3 tools/validate.py iso3166.json --strict-count --strict-independent   # w
 
 Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation. A clean run prints `Summary: 6 OK, 0 WARN, 0 FAIL, 0 SKIP`.
 
-### The release gate: 30 checks
+### The release gate: 32 checks
 
 Everything below runs in the release gate, in this order, inside one `set -e` subshell. The first failure stops the release.
 
@@ -865,8 +865,10 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 26 | `gen_withdrawn_doc.py --check` | A stale `docs/WITHDRAWN.md` |
 | 27 | `python3 -m pytest tests/ -v` | The root suite (29 tests, including the architecture test and the index-vs-fixture test) |
 | 28 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
-| 29 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
-| 30 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
+| 29 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the sibling `.meta.json` is hand-written and not compared) |
+| 30 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
+| 31 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
+| 32 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
 
 The gate is not the whole test surface. The JavaScript suite (`npm test`), the Go suite (`go test`) and the Rust suite (`cargo test`) run in CI only, in `wrapper-javascript`, `wrapper-go` and `wrapper-rust`. The full wrapper surface is gated by the CI check the release script waits for before tagging.
 
@@ -901,7 +903,7 @@ Beyond the six-layer validator, the repo carries nine auxiliary checks, listed w
 
 ## 14. Continuous integration
 
-One workflow, [`.github/workflows/validate.yml`](./.github/workflows/validate.yml), with 21 CI jobs. It runs on pushes to `main` and to `v*` branches, on pull requests to `main`, and on manual dispatch, and ignores pushes that touch only `.gitignore`, `.gitattributes` or `LICENSE`. It has read-only `contents` permission and cancels an in-progress run for the same ref.
+One workflow, [`.github/workflows/validate.yml`](./.github/workflows/validate.yml), with 22 CI jobs. It runs on pushes to `main` and to `v*` branches, on pull requests to `main`, and on manual dispatch, and ignores pushes that touch only `.gitignore`, `.gitattributes` or `LICENSE`. It has read-only `contents` permission and cancels an in-progress run for the same ref.
 
 There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.0, the sanctions release, has not shipped.
 
@@ -923,6 +925,7 @@ There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.
 | `check-docs-match-tree` | `check_docs_match_tree.py` |
 | `check-mojibake` | `check_mojibake.py` |
 | `check-snapshot-freshness` | `check_snapshot_freshness.py` |
+| `check-snapshots` | `build_introduced_snapshot.py --check`, `build_club_snapshots.py --check` |
 | `cross-language` | `check_cross_language.sh US GB JP TW XK UK`; needs `check-wrapper-sync` |
 | `wrapper-python` | Wrapper tests on Python 3.11 and 3.12; `pip-audit` |
 | `wrapper-javascript` | `npm test` on a Node matrix |
@@ -947,7 +950,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 0. **Preflight.** Inside a git repository, tree clean, branch `main`, `HEAD` equal to `origin/main`, CI on `HEAD` complete and green, a `## [<version>]` section in `CHANGELOG.md`, the tag free locally and on `origin`, `VERSION` different from the target, and the release's entry present in `tools/release_claims.json`.
 1. **Bump the version sites** (below).
-2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 30 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
+2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 32 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
 3. **Commit** `chore: release v<version>`, after checking that staged paths are not all ignored by the workflow's `paths-ignore`.
 4. **Push and wait for CI.** Every workflow run for the release SHA must complete with `success`. A run that does not start within 180 seconds, a failed run, or a poll timeout stops the release before the tag exists.
 5. **Tag** `v<version>` only on green. The tag message is read from the changelog section, checked for a header and body, written with `git tag -a -F ... --cleanup=verbatim`, read back with git and compared with the file; a mismatch or a wrong target deletes the local tag and pushes nothing. Then `git push origin v<version>`.
@@ -1017,7 +1020,7 @@ iso3166/
   schema.json                               # JSON Schema for iso3166.json (schema version 1.0.0)
   .github/
     workflows/
-      validate.yml                          # The only workflow: 21 CI jobs
+      validate.yml                          # The only workflow: 22 CI jobs
   bin/
     iso3166                                 # Repo-local shim: installed `iso3166` if present, else tools/iso3166_cli.py
   docs/
@@ -1046,7 +1049,7 @@ iso3166/
       v1.9.3-version-policy.md              # Version strings in PROVENANCE.md and CONTRIBUTING.md
       withdrawn-codes.md                    # ADR: withdrawn codes and successors
   scripts/
-    release.sh                              # The release pipeline (steps 0 to 7, 30-check gate)
+    release.sh                              # The release pipeline (steps 0 to 7, 32-check gate)
   tests/
     cross_language_consistency.json         # Shared fixture for all four wrappers (generated)
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON
@@ -1209,7 +1212,7 @@ Open an issue before starting a large change. Data corrections go through an enr
 7. Run the tests: `python3 -m pytest tests/ -q && python3 -m pytest wrappers/python/tests/ -q`
 8. Run the cross-language check: `bash tools/check_cross_language.sh US GB JP` (needs `node`, `cargo` and `go`).
 9. Rehearse the release: `bash scripts/release.sh <version> --dry-run`
-10. Open a pull request. CI runs 21 jobs.
+10. Open a pull request. CI runs 22 jobs.
 
 **Source discipline.** Every enrichable field is first-party (ISO, UN, IANA, ITU, ISO 639-3, a documented government statistical service). Wikipedia, countrycode.org and aggregator CSVs are not acceptable as the origin of a field, with one explicit, documented exception: `introduced` and the four club arrays ([Section 7](#7-the-temporal-identity-layer)).
 

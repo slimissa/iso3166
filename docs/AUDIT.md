@@ -25,6 +25,8 @@ Tools that write committed artifacts.
 | `sync_wrappers.py` | yes | yes | yes |
 | `gen_consistency_fixture.py` | yes | yes | yes |
 | `gen_withdrawn_doc.py` | yes | yes | yes |
+| `build_introduced_snapshot.py` | yes | yes | yes |
+| `build_club_snapshots.py` | yes | yes | yes |
 | `gen_iso4217_snapshot.py` | yes | no | no |
 
 ## Category B — Validators

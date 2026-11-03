@@ -447,6 +447,27 @@ jobs:
         run: python3 tools/check_snapshot_freshness.py
 
   # =================================================================
+  # 10b. Snapshot generators. build_introduced_snapshot.py and
+  #      build_club_snapshots.py must reproduce the committed
+  #      snapshots exactly. Both are stdlib-only.
+  # =================================================================
+  check-snapshots:
+    name: check snapshot generators
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Introduced snapshot reproduces
+        run: python3 tools/build_introduced_snapshot.py --check
+
+      - name: Club snapshots reproduce
+        run: python3 tools/build_club_snapshots.py --check
+
+  # =================================================================
   # 11. Cross-language verification: all four wrappers agree on US.
   # =================================================================
   cross-language:

@@ -200,7 +200,7 @@ of the registry data.
 
 ## CI
 
-As of v1.12, every push to `main` runs 21 jobs:
+As of v1.12, every push to `main` runs 22 jobs:
 
 - `validate-json` — six-layer validator + ground-truth verify, on a
   matrix of Ubuntu × Python versions.
@@ -221,6 +221,8 @@ As of v1.12, every push to `main` runs 21 jobs:
 - `check-docs-match-tree` — README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS match the tree.
 - `check-mojibake` — no UTF-8/Latin-1 corruption in text files.
 - `check-snapshot-freshness` — no vendored snapshot is past its `review_by`.
+- `check-snapshots` — the introduced and club snapshots reproduce from
+  their generators.
 - `cross-language` — all four wrappers agree.
 - `wrapper-python`, `wrapper-javascript`, `wrapper-go`, `wrapper-rust`
   — language-specific test suites.
