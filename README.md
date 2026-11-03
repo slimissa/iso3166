@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 21 jobs; the test suites hold 251 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 21 jobs; the test suites hold 253 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.1 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -863,7 +863,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 24 | `sync_wrappers.py --check` | A wrapper copy that differs from `iso3166.json` |
 | 25 | `gen_consistency_fixture.py --check` | A stale cross-language fixture |
 | 26 | `gen_withdrawn_doc.py --check` | A stale `docs/WITHDRAWN.md` |
-| 27 | `python3 -m pytest tests/ -v` | The root suite (27 tests, including the architecture test) |
+| 27 | `python3 -m pytest tests/ -v` | The root suite (29 tests, including the architecture test and the index-vs-fixture test) |
 | 28 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
 | 29 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
 | 30 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
@@ -874,12 +874,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 27 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 29 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 104 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 52 |
 | Rust | `(cd wrappers/rust && cargo test)` | 27 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 41 (declarations) |
-| **Total** | | **251** |
+| **Total** | | **253** |
 
 ### Additional checks
 
@@ -1053,6 +1053,7 @@ iso3166/
     test_enrich_field_citations.py          # record_source writes one source line per field
     test_enrich_independent.py              # enrich_independent.py logic that needs no live ISO markup
     test_export_aggregated.py               # Aggregated export tests
+    test_index_matches_fixture.py           # docs/QUERIES.md worked-examples index equals the fixture's derived_queries
     test_release_force.sh                   # Shell test of release.sh --force resume mode
     test_release_pattern.py                 # Release-pattern properties
   tools/
