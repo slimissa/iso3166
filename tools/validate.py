@@ -53,6 +53,7 @@ if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))
 
 import parse_source  # noqa: E402
+from check_introduced import introduced_mismatches  # noqa: E402
 from patterns import CALLING_CODE_RE  # noqa: E402
 
 
@@ -64,6 +65,8 @@ if not (PROJECT_ROOT / "iso3166.json").is_file():
         file=sys.stderr,
     )
     sys.exit(2)
+
+INTRODUCED_SNAPSHOT = PROJECT_ROOT / "tools" / "introduced_snapshot.json"
 
 
 LAYER_NAMES = (
@@ -264,7 +267,11 @@ def _check_membership(r: "LayerResult", where: str, field: str, ranges: Any) -> 
         prev_to = to
 
 
-def layer_integrity(reg: dict[str, Any]) -> LayerResult:
+def layer_integrity(
+    reg: dict[str, Any],
+    *,
+    introduced_snapshot_path: Path | None = None,
+) -> LayerResult:
     r = LayerResult("integrity")
     countries = reg.get("countries", {})
 
@@ -373,6 +380,23 @@ def layer_integrity(reg: dict[str, Any]) -> LayerResult:
                     r.error(f"{where}: missing {f} (use [] for no membership)")
                     continue
                 _check_membership(r, where, f, entry[f])
+
+    # introduced must equal tools/introduced_snapshot.json (v1.12.2). Without
+    # this, a data edit that rewrites `introduced` would pass every gate.
+    snap_path = introduced_snapshot_path or INTRODUCED_SNAPSHOT
+    introduced_snap = load_snapshot(snap_path)
+    if introduced_snap is None:
+        r.error(f"introduced snapshot missing or unreadable: {snap_path}")
+    else:
+        mismatches = introduced_mismatches(reg, introduced_snap)
+        for msg in mismatches:
+            r.error(msg)
+        if not mismatches:
+            n_active = len(countries.get("active", []))
+            r.note(
+                f"introduced matches tools/introduced_snapshot.json "
+                f"for {n_active} active entries"
+            )
 
     if not r.errors:
         total = sum(len(countries.get(s, [])) for s in ("active", "withdrawn"))
@@ -693,6 +717,7 @@ def run_layers(
     skip: set[str] | None,
     strict_count: bool,
     strict_independent: bool = False,
+    introduced_snapshot_path: Path | None = None,
 ) -> list[LayerResult]:
     only = only or set()
     skip = skip or set()
@@ -709,7 +734,9 @@ def run_layers(
     if should_run("schema"):
         results.append(layer_schema(reg, schema_path=schema_path))
     if should_run("integrity"):
-        results.append(layer_integrity(reg))
+        results.append(layer_integrity(
+            reg, introduced_snapshot_path=introduced_snapshot_path,
+        ))
     if should_run("business"):
         results.append(layer_business(reg, strict_independent=strict_independent))
     if should_run("cross-reference"):
