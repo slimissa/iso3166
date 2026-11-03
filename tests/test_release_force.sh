@@ -15,6 +15,12 @@
 #      `if ! git log | grep -q` must FAIL scenario 3. This proves
 #      scenario 3 catches the SIGPIPE + pipefail bug (RELEASE_PATTERN.md,
 #      "set -euo pipefail + if ! cmd | grep").
+#   6. a check in the MIDDLE of the gate fails (stub check_mojibake.py exits
+#      1) -> release.sh dies with "gate failed" and creates no tag.
+#   7. mutation: the gate subshell rewritten to sit on the left of `||`
+#      (bash then ignores `set -e` in it, so only the last command counts)
+#      lets that same failing check through. This proves scenario 6
+#      catches the bug (RELEASE_PATTERN.md, Rule 29).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -149,6 +155,56 @@ PY
         pass "5. mutation (git log | grep under pipefail) is caught by scenario 3"
     else
         fail "5. mutation not caught (rc=$RC): the long-history scenario no longer triggers SIGPIPE"
+    fi
+fi
+
+# 6. Fail-closed gate: a failing check in the middle of the gate stops the
+#    release. Resume mode runs the gate, so --force reaches it.
+FAILING_STUB='#!/usr/bin/env python3\nraise SystemExit(1)\n'
+make_midgate_failure() {
+    (
+        cd "$1"
+        printf "$FAILING_STUB" > tools/check_mojibake.py
+        git add -A && git commit -q -m "make a mid-gate check fail"
+        git push -q origin main
+    )
+}
+CLOSED_REPO="$TMP/repo_closed"
+build_repo "$CLOSED_REPO" "$REAL_SH"
+make_midgate_failure "$CLOSED_REPO"
+run_sh "$CLOSED_REPO" 0.0.1 --force
+if [ "$RC" -ne 0 ] && grep -q "gate failed" <<<"$OUT" \
+   && ! git -C "$CLOSED_REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null; then
+    pass "6. a failing check in the middle of the gate stops the release (no tag)"
+else fail "6. mid-gate failure was not fatal (rc=$RC): $(tail -4 <<<"$OUT")"; fi
+
+# 7. Mutation: put the gate subshell on the left of `||` again. The same
+#    failing check must then get through, which is what scenario 6 detects.
+GATE_GOOD='    ) > "$GATE_LOG" 2>&1
+    GATE_RC=$?
+'
+GATE_BAD='    ) > "$GATE_LOG" 2>&1 || GATE_RC=$?
+'
+# (grep -F would treat the two-line anchor as two patterns; python checks it whole.)
+if ! python3 - "$REAL_SH" "$TMP/release_open.sh" "$GATE_GOOD" "$GATE_BAD" <<'PY'
+import sys
+src, dst, good, bad = sys.argv[1:5]
+t = open(src).read()
+if t.count(good) != 1:
+    sys.exit(1)
+open(dst, "w").write(t.replace(good, bad, 1))
+PY
+then
+    fail "7. mutation: release.sh no longer ends the gate with 'GATE_RC=\$?'; update this test"
+else
+    OPEN_REPO="$TMP/repo_open"
+    build_repo "$OPEN_REPO" "$TMP/release_open.sh"
+    make_midgate_failure "$OPEN_REPO"
+    run_sh "$OPEN_REPO" 0.0.1 --force
+    if [ "$RC" -eq 0 ] && git -C "$OPEN_REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null; then
+        pass "7. mutation (gate subshell left of ||) lets a failing check through; scenario 6 catches it"
+    else
+        fail "7. mutation not caught (rc=$RC): the mid-gate failure was fatal even with the gate left of ||"
     fi
 fi
 

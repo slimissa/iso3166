@@ -654,6 +654,35 @@ SHA; Rule 6 still applies (assert every run for the SHA is
 Reference: ISO 3166 v1.10.0 and v1.10.1. Both releases hit the empty list in a
 manual `gh run watch` after the release push.
 
+### 29. `( set -e; ... ) || die` Does Not Stop at the First Failure
+
+Rule 29: bash ignores `set -e` inside any compound command whose exit status
+is tested, which includes a subshell on the left of `||` or `&&` and the
+condition of `if`. A gate written as
+
+    ( set -e; check_a; check_b; check_c ) > "$LOG" 2>&1 || die "gate failed"
+
+keeps running after `check_a` fails and reports only the status of the last
+command, `check_c`. Every earlier check is advisory. The gate looks fine, the
+log shows the failure, and the release goes ahead.
+
+Run the subshell as a plain statement with errexit off in the parent, and
+read `$?`:
+
+    GATE_RC=0
+    set +e
+    ( set -e; check_a; check_b; check_c ) > "$LOG" 2>&1
+    GATE_RC=$?
+    set -e
+    [ "$GATE_RC" -eq 0 ] || die "gate failed (exit $GATE_RC)"
+
+Reference: ISO 3166 v1.12.2. `scripts/release.sh` used the `||` form since
+the gate was introduced, so until v1.12.2 only `cargo clippy`, the last
+command, could fail the release gate. It was found while wiring
+`tests/test_release_force.sh` into the gate: a missing test file printed
+`No such file or directory` and the gate still reported "gate passed".
+`tests/test_release_force.sh` scenarios 6 and 7 now hold the fix in place.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:
@@ -780,8 +809,10 @@ artifact in place; the release commits stale output.
 
 Two mechanisms, either is valid:
 
-- Wrap the sequence in a subshell with `set -e`. The subshell
-  exits on the first non-zero return.
+- Wrap the sequence in a subshell with `set -e`, run as a plain
+  statement, and read the subshell's status from `$?` (Rule 29). The
+  subshell exits on the first non-zero return. Do not write
+  `( set -e; ... ) || die`: bash ignores `set -e` in that subshell.
 - Check each command's exit explicitly: `command || die "..."`.
 
 The failure mode this prevents (ISO 3166 v1.6.9): the snapshot

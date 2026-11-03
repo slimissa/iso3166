@@ -320,6 +320,11 @@ if [ "$DRY_RUN" = "0" ]; then
     python3 tools/gen_state_doc.py
 
     GATE_LOG=/tmp/release-gate.log
+    # Run the gate as a plain statement and read its status from $?. A
+    # subshell on the left of `||` (or inside `if`) ignores `set -e` in bash,
+    # so only its last command would count (docs/RELEASE_PATTERN.md, Rule 29).
+    GATE_RC=0
+    set +e
     (
         set -e
         python3 tools/check_version_consistency.py
@@ -354,8 +359,10 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/build_club_snapshots.py --check
         bash tools/check_cross_language.sh US GB JP
         (cd wrappers/rust && cargo clippy --all-targets -- -D warnings)
-    ) > "$GATE_LOG" 2>&1 \
-        || { tail -20 "$GATE_LOG"; die "gate failed; see $GATE_LOG"; }
+    ) > "$GATE_LOG" 2>&1
+    GATE_RC=$?
+    set -e
+    [ "$GATE_RC" -eq 0 ] || { tail -20 "$GATE_LOG"; die "gate failed (exit $GATE_RC); see $GATE_LOG"; }
 
     echo "  gate passed"
     tail -3 "$GATE_LOG"
