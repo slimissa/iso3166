@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.12.3] — YYYY-MM-DD
+## [1.12.3] — 2026-11-04
 
 v1.12.3 turns presence checks into value checks. The third closure audit found that a wrong but well-formed value in most fields passed the gate, that the export `--check` lines compared files with themselves, that the validator could skip its schema layer without failing, that `--force` could tag a commit that was not the release commit, and that the verification report held no gate evidence.
 
