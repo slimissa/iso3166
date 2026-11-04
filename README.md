@@ -7,7 +7,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 [![Validate](https://github.com/slimissa/iso3166/actions/workflows/validate.yml/badge.svg)](https://github.com/slimissa/iso3166/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Schema](https://img.shields.io/badge/schema-1.0.0-green.svg)](./schema.json)
-[![Registry](https://img.shields.io/badge/registry-1.12.2-orange.svg)](./iso3166.json)
+[![Registry](https://img.shields.io/badge/registry-1.12.3-orange.svg)](./iso3166.json)
 
 ---
 
@@ -55,7 +55,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
 | **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 284 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
-| **Version** | 1.12.2 (schema 1.0.0) |
+| **Version** | 1.12.3 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
 | **Dependencies** | The JSON needs none. The Python, JavaScript and Go wrappers need none; the Rust crate needs `serde` and `serde_json`. Tool time: `jsonschema`, `pyarrow==26.0.0`, `pandas`, `pytest`. |
 
@@ -246,7 +246,7 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
     "schema_version": "1.0.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
     "updated": "2026-10-31",
-    "version": "1.12.2"
+    "version": "1.12.3"
   },
   "countries": { "active": [ "..." ], "withdrawn": [ "..." ] }
 }
@@ -565,7 +565,7 @@ Read `numeric` and `calling_codes` as text: `020` is Andorra, and a spreadsheet 
 
 ```python
 import pyarrow.parquet as pq
-print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # b'1.12.2'
+print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # b'1.12.3'
 ```
 
 ### Comparison semantics and the build pin
@@ -962,7 +962,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 **`--force`** resumes from a post-commit state: when `VERSION` already equals the target because a previous run committed the release but did not reach the tag. It skips bump, commit and push, checks that `HEAD` **is** the `chore: release v<version>` commit (a commit on top of it is refused, because the tag lands on `HEAD`) and is on `origin/main`, **re-runs the gate and the CI check**, and refuses if regeneration left uncommitted files, then tags, releases and writes the report. `--force` and `--dry-run` are mutually exclusive, and `tests/test_release_force.sh` exercises the mode; it runs in the release gate and in the `check-force-test` CI job. `docs/README-AUDIT-NOTES.md` records the failures behind the rules: never reset `VERSION` to re-run the script, never interrupt the CI wait.
 
-Forty-two verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.2-verification.md`](./docs/v1.12.2-verification.md), from v1.12.3 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+Forty-two verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.3-verification.md`](./docs/v1.12.3-verification.md), from v1.12.3 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
 
 ---
 
@@ -1039,7 +1039,7 @@ iso3166/
     SPEC-v1.12.0-phase1.md                  # v1.12.0 Phase 1 spec: the club-membership snapshots
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
-    v*-verification.md                      # 42 release gate records, v1.0.0 to v1.12.2
+    v*-verification.md                      # 42 release gate records, v1.0.0 to v1.12.3
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     decisions/
       club-memberships.md                   # ADR: club membership arrays, sources, null policy
