@@ -151,6 +151,61 @@ run() {
     fi
 }
 
+# BEGIN artifact-freshness
+# Committed artifacts must equal what the tree generates. The order is the
+# point: check first (committed against the tree), regenerate second, diff
+# against HEAD third. A --check run AFTER regeneration compares a file with
+# itself and can never fail, so the gate holds no such line.
+#
+# This runs at HEAD before the version bump (normal mode), or at the release
+# commit (--force). After the bump the artifacts differ from HEAD by design;
+# tools/check_release_diff.py in the gate takes over there.
+#
+# countries_by_region.parquet is not in the byte diff: its --check compares
+# tables, not bytes (the bytes vary with the pyarrow version), and stage 1
+# has already run that comparison.
+FRESHNESS_ARTIFACTS=(
+    'iso3166*.sql' 'iso3166*.csv' 'iso3166*.tsv'
+    iso3166.parquet
+    wrappers/go/iso3166.json wrappers/javascript/iso3166.json
+    wrappers/python/iso3166/iso3166.json wrappers/rust/iso3166.json
+    tests/cross_language_consistency.json docs/WITHDRAWN.md
+)
+artifact_freshness() {
+    local mode="${1:-full}" cmd out gen
+    echo "  [1/3] --check: committed artifacts against the tree"
+    for cmd in \
+        "python3 tools/export_sql.py --check" \
+        "python3 tools/export_csv.py --check" \
+        "python3 tools/export_parquet.py --check" \
+        "python3 tools/export_aggregated.py --check" \
+        "python3 tools/sync_wrappers.py --check" \
+        "python3 tools/gen_consistency_fixture.py --check" \
+        "python3 tools/gen_withdrawn_doc.py --check"
+    do
+        if ! out=$($cmd 2>&1); then
+            echo "FRESHNESS FAIL: $cmd"
+            printf '%s\n' "$out" | tail -8
+            die "committed artifact is stale ($cmd); regenerate, commit, push and wait for CI, then re-run"
+        fi
+    done
+    if [ "$mode" = "check-only" ]; then
+        echo "  (check-only: regeneration and diff skipped)"
+        return 0
+    fi
+    echo "  [2/3] regenerating the artifacts"
+    for gen in export_sql export_csv export_parquet export_aggregated \
+               sync_wrappers gen_consistency_fixture gen_withdrawn_doc; do
+        python3 "tools/$gen.py" >/dev/null || die "tools/$gen.py failed"
+    done
+    echo "  [3/3] git diff --exit-code: regenerated artifacts against HEAD"
+    if ! git diff --exit-code --stat -- "${FRESHNESS_ARTIFACTS[@]}"; then
+        echo "FRESHNESS FAIL: git diff --exit-code"
+        die "regeneration changed committed artifacts; commit them first"
+    fi
+}
+# END artifact-freshness
+
 # --- step 0: preflight -------------------------------------------------
 
 step "0/7 preflight"
@@ -224,6 +279,13 @@ fi
 
 check_no_orphan_variables
 check_workflows_covered
+if [ "$RESUME_MODE" = "1" ]; then
+    echo "  artifact freshness: checked in step 2 (resume mode)"
+elif [ "$DRY_RUN" = "1" ]; then
+    artifact_freshness check-only
+else
+    artifact_freshness full
+fi
 echo "  tree clean"
 echo "  on main at $LOCAL_SHA"
 echo "  CHANGELOG has section for $VERSION"
@@ -310,6 +372,9 @@ fi
 step "2/7 regenerate artifacts and run the gate"
 
 if [ "$DRY_RUN" = "0" ]; then
+    if [ "$RESUME_MODE" = "1" ]; then
+        artifact_freshness full
+    fi
     python3 tools/export_sql.py
     python3 tools/export_csv.py
     python3 tools/export_parquet.py
@@ -348,13 +413,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/enrich_field.py --field intermediate_region --check
         python3 tools/enrich_field.py --only-value
         python3 tools/enrich_club_memberships.py --check
-        python3 tools/export_sql.py --check
-        python3 tools/export_csv.py --check
-        python3 tools/export_parquet.py --check
-        python3 tools/export_aggregated.py --check
-        python3 tools/sync_wrappers.py --check
-        python3 tools/gen_consistency_fixture.py --check
-        python3 tools/gen_withdrawn_doc.py --check
+        python3 tools/check_release_diff.py
         python3 -m pytest tests/ -v
         python3 -m pytest wrappers/python/tests/ -q
         python3 tools/build_introduced_snapshot.py --check
