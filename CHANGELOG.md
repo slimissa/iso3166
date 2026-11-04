@@ -8,6 +8,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.3] — YYYY-MM-DD
+
+v1.12.3 turns presence checks into value checks. The third closure audit found that a wrong but well-formed value in most fields passed the gate, that the export `--check` lines compared files with themselves, that the validator could skip its schema layer without failing, that `--force` could tag a commit that was not the release commit, and that the verification report held no gate evidence.
+
+### Added
+
+- `enrich_field.py --only-value`: every value of `currency_codes`, `calling_codes`, `tlds`, `languages`, `borders`, `subregion` and `intermediate_region` must be in the field's snapshot (`borders`: an active alpha-2 code). Without `--field` it checks all seven. A mismatch prints the code, the field, the tree value and the snapshot. It is gate line 21. `--check` now runs the same comparison after the presence check, and `--snapshot PATH` replaces a snapshot for the tests.
+- `scripts/release.sh` artifact freshness block: `--check` on the committed exports first, regeneration second, `git diff --exit-code` against `HEAD` third. It runs before the version bump and, with `--force`, at the start of step 2.
+- `tools/check_release_diff.py`: after the bump and regeneration, each generated artifact may differ from `HEAD` only in the version string and the `updated` date (Parquet: the table content must be equal). Gate line 23.
+- `validate.py --require-schema`: exit 2 when `jsonschema` is missing or the schema layer is skipped. The gate and the `validate-json` CI step pass it.
+- `tools/write_verification_report.py`, and gate recording in `release.sh`: every freshness check and gate command is recorded with its exit code. The verification report lists them under "Gate commands:" and "Exit codes:", with a Result line and the SHA-256 of the gate log. `docs/vX-verification.md.sha256` holds the report's own hash.
+- `check_iso4217_snapshot.py` in the release gate.
+- `check_introduced.py` rejects an `introduced` date later than today, in the entry or the snapshot. `--today` replaces the clock for the tests.
+- Tests: `test_enrich_field_values.py`, `test_export_check_order.py`, `test_validate_require_schema.py`, `test_verification_report_evidence.py`, `test_check_introduced_future.py`, `test_club_ranges.py`, and `tests/test_release_force.sh` scenarios 8 and 9.
+- Release claims for 1.12.3 in `tools/release_claims.json`.
+
+### Changed
+
+- `--force` resume mode refuses unless `HEAD` is the `chore: release vX.Y.Z` commit (a commit on top of it was tagged as the release), and refuses when regeneration leaves uncommitted files. `tests/test_release_force.sh` scenarios 6 and 7 amend the release commit instead of adding one.
+- The release gate has 30 checks (was 34): the seven `--check` lines that ran after regeneration are gone, replaced by the freshness block and `check_release_diff.py`; `--only-value` and `check_iso4217_snapshot.py` are added.
+- `tools/m49_subregion_snapshot.json` lists the 17 M49 subregions. It held seven intermediate-region names (Caribbean, Central America, South America, and four African regions) and lacked "Sub-Saharan Africa" and "Latin America and the Caribbean", which 105 entries use. The registry data is unchanged.
+- `validate.py` names the two ranges when a club range overlaps another.
+
+### Fixed
+
+- README: the validator's cross-reference layer was documented as checking `tlds` and `calling_codes`; it checks `currency_codes` only. The row now says which command checks the other fields.
+- README: five mentions of 1.12.1 where 1.12.2 is meant; 41 verification reports where 42 exist; a link to a `SPEC.md` that is not in the tree; the preflight no longer lists the `release_claims.json` entry, which only the gate checks.
+- `release.sh`: the unused `check_manifest_has_version` function is gone.
+
+### Known limits
+
+- A wrong value that is itself valid (a calling code of another country, a language that is in ISO 639-3) still passes: the snapshots are lists of valid values, not per-country mappings. `region`, `alpha_3`, `numeric`, `name` and `independent` have no value check either.
+- The gate log is not committed; the report holds only its SHA-256.
+- The README version row is not bumped by `release.sh` and no check reads it.
+
 ## [1.12.2] — 2026-11-03
 
 v1.12.2 closes the four enforcement gaps the v1.12.1 closure audit left open, adds a check for the introduced snapshot's meta file, and fixes the release gate, which did not stop at the first failing check.
