@@ -840,7 +840,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | # | Command | What it catches |
 |--:|---------|-----------------|
 | 1 | `check_version_consistency.py` | Any version site disagreeing with `VERSION` |
-| 2 | `check_release_claims.py "$VERSION"` | A claim for this version in `tools/release_claims.json` that is false (20 for 1.12.2) |
+| 2 | `check_release_claims.py "$VERSION"` | A claim for this version in `tools/release_claims.json` that is false (23 for 1.12.3) |
 | 3 | `check_mojibake.py` | UTF-8 / Latin-1 round-trip corruption and unclosed code fences in text files |
 | 4 | `check_snapshot_freshness.py` | A `*_snapshot.json` whose `meta.review_by` has passed |
 | 5 | `check_registry_freshness.py` | An entry whose `last_verified` is more than 365 days old |

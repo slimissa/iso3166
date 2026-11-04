@@ -651,5 +651,30 @@
     {"file": "scripts/release.sh", "absent": "die \"gate failed; see $GATE_LOG\""},
     {"file": "README.md", "absent": "29 checks run in sequence"},
     {"file": "CHANGELOG.md", "contains": "## [1.12.2]"}
+  ],
+  "1.12.3": [
+    {"file": "tools/enrich_field.py", "contains": "def mode_only_value"},
+    {"file": "scripts/release.sh", "contains": "gate python3 tools/enrich_field.py --only-value\n"},
+    {"file": "scripts/release.sh", "contains": "# BEGIN artifact-freshness"},
+    {"file": "scripts/release.sh", "contains": "gate python3 tools/check_release_diff.py\n"},
+    {"file": "scripts/release.sh", "absent": "gate python3 tools/export_csv.py --check"},
+    {"file": "scripts/release.sh", "contains": "--strict-independent --require-schema\n"},
+    {"file": ".github/workflows/validate.yml", "contains": "--strict-independent --require-schema --verbose"},
+    {"file": "tools/validate.py", "contains": "\"--require-schema\""},
+    {"file": "scripts/release.sh", "contains": "HEAD is not the release commit"},
+    {"file": "tests/test_release_force.sh", "contains": "# 9. Regeneration leaves an uncommitted file"},
+    {"file": "scripts/release.sh", "contains": "tools/write_verification_report.py"},
+    {"file": "tools/write_verification_report.py", "contains": "Gate commands:"},
+    {"file": "scripts/release.sh", "contains": "gate python3 tools/check_iso4217_snapshot.py\n"},
+    {"file": "scripts/release.sh", "absent": "check_manifest_has_version"},
+    {"file": "tools/check_introduced.py", "contains": "is in the future"},
+    {"file": "tests/test_club_ranges.py", "contains": "def test_overlapping_ranges_fail_and_name_the_conflict"},
+    {"file": "README.md", "contains": "30 checks run in sequence"},
+    {"file": "README.md", "absent": "34 checks run in sequence"},
+    {"file": "README.md", "contains": "23 CI jobs"},
+    {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"},
+    {"file": "README.md", "absent": "Forty-one verification reports"},
+    {"file": "README.md", "absent": "SPEC.md"},
+    {"file": "CHANGELOG.md", "contains": "## [1.12.3]"}
   ]
 }
