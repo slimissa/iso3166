@@ -38,12 +38,12 @@ A list field counts as populated when it is non-empty; any other field when it i
 | ISO 639-3 | 7927 codes | tools/iso639_3_snapshot.json | 2027-09-27 |
 | ITU calling codes | 204 codes | tools/itu_calling_code_snapshot.json | 2027-09-27 |
 | IANA ccTLDs | 248 TLDs | tools/iana_tld_snapshot.json | 2027-09-27 |
-| UN M49 subregion | 22 names | tools/m49_subregion_snapshot.json | closed |
+| UN M49 subregion | 17 names | tools/m49_subregion_snapshot.json | closed |
 | UN M49 intermediate | 7 names | tools/m49_intermediate_region_snapshot.json | closed |
 
 ## CI
 
-23 jobs (see `.github/workflows/validate.yml`). Release gate has 34 checks (`scripts/release.sh`, step 2).
+23 jobs (see `.github/workflows/validate.yml`). Release gate has 35 checks (`scripts/release.sh`, step 2).
 
 ## Known limitations
 

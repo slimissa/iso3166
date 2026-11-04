@@ -192,16 +192,28 @@ def write_registry(path: Path, data: dict[str, Any]) -> None:
     path.write_text(text, encoding="utf-8")
 
 
-def load_snapshot(cfg: FieldConfig) -> frozenset[str]:
-    if not cfg.snapshot_path.exists():
-        raise FatalError(f"snapshot not found: {cfg.snapshot_path}")
+def load_snapshot(
+    cfg: FieldConfig,
+    snapshot_override: Path | None = None,
+    registry_path: Path | None = None,
+) -> frozenset[str]:
+    """The closed set of valid values for cfg.
+
+    snapshot_override replaces the snapshot file (tests use it);
+    registry_path replaces the registry that borders is checked against.
+    """
+    path = snapshot_override or cfg.snapshot_path
+    if cfg.snapshot_key is None and snapshot_override is None and registry_path:
+        path = registry_path
+    if not path.exists():
+        raise FatalError(f"snapshot not found: {path}")
 
     if cfg.snapshot_key is None:
         # Special case: borders validates against the registry's own
         # active alpha-2 codes. user-assigned and exceptionally-reserved
         # entries are valid border targets — Kosovo (XK) borders four
         # officially-assigned countries.
-        reg = load_registry(cfg.snapshot_path)
+        reg = load_registry(path)
         return frozenset(
             e["alpha_2"] for e in reg["countries"]["active"]
             if e["status"] in ("officially-assigned",
@@ -209,11 +221,11 @@ def load_snapshot(cfg: FieldConfig) -> frozenset[str]:
                                 "exceptionally-reserved")
         )
 
-    data = json.loads(cfg.snapshot_path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
     values = data.get(cfg.snapshot_key)
     if not isinstance(values, list):
         raise FatalError(
-            f"{cfg.snapshot_path}: key {cfg.snapshot_key!r} is not a list"
+            f"{path}: key {cfg.snapshot_key!r} is not a list"
         )
     return frozenset(values)
 
@@ -468,11 +480,85 @@ def mode_list_all(args: argparse.Namespace) -> int:
     return 0
 
 
+def value_mismatches(
+    cfg: FieldConfig,
+    entries: list[dict[str, Any]],
+    known: frozenset[str],
+) -> list[tuple[str, str, Any, str]]:
+    """Compare each entry's value with the snapshot, element by element.
+
+    The snapshots in tools/ are the closed sets of valid values (the ISO
+    4217 codes, the E.164 prefixes, the IANA ccTLDs, the ISO 639-3 codes,
+    the M49 names); borders is checked against the registry's own active
+    codes. An element that is not in the snapshot is a mismatch. Order is
+    irrelevant: a list is compared as a set of elements. A null value is
+    not compared (a missing value is the presence check's business).
+
+    Returns (alpha_2, field, tree_value, detail) tuples, sorted by code.
+    """
+    out: list[tuple[str, str, Any, str]] = []
+    for e in entries:
+        value = e.get(cfg.name)
+        if value is None:
+            continue
+        items = [value] if cfg.is_scalar else list(value)
+        bad = sorted(i for i in set(items) if i not in known)
+        if bad:
+            out.append((
+                e["alpha_2"], cfg.name, value,
+                f"not in snapshot {_snapshot_label(cfg)}: {bad}",
+            ))
+    return sorted(out, key=lambda t: t[0])
+
+
+def _snapshot_label(cfg: FieldConfig) -> str:
+    try:
+        return str(cfg.snapshot_path.relative_to(PROJECT_ROOT))
+    except ValueError:
+        return str(cfg.snapshot_path)
+
+
+def _print_value_mismatches(
+    mismatches: list[tuple[str, str, Any, str]],
+) -> None:
+    for code, field, tree_value, detail in mismatches:
+        print(f"  {code}\t{field}\ttree={tree_value!r}\tsnapshot: {detail}",
+              file=sys.stderr)
+
+
+def _value_mismatches_for(
+    args: argparse.Namespace, cfg: FieldConfig,
+) -> list[tuple[str, str, Any, str]]:
+    reg = load_registry(args.registry)
+    known = load_snapshot(cfg, getattr(args, "snapshot", None), args.registry)
+    return value_mismatches(cfg, reg["countries"]["active"], known)
+
+
+def mode_only_value(args: argparse.Namespace) -> int:
+    """Value check only: no presence check. Without --field, every field."""
+    names = [args.field] if args.field else sorted(FIELDS)
+    total = 0
+    for name in names:
+        cfg = FIELDS[name]
+        bad = _value_mismatches_for(args, cfg)
+        if bad:
+            print(f"FAIL: {len(bad)} {name} value(s) differ from the "
+                  f"snapshot:", file=sys.stderr)
+            _print_value_mismatches(bad)
+            total += len(bad)
+        else:
+            print(f"OK: every {name} value is in its snapshot",
+                  file=sys.stderr)
+    return 1 if total else 0
+
+
 def mode_check(args: argparse.Namespace) -> int:
+    """Presence check, then value check. Either failing exits 1."""
     cfg = FIELDS[args.field]
     reg = load_registry(args.registry)
     assigned = _active_assigned(reg)
     missing = _missing(cfg, assigned)
+    failed = False
 
     if missing:
         print(
@@ -482,16 +568,26 @@ def mode_check(args: argparse.Namespace) -> int:
         )
         for e in missing:
             print(f"  {e['alpha_2']}  {e['name']}", file=sys.stderr)
+        failed = True
+
+    bad = _value_mismatches_for(args, cfg)
+    if bad:
+        print(f"FAIL: {len(bad)} {cfg.name} value(s) differ from the "
+              f"snapshot:", file=sys.stderr)
+        _print_value_mismatches(bad)
+        failed = True
+
+    if failed:
         return 1
 
     nulls = [e for e in assigned if e.get(cfg.name) is None]
     if nulls:
         print(f"OK: {len(assigned) - len(nulls)} of {len(assigned)} "
               f"officially-assigned entries have {cfg.name}; "
-              f"{len(nulls)} legitimately null")
+              f"{len(nulls)} legitimately null; every value is in its snapshot")
     else:
         print(f"OK: {len(assigned)} of {len(assigned)} officially-assigned "
-              f"entries have {cfg.name}")
+              f"entries have {cfg.name}; every value is in its snapshot")
     return 0
 
 
@@ -520,8 +616,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument("--registry", type=Path, default=REGISTRY,
                    help=f"Path to the registry (default: {REGISTRY}).")
-    p.add_argument("--field", required=True, choices=sorted(FIELDS.keys()),
-                   help="Which list field to populate.")
+    p.add_argument("--field", default=None, choices=sorted(FIELDS.keys()),
+                   help="Which list field to populate. Required except "
+                        "with --only-value, which defaults to every field.")
+    p.add_argument("--snapshot", type=Path, default=None,
+                   help="Replace the field's snapshot file for --check and "
+                        "--only-value (used by the tests).")
     p.add_argument("--dry-run", action="store_true",
                    help="Show what would change without writing.")
 
@@ -540,7 +640,12 @@ def build_parser() -> argparse.ArgumentParser:
                             "its current values.")
     group.add_argument("--check", action="store_true",
                        help="Exit 0 only if every officially-assigned "
-                            "entry has this field.")
+                            "entry has this field and every value is in "
+                            "the field's snapshot.")
+    group.add_argument("--only-value", action="store_true",
+                       help="Value check only: exit 1 if any value is not "
+                            "in its snapshot. Skips the presence check. "
+                            "Without --field, checks every field.")
 
     return p
 
@@ -551,6 +656,11 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.code:
         args.code = args.code.upper()
+
+    if args.only_value:
+        return mode_only_value(args)
+    if args.field is None:
+        parser.error("--field is required (except with --only-value)")
 
     if args.from_file is not None:
         return mode_from_file(args)
