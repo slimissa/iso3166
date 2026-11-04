@@ -22,6 +22,10 @@
 #      (bash then ignores `set -e` in it, so only the last command counts)
 #      lets that same failing check through. This proves scenario 6
 #      catches the bug (RELEASE_PATTERN.md, Rule 29).
+#   8. a commit lands on top of the release commit -> --force refuses,
+#      naming HEAD's subject and the expected subject (exit 1, no tag).
+#   9. regeneration produces an uncommitted file (a stale docs/STATE.md)
+#      -> --force refuses, naming the file (exit 1, no tag).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -183,8 +187,9 @@ make_midgate_failure() {
     (
         cd "$1"
         printf "$FAILING_STUB" > tools/check_mojibake.py
-        git add -A && git commit -q -m "make a mid-gate check fail"
-        git push -q origin main
+        # --force tags HEAD, so HEAD must stay the release commit: amend it.
+        git add -A && git commit -q --amend -m "chore: release v0.0.1"
+        git push -q -f origin main
     )
 }
 CLOSED_REPO="$TMP/repo_closed"
@@ -224,6 +229,43 @@ else
         fail "7. mutation not caught (rc=$RC): the mid-gate failure was fatal even with the gate left of ||"
     fi
 fi
+
+# 8. A commit on top of the release commit: --force must refuse. The old
+#    check (the subject exists anywhere in history) tagged that commit.
+TOP_REPO="$TMP/repo_top"
+build_repo "$TOP_REPO" "$REAL_SH"
+(
+    cd "$TOP_REPO"
+    printf 'later\n' > later.txt
+    git add -A && git commit -q -m "feat: a change after the release commit"
+    git push -q origin main
+)
+run_sh "$TOP_REPO" 0.0.1 --force
+if [ "$RC" -eq 1 ] \
+   && grep -q "HEAD is not the release commit" <<<"$OUT" \
+   && grep -q "feat: a change after the release commit" <<<"$OUT" \
+   && grep -q "chore: release v0.0.1" <<<"$OUT" \
+   && ! git -C "$TOP_REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null; then
+    pass "8. a commit on top of the release commit: --force refuses (no tag)"
+else fail "8. --force tagged or mis-reported with a commit on top (rc=$RC): $(tail -4 <<<"$OUT")"; fi
+
+# 9. Regeneration leaves an uncommitted file: --force must refuse.
+STALE_REPO="$TMP/repo_stale"
+build_repo "$STALE_REPO" "$REAL_SH"
+(
+    cd "$STALE_REPO"
+    printf 'stale\n' > docs/STATE.md
+    printf '#!/usr/bin/env python3\nopen("docs/STATE.md", "a").write("regenerated\\n")\n' > tools/gen_state_doc.py
+    git add -A && git commit -q --amend -m "chore: release v0.0.1"
+    git push -q -f origin main
+)
+run_sh "$STALE_REPO" 0.0.1 --force
+if [ "$RC" -eq 1 ] \
+   && grep -q "regeneration changed files that the release commit does not contain" <<<"$OUT" \
+   && grep -q "docs/STATE.md" <<<"$OUT" \
+   && ! git -C "$STALE_REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null; then
+    pass "9. regeneration left docs/STATE.md uncommitted: --force refuses (no tag)"
+else fail "9. --force tagged over an uncommitted regeneration (rc=$RC): $(tail -4 <<<"$OUT")"; fi
 
 if [ "$fails" -ne 0 ]; then echo "FAIL: $fails scenario(s) failed" >&2; exit 1; fi
 echo "PASS"

@@ -263,6 +263,14 @@ if [ "$CURRENT_VERSION" = "$VERSION" ]; then
     fi
     RESUME_MODE=1
     echo "  VERSION already $VERSION; resuming in post-commit mode (--force)"
+    # The tag lands on HEAD, so HEAD must BE the release commit. A commit on
+    # top of it would be tagged as the release. When no release commit exists
+    # at all, step 3 reports that.
+    HEAD_SUBJECT=$(git log -1 --format=%s)
+    if [ "$HEAD_SUBJECT" != "chore: release v$VERSION" ] \
+       && [ -n "$(git log -n 1 --format=%H --grep="^chore: release v$VERSION\$")" ]; then
+        die "resume mode: HEAD is not the release commit (HEAD subject: '$HEAD_SUBJECT'; expected subject: 'chore: release v$VERSION'); --force tags HEAD, so it refuses to tag a different commit"
+    fi
 else
     if [ "$FORCE" = "1" ]; then
         echo "  --force given but VERSION ($CURRENT_VERSION) != target ($VERSION); running as normal release"
@@ -383,6 +391,16 @@ if [ "$DRY_RUN" = "0" ]; then
     python3 tools/gen_consistency_fixture.py
     python3 tools/gen_withdrawn_doc.py
     python3 tools/gen_state_doc.py
+
+    # Resume mode skips the commit step, so anything regeneration changed
+    # stays uncommitted while the tag lands on HEAD without it.
+    if [ "$RESUME_MODE" = "1" ]; then
+        DIRTY="$(git status --porcelain)"
+        if [ -n "$DIRTY" ]; then
+            printf '%s\n' "$DIRTY" >&2
+            die "resume mode: regeneration changed files that the release commit does not contain: $(printf '%s\n' "$DIRTY" | sed 's/^...//' | tr '\n' ' ')- the tag would point at a tree without them; discard them (git checkout -- <file>) or release a new version"
+        fi
+    fi
 
     GATE_LOG=/tmp/release-gate.log
     # Run the gate as a plain statement and read its status from $?. A
