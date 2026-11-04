@@ -437,6 +437,7 @@ if [ "$DRY_RUN" = "0" ]; then
         gate python3 tools/check_mojibake.py
         gate python3 tools/check_snapshot_freshness.py
         gate python3 tools/check_registry_freshness.py
+        gate python3 tools/check_iso4217_snapshot.py
         gate python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema
         gate python3 tools/check_introduced.py
         gate python3 tools/check_introduced_meta.py

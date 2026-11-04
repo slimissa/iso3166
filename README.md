@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 29 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 271 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 271 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.1 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -833,7 +833,7 @@ Without `jsonschema` installed, layer 1 reports SKIP and `validate.py` can still
 
 Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation. A clean run prints `Summary: 6 OK, 0 WARN, 0 FAIL, 0 SKIP`.
 
-### The release gate: 29 checks
+### The release gate: 30 checks
 
 Everything below runs in the release gate, in this order, inside one `set -e` subshell. The first failure stops the release.
 
@@ -844,30 +844,31 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 3 | `check_mojibake.py` | UTF-8 / Latin-1 round-trip corruption and unclosed code fences in text files |
 | 4 | `check_snapshot_freshness.py` | A `*_snapshot.json` whose `meta.review_by` has passed |
 | 5 | `check_registry_freshness.py` | An entry whose `last_verified` is more than 365 days old |
-| 6 | `validate.py iso3166.json --strict-count --strict-independent --require-schema` | Any of the six validator layers; a count mismatch; an `independent` regression in Northern America; a missing `jsonschema` (the schema layer must run) |
-| 7 | `check_introduced.py` | An active entry whose `introduced` differs from `tools/introduced_snapshot.json` |
-| 8 | `check_introduced_meta.py` | `introduced_snapshot.meta.json` missing `review_by`, `source` or `vendored_at`, or disagreeing with the snapshot's own `meta` |
-| 9 | `check_state_doc.py --strict` | A number in `docs/STATE.md` that differs from the tree |
-| 10 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (13 checks) |
-| 11 | `enrich_official_name.py --check` | `official_name` differing from its source |
-| 12 | `enrich_withdrawn.py --check` | The withdrawn array differing from its source |
-| 13 | `enrich_field.py --field currency_codes --check` | A `currency_codes` value missing on an entry, or not in the ISO 4217 snapshot |
-| 14 | `enrich_field.py --field calling_codes --check` | A `calling_codes` value missing on an entry, or not in the ITU snapshot |
-| 15 | `enrich_field.py --field tlds --check` | A `tlds` value missing on an entry, or not in the IANA snapshot |
-| 16 | `enrich_field.py --field languages --check` | A `languages` value missing on an entry, or not in the ISO 639-3 snapshot |
-| 17 | `enrich_field.py --field borders --check` | A `borders` value missing on an entry, or not an active alpha-2 code |
-| 18 | `enrich_field.py --field subregion --check` | A `subregion` value missing on an entry, or not in the M49 snapshot |
-| 19 | `enrich_field.py --field intermediate_region --check` | An `intermediate_region` value missing where M49 defines one, or not in the M49 snapshot |
-| 20 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
-| 21 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
-| 22 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 23 | `python3 -m pytest tests/ -v` | The root suite (47 tests, including the architecture test and the index-vs-fixture test) |
-| 24 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
-| 25 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
-| 26 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
-| 27 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 9 scenarios in a throwaway repository, two of them mutations that must be caught, two that refuse a commit on top of the release commit and an uncommitted regeneration |
-| 28 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
-| 29 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
+| 6 | `check_iso4217_snapshot.py` | `tools/iso4217_snapshot.json` that does not parse, holds duplicate codes, or disagrees with its own meta counts |
+| 7 | `validate.py iso3166.json --strict-count --strict-independent --require-schema` | Any of the six validator layers; a count mismatch; an `independent` regression in Northern America; a missing `jsonschema` (the schema layer must run) |
+| 8 | `check_introduced.py` | An active entry whose `introduced` differs from `tools/introduced_snapshot.json` |
+| 9 | `check_introduced_meta.py` | `introduced_snapshot.meta.json` missing `review_by`, `source` or `vendored_at`, or disagreeing with the snapshot's own `meta` |
+| 10 | `check_state_doc.py --strict` | A number in `docs/STATE.md` that differs from the tree |
+| 11 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (13 checks) |
+| 12 | `enrich_official_name.py --check` | `official_name` differing from its source |
+| 13 | `enrich_withdrawn.py --check` | The withdrawn array differing from its source |
+| 14 | `enrich_field.py --field currency_codes --check` | A `currency_codes` value missing on an entry, or not in the ISO 4217 snapshot |
+| 15 | `enrich_field.py --field calling_codes --check` | A `calling_codes` value missing on an entry, or not in the ITU snapshot |
+| 16 | `enrich_field.py --field tlds --check` | A `tlds` value missing on an entry, or not in the IANA snapshot |
+| 17 | `enrich_field.py --field languages --check` | A `languages` value missing on an entry, or not in the ISO 639-3 snapshot |
+| 18 | `enrich_field.py --field borders --check` | A `borders` value missing on an entry, or not an active alpha-2 code |
+| 19 | `enrich_field.py --field subregion --check` | A `subregion` value missing on an entry, or not in the M49 snapshot |
+| 20 | `enrich_field.py --field intermediate_region --check` | An `intermediate_region` value missing where M49 defines one, or not in the M49 snapshot |
+| 21 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
+| 22 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
+| 23 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
+| 24 | `python3 -m pytest tests/ -v` | The root suite (47 tests, including the architecture test and the index-vs-fixture test) |
+| 25 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
+| 26 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
+| 27 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
+| 28 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 9 scenarios in a throwaway repository, two of them mutations that must be caught, two that refuse a commit on top of the release commit and an uncommitted regeneration |
+| 29 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
+| 30 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
 
 The gate is not the whole test surface. The JavaScript suite (`npm test`), the Go suite (`go test`) and the Rust suite (`cargo test`) run in CI only, in `wrapper-javascript`, `wrapper-go` and `wrapper-rust`. The full wrapper surface is gated by the CI check the release script waits for before tagging.
 
@@ -891,7 +892,7 @@ Beyond the six-layer validator, the repo carries eleven auxiliary checks, listed
 | `tools/check_version_consistency.py` | Reads the registry-axis version sites; fails on any disagreement. | CI and release gate |
 | `tools/check_mojibake.py` | Scans every text file for UTF-8/Latin-1 round-trip corruption. Fails on any hit. | CI and release gate |
 | `tools/check_snapshot_freshness.py` | Reads `meta.review_by` on each `tools/*_snapshot.json`; fails on any date in the past. | CI and release gate |
-| `tools/check_iso4217_snapshot.py` | Well-formedness of `tools/iso4217_snapshot.json`: parses, no duplicate codes, meta counts agree. | CI only |
+| `tools/check_iso4217_snapshot.py` | Well-formedness of `tools/iso4217_snapshot.json`: parses, no duplicate codes, meta counts agree. | CI and release gate |
 | `tools/check_release_claims.py` | Verifies machine-checkable claims about the version being released. | release gate only |
 | `tools/check_release_diff.py` | After the version bump and regeneration, every generated artifact differs from `HEAD` only in the version string and the `updated` date; Parquet tables must hold the same data. | release gate only |
 | `tools/check_registry_freshness.py` | Fails when any entry's `last_verified` is older than 365 days. | release gate only |
@@ -952,7 +953,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 0. **Preflight.** Inside a git repository, tree clean, branch `main`, `HEAD` equal to `origin/main`, CI on `HEAD` complete and green, a `## [<version>]` section in `CHANGELOG.md`, the tag free locally and on `origin`, `VERSION` different from the target, and the committed artifacts equal to what the tree generates: every export `--check` runs first, then the generators run, then `git diff --exit-code` compares the regenerated files with `HEAD` (in `--force` mode this runs at the start of step 2, where `HEAD` is the release commit). A `--check` after regeneration would compare a file with itself, so the gate has none; `tools/check_release_diff.py` checks the bumped, regenerated tree against `HEAD` instead.
 1. **Bump the version sites** (below).
-2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 29 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
+2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 30 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
 3. **Commit** `chore: release v<version>`, after checking that staged paths are not all ignored by the workflow's `paths-ignore`.
 4. **Push and wait for CI.** Every workflow run for the release SHA must complete with `success`. A run that does not start within 180 seconds, a failed run, or a poll timeout stops the release before the tag exists.
 5. **Tag** `v<version>` only on green. The tag message is read from the changelog section, checked for a header and body, written with `git tag -a -F ... --cleanup=verbatim`, read back with git and compared with the file; a mismatch or a wrong target deletes the local tag and pushes nothing. Then `git push origin v<version>`.
@@ -1052,7 +1053,7 @@ iso3166/
       v1.9.3-version-policy.md              # Version strings in PROVENANCE.md and CONTRIBUTING.md
       withdrawn-codes.md                    # ADR: withdrawn codes and successors
   scripts/
-    release.sh                              # The release pipeline (steps 0 to 7, 29-check gate)
+    release.sh                              # The release pipeline (steps 0 to 7, 30-check gate)
   tests/
     cross_language_consistency.json         # Shared fixture for all four wrappers (generated)
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON

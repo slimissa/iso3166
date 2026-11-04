@@ -75,8 +75,9 @@ gate only; `parse_source.py --verify` runs in CI only.
 
 Tools that are not in any category above:
 
-- `check_iso4217_snapshot.py` runs in CI. It checks that
-  `iso4217_snapshot.json` is well-formed. It is not run by the gate.
+- `check_iso4217_snapshot.py` runs in CI and, from v1.12.3, in the gate
+  (after `check_registry_freshness.py`). It checks that
+  `iso4217_snapshot.json` is well-formed.
 - `iso3166_cli.py` is the command-line interface. CI exercises it in
   the CLI-contract step; it is not a gate step.
 - `tests/test_release_force.sh` is a shell test, not a tool. It runs
