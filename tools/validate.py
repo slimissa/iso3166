@@ -263,7 +263,10 @@ def _check_membership(r: "LayerResult", where: str, field: str, ranges: Any) -> 
             if prev_to is None:
                 r.error(f"{where}: {field}[{j}] follows an open-ended range")
             elif frm <= prev_to:
-                r.error(f"{where}: {field}[{j}] overlaps or is out of order")
+                r.error(
+                    f"{where}: {field}[{j}] overlaps or is out of order "
+                    f"(range {j - 1} ends {prev_to}, range {j} starts {frm})"
+                )
         prev_to = to
 
 
