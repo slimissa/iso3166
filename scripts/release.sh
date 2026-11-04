@@ -74,6 +74,9 @@ cd "$REPO_ROOT"
 POLLED_WORKFLOWS=(
     "validate.yml"
 )
+# Every command of the artifact freshness checks and of the gate is recorded
+# here as "<exit code><TAB><command>"; step 7 writes it into the report.
+GATE_REC=/tmp/release-gate.rec
 CI_POLL_INTERVAL=20
 CI_POLL_MAX=90     # 30 minutes max
 CI_START_TIMEOUT=180  # die if no CI run appears within this many seconds
@@ -151,6 +154,17 @@ run() {
     fi
 }
 
+# gate CMD...: print a step label, run CMD, record its exit code, return it.
+# Inside the gate subshell a non-zero return stops the gate (set -e).
+gate() {
+    local rc=0
+    printf '=== gate: %s\n' "$*"
+    "$@" || rc=$?
+    printf '%s\t%s\n' "$rc" "$*" >> "$GATE_REC"
+    printf '=== exit: %s\n' "$rc"
+    return "$rc"
+}
+
 # BEGIN artifact-freshness
 # Committed artifacts must equal what the tree generates. The order is the
 # point: check first (committed against the tree), regenerate second, diff
@@ -172,7 +186,7 @@ FRESHNESS_ARTIFACTS=(
     tests/cross_language_consistency.json docs/WITHDRAWN.md
 )
 artifact_freshness() {
-    local mode="${1:-full}" cmd out gen
+    local mode="${1:-full}" cmd out gen rc
     echo "  [1/3] --check: committed artifacts against the tree"
     for cmd in \
         "python3 tools/export_sql.py --check" \
@@ -183,7 +197,10 @@ artifact_freshness() {
         "python3 tools/gen_consistency_fixture.py --check" \
         "python3 tools/gen_withdrawn_doc.py --check"
     do
-        if ! out=$($cmd 2>&1); then
+        rc=0
+        out=$($cmd 2>&1) || rc=$?
+        printf '%s\t%s\n' "$rc" "$cmd" >> "$GATE_REC"
+        if [ "$rc" -ne 0 ]; then
             echo "FRESHNESS FAIL: $cmd"
             printf '%s\n' "$out" | tail -8
             die "committed artifact is stale ($cmd); regenerate, commit, push and wait for CI, then re-run"
@@ -199,7 +216,10 @@ artifact_freshness() {
         python3 "tools/$gen.py" >/dev/null || die "tools/$gen.py failed"
     done
     echo "  [3/3] git diff --exit-code: regenerated artifacts against HEAD"
-    if ! git diff --exit-code --stat -- "${FRESHNESS_ARTIFACTS[@]}"; then
+    rc=0
+    git diff --exit-code --stat -- "${FRESHNESS_ARTIFACTS[@]}" || rc=$?
+    printf '%s\t%s\n' "$rc" "git diff --exit-code -- ${FRESHNESS_ARTIFACTS[*]}" >> "$GATE_REC"
+    if [ "$rc" -ne 0 ]; then
         echo "FRESHNESS FAIL: git diff --exit-code"
         die "regeneration changed committed artifacts; commit them first"
     fi
@@ -209,6 +229,8 @@ artifact_freshness() {
 # --- step 0: preflight -------------------------------------------------
 
 step "0/7 preflight"
+
+: > "$GATE_REC"
 
 [ -d .git ] || die "not in a git repository"
 
@@ -410,35 +432,35 @@ if [ "$DRY_RUN" = "0" ]; then
     set +e
     (
         set -e
-        python3 tools/check_version_consistency.py
-        python3 tools/check_release_claims.py "$VERSION"
-        python3 tools/check_mojibake.py
-        python3 tools/check_snapshot_freshness.py
-        python3 tools/check_registry_freshness.py
-        python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema
-        python3 tools/check_introduced.py
-        python3 tools/check_introduced_meta.py
-        python3 tools/check_state_doc.py --strict
-        python3 tools/check_docs_match_tree.py
-        python3 tools/enrich_official_name.py --check
-        python3 tools/enrich_withdrawn.py --check
-        python3 tools/enrich_field.py --field currency_codes --check
-        python3 tools/enrich_field.py --field calling_codes --check
-        python3 tools/enrich_field.py --field tlds --check
-        python3 tools/enrich_field.py --field languages --check
-        python3 tools/enrich_field.py --field borders --check
-        python3 tools/enrich_field.py --field subregion --check
-        python3 tools/enrich_field.py --field intermediate_region --check
-        python3 tools/enrich_field.py --only-value
-        python3 tools/enrich_club_memberships.py --check
-        python3 tools/check_release_diff.py
-        python3 -m pytest tests/ -v
-        python3 -m pytest wrappers/python/tests/ -q
-        python3 tools/build_introduced_snapshot.py --check
-        python3 tools/build_club_snapshots.py --check
-        bash tests/test_release_force.sh
-        bash tools/check_cross_language.sh US GB JP
-        (cd wrappers/rust && cargo clippy --all-targets -- -D warnings)
+        gate python3 tools/check_version_consistency.py
+        gate python3 tools/check_release_claims.py "$VERSION"
+        gate python3 tools/check_mojibake.py
+        gate python3 tools/check_snapshot_freshness.py
+        gate python3 tools/check_registry_freshness.py
+        gate python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema
+        gate python3 tools/check_introduced.py
+        gate python3 tools/check_introduced_meta.py
+        gate python3 tools/check_state_doc.py --strict
+        gate python3 tools/check_docs_match_tree.py
+        gate python3 tools/enrich_official_name.py --check
+        gate python3 tools/enrich_withdrawn.py --check
+        gate python3 tools/enrich_field.py --field currency_codes --check
+        gate python3 tools/enrich_field.py --field calling_codes --check
+        gate python3 tools/enrich_field.py --field tlds --check
+        gate python3 tools/enrich_field.py --field languages --check
+        gate python3 tools/enrich_field.py --field borders --check
+        gate python3 tools/enrich_field.py --field subregion --check
+        gate python3 tools/enrich_field.py --field intermediate_region --check
+        gate python3 tools/enrich_field.py --only-value
+        gate python3 tools/enrich_club_memberships.py --check
+        gate python3 tools/check_release_diff.py
+        gate python3 -m pytest tests/ -v
+        gate python3 -m pytest wrappers/python/tests/ -q
+        gate python3 tools/build_introduced_snapshot.py --check
+        gate python3 tools/build_club_snapshots.py --check
+        gate bash tests/test_release_force.sh
+        gate bash tools/check_cross_language.sh US GB JP
+        gate bash -c 'cd wrappers/rust && cargo clippy --all-targets -- -D warnings'
     ) > "$GATE_LOG" 2>&1
     GATE_RC=$?
     set -e
@@ -661,30 +683,13 @@ if [ "$DRY_RUN" = "0" ]; then
     TAG_SHA=$(git rev-list -n1 "v$VERSION")
     TODAY=$(date +%Y-%m-%d)
 
-    cat > "$REPORT" <<MD
-# v$VERSION verification
+    python3 tools/write_verification_report.py \
+        --version "$VERSION" --commit "$TAG_SHA" --tag "v$VERSION" \
+        --date "$TODAY" --workflows "${POLLED_WORKFLOWS[*]}" \
+        --gate-rec "$GATE_REC" --gate-log "$GATE_LOG" --out "$REPORT" \
+        || die "could not write the verification report (no gate evidence recorded?)"
 
-Date: $TODAY
-Commit: $TAG_SHA
-Tag: v$VERSION
-
-## What changed
-
-See the release notes for v$VERSION at
-https://github.com/slimissa/iso3166/releases/tag/v$VERSION
-
-## CI at the tag
-
-Workflows: ${POLLED_WORKFLOWS[*]}
-The release commit's CI completed green before the tag was pushed.
-
-## Notes
-
-This report is generated by \`scripts/release.sh\`. Edit by hand if
-additional context is needed.
-MD
-
-    git add "$REPORT"
+    git add "$REPORT" "$REPORT.sha256"
     git commit -m "docs: v$VERSION verification report"
     git push origin main
     echo "  verification report committed"

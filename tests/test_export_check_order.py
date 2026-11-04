@@ -27,6 +27,7 @@ def run_block(repo: Path, mode: str = "full"):
     script = (
         'set -euo pipefail\n'
         'die() { printf "ERROR: %s\\n" "$*" >&2; exit 1; }\n'
+        'GATE_REC=$(mktemp)\n'
         + freshness_block()
         + f"\nartifact_freshness {mode}\n"
     )

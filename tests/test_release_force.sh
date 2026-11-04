@@ -10,7 +10,8 @@
 # Scenarios (the version under test is 0.0.1, a release commit exists):
 #   1. no --force            -> "VERSION already reads"            (exit 1)
 #   2. --force --dry-run     -> "mutually exclusive"               (exit 2)
-#   3. --force, release commit in a long history -> resumes, exit 0
+#   3. --force, release commit in a long history -> resumes, exit 0, and
+#      the report carries the gate evidence and a matching .sha256
 #   4. --force, no release commit for 0.0.2     -> clean error     (exit 1)
 #   5. mutation: the same release.sh with the resume check rewritten as
 #      `if ! git log | grep -q` must FAIL scenario 3. This proves
@@ -76,6 +77,9 @@ build_repo() {
             printf '#!/usr/bin/env python3\nraise SystemExit(0)\n' > "$f"
         done
         printf '#!/usr/bin/env bash\nexit 0\n' > tools/check_cross_language.sh
+        # The report writer is real: step 7 must produce a report with the
+        # gate evidence, and a stub would hide a broken report.
+        cp "$HERE/../tools/write_verification_report.py" tools/write_verification_report.py
         printf 'def test_stub():\n    assert True\n' > tests/test_stub.py
         # The gate names tests/test_release_force.sh (this very test). In the
         # throwaway repo it is a stub that succeeds, so it cannot recurse.
@@ -140,7 +144,10 @@ run_sh "$REPO" 0.0.1 --force
 if [ "$RC" -eq 0 ] \
    && grep -q "resuming in post-commit mode" <<<"$OUT" \
    && grep -q "release commit already in history" <<<"$OUT" \
-   && git -C "$REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null; then
+   && git -C "$REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null \
+   && grep -q "^Gate commands:" "$REPO/docs/v0.0.1-verification.md" \
+   && grep -q "^Exit codes:" "$REPO/docs/v0.0.1-verification.md" \
+   && (cd "$REPO" && sha256sum -c --status docs/v0.0.1-verification.md.sha256); then
     pass "3. --force resumes from the post-commit state and tags v0.0.1 (exit 0)"
 else fail "3. --force resume (rc=$RC): $(tail -5 <<<"$OUT")"; fi
 

@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 29 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 267 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 29 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 271 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.1 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -861,7 +861,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 20 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 21 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 22 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 23 | `python3 -m pytest tests/ -v` | The root suite (43 tests, including the architecture test and the index-vs-fixture test) |
+| 23 | `python3 -m pytest tests/ -v` | The root suite (47 tests, including the architecture test and the index-vs-fixture test) |
 | 24 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
 | 25 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 26 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
@@ -875,12 +875,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 43 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 47 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 104 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 52 |
 | Rust | `(cd wrappers/rust && cargo test)` | 27 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 41 (declarations) |
-| **Total** | | **267** |
+| **Total** | | **271** |
 
 ### Additional checks
 
@@ -957,11 +957,11 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 4. **Push and wait for CI.** Every workflow run for the release SHA must complete with `success`. A run that does not start within 180 seconds, a failed run, or a poll timeout stops the release before the tag exists.
 5. **Tag** `v<version>` only on green. The tag message is read from the changelog section, checked for a header and body, written with `git tag -a -F ... --cleanup=verbatim`, read back with git and compared with the file; a mismatch or a wrong target deletes the local tag and pushes nothing. Then `git push origin v<version>`.
 6. **GitHub release** with `gh release create`; the body is read back and refused if it contains placeholder text.
-7. **Verification report.** Writes `docs/v<version>-verification.md`, committed and pushed.
+7. **Verification report.** Writes `docs/v<version>-verification.md` through `tools/write_verification_report.py`, committed and pushed with a sibling `docs/v<version>-verification.md.sha256`. Every command of the artifact freshness checks and of the gate is recorded with its exit code as it runs. The report lists them under **Gate commands:** and **Exit codes:**, numbered alike, with a `Result:` line and the SHA-256 of `/tmp/release-gate.log`. The sibling file holds the report's own SHA-256 in the format `sha256sum -c` reads, run from the repository root. The gate log itself is not committed: keep it, and its hash shows it is the log the report describes.
 
 **`--force`** resumes from a post-commit state: when `VERSION` already equals the target because a previous run committed the release but did not reach the tag. It skips bump, commit and push, checks that `HEAD` **is** the `chore: release v<version>` commit (a commit on top of it is refused, because the tag lands on `HEAD`) and is on `origin/main`, **re-runs the gate and the CI check**, and refuses if regeneration left uncommitted files, then tags, releases and writes the report. `--force` and `--dry-run` are mutually exclusive, and `tests/test_release_force.sh` exercises the mode; it runs in the release gate and in the `check-force-test` CI job. `docs/README-AUDIT-NOTES.md` records the failures behind the rules: never reset `VERSION` to re-run the script, never interrupt the CI wait.
 
-Forty-one verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.1-verification.md`](./docs/v1.12.1-verification.md), each recording the gate output for its release. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+Forty-one verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.1-verification.md`](./docs/v1.12.1-verification.md), from v1.12.3 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
 
 ---
 
@@ -1039,6 +1039,7 @@ iso3166/
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
     v*-verification.md                      # 41 release gate records, v1.0.0 to v1.12.1
+    v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     decisions/
       club-memberships.md                   # ADR: club membership arrays, sources, null policy
       input-contract.md                     # ADR: the input contract of the four wrappers (v1.8.0)
@@ -1064,6 +1065,7 @@ iso3166/
     test_index_matches_fixture.py           # docs/QUERIES.md worked-examples index equals the fixture's derived_queries
     test_release_force.sh                   # Shell test of release.sh --force resume mode (release gate and CI)
     test_validate_require_schema.py         # validate.py --require-schema exits 2 without jsonschema
+    test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
     test_release_pattern.py                 # Release-pattern properties
   tools/
     audit_languages.py                      # Classify each entry's languages list
@@ -1124,6 +1126,7 @@ iso3166/
     validate.py                             # Six-layer validator (--require-schema fails when the schema layer cannot run)
     version_axes.json                       # Declarative version-site contract (not yet read by the check)
     wikipedia_dates.json                    # Input to build_introduced_snapshot.py
+    write_verification_report.py            # Write docs/vX-verification.md with the gate evidence and its .sha256
   wrappers/
     go/
       README.md                             # Go API
