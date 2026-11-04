@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 271 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 276 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.2 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -862,7 +862,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 21 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 22 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 23 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 24 | `python3 -m pytest tests/ -v` | The root suite (47 tests, including the architecture test and the index-vs-fixture test) |
+| 24 | `python3 -m pytest tests/ -v` | The root suite (52 tests, including the architecture test and the index-vs-fixture test) |
 | 25 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
 | 26 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 27 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
@@ -876,12 +876,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 47 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 52 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 104 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 52 |
 | Rust | `(cd wrappers/rust && cargo test)` | 27 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 41 (declarations) |
-| **Total** | | **271** |
+| **Total** | | **276** |
 
 ### Additional checks
 
@@ -898,7 +898,7 @@ Beyond the six-layer validator, the repo carries eleven auxiliary checks, listed
 | `tools/check_registry_freshness.py` | Fails when any entry's `last_verified` is older than 365 days. | release gate only |
 | `tools/check_state_doc.py` | Verifies every number in `docs/STATE.md` against the tree. | CI and release gate |
 | `tools/check_docs_match_tree.py` | Verifies the counts, versions and lists that the README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS docs state about the tree. | CI and release gate |
-| `tools/check_introduced.py` | Every active entry's `introduced` equals `tools/introduced_snapshot.json`; a null needs a `meta.null_reasons` entry. The same comparison runs in the validator's integrity layer. | release gate; CI through `validate.py` |
+| `tools/check_introduced.py` | Every active entry's `introduced` equals `tools/introduced_snapshot.json`; a null needs a `meta.null_reasons` entry; no `introduced` date, in the entry or the snapshot, is later than today. The same comparison runs in the validator's integrity layer. | release gate; CI through `validate.py` |
 | `tools/check_introduced_meta.py` | `tools/introduced_snapshot.meta.json` has `review_by`, `source` and `vendored_at` (valid dates, `review_by` not before `vendored_at`) and agrees with the snapshot's own `meta` (`review_by`, `source`, `source_permalink`, `source_accessed`). The generator never reads this hand-written file. | release gate and CI (`check-snapshots`) |
 
 ---
@@ -1057,6 +1057,7 @@ iso3166/
   tests/
     cross_language_consistency.json         # Shared fixture for all four wrappers (generated)
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON
+    test_check_introduced_future.py         # check_introduced.py rejects an introduced date in the future
     test_check_release_diff.py              # check_release_diff.py allows only version and date changes after a bump
     test_enrich_field_citations.py          # record_source writes one source line per field
     test_enrich_field_values.py             # enrich_field.py --only-value compares values with the snapshot
