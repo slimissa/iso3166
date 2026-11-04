@@ -397,7 +397,7 @@ if [ "$DRY_RUN" = "0" ]; then
         python3 tools/check_mojibake.py
         python3 tools/check_snapshot_freshness.py
         python3 tools/check_registry_freshness.py
-        python3 tools/validate.py iso3166.json --strict-count --strict-independent
+        python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema
         python3 tools/check_introduced.py
         python3 tools/check_introduced_meta.py
         python3 tools/check_state_doc.py --strict

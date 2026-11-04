@@ -885,6 +885,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Fail (instead of warn) if a Northern America entry other than "
              "BM, GL, PM is not independent=true. Use after the data commit.",
     )
+    p.add_argument(
+        "--require-schema",
+        action="store_true",
+        help="Exit 2 unless the schema layer actually runs. Without this "
+             "flag a missing jsonschema package makes the layer SKIP and "
+             "the validator can still exit 0. The release gate and CI "
+             "pass this flag.",
+    )
     p.add_argument("--json", action="store_true", dest="json_output",
                    help="Emit machine-readable JSON.")
     p.add_argument("--verbose", action="store_true",
@@ -895,7 +903,23 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
+    parser = build_parser()
+    args = parser.parse_args(argv)
+
+    if args.require_schema:
+        if args.skip and "schema" in args.skip:
+            parser.error("--require-schema contradicts --skip schema")
+        if args.only and "schema" not in args.only:
+            parser.error("--require-schema needs the schema layer, but "
+                         "--only does not name it")
+        try:
+            import jsonschema  # type: ignore  # noqa: F401
+        except ImportError:
+            print("validate: --require-schema: the schema layer cannot run "
+                  "because jsonschema is not installed.\n"
+                  "  Install it:  pip install jsonschema",
+                  file=sys.stderr)
+            return 2
 
     reg = load_registry(args.registry)
 
@@ -912,6 +936,14 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     exit_code = compute_exit_code(results)
+
+    if args.require_schema and exit_code == 0:
+        schema = [r for r in results if r.name == "schema"]
+        if not schema or schema[0].status == "SKIP":
+            print("validate: --require-schema: the schema layer was "
+                  "skipped (schema file missing or unreadable)",
+                  file=sys.stderr)
+            exit_code = 2
 
     if args.json_output:
         print_json(results, exit_code)
