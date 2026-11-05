@@ -74,9 +74,24 @@ cd "$REPO_ROOT"
 POLLED_WORKFLOWS=(
     "validate.yml"
 )
+# BEGIN run-temp
+# Every run gets its own temporary directory. A fixed path let a nested
+# release.sh (tests/test_release_force.sh runs one inside the gate) truncate
+# the outer run's record: the v1.12.3 report lists 11 commands, not 38. An
+# inherited GATE_REC or GATE_LOG is ignored on purpose, so a nested run
+# never shares a file with the run that started it.
+unset GATE_REC GATE_LOG
+RELEASE_TMP="$(mktemp -d "${TMPDIR:-/tmp}/iso3166-release.XXXXXX")"
 # Every command of the artifact freshness checks and of the gate is recorded
 # here as "<exit code><TAB><command>"; step 7 writes it into the report.
-GATE_REC=/tmp/release-gate.rec
+GATE_REC="$RELEASE_TMP/gate.rec"
+TAG_MESSAGE_FILE="$RELEASE_TMP/tag-message.txt"
+RECORDED_TAG="$RELEASE_TMP/recorded-tag.txt"
+RELNOTES="$RELEASE_TMP/release-notes.txt"
+# A dry run leaves nothing behind. A real run keeps the directory: it holds
+# the gate log the verification report points at.
+trap '[ "${DRY_RUN:-0}" = "1" ] && rm -rf "$RELEASE_TMP"; true' EXIT
+# END run-temp
 CI_POLL_INTERVAL=20
 CI_POLL_MAX=90     # 30 minutes max
 CI_START_TIMEOUT=180  # die if no CI run appears within this many seconds
@@ -414,7 +429,9 @@ if [ "$DRY_RUN" = "0" ]; then
         fi
     fi
 
-    GATE_LOG=/tmp/release-gate.log
+    GATE_LOG="$RELEASE_TMP/gate.log"
+    echo "  gate record: $GATE_REC"
+    echo "  gate log:    $GATE_LOG"
     # Run the gate as a plain statement and read its status from $?. A
     # subshell on the left of `||` (or inside `if`) ignores `set -e` in bash,
     # so only its last command would count (docs/RELEASE_PATTERN.md, Rule 29).
@@ -569,7 +586,6 @@ fi
 
 step "5/7 tag v$VERSION"
 
-TAG_MESSAGE_FILE="/tmp/release-tag-message.txt"
 if [ "$DRY_RUN" = "0" ]; then
     # Derive the tag message from the CHANGELOG section.
     python3 - "$VERSION" > "$TAG_MESSAGE_FILE" <<'PYEOF'
@@ -610,13 +626,13 @@ PYEOF
     [ "$TAG_SHA" = "$(git rev-parse HEAD)" ] \
         || drop_local_tag_and_die "tag points at $TAG_SHA, not HEAD ($(git rev-parse HEAD))"
 
-    if ! git for-each-ref "refs/tags/v$VERSION" --format='%(contents)' > /tmp/recorded_tag.txt; then
+    if ! git for-each-ref "refs/tags/v$VERSION" --format='%(contents)' > "$RECORDED_TAG"; then
         drop_local_tag_and_die "could not read tag message from git"
     fi
 
     set +e
     # Normalize trailing newlines to prevent false positives
-    diff -q <(printf '%s' "$(cat /tmp/recorded_tag.txt)") <(printf '%s' "$(cat "$TAG_MESSAGE_FILE")") > /dev/null
+    diff -q <(printf '%s' "$(cat "$RECORDED_TAG")") <(printf '%s' "$(cat "$TAG_MESSAGE_FILE")") > /dev/null
     diff_status=$?
     set -e
 
@@ -636,7 +652,6 @@ fi
 step "6/7 GitHub release"
 
 if [ "$DRY_RUN" = "0" ]; then
-    RELNOTES=/tmp/release-notes.txt
     python3 - "$VERSION" > "$RELNOTES" <<'PYEOF'
 import re, sys
 from pathlib import Path

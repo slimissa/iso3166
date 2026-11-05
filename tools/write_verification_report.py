@@ -45,7 +45,7 @@ def read_record(path: Path) -> list[tuple[int, str]]:
 
 
 def render(version: str, commit: str, tag: str, date: str, workflows: str,
-           rows: list[tuple[int, str]], log_sha: str) -> str:
+           rows: list[tuple[int, str]], log_sha: str, log_path: str) -> str:
     failed = [r for r in rows if r[0] != 0]
     result = (f"PASS: all {len(rows)} commands exited 0" if not failed
               else f"FAIL: {len(failed)} of {len(rows)} commands exited non-zero")
@@ -71,7 +71,7 @@ def render(version: str, commit: str, tag: str, date: str, workflows: str,
         f"Result: {result}",
         f"Gate log SHA-256: {log_sha}",
         "",
-        "The gate log is `/tmp/release-gate.log` on the machine that ran the",
+        f"The gate log is `{log_path}` on the machine that ran the",
         "release. It is not committed; keep it, and compare its SHA-256 with",
         "the line above. The report's own SHA-256 is in the sibling file",
         f"`docs/v{version}-verification.md.sha256`.",
@@ -124,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     report = render(a.version, a.commit, a.tag, a.date, a.workflows, rows,
-                    sha256_file(a.gate_log))
+                    sha256_file(a.gate_log), str(a.gate_log))
     a.out.write_text(report, encoding="utf-8")
     sidecar = a.out.with_name(a.out.name + ".sha256")
     sidecar.write_text(f"{sha256_file(a.out)}  {a.out.as_posix()}\n",

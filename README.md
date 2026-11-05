@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 284 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 288 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.2 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -862,7 +862,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 21 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 22 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 23 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 24 | `python3 -m pytest tests/ -v` | The root suite (60 tests, including the architecture test and the index-vs-fixture test) |
+| 24 | `python3 -m pytest tests/ -v` | The root suite (64 tests, including the architecture test and the index-vs-fixture test) |
 | 25 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
 | 26 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 27 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
@@ -876,12 +876,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 60 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 64 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 104 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 52 |
 | Rust | `(cd wrappers/rust && cargo test)` | 27 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 41 (declarations) |
-| **Total** | | **284** |
+| **Total** | | **288** |
 
 ### Additional checks
 
@@ -958,7 +958,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 4. **Push and wait for CI.** Every workflow run for the release SHA must complete with `success`. A run that does not start within 180 seconds, a failed run, or a poll timeout stops the release before the tag exists.
 5. **Tag** `v<version>` only on green. The tag message is read from the changelog section, checked for a header and body, written with `git tag -a -F ... --cleanup=verbatim`, read back with git and compared with the file; a mismatch or a wrong target deletes the local tag and pushes nothing. Then `git push origin v<version>`.
 6. **GitHub release** with `gh release create`; the body is read back and refused if it contains placeholder text.
-7. **Verification report.** Writes `docs/v<version>-verification.md` through `tools/write_verification_report.py`, committed and pushed with a sibling `docs/v<version>-verification.md.sha256`. Every command of the artifact freshness checks and of the gate is recorded with its exit code as it runs. The report lists them under **Gate commands:** and **Exit codes:**, numbered alike, with a `Result:` line and the SHA-256 of `/tmp/release-gate.log`. The sibling file holds the report's own SHA-256 in the format `sha256sum -c` reads, run from the repository root. The gate log itself is not committed: keep it, and its hash shows it is the log the report describes.
+7. **Verification report.** Writes `docs/v<version>-verification.md` through `tools/write_verification_report.py`, committed and pushed with a sibling `docs/v<version>-verification.md.sha256`. Every command of the artifact freshness checks and of the gate is recorded with its exit code as it runs. The report lists them under **Gate commands:** and **Exit codes:**, numbered alike, with a `Result:` line and the SHA-256 of the gate log. The sibling file holds the report's own SHA-256 in the format `sha256sum -c` reads, run from the repository root. Each run keeps its record and log in its own `mktemp` directory (`$TMPDIR/iso3166-release.XXXXXX`, printed as `gate record:` and `gate log:` in step 2). An inherited path is ignored, so a `release.sh` run inside the gate cannot truncate the outer run's record. The gate log itself is not committed: keep it, and its hash shows it is the log the report describes.
 
 **`--force`** resumes from a post-commit state: when `VERSION` already equals the target because a previous run committed the release but did not reach the tag. It skips bump, commit and push, checks that `HEAD` **is** the `chore: release v<version>` commit (a commit on top of it is refused, because the tag lands on `HEAD`) and is on `origin/main`, **re-runs the gate and the CI check**, and refuses if regeneration left uncommitted files, then tags, releases and writes the report. `--force` and `--dry-run` are mutually exclusive, and `tests/test_release_force.sh` exercises the mode; it runs in the release gate and in the `check-force-test` CI job. `docs/README-AUDIT-NOTES.md` records the failures behind the rules: never reset `VERSION` to re-run the script, never interrupt the CI wait.
 
@@ -1060,6 +1060,7 @@ iso3166/
     test_check_introduced_future.py         # check_introduced.py rejects an introduced date in the future
     test_check_release_diff.py              # check_release_diff.py allows only version and date changes after a bump
     test_club_ranges.py                     # validate.py rejects overlapping, touching and misordered club ranges
+    test_release_evidence_unique.py         # release.sh uses per-run temp files; the v1.12.3 report is known incomplete
     test_enrich_field_citations.py          # record_source writes one source line per field
     test_enrich_field_values.py             # enrich_field.py --only-value compares values with the snapshot
     test_enrich_independent.py              # enrich_independent.py logic that needs no live ISO markup

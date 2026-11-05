@@ -27,6 +27,10 @@
 #      naming HEAD's subject and the expected subject (exit 1, no tag).
 #   9. regeneration produces an uncommitted file (a stale docs/STATE.md)
 #      -> --force refuses, naming the file (exit 1, no tag).
+#  10. a release.sh run INSIDE the gate (as this test runs inside the real
+#      gate) must not truncate the outer run's record: the outer report
+#      keeps every command (the v1.12.3 report kept 11 of 38).
+#  11. two runs print two different gate-record paths, none of them fixed.
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -35,6 +39,10 @@ REAL_SH="$HERE/../scripts/release.sh"
 
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
+# Every release.sh run in this test keeps its record and log in a mktemp
+# directory under $TMPDIR. Point TMPDIR at this test's own directory so they
+# are removed with it and do not pile up in /tmp.
+export TMPDIR="$TMP"
 fails=0
 pass() { echo "ok   $1"; }
 fail() { echo "FAIL $1" >&2; fails=$((fails + 1)); }
@@ -273,6 +281,53 @@ if [ "$RC" -eq 1 ] \
    && ! git -C "$STALE_REPO" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null; then
     pass "9. regeneration left docs/STATE.md uncommitted: --force refuses (no tag)"
 else fail "9. --force tagged over an uncommitted regeneration (rc=$RC): $(tail -4 <<<"$OUT")"; fi
+
+# 10. A nested release.sh inside the gate. The outer repo's
+#     tests/test_release_force.sh (a stub everywhere else) runs a full
+#     --force release in a second repo, in the middle of the outer gate.
+NEST_B="$TMP/repo_nest_b"
+build_repo "$NEST_B" "$REAL_SH"
+NEST_A="$TMP/repo_nest_a"
+build_repo "$NEST_A" "$REAL_SH"
+(
+    cd "$NEST_A"
+    cat > tests/test_release_force.sh <<NESTED
+#!/usr/bin/env bash
+cd "$NEST_B" && bash scripts/release.sh 0.0.1 --force >/dev/null 2>&1
+exit 0
+NESTED
+    git add -A && git commit -q --amend -m "chore: release v0.0.1"
+    git push -q -f origin main
+)
+run_sh "$NEST_A" 0.0.1 --force
+REPORT_A="$NEST_A/docs/v0.0.1-verification.md"
+# The outer run records 8 freshness commands plus every gate line, once each.
+# A nested run that shares the file adds its own records (or truncates the
+# outer ones), so only an exact count shows the files are separate.
+EXPECTED="$(python3 - "$REAL_SH" <<'PY'
+import sys
+t = open(sys.argv[1], encoding="utf-8").read()
+gate = t.split("set -e\n", 1)[1].split(') > "$GATE_LOG"', 1)[0]
+print(8 + sum(1 for l in gate.splitlines() if l.strip()))
+PY
+)"
+GOT="$(awk '/^Gate commands:/{f=1;next} /^Exit codes:/{f=0} f&&/^ *[0-9]+\. /{n++} END{print n+0}' "$REPORT_A" 2>/dev/null)"
+if [ "$RC" -eq 0 ] && [ -f "$REPORT_A" ] \
+   && git -C "$NEST_B" rev-parse -q --verify refs/tags/v0.0.1 >/dev/null \
+   && [ "$GOT" -eq "$EXPECTED" ]; then
+    pass "10. a nested release.sh inside the gate leaves the outer record exact ($GOT commands)"
+else fail "10. the outer record is not exact: $GOT commands, expected $EXPECTED (rc=$RC, nested tag: $(git -C "$NEST_B" tag 2>/dev/null))"; fi
+
+# 11. Two runs, two record paths.
+RUN_C="$TMP/repo_run_c"; RUN_D="$TMP/repo_run_d"
+build_repo "$RUN_C" "$REAL_SH"; build_repo "$RUN_D" "$REAL_SH"
+run_sh "$RUN_C" 0.0.1 --force; OUT_C="$OUT"
+run_sh "$RUN_D" 0.0.1 --force; OUT_D="$OUT"
+REC_C="$(sed -n 's/^  gate record: //p' <<<"$OUT_C")"; REC_D="$(sed -n 's/^  gate record: //p' <<<"$OUT_D")"
+if [ -n "$REC_C" ] && [ -n "$REC_D" ] && [ "$REC_C" != "$REC_D" ] \
+   && [ "$REC_C" != "/tmp/release-gate.rec" ] && [ "$REC_D" != "/tmp/release-gate.rec" ]; then
+    pass "11. two runs use two different gate records ($(basename "$(dirname "$REC_C")") and $(basename "$(dirname "$REC_D")"))"
+else fail "11. the two runs shared a gate record ('$REC_C' / '$REC_D')"; fi
 
 if [ "$fails" -ne 0 ]; then echo "FAIL: $fails scenario(s) failed" >&2; exit 1; fi
 echo "PASS"
