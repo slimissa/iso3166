@@ -1042,9 +1042,10 @@ iso3166/
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
     v*-verification.md                      # 42 release gate records, v1.0.0 to v1.12.2
-    v*-verification.md.sha256               # SHA-256 of each report, from v1.12.2 (sha256sum -c)
+    v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     decisions/
       club-memberships.md                   # ADR: club membership arrays, sources, null policy
+      cross-registry-edges.md               # ADR: the state of each edge to a sibling registry, 2026-11-04
       input-contract.md                     # ADR: the input contract of the four wrappers (v1.8.0)
       introduced-field.md                   # ADR: the `introduced` field and its quarantine rules
       languages-audit-2026-09.md            # Audit of the `languages` field, 2026-09
@@ -1313,13 +1314,13 @@ ISO 3166 is a root of the join graph: other registries reference `alpha_2`. This
 
 | Project | Edge | Proof |
 |---------|------|-------|
-| [ISO 4217](https://github.com/slimissa/iso4217) | Vendors a byte-for-byte snapshot of this registry at `tools/iso3166_snapshot.json`; every `countries[].code` must resolve in `countries.active[].alpha_2` | In ISO 4217's README and CI. Not checkable from this tree. |
+| [ISO 4217](https://github.com/slimissa/iso4217) | Vendors a byte-for-byte snapshot of this registry at `tools/iso3166_snapshot.json`; every `countries[].code` must resolve in `countries.active[].alpha_2`. Reads `alpha_2`, `region`, `subregion`, and `currency_codes` (its country-to-currency check) | In ISO 4217's README and CI. Not checkable from this tree. |
 | [ISO 10383](https://github.com/slimissa/iso10383) | Vendors a snapshot (252 codes, v1.6.9 per its README); every MIC's `country_code` must resolve, or be `ZZ` | In ISO 10383's README and CI. Not checkable from this tree. |
-| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | Vendors a snapshot; every exchange's `country_code` must resolve | In that repository's CI, as recorded in the previous README. Not checkable from this tree. |
-| [Corporate Actions](https://github.com/slimissa/corporate-actions) | Instrument entries reference the country of listing | Recorded as stated in the previous README. Not checkable from this tree. |
-| Asset Identifiers | Planned: will reference `alpha_2` for country of listing | None yet |
+| [Exchange Calendar](https://github.com/slimissa/exchange-calendar) | Vendors a snapshot; every exchange's `country_code` must resolve, and its `country` must equal this registry's `name` byte for byte | In that repository's CI, as recorded in the previous README. Not checkable from this tree. |
+| [Corporate Actions](https://github.com/slimissa/corporate-actions) | No country field found in its public schema, data or README (as of 2026-11-04); the edge is planned | None in this tree |
+| [Asset Identifiers](https://github.com/slimissa/asset-identifiers) | Already has `instruments[].country` in its schema (a pattern check, `^[A-Z]{2}$`); not yet vendored | None in this tree |
 | [LAS_Shell](https://github.com/slimissa/Las_shell) | Reads country codes for market status and prompt display | None in this tree |
-| [Tempus](https://github.com/slimissa/Tempus) | Planned compile-time `Country<ISO3166>` validation | None in this tree |
+| Tempus (repo not publicly reachable at 2026-11-04) | Planned compile-time `Country<ISO3166>` validation | None in this tree |
 | ISO 4217 (reverse edge) | This registry's `currency_codes` must resolve in an ISO 4217 snapshot | `tools/iso4217_snapshot.json` (v1.8.0, `review_by` 2027-10-25), checked by validator layer 4 and `check_iso4217_snapshot.py` |
 
 No external adopter is recorded. *Using this registry in your project? Open a pull request to add a row.*
