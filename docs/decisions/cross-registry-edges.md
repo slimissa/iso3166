@@ -55,3 +55,47 @@ see: `AI` `subregion` (`Caribbean` to `Latin America and the Caribbean`),
 The next audit can re-run the joins from the consumer list. A consumer that
 is six minors behind is visible from here for the first time. Nothing makes
 a consumer re-vendor; that stays their decision.
+
+## Open request: the currency of `GS` (fix-in-3166)
+
+**State.** This registry has `GS` (South Georgia and the South Sandwich
+Islands) with `currency_codes = ["FKP"]`; the entry's note cites the ISO
+Online Browsing Platform page for `GS` (not checked from here, the page needs
+a browser). ISO 4217's registry lists `GBP` for `GS`. ISO 4217's reviewed
+allow-list holds both halves of that disagreement, as category
+**`fix-in-3166`**, with the reference "ISO 3166 issue not yet filed (owner
+action)". Its stated reason: secondary mirrors of the ISO 4217 list show "No
+universal currency" for `GS`, so neither side is the standard's own
+statement; GBP matches the territory's de facto currency and FKP is the
+outlier.
+
+**The other five disagreements** (ISO 4217's allow-list, 2026-11-04) are not
+requests to this registry: `BT` INR (parallel currency) and `ZW` USD
+(parallel currency) are `allow-list-with-reason`; `XK` EUR is
+`allow-list-with-reason` (user-assigned code; `currency_codes` is `null`
+here); `CU` CUC and `SV` SVC are `out-of-scope-historical` (demonetized, but
+still in ISO 4217's list).
+
+**Decision for v1.12.4.** The value of `GS` is **not changed**. Changing a
+currency needs the maintainer's approval, and the choice is not clear:
+
+| Option | Effect |
+|--------|--------|
+| Change `GS` to `GBP` | Matches the de facto currency and ISO 4217's registry. Departs from the source the entry cites. ISO 4217's two `GS` allow-list entries become stale; its gate fails until it removes them, on its next re-vendor of this registry. |
+| Keep `FKP` | ISO 4217 re-classes the pair as `allow-list-with-reason`. No change here. |
+| Set `currency_codes` to `null` | Follows "No universal currency". Both sides then differ from ISO 4217's `GBP`. |
+
+**Tracking.** The request is for this registry to change, so the issue
+belongs in `slimissa/iso3166`, not in the ISO 4217 repository (the brief for
+this release said ISO 4217). **No issue was filed and none is numbered
+here:** an issue number cannot be made up. Issue: not filed. When it is
+filed, record its number on this line.
+
+Draft text for the issue:
+
+> **`GS` currency: FKP or GBP?** ISO 4217's country-currency allow-list
+> (`docs/COUNTRY_CURRENCY_ALLOWLIST.md`, ADR 0010 row GS) lists the `GS`
+> pair as `fix-in-3166`: this registry says `FKP`, ISO 4217's registry says
+> `GBP`. Secondary mirrors show "No universal currency" for `GS`. Decide
+> `GBP`, `FKP` or `null`, record the source, and tell ISO 4217 so it can
+> update its allow-list on its next re-vendor.
