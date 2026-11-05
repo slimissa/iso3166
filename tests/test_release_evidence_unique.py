@@ -66,3 +66,18 @@ def test_the_v1_12_3_report_is_known_to_list_fewer_commands_than_ran():
     ran = 8 + sum(1 for ln in gate.splitlines() if ln.strip())
     assert n == 11          # what the report says
     assert ran > n          # what ran at v1.12.3 and still runs
+
+
+def test_the_v1_12_3_report_still_matches_its_sha256():
+    import hashlib
+    report = ROOT / "docs" / "v1.12.3-verification.md"
+    digest, name = (ROOT / "docs" / "v1.12.3-verification.md.sha256").read_text(
+        encoding="utf-8").split()
+    assert name == "docs/v1.12.3-verification.md"
+    assert hashlib.sha256(report.read_bytes()).hexdigest() == digest
+
+
+def test_the_correction_is_in_an_errata_file_beside_the_report():
+    errata = (ROOT / "docs" / "v1.12.3-verification-errata.md").read_text(encoding="utf-8")
+    assert "11 commands" in errata and "38" in errata
+    assert "unchanged" in errata
