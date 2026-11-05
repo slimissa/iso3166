@@ -1029,6 +1029,7 @@ iso3166/
     iso3166                                 # Repo-local shim: installed `iso3166` if present, else tools/iso3166_cli.py
   docs/
     AUDIT.md                                # Tool inventory: --check mode, CI and release-gate coverage of each tool
+    CROSS_REGISTRY_CONTRACT.md              # Proposed contract between the six registries: nine rules, ISO 3166's standing
     ENRICHMENT.md                           # How each enriched field is sourced and refreshed
     JOINS.md                                # Which fields each consumer reads, and the join rules
     LAYERS.md                               # RAW / CURATED / AGGREGATED model
@@ -1313,7 +1314,7 @@ JSON: `meta.version`. Parquet: footer key `iso3166.version`. SQL: the `-- Regist
 
 ## 22. Consumed by
 
-ISO 3166 is a root of the join graph: other registries reference `alpha_2`. This registry in turn vendors an ISO 4217 snapshot to validate `currency_codes`. The proof column says where the evidence lives. Which fields each consumer reads, and the comparison rules, are in [`docs/JOINS.md`](./docs/JOINS.md).
+ISO 3166 is a root of the join graph: other registries reference `alpha_2`. This registry in turn vendors an ISO 4217 snapshot to validate `currency_codes`. The proof column says where the evidence lives. Which fields each consumer reads, and the comparison rules, are in [`docs/JOINS.md`](./docs/JOINS.md); the rules the six registries are asked to share are in the proposed [`docs/CROSS_REGISTRY_CONTRACT.md`](./docs/CROSS_REGISTRY_CONTRACT.md).
 
 | Project | Edge | Proof |
 |---------|------|-------|
