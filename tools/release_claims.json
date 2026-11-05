@@ -676,5 +676,25 @@
     {"file": "README.md", "absent": "Forty-one verification reports"},
     {"file": "README.md", "absent": "SPEC.md"},
     {"file": "CHANGELOG.md", "contains": "## [1.12.3]"}
+  ],
+  "1.12.4": [
+    {"file": "scripts/release.sh", "contains": "# BEGIN run-temp"},
+    {"file": "scripts/release.sh", "contains": "unset GATE_REC GATE_LOG"},
+    {"file": "scripts/release.sh", "absent": "/tmp/release-gate"},
+    {"file": "tests/test_release_force.sh", "contains": "# 11. Two runs, two record paths."},
+    {"file": "tests/test_release_evidence_unique.py", "contains": "def test_an_inherited_gate_rec_is_ignored"},
+    {"file": "tools/check_snapshot_freshness.py", "contains": "--check-upstream"},
+    {"file": "tools/iso4217_snapshot.json", "contains": "\"source_version\": \"1.8.0\""},
+    {"file": "tools/check_consumers_current.py", "contains": "def minors_behind"},
+    {"file": "tools/consumers.json", "contains": "slimissa/exchange-calendar"},
+    {"file": "docs/JOINS.md", "contains": "## Consumer impact"},
+    {"file": "docs/CROSS_REGISTRY_CONTRACT.md", "contains": "**Status: proposed**"},
+    {"file": "docs/decisions/cross-registry-edges.md", "contains": "Issue: not filed"},
+    {"file": "docs/v1.12.3-verification-errata.md", "contains": "11 commands"},
+    {"file": "README.md", "contains": "twelve auxiliary checks"},
+    {"file": "README.md", "contains": "30 checks run in sequence"},
+    {"file": "README.md", "absent": "Planned: will reference `alpha_2` for country of listing"},
+    {"file": "README.md", "absent": "github.com/slimissa/Tempus"},
+    {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"}
   ]
 }
