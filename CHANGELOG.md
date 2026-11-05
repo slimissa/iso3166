@@ -8,6 +8,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.4] — YYYY-MM-DD
+
+v1.12.4 closes the fourth audit's findings: the version of this registry that its consumers vendor was invisible from here, the v1.12.3 verification report held 11 of about 38 gate commands, and README section 22 disagreed with the consumers' public repositories.
+
+Consumer impact: none. No field in `iso3166.json` changes. The only data-file change is metadata of the vendored ISO 4217 snapshot (`tools/iso4217_snapshot.json`), which no consumer reads.
+
+### Added
+
+- `docs/JOINS.md`: the six fields consumers read, who reads each and by which comparison rule; join on the active list only (`SK`, `AI`), `ZZ` is a MIC value, names compare byte for byte; the `Consumer impact:` rule for every future release.
+- `docs/CROSS_REGISTRY_CONTRACT.md`: nine rules for the six registries, marked **proposed**. The other registries have not adopted it. A table says where this registry stands on each rule.
+- `tools/consumers.json`: the registries that vendor this one (ISO 4217, ISO 10383, Exchange Calendar), their vendored path and the fields they read.
+- `tools/check_consumers_current.py` (advisory, network, not in the gate): how many minor versions behind each consumer is. Exit 1 at 5 or more, 2 when a comparison could not run. On 2026-11-04: ISO 4217 4 behind, ISO 10383 6, Exchange Calendar 7.
+- `check_snapshot_freshness.py --check-upstream` (opt-in, network, warns only): compares `meta.source_version` with the source repository's stable tags and warns above 3. `tools/iso4217_snapshot.json` gains `source_repo` and `source_version`; `gen_iso4217_snapshot.py` emits them and regenerating from the v1.8.0 tag of ISO 4217 reproduces the file.
+- `docs/decisions/cross-registry-edges.md`: the state of each edge on 2026-11-04, the three decisions, and the open `GS` currency request (FKP here, GBP in ISO 4217; `fix-in-3166` in its allow-list). The value is not changed.
+- `docs/v1.12.3-verification-errata.md`: what the v1.12.3 report lists and lacks.
+- `tests/test_release_force.sh` scenarios 10 (a `release.sh` run inside the gate leaves the outer record exact) and 11 (two runs, two record paths); `test_release_evidence_unique.py`, `test_check_snapshot_upstream.py`, `test_check_consumers_current.py`, `test_consumers_json.py`.
+- Release claims for 1.12.4 in `tools/release_claims.json`.
+
+### Changed
+
+- `scripts/release.sh` makes a `mktemp` directory per run for the gate record, gate log, tag message, recorded tag and release notes. An inherited `GATE_REC` or `GATE_LOG` is ignored, so a nested run never shares a file with its parent. A dry run removes the directory; a real run keeps it, and the verification report prints the gate log's path.
+- README section 22: ISO 4217 also reads `region`, `subregion` and `currency_codes`; Exchange Calendar also requires `country` to equal `name`; Corporate Actions has no country field in its public files (the edge is planned); Asset Identifiers already has `instruments[].country` in its schema; the Tempus link, which returned 404, is replaced by a note.
+
+### Fixed
+
+- **v1.12.3 verification report** (defect X1): the record was written to the fixed path `/tmp/release-gate.rec` and truncated by the `release.sh` runs inside `tests/test_release_force.sh`, which runs in the gate. The report lists 11 commands; about 38 ran. The gate's own verdict was not affected. The report and its `.sha256` are unchanged; the correction is the errata file.
+- README: the tree said the `.sha256` files start at v1.12.2 (v1.12.3); section 13 said "23 for 1.12.2" for the release-claims row.
+
+### Known limits
+
+- The `GS` request is recorded but **not filed** as an issue, and the value is unchanged; both need the maintainer.
+- Nothing runs `check_consumers_current.py` or `--check-upstream` on a schedule, and no single script reproduces the fourth audit's joins (contract rule 9).
+- README still names 1.12.2 in the version row, the JSON sample and the Parquet example, and counts 42 verification reports; `release.sh` does not bump them and no check reads them.
+- The consumers' facts were read from their public repositories on 2026-11-04. Row 6 (LAS_Shell) is unchanged: its README has no country field.
+
 ## [1.12.3] — 2026-11-04
 
 v1.12.3 turns presence checks into value checks. The third closure audit found that a wrong but well-formed value in most fields passed the gate, that the export `--check` lines compared files with themselves, that the validator could skip its schema layer without failing, that `--force` could tag a commit that was not the release commit, and that the verification report held no gate evidence.

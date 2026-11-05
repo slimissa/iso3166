@@ -695,6 +695,7 @@
     {"file": "README.md", "contains": "30 checks run in sequence"},
     {"file": "README.md", "absent": "Planned: will reference `alpha_2` for country of listing"},
     {"file": "README.md", "absent": "github.com/slimissa/Tempus"},
-    {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"}
+    {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"},
+    {"file": "CHANGELOG.md", "contains": "## [1.12.4]"}
   ]
 }
