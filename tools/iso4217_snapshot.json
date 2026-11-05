@@ -175,7 +175,9 @@
     "iso4217_version": "1.8.0",
     "refresh_cadence": "quarterly",
     "review_by": "2027-10-25",
-    "source": "slimissa/iso4217"
+    "source": "slimissa/iso4217",
+    "source_repo": "slimissa/iso4217",
+    "source_version": "1.8.0"
   },
   "withdrawn": [
     "ADF",

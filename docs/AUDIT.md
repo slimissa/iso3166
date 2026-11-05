@@ -39,6 +39,7 @@ Tools that verify data.
 | `check_version_consistency.py` | yes | yes |
 | `check_mojibake.py` | yes | yes |
 | `check_snapshot_freshness.py` | yes | yes |
+| `check_consumers_current.py` | no | no (advisory, network) |
 | `check_introduced.py` | via `validate.py` | yes |
 | `check_introduced_meta.py` | yes | yes |
 | `check_release_claims.py` | no | yes |

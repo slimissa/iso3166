@@ -152,6 +152,11 @@ def build_snapshot(source_path: Path) -> dict[str, Any]:
             # after. `iso4217_version` and `iso4217_updated`, copied from
             # the source registry, are the freshness signals.
             "source": "slimissa/iso4217",
+            # source_repo and source_version are the pair that
+            # check_snapshot_freshness.py --check-upstream reads;
+            # source_version equals iso4217_version.
+            "source_repo": "slimissa/iso4217",
+            "source_version": str(source_meta.get("version", "")),
             "iso4217_version": str(source_meta.get("version", "")),
             "iso4217_updated": str(source_meta.get("updated", "")),
             "count_active": len(active),

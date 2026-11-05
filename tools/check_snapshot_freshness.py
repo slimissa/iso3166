@@ -60,6 +60,16 @@ Usage:
     python3 tools/check_snapshot_freshness.py
     python3 tools/check_snapshot_freshness.py --json
     python3 tools/check_snapshot_freshness.py --today 2027-01-01
+    python3 tools/check_snapshot_freshness.py --check-upstream
+
+--check-upstream (opt-in, needs the network, never run by the gate) also reads
+`meta.source_version` and `meta.source_repo` of each snapshot that carries
+them (today: iso4217_snapshot.json), lists the repository's stable vX.Y.Z
+tags with `git ls-remote --tags`, and prints a WARN when the vendored
+version is more than 3 stable tags behind the latest. It never changes the
+exit code: a calendar `review_by` cannot see a sibling that shipped ten
+releases, and this check can, but a new upstream tag with no data change
+should not block a release. An unreachable upstream is a WARN, not a pass.
 
 Exit codes:
     0  all snapshots fresh
@@ -70,6 +80,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import subprocess
 import sys
 from datetime import date
 from pathlib import Path
@@ -83,6 +95,9 @@ SNAPSHOT_GLOB = "tools/*_snapshot.json"
 def sibling_meta_path(snapshot_path: Path) -> Path:
     """Return tools/<stem>.meta.json for tools/<stem>.json."""
     return snapshot_path.with_name(snapshot_path.stem + ".meta.json")
+
+UPSTREAM_BEHIND_LIMIT = 3
+STABLE_TAG = re.compile(r"^v(\d+)\.(\d+)\.(\d+)$")
 
 EXIT_OK = 0
 EXIT_STALE = 1
@@ -196,6 +211,84 @@ def evaluate(path: Path, today: date) -> dict[str, Any]:
     }
 
 
+def repo_url(repo: str) -> str:
+    """owner/name -> a GitHub URL; a URL or a local path is used as given."""
+    if "://" in repo or repo.startswith(("/", ".", "file:")):
+        return repo
+    return f"https://github.com/{repo}"
+
+
+def parse_version(text: str) -> tuple[int, int, int]:
+    m = re.match(r"^v?(\d+)\.(\d+)\.(\d+)$", text.strip())
+    if not m:
+        raise ValueError(f"not a stable X.Y.Z version: {text!r}")
+    return int(m.group(1)), int(m.group(2)), int(m.group(3))
+
+
+def stable_tags(repo: str, timeout: int = 60) -> list[tuple[int, int, int]]:
+    """Stable vX.Y.Z tags of repo, sorted. Raises OSError if unreadable."""
+    try:
+        p = subprocess.run(
+            ["git", "ls-remote", "--tags", repo_url(repo)],
+            capture_output=True, text=True, timeout=timeout,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise OSError(f"git ls-remote failed: {exc}") from exc
+    if p.returncode != 0:
+        raise OSError(p.stderr.strip().splitlines()[-1] if p.stderr.strip()
+                      else f"git ls-remote exited {p.returncode}")
+    tags = set()
+    for line in p.stdout.splitlines():
+        ref = line.split("\t")[-1].removeprefix("refs/tags/")
+        m = STABLE_TAG.match(ref)
+        if m:
+            tags.add(tuple(int(x) for x in m.groups()))
+    return sorted(tags)
+
+
+def snapshot_meta(path: Path) -> dict[str, Any]:
+    sibling = sibling_meta_path(path)
+    src = sibling if sibling.exists() else path
+    try:
+        data = json.loads(src.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    meta = data.get("meta") if isinstance(data, dict) else None
+    return meta if isinstance(meta, dict) else {}
+
+
+def check_upstream(path: Path) -> dict[str, Any] | None:
+    """None when the snapshot names no source_version/source_repo pair."""
+    meta = snapshot_meta(path)
+    version, repo = meta.get("source_version"), meta.get("source_repo")
+    if not version or not repo:
+        return None
+    rel = str(path.relative_to(PROJECT_ROOT))
+    out: dict[str, Any] = {"file": rel, "repo": repo, "vendored": str(version)}
+    try:
+        have = parse_version(str(version))
+        tags = stable_tags(repo)
+    except ValueError as exc:
+        return {**out, "status": "warn", "detail": f"bad source_version: {exc}"}
+    except OSError as exc:
+        return {**out, "status": "warn",
+                "detail": f"upstream unreachable ({exc}); gap unknown"}
+    if not tags:
+        return {**out, "status": "warn", "detail": "no stable tags upstream"}
+    behind = sum(1 for t in tags if t > have)
+    latest = ".".join(map(str, tags[-1]))
+    out.update(behind=behind, latest=latest)
+    if behind > UPSTREAM_BEHIND_LIMIT:
+        out.update(status="warn", detail=(
+            f"vendored {version} of {repo} is {behind} stable tags behind "
+            f"(latest {latest}; limit {UPSTREAM_BEHIND_LIMIT})"))
+    else:
+        out.update(status="ok", detail=(
+            f"vendored {version} of {repo}: {behind} stable tag(s) behind "
+            f"(latest {latest})"))
+    return out
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="check_snapshot_freshness",
@@ -208,6 +301,12 @@ def build_parser() -> argparse.ArgumentParser:
                    help="Emit machine-readable JSON.")
     p.add_argument("--today", metavar="YYYY-MM-DD", default=None,
                    help="Override today's date, for testing.")
+    p.add_argument("--check-upstream", action="store_true",
+                   help="Also compare meta.source_version with the source "
+                        "repository's stable tags (network; warn only).")
+    p.add_argument("--root", type=Path, default=None,
+                   help="Check the snapshots of the repository at ROOT "
+                        "(used by the tests).")
     return p
 
 
@@ -257,7 +356,10 @@ def report_json(results: list[dict[str, Any]], today: date) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
+    global PROJECT_ROOT
     args = build_parser().parse_args(argv)
+    if args.root:
+        PROJECT_ROOT = args.root.resolve()
 
     today = parse_iso_date(args.today) if args.today else date.today()
 
@@ -266,11 +368,23 @@ def main(argv: list[str] | None = None) -> int:
         raise FatalError(f"no files matched {SNAPSHOT_GLOB} under {PROJECT_ROOT}")
 
     results = [evaluate(p, today) for p in snapshots]
+    upstream = ([u for u in (check_upstream(p) for p in snapshots) if u]
+                if args.check_upstream else [])
 
     if args.json:
         report_json(results, today)
+        if args.check_upstream:
+            print(json.dumps({"upstream": upstream}, indent=2, ensure_ascii=False))
     else:
         report_text(results, today)
+        if args.check_upstream:
+            print("  Upstream versions (--check-upstream; warnings only)")
+            if not upstream:
+                print("  (no snapshot carries source_version and source_repo)")
+            for u in upstream:
+                marker = "OK  " if u["status"] == "ok" else "WARN"
+                print(f"  [{marker}] {u['file']}: {u['detail']}")
+            print("=" * 78)
 
     return EXIT_STALE if any(r["status"] == "stale" for r in results) else EXIT_OK
 
