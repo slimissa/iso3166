@@ -53,7 +53,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 300 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 304 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.2 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -862,7 +862,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 21 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 22 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 23 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 24 | `python3 -m pytest tests/ -v` | The root suite (76 tests, including the architecture test and the index-vs-fixture test) |
+| 24 | `python3 -m pytest tests/ -v` | The root suite (80 tests, including the architecture test and the index-vs-fixture test) |
 | 25 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
 | 26 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 27 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
@@ -876,12 +876,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 76 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 80 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 104 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 52 |
 | Rust | `(cd wrappers/rust && cargo test)` | 27 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 41 (declarations) |
-| **Total** | | **300** |
+| **Total** | | **304** |
 
 ### Additional checks
 
@@ -1064,6 +1064,7 @@ iso3166/
     test_check_release_diff.py              # check_release_diff.py allows only version and date changes after a bump
     test_club_ranges.py                     # validate.py rejects overlapping, touching and misordered club ranges
     test_release_evidence_unique.py         # release.sh uses per-run temp files; the v1.12.3 report is known incomplete
+    test_consumers_json.py                  # consumers.json is well formed and agrees with JOINS.md and README section 22
     test_check_consumers_current.py         # check_consumers_current.py reads served metadata, exits 0/1/2
     test_check_snapshot_upstream.py         # check_snapshot_freshness.py --check-upstream against a local repository
     test_enrich_field_citations.py          # record_source writes one source line per field
@@ -1096,6 +1097,7 @@ iso3166/
     check_version_consistency.py            # Version sites agree
     club_format.py                          # Serialize club arrays to 'from:to|from:to' for flat exports
     cross_language_derived.py               # Run every derived-query fixture case through the Python wrapper
+    consumers.json                          # The registries that vendor this one: repo, vendored path, fields read
     customs_union_snapshot.json             # Snapshot: EU customs union (annual)
     customs_union_snapshot.meta.json        # Vendoring metadata and review_by
     eea_membership_snapshot.json            # Snapshot: EEA, with provisional-application dates

@@ -1,0 +1,23 @@
+{
+  "_comment": "Registries that vendor iso3166.json, as read from their public repositories on 2026-11-04. Read by tools/check_consumers_current.py. fields_read must agree with docs/JOINS.md (tests/test_consumers_json.py checks that). snapshot_path is where the consumer keeps its copy; its vendoring metadata is the same path with .json replaced by .meta.json.",
+  "consumers": [
+    {
+      "name": "ISO 4217",
+      "repo": "slimissa/iso4217",
+      "snapshot_path": "tools/iso3166_snapshot.json",
+      "fields_read": ["alpha_2", "region", "subregion", "currency_codes"]
+    },
+    {
+      "name": "ISO 10383",
+      "repo": "slimissa/iso10383",
+      "snapshot_path": "tools/iso3166_snapshot.json",
+      "fields_read": ["alpha_2"]
+    },
+    {
+      "name": "Exchange Calendar",
+      "repo": "slimissa/exchange-calendar",
+      "snapshot_path": "tools/iso3166_snapshot.json",
+      "fields_read": ["alpha_2", "name"]
+    }
+  ]
+}
