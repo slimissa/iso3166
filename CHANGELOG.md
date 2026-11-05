@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.12.4] — YYYY-MM-DD
+## [1.12.4] — 2026-11-05
 
 v1.12.4 closes the fourth audit's findings: the version of this registry that its consumers vendor was invisible from here, the v1.12.3 verification report held 11 of about 38 gate commands, and README section 22 disagreed with the consumers' public repositories.
 
