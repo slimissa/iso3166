@@ -1030,6 +1030,7 @@ iso3166/
   docs/
     AUDIT.md                                # Tool inventory: --check mode, CI and release-gate coverage of each tool
     ENRICHMENT.md                           # How each enriched field is sourced and refreshed
+    JOINS.md                                # Which fields each consumer reads, and the join rules
     LAYERS.md                               # RAW / CURATED / AGGREGATED model
     PROVENANCE.md                           # Per-field source, access date and refresh cadence
     QUERIES-DECISIONS.md                    # Why each derived query is shaped as it is; deferred queries
@@ -1308,7 +1309,7 @@ JSON: `meta.version`. Parquet: footer key `iso3166.version`. SQL: the `-- Regist
 
 ## 22. Consumed by
 
-ISO 3166 is a root of the join graph: other registries reference `alpha_2`. This registry in turn vendors an ISO 4217 snapshot to validate `currency_codes`. The proof column says where the evidence lives.
+ISO 3166 is a root of the join graph: other registries reference `alpha_2`. This registry in turn vendors an ISO 4217 snapshot to validate `currency_codes`. The proof column says where the evidence lives. Which fields each consumer reads, and the comparison rules, are in [`docs/JOINS.md`](./docs/JOINS.md).
 
 | Project | Edge | Proof |
 |---------|------|-------|
