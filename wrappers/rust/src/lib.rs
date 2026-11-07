@@ -88,6 +88,20 @@ fn dq_valid_date(s: &str) -> bool {
 // Errors
 // ============================================================
 
+/// A date that is not a real calendar date written as `YYYY-MM-DD`.
+/// Returned by [`CountryRegistry::is_active_on`] and the four club `*_at`
+/// queries (v1.12.5; they used to answer `false` for a malformed date).
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct InvalidDate(pub String);
+
+impl std::fmt::Display for InvalidDate {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "malformed date: {:?} (want YYYY-MM-DD)", self.0)
+    }
+}
+
+impl std::error::Error for InvalidDate {}
+
 /// Errors returned by [`CountryRegistry::load`] and
 /// [`CountryRegistry::load_from`].
 #[derive(Debug)]
@@ -610,23 +624,24 @@ impl CountryRegistry {
     }
 
     /// `from <= date <= to` for some range (`to` None = open-ended). A
-    /// malformed date, an unknown code or a code in no range is false.
+    /// An unknown code or a code in no range is false; a malformed date is
+    /// an `InvalidDate` error.
     fn club_at(
         &self,
         pick: fn(&Country) -> &[MembershipRange],
         code: &str,
         date: &str,
-    ) -> bool {
+    ) -> Result<bool, InvalidDate> {
         if !dq_valid_date(date) {
-            return false;
+            return Err(InvalidDate(date.to_string()));
         }
-        self.club_ranges(pick, code).iter().any(|r| {
+        Ok(self.club_ranges(pick, code).iter().any(|r| {
             r.from.as_str() <= date
                 && match r.to.as_deref() {
                     None => true,
                     Some(to) => date <= to,
                 }
-        })
+        }))
     }
 
     /// Current member: some range is open-ended.
@@ -660,10 +675,10 @@ impl CountryRegistry {
 
     /// Was `code` an EU member state on `date`? Founders count from
     /// 1958-01-01 (the EEC). Both ends of a range are inclusive, so GB is
-    /// a member on 2020-01-31 and not on 2020-02-01. A malformed date, an
-    /// unknown code, or a code in no range is `false`; the answer is
-    /// never unknown. See docs/QUERIES.md, "Query 10".
-    pub fn is_eu_member_at(&self, code: &str, date: &str) -> bool {
+    /// a member on 2020-01-31 and not on 2020-02-01. An unknown code or a
+    /// code in no range is `Ok(false)`; a malformed date is
+    /// `Err(InvalidDate)`. The answer is never unknown. See docs/QUERIES.md, "Query 10".
+    pub fn is_eu_member_at(&self, code: &str, date: &str) -> Result<bool, InvalidDate> {
         self.club_at(|c| &c.eu_membership, code, date)
     }
 
@@ -672,20 +687,20 @@ impl CountryRegistry {
     /// applied provisionally (2004-05-01 for the 2004 ten, 2007-08-01 for BG
     /// and RO); HR has formal dates only.
     /// See docs/QUERIES.md, "Query 10".
-    pub fn is_eea_member_at(&self, code: &str, date: &str) -> bool {
+    pub fn is_eea_member_at(&self, code: &str, date: &str) -> Result<bool, InvalidDate> {
         self.club_at(|c| &c.eea_membership, code, date)
     }
 
     /// Was `code` in the eurozone on `date`? Members count from 1 January
     /// of their adoption year. See docs/QUERIES.md, "Query 10".
-    pub fn is_eurozone_member_at(&self, code: &str, date: &str) -> bool {
+    pub fn is_eurozone_member_at(&self, code: &str, date: &str) -> Result<bool, InvalidDate> {
         self.club_at(|c| &c.eurozone_membership, code, date)
     }
 
     /// Was `code` in the EU customs union on `date`? AD and TR cover
     /// industrial goods only (scope is in the snapshot meta).
     /// See docs/QUERIES.md, "Query 10".
-    pub fn is_in_customs_union_at(&self, code: &str, date: &str) -> bool {
+    pub fn is_in_customs_union_at(&self, code: &str, date: &str) -> Result<bool, InvalidDate> {
         self.club_at(|c| &c.customs_union, code, date)
     }
 
@@ -880,8 +895,9 @@ impl CountryRegistry {
 
     /// Was `code` an assigned ISO 3166-1 code on `date` (YYYY-MM-DD)?
     ///
-    /// Tri-state: `Some(false)` for a malformed date, an unknown code, a
-    /// date before `introduced`, or a date after a withdrawn entry's
+    /// A malformed date is `Err(InvalidDate)` (v1.12.5; it used to be
+    /// `Some(false)`). Otherwise tri-state: `Some(false)` for an unknown
+    /// code, a date before `introduced`, or a date after a withdrawn entry's
     /// `withdrawal_date`; `Some(true)` when the code was in force;
     /// `None` (unknown) for an active entry whose `introduced` is null.
     /// Active entries are resolved first (AI and SK exist twice). A
@@ -895,10 +911,15 @@ impl CountryRegistry {
     /// `is_active_on("BJ", "2000-01-01")` is `None`, and so is
     /// `is_active_on("DD", "1800-01-01")` (before 1974).
     /// See docs/QUERIES.md, "Query 9".
-    pub fn is_active_on(&self, code: &str, date: &str) -> Option<bool> {
+    pub fn is_active_on(&self, code: &str, date: &str) -> Result<Option<bool>, InvalidDate> {
         if !dq_valid_date(date) {
-            return Some(false);
+            return Err(InvalidDate(date.to_string()));
         }
+        Ok(self.is_active_on_valid(code, date))
+    }
+
+    /// `is_active_on` for a date already known to be valid.
+    fn is_active_on_valid(&self, code: &str, date: &str) -> Option<bool> {
         let c = dq_norm(code);
         if let Some(&i) = self.by_alpha2.get(&c) {
             return self.active[i]
@@ -923,6 +944,30 @@ impl CountryRegistry {
             None if date < "1974-01-01" => None,
             None => Some(true),
         }
+    }
+
+    /// [`is_active_on`](Self::is_active_on) for every code at once: the 252
+    /// active entries plus the 23 withdrawn codes that are not also active
+    /// (AI and SK exist in both; the active entry wins). 275 keys, sorted.
+    /// A malformed date is `Err(InvalidDate)`.
+    ///
+    /// `None` is not `Some(false)`. On 1990-01-01 the answer is 170 true,
+    /// 29 false and 76 unknown (CZ, SK and RU among them); filtering on
+    /// `Some(true)` alone silently drops the unknowns.
+    /// See docs/QUERIES.md, "Query 11".
+    pub fn active_on(
+        &self,
+        date: &str,
+    ) -> Result<std::collections::BTreeMap<String, Option<bool>>, InvalidDate> {
+        if !dq_valid_date(date) {
+            return Err(InvalidDate(date.to_string()));
+        }
+        let mut out = std::collections::BTreeMap::new();
+        for c in self.active.iter().chain(self.withdrawn.iter()) {
+            out.entry(c.alpha_2.clone())
+                .or_insert_with(|| self.is_active_on_valid(&c.alpha_2, date));
+        }
+        Ok(out)
     }
 
     /// Sorted active codes in `region` (and `subregion`). Case-insensitive.
@@ -1006,39 +1051,89 @@ mod tests {
     #[test]
     fn club_memberships_are_date_scoped() {
         let r = reg();
-        assert!(r.is_eu_member_at("GB", "2010-01-01"));
-        assert!(!r.is_eu_member_at("GB", "2023-01-01"));
-        assert!(r.is_eu_member_at("GB", "2020-01-31"));
-        assert!(!r.is_eu_member_at("GB", "2020-02-01"));
-        assert!(!r.is_eu_member_at("GR", "1980-01-01"));
-        assert!(r.is_eu_member_at("GR", "2000-01-01"));
-        assert!(!r.is_eurozone_member_at("GR", "2000-01-01"));
-        assert!(!r.is_eurozone_member_at("GR", "2000-12-31"));
-        assert!(r.is_eurozone_member_at("GR", "2001-01-01"));
-        assert!(r.is_eurozone_member_at("GR", "2002-01-01"));
-        assert!(!r.is_eu_member_at("DE", "1950-01-01"));
-        assert!(r.is_in_customs_union_at("GB", "2010-01-01"));
-        assert!(!r.is_in_customs_union_at("GB", "2023-01-01"));
-        assert!(r.is_eea_member_at("GB", "2020-12-31"));
-        assert!(!r.is_eea_member_at("GB", "2021-01-01"));
-        for bad in ["2000-13-01", "2000-1-1", ""] {
-            assert!(!r.is_eu_member_at("DE", bad));
+        assert!(r.is_eu_member_at("GB", "2010-01-01").unwrap());
+        assert!(!r.is_eu_member_at("GB", "2023-01-01").unwrap());
+        assert!(r.is_eu_member_at("GB", "2020-01-31").unwrap());
+        assert!(!r.is_eu_member_at("GB", "2020-02-01").unwrap());
+        assert!(!r.is_eu_member_at("GR", "1980-01-01").unwrap());
+        assert!(r.is_eu_member_at("GR", "2000-01-01").unwrap());
+        assert!(!r.is_eurozone_member_at("GR", "2000-01-01").unwrap());
+        assert!(!r.is_eurozone_member_at("GR", "2000-12-31").unwrap());
+        assert!(r.is_eurozone_member_at("GR", "2001-01-01").unwrap());
+        assert!(r.is_eurozone_member_at("GR", "2002-01-01").unwrap());
+        assert!(!r.is_eu_member_at("DE", "1950-01-01").unwrap());
+        assert!(r.is_in_customs_union_at("GB", "2010-01-01").unwrap());
+        assert!(!r.is_in_customs_union_at("GB", "2023-01-01").unwrap());
+        assert!(r.is_eea_member_at("GB", "2020-12-31").unwrap());
+        assert!(!r.is_eea_member_at("GB", "2021-01-01").unwrap());
+        assert!(!r.is_eu_member_at("ZZ", "2000-01-01").unwrap());
+        assert!(!r.is_eu_member_at("", "2000-01-01").unwrap());
+        assert!(r.is_eu_member_at(" gb ", "2010-01-01").unwrap());
+    }
+
+    #[test]
+    fn active_on_agrees_with_is_active_on() {
+        let r = reg();
+        let m = r.active_on("1990-01-01").unwrap();
+        assert_eq!(m.len(), 275);
+        let count = |v: Option<bool>| m.values().filter(|x| **x == v).count();
+        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (170, 29, 76));
+        for (code, v) in &m {
+            assert_eq!(*v, r.is_active_on(code, "1990-01-01").unwrap(), "{}", code);
         }
-        assert!(!r.is_eu_member_at("ZZ", "2000-01-01"));
-        assert!(!r.is_eu_member_at("", "2000-01-01"));
-        assert!(r.is_eu_member_at(" gb ", "2010-01-01"));
+        assert!(r.active_on("1990-13-01").is_err());
+    }
+
+    /// The unknown-code contract (README section 4b, v1.12.5), Rust column.
+    #[test]
+    fn unknown_code_contract() {
+        let r = reg();
+        assert!(r.active("XX").is_none());
+        assert!(r.currencies("XX").is_empty());
+        assert_eq!(r.currency_at("XX", "2000-01-01"), None);
+        assert_eq!(r.is_active_on("XX", "2000-01-01"), Ok(Some(false)));
+        assert_eq!(r.is_eu_member_at("XX", "2010-01-01"), Ok(false));
+        // currencies() cannot tell "no such country" from "no currency" (AQ).
+        assert!(r.currencies("AQ").is_empty() && r.active("AQ").is_some());
+        // case-insensitive, no strip in lookups; derived queries strip.
+        assert_eq!(r.active("us").map(|c| c.alpha_2.as_str()), Some("US"));
+        assert!(r.active(" us ").is_none());
+        assert_eq!(r.is_eu_member_at(" de ", "2010-01-01"), Ok(true));
+        assert!(r.active("USA").is_none());
+    }
+
+    /// v1.12.5: a malformed date is an error, not `false`.
+    #[test]
+    fn malformed_dates_are_errors() {
+        let r = reg();
+        for bad in [
+            "2010-13-45", "2010-02-30", "2010-1-1", "20100101", "2010/01/01", "",
+            "2010-01-01T00:00:00", "2010-01-01\n",
+        ] {
+            let want = Err(InvalidDate(bad.to_string()));
+            assert_eq!(r.is_eu_member_at("DE", bad), want, "{:?}", bad);
+            assert_eq!(r.is_eea_member_at("DE", bad), want, "{:?}", bad);
+            assert_eq!(r.is_eurozone_member_at("DE", bad), want, "{:?}", bad);
+            assert_eq!(r.is_in_customs_union_at("DE", bad), want, "{:?}", bad);
+            assert_eq!(
+                r.is_active_on("DE", bad),
+                Err(InvalidDate(bad.to_string())),
+                "{:?}",
+                bad
+            );
+        }
     }
 
     #[test]
     fn eea_provisional_application_counts() {
         let r = reg();
-        assert!(r.is_eea_member_at("BG", "2010-01-01"));
-        assert!(!r.is_eea_member_at("BG", "2005-01-01"));
-        assert!(!r.is_eea_member_at("BG", "2007-07-31"));
-        assert!(r.is_eea_member_at("BG", "2007-08-01"));
-        assert!(r.is_eea_member_at("CY", "2005-01-01"));
-        assert!(!r.is_eea_member_at("CY", "2003-01-01"));
-        assert!(!r.is_eea_member_at("HR", "2020-01-01"));
+        assert!(r.is_eea_member_at("BG", "2010-01-01").unwrap());
+        assert!(!r.is_eea_member_at("BG", "2005-01-01").unwrap());
+        assert!(!r.is_eea_member_at("BG", "2007-07-31").unwrap());
+        assert!(r.is_eea_member_at("BG", "2007-08-01").unwrap());
+        assert!(r.is_eea_member_at("CY", "2005-01-01").unwrap());
+        assert!(!r.is_eea_member_at("CY", "2003-01-01").unwrap());
+        assert!(!r.is_eea_member_at("HR", "2020-01-01").unwrap());
     }
 
     #[test]

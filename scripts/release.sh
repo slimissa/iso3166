@@ -371,6 +371,44 @@ sub_file("README.md",
          r'registry-[0-9.]+-orange',
          f'registry-{version}-orange')
 
+# v1.12.5: the other README sites that carry the version, and the report
+# count. tools/check_docs_match_tree.py checks all of them in the gate.
+def sub_readme(pattern, replacement):
+    p = Path("README.md")
+    text = p.read_text(encoding="utf-8")
+    new, n = re.subn(pattern, replacement, text, flags=re.MULTILINE)
+    if n == 0:
+        sys.exit(f"README.md has no site matching {pattern!r}")
+    p.write_text(new, encoding="utf-8")
+
+sub_readme(r'^(\| \*\*Version\*\* \| )[0-9.]+', lambda m: m.group(1) + version)
+sub_readme(r'("version": ")[0-9.]+(")', lambda m: m.group(1) + version + m.group(2))
+sub_readme(r"(b')[0-9.]+(')", lambda m: m.group(1) + version + m.group(2))
+
+# The report for this release is written after the gate (step 7), so the
+# count here is the number of reports that exist now.
+have = sorted(
+    (tuple(int(x) for x in q.name[1:].split("-")[0].split(".")), q.name[1:].split("-")[0])
+    for q in Path("docs").glob("v*-verification.md")
+    if re.fullmatch(r"v\d+\.\d+\.\d+-verification\.md", q.name))
+count, newest = len(have), have[-1][1]
+ONES = "zero one two three four five six seven eight nine ten eleven twelve " \
+       "thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+TENS = {2: "twenty", 3: "thirty", 4: "forty", 5: "fifty", 6: "sixty",
+        7: "seventy", 8: "eighty", 9: "ninety"}
+def spell(n):
+    if n < 20:
+        return ONES[n]
+    return TENS[n // 10] + ("-" + ONES[n % 10] if n % 10 else "")
+sub_readme(r"\b[A-Z][a-z]+(?:-[a-z]+)? verification reports exist, `docs/v1\.0\.0-verification\.md` through "
+           r"\[`docs/v[0-9.]+-verification\.md`\]\(\./docs/v[0-9.]+-verification\.md\)",
+           f"{spell(count).capitalize()} verification reports exist, `docs/v1.0.0-verification.md` through "
+           f"[`docs/v{newest}-verification.md`](./docs/v{newest}-verification.md)")
+sub_readme(r"# \d+ release gate records, v1\.0\.0 to v[0-9.]+",
+           f"# {count} release gate records, v1.0.0 to v{newest}")
+sub_readme(r"The \d+ verification reports are collapsed",
+           f"The {count} verification reports are collapsed")
+
 p = Path("wrappers/javascript/package.json")
 d = json.loads(p.read_text(encoding="utf-8"))
 d["version"] = version

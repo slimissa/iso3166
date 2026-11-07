@@ -116,7 +116,9 @@ own currency.
 ## Why `None` and not an exception
 
 `None` (`nil`, `Option::None`, `false` from a Go `bool`) means "the tree
-cannot answer". Unknown codes and malformed dates do not raise. This keeps
+cannot answer". Unknown codes do not raise. A malformed date is the caller's
+bug and is not "cannot answer"; since v1.12.5 it is an error in every language
+(see "Why malformed input raises"). This keeps
 the four languages identical: Rust and Go have no exceptions to mirror, and a
 query that raised in Python but returned a value elsewhere would fail the
 cross-language check. The cost is that "unknown code" and "known code with no
@@ -199,7 +201,7 @@ document is a claim a machine has checked.
 or contradicted by the tree. A boolean query would have to turn each null into
 `true` or `false`, and either answer is a claim the registry cannot back. So
 the query returns `false` only when the answer is known to be no (before
-`introduced`, after `withdrawal_date`, unknown code, malformed date), `true`
+`introduced`, after `withdrawal_date`, unknown code), `true`
 when it is known to be yes, and `None` / `null` / `nil` / `Option::None` when
 the registry does not know. The snapshot's null is honest, so the query must
 not lie. Withdrawn codes have no sourced start. The query returns `true`
@@ -299,8 +301,9 @@ the source is silent and the registry says so. Membership is different. The
 snapshot states membership for every active entry, and `[]` is a statement.
 There is no input for which the registry "does not know", so `null` would be a
 value nothing returns. The four queries return a plain boolean in every
-language (no `Option`, no pointer), and a malformed date, an unknown code and a
-date outside every range are all `false`.
+language (no `Option`, no pointer), and an unknown code and a date outside
+every range are both `false`. A malformed date is not an answer; it raises
+(v1.12.5).
 
 The CLI still lists exit code 4 for the tri-state contract, so that a script
 that handles 0, 1 and 4 for `is-active-on` handles these commands too. Nothing
@@ -314,7 +317,31 @@ once.
 v1.10.0 contract. The dated commands follow `is-active-on` instead: 0 true, 1
 false, 2 malformed date. An unknown code is `false` (exit 1), not "not found",
 because the library's answer for it is `false` and the CLI must agree with the
-library. The cross-language check enforces that agreement.
+library. The cross-language check enforces that agreement. Since v1.12.5 the
+library agrees with the CLI on a malformed date too: both fail (the CLI with
+exit 2).
+
+## Why malformed input raises
+
+Before v1.12.5, `is_eu_member_at("DE", "2010-13-45")` returned `false`, and so
+did a `datetime.date` or a `pandas.Timestamp`, because only strings were
+recognised. `false` is a real answer ("never a member"), so a caller who passed
+the wrong type got a plausible wrong answer on every row and no signal. The CLI
+had always exited 2 on the same input, which hid the bug from anyone who
+prototyped with the CLI first.
+
+The rule is: an input that is not a date is an error, and an input that is a
+date but has no answer is `false` or `None`. Each language uses its own idiom
+for an error (Python `ValueError`, JavaScript `TypeError`, Go `error`, Rust
+`Result`), and `tools/cross_language_derived.py` checks 40 malformed inputs
+(`derived_queries.error_cases`) on all five surfaces. Python alone converts a
+`datetime.date`, `datetime.datetime` or `pandas.Timestamp` to a string, because
+that is the common mistake and the conversion is lossless for a date. The
+conversion keeps the calendar date and discards the time and timezone.
+
+An unknown or empty code is not malformed input and still answers `false`.
+`currency_at` keeps `None` for a malformed date; changing it was out of scope
+for v1.12.5.
 
 ## Why provisional application is included
 

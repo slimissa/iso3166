@@ -103,6 +103,28 @@ def current_versions(root: Path) -> set[str]:
     return ok
 
 
+def reports(root: Path) -> list[str]:
+    """Versions that have a docs/vX.Y.Z-verification.md, oldest first."""
+    vs = [m.group(1) for p in (root / "docs").glob("v*-verification.md")
+          if (m := re.fullmatch(r"v(\d+\.\d+\.\d+)-verification\.md", p.name))]
+    return sorted(vs, key=vt)
+
+
+def words_to_int(w: str):
+    """'forty-four' -> 44, '44' -> 44, for 0..99; None if not a number."""
+    w = w.lower()
+    if w.isdigit():
+        return int(w)
+    tens = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+            "seventy": 70, "eighty": 80, "ninety": 90}
+    if w in WORDS:
+        return WORDS[w]
+    head, _, tail = w.partition("-")
+    if head in tens and (not tail or tail in WORDS and 0 < WORDS[tail] < 10):
+        return tens[head] + (WORDS[tail] if tail else 0)
+    return None
+
+
 def run(root: Path) -> list[tuple[bool, str]]:
     out: list[tuple[bool, str]] = []
 
@@ -193,6 +215,44 @@ def run(root: Path) -> list[tuple[bool, str]]:
     miss = [c for c in nulls if not re.search(rf"\b{c}\b", sec)]
     rec(not miss, "ENRICHMENT.md names every entry with a null subregion",
         f"missing {miss}", f"{len(nulls)} null entries")
+
+    # (k)-(n) v1.12.5: the README sites that carry the release version. The
+    # first four releases that drifted here (PROVENANCE.md, CONTRIBUTING.md,
+    # the CHANGELOG heading, the badge) were each fixed alone; these four
+    # are the rest. release.sh bumps the first three with VERSION.
+    ver = read(root, "VERSION").strip()
+    m = re.findall(r"^\| \*\*Version\*\* \| (\d+\.\d+\.\d+)\b", readme, re.M)
+    rec(bool(m) and all(x == ver for x in m),
+        "README version row matches VERSION", m or "no '| **Version** |' row", ver)
+    m = re.findall(r'"version": "(\d+\.\d+\.\d+)"', readme)
+    rec(bool(m) and all(x == ver for x in m),
+        "README JSON sample version matches VERSION", m or "no '\"version\": \"X.Y.Z\"'", ver)
+    m = re.findall(r"b'(\d+\.\d+\.\d+)'", readme)
+    rec(bool(m) and all(x == ver for x in m),
+        "README Parquet example version matches VERSION", m or "no b'X.Y.Z'", ver)
+    # The report count. release.sh writes the report for VERSION after the
+    # gate, so on the release commit there is one report more than the README
+    # counts: allow exactly that one (the report for VERSION itself).
+    have = reports(root)
+    claims = [(words_to_int(w), w) for w in re.findall(
+        r"\b([A-Za-z]+(?:-[A-Za-z]+)?|\d+) (?:verification reports exist|release gate records)\b",
+        readme)]
+    claims += [(words_to_int(w), w) for w in re.findall(
+        r"# (\d+) release gate records", readme)]
+    claims += [(words_to_int(w), w) for w in re.findall(
+        r"\bThe (\d+) verification reports\b", readme)]
+    allowed = {len(have)}
+    if have and have[-1] == ver:
+        allowed.add(len(have) - 1)
+    through = re.findall(r"through \[`docs/v(\d+\.\d+\.\d+)-verification\.md`\]", readme)
+    counted = [x for x in (c for c, _ in claims) if x is not None]
+    # Every site must give the same number, and it must agree with 'through vX'.
+    ok = bool(counted) and len(set(counted)) == 1 and all(x in allowed for x in counted)
+    ok = ok and all(len(have) >= x and have[x - 1] == t
+                    for x in counted[:1] for t in through[:1])
+    rec(ok, "README report count matches docs/v*-verification.md",
+        f"{[w for _, w in claims]} through {through}",
+        f"{len(have)} reports, newest v{have[-1] if have else '-'}")
     return out
 
 

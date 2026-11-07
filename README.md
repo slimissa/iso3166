@@ -17,6 +17,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 2. [Why this exists](#2-why-this-exists)
 3. [Where to start](#3-where-to-start)
 4. [Quick start](#4-quick-start)
+   - 4b. [API contract](#4b-api-contract)
 5. [The data model: three layers](#5-the-data-model-three-layers)
 6. [The registry file](#6-the-registry-file)
 7. [The temporal identity layer](#7-the-temporal-identity-layer)
@@ -48,14 +49,14 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Withdrawn entries** | 25 (`AN`, `BU`, `CS`, `DD`, `SU`, `YU` and 19 more; see [`docs/WITHDRAWN.md`](./docs/WITHDRAWN.md)) |
 | **Total** | 277. `AI` and `SK` are in both arrays: an active code reused for a different entity than the withdrawn one (Anguilla and Slovakia, against the withdrawn `AI` and `SK`; see [Section 6](#a-dual-status-code)). |
 | **Fields per active entry** | 24 (twenty on withdrawn entries: the four club arrays are active-only). 8 are enrichable, 1 is temporal, 4 are club arrays. |
-| **Derived queries** | 16: 12 in the Python `derived.py` mixin and 4 dated club queries in `clubs.py`, specified in [`docs/QUERIES.md`](./docs/QUERIES.md) |
-| **Surfaces** | 5: four language wrappers (Python, JavaScript, Rust, Go) and one command line with 25 subcommands |
+| **Derived queries** | 17: 13 in the Python `derived.py` mixin and 4 dated club queries in `clubs.py`, specified in [`docs/QUERIES.md`](./docs/QUERIES.md) |
+| **Surfaces** | 5: four language wrappers (Python, JavaScript, Rust, Go) and one command line with 26 subcommands |
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 306 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 427 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
-| **Version** | 1.12.2 (schema 1.0.0) |
+| **Version** | 1.12.4 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
 | **Dependencies** | The JSON needs none. The Python, JavaScript and Go wrappers need none; the Rust crate needs `serde` and `serde_json`. Tool time: `jsonschema`, `pyarrow==26.0.0`, `pandas`, `pytest`. |
 
@@ -154,7 +155,8 @@ let reg = CountryRegistry::load().unwrap();
 if let Some(us) = reg.active("US") {
     println!("{} {} {:?}", us.alpha_3, us.name, us.currency_codes);
 }
-println!("{}", reg.is_eu_member_at("GB", "2010-01-01")); // true
+// A Result: Err(InvalidDate) for a malformed date, never a silent false.
+println!("{}", reg.is_eu_member_at("GB", "2010-01-01").unwrap()); // true
 ```
 
 ### Go (1.21+)
@@ -165,10 +167,12 @@ The module path is `github.com/slimissa/iso3166-go`; its source is [`wrappers/go
 import iso3166 "github.com/slimissa/iso3166-go"
 
 reg, _ := iso3166.Load()
-if us := reg.Active("US"); us != nil {
+if us := reg.Active("US"); us.Exists() {
     fmt.Println(us.Alpha3, us.Name, us.CurrencyCodes)
 }
-fmt.Println(reg.IsEUMemberAt("GB", "2010-01-01")) // true
+// err is non-nil only for a malformed date, never a silent false.
+in, err := reg.IsEUMemberAt("GB", "2010-01-01")
+fmt.Println(in, err) // true <nil>
 ```
 
 ### Any SQL database
@@ -202,6 +206,35 @@ bin/iso3166 is-eu DE                          # true
 bin/iso3166 is-eu-member-at GB 2010-01-01     # true
 bin/iso3166 successors YU --raw alpha_2       # CS, ME, RS (one per line)
 ```
+
+---
+
+## 4b. API contract
+
+What each surface does with input it cannot use. An unknown code is an ordinary answer; a malformed date is an error (v1.12.5). Every row is a test in each wrapper (`test_unknown_code_contract.py`, `unknown_code.test.js`, `unknown_code_test.go`, and `unknown_code_contract` in `lib.rs`) and in `tools/cross_language_derived.py`.
+
+| Input | Python | JavaScript | Rust | Go | CLI |
+|-------|--------|------------|------|----|-----|
+| `active("us")` (lowercase) | the `US` entry | the `US` entry | the `US` entry | the `US` entry | `lookup us` finds it |
+| `active(" us ")` (whitespace) | `None`: lookups do not strip | `null` | `None` | zero `Country`, `Exists()` is false | not found, exit 1 |
+| `active("USA")` (alpha-3) | `None`; use `by_alpha3` | `null` | `None` | zero `Country` | not found, exit 1 |
+| `active("")`, `active(None)` | `None` | `null` | `None` (empty string) | zero `Country` | not found, exit 1 |
+| `active("XX")` (unknown) | `None` | `null` | `None` | zero `Country` | not found, exit 1 |
+| `active(840)` (not a string) | `TypeError` ("use by_numeric") | `null` | does not compile | does not compile | `lookup 840`: not found |
+| `currencies("XX")` | `[]` | `[]` | empty slice | empty slice | not found, exit 1 |
+| `currency_at("XX", d)` | `None` | `null` | `None` | `(nil, false)` | not found, exit 1 |
+| `is_active_on("XX", d)` | `False` | `false` | `Ok(Some(false))` | `(*false, nil)` | `false`, exit 1 |
+| `is_eu_member_at("XX", d)` | `False` | `false` | `Ok(false)` | `(false, nil)` | `false`, exit 1 |
+| `is_eu_member_at(" de ", d)` | `True`: derived queries strip | `true` | `Ok(true)` | `(true, nil)` | `true` |
+| `is_eu_member_at("DE", "2010-13-45")` | `ValueError` | `TypeError` | `Err(InvalidDate)` | `*InvalidDateError` | exit 2 |
+| `is_eu_member_at("DE", date_obj)` | converted to its ISO date | `TypeError` | does not compile | does not compile | n/a |
+| an extra or missing argument | `TypeError` | `TypeError` (v1.12.5; it was ignored) | does not compile | does not compile | exit 2 |
+
+Three things the table does not let you tell apart, so do not try:
+
+- **An unknown code and a country with no currency.** `currencies("XX")` and `currencies("AQ")` are both empty. `AQ` is a real entry with no currency. Ask `active(code)` first if the difference matters.
+- **`false` for an unknown code and `false` for a known one that never joined.** `is_eu_member_at("XX", d)` and `is_eu_member_at("CH", d)` are both `false`. Check `active(code)` if you need to know the code exists.
+- **An unknown country and an unknown date.** `is_active_on("XX", d)` is `false`; `is_active_on("BJ", d)` is `None` because the source is silent. `false` means "known not to be active".
 
 ---
 
@@ -246,7 +279,7 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
     "schema_version": "1.0.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
     "updated": "2026-10-31",
-    "version": "1.12.2"
+    "version": "1.12.4"
   },
   "countries": { "active": [ "..." ], "withdrawn": [ "..." ] }
 }
@@ -433,7 +466,7 @@ Was `code` an assigned ISO 3166-1 code on `date`? The answer is `true`, `false` 
 - Active entry, `introduced` set: `date >= introduced`.
 - Active entry, `introduced` null: `null`. (`XK`, `BJ`, and the other 74.)
 - Withdrawn entry: `false` after `withdrawal_date`; `true` from 1974-01-01 up to and including it; `null` before 1974, because ISO 3166 did not exist.
-- Malformed date or unknown code: `false`.
+- Unknown code: `false`. Malformed date: an error (Python `ValueError`, JavaScript `TypeError`, Go `error`, Rust `Err(InvalidDate)`, CLI exit 2). It was `false` before v1.12.5.
 
 ```text
 is_active_on("DE", "1990-01-01")  -> true     introduced 1974-09-15
@@ -459,7 +492,7 @@ A caller who needs the currency actually in force on a past date must not rely o
 
 ### The four club queries: date-scoped, binary
 
-`is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` take a code and a date and answer `true` or `false`. They are never null: the membership arrays are complete range lists, and `[]` is a definite "never a member". Ranges are inclusive on both ends.
+`is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` take a code and a date and answer `true` or `false`. A date that is not a real `YYYY-MM-DD` is an error, not `false` (v1.12.5). They are never null: the membership arrays are complete range lists, and `[]` is a definite "never a member". Ranges are inclusive on both ends.
 
 ```text
 is_eu_member_at("GB", "2020-01-31")        -> true    the last day of membership
@@ -565,7 +598,7 @@ Read `numeric` and `calling_codes` as text: `020` is Andorra, and a spreadsheet 
 
 ```python
 import pyarrow.parquet as pq
-print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # b'1.12.2'
+print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # b'1.12.4'
 ```
 
 ### Comparison semantics and the build pin
@@ -602,7 +635,7 @@ The file carries no `iso3166.*` footer metadata, and is not a version site.
 
 ## 10. Worked example: a strategy across four dates
 
-A strategy desk holds positions keyed by `alpha_2` and needs to know, as of four dates, which countries were in the EU and the eurozone. The script below reads only `iso3166.parquet` with DuckDB, parses the club cells, and asks the same questions the wrapper queries answer. It was run against v1.12.1 with DuckDB 2.0.0 and PyArrow 26.0.0; the Python wrapper gives the same counts.
+A strategy desk holds positions keyed by `alpha_2` and needs to know, as of four dates, which countries were in the EU and the eurozone. The script below reads only `iso3166.parquet` with DuckDB, parses the club cells, and asks the same questions the wrapper queries answer. It was run against v1.12.4 with DuckDB 2.0.0 and PyArrow 26.0.0; the Python wrapper gives the same counts.
 
 ```bash
 pip install duckdb pyarrow
@@ -683,8 +716,40 @@ Q5: which countries list EUR as a currency, and how many are in the eurozone tod
 What the numbers say:
 
 - **The EU was 12, then 15, then 27, then 27 again.** 2010 and 2023 have the same count with different members: the UK is in 2010, Croatia (2013) is in 2023.
-- **A current alias would have answered all four dates the same.** `is_eu` over the 252 entries gives 27 today. A fact table dated 1990 joined on `is_eu` mislabels 15 countries that were not yet members and the UK, which was.
+- **A current alias would have answered all four dates the same.** `is_eu` over the 252 entries gives 27 today. A fact table dated 1990 joined on `is_eu` mislabels 16 countries that were not yet members and the UK, which was.
 - **"Uses the euro" is not "is in the eurozone".** 36 entries list `EUR`; 21 are members. The other 15 are microstates and overseas territories (`AD`, `MC`, `SM`, `VA`, `ME`, the French departments and collectivities) that use the euro without membership. The registry keeps both facts.
+
+### Which countries were active in 1990?
+
+`active_on(date)` answers `is_active_on` for every code at once: 275 keys (the 252 active entries and the 23 withdrawn codes that are not also active), each `true`, `false` or `null`. The trap is `null`. It means the source is silent, not "no", and on 1990-01-01 it covers 76 active entries, including `CZ`, `SK` and `RU`.
+
+```python
+from iso3166 import CountryRegistry
+
+reg = CountryRegistry()
+r = reg.active_on("1990-01-01")          # {alpha_2: True | False | None}, 275 codes
+
+yes     = sorted(c for c, v in r.items() if v is True)
+no      = sorted(c for c, v in r.items() if v is False)
+unknown = sorted(c for c, v in r.items() if v is None)
+print(f"True {len(yes)}, False {len(no)}, None {len(unknown)}  (of {len(r)})")
+
+naive = [c for c, v in r.items() if v]   # the trap: None is falsy
+print(f"filtering on truthiness keeps {len(naive)}; it drops {len(unknown)}, e.g. {unknown[:4]}")
+print("DD, SU, YU, CS were active:", all(r[c] for c in ("DD", "SU", "YU", "CS")))
+print("CZ, SK, RU are unknown, not false:", [r[c] for c in ("CZ", "SK", "RU")])
+```
+
+```text
+True 170, False 29, None 76  (of 275)
+filtering on truthiness keeps 170; it drops 76, e.g. ['AI', 'AM', 'AQ', 'AS']
+DD, SU, YU, CS were active: True
+CZ, SK, RU are unknown, not false: [None, None, None]
+```
+
+A universe built from `if v` is 170 codes, not the 246 the registry can place (170 true plus 76 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU`, `YU` and `CS` were assigned and the current entries for Germany, Russia and the others cannot stand in for them.
+
+**What happens when the code is wrong?** An unknown code is an ordinary answer, not an error: `active("XX")` is `None`, `currencies("XX")` is `[]` (the same as real `AQ`, which has no currency), `is_eu_member_at("XX", d)` is `false`. A malformed *date* is an error. Lowercase codes work; padded ones (`" us "`) do not in a lookup, though they do in the dated queries. The table, per surface, is in [section 4b](#4b-api-contract).
 
 ---
 
@@ -714,6 +779,7 @@ The command is `iso3166`. Two files implement it: the packaged CLI (`wrappers/py
 | `region-countries REGION [--subregion S]` | Codes in a region |
 | `introduced CODE` | The `introduced` date, or `unknown` |
 | `is-active-on CODE DATE` | Tri-state: `true`, `false`, `unknown` |
+| `active-on DATE` | `is-active-on` for every code: one `CODE<TAB>true\|false\|unknown` line each (275); `--json` prints an object |
 
 **Global options:** `--registry PATH`, `--color {never,auto,always}`. **Output modes**, mutually exclusive: `--json`, `--jsonl`, `--csv`, `--tsv`, `--raw [FIELD]`.
 
@@ -760,7 +826,7 @@ bin/iso3166 is-active-on "$CODE" "$DATE" >/dev/null
 case $? in 0) echo active ;; 1) echo not-active ;; 4) echo unknown ;; 2) echo usage ;; esac
 ```
 
-The two CLIs differ in one place: for `--raw`, the packaged CLI prints one empty line for a null or empty-list value so that a scalar field keeps one line per entry, and the repo CLI prints none. `list --region Oceania --raw tlds` prints 29 lines from the packaged CLI and 28 from the repo CLI. The difference is not reconciled in v1.12.1.
+The two CLIs differ in one place: for `--raw`, the packaged CLI prints one empty line for a null or empty-list value so that a scalar field keeps one line per entry, and the repo CLI prints none. `list --region Oceania --raw tlds` prints 29 lines from the packaged CLI and 28 from the repo CLI. The difference is not reconciled in v1.12.4.
 
 ---
 
@@ -786,14 +852,15 @@ The Python and JavaScript counts are from running the suites; the Rust and Go co
 | Current EU | `.is_eu(c)` | `.isEu(c)` | `.is_eu(c)` | `.IsEU(c)` |
 | EU on a date | `.is_eu_member_at(c, d)` | `.isEuMemberAt(c, d)` | `.is_eu_member_at(c, d)` | `.IsEUMemberAt(c, d)` |
 | Customs union on a date | `.is_in_customs_union_at(c, d)` | `.isInCustomsUnionAt(c, d)` | `.is_in_customs_union_at(c, d)` | `.IsInCustomsUnionAt(c, d)` |
-| Code existed on a date | `.is_active_on(c, d)` (`bool \| None`) | `.isActiveOn(c, d)` (`boolean \| null`) | `.is_active_on(c, d)` (`Option<bool>`) | `.IsActiveOn(c, d)` (`*bool`) |
+| Code existed on a date, all codes | `.active_on(d)` (`dict[str, bool \| None]`) | `.activeOn(d)` (`{[code]: boolean \| null}`) | `.active_on(d)` (`Result<BTreeMap<String, Option<bool>>, InvalidDate>`) | `.ActiveOn(d)` (`(map[string]*bool, error)`) |
+| Code existed on a date | `.is_active_on(c, d)` (`bool \| None`) | `.isActiveOn(c, d)` (`boolean \| null`) | `.is_active_on(c, d)` (`Result<Option<bool>, InvalidDate>`) | `.IsActiveOn(c, d)` (`(*bool, error)`) |
 | Currency on a date | `.currency_at(c, d)` (`list \| None`) | `.currencyAt(c, d)` | `.currency_at(c, d)` (`Option<Vec<String>>`) | `.CurrencyAt(c, d)` (`([]string, bool)`) |
 | Descendants | `.successors(c)` | `.successors(c)` | `.successors(c)` | `.Successors(c)` |
 | Succession path | `.succession_path(a, b)` | `.successionPath(a, b)` | `.succession_path(a, b)` | `.SuccessionPath(a, b)` |
 | Region tree | `.region_tree(c)` | `.regionTree(c)` | `.region_tree(c)` | `.RegionTree(c)` |
 | Phone number to countries | `.calling_code_for(n)` | `.callingCodeFor(n)` | `.calling_code_for(n)` | `.CallingCodeFor(n)` |
 
-The tri-state spelling is the part that differs by language: a missing answer is `None`, `null`, `None` or a nil pointer, never `false`.
+The tri-state spelling is the part that differs by language: a missing answer is `None`, `null`, `None` or a nil pointer, never `false`. Since v1.12.5 Rust and Go also return the malformed-date error in the same call (`Result`, `(value, error)`).
 
 ### The shared fixture
 
@@ -840,7 +907,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | # | Command | What it catches |
 |--:|---------|-----------------|
 | 1 | `check_version_consistency.py` | Any version site disagreeing with `VERSION` |
-| 2 | `check_release_claims.py "$VERSION"` | A claim for this version in `tools/release_claims.json` that is false (19 for 1.12.4) |
+| 2 | `check_release_claims.py "$VERSION"` | A claim for this version in `tools/release_claims.json` that is false (10 for 1.12.5) |
 | 3 | `check_mojibake.py` | UTF-8 / Latin-1 round-trip corruption and unclosed code fences in text files |
 | 4 | `check_snapshot_freshness.py` | A `*_snapshot.json` whose `meta.review_by` has passed |
 | 5 | `check_registry_freshness.py` | An entry whose `last_verified` is more than 365 days old |
@@ -849,7 +916,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 8 | `check_introduced.py` | An active entry whose `introduced` differs from `tools/introduced_snapshot.json` |
 | 9 | `check_introduced_meta.py` | `introduced_snapshot.meta.json` missing `review_by`, `source` or `vendored_at`, or disagreeing with the snapshot's own `meta` |
 | 10 | `check_state_doc.py --strict` | A number in `docs/STATE.md` that differs from the tree |
-| 11 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (13 checks) |
+| 11 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (17 checks) |
 | 12 | `enrich_official_name.py --check` | `official_name` differing from its source |
 | 13 | `enrich_withdrawn.py --check` | The withdrawn array differing from its source |
 | 14 | `enrich_field.py --field currency_codes --check` | A `currency_codes` value missing on an entry, or not in the ISO 4217 snapshot |
@@ -876,12 +943,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 82 |
-| Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 104 |
-| JavaScript | `(cd wrappers/javascript && node --test)` | 52 |
-| Rust | `(cd wrappers/rust && cargo test)` | 27 (declarations) |
-| Go | `(cd wrappers/go && go test ./...)` | 41 (declarations) |
-| **Total** | | **306** |
+| Root (Python) | `python3 -m pytest tests/ -q` | 138 |
+| Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 119 |
+| JavaScript | `(cd wrappers/javascript && node --test)` | 94 |
+| Rust | `(cd wrappers/rust && cargo test)` | 30 (declarations) |
+| Go | `(cd wrappers/go && go test ./...)` | 46 (declarations) |
+| **Total** | | **427** |
 
 ### Additional checks
 
@@ -963,7 +1030,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 **`--force`** resumes from a post-commit state: when `VERSION` already equals the target because a previous run committed the release but did not reach the tag. It skips bump, commit and push, checks that `HEAD` **is** the `chore: release v<version>` commit (a commit on top of it is refused, because the tag lands on `HEAD`) and is on `origin/main`, **re-runs the gate and the CI check**, and refuses if regeneration left uncommitted files, then tags, releases and writes the report. `--force` and `--dry-run` are mutually exclusive, and `tests/test_release_force.sh` exercises the mode; it runs in the release gate and in the `check-force-test` CI job. `docs/README-AUDIT-NOTES.md` records the failures behind the rules: never reset `VERSION` to re-run the script, never interrupt the CI wait.
 
-Forty-two verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.2-verification.md`](./docs/v1.12.2-verification.md), from v1.12.2 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+Forty-four verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.4-verification.md`](./docs/v1.12.4-verification.md), from v1.12.2 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
 
 ---
 
@@ -998,7 +1065,7 @@ Deliberate exclusions:
 
 ## 17. Project structure
 
-Every tracked file is named below. The 42 verification reports are collapsed into one line.
+Every tracked file is named below. The 44 verification reports are collapsed into one line.
 
 ```text
 iso3166/
@@ -1042,7 +1109,7 @@ iso3166/
     SPEC-v1.12.0-phase1.md                  # v1.12.0 Phase 1 spec: the club-membership snapshots
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
-    v*-verification.md                      # 42 release gate records, v1.0.0 to v1.12.2
+    v*-verification.md                      # 44 release gate records, v1.0.0 to v1.12.4
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     v1.12.3-verification-errata.md          # Correction to the v1.12.3 report (11 of about 38 commands recorded)
     decisions/
@@ -1126,7 +1193,7 @@ iso3166/
     initial_exceptions.json                 # Archival: hand-maintained overrides for the initial import
     introduced_snapshot.json                # Snapshot: `introduced` dates and null_reasons
     introduced_snapshot.meta.json           # Vendoring metadata and review_by
-    iso3166_cli.py                          # The repo CLI (25 subcommands)
+    iso3166_cli.py                          # The repo CLI (26 subcommands)
     iso4217_snapshot.json                   # Snapshot: ISO 4217 codes, v1.8.0
     iso639_3_snapshot.json                  # Snapshot: ISO 639-3 languages (7,927 codes)
     itu_calling_code_snapshot.json          # Snapshot: ITU calling codes (204)
@@ -1173,7 +1240,7 @@ iso3166/
       pyproject.toml                        # Package iso3166-registry (version site)
       iso3166/
         __init__.py                         # Exports; __version__ (version site)
-        cli.py                              # Packaged CLI, `iso3166` console script (25 subcommands)
+        cli.py                              # Packaged CLI, `iso3166` console script (26 subcommands)
         clubs.py                            # Dated club queries (4)
         derived.py                          # Derived queries (12)
         iso3166.json                        # CURATED: byte-identical copy of the registry
@@ -1252,7 +1319,8 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **`introduced` is null for 76 of 252 active entries and all 25 withdrawn ones:** 27 quarantined (6 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
 - **The quarantine reasons for 21 of the 27 are `[likely]`,** inferred from the post-Soviet and post-Yugoslav succession and from newsletter dates, not from a primary record. Six are `[confirmed]` against the tree's own withdrawn entries.
 - **No historical currencies.** `currency_at` returns the entry's current currency inside its lifetime and `None` outside it. `currency_at("DE", "1990-01-01")` is `["EUR"]`, not the Deutsche Mark. For a withdrawn entry it returns the successor's current currency up to and including `withdrawal_date`.
-- **Nothing before 1974 can be answered.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`. The club arrays reach back further (the EU to 1958) and are not bounded by it.
+- **`introduced` and `is_active_on` have no data before 1974.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`.
+- **Club arrays reach back to the EU's 1958 founding.** `eu_membership` starts on 1958-01-01 (for `DE`); the EEA, eurozone and customs-union arrays start when those clubs did (1994, 1999, 1968-07-01). `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` answer for any date from 1958-01-01; they are not bounded by the 1974 limit, and before a club existed the answer is `false`. So `is_active_on("DE", "1960-01-01")` is `false` while `is_eu_member_at("DE", "1960-01-01")` is `true`.
 - **The `introduced` and club data are Wikipedia-sourced** under a documented exception, not first-party. Each snapshot is reviewed annually (`review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
 - **EEA provisional application is dated for 12 countries.** Croatia has formal dates only. The UK's EEA end (2020-12-31) is the page prose's date, and the state table disagrees; it is flagged likely in the snapshot.
 - **Five active entries have no region:** `AQ`, `EU`, `TW`, `UK`, `XK`. In `countries_by_region.parquet` they, and the 25 withdrawn entries, fall into rows with a null `region`.

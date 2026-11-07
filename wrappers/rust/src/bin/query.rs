@@ -10,10 +10,22 @@
 
 use std::process::ExitCode;
 
-use iso3166_registry::CountryRegistry;
+use iso3166_registry::{CountryRegistry, InvalidDate};
 
 fn json<T: serde::Serialize>(v: &T) -> String {
     serde_json::to_string(v).expect("serialize")
+}
+
+/// A malformed date is an error: print it on stderr and exit 2, the
+/// CLI's code for a malformed DATE (v1.12.5).
+fn json_or_exit<T: serde::Serialize>(r: Result<T, InvalidDate>) -> String {
+    match r {
+        Ok(v) => json(&v),
+        Err(e) => {
+            eprintln!("error: {}", e);
+            std::process::exit(2);
+        }
+    }
 }
 
 fn main() -> ExitCode {
@@ -44,11 +56,12 @@ fn main() -> ExitCode {
         "predecessors" => json(&reg.predecessors(a(2))),
         "calling_code_for" => json(&reg.calling_code_for(a(2))),
         "currency_at" => json(&reg.currency_at(a(2), a(3))),
-        "is_active_on" => json(&reg.is_active_on(a(2), a(3))),
-        "is_eu_member_at" => json(&reg.is_eu_member_at(a(2), a(3))),
-        "is_eea_member_at" => json(&reg.is_eea_member_at(a(2), a(3))),
-        "is_eurozone_member_at" => json(&reg.is_eurozone_member_at(a(2), a(3))),
-        "is_in_customs_union_at" => json(&reg.is_in_customs_union_at(a(2), a(3))),
+        "is_active_on" => json_or_exit(reg.is_active_on(a(2), a(3))),
+        "active_on" => json_or_exit(reg.active_on(a(2))),
+        "is_eu_member_at" => json_or_exit(reg.is_eu_member_at(a(2), a(3))),
+        "is_eea_member_at" => json_or_exit(reg.is_eea_member_at(a(2), a(3))),
+        "is_eurozone_member_at" => json_or_exit(reg.is_eurozone_member_at(a(2), a(3))),
+        "is_in_customs_union_at" => json_or_exit(reg.is_in_customs_union_at(a(2), a(3))),
         "region_countries" => {
             let sub = if args.len() > 3 { Some(a(3)) } else { None };
             json(&reg.region_countries(a(2), sub))

@@ -71,3 +71,36 @@ func TestDerivedQueriesWorkedExamples(t *testing.T) {
 		[]string{"AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"})
 	eq("RegionCountries(Antarctica)", r.RegionCountries("Antarctica", ""), []string{})
 }
+
+// v1.12.5, Query 11: ActiveOn is IsActiveOn for every code.
+func TestActiveOn1990(t *testing.T) {
+	r := mustLoad(t)
+	m, err := r.ActiveOn("1990-01-01")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(m) != 275 {
+		t.Fatalf("len = %d, want 275", len(m))
+	}
+	var yes, no, unknown int
+	for code, v := range m {
+		want, _ := r.IsActiveOn(code, "1990-01-01")
+		if (v == nil) != (want == nil) || (v != nil && *v != *want) {
+			t.Errorf("ActiveOn[%s] disagrees with IsActiveOn", code)
+		}
+		switch {
+		case v == nil:
+			unknown++
+		case *v:
+			yes++
+		default:
+			no++
+		}
+	}
+	if yes != 170 || no != 29 || unknown != 76 {
+		t.Errorf("true/false/unknown = %d/%d/%d, want 170/29/76", yes, no, unknown)
+	}
+	if _, err := r.ActiveOn("1990-13-01"); err == nil {
+		t.Error("malformed date must return an error")
+	}
+}

@@ -727,6 +727,15 @@ func (r *CountryRegistry) CallingCodeFor(number string) []string {
 	return dqSorted(out)
 }
 
+// InvalidDateError is returned by the dated queries (IsActiveOn and the
+// four club *At queries) when the date is not a real YYYY-MM-DD date.
+// v1.12.5: these queries used to return false for a malformed date.
+type InvalidDateError struct{ Date string }
+
+func (e *InvalidDateError) Error() string {
+	return fmt.Sprintf("malformed date: %q (want YYYY-MM-DD)", e.Date)
+}
+
 // dqValidDate reports whether s is a real YYYY-MM-DD date, year >= 1.
 func dqValidDate(s string) bool {
 	if len(s) != 10 || s[4] != '-' || s[7] != '-' {
@@ -755,8 +764,10 @@ func dqValidDate(s string) bool {
 }
 
 // IsActiveOn reports whether code was an assigned ISO 3166-1 code on
-// date (YYYY-MM-DD). The result is tri-state: a pointer to false for a
-// malformed date, an unknown code, a date before Introduced, or a date
+// date (YYYY-MM-DD). A malformed date returns a nil pointer and an
+// *InvalidDateError (v1.12.5; it used to return a pointer to false).
+// Otherwise the result is tri-state: a pointer to false for an unknown
+// code, a date before Introduced, or a date
 // after a withdrawn entry's withdrawal_date; a pointer to true when the
 // code was in force; nil (unknown) for an active entry whose Introduced
 // is nil. Active entries are resolved first (AI and SK exist twice). A
@@ -769,20 +780,20 @@ func dqValidDate(s string) bool {
 //	IsActiveOn("DE", "1970-01-01") // false
 //	IsActiveOn("BJ", "2000-01-01") // nil
 //	IsActiveOn("DD", "1800-01-01") // nil (before 1974)
-func (r *CountryRegistry) IsActiveOn(code, date string) *bool {
+func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 	yes, no := true, false
 	if !dqValidDate(date) {
-		return &no
+		return nil, &InvalidDateError{Date: date}
 	}
 	c := dqNorm(code)
 	if e, ok := r.byAlpha2[c]; ok {
 		if e.Introduced == nil {
-			return nil
+			return nil, nil
 		}
 		if date >= *e.Introduced {
-			return &yes
+			return &yes, nil
 		}
-		return &no
+		return &no, nil
 	}
 	var wd *Country
 	for _, w := range r.withdrawn {
@@ -792,19 +803,41 @@ func (r *CountryRegistry) IsActiveOn(code, date string) *bool {
 		}
 	}
 	if wd == nil || wd.WithdrawalDate == nil || date > *wd.WithdrawalDate {
-		return &no
+		return &no, nil
 	}
 	if wd.Introduced != nil {
 		if date < *wd.Introduced {
-			return &no
+			return &no, nil
 		}
-		return &yes
+		return &yes, nil
 	}
 	// Start unknown: ISO 3166 began in 1974, nothing earlier is known.
 	if date < "1974-01-01" {
-		return nil
+		return nil, nil
 	}
-	return &yes
+	return &yes, nil
+}
+
+// ActiveOn is IsActiveOn for every code at once: the 252 active entries
+// plus the 23 withdrawn codes that are not also active (AI and SK exist in
+// both; the active entry wins, as in IsActiveOn). 275 keys. A nil pointer
+// is unknown, not false: on 1990-01-01 the answer is 170 true, 29 false and
+// 76 unknown (CZ, SK and RU among them). A malformed date returns an
+// *InvalidDateError. See docs/QUERIES.md, "Query 11".
+func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
+	if !dqValidDate(date) {
+		return nil, &InvalidDateError{Date: date}
+	}
+	out := make(map[string]*bool, len(r.active)+len(r.withdrawn))
+	for _, e := range r.active {
+		out[e.Alpha2], _ = r.IsActiveOn(e.Alpha2, date)
+	}
+	for _, w := range r.withdrawn {
+		if _, done := out[w.Alpha2]; !done {
+			out[w.Alpha2], _ = r.IsActiveOn(w.Alpha2, date)
+		}
+	}
+	return out, nil
 }
 
 // CurrencyAt returns the currency in force on date (YYYY-MM-DD),

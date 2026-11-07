@@ -321,3 +321,17 @@ def test_csv_club_cells_for_a_former_member_a_current_member_and_a_withdrawn_ent
     # AI and SK exist twice; the withdrawn one must not inherit the active ranges.
     assert rows[("SK", True)]["eu_membership"] == ""
     assert rows[("SK", False)]["eu_membership"] == "2004-05-01:"
+
+
+def test_active_on_prints_one_line_per_code_and_json_object():
+    # v1.12.5, Query 11.
+    import json
+    r = _run("active-on", "1990-01-01")
+    assert r.returncode == 0
+    lines = r.stdout.splitlines()
+    assert len(lines) == 275
+    assert "DE\ttrue" in lines and "BJ\tunknown" in lines and "BU\tfalse" in lines
+    j = _run("active-on", "1990-01-01", "--json")
+    d = json.loads(j.stdout)
+    assert len(d) == 275 and d["BJ"] is None and d["DE"] is True
+    assert _run("active-on", "1990-13-01").returncode == 2

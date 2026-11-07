@@ -24,6 +24,16 @@ func emit(v interface{}) {
 	fmt.Println(string(b))
 }
 
+// emitE prints v, or reports err on stderr and exits 2 (the CLI's code
+// for a malformed date) so a malformed date is never an answer.
+func emitE(v interface{}, err error) {
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "error:", err)
+		os.Exit(2)
+	}
+	emit(v)
+}
+
 // opt turns (value, ok) into the value or nil, so a miss prints null.
 func opt(v []string, ok bool) interface{} {
 	if !ok {
@@ -74,15 +84,22 @@ func main() {
 	case "currency_at":
 		emit(opt(reg.CurrencyAt(a(2), a(3))))
 	case "is_active_on":
-		emit(reg.IsActiveOn(a(2), a(3)))
+		emitE(reg.IsActiveOn(a(2), a(3)))
 	case "is_eu_member_at":
-		emit(reg.IsEUMemberAt(a(2), a(3)))
+		emitE(reg.IsEUMemberAt(a(2), a(3)))
 	case "is_eea_member_at":
-		emit(reg.IsEEAMemberAt(a(2), a(3)))
+		emitE(reg.IsEEAMemberAt(a(2), a(3)))
 	case "is_eurozone_member_at":
-		emit(reg.IsEurozoneMemberAt(a(2), a(3)))
+		emitE(reg.IsEurozoneMemberAt(a(2), a(3)))
 	case "is_in_customs_union_at":
-		emit(reg.IsInCustomsUnionAt(a(2), a(3)))
+		emitE(reg.IsInCustomsUnionAt(a(2), a(3)))
+	case "active_on":
+		m, err := reg.ActiveOn(a(2))
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "error:", err)
+			os.Exit(2)
+		}
+		emit(m) // encoding/json sorts map keys
 	case "region_countries":
 		emit(reg.RegionCountries(a(2), a(3)))
 	default:

@@ -1117,6 +1117,20 @@ def cmd_is_active_on(reg, args) -> int:
     return EXIT_UNKNOWN if result is None else (EXIT_SUCCESS if result else EXIT_NOT_FOUND)
 
 
+def cmd_active_on(reg, args) -> int:
+    date = args.date
+    if not _dq_valid_date(date):
+        print(f"error: malformed date: {date!r} (want YYYY-MM-DD)", file=sys.stderr)
+        return EXIT_USAGE
+    result = {c: _dq_is_active_on(reg, c, date) for c in sorted({e["alpha_2"] for e in reg["countries"]["active"]} | {w["alpha_2"] for w in reg["countries"]["withdrawn"]})}
+    if args.json:
+        write_json(result)
+    else:
+        for c, v in result.items():
+            print(f"{c}\t{'unknown' if v is None else ('true' if v else 'false')}")
+    return EXIT_SUCCESS
+
+
 def cmd_region_countries(reg, args) -> int:
     r = args.region.lower()
     s = args.subregion.lower() if args.subregion else None
@@ -1337,6 +1351,11 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("code", help="alpha-2 code.")
     sp.add_argument("date", help="YYYY-MM-DD.")
     sp.set_defaults(func=cmd_is_active_on)
+
+    sp = sub.add_parser("active-on", parents=[common],
+                        help='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (275: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.', description='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (275: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.')
+    sp.add_argument("date", help="YYYY-MM-DD.")
+    sp.set_defaults(func=cmd_active_on)
 
     return p
 

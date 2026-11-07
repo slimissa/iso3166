@@ -80,16 +80,16 @@ func loadClubs(data []byte) (map[string]clubSet, error) {
 	return out, nil
 }
 
-func clubAt(ranges []clubRange, date string) bool {
+func clubAt(ranges []clubRange, date string) (bool, error) {
 	if !dqValidDate(date) {
-		return false
+		return false, &InvalidDateError{Date: date}
 	}
 	for _, r := range ranges {
 		if r.from <= date && (r.open || date <= r.to) {
-			return true
+			return true, nil
 		}
 	}
-	return false
+	return false, nil
 }
 
 func clubNow(ranges []clubRange) bool {
@@ -108,7 +108,7 @@ func clubNow(ranges []clubRange) bool {
 //
 //	IsEUMemberAt("GB", "2010-01-01") // true
 //	IsEUMemberAt("GB", "2023-01-01") // false
-func (r *CountryRegistry) IsEUMemberAt(code, date string) bool {
+func (r *CountryRegistry) IsEUMemberAt(code, date string) (bool, error) {
 	return clubAt(r.clubs[dqNorm(code)].eu, date)
 }
 
@@ -117,7 +117,7 @@ func (r *CountryRegistry) IsEUMemberAt(code, date string) bool {
 // Enlargement Agreement applied provisionally (2004-05-01 for the 2004
 // ten, 2007-08-01 for BG and RO). HR has formal dates only. See
 // docs/QUERIES.md, "Query 10".
-func (r *CountryRegistry) IsEEAMemberAt(code, date string) bool {
+func (r *CountryRegistry) IsEEAMemberAt(code, date string) (bool, error) {
 	return clubAt(r.clubs[dqNorm(code)].eea, date)
 }
 
@@ -127,13 +127,13 @@ func (r *CountryRegistry) IsEEAMemberAt(code, date string) bool {
 //
 //	IsEurozoneMemberAt("GR", "2000-01-01") // false
 //	IsEurozoneMemberAt("GR", "2002-01-01") // true
-func (r *CountryRegistry) IsEurozoneMemberAt(code, date string) bool {
+func (r *CountryRegistry) IsEurozoneMemberAt(code, date string) (bool, error) {
 	return clubAt(r.clubs[dqNorm(code)].eurozone, date)
 }
 
 // IsInCustomsUnionAt reports whether code was in the EU customs union on
 // date. AD and TR cover industrial goods only (scope is in the snapshot
 // meta). See docs/QUERIES.md, "Query 10".
-func (r *CountryRegistry) IsInCustomsUnionAt(code, date string) bool {
+func (r *CountryRegistry) IsInCustomsUnionAt(code, date string) (bool, error) {
 	return clubAt(r.clubs[dqNorm(code)].customs, date)
 }

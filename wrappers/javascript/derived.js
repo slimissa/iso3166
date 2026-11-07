@@ -43,6 +43,23 @@ const PHONE_JUNK = new Set([" ", "-", "(", ")", ".", "+"]);
 const norm = (code) => (typeof code === "string" ? code.trim().toUpperCase() : "");
 const frozen = (arr) => Object.freeze([...arr]);
 
+// v1.12.5: Python and the CLI reject an extra argument; JavaScript used to
+// ignore it, so reg.isEuMemberAt("DE", "2010-01-01", "OFAC") returned true.
+function checkArgs(got, min, max) {
+  if (got < min || got > max) {
+    const want = min === max ? String(min) : min + " to " + max;
+    throw new TypeError(
+      "expected " + want + " argument" + (max === 1 ? "" : "s") + ", got " + got,
+    );
+  }
+}
+
+function assertDate(s) {
+  if (!validDate(s)) {
+    throw new TypeError("malformed date: " + s + " (want YYYY-MM-DD)");
+  }
+}
+
 function validDate(s) {
   if (typeof s !== "string" || !DATE_RE.test(s)) return false;
   const y = Number(s.slice(0, 4));
@@ -117,11 +134,13 @@ const DerivedQueries = {
    * membership. See docs/QUERIES.md, "Query 1".
    */
   isEu(code) {
+    checkArgs(arguments.length, 1, 1);
     return this._clubNow("eu_membership", code);
   },
 
   /** True if `code` is in the EEA today. See isEeaMemberAt. See docs/QUERIES.md, "Query 1". */
   isEea(code) {
+    checkArgs(arguments.length, 1, 1);
     return this._clubNow("eea_membership", code);
   },
 
@@ -132,6 +151,7 @@ const DerivedQueries = {
    * See docs/QUERIES.md, "Query 1".
    */
   isEurozone(code) {
+    checkArgs(arguments.length, 1, 1);
     return this._clubNow("eurozone_membership", code);
   },
 
@@ -139,6 +159,7 @@ const DerivedQueries = {
 
   /** [region, subregion, intermediate_region] with nulls dropped. See docs/QUERIES.md, "Query 2". */
   regionTree(code) {
+    checkArgs(arguments.length, 1, 1);
     const e = this._entry(code);
     if (!e) return frozen([]);
     return frozen(
@@ -150,6 +171,7 @@ const DerivedQueries = {
 
   /** Sorted codes within maxHops of `code` through borders, excluding it. See docs/QUERIES.md, "Query 3". */
   bordersTransitively(code, maxHops = 2) {
+    checkArgs(arguments.length, 1, 2);
     const start = norm(code);
     if (!start || !(maxHops >= 1) || !this._entry(start)) return frozen([]);
     const seen = new Set([start]);
@@ -176,6 +198,7 @@ const DerivedQueries = {
 
   /** Shortest replaced_by path, endpoints included, or null. See docs/QUERIES.md, "Query 4". */
   successionPath(fromCode, toCode) {
+    checkArgs(arguments.length, 2, 2);
     const a = norm(fromCode);
     const b = norm(toCode);
     if (!this._entry(a) || !this._entry(b)) return null;
@@ -207,6 +230,7 @@ const DerivedQueries = {
    * returns the same set. See docs/QUERIES.md, "Query 5".
    */
   successors(code) {
+    checkArgs(arguments.length, 1, 1);
     const c = norm(code);
     return c ? this._closure(c, this._edges()) : frozen([]);
   },
@@ -217,6 +241,7 @@ const DerivedQueries = {
    * "Query 5".
    */
   predecessors(code) {
+    checkArgs(arguments.length, 1, 1);
     const c = norm(code);
     return c ? this._closure(c, this._reverseEdges()) : frozen([]);
   },
@@ -229,6 +254,7 @@ const DerivedQueries = {
    * "+1" returns all NANP entries. See docs/QUERIES.md, "Query 6".
    */
   callingCodeFor(number) {
+    checkArgs(arguments.length, 1, 1);
     if (typeof number !== "string") return frozen([]);
     const digits = [...number].filter((ch) => !PHONE_JUNK.has(ch)).join("");
     if (!/^[0-9]+$/.test(digits)) return frozen([]);
@@ -266,6 +292,7 @@ const DerivedQueries = {
    * See docs/QUERIES.md, "Query 7".
    */
   currencyAt(code, date) {
+    checkArgs(arguments.length, 2, 2);
     if (!validDate(date)) return null;
     const c = norm(code);
     const act = this._byAlpha2.get(c);
@@ -297,7 +324,8 @@ const DerivedQueries = {
   /**
    * isActiveOn(code, date) -> boolean | null   [tri-state]
    *
-   * false: malformed date, unknown code, a date before `introduced`, or
+   * Throws TypeError on a malformed date (v1.12.5; it used to return
+   * false). false: unknown code, a date before `introduced`, or
    * after a withdrawn entry's `withdrawal_date`. true: in force on that
    * date. null: unknown (an active entry whose `introduced` is null).
    * Active entries are resolved first (AI and SK exist twice). A
@@ -313,7 +341,8 @@ const DerivedQueries = {
    * See docs/QUERIES.md, "Query 9".
    */
   isActiveOn(code, date) {
-    if (!validDate(date)) return false;
+    checkArgs(arguments.length, 2, 2);
+    assertDate(date);
     const c = norm(code);
     const act = this._byAlpha2.get(c);
     if (act) {
@@ -330,10 +359,39 @@ const DerivedQueries = {
     return wd.introduced <= date;
   },
 
+  // -- Query 11 ---------------------------------------------------
+
+  /**
+   * activeOn(date) -> { [alpha_2]: boolean | null }
+   *
+   * isActiveOn for every code at once: the 252 active entries plus the 23
+   * withdrawn codes that are not also active (AI and SK exist in both;
+   * the active entry wins, as in isActiveOn). 275 keys, sorted. Throws
+   * TypeError on a malformed date.
+   *
+   * null is not false. On 1990-01-01: 170 true, 29 false, 76 null. The 76
+   * are active entries whose `introduced` is null (CZ, SK, RU among them);
+   * filtering on truthiness silently drops them.
+   *
+   * See docs/QUERIES.md, "Query 11".
+   */
+  activeOn(date) {
+    checkArgs(arguments.length, 1, 1);
+    assertDate(date);
+    const codes = new Set([
+      ...this._active.map((e) => e.alpha_2),
+      ...this._withdrawn.map((w) => w.alpha_2),
+    ]);
+    const out = {};
+    for (const c of [...codes].sort()) out[c] = this.isActiveOn(c, date);
+    return Object.freeze(out);
+  },
+
   // -- Query 8 ----------------------------------------------------
 
   /** Sorted active codes in region (and subregion). Case-insensitive. See docs/QUERIES.md, "Query 8". */
   regionCountries(region, subregion = null) {
+    checkArgs(arguments.length, 1, 2);
     if (!region) return frozen([]);
     const r = region.toLowerCase();
     const s = subregion ? subregion.toLowerCase() : null;

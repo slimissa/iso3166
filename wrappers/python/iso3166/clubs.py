@@ -12,7 +12,9 @@ a member; an empty list means it never was):
 
 Rules for every ``*_at`` query (docs/QUERIES.md, "Query 10"):
 
-* A malformed date (not a real YYYY-MM-DD) -> False.
+* A malformed date (not a real YYYY-MM-DD) raises ValueError (v1.12.5;
+  it used to return False). A datetime.date, datetime.datetime or
+  pandas.Timestamp is accepted and converted with .date().
 * An unknown code, a code that is in no range, or a withdrawn code
   -> False.
 * ``from <= date <= to`` for any range (``to`` null = no upper bound)
@@ -33,8 +35,7 @@ v1.10.0 to v1.11.1 are no longer consulted.
 """
 from __future__ import annotations
 
-import re
-from datetime import date as _date
+from ._dates import require_date as _require_date
 
 __all__ = ["ClubMemberships", "CLUB_FIELDS"]
 
@@ -45,21 +46,11 @@ CLUB_FIELDS = (
     "customs_union",
 )
 
-_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-
 
 def _norm(code) -> str:
     return code.strip().upper() if isinstance(code, str) else ""
 
 
-def _valid_date(s) -> bool:
-    if not isinstance(s, str) or not _DATE_RE.match(s):
-        return False
-    try:
-        _date(int(s[0:4]), int(s[5:7]), int(s[8:10]))
-    except ValueError:
-        return False
-    return True
 
 
 class ClubMemberships:
@@ -98,8 +89,7 @@ class ClubMemberships:
         )
 
     def _club_at(self, field: str, code, date) -> bool:
-        if not _valid_date(date):
-            return False
+        date = _require_date(date)
         ranges = self._clubs.get(_norm(code), {}).get(field, ())
         for frm, to in ranges:
             if frm <= date and (to is None or date <= to):

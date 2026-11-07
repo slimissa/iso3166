@@ -22,7 +22,7 @@ not that none exists.
 | `alpha_2` | ISO 4217, ISO 10383, Exchange Calendar | **Join key.** The consumer's country code must equal an `alpha_2` of an **active** entry, compared as an exact uppercase string. ISO 4217 checks `countries[].code` against the active list; ISO 10383 checks every MIC's `country_code` (`ZZ` allowed there); Exchange Calendar checks every exchange's `country_code`. Asset Identifiers declares `instruments[].country` with the pattern `^[A-Z]{2}$` and does not vendor this registry yet. |
 | `name` | Exchange Calendar | Its `country` value must equal `name` **byte for byte**: no case folding, no Unicode normalization, no trimming. |
 | `region` | ISO 4217 | Read from the vendored snapshot to group currencies by region. The string is used as it is; this registry owns the value. |
-| `subregion` | ISO 4217 | As `region`. In v1.12.3 the allowed values are the 17 M49 subregions in `tools/m49_subregion_snapshot.json`. |
+| `subregion` | ISO 4217 | As `region`. In v1.12.4 the allowed values are the 17 M49 subregions in `tools/m49_subregion_snapshot.json`. |
 | `currency_codes` | ISO 4217 | ISO 4217's `check_country_codes.py --membership` compares each country's list with ISO 4217's own country-to-currency entries, against a reviewed allow-list. A `null` list means "no currency recorded" and is treated as empty. The reverse edge: every code here must be an active code in `tools/iso4217_snapshot.json` (validator layer 4). |
 | `independent` | none recorded | Part of the surface a consumer may read. Nothing in the consumers' public files reads it on 2026-11-04. |
 
@@ -41,9 +41,9 @@ not that none exists.
    tagged release (`vX.Y.Z`), byte for byte, and records the tag and the
    file's SHA-256 next to it (contract rule 2). Whether a copy is current is
    answered by `tools/check_consumers_current.py` (advisory, network).
-5. **A country can lack a field.** `currency_codes` and `subregion` can be
-   `null` or empty (`AQ`, `EU`, `UK`, `XK`). A consumer must not treat that as
-   an error.
+5. **A country can lack a field.** `currency_codes` can be `null` or empty
+   (`AQ`, `EU`, `UK`, `XK`) and `subregion` can be `null` (`AQ`, `EU`, `TW`,
+   `UK`, `XK`). A consumer must not treat that as an error.
 
 ## Consumer impact
 

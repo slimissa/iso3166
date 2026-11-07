@@ -45,6 +45,9 @@ from collections import deque
 from datetime import date as _date
 from typing import Optional
 
+from ._dates import require_date as _require_date
+from ._dates import valid_date as _valid_date
+
 __all__ = ["DerivedQueries", "KNOWN_EU_MEMBERS", "EEA_NON_EU"]
 
 
@@ -62,7 +65,6 @@ KNOWN_EU_MEMBERS = frozenset({
 # EEA members that are not EU members (same status as KNOWN_EU_MEMBERS).
 EEA_NON_EU = frozenset({"IS", "LI", "NO"})
 
-_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _PHONE_JUNK = " -().+"
 
 
@@ -70,14 +72,6 @@ def _norm(code) -> str:
     return code.strip().upper() if isinstance(code, str) else ""
 
 
-def _valid_date(s) -> bool:
-    if not isinstance(s, str) or not _DATE_RE.match(s):
-        return False
-    try:
-        _date(int(s[0:4]), int(s[5:7]), int(s[8:10]))
-    except ValueError:
-        return False
-    return True
 
 
 class DerivedQueries:
@@ -472,13 +466,19 @@ class DerivedQueries:
 
         Was ``code`` an assigned ISO 3166-1 code on ``date``?
 
-        * ``False``: malformed date (not a real YYYY-MM-DD), unknown
-          code, a date before an entry's ``introduced``, or a date
-          after a withdrawn entry's ``withdrawal_date``.
+        * ``False``: unknown code, a date before an entry's
+          ``introduced``, or a date after a withdrawn entry's
+          ``withdrawal_date``.
         * ``True``: the code was in force on that date.
         * ``None``: unknown. An active entry whose ``introduced`` is
           null (76 of 252; see docs/QUERIES.md, "Known Nulls") cannot
           be answered, because the source is silent.
+
+        Raises ``ValueError`` on a malformed ``date`` (v1.12.5; it used
+        to return False). ``date`` is a YYYY-MM-DD string, or a
+        ``datetime.date`` / ``datetime.datetime`` / ``pandas.Timestamp``,
+        which is converted with ``.date()`` (time of day and timezone are
+        discarded).
 
         An active entry is resolved first (AI and SK exist twice). A
         withdrawn entry has no sourced start date: it is False after
@@ -497,8 +497,7 @@ class DerivedQueries:
 
         See docs/QUERIES.md, "Query 9".
         """
-        if not _valid_date(date):
-            return False
+        date = _require_date(date)
         c = _norm(code)
         act = self._by_alpha2.get(c)
         if act is not None:
@@ -514,6 +513,38 @@ class DerivedQueries:
             # Start unknown: ISO 3166 began in 1974, so nothing earlier is known.
             return None if date < "1974-01-01" else True
         return wd.introduced <= date
+
+    # ------------------------------------------------------------
+    # Query 11 — active_on
+    # ------------------------------------------------------------
+
+    def active_on(self, date) -> dict:
+        """active_on(date: str) -> dict[str, bool | None]
+
+        ``is_active_on`` for every code at once: ``{alpha_2: True | False |
+        None}`` for the 252 active entries and the 23 withdrawn codes that
+        are not also active (AI and SK exist in both lists; the active
+        entry wins, exactly as in ``is_active_on``). 275 keys, sorted.
+        ``result[code] == reg.is_active_on(code, date)`` for every key.
+
+        **``None`` is not ``False``.** For 1990-01-01 the answer is 170
+        True, 29 False and 76 None. The 76 are active entries whose
+        ``introduced`` is null (the source is silent): they include CZ, SK
+        and RU. Do not write ``[c for c, v in r.items() if v]`` and call it
+        "the countries that existed"; it silently drops them. Count them
+        separately, or decide per use whether unknown means in or out.
+
+        Raises ``ValueError`` on a malformed date, like ``is_active_on``.
+
+        >>> r = reg.active_on("1990-01-01")
+        >>> len(r), r["DE"], r["DD"], r["BJ"]
+        (275, True, True, None)
+
+        See docs/QUERIES.md, "Query 11".
+        """
+        date = _require_date(date)
+        codes = {e.alpha_2 for e in self._active} | {w.alpha_2 for w in self._withdrawn}
+        return {c: self.is_active_on(c, date) for c in sorted(codes)}
 
     # ------------------------------------------------------------
     # Query 8 — region_countries

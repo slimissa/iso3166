@@ -1,6 +1,7 @@
 # Provenance
 
-Every field in `iso3166.json` traces to a first-party source. This
+Every field in `iso3166.json` traces to a first-party source, with the
+documented exceptions in "What is a first-party source". This
 document records those sources, the refresh cadence, the audit
 procedure, and the known gaps in v1.0.0.
 
@@ -56,14 +57,21 @@ A first-party source is the standards body that defines the code: ISO
 for ISO 3166, the UN Statistics Division for M49, IANA for TLDs, the
 ITU for calling codes. Anything else — Wikipedia, countrycode.org,
 aggregator CSVs, blog posts — is a third-party source and is not
-acceptable as the origin of a field.
+acceptable as the origin of a field, except for the exceptions below.
 
 If a field cannot be traced to a first-party source, it is left
-`null`. It is never populated from a third-party source, with one
-recorded exception: `introduced` and the four club-membership arrays
-(`eu_membership`, `eea_membership`, `eurozone_membership`,
-`customs_union`) come from Wikipedia, because ISO does not publish those
-facts. Each exception is justified in its ADR under `docs/decisions/`.
+`null`. It is never populated from a third-party source, with these
+recorded exceptions. Each is justified in its ADR under `docs/decisions/`.
+
+- `introduced` and the four club-membership arrays (`eu_membership`,
+  `eea_membership`, `eurozone_membership`, `customs_union`) come from
+  Wikipedia, because ISO does not publish those facts.
+- `languages` and `borders` come from the CIA World Factbook, because no
+  standards body publishes official languages or land borders. The ADR
+  [languages-borders-sources](decisions/languages-borders-sources.md)
+  widens "first-party" to "a government standards body or a government
+  statistical service", under which the Factbook counts. That ADR still
+  reads `Status: proposed`; this document follows it.
 An empty field is honest; a wrong field is not.
 
 ## Refresh cadence

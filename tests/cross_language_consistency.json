@@ -771,7 +771,7 @@
     ]
   },
   "derived_queries": {
-    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. currency_at (v1.11.1) is bounded by lifetime but returns current currencies. is_active_on (v1.11.0) is tri-state: null means unknown. is_eu, is_eea and is_eurozone are current-status aliases (v1.12.0); the four *_at club queries are exact and never null.",
+    "_comment": "Derived queries (v1.10.0; docs/QUERIES.md). Each case is a method name in snake_case, string/int arguments, and the expected JSON result. Every wrapper and the CLI must produce it. currency_at (v1.11.1) is bounded by lifetime but returns current currencies. is_active_on (v1.11.0) is tri-state: null means unknown. is_eu, is_eea and is_eurozone are current-status aliases (v1.12.0); the four *_at club queries are exact and never null. error_cases (v1.12.5): a malformed date is an error, not an answer. Python raises ValueError, JavaScript throws TypeError, Go returns *InvalidDateError, Rust returns Err(InvalidDate), and the CLI and the query binaries exit 2.",
     "enforced": true,
     "cases": [
       {
@@ -1803,9 +1803,9 @@
         "query": "is_eu_member_at",
         "args": [
           "DE",
-          "2000-13-01"
+          "2000-02-29"
         ],
-        "expected": false
+        "expected": true
       },
       {
         "query": "is_eu_member_at",
@@ -1974,6 +1974,359 @@
           "2003-01-01"
         ],
         "expected": false
+      }
+    ],
+    "active_on": {
+      "_comment": "active_on (v1.12.5, Query 11): is_active_on for every code. 275 keys = 252 active + the 23 withdrawn codes that are not also active (AI and SK: the active entry wins). null is unknown, not false: 76 active entries have no introduced date on 1990-01-01. Every surface must return the same object.",
+      "date": "1990-01-01",
+      "keys": 275,
+      "counts": {
+        "true": 170,
+        "false": 29,
+        "null": 76
+      },
+      "active_counts": {
+        "true": 161,
+        "false": 15,
+        "null": 76
+      },
+      "spot": {
+        "DE": true,
+        "US": true,
+        "DD": true,
+        "SU": true,
+        "YU": true,
+        "CS": true,
+        "AN": true,
+        "BU": false,
+        "BJ": null,
+        "CZ": null,
+        "RU": null,
+        "XK": null,
+        "AI": null,
+        "SK": null
+      }
+    },
+    "error_cases": [
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "2010-13-45"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "2010-02-30"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "2010-1-1"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "20100101"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "2010/01/01"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          ""
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "2010-01-01T00:00:00"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "DE",
+          "2010-01-01\n"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2010-13-45"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2010-02-30"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2010-1-1"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "20100101"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2010/01/01"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          ""
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2010-01-01T00:00:00"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eu_member_at",
+        "args": [
+          "DE",
+          "2010-01-01\n"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "2010-13-45"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "2010-02-30"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "2010-1-1"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "20100101"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "2010/01/01"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          ""
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "2010-01-01T00:00:00"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eea_member_at",
+        "args": [
+          "DE",
+          "2010-01-01\n"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "2010-13-45"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "2010-02-30"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "2010-1-1"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "20100101"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "2010/01/01"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          ""
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "2010-01-01T00:00:00"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_eurozone_member_at",
+        "args": [
+          "DE",
+          "2010-01-01\n"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "2010-13-45"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "2010-02-30"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "2010-1-1"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "20100101"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "2010/01/01"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          ""
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "2010-01-01T00:00:00"
+        ],
+        "error": "malformed date"
+      },
+      {
+        "query": "is_in_customs_union_at",
+        "args": [
+          "DE",
+          "2010-01-01\n"
+        ],
+        "error": "malformed date"
       }
     ]
   }

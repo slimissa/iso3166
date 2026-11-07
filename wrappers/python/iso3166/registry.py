@@ -104,6 +104,17 @@ def _default_registry_path() -> Path:
     return Path(__file__).resolve().parent / "iso3166.json"
 
 
+def _require_str(value, name: str, hint: Optional[str] = None) -> None:
+    """Raise TypeError for a non-string code (v1.12.5).
+
+    ``active(840)`` used to die with AttributeError ('int' has no 'upper').
+    A falsy value (None, "") is still a plain "not found" and never gets here.
+    """
+    if not isinstance(value, str):
+        more = f"; for a numeric code use {hint}()" if hint else ""
+        raise TypeError(f"{name} must be a str, got {type(value).__name__}{more}")
+
+
 class CountryRegistry(DerivedQueries, ClubMemberships):
     """Load and query the ISO 3166 registry.
 
@@ -197,6 +208,7 @@ class CountryRegistry(DerivedQueries, ClubMemberships):
         """
         if not alpha_2:
             return None
+        _require_str(alpha_2, "alpha_2", "by_numeric" if isinstance(alpha_2, int) else None)
         return self._by_alpha2.get(alpha_2.upper())
 
     def with_alpha2(self, alpha_2: str) -> list[Country]:
@@ -208,6 +220,7 @@ class CountryRegistry(DerivedQueries, ClubMemberships):
         """
         if not alpha_2:
             return []
+        _require_str(alpha_2, "alpha_2")
         code = alpha_2.upper()
         return [c for c in self._all if c.alpha_2 == code]
 
@@ -238,6 +251,7 @@ class CountryRegistry(DerivedQueries, ClubMemberships):
         """Active entry for an alpha-3 code, or None."""
         if not alpha_3:
             return None
+        _require_str(alpha_3, "alpha_3")
         return self._by_alpha3.get(alpha_3.upper())
 
     def by_numeric(self, numeric: str) -> Optional[Country]:

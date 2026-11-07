@@ -249,6 +249,85 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
 # an independent source, and they are the same cases as the "Worked
 # examples index" in docs/QUERIES.md (equal at v1.12.1; no test enforces
 # that every index row appears here).
+def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
+    """Query 11, active_on (v1.12.5): the bulk form of is_active_on.
+
+    The numbers are typed here, not read from a wrapper, and the generator
+    refuses to write them if the raw JSON disagrees (an independent
+    derivation, so a wrapper bug cannot move the fixture with it).
+    """
+    date = "1990-01-01"
+    act = {e["alpha_2"]: e for e in reg["countries"]["active"]}
+    wd: dict[str, Any] = {}
+    for w in reg["countries"]["withdrawn"]:
+        wd.setdefault(w["alpha_2"], w)
+
+    def known(code: str):
+        if code in act:
+            intro = act[code].get("introduced")
+            return None if intro is None else date >= intro
+        w = wd[code]
+        end = w.get("withdrawal_date")
+        if not end or date > end:
+            return False
+        if w.get("introduced") is None:
+            return None if date < "1974-01-01" else True
+        return w["introduced"] <= date
+
+    codes = sorted(set(act) | set(wd))
+    allc = {"true": 170, "false": 29, "null": 76}
+    actc = {"true": 161, "false": 15, "null": 76}
+    spot = {"DE": True, "US": True, "DD": True, "SU": True, "YU": True,
+            "CS": True, "AN": True, "BU": False, "BJ": None, "CZ": None,
+            "RU": None, "XK": None, "AI": None, "SK": None}
+
+    def tally(cs):
+        t = {"true": 0, "false": 0, "null": 0}
+        for c in cs:
+            v = known(c)
+            t["null" if v is None else ("true" if v else "false")] += 1
+        return t
+
+    if (len(codes), tally(codes), tally(act)) != (275, allc, actc) or any(
+        known(c) != v for c, v in spot.items()
+    ):
+        raise SystemExit("active_on: typed expectations disagree with the data")
+    return {
+        "_comment": (
+            "active_on (v1.12.5, Query 11): is_active_on for every code. "
+            "275 keys = 252 active + the 23 withdrawn codes that are not "
+            "also active (AI and SK: the active entry wins). null is "
+            "unknown, not false: 76 active entries have no introduced date "
+            "on 1990-01-01. Every surface must return the same object."
+        ),
+        "date": date,
+        "keys": 275,
+        "counts": allc,
+        "active_counts": actc,
+        "spot": spot,
+    }
+
+
+# v1.12.5: queries that raise on a malformed date, and the inputs that must.
+MALFORMED_DATE_QUERIES = (
+    "is_active_on",
+    "is_eu_member_at",
+    "is_eea_member_at",
+    "is_eurozone_member_at",
+    "is_in_customs_union_at",
+)
+MALFORMED_DATES = (
+    "2010-13-45",  # month 13
+    "2010-02-30",  # day does not exist
+    "2010-1-1",  # not zero padded
+    "20100101",  # no separators
+    "2010/01/01",  # wrong separator
+    "",  # empty
+    "2010-01-01T00:00:00",  # a timestamp, not a date
+    "2010-01-01\n",  # trailing newline
+)
+
+
 def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
     cases: list[tuple[str, list[Any], Any]] = [
         ('is_eu', ['DE'], True),
@@ -363,7 +442,7 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('is_eu_member_at', ['GR', '1980-01-01'], False),
         ('is_eu_member_at', ['GR', '2000-01-01'], True),
         ('is_eu_member_at', ['DE', '1950-01-01'], False),
-        ('is_eu_member_at', ['DE', '2000-13-01'], False),
+        ('is_eu_member_at', ['DE', '2000-02-29'], True),  # leap day is a real date
         ('is_eu_member_at', ['ZZ', '2000-01-01'], False),
         ('is_eea_member_at', ['GB', '2020-12-31'], True),
         ('is_eea_member_at', ['GB', '2021-01-01'], False),
@@ -403,11 +482,21 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
             "(v1.11.1) is bounded by lifetime but returns current currencies. "
             "is_active_on (v1.11.0) is tri-state: null means unknown. "
             "is_eu, is_eea and is_eurozone are current-status aliases "
-            "(v1.12.0); the four *_at club queries are exact and never null."
+            "(v1.12.0); the four *_at club queries are exact and never null. "
+            "error_cases (v1.12.5): a malformed date is an error, not an "
+            "answer. Python raises ValueError, JavaScript throws TypeError, "
+            "Go returns *InvalidDateError, Rust returns Err(InvalidDate), "
+            "and the CLI and the query binaries exit 2."
         ),
         "enforced": True,
         "cases": [
             {"query": q, "args": a, "expected": x} for q, a, x in cases
+        ],
+        "active_on": active_on_case(reg),
+        "error_cases": [
+            {"query": q, "args": ["DE", d], "error": "malformed date"}
+            for q in MALFORMED_DATE_QUERIES
+            for d in MALFORMED_DATES
         ],
     }
 

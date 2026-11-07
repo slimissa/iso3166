@@ -30,12 +30,11 @@ test("before the first range, EEA and customs union", () => {
   assert.equal(reg.isEeaMemberAt("GB", "2021-01-01"), false);
 });
 
-test("bad inputs are false, never null", () => {
+test("malformed dates throw TypeError (v1.12.5), bad codes are false", () => {
   for (const fn of ["isEuMemberAt", "isEeaMemberAt", "isEurozoneMemberAt", "isInCustomsUnionAt"]) {
-    assert.equal(reg[fn]("DE", "2000-13-01"), false);
-    assert.equal(reg[fn]("DE", "2000-1-1"), false);
-    assert.equal(reg[fn]("DE", ""), false);
-    assert.equal(reg[fn]("DE", null), false);
+    for (const bad of ["2000-13-01", "2000-1-1", "", null, undefined, 20000101, new Date(2000, 0, 1)]) {
+      assert.throws(() => reg[fn]("DE", bad), TypeError, `${fn}(${String(bad)})`);
+    }
     assert.equal(reg[fn]("ZZ", "2000-01-01"), false);
     assert.equal(reg[fn](null, "2000-01-01"), false);
     assert.equal(reg[fn]("CH", "2000-01-01"), false);
@@ -65,4 +64,23 @@ test("EEA provisional application counts (v1.12.1)", () => {
   assert.equal(reg.isEeaMemberAt("CY", "2005-01-01"), true);
   assert.equal(reg.isEeaMemberAt("CY", "2003-01-01"), false);
   assert.equal(reg.isEeaMemberAt("HR", "2020-01-01"), false);
+});
+
+// v1.12.5, Query 11: activeOn is isActiveOn for every code.
+test("activeOn('1990-01-01'): 275 keys, 170 true, 29 false, 76 null", () => {
+  const r = reg.activeOn("1990-01-01");
+  const vals = Object.values(r);
+  assert.equal(vals.length, 275);
+  assert.deepEqual(Object.keys(r), [...Object.keys(r)].sort());
+  const n = (v) => vals.filter((x) => x === v).length;
+  assert.deepEqual([n(true), n(false), n(null)], [170, 29, 76]);
+  for (const [code, v] of Object.entries(r)) {
+    assert.equal(v, reg.isActiveOn(code, "1990-01-01"), code);
+  }
+  assert.equal(r.DE, true);
+  assert.equal(r.DD, true);
+  assert.equal(r.BU, false);
+  assert.equal(r.BJ, null);
+  assert.equal(vals.filter(Boolean).length, 170); // truthiness drops the 76
+  assert.throws(() => reg.activeOn("1990-13-01"), TypeError);
 });

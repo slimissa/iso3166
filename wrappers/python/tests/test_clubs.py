@@ -49,10 +49,10 @@ def test_customs_union_and_eea_for_gb(reg):
 def test_bad_inputs_are_false_never_none(reg):
     for fn in (reg.is_eu_member_at, reg.is_eea_member_at,
                reg.is_eurozone_member_at, reg.is_in_customs_union_at):
-        assert fn("DE", "2000-13-01") is False      # not a real date
-        assert fn("DE", "2000-1-1") is False        # not zero padded
-        assert fn("DE", "") is False
-        assert fn("DE", None) is False
+        # v1.12.5: a malformed DATE raises (tests/test_api_misuse.py has the
+        # full list); a bad CODE is still a plain False.
+        with pytest.raises(ValueError, match="malformed date"):
+            fn("DE", "2000-13-01")
         assert fn("ZZ", "2000-01-01") is False      # unknown code
         assert fn("", "2000-01-01") is False
         assert fn(None, "2000-01-01") is False
