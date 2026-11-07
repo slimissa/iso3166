@@ -1,7 +1,7 @@
 # Languages and borders: source selection
 
-Status: proposed
-Date: <today>
+Status: accepted
+Date: 2026-09-23
 Supersedes: none
 
 ## Context

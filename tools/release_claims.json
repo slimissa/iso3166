@@ -697,5 +697,17 @@
     {"file": "README.md", "absent": "github.com/slimissa/Tempus"},
     {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"},
     {"file": "CHANGELOG.md", "contains": "## [1.12.4]"}
+  ],
+  "1.12.5": [
+    {"file": "docs/QUERIES.md", "contains": "malformed input raises"},
+    {"file": "docs/QUERIES.md", "contains": "Query 11"},
+    {"file": "README.md", "contains": "API contract"},
+    {"file": "README.md", "contains": "16 countries"},
+    {"file": "docs/JOINS.md", "contains": "`subregion` can be `null` (`AQ`, `EU`, `TW`,"},
+    {"file": "tools/check_docs_match_tree.py", "contains": "README version row"},
+    {"file": "tests/test_docs_version_sites.py"},
+    {"file": "tests/test_api_misuse.py"},
+    {"file": "wrappers/javascript/derived.js", "contains": "arguments.length"},
+    {"file": "CHANGELOG.md", "contains": "## [1.12.5]"}
   ]
 }

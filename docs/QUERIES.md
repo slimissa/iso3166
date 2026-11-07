@@ -5,13 +5,13 @@ in v1.12.0. The wrappers, the CLI, the README,
 the docstrings and the tests all implement and point at this document.
 **Rationale:** [QUERIES-DECISIONS.md](QUERIES-DECISIONS.md) explains why the
 queries are what they are. This file says what they do.
-**Data:** `iso3166.json` at v1.12.1 (252 active entries, 25 withdrawn entries).
-The file documents 16 public queries in ten numbered sections (Query 1 to Query 10).
+**Data:** `iso3166.json` at v1.12.4 (252 active entries, 25 withdrawn entries).
+The file documents 17 public queries in eleven numbered sections (Query 1 to Query 11).
 The 129 rows of the worked examples index are the same cases as `derived_queries`
-in `tests/cross_language_consistency.json` (verified equal at v1.12.1), and all five
+in `tests/cross_language_consistency.json` (verified equal at v1.12.4), and all five
 surfaces are checked against that fixture by `tools/check_cross_language.sh`. Inline
-examples outside the index are not machine-checked, and no test yet enforces that
-the index and the fixture stay equal.
+examples outside the index are not machine-checked; `tests/test_index_matches_fixture.py`
+enforces that the index and the fixture stay equal.
 Query 10 and the rewritten Query 1 reproduce on `iso3166.json` at v1.12.0, which
 carries the four membership arrays.
 
@@ -136,7 +136,7 @@ field and array the answer is read from.
 | E105 | `is_eu_member_at` | `["GR", "1980-01-01"]` | `false` | exact | `eu_membership` (active) |
 | E106 | `is_eu_member_at` | `["GR", "2000-01-01"]` | `true` | exact | `eu_membership` (active) |
 | E107 | `is_eu_member_at` | `["DE", "1950-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E108 | `is_eu_member_at` | `["DE", "2000-13-01"]` | `false` | exact (malformed date) | `eu_membership` (active) |
+| E108 | `is_eu_member_at` | `["DE", "2000-02-29"]` | `true` | exact (leap day is a real date) | `eu_membership` (active) |
 | E109 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
 | E110 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
 | E111 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
@@ -194,10 +194,24 @@ means "empty". Where a query can fail to answer, its section lists every
 case.
 
 **Dates** are strings in the form `YYYY-MM-DD`, a real calendar date, year
-1 or later. Anything else (`"2000-13-01"`, `"20000101"`, `"2000-1-1"`) is a
-malformed date and yields `None`, the same as "cannot answer", except in
-Query 9 and Query 10, which return `false` (the CLI exits 2 in both). Dates
-compare as strings, which is correct for this format.
+1 or later. Anything else (`"2000-13-01"`, `"20000101"`, `"2000-1-1"`, `""`, a timestamp,
+a trailing newline) is a malformed date.
+
+**Malformed input raises.** Since v1.12.5 a malformed date is an error, not an
+answer: malformed input raises instead of returning `false`. In Query 9 and Query 10 it raises (Python `ValueError`, JavaScript
+`TypeError`, Go `*InvalidDateError`, Rust `Err(InvalidDate)`) and the CLI exits
+2. Before v1.12.5 these queries returned `false`, which a caller could not tell
+from a real "no". `currency_at` (Query 7) is unchanged: it still returns `None`
+for a malformed date. Dates compare as strings, which is correct for this
+format.
+
+The JavaScript query methods throw `TypeError("expected N arguments, got M")` on an extra
+or missing argument, as Python and the CLI do (v1.12.5; the extra argument used to be
+ignored). The lookup methods in `index.js` are unchanged.
+
+Python also accepts a `datetime.date`, a `datetime.datetime` or a
+`pandas.Timestamp` and converts it with `.date()`; a time of day and a timezone
+are discarded, not converted. JavaScript, Go and Rust take only the string.
 
 **Naming across surfaces.**
 
@@ -215,6 +229,7 @@ compare as strings, which is correct for this format.
 | Currency on a date | `currency_at` | `currencyAt` | `CurrencyAt` | `currency-at` |
 | Countries in a region | `region_countries` | `regionCountries` | `RegionCountries` | `region-countries` |
 | Code assigned on a date | `is_active_on` | `isActiveOn` | `IsActiveOn` | `is-active-on` |
+| Every code on a date | `active_on` | `activeOn` | `ActiveOn` | `active-on` |
 | EU member on a date | `is_eu_member_at` | `isEuMemberAt` | `IsEUMemberAt` | `is-eu-member-at` |
 | EEA member on a date | `is_eea_member_at` | `isEeaMemberAt` | `IsEEAMemberAt` | `is-eea-member-at` |
 | Eurozone member on a date | `is_eurozone_member_at` | `isEurozoneMemberAt` | `IsEurozoneMemberAt` | `is-eurozone-member-at` |
@@ -762,10 +777,10 @@ reg.is_active_on(code: str, date: str) -> bool | None
 reg.isActiveOn(code, date) -> boolean | null
 ```
 ```rust
-reg.is_active_on(code: &str, date: &str) -> Option<bool>
+reg.is_active_on(code: &str, date: &str) -> Result<Option<bool>, InvalidDate>
 ```
 ```go
-reg.IsActiveOn(code, date string) *bool   // nil means unknown
+reg.IsActiveOn(code, date string) (*bool, error)   // nil pointer and nil error: unknown
 ```
 ```bash
 iso3166 is-active-on DE 1990-01-01
@@ -812,8 +827,8 @@ the date a country became independent or adopted a currency.
 - `is_active_on("YU", "2010-01-01")` → `false`: `YU` was withdrawn 2003-07-23.
 - `is_active_on("ZZ", "2000-01-01")` → `false`: unknown code.
 - `is_active_on("EU", "2000-01-01")` → `null`: not officially assigned.
-- `is_active_on("DE", "1990-13-01")` → `false`: malformed date. The CLI exits 2
-  instead, as a usage error.
+- `is_active_on("DE", "1990-13-01")` raises: malformed date (v1.12.5; it
+  returned `false`). The CLI exits 2.
 
 **CLI.** `is-active-on` exits 0 for `true`, 1 for `false` and 4 for `unknown`.
 This differs from the EU predicates, which exit 0 for both `true` and `false`.
@@ -832,19 +847,19 @@ the ADR, not by ISO.
 **Signatures.**
 
 ```python
-reg.is_eu_member_at(code: str, date: str) -> bool            # Python
+reg.is_eu_member_at(code: str, date: str) -> bool            # Python; ValueError on a malformed date
 reg.is_eea_member_at(code: str, date: str) -> bool
 reg.is_eurozone_member_at(code: str, date: str) -> bool
 reg.is_in_customs_union_at(code: str, date: str) -> bool
 ```
 ```js
-reg.isEuMemberAt(code, date) -> boolean     // also isEeaMemberAt, isEurozoneMemberAt, isInCustomsUnionAt
+reg.isEuMemberAt(code, date) -> boolean     // TypeError on a malformed date; also isEeaMemberAt, isEurozoneMemberAt, isInCustomsUnionAt
 ```
 ```rust
-reg.is_eu_member_at(code: &str, date: &str) -> bool   // also is_eea_member_at, ...
+reg.is_eu_member_at(code: &str, date: &str) -> Result<bool, InvalidDate>   // also is_eea_member_at, ...
 ```
 ```go
-reg.IsEUMemberAt(code, date string) bool    // also IsEEAMemberAt, IsEurozoneMemberAt, IsInCustomsUnionAt
+reg.IsEUMemberAt(code, date string) (bool, error)    // also IsEEAMemberAt, IsEurozoneMemberAt, IsInCustomsUnionAt
 ```
 ```bash
 iso3166 is-eu-member-at GB 2010-01-01
@@ -919,8 +934,8 @@ provisional dates also from EFTA's EEA Legal Texts. Annual refresh.
 - `is_in_customs_union_at("TR", "1995-12-31")` → `true`. Turkey's union covers
   industrial goods only, and so does Andorra's; the boolean does not carry
   scope.
-- `is_eu_member_at("DE", "2000-13-01")` → `false`: malformed date. The CLI
-  exits 2 instead, as a usage error.
+- `is_eu_member_at("DE", "2000-13-01")` raises: malformed date (v1.12.5; it
+  returned `false`). The CLI exits 2, as before.
 - `is_eu_member_at("ZZ", "2000-01-01")` → `false`: unknown code. The CLI prints
   `false` and exits 1; it does not print `error: not found`.
 - `is_eu_member_at(" gb ", "2010-01-01")` → `true`: codes are trimmed and
@@ -941,6 +956,54 @@ partial scope within the customs union (AD, TR); whether the Windsor Framework
 puts Northern Ireland in the union; a state's *candidate* or *applicant*
 status; and any date after the snapshot's `review_by`, which is stale if a state
 has joined or left since.
+
+## Query 11 — `active_on` (bulk, tri-state)
+
+Added in v1.12.5. It is the 17th public query ("Query 11" in the release notes
+and the README count); the section number follows the file's numbered
+sections, where Query 10 covers four queries.
+
+**Signatures.**
+
+```python
+reg.active_on(date: str) -> dict[str, bool | None]
+```
+```js
+reg.activeOn(date) -> { [alpha_2: string]: boolean | null }
+```
+```rust
+reg.active_on(date: &str) -> Result<BTreeMap<String, Option<bool>>, InvalidDate>
+```
+```go
+reg.ActiveOn(date string) (map[string]*bool, error)   // nil pointer: unknown
+```
+```bash
+iso3166 active-on DATE [--json]    # exit 0; 2 on a malformed DATE
+```
+
+**Semantics.** `is_active_on` (Query 9) for every code, in one call. The keys are
+the 252 active entries and the 23 withdrawn codes that are not also active:
+275 keys, sorted. `AI` and `SK` are in both lists; the active entry wins, as in
+`is_active_on`, so `active_on(d)[c] == is_active_on(c, d)` for every key.
+
+**`null` is not `false`.** On 1990-01-01 the answer is 170 `true`, 29 `false`
+and 76 `null` (161, 15 and 76 over the 252 active entries alone). The 76 are
+active entries whose `introduced` is null (see "Known Nulls"), among them `CZ`,
+`SK`, `RU`. Filtering on truthiness drops them without saying so.
+
+**Errors.** A malformed date raises, as in Query 9 (the CLI exits 2). A `date` is
+accepted in Python as in Query 9.
+
+**Examples** (not in the index: the result is an object, and the cross-language
+check pins it under `derived_queries.active_on` in the fixture).
+
+- `active_on("1990-01-01")["DE"]` → `true`; `["DD"]` → `true`; `["BU"]` → `false`
+  (Burma, withdrawn 1989-12-05); `["BJ"]` → `null`.
+- `active_on("1990-01-01")` has 275 keys: 170 `true`, 29 `false`, 76 `null`.
+
+**CLI.** `active-on DATE` prints one `CODE<TAB>true|false|unknown` line per code;
+`--json` prints an object of `true`/`false`/`null`. It exits 0 whatever the mix
+of answers, because no single code is "the" answer; 2 for a malformed `DATE`.
 
 ## Known Nulls
 
@@ -969,7 +1032,7 @@ wrappers only in presentation: text output, and that an unknown code is
 reported on stderr with exit code 1 instead of an empty, false or `None`
 result. Exit codes are the CLI's standard ones for every subcommand: 0
 success, 1 not found, 2 usage error, 3 registry missing. The tri-state
-subcommands (`is-active-on`, `introduced`) add 4, unknown. The four dated
+subcommands (`is-active-on`, `introduced`) add 4, unknown. `active-on` exits 0. The four dated
 club subcommands (Query 10) exit 0 for `true` and 1 for `false`, including for an
 unknown code, and 2 for a malformed date; they have no unknown state, so the
 exit code 4 is reserved and unreachable.
