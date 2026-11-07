@@ -8,6 +8,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.5]
+
+v1.12.5 closes the fifth audit, the first one run from a consumer's side: silent failures become errors, and the stale claims the audit found are now checked.
+
+Consumer impact: none. No field in `iso3166.json` changes, and neither does the set of active codes. The library API changes (see **Breaking**), which no registry that vendors the JSON file uses.
+
+### Breaking
+
+- **The dated queries raise on a malformed date; they used to answer `false`.** `is_active_on` and the four club queries (`is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at`, `is_in_customs_union_at`). A `datetime.date` or `pandas.Timestamp` was also silently `false`. Python raises `ValueError`, JavaScript throws `TypeError`, Go returns `(value, error)` with `*InvalidDateError`, Rust returns `Result<_, InvalidDate>`. The CLI already exited 2. Python alone converts a `datetime.date`, `datetime.datetime` or `pandas.Timestamp` with `.date()` (time of day and timezone are discarded). `currency_at` is unchanged and still returns `None`.
+- **Go and Rust call sites must handle the new return type.** `reg.IsEUMemberAt(c, d)` is `(bool, error)`; `reg.is_eu_member_at(c, d)` is `Result<bool, InvalidDate>`. `IsActiveOn` and `is_active_on` follow.
+- **JavaScript query methods reject an extra or missing argument** with `TypeError("expected N arguments, got M")`. `reg.isEuMemberAt("DE", "2010-01-01", "OFAC")` used to return `true`.
+
+### Added
+
+- `active_on(date)` (Query 11, the 17th public query): `is_active_on` for every code, as `{alpha_2: true | false | null}` over 275 keys (252 active entries and the 23 withdrawn codes that are not also active). On 1990-01-01 it is 170 true, 29 false, 76 null. `null` is not `false`. Python, JavaScript, Go, Rust, the repo CLI and the packaged CLI (`active-on DATE`, 26 subcommands). README section 10 shows the `null` trap.
+- `derived_queries.error_cases` (8 malformed inputs for each of 5 queries) and `derived_queries.active_on` in the cross-language fixture, checked on all five surfaces by `tools/cross_language_derived.py`.
+- README section 4b, the API contract: what every surface does with an unknown code, a lowercase or padded code, an alpha-3 code, a non-string, a bad date and an extra argument.
+- Four checks in `tools/check_docs_match_tree.py` (13 to 17): the README `Version` row, the JSON sample, the Parquet example and the verification-report count must agree with `VERSION` and `docs/`. `release.sh` bumps those README sites with `VERSION`; the report count allows one report more than the README states only when that report is the one for `VERSION`.
+- `tests/test_api_misuse.py`, `tests/test_docs_version_sites.py`, and per-wrapper tests for `active_on`, the unknown-code contract and JavaScript argument counts. Release claims for 1.12.5 in `tools/release_claims.json`.
+
+### Changed
+
+- Python: `active(840)` raises `TypeError` (it died with `AttributeError`); `with_alpha2` and `by_alpha3` likewise. `None` and `""` remain "not found".
+- Python: `"2010-01-01\n"` is a malformed date (the pattern used `$`, which matches before a trailing newline).
+- `tests/cross_language_consistency.json`: case E108 is a leap-day date (`2000-02-29`) instead of the malformed one, so the index stays at 129 cases.
+- README section 20: the 1974 limitation is two bullets, one for `introduced` and `is_active_on`, one for the club queries (which answer from 1958).
+- `docs/QUERIES.md`, `docs/QUERIES-DECISIONS.md`: malformed input raises; Query 11; counts 16 to 17 queries and 25 to 26 CLI subcommands.
+
+### Fixed
+
+- README said 1.12.2 in the `Version` row, the JSON sample and the Parquet example, and "42 verification reports" in three places; they are 1.12.4 and 44 (`release.sh` keeps them current from here).
+- README section 10 said a 1990 table joined on `is_eu` mislabels 15 countries; it is 16, plus the UK.
+- README's Go quick-start did not compile (`Active` returns a `Country`, not a pointer).
+- `docs/QUERIES.md` said no test enforces index equals fixture; `tests/test_index_matches_fixture.py` does. `docs/JOINS.md` rule 5 omitted `TW` from the null-`subregion` list. Version pins in README, QUERIES and JOINS read v1.12.1 or v1.12.3.
+- `docs/PROVENANCE.md`: "first-party only" is corrected; `languages` and `borders` come from the CIA World Factbook, a documented exception. The ADR `languages-borders-sources.md` is dated 2026-09-23 (the release that added it); its status is still `proposed`.
+
+### Known gaps
+
+- `currencies("XX")` and `currencies("AQ")` are both `[]`; they cannot be told apart (section 4b says how to).
+- `currency_at` still returns `None` for a malformed date.
+- The README JSON sample's `"updated"` date is not checked and drifts each release.
+- `docs/v1.0.1-verification.md` still reads `Date: <today>`.
+
 ## [1.12.4] — 2026-11-05
 
 v1.12.4 closes the fourth audit's findings: the version of this registry that its consumers vendor was invisible from here, the v1.12.3 verification report held 11 of about 38 gate commands, and README section 22 disagreed with the consumers' public repositories.
