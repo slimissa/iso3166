@@ -46,6 +46,32 @@ def failing(lines):
     return [ln for ln in lines if ln.startswith("FAIL: ")]
 
 
+PIN_VERSION = "0.0.0"
+
+
+def pin_readme_version(tree: Path, version: str = PIN_VERSION) -> None:
+    """Rewrite every version site in the fixture README to a fixed value.
+
+    Without this, the fixture copies whatever version the checkout's
+    README happens to carry. release.sh step 1 bumps the README to the
+    release version before the gate runs pytest, so a test that asserts
+    "bumping VERSION without bumping the README fails" would have its
+    precondition already broken by step 1 and would pass even with a
+    broken checker. Pinning the fixture makes the test independent of
+    the checkout's state.
+    """
+    readme = tree / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    text = re.sub(r"^(\| \*\*Version\*\* \| )\d+\.\d+\.\d+",
+                  rf"\g<1>{version}", text, flags=re.M)
+    text = re.sub(r'("version": ")\d+\.\d+\.\d+(")',
+                  rf"\g<1>{version}\g<2>", text)
+    text = re.sub(r"(b')\d+\.\d+\.\d+(')", rf"\g<1>{version}\g<2>", text)
+    text = re.sub(r"(registry-)\d+\.\d+\.\d+(-orange)",
+                  rf"\g<1>{version}\g<2>", text)
+    readme.write_text(text, encoding="utf-8")
+
+
 @pytest.fixture()
 def tree(tmp_path):
     """A copy of just what the check reads."""
@@ -103,6 +129,7 @@ def test_report_count_sites_all_fail(tree, pattern, repl):
 
 
 def test_a_version_bump_without_the_readme_sites_fails(tree):
+    pin_readme_version(tree)  # independent of the checkout's current version
     # Why release.sh bumps the sites with VERSION: otherwise the gate fails.
     (tree / "VERSION").write_text("1.12.5\n", encoding="utf-8")
     code, lines = run_check(tree)
@@ -113,6 +140,7 @@ def test_a_version_bump_without_the_readme_sites_fails(tree):
 
 
 def test_the_release_flow_passes_gate_then_report(tree):
+    pin_readme_version(tree)  # independent of the checkout's current version
     # Step 1: VERSION and the README sites are bumped together; the report for
     # the new version does not exist yet (it is written in step 7).
     new = "1.12.5"
