@@ -7,7 +7,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 [![Validate](https://github.com/slimissa/iso3166/actions/workflows/validate.yml/badge.svg)](https://github.com/slimissa/iso3166/actions/workflows/validate.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Schema](https://img.shields.io/badge/schema-1.0.0-green.svg)](./schema.json)
-[![Registry](https://img.shields.io/badge/registry-1.12.4-orange.svg)](./iso3166.json)
+[![Registry](https://img.shields.io/badge/registry-1.12.5-orange.svg)](./iso3166.json)
 
 ---
 
@@ -56,7 +56,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
 | **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 427 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
-| **Version** | 1.12.4 (schema 1.0.0) |
+| **Version** | 1.12.5 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
 | **Dependencies** | The JSON needs none. The Python, JavaScript and Go wrappers need none; the Rust crate needs `serde` and `serde_json`. Tool time: `jsonschema`, `pyarrow==26.0.0`, `pandas`, `pytest`. |
 
@@ -279,7 +279,7 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
     "schema_version": "1.0.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
     "updated": "2026-10-31",
-    "version": "1.12.4"
+    "version": "1.12.5"
   },
   "countries": { "active": [ "..." ], "withdrawn": [ "..." ] }
 }
@@ -598,7 +598,7 @@ Read `numeric` and `calling_codes` as text: `020` is Andorra, and a spreadsheet 
 
 ```python
 import pyarrow.parquet as pq
-print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # b'1.12.4'
+print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # b'1.12.5'
 ```
 
 ### Comparison semantics and the build pin
