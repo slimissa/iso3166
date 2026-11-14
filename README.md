@@ -963,7 +963,7 @@ Beyond the seven-layer validator, the repo carries twelve auxiliary checks, list
 | `tools/check_iso4217_snapshot.py` | Well-formedness of `tools/iso4217_snapshot.json`: parses, no duplicate codes, meta counts agree. | CI and release gate |
 | `tools/check_release_claims.py` | Verifies machine-checkable claims about the version being released. | release gate only |
 | `tools/check_release_diff.py` | After the version bump and regeneration, every generated artifact differs from `HEAD` only in the version string and the `updated` date; Parquet tables must hold the same data. | release gate only |
-| `tools/check_registry_freshness.py` | Fails when any entry's `last_verified` is older than 365 days. | release gate only |
+| `tools/check_registry_freshness.py` | Fails when any entry's `last_verified` is older than 365 days. | CI (`validate-json`) and release gate |
 | `tools/check_consumers_current.py` | Fetches each consumer's vendoring metadata (`tools/consumers.json`) from GitHub and prints how many minor versions behind this registry it is; exits 1 at 5 or more. A comparison that cannot run exits 2. | advisory, network; not in the gate or CI |
 | `tools/check_state_doc.py` | Verifies every number in `docs/STATE.md` against the tree. | CI and release gate |
 | `tools/check_docs_match_tree.py` | Verifies the counts, versions and lists that the README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS docs state about the tree. | CI and release gate |
@@ -980,7 +980,7 @@ There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.
 
 | Job | What it runs |
 |-----|--------------|
-| `validate-json` | `validate.py` (strict), root `pytest`, `parse_source.py --verify` and `--audit`; matrix of Ubuntu 22.04 and 24.04, Python 3.11 and 3.12 |
+| `validate-json` | `validate.py` (strict), `check_registry_freshness.py`, root `pytest`, `parse_source.py --verify` and `--audit`; matrix of Ubuntu 22.04 and 24.04, Python 3.11 and 3.12 |
 | `check-version-consistency` | `check_version_consistency.py` |
 | `check-iso4217-snapshot` | `check_iso4217_snapshot.py` |
 | `check-wrapper-sync` | `sync_wrappers.py --check`, `gen_consistency_fixture.py --check` |
@@ -1004,7 +1004,7 @@ There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.
 | `wrapper-go` | `go vet`, `go test`, `govulncheck` on a Go matrix |
 | `wrapper-rust` | `cargo clippy -D warnings`, `cargo test`, `cargo audit` |
 
-`registry freshness` runs in the release gate only, not in CI.
+`check_registry_freshness.py` runs in `validate-json` and in the release gate. Because it compares `last_verified` with today's date, CI goes red on a day with no commit behind it: for the current data, on 2027-09-23, when the entries verified on 2026-09-22 pass 365 days. Re-attest the entries (see `docs/PROVENANCE.md`) before then.
 
 ---
 
@@ -1333,7 +1333,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
 - **The packaged CLI and the repo CLI differ in `--raw`:** the packaged one prints an empty line for a null or empty-list value, and the repo one does not (29 and 28 lines for `list --region Oceania --raw tlds`). The module docstrings are stale too: the repo CLI's says eight subcommands, the packaged one's says twenty-three, and both implement twenty-five.
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging. The Rust and Go test counts in this README are static counts of declarations, not test runs.
-- **`check_registry_freshness.py` runs in the release gate only, not in CI,** and `independent_snapshot.json` has no `review_by`, so the snapshot freshness check reports `review_by unset` as a warning.
+- **`independent_snapshot.json` has no `review_by`,** so the snapshot freshness check reports `review_by unset` as a warning. (`check_registry_freshness.py` itself runs in CI and in the gate since v1.12.6; see the note under the job table in Section 14.)
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
 - **The sanctions release (v1.13.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
 - **The geography release (v1.14.0) is deferred.** There is no `regions.json` and no `timezones[]`.

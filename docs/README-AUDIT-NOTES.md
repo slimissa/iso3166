@@ -190,3 +190,17 @@ Found`, because `gh run list` returned no run for the new commit yet and the
 run ID was empty. `release.sh` was never affected: it polls and allows
 `CI_START_TIMEOUT` seconds. The rule documents the delay and the wait loop
 for manual use.
+
+### Rule 25 — v1.12.6 amendment: registry freshness also runs in CI
+
+Rule 25 (v1.9.1) kept `check_registry_freshness.py` out of CI, because a CI
+check turns every push red on day 366 with no data change behind it. v1.12.6
+moves it into the `validate-json` job as well, and keeps it in the release
+gate. The reason is that the gate is too infrequent to be the only check:
+between two releases, a `last_verified` can cross the 365-day threshold and
+CI stays green, so nothing says the registry is stale until the next release
+attempt fails. The cost Rule 25 named is accepted: for the current data CI
+goes red on 2027-09-23, the day the entries verified on 2026-09-22 pass 365
+days, whether or not the tree changed. Rule 25's entry above is not edited;
+this entry amends it. `docs/RELEASE_PATTERN.md` rule 25 and
+`docs/PROVENANCE.md` still describe the gate-only design.
