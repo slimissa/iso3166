@@ -34,6 +34,7 @@ Every CURATED artifact is regenerable from RAW by a single command, producing by
 | `tests/cross_language_consistency.json` | `tools/gen_consistency_fixture.py` | ✅ |
 | `docs/WITHDRAWN.md` | `tools/gen_withdrawn_doc.py` | ✅ |
 | `docs/STATE.md` (also reads the CI workflow, release script and snapshots) | `tools/gen_state_doc.py` | via `tools/check_state_doc.py`, which compares numbers, not bytes |
+| `registry_release.json` (manifest: size and SHA-256 of 16 artifacts) | `tools/gen_registry_release.py` | ✅ (byte comparison; run by the release gate) |
 
 **Determinism rules:**
 

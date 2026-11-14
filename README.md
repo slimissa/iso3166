@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 462 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 31 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 470 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.5 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -901,7 +901,7 @@ Without `jsonschema` installed, layer 1 reports SKIP and `validate.py` can still
 
 Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation. A clean run prints `Summary: 7 OK, 0 WARN, 0 FAIL, 0 SKIP`.
 
-### The release gate: 30 checks
+### The release gate: 31 checks
 
 Everything below runs in the release gate, in this order, inside one `set -e` subshell. The first failure stops the release.
 
@@ -937,6 +937,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 28 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 9 scenarios in a throwaway repository, two of them mutations that must be caught, two that refuse a commit on top of the release commit and an uncommitted regeneration |
 | 29 | `check_cross_language.sh US GB JP` | A wrapper that disagrees on a lookup |
 | 30 | `cargo clippy --all-targets -- -D warnings` | A clippy warning in the Rust crate |
+| 31 | `gen_registry_release.py --check --version "$VERSION"` | A `registry_release.json` that differs, byte for byte, from what the tree produces: a listed artifact whose size or SHA-256 changed, a stale count, a wrong version |
 
 The gate is not the whole test surface. The JavaScript suite (`npm test`), the Go suite (`go test`) and the Rust suite (`cargo test`) run in CI only, in `wrapper-javascript`, `wrapper-go` and `wrapper-rust`. The full wrapper surface is gated by the CI check the release script waits for before tagging.
 
@@ -944,12 +945,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 173 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 181 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 119 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 94 |
 | Rust | `(cd wrappers/rust && cargo test)` | 30 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 46 (declarations) |
-| **Total** | | **462** |
+| **Total** | | **470** |
 
 ### Additional checks
 
@@ -1022,7 +1023,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 0. **Preflight.** Inside a git repository, tree clean, branch `main`, `HEAD` equal to `origin/main`, CI on `HEAD` complete and green, a `## [<version>]` section in `CHANGELOG.md`, the tag free locally and on `origin`, `VERSION` different from the target, and the committed artifacts equal to what the tree generates: every export `--check` runs first, then the generators run, then `git diff --exit-code` compares the regenerated files with `HEAD` (in `--force` mode this runs at the start of step 2, where `HEAD` is the release commit). The release's entry in `tools/release_claims.json` is not a preflight item: gate line 2 (`check_release_claims.py`) exits 2 when the entry is missing. A `--check` after regeneration would compare a file with itself, so the gate has none; `tools/check_release_diff.py` checks the bumped, regenerated tree against `HEAD` instead.
 1. **Bump the version sites** (below).
-2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 30 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
+2. **Regenerate and gate.** Regenerates SQL, CSV, Parquet, aggregated, wrapper copies, the fixture, `WITHDRAWN.md` and `STATE.md`, then runs the gate: 31 checks run in sequence, listed in [Section 13](#13-validation). The first failure stops the release.
 3. **Commit** `chore: release v<version>`, after checking that staged paths are not all ignored by the workflow's `paths-ignore`.
 4. **Push and wait for CI.** Every workflow run for the release SHA must complete with `success`. A run that does not start within 180 seconds, a failed run, or a poll timeout stops the release before the tag exists.
 5. **Tag** `v<version>` only on green. The tag message is read from the changelog section, checked for a header and body, written with `git tag -a -F ... --cleanup=verbatim`, read back with git and compared with the file; a mismatch or a wrong target deletes the local tag and pushes nothing. Then `git push origin v<version>`.
@@ -1037,7 +1038,7 @@ Forty-four verification reports exist, `docs/v1.0.0-verification.md` through [`d
 
 ## 16. Versioning
 
-One version number, held by ten files. `tools/version_axes.json` lists them, and it is the one list: `tools/check_version_consistency.py` reads it to verify them (every result line names its site), and the bump step of `scripts/release.sh` reads it to write them.
+One version number, held by eleven files. `tools/version_axes.json` lists them, and it is the one list: `tools/check_version_consistency.py` reads it to verify them (every result line names its site), and the bump step of `scripts/release.sh` reads it to write them.
 
 | # | Site | File | Why it is a site |
 |--:|------|------|------------------|
@@ -1051,8 +1052,9 @@ One version number, held by ten files. `tools/version_axes.json` lists them, and
 | 8 | `rust-cargo-toml` | `wrappers/rust/Cargo.toml` | The crate version |
 | 9 | `rust-cargo-lock` | `wrappers/rust/Cargo.lock` | The locked crate version |
 | 10 | `parquet-footer` | `iso3166.parquet` footer `iso3166.version` | A consumer holding only the Parquet can tell |
+| 11 | `registry-release-json` | `registry_release.json` `version` | The release manifest names the version it describes |
 
-Each site in `version_axes.json` carries `bumped` and, when it is true, the `bumper` that writes it. `release.sh` runs `check_version_consistency.py --bump VERSION`, which writes the seven sites with `bumped: true` (1, 2, 4 to 8), and then `--expect VERSION`, which asserts every site except those with `generated_by`. The other three are not bumped by hand: the changelog heading (3) is written before the release, the lockfile (9) is regenerated by `cargo build`, and the Parquet footer (10) follows from regeneration (`generated_by`). Add a site by adding it to `version_axes.json`: `tests/test_version_axes.py` fails if the README table, the checker output or the bump step disagree with it.
+Each site in `version_axes.json` carries `bumped` and, when it is true, the `bumper` that writes it. `release.sh` runs `check_version_consistency.py --bump VERSION`, which writes the seven sites with `bumped: true` (1, 2, 4 to 8), and then `--expect VERSION`, which asserts every site except those with `generated_by`. The other four are not bumped by hand: the changelog heading (3) is written before the release, the lockfile (9) is regenerated by `cargo build`, and the Parquet footer (10) and the manifest (11) follow from regeneration (`generated_by`). Add a site by adding it to `version_axes.json`: `tests/test_version_axes.py` fails if the README table, the checker output or the bump step disagree with it.
 
 Deliberate exclusions:
 
@@ -1078,6 +1080,8 @@ iso3166/
   README.md                                 # This file (version badge is a version site)
   VERSION                                   # Registry version, source of truth
   constraints.txt                           # pip constraint: pyarrow==26.0.0 (Parquet bytes depend on it)
+  registry_release.json                     # Release manifest: 16 artifacts with sizes and SHA-256 digests (generated; version site 11)
+  registry_release.schema.json              # JSON Schema (draft 2020-12) for registry_release.json
   countries_by_region.parquet               # AGGREGATED: 30 rows, grain (region, subregion)
   iso3166.csv                               # CURATED: CSV, RFC 4180, 24 columns
   iso3166.european.csv                      # CURATED: CSV, semicolon-delimited
@@ -1148,6 +1152,7 @@ iso3166/
     test_release_force.sh                   # Shell test of release.sh --force resume mode (release gate and CI)
     test_pip_pins.py                        # Every workflow pip install line that mentions pyarrow carries -c constraints.txt
     test_version_axes.py                    # version_axes.json is the one list: checker, release.sh bump and README table follow it
+    test_gen_registry_release.py            # registry_release.json matches the tree, validates, and lists 16 artifacts with matching SHA-256
     test_validate_require_schema.py         # validate.py --require-schema exits 2 without jsonschema
     test_validate_snapshot_value.py         # validate.py's snapshot-value layer fails on one wrong value in each of seven fields
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
@@ -1157,6 +1162,7 @@ iso3166/
     build_club_snapshots.py                 # Generate the four club snapshots and their meta files
     build_initial_data.py                   # Archival: one-shot importer that produced the first iso3166.json
     build_introduced_snapshot.py            # Generate introduced_snapshot.json from wikipedia_dates.json
+    gen_registry_release.py                 # Writes registry_release.json; --check --version X.Y.Z compares it byte for byte
     check_cli_agreement.sh                  # The repo CLI and the packaged CLI print the same bytes for --raw
     check_cross_language.sh                 # Run a lookup through all four wrappers and diff the output
     check_docs_match_tree.py                # Prose claims (README, ENRICHMENT, ...) vs the tree

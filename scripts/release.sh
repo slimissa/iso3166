@@ -414,6 +414,7 @@ if [ "$DRY_RUN" = "0" ]; then
     python3 tools/gen_consistency_fixture.py
     python3 tools/gen_withdrawn_doc.py
     python3 tools/gen_state_doc.py
+    python3 tools/gen_registry_release.py
 
     # Resume mode skips the commit step, so anything regeneration changed
     # stays uncommitted while the tag lands on HEAD without it.
@@ -465,6 +466,7 @@ if [ "$DRY_RUN" = "0" ]; then
         gate bash tests/test_release_force.sh
         gate bash tools/check_cross_language.sh US GB JP
         gate bash -c 'cd wrappers/rust && cargo clippy --all-targets -- -D warnings'
+        gate python3 tools/gen_registry_release.py --check --version "$VERSION"
     ) > "$GATE_LOG" 2>&1
     GATE_RC=$?
     set -e

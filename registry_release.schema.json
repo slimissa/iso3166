@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/slimissa/iso3166/registry_release.schema.json",
+  "title": "iso3166 registry_release.json",
+  "description": "The release manifest written by tools/gen_registry_release.py. commit and tag_object are null in the committed file by design: the file ships in the release commit and cannot contain that commit's SHA.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "registry", "version", "format_version", "schema_version", "released",
+    "commit", "tag", "tag_object", "distribution", "source", "files",
+    "counts", "vendors"
+  ],
+  "properties": {
+    "registry": {"const": "iso3166"},
+    "version": {"$ref": "#/$defs/semver"},
+    "format_version": {"$ref": "#/$defs/semver"},
+    "schema_version": {"$ref": "#/$defs/semver"},
+    "released": {"type": "string", "format": "date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "commit": {"$ref": "#/$defs/sha1_or_null"},
+    "tag": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "tag_object": {"$ref": "#/$defs/sha1_or_null"},
+    "distribution": {"enum": ["source-only"]},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "snapshot", "sha256"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "snapshot": {"type": ["string", "null"]},
+        "sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "layer", "bytes", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "layer": {"enum": ["raw", "curated", "aggregated", "bundled", "snapshot"]},
+          "bytes": {"type": "integer", "minimum": 0},
+          "sha256": {"$ref": "#/$defs/sha256"}
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active", "withdrawn", "officially_assigned", "introduced_dated",
+        "introduced_null", "tests", "gates", "claims"
+      ],
+      "properties": {
+        "active": {"type": "integer", "minimum": 0},
+        "withdrawn": {"type": "integer", "minimum": 0},
+        "officially_assigned": {"type": "integer", "minimum": 0},
+        "introduced_dated": {"type": "integer", "minimum": 0},
+        "introduced_null": {"type": "integer", "minimum": 0},
+        "tests": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["root", "python_wrapper", "javascript", "rust", "go", "total"],
+          "properties": {
+            "root": {"type": "integer", "minimum": 0},
+            "python_wrapper": {"type": "integer", "minimum": 0},
+            "javascript": {"type": "integer", "minimum": 0},
+            "rust": {"type": "integer", "minimum": 0},
+            "go": {"type": "integer", "minimum": 0},
+            "total": {"type": "integer", "minimum": 0}
+          }
+        },
+        "gates": {"type": "integer", "minimum": 1},
+        "claims": {"type": "integer", "minimum": 0}
+      }
+    },
+    "vendors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "version", "review_by", "source", "path", "sha256"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "version": {"$ref": "#/$defs/semver"},
+          "review_by": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+          "source": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "semver": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "sha1_or_null": {"oneOf": [{"type": "string", "pattern": "^[0-9a-f]{40}$"}, {"type": "null"}]}
+  }
+}

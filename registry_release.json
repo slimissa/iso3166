@@ -1,0 +1,141 @@
+{
+  "registry": "iso3166",
+  "version": "1.12.5",
+  "format_version": "1.0.0",
+  "schema_version": "1.0.0",
+  "released": "2026-11-08",
+  "commit": null,
+  "tag": "v1.12.5",
+  "tag_object": null,
+  "distribution": "source-only",
+  "source": {
+    "name": "ISO 3166-1:2020 (cross-checked against UN M49)",
+    "snapshot": null,
+    "sha256": null
+  },
+  "files": [
+    {
+      "path": "iso3166.json",
+      "layer": "curated",
+      "bytes": 409357,
+      "sha256": "dc18f68a049b5b5674a1613cfa4543207b52f3526c2233971f1d2da99fe8eeb8"
+    },
+    {
+      "path": "schema.json",
+      "layer": "curated",
+      "bytes": 7800,
+      "sha256": "2b6d368bc5802a0d9d2a61db661721bf4b513ba8487ff64d7eb85f7c437f798d"
+    },
+    {
+      "path": "iso3166.sql",
+      "layer": "raw",
+      "bytes": 326436,
+      "sha256": "b57f5c1d4e731eb2b7c8175eee102db7107e4af026a45d9769ba1afaec8d3976"
+    },
+    {
+      "path": "iso3166.postgresql.sql",
+      "layer": "raw",
+      "bytes": 326439,
+      "sha256": "957ea8fb2798748ed20045adde147fc5ca96abcd146c560b3d271ee4258f7c2d"
+    },
+    {
+      "path": "iso3166.mysql.sql",
+      "layer": "raw",
+      "bytes": 325675,
+      "sha256": "7fae8fb47e54024ff4fd2ebfd7aab8bd127890133206c9e2133e414a335514a8"
+    },
+    {
+      "path": "iso3166.sqlite.sql",
+      "layer": "raw",
+      "bytes": 325333,
+      "sha256": "ab1cdd3e0857a9c928f7743834d37bfec9e0a6dac1117b35543ea5778052bc56"
+    },
+    {
+      "path": "iso3166.csv",
+      "layer": "raw",
+      "bytes": 194576,
+      "sha256": "fa2ea8770de2ea1ae7336b8a8951d74e91e2dae21e1583cd42e9cb8b44d602c7"
+    },
+    {
+      "path": "iso3166.excel.csv",
+      "layer": "raw",
+      "bytes": 194579,
+      "sha256": "781e3a4de54638867094311994602b79eddc79d119d0d35a4a1216011f00c992"
+    },
+    {
+      "path": "iso3166.european.csv",
+      "layer": "raw",
+      "bytes": 194562,
+      "sha256": "f7ea587b0f449f2f63b7dc0a3505c6a8dc326888bca2ef4ef70063525c4a594a"
+    },
+    {
+      "path": "iso3166.tsv",
+      "layer": "raw",
+      "bytes": 194562,
+      "sha256": "45fcad2f6fbd29c4263efa946e9f44a8a80aa519b6e56801fa1bdb98d6c4b909"
+    },
+    {
+      "path": "iso3166.parquet",
+      "layer": "raw",
+      "bytes": 41099,
+      "sha256": "738797d539212fe84b6ab7858267b70a1045631b7b4326b9ba30f232a93d3902"
+    },
+    {
+      "path": "countries_by_region.parquet",
+      "layer": "aggregated",
+      "bytes": 3450,
+      "sha256": "5700373809f1777123c09e3d7984c8f731a371bf7185bd19b4860c41b40b6cc8"
+    },
+    {
+      "path": "wrappers/python/iso3166/iso3166.json",
+      "layer": "bundled",
+      "bytes": 409357,
+      "sha256": "dc18f68a049b5b5674a1613cfa4543207b52f3526c2233971f1d2da99fe8eeb8"
+    },
+    {
+      "path": "wrappers/javascript/iso3166.json",
+      "layer": "bundled",
+      "bytes": 409357,
+      "sha256": "dc18f68a049b5b5674a1613cfa4543207b52f3526c2233971f1d2da99fe8eeb8"
+    },
+    {
+      "path": "wrappers/go/iso3166.json",
+      "layer": "bundled",
+      "bytes": 409357,
+      "sha256": "dc18f68a049b5b5674a1613cfa4543207b52f3526c2233971f1d2da99fe8eeb8"
+    },
+    {
+      "path": "wrappers/rust/iso3166.json",
+      "layer": "bundled",
+      "bytes": 409357,
+      "sha256": "dc18f68a049b5b5674a1613cfa4543207b52f3526c2233971f1d2da99fe8eeb8"
+    }
+  ],
+  "counts": {
+    "active": 252,
+    "withdrawn": 25,
+    "officially_assigned": 249,
+    "introduced_dated": 176,
+    "introduced_null": 76,
+    "tests": {
+      "root": 181,
+      "python_wrapper": 119,
+      "javascript": 94,
+      "rust": 30,
+      "go": 46,
+      "total": 470
+    },
+    "gates": 31,
+    "claims": 10
+  },
+  "vendors": [
+    {
+      "name": "iso4217",
+      "version": "1.8.0",
+      "review_by": "2027-10-25",
+      "source": "slimissa/iso4217",
+      "path": "tools/iso4217_snapshot.json",
+      "sha256": "1edb1b48b8dcf4f1e5aec1b803942b5382999f7957e48ca64eae1658b2cc5ae8"
+    }
+  ]
+}

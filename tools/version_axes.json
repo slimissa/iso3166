@@ -133,6 +133,16 @@
       "required": true,
       "bumped": false,
       "generated_by": "tools/export_parquet.py"
+    },
+    {
+      "name": "registry-release-json",
+      "axis": "registry",
+      "path": "registry_release.json",
+      "extractor": "json_path",
+      "extractor_arg": "version",
+      "required": true,
+      "bumped": false,
+      "generated_by": "tools/gen_registry_release.py"
     }
   ],
   "bumpers": {
