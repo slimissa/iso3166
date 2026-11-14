@@ -18,14 +18,29 @@ in the report, because the hash would change the report.
 The tool records what happened; it does not judge. A non-zero exit code in
 the record is written as it is and the Result line says FAIL.
 
-Exit codes: 0 = written; 2 = no evidence to record (record missing/empty).
+A record SHORTER than the release script is refused too. The expected
+length is computed from scripts/release.sh, never hardcoded:
+
+    gate_count       indented `gate ...` lines (the gate)
+    freshness_count  `"python3 tools/X.py --check"` entries of the
+                     artifact-freshness block
+    expected         gate_count + freshness_count
+
+v1.12.3 shipped a report with 11 of 38 commands: the empty-record check
+caught nothing, because 11 rows are not zero rows.
+
+Exit codes: 0 = written; 2 = no evidence to record (record missing, empty
+or shorter than release.sh), or release.sh unreadable.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
+import re
 import sys
 from pathlib import Path
+
+DEFAULT_RELEASE_SH = Path(__file__).resolve().parent.parent / "scripts" / "release.sh"
 
 
 def sha256_file(path: Path) -> str:
@@ -42,6 +57,27 @@ def read_record(path: Path) -> list[tuple[int, str]]:
             raise ValueError(f"malformed record line: {raw!r}")
         rows.append((int(code), cmd))
     return rows
+
+
+def expected_rows(release_sh: Path) -> tuple[int, int]:
+    """(gate_count, freshness_count) read from release.sh.
+
+    Raises ValueError when either block cannot be found: a script this
+    tool cannot read gives no basis for judging a record complete.
+    """
+    text = release_sh.read_text(encoding="utf-8")
+    gate_count = len(re.findall(r"^[ \t]+gate[ \t]", text, re.M))
+    if "# BEGIN artifact-freshness" not in text or \
+            "# END artifact-freshness" not in text:
+        raise ValueError("no '# BEGIN/END artifact-freshness' block")
+    block = text.split("# BEGIN artifact-freshness", 1)[1].split(
+        "# END artifact-freshness", 1)[0]
+    freshness_count = len(re.findall(r'"python3 tools/[a-z_0-9]+\.py --check"',
+                                     block))
+    if gate_count == 0 or freshness_count == 0:
+        raise ValueError(f"found {gate_count} gate lines and "
+                         f"{freshness_count} freshness checks")
+    return gate_count, freshness_count
 
 
 def render(version: str, commit: str, tag: str, date: str, workflows: str,
@@ -106,6 +142,9 @@ def main(argv: list[str] | None = None) -> int:
                    help="Record file: '<exit code>\\t<command>' per line.")
     p.add_argument("--gate-log", type=Path, required=True)
     p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--release-script", type=Path, default=DEFAULT_RELEASE_SH,
+                   help="release.sh to count the expected commands in "
+                        "(default: scripts/release.sh next to tools/).")
     a = p.parse_args(argv)
 
     try:
@@ -117,6 +156,20 @@ def main(argv: list[str] | None = None) -> int:
     if not rows:
         print("write_verification_report: the gate record is empty; refusing "
               "to write a report with no evidence", file=sys.stderr)
+        return 2
+    try:
+        gate_count, freshness_count = expected_rows(a.release_script)
+    except (OSError, ValueError) as exc:
+        print(f"write_verification_report: cannot count the expected "
+              f"commands in {a.release_script}: {exc}", file=sys.stderr)
+        return 2
+    expected = gate_count + freshness_count
+    if len(rows) < expected:
+        print(f"write_verification_report: the gate record has {len(rows)} "
+              f"commands, but {a.release_script.name} runs {expected} "
+              f"({gate_count} gate + {freshness_count} freshness); refusing "
+              f"to write a report that records {len(rows)} of {expected}",
+              file=sys.stderr)
         return 2
     if not a.gate_log.is_file():
         print(f"write_verification_report: gate log not found: {a.gate_log}",

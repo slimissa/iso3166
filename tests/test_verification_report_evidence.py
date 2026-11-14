@@ -109,3 +109,37 @@ def test_no_evidence_means_no_report(tmp_path):
     repo, _, r = write_report(tmp_path, [])
     assert r.returncode == 2
     assert not (repo / "docs" / "v9.9.9-verification.md").exists()
+
+
+def expected_count() -> int:
+    """gate_count + freshness_count, as the tool computes it from release.sh."""
+    sys.path.insert(0, str(ROOT / "tools"))
+    import write_verification_report as w
+
+    g, f = w.expected_rows(ROOT / "scripts" / "release.sh")
+    return g + f
+
+
+def test_expected_count_agrees_with_the_independent_count():
+    """The tool's count must equal this file's own parse of release.sh."""
+    assert expected_count() == len(real_rows())
+    assert expected_count() >= 37
+
+
+def test_refuses_incomplete_report(tmp_path):
+    """v1.12.3 recorded 11 of 38 commands. A short record is not evidence."""
+    rows = real_rows()[:30]
+    assert len(rows) == 30
+    repo, _, r = write_report(tmp_path, rows)
+    assert r.returncode == 2, (r.stdout, r.stderr)
+    assert "30" in r.stderr
+    assert str(expected_count()) in r.stderr
+    assert not (repo / "docs" / "v9.9.9-verification.md").exists()
+    assert not (repo / "docs" / "v9.9.9-verification.md.sha256").exists()
+
+
+def test_one_row_short_is_refused(tmp_path):
+    rows = real_rows()[:-1]
+    repo, _, r = write_report(tmp_path, rows)
+    assert r.returncode == 2, (r.stdout, r.stderr)
+    assert not (repo / "docs" / "v9.9.9-verification.md").exists()
