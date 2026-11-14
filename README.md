@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 439 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 446 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.5 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -603,7 +603,7 @@ print(pq.read_table("iso3166.parquet").schema.metadata[b"iso3166.version"])   # 
 
 ### Comparison semantics and the build pin
 
-`export_sql.py --check`, `export_csv.py --check` and `export_parquet.py --check` regenerate in memory and compare with the committed file; `export_aggregated.py --check` compares logical content. Parquet bytes depend on the `pyarrow` version, so [`requirements-dev.txt`](./requirements-dev.txt) pins `pyarrow==26.0.0`. There is no `constraints.txt` in this repository, and no test checks that every CI install line is pinned (see [Known limitations](#20-known-limitations)).
+`export_sql.py --check`, `export_csv.py --check` and `export_parquet.py --check` regenerate in memory and compare with the committed file; `export_aggregated.py --check` compares logical content. Parquet bytes depend on the `pyarrow` version, so [`requirements-dev.txt`](./requirements-dev.txt) pins `pyarrow==26.0.0`, and [`constraints.txt`](./constraints.txt) repeats the pin. `tests/test_pip_pins.py` fails, naming file, job and line, when a workflow install line that mentions `pyarrow` lacks `-c constraints.txt` or names another version.
 
 ---
 
@@ -944,12 +944,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 150 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 157 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 119 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 94 |
 | Rust | `(cd wrappers/rust && cargo test)` | 30 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 46 (declarations) |
-| **Total** | | **439** |
+| **Total** | | **446** |
 
 ### Additional checks
 
@@ -1077,6 +1077,7 @@ iso3166/
   LICENSE                                   # Apache 2.0
   README.md                                 # This file (version badge is a version site)
   VERSION                                   # Registry version, source of truth
+  constraints.txt                           # pip constraint: pyarrow==26.0.0 (Parquet bytes depend on it)
   countries_by_region.parquet               # AGGREGATED: 30 rows, grain (region, subregion)
   iso3166.csv                               # CURATED: CSV, RFC 4180, 24 columns
   iso3166.european.csv                      # CURATED: CSV, semicolon-delimited
@@ -1088,7 +1089,7 @@ iso3166/
   iso3166.sql                               # CURATED: SQL, ANSI SQL-92 (portable)
   iso3166.sqlite.sql                        # CURATED: SQL, SQLite 3.37+
   iso3166.tsv                               # CURATED: TSV
-  requirements-dev.txt                      # Tool-time dependencies; pins pyarrow==26.0.0
+  requirements-dev.txt                      # Tool-time dependencies; pins pyarrow==26.0.0 (constraints.txt repeats it)
   schema.json                               # JSON Schema for iso3166.json (schema version 1.0.0)
   .github/
     workflows/
@@ -1144,6 +1145,7 @@ iso3166/
     test_export_check_order.py              # The artifact freshness block fails at --check, before regeneration
     test_index_matches_fixture.py           # docs/QUERIES.md worked-examples index equals the fixture's derived_queries
     test_release_force.sh                   # Shell test of release.sh --force resume mode (release gate and CI)
+    test_pip_pins.py                        # Every workflow pip install line that mentions pyarrow carries -c constraints.txt
     test_validate_require_schema.py         # validate.py --require-schema exits 2 without jsonschema
     test_validate_snapshot_value.py         # validate.py's snapshot-value layer fails on one wrong value in each of seven fields
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
@@ -1331,7 +1333,6 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
 - **The packaged CLI and the repo CLI differ in `--raw`:** the packaged one prints an empty line for a null or empty-list value, and the repo one does not (29 and 28 lines for `list --region Oceania --raw tlds`). The module docstrings are stale too: the repo CLI's says eight subcommands, the packaged one's says twenty-three, and both implement twenty-five.
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging. The Rust and Go test counts in this README are static counts of declarations, not test runs.
-- **`pyarrow` is pinned in `requirements-dev.txt` only.** There is no `constraints.txt` and no test that fails on an unpinned install line. The `check-parquet-export` job also runs an unpinned `pip install pyarrow pandas`, which is a no-op after the pinned install but not structurally guarded.
 - **`check_registry_freshness.py` runs in the release gate only, not in CI,** and `independent_snapshot.json` has no `review_by`, so the snapshot freshness check reports `review_by unset` as a warning.
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
 - **The sanctions release (v1.13.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
@@ -1422,6 +1423,5 @@ Nothing is scheduled. Each item below starts when its trigger fires.
 | **v2.0.0:** a breaking schema change | A consumer needs one | This section |
 | **Read `tools/version_axes.json` in the version check** | A fourth implementation of the release pattern exists | `tools/version_axes.json` |
 | **`source_hash`** | A stable raw source appears; the current sources are not stable files | Previous README |
-| **Pin the CI `pyarrow` install and add a `constraints.txt`** | The next release that touches CI | [Known limitations](#20-known-limitations) |
 
 See [`CHANGELOG.md`](./CHANGELOG.md) for release history and [`docs/decisions/`](./docs/decisions) for locked decisions.

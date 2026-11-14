@@ -183,12 +183,12 @@ jobs:
       - name: Verify dev requirements parse
         run: pip install --dry-run -r requirements-dev.txt
 
-      - run: pip install -r requirements-dev.txt
+      - run: pip install -r requirements-dev.txt -c constraints.txt
 
       - run: python3 tools/export_parquet.py --check
       
       - name: Install dependencies
-        run: pip install pyarrow pandas
+        run: pip install pyarrow pandas -c constraints.txt
 
       - name: Check AGGREGATED export drift
         run: python3 tools/export_aggregated.py --check
