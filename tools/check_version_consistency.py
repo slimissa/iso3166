@@ -158,13 +158,34 @@ def ex_first_released_heading(root, site, ctx):
     released = [h for h in headings if h != "Unreleased"]
     version = ctx["version"]
     if released:
-        return released[0]
+        top = released[0]
+        if top == version:
+            return top
+        # Pre-release acceptance: the CHANGELOG heading may be exactly
+        # one minor ahead of VERSION with patch 0 (x.y.z -> x.(y+1).0).
+        # This is the CHANGELOG-first pattern `release.sh` uses: the
+        # release section is committed before `release.sh` bumps VERSION,
+        # so the checker must accept it, or `release.sh` can never run.
+        try:
+            top_t = tuple(int(x) for x in top.split("."))
+            cur_t = tuple(int(x) for x in version.split("."))
+        except ValueError:
+            top_t = cur_t = None
+        if (top_t is not None
+                and top_t[0] == cur_t[0]
+                and top_t[1] == cur_t[1]
+                and top_t[2] == cur_t[2] + 1):
+            ctx["notes"].append(
+                f"CHANGELOG has [{top}]; VERSION is {version} "
+                f"(pre-release: one patch ahead, accepted)")
+            return version
     if "Unreleased" in headings and int(version.split(".", 1)[0]) < 1:
         ctx["notes"].append(
             f"CHANGELOG has [Unreleased]; VERSION is {version} < 1.0.0 "
             "(pre-release, accepted)")
         return version
-    raise Bad(f"{site['path']}: no [x.y.z] heading (found {headings})")
+    raise Bad(f"{site['path']}: no [x.y.z] heading matching VERSION "
+              f"({version}); found {headings}")
 
 
 def ex_parquet_footer(root, site, ctx):
