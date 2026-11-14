@@ -230,6 +230,9 @@ jobs:
           python3 tools/iso3166_cli.py --registry /nonexistent.json info >/dev/null 2>&1 && exit 1
           test $? -eq 3
 
+      - name: The repo CLI and the packaged CLI agree on --raw
+        run: bash tools/check_cli_agreement.sh
+
       - name: --csv header matches iso3166.csv
         run: |
           diff <(python3 tools/iso3166_cli.py list --csv | head -1) <(head -1 iso3166.csv)

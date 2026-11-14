@@ -302,8 +302,14 @@ def write_raw(entries: list[dict[str, Any]], field: str) -> None:
         if v is None:
             sys.stdout.write("\n")
         elif isinstance(v, list):
-            for item in v:
-                sys.stdout.write(f"{item}\n")
+            if not v:
+                # An empty list prints one empty line, like null, so a
+                # scalar field keeps one line per entry. The packaged CLI
+                # (wrappers/python/iso3166/cli.py) does the same.
+                sys.stdout.write("\n")
+            else:
+                for item in v:
+                    sys.stdout.write(f"{item}\n")
         elif isinstance(v, bool):
             sys.stdout.write(("true" if v else "false") + "\n")
         else:

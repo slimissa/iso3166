@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 446 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 451 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.5 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -826,7 +826,7 @@ bin/iso3166 is-active-on "$CODE" "$DATE" >/dev/null
 case $? in 0) echo active ;; 1) echo not-active ;; 4) echo unknown ;; 2) echo usage ;; esac
 ```
 
-The two CLIs differ in one place: for `--raw`, the packaged CLI prints one empty line for a null or empty-list value so that a scalar field keeps one line per entry, and the repo CLI prints none. `list --region Oceania --raw tlds` prints 29 lines from the packaged CLI and 28 from the repo CLI. The difference is not reconciled in v1.12.4.
+The two CLIs agree; `tools/check_cli_agreement.sh` enforces it. For `--raw`, a null or empty-list value prints one empty line in both, so a scalar field keeps one line per entry (`list --region Oceania --raw tlds` prints 29 lines from each). The script runs the packaged CLI from the source tree, not through `bin/iso3166`, which falls back to the repo CLI when `iso3166` is not installed.
 
 ---
 
@@ -944,12 +944,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 157 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 162 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 119 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 94 |
 | Rust | `(cd wrappers/rust && cargo test)` | 30 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 46 (declarations) |
-| **Total** | | **446** |
+| **Total** | | **451** |
 
 ### Additional checks
 
@@ -987,7 +987,7 @@ There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.
 | `check-sql-export` | `export_sql.py --check` |
 | `check-csv-export` | `export_csv.py --check` |
 | `check-parquet-export` | `export_parquet.py --check`, `export_aggregated.py --check` |
-| `check-cli` | `lookup US` succeeds; `lookup XX`, an unknown command and a missing registry fail with the right exit status |
+| `check-cli` | `lookup US` succeeds; `lookup XX`, an unknown command and a missing registry fail with the right exit status; `check_cli_agreement.sh` (the two CLIs print the same bytes for `--raw`) |
 | `check-docs` | An inline check of the repository's documentation |
 | `check-withdrawn` | `enrich_withdrawn.py --check` |
 | `check-withdrawn-doc` | `gen_withdrawn_doc.py --check` |
@@ -1131,6 +1131,7 @@ iso3166/
   tests/
     cross_language_consistency.json         # Shared fixture for all four wrappers (generated)
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON
+    test_cli.py                             # --raw prints one line for a null or empty-list value, in both CLIs
     test_check_introduced_future.py         # check_introduced.py rejects an introduced date in the future
     test_check_release_diff.py              # check_release_diff.py allows only version and date changes after a bump
     test_club_ranges.py                     # validate.py rejects overlapping, touching and misordered club ranges
@@ -1155,6 +1156,7 @@ iso3166/
     build_club_snapshots.py                 # Generate the four club snapshots and their meta files
     build_initial_data.py                   # Archival: one-shot importer that produced the first iso3166.json
     build_introduced_snapshot.py            # Generate introduced_snapshot.json from wikipedia_dates.json
+    check_cli_agreement.sh                  # The repo CLI and the packaged CLI print the same bytes for --raw
     check_cross_language.sh                 # Run a lookup through all four wrappers and diff the output
     check_docs_match_tree.py                # Prose claims (README, ENRICHMENT, ...) vs the tree
     check_introduced.py                     # Every active entry's `introduced` equals introduced_snapshot.json
@@ -1331,7 +1333,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The aggregated table counts withdrawn entries.** Its 277 sums to the total, not to the 252 active entries, and `AI` and `SK` are counted twice.
 - **The club arrays are strings in CSV, TSV, SQL and Parquet,** in the `from:to|from:to` format, not native lists or structs. A consumer who wants ranges parses the string or reads the JSON.
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
-- **The packaged CLI and the repo CLI differ in `--raw`:** the packaged one prints an empty line for a null or empty-list value, and the repo one does not (29 and 28 lines for `list --region Oceania --raw tlds`). The module docstrings are stale too: the repo CLI's says eight subcommands, the packaged one's says twenty-three, and both implement twenty-five.
+- **The CLI module docstrings are stale:** the repo CLI's says eight subcommands, the packaged one's says twenty-three, and both implement twenty-five.
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging. The Rust and Go test counts in this README are static counts of declarations, not test runs.
 - **`independent_snapshot.json` has no `review_by`,** so the snapshot freshness check reports `review_by unset` as a warning. (`check_registry_freshness.py` itself runs in CI and in the gate since v1.12.6; see the note under the job table in Section 14.)
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
