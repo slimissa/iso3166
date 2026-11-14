@@ -2,48 +2,47 @@
 """
 tools/check_version_consistency.py
 
-Verify that the version references in this repository agree.
+Verify that the version references in this repository agree, and bump them.
 
-Sources checked:
-    1. VERSION                                   (file content)
-    2. iso3166.json -> meta.version              (registry data)
-    3. CHANGELOG.md -> top [x.y.z] heading       (release notes)
-    4. README.md -> registry-X.Y.Z-<color> badge (optional) (human-facing)
-    5. iso3166.parquet -> iso3166.version        (artifact metadata)
-    6. wrappers/python/pyproject.toml            (required)
-    7. wrappers/python/iso3166/__init__.py       (required)
-    8. wrappers/javascript/package.json          (required)
-    9. wrappers/rust/Cargo.toml                  (required)
+The list of version sites is DATA: tools/version_axes.json. This tool, the
+bump step of scripts/release.sh and the README's version-site table all
+follow that one file. Each entry of its "sites" array has:
 
-Also checked: wrappers/rust/Cargo.lock (via the cargolock extractor)
-and the README registry badge (via the README_STATUS_RE regex).
+    name         unique site name, printed on every result line
+    axis         the axis it belongs to (its "source" file is the reference)
+    path         the file, relative to the repository root
+    extractor    how to read the version: one of "extractors" in the file
+    extractor_arg  the extractor's argument, where it takes one
+    required     a missing file is a mismatch (true) or a skip (false)
+    bumped       true: release.sh writes this site (via --bump)
+    bumper       the bumper that writes it, one of "bumpers" (when bumped)
+    generated_by the generator that rewrites it later in the release (a
+                 site with this key is not asserted by --expect, because
+                 it is regenerated after the bump)
 
 Pre-release exception
 ---------------------
-Before the first tagged release, VERSION is 0.x.y and the CHANGELOG's
-top heading is [Unreleased]. This is the correct state and would
-otherwise fail the check. Rule:
+Before the first tagged release, VERSION is 0.x.y and the CHANGELOG's top
+heading is [Unreleased]. This is the correct state and would otherwise
+fail the check. Rule:
 
     if version < 1.0.0: [Unreleased] is accepted for CHANGELOG
-    else:               CHANGELOG top heading must equal version
+    else:               the first [x.y.z] heading must equal version
 
-The rule is documented here so that it is a decision, not an accident.
-
-The README check is best-effort: if no version is stated in the README,
-the check is skipped with a note, because a README is allowed to omit
-the version (the badge is optional at this stage).
-
-The Parquet check is skipped if the file does not exist or pyarrow is
-not installed; a note records the skip.
+A README without a badge and a Parquet file that is absent (or unreadable
+without pyarrow) are skipped with a note, not failed.
 
 Usage:
     python3 tools/check_version_consistency.py
     python3 tools/check_version_consistency.py --json
+    python3 tools/check_version_consistency.py --bump 1.12.6   # release.sh
+    python3 tools/check_version_consistency.py --expect 1.12.6 # release.sh
+    python3 tools/check_version_consistency.py --root DIR --axes FILE
 
 Exit codes:
-    0  All available sources agree.
+    0  All sites agree (--bump: every bumped site now reads the version).
     1  Discrepancy found.
-    2  A required source (VERSION, iso3166.json) is missing or invalid.
+    2  A required source (VERSION, version_axes.json) is missing or invalid.
 """
 from __future__ import annotations
 
@@ -51,8 +50,9 @@ import argparse
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -64,17 +64,11 @@ if not (PROJECT_ROOT / "iso3166.json").is_file():
     )
     sys.exit(2)
 
-
-VERSION_FILE = PROJECT_ROOT / "VERSION"
-REGISTRY = PROJECT_ROOT / "iso3166.json"
-CHANGELOG = PROJECT_ROOT / "CHANGELOG.md"
-README = PROJECT_ROOT / "README.md"
-PARQUET = PROJECT_ROOT / "iso3166.parquet"
-
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 CHANGELOG_HEADING_RE = re.compile(r"^## \[([0-9]+\.[0-9]+\.[0-9]+|Unreleased)\]", re.MULTILINE)
 # Any badge colour: shields.io accepts names (orange, blue) and hex (007ec6).
-README_STATUS_RE = re.compile(r"registry-(\d+\.\d+\.\d+)-\w+", re.IGNORECASE)
+BADGE_RE = r"{label}-(\d+\.\d+\.\d+)-\w+"
+
 
 class FatalError(SystemExit):
     def __init__(self, message: str, code: int = 2) -> None:
@@ -82,199 +76,303 @@ class FatalError(SystemExit):
         super().__init__(code)
 
 
-def read_version_file() -> str:
-    if not VERSION_FILE.exists():
-        raise FatalError(f"{VERSION_FILE}: not found")
-    text = VERSION_FILE.read_text(encoding="utf-8").strip()
-    if not SEMVER_RE.match(text):
-        raise FatalError(f"{VERSION_FILE}: {text!r} is not x.y.z")
-    return text
+class Skip(Exception):
+    """The site cannot be read here, and that is acceptable."""
 
 
-def read_registry_version() -> str:
-    if not REGISTRY.exists():
-        raise FatalError(f"{REGISTRY}: not found")
+class Bad(Exception):
+    """The site is unreadable or malformed: a mismatch."""
+
+
+# ---------------------------------------------------------------- extractors
+# Each takes (root, site, ctx) and returns the version string, or raises
+# Skip / Bad. ctx["version"] is the reference version.
+
+def _text(root: Path, site: dict) -> str:
+    p = root / site["path"]
+    if not p.is_file():
+        raise Bad(f"{site['path']}: file not found")
     try:
-        data = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        raise FatalError(f"{REGISTRY}: invalid JSON: {exc}") from exc
-    v = data.get("meta", {}).get("version")
-    if not isinstance(v, str) or not SEMVER_RE.match(v):
-        raise FatalError(f"{REGISTRY}: meta.version {v!r} is not x.y.z")
+        return p.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
+        raise Bad(f"{site['path']}: could not read: {exc}") from exc
+
+
+def ex_text(root, site, ctx):
+    v = _text(root, site).strip()
+    if not SEMVER_RE.match(v):
+        raise Bad(f"{site['path']}: {v!r} is not x.y.z")
     return v
 
 
-def read_changelog_top(version: str) -> tuple[str | None, str | None]:
-    """Return (matched_heading, error_message).
-
-    Keep a Changelog keeps [Unreleased] at the top of the file forever.
-    The check therefore looks for a heading whose value equals VERSION
-    anywhere in the file. Before the first release (VERSION < 1.0.0),
-    [Unreleased] is accepted in place of a version heading.
-
-    Returns the matched heading value on success, or (None, message) on
-    failure.
-    """
-    if not CHANGELOG.exists():
-        return None, f"{CHANGELOG}: not found"
-
-    text = CHANGELOG.read_text(encoding="utf-8")
-
-    headings = CHANGELOG_HEADING_RE.findall(text)
-    if not headings:
-        return None, f"{CHANGELOG}: no [x.y.z] or [Unreleased] headings"
-
-    # Prefer a heading that matches VERSION exactly.
-    if version in headings:
-        return version, None
-
-    # Pre-release: [Unreleased] is acceptable if VERSION is still 0.x.y.
-    major = int(version.split(".", 1)[0])
-    if major < 1 and "Unreleased" in headings:
-        return "Unreleased", None
-
-    return None, (
-        f"{CHANGELOG}: no heading matching VERSION ({version}). "
-        f"Found headings: {headings}. "
-        f"Add '## [{version}]' to CHANGELOG.md."
-    )
+def ex_json_path(root, site, ctx):
+    try:
+        node: Any = json.loads(_text(root, site))
+    except json.JSONDecodeError as exc:
+        raise Bad(f"{site['path']}: invalid JSON: {exc}") from exc
+    for part in site["extractor_arg"].split("."):
+        node = node.get(part) if isinstance(node, dict) else None
+    if not isinstance(node, str):
+        raise Bad(f"{site['path']}: no string at {site['extractor_arg']!r}")
+    return node
 
 
-def read_readme_version() -> str | None:
-    if not README.exists():
-        return None
-    text = README.read_text(encoding="utf-8")
-    m = README_STATUS_RE.search(text)
+def ex_toml_section(root, site, ctx):
+    text = _text(root, site)
+    arg = site["extractor_arg"]
+    if "." in arg:  # "<package>.<key>": a [[package]] entry of a lockfile
+        pkg, key = arg.split(".", 1)
+        m = re.search(rf'name = "{re.escape(pkg)}"\n{re.escape(key)} = "([^"]+)"', text)
+        if not m:
+            raise Bad(f"{site['path']}: no {key} for {pkg}")
+        return m.group(1)
+    m = re.search(rf'^{re.escape(arg)}\s*=\s*"([^"]+)"', text, re.MULTILINE)
     if not m:
-        return None
+        raise Bad(f"{site['path']}: no version declaration found")
     return m.group(1)
 
 
-def read_parquet_version() -> tuple[str | None, str]:
-    """Return (version, note). version is None if unavailable."""
-    if not PARQUET.exists():
-        return None, f"{PARQUET}: not present; skipped"
+def ex_python_regex(root, site, ctx):
+    m = re.search(site["extractor_arg"], _text(root, site), re.MULTILINE)
+    if not m:
+        raise Bad(f"{site['path']}: no version declaration found")
+    return m.group(1)
+
+
+def ex_badge(root, site, ctx):
+    p = root / site["path"]
+    if not p.is_file():
+        raise Skip(f"{site['path']}: not present")
+    m = re.search(BADGE_RE.format(label=re.escape(site["extractor_arg"])),
+                  p.read_text(encoding="utf-8"), re.IGNORECASE)
+    if not m:
+        raise Skip(f"{site['path']}: no version string")
+    return m.group(1)
+
+
+def ex_first_released_heading(root, site, ctx):
+    p = root / site["path"]
+    if not p.is_file():
+        raise Bad(f"{site['path']}: not found")
+    headings = CHANGELOG_HEADING_RE.findall(p.read_text(encoding="utf-8"))
+    released = [h for h in headings if h != "Unreleased"]
+    version = ctx["version"]
+    if released:
+        return released[0]
+    if "Unreleased" in headings and int(version.split(".", 1)[0]) < 1:
+        ctx["notes"].append(
+            f"CHANGELOG has [Unreleased]; VERSION is {version} < 1.0.0 "
+            "(pre-release, accepted)")
+        return version
+    raise Bad(f"{site['path']}: no [x.y.z] heading (found {headings})")
+
+
+def ex_parquet_footer(root, site, ctx):
+    p = root / site["path"]
+    if not p.is_file():
+        raise Skip(f"{site['path']}: not present")
     try:
         import pyarrow.parquet as pq  # type: ignore
     except ImportError:
-        return None, "pyarrow not installed; Parquet footer not checked"
+        raise Skip("pyarrow not installed; Parquet footer not checked")
     try:
-        schema = pq.read_schema(PARQUET)
-    except Exception as exc:
-        return None, f"{PARQUET}: could not read schema: {exc}"
-    meta = schema.metadata or {}
-    v = meta.get(b"iso3166.version")
+        meta = pq.read_schema(p).metadata or {}
+    except Exception as exc:  # noqa: BLE001
+        raise Skip(f"{site['path']}: could not read schema: {exc}")
+    v = meta.get(site["extractor_arg"].encode())
     if v is None:
-        return None, f"{PARQUET}: no iso3166.version footer"
-    return v.decode("utf-8"), "ok"
+        raise Skip(f"{site['path']}: no {site['extractor_arg']} footer")
+    return v.decode("utf-8")
 
 
-WRAPPER_SITES: tuple[tuple[str, str, str], ...] = (
-    ("wrappers/python/pyproject.toml", "wrappers/python/pyproject.toml", "toml"),
-    ("wrappers/python/iso3166/__init__.py", "wrappers/python/iso3166/__init__.py", "pyinit"),
-    ("wrappers/javascript/package.json", "wrappers/javascript/package.json", "packagejson"),
-    ("wrappers/rust/Cargo.toml", "wrappers/rust/Cargo.toml", "toml"),
-    ("wrappers/rust/Cargo.lock", "wrappers/rust/Cargo.lock", "cargolock"),
-)
+EXTRACTORS: dict[str, Callable] = {
+    "text": ex_text,
+    "json_path": ex_json_path,
+    "toml_section": ex_toml_section,
+    "python_regex": ex_python_regex,
+    "badge": ex_badge,
+    "first_released_heading": ex_first_released_heading,
+    "parquet_footer": ex_parquet_footer,
+}
 
-_TOML_VERSION_RE = re.compile(r'^version\s*=\s*"([^"]+)"', re.MULTILINE)
-_PYINIT_VERSION_RE = re.compile(r'^__version__\s*=\s*"([^"]+)"', re.MULTILINE)
+
+# ------------------------------------------------------------------- bumpers
+# Each takes (root, site, version) and writes the site.
+
+def _sub(root: Path, site: dict, pattern: str, version: str) -> None:
+    p = root / site["path"]
+    text = p.read_text(encoding="utf-8")
+    new, n = re.subn(pattern, lambda m: m.group(1) + version + m.group(2), text,
+                     count=1, flags=re.MULTILINE)
+    if n == 0:
+        raise FatalError(f"{site['path']}: pattern {pattern!r} matched nothing", 1)
+    p.write_text(new, encoding="utf-8")
 
 
-def read_wrapper_version(path: str, kind: str) -> tuple[str | None, str]:
-    p = PROJECT_ROOT / path
-    if not p.exists():
-        return None, f"{path}: file not found"
+def wr_text(root, site, version):
+    (root / site["path"]).write_text(version + "\n", encoding="utf-8")
+
+
+def wr_meta_version(root, site, version):
+    p = root / site["path"]
+    d = json.loads(p.read_text(encoding="utf-8"))
+    d["meta"]["version"] = version
+    d["meta"]["updated"] = date.today().isoformat()
+    p.write_text(json.dumps(d, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+                 encoding="utf-8")
+
+
+def wr_badge(root, site, version):
+    _sub(root, site, r'(registry-)[0-9.]+(-\w+)', version)
+
+
+def wr_pyproject_version(root, site, version):
+    _sub(root, site, r'(^version = ")[0-9.]+(")', version)
+
+
+def wr_init_version(root, site, version):
+    _sub(root, site, r'(__version__ = ")[0-9.]+(")', version)
+
+
+def wr_cargo_toml_version(root, site, version):
+    _sub(root, site, r'(^version = ")[0-9.]+(")', version)
+
+
+def wr_package_json(root, site, version):
+    p = root / site["path"]
+    d = json.loads(p.read_text(encoding="utf-8"))
+    d["version"] = version
+    p.write_text(json.dumps(d, indent=2) + "\n", encoding="utf-8")
+
+
+BUMPERS: dict[str, Callable] = {
+    "write_text": wr_text,
+    "write_meta_version": wr_meta_version,
+    "write_badge": wr_badge,
+    "write_pyproject_version": wr_pyproject_version,
+    "write_init_version": wr_init_version,
+    "write_cargo_toml_version": wr_cargo_toml_version,
+    "write_package_json": wr_package_json,
+}
+
+
+# ---------------------------------------------------------------- the axes
+
+def load_axes(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        raise FatalError(f"{path}: not found")
     try:
-        text = p.read_text(encoding="utf-8")
-        if kind == "packagejson":
-            v = json.loads(text).get("version")
-            if not isinstance(v, str):
-                return None, f"{path}: no string 'version' field"
-            return v, ""
-        if kind == "cargolock":
-            m = re.search(r'name = "iso3166-registry"\nversion = "([^"]+)"', text)
-            if not m:
-                return None, f"{path}: no version for iso3166-registry"
-            return m.group(1), ""
-        
-        regex = _PYINIT_VERSION_RE if kind == "pyinit" else _TOML_VERSION_RE
-        m = regex.search(text)
-        if not m:
-            return None, f"{path}: no version declaration found"
-        return m.group(1), ""
-    except (OSError, ValueError) as exc:
-        return None, f"{path}: could not read: {exc}"
+        axes = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise FatalError(f"{path}: invalid JSON: {exc}") from exc
+    sites = axes.get("sites")
+    if not isinstance(sites, list) or not sites:
+        raise FatalError(f"{path}: no 'sites' array")
+    seen: set[str] = set()
+    for s in sites:
+        for key in ("name", "path", "extractor", "bumped"):
+            if key not in s:
+                raise FatalError(f"{path}: site {s!r} has no {key!r}")
+        if s["name"] in seen:
+            raise FatalError(f"{path}: duplicate site name {s['name']!r}")
+        seen.add(s["name"])
+        if s["extractor"] not in EXTRACTORS:
+            raise FatalError(f"{path}: site {s['name']}: unknown extractor "
+                             f"{s['extractor']!r}")
+        if not isinstance(s["bumped"], bool):
+            raise FatalError(f"{path}: site {s['name']}: 'bumped' must be true or false")
+        if s["bumped"] and s.get("bumper") not in BUMPERS:
+            raise FatalError(f"{path}: site {s['name']}: unknown bumper "
+                             f"{s.get('bumper')!r}")
+    return axes
 
 
-def run() -> tuple[int, dict[str, Any]]:
-    version = read_version_file()
-    registry = read_registry_version()
+def reference_site(axes: dict[str, Any]) -> dict[str, Any]:
+    source = axes["axes"][0]["source"]
+    for s in axes["sites"]:
+        if s["path"] == source:
+            return s
+    raise FatalError(f"axis source {source!r} is not a site")
+
+
+def read_site(root: Path, site: dict, ctx: dict) -> tuple[str, str]:
+    """(status, value-or-message): status is 'value', 'skip' or 'bad'."""
+    try:
+        return "value", EXTRACTORS[site["extractor"]](root, site, ctx)
+    except Skip as exc:
+        return "skip", str(exc)
+    except Bad as exc:
+        return "bad", str(exc)
+
+
+def run(root: Path, axes: dict[str, Any], *, expect: str | None = None,
+        ) -> tuple[int, dict[str, Any]]:
+    ctx: dict[str, Any] = {"notes": []}
+    ref = reference_site(axes)
+    st, val = read_site(root, ref, {"version": "0.0.0", "notes": []})
+    if st != "value":
+        raise FatalError(val)
+    version = expect or val
+    ctx["version"] = version
 
     results: dict[str, Any] = {
-        "version_file": version,
-        "registry_meta_version": registry,
-        "matches": [],
-        "mismatches": [],
-        "notes": [],
-        "skips": [],
+        "version_file": val, "matches": [], "mismatches": [], "notes": ctx["notes"],
+        "skips": [], "sites": [],
     }
+    if expect is not None and val != expect:
+        results["mismatches"].append(f"VERSION ({val}) != expected ({expect})")
 
-    if version == registry:
-        results["matches"].append(f"VERSION == meta.version ({version})")
-    else:
-        results["mismatches"].append(
-            f"VERSION ({version}) != meta.version ({registry})"
-        )
-
-    changelog_value, changelog_err = read_changelog_top(version)
-    if changelog_err:
-        results["mismatches"].append(changelog_err)
-    elif changelog_value == "Unreleased":
-        results["notes"].append(
-            f"CHANGELOG has [Unreleased]; VERSION is {version} < 1.0.0 "
-            f"(pre-release, accepted)"
-        )
-    elif changelog_value == version:
-        results["matches"].append(f"CHANGELOG contains [ {version} ]")
-    else:
-        results["mismatches"].append(
-            f"CHANGELOG heading ({changelog_value}) != VERSION ({version})"
-        )
-
-    readme_v = read_readme_version()
-    if readme_v is None:
-        results["skips"].append("README: no version string; skipped")
-    elif readme_v == version:
-        results["matches"].append(f"README status == VERSION ({version})")
-    else:
-        results["mismatches"].append(
-            f"README status ({readme_v}) != VERSION ({version})"
-        )
-
-    parquet_v, parquet_note = read_parquet_version()
-    if parquet_v is None:
-        results["skips"].append(f"Parquet: {parquet_note}")
-    elif parquet_v == version:
-        results["matches"].append(f"Parquet footer == VERSION ({version})")
-    else:
-        results["mismatches"].append(
-            f"Parquet footer ({parquet_v}) != VERSION ({version})"
-        )
-
-    for label, path, kind in WRAPPER_SITES:
-        wrapper_v, wrapper_err = read_wrapper_version(path, kind)
-        if wrapper_v is None:
-            results["mismatches"].append(wrapper_err)
-        elif wrapper_v == version:
-            results["matches"].append(f"{label} == VERSION ({version})")
+    for site in axes["sites"]:
+        if expect is not None and "generated_by" in site:
+            continue  # regenerated after the bump; asserted by its own gate
+        name, path = site["name"], site["path"]
+        st, v = read_site(root, site, ctx)
+        entry = {"name": name, "path": path, "extractor": site["extractor"],
+                 "bumped": site["bumped"], "value": v if st == "value" else None,
+                 "status": "ok"}
+        required = site.get("required", True)
+        if st == "bad" or (st == "skip" and expect is not None and required):
+            if required:
+                results["mismatches"].append(f"[{name}] {v}")
+                entry["status"] = "mismatch"
+            else:
+                results["skips"].append(f"[{name}] {v}")
+                entry["status"] = "skip"
+        elif st == "skip":
+            results["skips"].append(f"[{name}] {v}")
+            entry["status"] = "skip"
+        elif v == version:
+            results["matches"].append(f"[{name}] {path} == VERSION ({version})")
         else:
-            results["mismatches"].append(
-                f"{label} ({wrapper_v}) != VERSION ({version})"
-            )
+            results["mismatches"].append(f"[{name}] {path} ({v}) != VERSION ({version})")
+            entry["status"] = "mismatch"
+        results["sites"].append(entry)
+    results["registry_meta_version"] = next(
+        (e["value"] for e in results["sites"] if e["path"] == "iso3166.json"), None)
+    return (1 if results["mismatches"] else 0), results
 
-    exit_code = 1 if results["mismatches"] else 0
-    return exit_code, results
+
+def bump(root: Path, axes: dict[str, Any], version: str) -> int:
+    if not SEMVER_RE.match(version):
+        raise FatalError(f"{version!r} is not x.y.z")
+    n = 0
+    for site in axes["sites"]:
+        if not site["bumped"]:
+            continue
+        BUMPERS[site["bumper"]](root, site, version)
+        n += 1
+        print(f"  bumped [{site['name']}] {site['path']} -> {version}")
+    # Every bumped site must now read the new version.
+    ctx = {"version": version, "notes": []}
+    for site in axes["sites"]:
+        if site["bumped"]:
+            st, v = read_site(root, site, ctx)
+            if st != "value" or v != version:
+                print(f"  FAIL [{site['name']}] reads {v!r} after the bump",
+                      file=sys.stderr)
+                return 1
+    print(f"  {n} sites bumped to {version}")
+    return 0
 
 
 def print_human(results: dict[str, Any]) -> None:
@@ -297,21 +395,39 @@ def print_human(results: dict[str, Any]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(
-        description="Verify that all version references agree."
-    )
+        description="Verify that all version references agree (sites from "
+                    "tools/version_axes.json).")
     ap.add_argument("--json", action="store_true", help="Machine-readable output.")
+    ap.add_argument("--bump", metavar="X.Y.Z",
+                    help="Write every site with bumped: true (used by release.sh).")
+    ap.add_argument("--expect", metavar="X.Y.Z",
+                    help="Assert every site, except generated ones, reads X.Y.Z.")
+    ap.add_argument("--root", type=Path, default=PROJECT_ROOT,
+                    help="Repository root (default: this checkout).")
+    ap.add_argument("--axes", type=Path, default=None,
+                    help="version_axes.json (default: <root>/tools/version_axes.json).")
     args = ap.parse_args()
 
-    exit_code, results = run()
+    root = args.root.resolve()
+    axes = load_axes(args.axes or root / "tools" / "version_axes.json")
 
+    if args.bump:
+        return bump(root, axes, args.bump)
+
+    exit_code, results = run(root, axes, expect=args.expect)
+
+    if args.expect and not args.json:
+        if exit_code == 0:
+            print(f"  all {len(results['matches'])} version sites read {args.expect}")
+        else:
+            for m in results["mismatches"]:
+                print(f"  FAIL  {m}", file=sys.stderr)
+        return exit_code
     if args.json:
-        print(json.dumps(
-            {"exit_code": exit_code, **results},
-            indent=2, sort_keys=True, ensure_ascii=False,
-        ))
+        print(json.dumps({"exit_code": exit_code, **results},
+                         indent=2, sort_keys=True, ensure_ascii=False))
     else:
         print_human(results)
-
     return exit_code
 
 

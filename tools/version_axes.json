@@ -1,5 +1,5 @@
 {
-  "$comment": "Declarative contract for the version sites ISO 3166 tracks. Not yet read by check_version_consistency.py; the refactor that makes the check data-driven waits for ISO 10383's version to land, making three implementations (ISO 4217, ISO 3166, ISO 10383). Adopt the shape verbatim from iso4217/axes.json.",
+  "$comment": "Declarative contract for the version sites ISO 3166 tracks. Read by tools/check_version_consistency.py (the checker and, through --bump and --expect, the bump step of scripts/release.sh): this file is the one list. A site is bumped by release.sh when bumped is true, with the named bumper; a site with generated_by is rewritten by that generator later in the release and is not asserted at the bump.",
   "axes": [
     {
       "name": "registry",
@@ -17,7 +17,7 @@
       "arg": "dotted path, e.g. 'meta.version'"
     },
     "toml_section": {
-      "comment": "Read a TOML file and return the value of the named key.",
+      "comment": "Read a TOML file: a top-level key, or '<package>.<key>' for a [[package]] entry of a lockfile.",
       "arg": "key name, e.g. 'version'"
     },
     "python_regex": {
@@ -39,72 +39,109 @@
   },
   "sites": [
     {
+      "name": "version-file",
       "axis": "registry",
       "path": "VERSION",
       "extractor": "text",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_text"
     },
     {
+      "name": "registry-meta-version",
       "axis": "registry",
       "path": "iso3166.json",
       "extractor": "json_path",
       "extractor_arg": "meta.version",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_meta_version"
     },
     {
+      "name": "changelog-heading",
       "axis": "registry",
       "path": "CHANGELOG.md",
       "extractor": "first_released_heading",
-      "required": true
+      "required": true,
+      "bumped": false
     },
     {
+      "name": "readme-badge",
       "axis": "registry",
       "path": "README.md",
       "extractor": "badge",
       "extractor_arg": "registry",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_badge"
     },
     {
+      "name": "python-pyproject",
       "axis": "registry",
       "path": "wrappers/python/pyproject.toml",
       "extractor": "toml_section",
       "extractor_arg": "version",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_pyproject_version"
     },
     {
+      "name": "python-init",
       "axis": "registry",
       "path": "wrappers/python/iso3166/__init__.py",
       "extractor": "python_regex",
       "extractor_arg": "^__version__ = \"([0-9.]+)\"",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_init_version"
     },
     {
+      "name": "javascript-package",
       "axis": "registry",
       "path": "wrappers/javascript/package.json",
       "extractor": "json_path",
       "extractor_arg": "version",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_package_json"
     },
     {
+      "name": "rust-cargo-toml",
       "axis": "registry",
       "path": "wrappers/rust/Cargo.toml",
       "extractor": "toml_section",
       "extractor_arg": "version",
-      "required": true
+      "required": true,
+      "bumped": true,
+      "bumper": "write_cargo_toml_version"
     },
     {
+      "name": "rust-cargo-lock",
       "axis": "registry",
       "path": "wrappers/rust/Cargo.lock",
       "extractor": "toml_section",
       "extractor_arg": "iso3166-registry.version",
-      "required": true
+      "required": true,
+      "bumped": false
     },
     {
+      "name": "parquet-footer",
       "axis": "registry",
       "path": "iso3166.parquet",
       "extractor": "parquet_footer",
       "extractor_arg": "iso3166.version",
-      "required": true
+      "required": true,
+      "bumped": false,
+      "generated_by": "tools/export_parquet.py"
     }
-  ]
+  ],
+  "bumpers": {
+    "write_text": "Write the version and a newline to the file.",
+    "write_meta_version": "Set meta.version and meta.updated (today) in iso3166.json.",
+    "write_badge": "Rewrite the registry-X.Y.Z-<colour> badge.",
+    "write_pyproject_version": "Rewrite the first top-level version = \"...\" line.",
+    "write_init_version": "Rewrite the __version__ = \"...\" line.",
+    "write_cargo_toml_version": "Rewrite the first top-level version = \"...\" line.",
+    "write_package_json": "Set the top-level version key."
+  }
 }

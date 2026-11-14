@@ -709,5 +709,13 @@
     {"file": "tests/test_api_misuse.py"},
     {"file": "wrappers/javascript/derived.js", "contains": "arguments.length"},
     {"file": "CHANGELOG.md", "contains": "## [1.12.5]"}
+  ],
+  "1.12.6": [
+    {"file": "tools/version_axes.json", "contains": "\"bumper\": \"write_package_json\""},
+    {"file": "tools/check_version_consistency.py", "contains": "def bump("},
+    {"file": "scripts/release.sh", "contains": "check_version_consistency.py --bump"},
+    {"file": "scripts/release.sh", "contains": "check_version_consistency.py --expect"},
+    {"file": "README.md", "contains": "held by ten files"},
+    {"file": "tests/test_version_axes.py"}
   ]
 }

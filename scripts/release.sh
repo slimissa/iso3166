@@ -333,43 +333,16 @@ step "1/7 bump version sites to $VERSION"
 if [ "$RESUME_MODE" = "1" ]; then
     echo "  (skipped: VERSION already $VERSION, resume mode)"
 elif [ "$DRY_RUN" = "0" ]; then
-    printf '%s\n' "$VERSION" > VERSION
+    # v1.12.6: the version sites are DATA. tools/version_axes.json lists them;
+    # every site with bumped: true is written here by its named bumper.
+    python3 tools/check_version_consistency.py --bump "$VERSION" \
+        || die "could not bump the version sites listed in tools/version_axes.json"
 
     python3 - "$VERSION" <<'PYEOF'
 import json, re, sys
-from datetime import date
 from pathlib import Path
 
 version = sys.argv[1]
-today = date.today().isoformat()
-
-p = Path("iso3166.json")
-d = json.loads(p.read_text(encoding="utf-8"))
-d["meta"]["version"] = version
-d["meta"]["updated"] = today
-p.write_text(json.dumps(d, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
-             encoding="utf-8")
-
-def sub_file(path, pattern, replacement):
-    p = Path(path)
-    text = p.read_text(encoding="utf-8")
-    new = re.sub(pattern, replacement, text, flags=re.MULTILINE)
-    if new == text:
-        sys.exit(f"sub had no effect on {path}: pattern {pattern!r}")
-    p.write_text(new, encoding="utf-8")
-
-sub_file("wrappers/python/pyproject.toml",
-         r'^version = "[0-9.]+"',
-         f'version = "{version}"')
-sub_file("wrappers/python/iso3166/__init__.py",
-         r'__version__ = "[0-9.]+"',
-         f'__version__ = "{version}"')
-sub_file("wrappers/rust/Cargo.toml",
-         r'^version = "[0-9.]+"',
-         f'version = "{version}"')
-sub_file("README.md",
-         r'registry-[0-9.]+-orange',
-         f'registry-{version}-orange')
 
 # v1.12.5: the other README sites that carry the version, and the report
 # count. tools/check_docs_match_tree.py checks all of them in the gate.
@@ -408,36 +381,21 @@ sub_readme(r"# \d+ release gate records, v1\.0\.0 to v[0-9.]+",
            f"# {count} release gate records, v1.0.0 to v{newest}")
 sub_readme(r"The \d+ verification reports are collapsed",
            f"The {count} verification reports are collapsed")
-
-p = Path("wrappers/javascript/package.json")
-d = json.loads(p.read_text(encoding="utf-8"))
-d["version"] = version
-p.write_text(json.dumps(d, indent=2) + "\n", encoding="utf-8")
 PYEOF
 
     (cd wrappers/rust && cargo build --quiet)   # regenerates Cargo.lock
 else
-    echo "[dry-run] would set VERSION and the wrapper manifests to $VERSION"
+    echo "[dry-run] would bump every bumped: true site of tools/version_axes.json to $VERSION"
 fi
 
-# Verify all eight sites agree.
+# Verify every site in tools/version_axes.json agrees (the same list the
+# bump step and tools/check_version_consistency.py read). Sites with
+# generated_by are rewritten by step 2 and are asserted by the gate.
 if [ "$RESUME_MODE" = "1" ]; then
     echo "  (sites already verified by the previous release attempt, resume mode)"
 elif [ "$DRY_RUN" = "0" ]; then
-    declare -a SITES=(
-        "$(cat VERSION)"
-        "$(python3 -c "import json; print(json.load(open('iso3166.json'))['meta']['version'])")"
-        "$(grep -oP '^version = "\K[0-9.]+' wrappers/python/pyproject.toml)"
-        "$(grep -oP '__version__ = "\K[0-9.]+' wrappers/python/iso3166/__init__.py)"
-        "$(python3 -c "import json; print(json.load(open('wrappers/javascript/package.json'))['version'])")"
-        "$(grep -oP '^version = "\K[0-9.]+' wrappers/rust/Cargo.toml | head -1)"
-        "$(grep -A1 'name = \"iso3166-registry\"' wrappers/rust/Cargo.lock | grep -oP 'version = "\K[0-9.]+' | head -1)"
-        "$(grep -oP 'registry-\K[0-9.]+(?=-orange)' README.md)"
-    )
-    for s in "${SITES[@]}"; do
-        [ "$s" = "$VERSION" ] || die "version site mismatch: one reads $s, expected $VERSION"
-    done
-    echo "  all 8 version sites read $VERSION"
+    python3 tools/check_version_consistency.py --expect "$VERSION" \
+        || die "version site mismatch: a site in tools/version_axes.json does not read $VERSION"
 fi
 
 # --- step 2: regenerate + gate -----------------------------------------
