@@ -8,6 +8,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.6] — 2026-11-14
+
+### Added
+
+- `validate.py` has a seventh layer, `snapshot-value`: every value of the seven
+  snapshot-backed fields (`currency_codes`, `calling_codes`, `tlds`, `languages`,
+  `borders`, `subregion`, `intermediate_region`) is checked against its snapshot
+  by `enrich_field._value_mismatches_for`. `--only` and `--skip` accept it.
+  Before, `Summary: 6 OK` said nothing about five of those fields.
+- `registry_release.json`, the release manifest: size and SHA-256 of 16
+  artifacts, counts, and the vendored ISO 4217 snapshot, with
+  `registry_release.schema.json` and `tools/gen_registry_release.py`
+  (`--check --version X.Y.Z` compares byte for byte). Version site 11. Release
+  gate line 31. `commit` and `tag_object` are null by design.
+- `constraints.txt` (`pyarrow==26.0.0`) and `tests/test_pip_pins.py`, which
+  fails when a workflow install line that mentions `pyarrow` lacks
+  `-c constraints.txt`.
+- `tools/check_cli_agreement.sh`, run by the `check-cli` job: the repo CLI and
+  the packaged CLI print the same bytes for `--raw`.
+- `check_version_consistency.py --bump` and `--expect`.
+
+### Changed
+
+- `tools/version_axes.json` is the one list of version sites. The checker, the
+  bump step of `release.sh` and the README table follow it; each site has a
+  name, `bumped`, and a `bumper` (or `generated_by`).
+- `check_registry_freshness.py` runs in the `validate-json` CI job as well as in
+  the release gate. CI goes red on 2027-09-23 unless the entries are re-attested.
+- `requirements-dev.txt` gains `pyyaml>=6.0`.
+
+### Fixed
+
+- `write_verification_report.py` refuses a gate record shorter than
+  `release.sh` (the v1.12.3 report recorded 11 of 38 commands).
+- `tools/iso3166_cli.py --raw` prints one empty line for an empty list, like the
+  packaged CLI: `list --region Oceania --raw tlds` is 29 lines from both.
+
 ## [1.12.5]
 
 v1.12.5 closes the fifth audit, the first one run from a consumer's side: silent failures become errors, and the stale claims the audit found are now checked.
