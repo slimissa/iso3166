@@ -2,7 +2,7 @@
 """
 tools/validate.py
 
-Six-layer validator for the ISO 3166 registry.
+Seven-layer validator for the ISO 3166 registry.
 
 Layers, in order:
 
@@ -11,13 +11,18 @@ Layers, in order:
   3. business         Uniqueness, status consistency, withdrawal rules
   4. cross-reference  currency_codes vs. ISO 4217 snapshot; borders and
                       replaced_by vs. active alpha-2 codes
-  5. ground-truth     Codes-by-status vs. parse_source's frozen sets
-  6. coverage         meta.count_* vs. actual; VERSION vs. meta.version
+  5. snapshot-value   Every value of the seven snapshot-backed fields
+                      (currency_codes, calling_codes, tlds, languages,
+                      borders, subregion, intermediate_region) vs. its
+                      snapshot; the same check as
+                      enrich_field.py --only-value
+  6. ground-truth     Codes-by-status vs. parse_source's frozen sets
+  7. coverage         meta.count_* vs. actual; VERSION vs. meta.version
 
 Exit codes:
   0  All layers passed.
-  1  Data error (integrity, business, cross-reference, ground-truth,
-     or coverage failed).
+  1  Data error (integrity, business, cross-reference, snapshot-value,
+     ground-truth, or coverage failed).
   2  Usage error (missing/unreadable input, bad flags).
   3  Schema violation (layer 1 failed).
 
@@ -26,6 +31,7 @@ Usage:
   python3 tools/validate.py iso3166.json --schema schema.json
   python3 tools/validate.py iso3166.json --only business
   python3 tools/validate.py iso3166.json --skip cross-reference
+  python3 tools/validate.py iso3166.json --only snapshot-value
   python3 tools/validate.py iso3166.json --json
   python3 tools/validate.py iso3166.json --strict-count
 
@@ -55,6 +61,7 @@ if str(_HERE) not in sys.path:
 import parse_source  # noqa: E402
 from check_introduced import introduced_mismatches  # noqa: E402
 from patterns import CALLING_CODE_RE  # noqa: E402
+import enrich_field  # noqa: E402
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -74,6 +81,7 @@ LAYER_NAMES = (
     "integrity",
     "business",
     "cross-reference",
+    "snapshot-value",
     "ground-truth",
     "coverage",
 )
@@ -602,7 +610,62 @@ def layer_cross_reference(
 
 
 # ============================================================
-# Layer 5 — ground-truth
+# Layer 5 — snapshot-value
+# ============================================================
+
+def layer_snapshot_value(
+    reg: dict[str, Any],
+    *,
+    snapshot_path: Path | None = None,
+    registry_path: Path | None = None,
+) -> LayerResult:
+    """Every value of every snapshot-backed field is in its snapshot.
+
+    Runs enrich_field._value_mismatches_for once per field in
+    enrich_field.FIELDS (currency_codes, calling_codes, tlds, languages,
+    borders, subregion, intermediate_region), so this layer and
+    `enrich_field.py --only-value` cannot disagree.
+
+    snapshot_path, when given, is a DIRECTORY holding the snapshot files
+    under their usual names (default: tools/). registry_path is the file
+    that `reg` was loaded from; borders is checked against that file's own
+    active codes. When it is None, `reg` is written to a temporary file.
+    """
+    import argparse
+    import dataclasses
+    import tempfile
+
+    r = LayerResult("snapshot-value")
+    tmp: tempfile.TemporaryDirectory[str] | None = None
+    try:
+        if registry_path is None:
+            tmp = tempfile.TemporaryDirectory()
+            registry_path = Path(tmp.name) / "iso3166.json"
+            registry_path.write_text(json.dumps(reg), encoding="utf-8")
+        args = argparse.Namespace(registry=registry_path, snapshot=None)
+        for name in sorted(enrich_field.FIELDS):
+            cfg = enrich_field.FIELDS[name]
+            if snapshot_path is not None and cfg.snapshot_key is not None:
+                cfg = dataclasses.replace(
+                    cfg, snapshot_path=snapshot_path / cfg.snapshot_path.name)
+            try:
+                bad = enrich_field._value_mismatches_for(args, cfg)
+            except SystemExit:
+                r.error(f"{name}: snapshot could not be loaded "
+                        f"({cfg.snapshot_path})")
+                continue
+            for code, field, tree_value, detail in bad:
+                r.error(f"{code}: {field} = {tree_value!r}; {detail}")
+            if not bad:
+                r.note(f"{name}: every value is in its snapshot")
+    finally:
+        if tmp is not None:
+            tmp.cleanup()
+    return r
+
+
+# ============================================================
+# Layer 6 — ground-truth
 # ============================================================
 
 def layer_ground_truth(reg: dict[str, Any]) -> LayerResult:
@@ -643,7 +706,7 @@ def layer_ground_truth(reg: dict[str, Any]) -> LayerResult:
 
 
 # ============================================================
-# Layer 6 — coverage
+# Layer 7 — coverage
 # ============================================================
 
 def layer_coverage(
@@ -721,6 +784,7 @@ def run_layers(
     strict_count: bool,
     strict_independent: bool = False,
     introduced_snapshot_path: Path | None = None,
+    registry_path: Path | None = None,
 ) -> list[LayerResult]:
     only = only or set()
     skip = skip or set()
@@ -744,6 +808,8 @@ def run_layers(
         results.append(layer_business(reg, strict_independent=strict_independent))
     if should_run("cross-reference"):
         results.append(layer_cross_reference(reg, snapshot_path=snapshot_path))
+    if should_run("snapshot-value"):
+        results.append(layer_snapshot_value(reg, registry_path=registry_path))
     if should_run("ground-truth"):
         results.append(layer_ground_truth(reg))
     if should_run("coverage"):
@@ -830,7 +896,7 @@ def compute_exit_code(results: list[LayerResult]) -> int:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="validate",
-        description="Six-layer validator for the ISO 3166 registry.",
+        description="Seven-layer validator for the ISO 3166 registry.",
     )
     p.add_argument(
         "registry",
@@ -936,6 +1002,7 @@ def main(argv: list[str] | None = None) -> int:
         skip=set(args.skip) if args.skip else None,
         strict_count=args.strict_count,
         strict_independent=args.strict_independent,
+        registry_path=args.registry,
     )
 
     exit_code = compute_exit_code(results)

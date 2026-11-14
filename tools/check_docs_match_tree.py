@@ -21,6 +21,9 @@ Checks:
       and every tools/check_*.py is a row of that table.
   (h) LAYERS.md names every generator that release.sh step 2 runs.
   (j) ENRICHMENT.md names every entry whose subregion is null.
+  (o) v1.12.6: the validator's layer count. validate.py's LAYER_NAMES, its
+      `def layer_*` functions, the README layer table and the README's
+      "Summary: N OK" line all give the same N.
 
 "Matches VERSION" means: major.minor equal to VERSION's, or to the newest
 CHANGELOG heading's when that is newer (staged release, as in
@@ -253,6 +256,26 @@ def run(root: Path) -> list[tuple[bool, str]]:
     rec(ok, "README report count matches docs/v*-verification.md",
         f"{[w for _, w in claims]} through {through}",
         f"{len(have)} reports, newest v{have[-1] if have else '-'}")
+    # (o) v1.12.6: the validator layer count. Four sources, one number.
+    vsrc = read(root, "tools/validate.py")
+    tree = ast.parse(vsrc)
+    names: list[str] = []
+    for node in tree.body:
+        if (isinstance(node, ast.Assign) and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Name)
+                and node.targets[0].id == "LAYER_NAMES"):
+            names = [e.value for e in node.value.elts]
+    funcs = [n.name for n in tree.body
+             if isinstance(n, ast.FunctionDef) and n.name.startswith("layer_")]
+    tbl = readme.split("| Layer | What it checks |", 1)[-1].split("\n\n", 1)[0]
+    rows = re.findall(r"^\| \d+\. ", tbl, re.M)
+    summ = re.findall(r"clean run prints `Summary: (\d+) OK", readme)
+    counts = {"LAYER_NAMES": len(names), "layer_ functions": len(funcs),
+              "README layer table rows": len(rows)}
+    counts.update({"README clean-run Summary": int(x) for x in summ[:1]})
+    rec(len(set(counts.values())) == 1 and len(counts) == 4,
+        "validator layer count agrees across validate.py and README",
+        counts, len(names))
     return out
 
 

@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 427 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 30 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 436 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.5 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -878,27 +878,28 @@ The script runs the same `lookup` through all four wrappers and diffs the output
 
 ## 13. Validation
 
-[`tools/validate.py`](./tools/validate.py) has six independent layers, each runnable alone.
+[`tools/validate.py`](./tools/validate.py) has seven independent layers, each runnable alone.
 
 ```bash
-python3 tools/validate.py iso3166.json                                      # all six
+python3 tools/validate.py iso3166.json                                      # all seven
 python3 tools/validate.py iso3166.json --only ground-truth
 python3 tools/validate.py iso3166.json --skip cross-reference --skip coverage
 python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema   # what the gate and CI run
 ```
 
-Without `jsonschema` installed, layer 1 reports SKIP and `validate.py` can still exit 0 on the other five layers. `--require-schema` closes that: with the flag, a missing `jsonschema` (or an unreadable `schema.json`) exits 2 and names `pip install jsonschema`. The gate and the `validate-json` CI job both pass it.
+Without `jsonschema` installed, layer 1 reports SKIP and `validate.py` can still exit 0 on the other six layers. `--require-schema` closes that: with the flag, a missing `jsonschema` (or an unreadable `schema.json`) exits 2 and names `pip install jsonschema`. The gate and the `validate-json` CI job both pass it.
 
 | Layer | What it checks |
 |-------|----------------|
 | 1. Schema | JSON structure against `schema.json` |
 | 2. Integrity | Format patterns, no empty strings, calendar-valid dates; `introduced` on every active entry equals `tools/introduced_snapshot.json` |
 | 3. Business | Uniqueness, status consistency, withdrawal rules, border symmetry, acyclic succession |
-| 4. Cross-reference | `currency_codes` against the ISO 4217 snapshot; `borders` and `replaced_by` resolvable. The other snapshot-backed fields (`calling_codes`, `tlds`, `languages`, `subregion`, `intermediate_region`) are checked against their snapshots by `enrich_field.py --only-value`, not by this layer |
-| 5. Ground truth | Codes by status against the frozen sets in `tools/parse_source.py` |
-| 6. Coverage | `meta.count_*` against the actual counts; `VERSION` against `meta.version` |
+| 4. Cross-reference | `currency_codes` against the ISO 4217 snapshot; `borders` and `replaced_by` resolvable |
+| 5. Snapshot value | Every value of the seven snapshot-backed fields (`currency_codes`, `calling_codes`, `tlds`, `languages`, `borders`, `subregion`, `intermediate_region`) against its snapshot, by calling `enrich_field.py`'s value check, so `validate.py` and `enrich_field.py --only-value` cannot disagree |
+| 6. Ground truth | Codes by status against the frozen sets in `tools/parse_source.py` |
+| 7. Coverage | `meta.count_*` against the actual counts; `VERSION` against `meta.version` |
 
-Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation. A clean run prints `Summary: 6 OK, 0 WARN, 0 FAIL, 0 SKIP`.
+Exit codes: 0 pass, 1 data error, 2 usage, 3 schema violation. A clean run prints `Summary: 7 OK, 0 WARN, 0 FAIL, 0 SKIP`.
 
 ### The release gate: 30 checks
 
@@ -912,11 +913,11 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 4 | `check_snapshot_freshness.py` | A `*_snapshot.json` whose `meta.review_by` has passed |
 | 5 | `check_registry_freshness.py` | An entry whose `last_verified` is more than 365 days old |
 | 6 | `check_iso4217_snapshot.py` | `tools/iso4217_snapshot.json` that does not parse, holds duplicate codes, or disagrees with its own meta counts |
-| 7 | `validate.py iso3166.json --strict-count --strict-independent --require-schema` | Any of the six validator layers; a count mismatch; an `independent` regression in Northern America; a missing `jsonschema` (the schema layer must run) |
+| 7 | `validate.py iso3166.json --strict-count --strict-independent --require-schema` | Any of the seven validator layers; a count mismatch; an `independent` regression in Northern America; a missing `jsonschema` (the schema layer must run) |
 | 8 | `check_introduced.py` | An active entry whose `introduced` differs from `tools/introduced_snapshot.json` |
 | 9 | `check_introduced_meta.py` | `introduced_snapshot.meta.json` missing `review_by`, `source` or `vendored_at`, or disagreeing with the snapshot's own `meta` |
 | 10 | `check_state_doc.py --strict` | A number in `docs/STATE.md` that differs from the tree |
-| 11 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (17 checks) |
+| 11 | `check_docs_match_tree.py` | A count, version or list stated in README, ENRICHMENT, PROVENANCE, CONTRIBUTING or LAYERS that the tree contradicts (18 checks) |
 | 12 | `enrich_official_name.py --check` | `official_name` differing from its source |
 | 13 | `enrich_withdrawn.py --check` | The withdrawn array differing from its source |
 | 14 | `enrich_field.py --field currency_codes --check` | A `currency_codes` value missing on an entry, or not in the ISO 4217 snapshot |
@@ -943,16 +944,16 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 138 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 147 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 119 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 94 |
 | Rust | `(cd wrappers/rust && cargo test)` | 30 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 46 (declarations) |
-| **Total** | | **427** |
+| **Total** | | **436** |
 
 ### Additional checks
 
-Beyond the six-layer validator, the repo carries twelve auxiliary checks, listed with where each one runs. Cross-language agreement is checked separately by `tools/check_cross_language.sh`.
+Beyond the seven-layer validator, the repo carries twelve auxiliary checks, listed with where each one runs. Cross-language agreement is checked separately by `tools/check_cross_language.sh`.
 
 | Tool | Purpose | Runs in |
 |------|---------|---------|
@@ -1144,6 +1145,7 @@ iso3166/
     test_index_matches_fixture.py           # docs/QUERIES.md worked-examples index equals the fixture's derived_queries
     test_release_force.sh                   # Shell test of release.sh --force resume mode (release gate and CI)
     test_validate_require_schema.py         # validate.py --require-schema exits 2 without jsonschema
+    test_validate_snapshot_value.py         # validate.py's snapshot-value layer fails on one wrong value in each of seven fields
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
     test_release_pattern.py                 # Release-pattern properties
   tools/
@@ -1204,7 +1206,7 @@ iso3166/
     patterns.py                             # Regular expressions shared by more than one tool
     release_claims.json                     # Machine-checkable claims per version
     sync_wrappers.py                        # Copy iso3166.json into the four wrapper directories (--check)
-    validate.py                             # Six-layer validator (--require-schema fails when the schema layer cannot run)
+    validate.py                             # Seven-layer validator (--require-schema fails when the schema layer cannot run)
     version_axes.json                       # Declarative version-site contract (not yet read by the check)
     wikipedia_dates.json                    # Input to build_introduced_snapshot.py
     write_verification_report.py            # Write docs/vX-verification.md with the gate evidence and its .sha256
