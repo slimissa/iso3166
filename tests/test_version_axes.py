@@ -132,7 +132,8 @@ def test_a_bumped_site_without_a_known_bumper_is_refused(tmp_path):
 
 def test_expect_skips_generated_sites_and_fails_on_a_stale_one(tmp_path):
     f = temp_root(tmp_path)
-    r = run("--root", str(tmp_path), "--axes", str(f), "--expect", "1.12.5")
+    current = (tmp_path / "VERSION").read_text(encoding="utf-8").strip()
+    r = run("--root", str(tmp_path), "--axes", str(f), "--expect", current)
     assert r.returncode == 0, r.stdout + r.stderr
     assert f"all {sum('generated_by' not in s for s in SITES)} version sites" in r.stdout
     r = run("--root", str(tmp_path), "--axes", str(f), "--expect", "9.9.9")

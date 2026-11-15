@@ -159,4 +159,4 @@ def test_the_release_flow_passes_gate_then_report(tree):
     # The next release, without bumping the count, must fail the gate.
     (tree / "VERSION").write_text("1.12.6\n", encoding="utf-8")
     code, lines = run_check(tree)
-    assert any("report count" in ln for ln in failing(lines))
+    assert any("README version row" in ln for ln in failing(lines)), "\n".join(lines)
