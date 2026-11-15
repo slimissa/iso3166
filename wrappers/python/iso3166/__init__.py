@@ -22,4 +22,4 @@ __all__ = [
     "DerivedQueries",
     "RegistryError",
 ]
-__version__ = "1.12.5"
+__version__ = "1.12.6"
