@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.7] — 2026-11-16
+
+### Fixed
+- Fix `test_docs_version_sites.py` so the post-release verification report commit does not fail CI.
+- Fix `check_docs_match_tree.py`'s report count logic to accept the report for the current VERSION.
+
+### Changed
+- `check_registry_freshness.py` now runs in CI, not just the release gate (`docs/RELEASE_PATTERN.md` updated).
+- `CONTRIBUTING.md` updated to say "seven-layer" instead of "six-layer".
+- `PROVENANCE.md` updated to say freshness runs in "CI and the release gate".
+- `registry_release.json` now includes `released_at` (the tag date), distinct from `released` (the data date).
+
 ## [1.12.6] — 2026-11-14
 
 ### Added
