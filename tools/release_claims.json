@@ -21,10 +21,20 @@
     }
   ],
   "1.7.2": [
-    {"file": "tools/enrich_field.py", "contains": "{field} source:"},
-    {"file": "tools/migrate_notes_to_per_field.py"},
-    {"file": "tests/test_enrich_field_citations.py"},
-    {"file": "CHANGELOG.md", "contains": "## [1.7.2]"}
+    {
+      "file": "tools/enrich_field.py",
+      "contains": "{field} source:"
+    },
+    {
+      "file": "tools/migrate_notes_to_per_field.py"
+    },
+    {
+      "file": "tests/test_enrich_field_citations.py"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.7.2]"
+    }
   ],
   "1.7.1": [
     {
@@ -497,239 +507,936 @@
     }
   ],
   "1.10.0": [
-    {"file": "docs/QUERIES.md"},
-    {"file": "docs/QUERIES-DECISIONS.md"},
-    {"file": "docs/QUERIES.md", "contains": "transitive closure"},
-    {"file": "docs/QUERIES.md", "contains": "approximate"},
-    {"file": "docs/QUERIES.md", "contains": "currency_at"},
-    {"file": "wrappers/python/iso3166/derived.py"},
-    {"file": "wrappers/python/iso3166/derived.py", "contains": "all descendants"},
-    {"file": "wrappers/javascript/derived.js", "contains": "isEu"},
-    {"file": "wrappers/rust/src/lib.rs", "contains": "fn is_eu"},
-    {"file": "wrappers/go/registry.go", "contains": "func (r *CountryRegistry) IsEU"},
-    {"file": "tools/iso3166_cli.py", "contains": "successors"},
-    {"file": "tools/iso3166_cli.py", "contains": "all descendants"},
-    {"file": "tests/cross_language_consistency.json", "contains": "successors"},
-    {"file": "README.md", "contains": "Derived queries"},
-    {"file": "README.md", "contains": "docs/QUERIES.md"},
-    {"file": "CHANGELOG.md", "contains": "## [1.10.0]"},
-    {"file": "CHANGELOG.md", "contains": "breaking change"},
-    {"file": "tools/iso3166_cli.py", "contains": "Prints true or false to stdout"},
-    {"file": "tools/iso3166_cli.py", "contains": "Exit 0 if CODE exists (true or false)"},
-    {"file": "docs/QUERIES.md", "contains": "prints true/false to stdout"},
-    {"file": "docs/QUERIES-DECISIONS.md", "contains": "Deprecated by v1.11.0's `introduced` field"},
-    {"file": "README.md", "contains": "`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout"},
-    {"file": "CHANGELOG.md", "contains": "print true/false to\n  stdout"}
+    {
+      "file": "docs/QUERIES.md"
+    },
+    {
+      "file": "docs/QUERIES-DECISIONS.md"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "transitive closure"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "approximate"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "currency_at"
+    },
+    {
+      "file": "wrappers/python/iso3166/derived.py"
+    },
+    {
+      "file": "wrappers/python/iso3166/derived.py",
+      "contains": "all descendants"
+    },
+    {
+      "file": "wrappers/javascript/derived.js",
+      "contains": "isEu"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "fn is_eu"
+    },
+    {
+      "file": "wrappers/go/registry.go",
+      "contains": "func (r *CountryRegistry) IsEU"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "successors"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "all descendants"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "successors"
+    },
+    {
+      "file": "README.md",
+      "contains": "Derived queries"
+    },
+    {
+      "file": "README.md",
+      "contains": "docs/QUERIES.md"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.10.0]"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "breaking change"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "Prints true or false to stdout"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "Exit 0 if CODE exists (true or false)"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "prints true/false to stdout"
+    },
+    {
+      "file": "docs/QUERIES-DECISIONS.md",
+      "contains": "Deprecated by v1.11.0's `introduced` field"
+    },
+    {
+      "file": "README.md",
+      "contains": "`is-eu`, `is-eea` and `is-eurozone` print `true` or `false` to stdout"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "print true/false to\n  stdout"
+    }
   ],
   "1.10.1": [
-    {"file": "tests/test_release_force.sh"},
-    {"file": "tests/test_release_force.sh", "contains": "--force"},
-    {"file": "scripts/release.sh", "contains": "cargo clippy --all-targets -- -D warnings"},
-    {"file": "scripts/release.sh", "contains": "check_docs_match_tree"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "pipefail"},
-    {"file": "docs/README-AUDIT-NOTES.md", "contains": "pipefail"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "is-eu"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "all descendants"},
-    {"file": "wrappers/python/tests/test_cli.py", "contains": "is-eu"},
-    {"file": "README.md", "contains": "Nineteen subcommands"},
-    {"file": "CHANGELOG.md", "contains": "## [1.10.1]"}
+    {
+      "file": "tests/test_release_force.sh"
+    },
+    {
+      "file": "tests/test_release_force.sh",
+      "contains": "--force"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "cargo clippy --all-targets -- -D warnings"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_docs_match_tree"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "pipefail"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md",
+      "contains": "pipefail"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "is-eu"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "all descendants"
+    },
+    {
+      "file": "wrappers/python/tests/test_cli.py",
+      "contains": "is-eu"
+    },
+    {
+      "file": "README.md",
+      "contains": "Nineteen subcommands"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.10.1]"
+    }
   ],
   "1.10.2": [
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "nargs=\"?\""},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "RAW_DEFAULT"},
-    {"file": "tools/iso3166_cli.py", "contains": "nargs=\"?\""},
-    {"file": "tools/iso3166_cli.py", "contains": "RAW_DEFAULT"},
-    {"file": "CONTRIBUTING.md", "contains": "rustup component add clippy"},
-    {"file": "CONTRIBUTING.md", "contains": "## Release prerequisites"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "### 28. `gh run list` Can Be Empty Right After a Push"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "CI_START_TIMEOUT"},
-    {"file": "docs/README-AUDIT-NOTES.md", "contains": "### Rule 28"},
-    {"file": "wrappers/python/tests/test_cli.py", "contains": "test_bare_raw_defaults_to_alpha_2"},
-    {"file": "CHANGELOG.md", "contains": "## [1.10.2]"}
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "nargs=\"?\""
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "RAW_DEFAULT"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "nargs=\"?\""
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "RAW_DEFAULT"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "rustup component add clippy"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "## Release prerequisites"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "### 28. `gh run list` Can Be Empty Right After a Push"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "CI_START_TIMEOUT"
+    },
+    {
+      "file": "docs/README-AUDIT-NOTES.md",
+      "contains": "### Rule 28"
+    },
+    {
+      "file": "wrappers/python/tests/test_cli.py",
+      "contains": "test_bare_raw_defaults_to_alpha_2"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.10.2]"
+    }
   ],
   "1.11.0": [
-    {"file": "tools/introduced_snapshot.json"},
-    {"file": "iso3166.json", "contains": "\"introduced\""},
-    {"file": "wrappers/python/iso3166/derived.py", "contains": "is_active_on"},
-    {"file": "wrappers/javascript/derived.js", "contains": "isActiveOn"},
-    {"file": "wrappers/rust/src/lib.rs", "contains": "is_active_on"},
-    {"file": "wrappers/go/registry.go", "contains": "IsActiveOn"},
-    {"file": "tools/iso3166_cli.py", "contains": "is-active-on"},
-    {"file": "tests/cross_language_consistency.json", "contains": "is_active_on"},
-    {"file": "CHANGELOG.md", "contains": "## [1.11.0]"},
-    {"file": "docs/QUERIES.md", "contains": "Query 9"}
+    {
+      "file": "tools/introduced_snapshot.json"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"introduced\""
+    },
+    {
+      "file": "wrappers/python/iso3166/derived.py",
+      "contains": "is_active_on"
+    },
+    {
+      "file": "wrappers/javascript/derived.js",
+      "contains": "isActiveOn"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "is_active_on"
+    },
+    {
+      "file": "wrappers/go/registry.go",
+      "contains": "IsActiveOn"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "is-active-on"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "is_active_on"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.11.0]"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "Query 9"
+    }
   ],
   "1.11.1": [
-    {"file": "docs/QUERIES.md", "contains": "exact for active entries"},
-    {"file": "docs/QUERIES-DECISIONS.md", "contains": "exact for dated entries"},
-    {"file": "wrappers/python/iso3166/derived.py", "contains": "introduced"},
-    {"file": "CHANGELOG.md", "contains": "## [1.11.1]"}
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "exact for active entries"
+    },
+    {
+      "file": "docs/QUERIES-DECISIONS.md",
+      "contains": "exact for dated entries"
+    },
+    {
+      "file": "wrappers/python/iso3166/derived.py",
+      "contains": "introduced"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.11.1]"
+    }
   ],
   "1.12.0": [
-    {"file": "tools/eu_membership_snapshot.json"},
-    {"file": "tools/eea_membership_snapshot.json"},
-    {"file": "tools/eurozone_membership_snapshot.json"},
-    {"file": "tools/customs_union_snapshot.json"},
-    {"file": "tools/enrich_club_memberships.py"},
-    {"file": "tools/build_club_snapshots.py"},
-    {"file": "docs/decisions/club-memberships.md", "contains": "Null policy"},
-    {"file": "iso3166.json", "contains": "\"eu_membership\""},
-    {"file": "iso3166.json", "contains": "\"customs_union\""},
-    {"file": "wrappers/python/iso3166/clubs.py", "contains": "def is_eu_member_at"},
-    {"file": "wrappers/python/iso3166/clubs.py", "contains": "def is_eea_member_at"},
-    {"file": "wrappers/python/iso3166/clubs.py", "contains": "def is_eurozone_member_at"},
-    {"file": "wrappers/python/iso3166/clubs.py", "contains": "def is_in_customs_union_at"},
-    {"file": "wrappers/javascript/clubs.js", "contains": "isEuMemberAt(code, date)"},
-    {"file": "wrappers/javascript/clubs.js", "contains": "isEeaMemberAt(code, date)"},
-    {"file": "wrappers/javascript/clubs.js", "contains": "isEurozoneMemberAt(code, date)"},
-    {"file": "wrappers/javascript/clubs.js", "contains": "isInCustomsUnionAt(code, date)"},
-    {"file": "wrappers/rust/src/lib.rs", "contains": "pub fn is_eu_member_at"},
-    {"file": "wrappers/rust/src/lib.rs", "contains": "pub fn is_eea_member_at"},
-    {"file": "wrappers/rust/src/lib.rs", "contains": "pub fn is_eurozone_member_at"},
-    {"file": "wrappers/rust/src/lib.rs", "contains": "pub fn is_in_customs_union_at"},
-    {"file": "wrappers/go/clubs.go", "contains": "IsEUMemberAt"},
-    {"file": "wrappers/go/clubs.go", "contains": "IsEEAMemberAt"},
-    {"file": "wrappers/go/clubs.go", "contains": "IsEurozoneMemberAt"},
-    {"file": "wrappers/go/clubs.go", "contains": "IsInCustomsUnionAt"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "is-eu-member-at"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "is-eea-member-at"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "is-eurozone-member-at"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "is-in-customs-union-at"},
-    {"file": "tools/iso3166_cli.py", "contains": "is-eu-member-at"},
-    {"file": "tools/iso3166_cli.py", "contains": "is-eea-member-at"},
-    {"file": "tools/iso3166_cli.py", "contains": "is-eurozone-member-at"},
-    {"file": "tools/iso3166_cli.py", "contains": "is-in-customs-union-at"},
-    {"file": "tests/cross_language_consistency.json", "contains": "is_eu_member_at"},
-    {"file": "tests/cross_language_consistency.json", "contains": "is_in_customs_union_at"},
-    {"file": "docs/QUERIES.md", "contains": "## Query 10"},
-    {"file": "docs/QUERIES-DECISIONS.md", "contains": "Why club memberships are arrays on the entry"},
-    {"file": "CHANGELOG.md", "contains": "## [1.12.0]"}
+    {
+      "file": "tools/eu_membership_snapshot.json"
+    },
+    {
+      "file": "tools/eea_membership_snapshot.json"
+    },
+    {
+      "file": "tools/eurozone_membership_snapshot.json"
+    },
+    {
+      "file": "tools/customs_union_snapshot.json"
+    },
+    {
+      "file": "tools/enrich_club_memberships.py"
+    },
+    {
+      "file": "tools/build_club_snapshots.py"
+    },
+    {
+      "file": "docs/decisions/club-memberships.md",
+      "contains": "Null policy"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"eu_membership\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"customs_union\""
+    },
+    {
+      "file": "wrappers/python/iso3166/clubs.py",
+      "contains": "def is_eu_member_at"
+    },
+    {
+      "file": "wrappers/python/iso3166/clubs.py",
+      "contains": "def is_eea_member_at"
+    },
+    {
+      "file": "wrappers/python/iso3166/clubs.py",
+      "contains": "def is_eurozone_member_at"
+    },
+    {
+      "file": "wrappers/python/iso3166/clubs.py",
+      "contains": "def is_in_customs_union_at"
+    },
+    {
+      "file": "wrappers/javascript/clubs.js",
+      "contains": "isEuMemberAt(code, date)"
+    },
+    {
+      "file": "wrappers/javascript/clubs.js",
+      "contains": "isEeaMemberAt(code, date)"
+    },
+    {
+      "file": "wrappers/javascript/clubs.js",
+      "contains": "isEurozoneMemberAt(code, date)"
+    },
+    {
+      "file": "wrappers/javascript/clubs.js",
+      "contains": "isInCustomsUnionAt(code, date)"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "pub fn is_eu_member_at"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "pub fn is_eea_member_at"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "pub fn is_eurozone_member_at"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "pub fn is_in_customs_union_at"
+    },
+    {
+      "file": "wrappers/go/clubs.go",
+      "contains": "IsEUMemberAt"
+    },
+    {
+      "file": "wrappers/go/clubs.go",
+      "contains": "IsEEAMemberAt"
+    },
+    {
+      "file": "wrappers/go/clubs.go",
+      "contains": "IsEurozoneMemberAt"
+    },
+    {
+      "file": "wrappers/go/clubs.go",
+      "contains": "IsInCustomsUnionAt"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "is-eu-member-at"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "is-eea-member-at"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "is-eurozone-member-at"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "is-in-customs-union-at"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "is-eu-member-at"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "is-eea-member-at"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "is-eurozone-member-at"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "is-in-customs-union-at"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "is_eu_member_at"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "is_in_customs_union_at"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "## Query 10"
+    },
+    {
+      "file": "docs/QUERIES-DECISIONS.md",
+      "contains": "Why club memberships are arrays on the entry"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.12.0]"
+    }
   ],
   "1.12.1": [
-    {"file": "tools/club_format.py", "contains": "def format_ranges"},
-    {"file": "tools/export_csv.py", "contains": "CLUB_COLUMNS"},
-    {"file": "tools/export_sql.py", "contains": "CLUB_COLUMNS"},
-    {"file": "tools/export_parquet.py", "contains": "CLUB_COLUMNS"},
-    {"file": "iso3166.csv", "contains": "customs_union"},
-    {"file": "iso3166.excel.csv", "contains": "eurozone_membership"},
-    {"file": "iso3166.european.csv", "contains": "eea_membership"},
-    {"file": "iso3166.tsv", "contains": "eu_membership"},
-    {"file": "iso3166.sql", "contains": "eu_membership"},
-    {"file": "iso3166.postgresql.sql", "contains": "customs_union"},
-    {"file": "iso3166.mysql.sql", "contains": "eurozone_membership"},
-    {"file": "iso3166.sqlite.sql", "contains": "eea_membership"},
-    {"file": "wrappers/python/iso3166/cli.py", "contains": "\"customs_union\""},
-    {"file": "tools/build_club_snapshots.py", "contains": "EEA_PROVISIONAL_COHORTS"},
-    {"file": "tools/enrich_club_memberships.py", "contains": "def apply_provisional"},
-    {"file": "tools/eea_membership_snapshot.json", "contains": "\"provisional_application\""},
-    {"file": "tools/eea_membership_snapshot.json", "contains": "2005-12-05"},
-    {"file": "tests/cross_language_consistency.json", "contains": "2007-08-01"},
-    {"file": "docs/QUERIES.md", "contains": "**Provisional application.**"},
-    {"file": "docs/QUERIES-DECISIONS.md", "contains": "Why provisional application is included"},
-    {"file": "README.md", "contains": "twenty-four fields"},
-    {"file": "README.md", "absent": "Eighteen required-or-optional"},
-    {"file": "CHANGELOG.md", "contains": "## [1.12.1]"}
+    {
+      "file": "tools/club_format.py",
+      "contains": "def format_ranges"
+    },
+    {
+      "file": "tools/export_csv.py",
+      "contains": "CLUB_COLUMNS"
+    },
+    {
+      "file": "tools/export_sql.py",
+      "contains": "CLUB_COLUMNS"
+    },
+    {
+      "file": "tools/export_parquet.py",
+      "contains": "CLUB_COLUMNS"
+    },
+    {
+      "file": "iso3166.csv",
+      "contains": "customs_union"
+    },
+    {
+      "file": "iso3166.excel.csv",
+      "contains": "eurozone_membership"
+    },
+    {
+      "file": "iso3166.european.csv",
+      "contains": "eea_membership"
+    },
+    {
+      "file": "iso3166.tsv",
+      "contains": "eu_membership"
+    },
+    {
+      "file": "iso3166.sql",
+      "contains": "eu_membership"
+    },
+    {
+      "file": "iso3166.postgresql.sql",
+      "contains": "customs_union"
+    },
+    {
+      "file": "iso3166.mysql.sql",
+      "contains": "eurozone_membership"
+    },
+    {
+      "file": "iso3166.sqlite.sql",
+      "contains": "eea_membership"
+    },
+    {
+      "file": "wrappers/python/iso3166/cli.py",
+      "contains": "\"customs_union\""
+    },
+    {
+      "file": "tools/build_club_snapshots.py",
+      "contains": "EEA_PROVISIONAL_COHORTS"
+    },
+    {
+      "file": "tools/enrich_club_memberships.py",
+      "contains": "def apply_provisional"
+    },
+    {
+      "file": "tools/eea_membership_snapshot.json",
+      "contains": "\"provisional_application\""
+    },
+    {
+      "file": "tools/eea_membership_snapshot.json",
+      "contains": "2005-12-05"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "2007-08-01"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "**Provisional application.**"
+    },
+    {
+      "file": "docs/QUERIES-DECISIONS.md",
+      "contains": "Why provisional application is included"
+    },
+    {
+      "file": "README.md",
+      "contains": "twenty-four fields"
+    },
+    {
+      "file": "README.md",
+      "absent": "Eighteen required-or-optional"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.12.1]"
+    }
   ],
   "1.12.2": [
-    {"file": "tools/check_introduced.py", "contains": "def introduced_mismatches"},
-    {"file": "tools/validate.py", "contains": "introduced_mismatches(reg, introduced_snap)"},
-    {"file": "scripts/release.sh", "contains": "python3 tools/check_introduced.py\n"},
-    {"file": "tests/test_index_matches_fixture.py", "contains": "def test_index_matches_fixture"},
-    {"file": "scripts/release.sh", "contains": "python3 tools/build_introduced_snapshot.py --check"},
-    {"file": "scripts/release.sh", "contains": "python3 tools/build_club_snapshots.py --check"},
-    {"file": ".github/workflows/validate.yml", "contains": "check-snapshots:"},
-    {"file": "scripts/release.sh", "contains": "GATE_RC=$?"},
-    {"file": "scripts/release.sh", "contains": "bash tests/test_release_force.sh"},
-    {"file": ".github/workflows/validate.yml", "contains": "check-force-test:"},
-    {"file": "tests/test_release_force.sh", "contains": "put the gate subshell on the left of"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "### 29. `( set -e; ... ) || die` Does Not Stop at the First Failure"},
-    {"file": "tools/check_introduced_meta.py", "contains": "def meta_problems"},
-    {"file": "scripts/release.sh", "contains": "python3 tools/check_introduced_meta.py"},
-    {"file": "README.md", "contains": "34 checks run in sequence"},
-    {"file": "README.md", "contains": "23 CI jobs"},
-    {"file": "docs/STATE.md", "contains": "Release gate has 34 checks"},
-    {"file": "scripts/release.sh", "absent": "die \"gate failed; see $GATE_LOG\""},
-    {"file": "README.md", "absent": "29 checks run in sequence"},
-    {"file": "CHANGELOG.md", "contains": "## [1.12.2]"}
+    {
+      "file": "tools/check_introduced.py",
+      "contains": "def introduced_mismatches"
+    },
+    {
+      "file": "tools/validate.py",
+      "contains": "introduced_mismatches(reg, introduced_snap)"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/check_introduced.py\n"
+    },
+    {
+      "file": "tests/test_index_matches_fixture.py",
+      "contains": "def test_index_matches_fixture"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/build_introduced_snapshot.py --check"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/build_club_snapshots.py --check"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "check-snapshots:"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "GATE_RC=$?"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "bash tests/test_release_force.sh"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "check-force-test:"
+    },
+    {
+      "file": "tests/test_release_force.sh",
+      "contains": "put the gate subshell on the left of"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "### 29. `( set -e; ... ) || die` Does Not Stop at the First Failure"
+    },
+    {
+      "file": "tools/check_introduced_meta.py",
+      "contains": "def meta_problems"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "python3 tools/check_introduced_meta.py"
+    },
+    {
+      "file": "README.md",
+      "contains": "34 checks run in sequence"
+    },
+    {
+      "file": "README.md",
+      "contains": "23 CI jobs"
+    },
+    {
+      "file": "docs/STATE.md",
+      "contains": "Release gate has 34 checks"
+    },
+    {
+      "file": "scripts/release.sh",
+      "absent": "die \"gate failed; see $GATE_LOG\""
+    },
+    {
+      "file": "README.md",
+      "absent": "29 checks run in sequence"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.12.2]"
+    }
   ],
   "1.12.3": [
-    {"file": "tools/enrich_field.py", "contains": "def mode_only_value"},
-    {"file": "scripts/release.sh", "contains": "gate python3 tools/enrich_field.py --only-value\n"},
-    {"file": "scripts/release.sh", "contains": "# BEGIN artifact-freshness"},
-    {"file": "scripts/release.sh", "contains": "gate python3 tools/check_release_diff.py\n"},
-    {"file": "scripts/release.sh", "absent": "gate python3 tools/export_csv.py --check"},
-    {"file": "scripts/release.sh", "contains": "--strict-independent --require-schema\n"},
-    {"file": ".github/workflows/validate.yml", "contains": "--strict-independent --require-schema --verbose"},
-    {"file": "tools/validate.py", "contains": "\"--require-schema\""},
-    {"file": "scripts/release.sh", "contains": "HEAD is not the release commit"},
-    {"file": "tests/test_release_force.sh", "contains": "# 9. Regeneration leaves an uncommitted file"},
-    {"file": "scripts/release.sh", "contains": "tools/write_verification_report.py"},
-    {"file": "tools/write_verification_report.py", "contains": "Gate commands:"},
-    {"file": "scripts/release.sh", "contains": "gate python3 tools/check_iso4217_snapshot.py\n"},
-    {"file": "scripts/release.sh", "absent": "check_manifest_has_version"},
-    {"file": "tools/check_introduced.py", "contains": "is in the future"},
-    {"file": "tests/test_club_ranges.py", "contains": "def test_overlapping_ranges_fail_and_name_the_conflict"},
-    {"file": "README.md", "contains": "30 checks run in sequence"},
-    {"file": "README.md", "absent": "34 checks run in sequence"},
-    {"file": "README.md", "contains": "23 CI jobs"},
-    {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"},
-    {"file": "README.md", "absent": "Forty-one verification reports"},
-    {"file": "README.md", "absent": "SPEC.md"},
-    {"file": "CHANGELOG.md", "contains": "## [1.12.3]"}
+    {
+      "file": "tools/enrich_field.py",
+      "contains": "def mode_only_value"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gate python3 tools/enrich_field.py --only-value\n"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "# BEGIN artifact-freshness"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gate python3 tools/check_release_diff.py\n"
+    },
+    {
+      "file": "scripts/release.sh",
+      "absent": "gate python3 tools/export_csv.py --check"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "--strict-independent --require-schema\n"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "--strict-independent --require-schema --verbose"
+    },
+    {
+      "file": "tools/validate.py",
+      "contains": "\"--require-schema\""
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "HEAD is not the release commit"
+    },
+    {
+      "file": "tests/test_release_force.sh",
+      "contains": "# 9. Regeneration leaves an uncommitted file"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "tools/write_verification_report.py"
+    },
+    {
+      "file": "tools/write_verification_report.py",
+      "contains": "Gate commands:"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gate python3 tools/check_iso4217_snapshot.py\n"
+    },
+    {
+      "file": "scripts/release.sh",
+      "absent": "check_manifest_has_version"
+    },
+    {
+      "file": "tools/check_introduced.py",
+      "contains": "is in the future"
+    },
+    {
+      "file": "tests/test_club_ranges.py",
+      "contains": "def test_overlapping_ranges_fail_and_name_the_conflict"
+    },
+    {
+      "file": "README.md",
+      "contains": "30 checks run in sequence"
+    },
+    {
+      "file": "README.md",
+      "absent": "34 checks run in sequence"
+    },
+    {
+      "file": "README.md",
+      "contains": "23 CI jobs"
+    },
+    {
+      "file": "docs/STATE.md",
+      "contains": "Release gate has 30 checks"
+    },
+    {
+      "file": "README.md",
+      "absent": "Forty-one verification reports"
+    },
+    {
+      "file": "README.md",
+      "absent": "SPEC.md"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.12.3]"
+    }
   ],
   "1.12.4": [
-    {"file": "scripts/release.sh", "contains": "# BEGIN run-temp"},
-    {"file": "scripts/release.sh", "contains": "unset GATE_REC GATE_LOG"},
-    {"file": "scripts/release.sh", "absent": "/tmp/release-gate"},
-    {"file": "tests/test_release_force.sh", "contains": "# 11. Two runs, two record paths."},
-    {"file": "tests/test_release_evidence_unique.py", "contains": "def test_an_inherited_gate_rec_is_ignored"},
-    {"file": "tools/check_snapshot_freshness.py", "contains": "--check-upstream"},
-    {"file": "tools/iso4217_snapshot.json", "contains": "\"source_version\": \"1.8.0\""},
-    {"file": "tools/check_consumers_current.py", "contains": "def minors_behind"},
-    {"file": "tools/consumers.json", "contains": "slimissa/exchange-calendar"},
-    {"file": "docs/JOINS.md", "contains": "## Consumer impact"},
-    {"file": "docs/CROSS_REGISTRY_CONTRACT.md", "contains": "**Status: proposed**"},
-    {"file": "docs/decisions/cross-registry-edges.md", "contains": "Issue: not filed"},
-    {"file": "docs/v1.12.3-verification-errata.md", "contains": "11 commands"},
-    {"file": "README.md", "contains": "twelve auxiliary checks"},
-    {"file": "README.md", "contains": "30 checks run in sequence"},
-    {"file": "README.md", "absent": "Planned: will reference `alpha_2` for country of listing"},
-    {"file": "README.md", "absent": "github.com/slimissa/Tempus"},
-    {"file": "docs/STATE.md", "contains": "Release gate has 30 checks"},
-    {"file": "CHANGELOG.md", "contains": "## [1.12.4]"}
+    {
+      "file": "scripts/release.sh",
+      "contains": "# BEGIN run-temp"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "unset GATE_REC GATE_LOG"
+    },
+    {
+      "file": "scripts/release.sh",
+      "absent": "/tmp/release-gate"
+    },
+    {
+      "file": "tests/test_release_force.sh",
+      "contains": "# 11. Two runs, two record paths."
+    },
+    {
+      "file": "tests/test_release_evidence_unique.py",
+      "contains": "def test_an_inherited_gate_rec_is_ignored"
+    },
+    {
+      "file": "tools/check_snapshot_freshness.py",
+      "contains": "--check-upstream"
+    },
+    {
+      "file": "tools/iso4217_snapshot.json",
+      "contains": "\"source_version\": \"1.8.0\""
+    },
+    {
+      "file": "tools/check_consumers_current.py",
+      "contains": "def minors_behind"
+    },
+    {
+      "file": "tools/consumers.json",
+      "contains": "slimissa/exchange-calendar"
+    },
+    {
+      "file": "docs/JOINS.md",
+      "contains": "## Consumer impact"
+    },
+    {
+      "file": "docs/CROSS_REGISTRY_CONTRACT.md",
+      "contains": "**Status: proposed**"
+    },
+    {
+      "file": "docs/decisions/cross-registry-edges.md",
+      "contains": "Issue: not filed"
+    },
+    {
+      "file": "docs/v1.12.3-verification-errata.md",
+      "contains": "11 commands"
+    },
+    {
+      "file": "README.md",
+      "contains": "twelve auxiliary checks"
+    },
+    {
+      "file": "README.md",
+      "contains": "30 checks run in sequence"
+    },
+    {
+      "file": "README.md",
+      "absent": "Planned: will reference `alpha_2` for country of listing"
+    },
+    {
+      "file": "README.md",
+      "absent": "github.com/slimissa/Tempus"
+    },
+    {
+      "file": "docs/STATE.md",
+      "contains": "Release gate has 30 checks"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.12.4]"
+    }
   ],
   "1.12.5": [
-    {"file": "docs/QUERIES.md", "contains": "malformed input raises"},
-    {"file": "docs/QUERIES.md", "contains": "Query 11"},
-    {"file": "README.md", "contains": "API contract"},
-    {"file": "README.md", "contains": "16 countries"},
-    {"file": "docs/JOINS.md", "contains": "`subregion` can be `null` (`AQ`, `EU`, `TW`,"},
-    {"file": "tools/check_docs_match_tree.py", "contains": "README version row"},
-    {"file": "tests/test_docs_version_sites.py"},
-    {"file": "tests/test_api_misuse.py"},
-    {"file": "wrappers/javascript/derived.js", "contains": "arguments.length"},
-    {"file": "CHANGELOG.md", "contains": "## [1.12.5]"}
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "malformed input raises"
+    },
+    {
+      "file": "docs/QUERIES.md",
+      "contains": "Query 11"
+    },
+    {
+      "file": "README.md",
+      "contains": "API contract"
+    },
+    {
+      "file": "README.md",
+      "contains": "16 countries"
+    },
+    {
+      "file": "docs/JOINS.md",
+      "contains": "`subregion` can be `null` (`AQ`, `EU`, `TW`,"
+    },
+    {
+      "file": "tools/check_docs_match_tree.py",
+      "contains": "README version row"
+    },
+    {
+      "file": "tests/test_docs_version_sites.py"
+    },
+    {
+      "file": "tests/test_api_misuse.py"
+    },
+    {
+      "file": "wrappers/javascript/derived.js",
+      "contains": "arguments.length"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "contains": "## [1.12.5]"
+    }
   ],
   "1.12.6": [
-    {"file": "tools/version_axes.json", "contains": "\"bumper\": \"write_package_json\""},
-    {"file": "tools/check_version_consistency.py", "contains": "def bump("},
-    {"file": "scripts/release.sh", "contains": "check_version_consistency.py --bump"},
-    {"file": "scripts/release.sh", "contains": "check_version_consistency.py --expect"},
-    {"file": "README.md", "contains": "held by eleven files"},
-    {"file": "tools/version_axes.json", "contains": "\"name\": \"registry-release-json\""},
-    {"file": "registry_release.json", "contains": "\"registry\": \"iso3166\""},
-    {"file": "registry_release.schema.json"},
-    {"file": "tools/gen_registry_release.py", "contains": "def build("},
-    {"file": "scripts/release.sh", "contains": "gen_registry_release.py --check --version"},
-    {"file": "README.md", "contains": "31 checks run in sequence"},
-    {"file": "docs/RELEASE_PATTERN.md", "contains": "**v1.12.6 amendment.**"},
-    {"file": "docs/PROVENANCE.md", "contains": "fails CI and the release gate"},
-    {"file": "CONTRIBUTING.md", "contains": "seven-layer validator"},
-    {"file": "tests/test_changelog_unreleased.py"},
-    {"file": "registry_release.schema.json", "contains": "released_at"},
-    {"file": "scripts/release.sh", "contains": "--stamp-released-at"},
-    {"file": "README.md", "contains": "`released_at` is the tag date"},
-    {"file": "tests/test_registry_release_released_at.py"},
-    {"file": "tests/test_version_axes.py"}
+    {
+      "file": "tools/version_axes.json",
+      "contains": "\"bumper\": \"write_package_json\""
+    },
+    {
+      "file": "tools/check_version_consistency.py",
+      "contains": "def bump("
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_version_consistency.py --bump"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_version_consistency.py --expect"
+    },
+    {
+      "file": "README.md",
+      "contains": "held by eleven files"
+    },
+    {
+      "file": "tools/version_axes.json",
+      "contains": "\"name\": \"registry-release-json\""
+    },
+    {
+      "file": "registry_release.json",
+      "contains": "\"registry\": \"iso3166\""
+    },
+    {
+      "file": "registry_release.schema.json"
+    },
+    {
+      "file": "tools/gen_registry_release.py",
+      "contains": "def build("
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gen_registry_release.py --check --version"
+    },
+    {
+      "file": "README.md",
+      "contains": "31 checks run in sequence"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "**v1.12.6 amendment.**"
+    },
+    {
+      "file": "docs/PROVENANCE.md",
+      "contains": "fails CI and the release gate"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "seven-layer validator"
+    },
+    {
+      "file": "tests/test_changelog_unreleased.py"
+    },
+    {
+      "file": "registry_release.schema.json",
+      "contains": "released_at"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "--stamp-released-at"
+    },
+    {
+      "file": "README.md",
+      "contains": "`released_at` is the tag date"
+    },
+    {
+      "file": "tests/test_registry_release_released_at.py"
+    },
+    {
+      "file": "tests/test_version_axes.py"
+    }
+  ],
+  "1.12.7": [
+    {
+      "file": "tools/version_axes.json",
+      "contains": "\"bumper\": \"write_package_json\""
+    },
+    {
+      "file": "tools/check_version_consistency.py",
+      "contains": "def bump("
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_version_consistency.py --bump"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_version_consistency.py --expect"
+    },
+    {
+      "file": "README.md",
+      "contains": "held by eleven files"
+    },
+    {
+      "file": "tools/version_axes.json",
+      "contains": "\"name\": \"registry-release-json\""
+    },
+    {
+      "file": "registry_release.json",
+      "contains": "\"registry\": \"iso3166\""
+    },
+    {
+      "file": "registry_release.schema.json"
+    },
+    {
+      "file": "tools/gen_registry_release.py",
+      "contains": "def build("
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gen_registry_release.py --check --version"
+    },
+    {
+      "file": "README.md",
+      "contains": "31 checks run in sequence"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "**v1.12.7 amendment.**"
+    },
+    {
+      "file": "docs/PROVENANCE.md",
+      "contains": "fails CI and the release gate"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "seven-layer validator"
+    },
+    {
+      "file": "tests/test_changelog_unreleased.py"
+    },
+    {
+      "file": "registry_release.schema.json",
+      "contains": "released_at"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "--stamp-released-at"
+    },
+    {
+      "file": "README.md",
+      "contains": "`released_at` is the tag date"
+    },
+    {
+      "file": "tests/test_registry_release_released_at.py"
+    },
+    {
+      "file": "tests/test_version_axes.py"
+    }
   ]
 }
