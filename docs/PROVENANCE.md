@@ -82,7 +82,7 @@ An empty field is honest; a wrong field is not.
 | ISO publishes an amendment to ISO 3166-3 | Manual update within 30 days; new patch release |
 | UN M49 publishes an update | Manual cross-check; update `region` fields if changed |
 | ISO 4217 publishes a new version | Snapshot refresh (see D5); patch release if `currency_codes` change |
-| Quarterly | Audit sweep: re-verify `last_verified` on curated entries; `tools/check_registry_freshness.py` fails the release gate for any entry older than 365 days |
+| Quarterly | Audit sweep: re-verify `last_verified` on curated entries; `tools/check_registry_freshness.py` fails CI and the release gate for any entry older than 365 days |
 
 There is no automatic sync. Every update is a human-reviewed commit
 with the source cited in the commit message and the CHANGELOG entry.

@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "required": [
     "registry", "version", "format_version", "schema_version", "released",
-    "commit", "tag", "tag_object", "distribution", "source", "files",
+    "released_at", "commit", "tag", "tag_object", "distribution", "source", "files",
     "counts", "vendors"
   ],
   "properties": {
@@ -15,7 +15,8 @@
     "version": {"$ref": "#/$defs/semver"},
     "format_version": {"$ref": "#/$defs/semver"},
     "schema_version": {"$ref": "#/$defs/semver"},
-    "released": {"type": "string", "format": "date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "released": {"type": "string", "format": "date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "description": "The data update date: iso3166.json meta.updated."},
+    "released_at": {"description": "The tag date. null in the tagged tree; scripts/release.sh stamps it in the verification-report commit after the tag. tools/gen_registry_release.py --check ignores it.", "oneOf": [{"type": "string", "format": "date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}, {"type": "null"}]},
     "commit": {"$ref": "#/$defs/sha1_or_null"},
     "tag": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
     "tag_object": {"$ref": "#/$defs/sha1_or_null"},

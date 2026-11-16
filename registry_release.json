@@ -4,6 +4,7 @@
   "format_version": "1.0.0",
   "schema_version": "1.0.0",
   "released": "2026-11-15",
+  "released_at": null,
   "commit": null,
   "tag": "v1.12.6",
   "tag_object": null,
@@ -118,15 +119,15 @@
     "introduced_dated": 176,
     "introduced_null": 76,
     "tests": {
-      "root": 181,
+      "root": 190,
       "python_wrapper": 119,
       "javascript": 94,
       "rust": 30,
       "go": 46,
-      "total": 470
+      "total": 479
     },
     "gates": 31,
-    "claims": 12
+    "claims": 20
   },
   "vendors": [
     {

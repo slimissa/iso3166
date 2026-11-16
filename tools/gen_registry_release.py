@@ -12,10 +12,15 @@ Fields (registry_release.schema.json is the contract):
     version          VERSION
     format_version   iso3166.json meta.format_version, else "1.0.0"
     schema_version   the version in schema.json's $id
-    released         iso3166.json meta.updated. release.sh sets it to the
-                     release day at the bump, so the manifest is a pure
-                     function of the tree and --check stays deterministic
-                     (a "today" read here would drift at midnight)
+    released         iso3166.json meta.updated: the DATA update date.
+                     release.sh sets it to the release day at the bump, so
+                     the manifest is a pure function of the tree and --check
+                     stays deterministic (a "today" read here would drift at
+                     midnight)
+    released_at      the TAG date. null in the tagged tree. release.sh stamps
+                     it (--stamp-released-at) in the verification-report
+                     commit, after the tag. Write mode keeps a stamped value;
+                     --check ignores it (it must be null or a valid date)
     commit           null, by design: the file ships in the release commit
                      and cannot contain that commit's SHA
     tag              "v<version>"
@@ -33,6 +38,7 @@ Fields (registry_release.schema.json is the contract):
 Usage:
     python3 tools/gen_registry_release.py                       # write
     python3 tools/gen_registry_release.py --check --version X.Y.Z
+    python3 tools/gen_registry_release.py --stamp-released-at YYYY-MM-DD
 
 --check regenerates in memory and compares byte for byte with the committed
 file. --version X.Y.Z must equal VERSION.
@@ -49,6 +55,7 @@ import hashlib
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -89,6 +96,27 @@ SUITES = {
 
 class InputError(Exception):
     pass
+
+
+def valid_date(value: Any) -> bool:
+    if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        return False
+    try:
+        date.fromisoformat(value)
+    except ValueError:
+        return False
+    return True
+
+
+def committed_manifest(path: Path) -> dict[str, Any] | None:
+    """The committed manifest, or None when absent or not a JSON object."""
+    if not path.is_file():
+        return None
+    try:
+        doc = json.loads(path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    return doc if isinstance(doc, dict) else None
 
 
 def _read(root: Path, rel: str) -> bytes:
@@ -159,6 +187,7 @@ def build(root: Path, version: str) -> dict[str, Any]:
         "format_version": meta.get("format_version", "1.0.0"),
         "schema_version": m.group(1),
         "released": meta.get("updated"),
+        "released_at": None,
         "commit": None,
         "tag": f"v{version}",
         "tag_object": None,
@@ -193,11 +222,34 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Emit or check registry_release.json.")
     ap.add_argument("--check", action="store_true",
                     help="Compare an in-memory regeneration with the committed file.")
+    ap.add_argument("--stamp-released-at", metavar="YYYY-MM-DD",
+                    help="Set released_at (the tag date) in the committed file. "
+                         "Used by release.sh after the tag.")
     ap.add_argument("--version", metavar="X.Y.Z",
                     help="The version the manifest is for; must equal VERSION.")
     ap.add_argument("--root", type=Path, default=PROJECT_ROOT, help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
     root = args.root.resolve()
+    out = root / OUT_NAME
+
+    if args.stamp_released_at is not None:
+        if args.check:
+            print("error: --stamp-released-at and --check are separate modes",
+                  file=sys.stderr)
+            return 2
+        if not valid_date(args.stamp_released_at):
+            print(f"error: {args.stamp_released_at!r} is not a YYYY-MM-DD date",
+                  file=sys.stderr)
+            return 2
+        doc = committed_manifest(out)
+        if doc is None or "released_at" not in doc:
+            print(f"error: {OUT_NAME}: not found or has no released_at; "
+                  "run tools/gen_registry_release.py", file=sys.stderr)
+            return 2
+        doc["released_at"] = args.stamp_released_at
+        out.write_text(render(doc), encoding="utf-8")
+        print(f"stamped released_at {args.stamp_released_at}")
+        return 0
 
     try:
         version = _read(root, "VERSION").decode("utf-8").strip()
@@ -207,12 +259,25 @@ def main(argv: list[str] | None = None) -> int:
             print(f"error: --version {args.version} but VERSION is {version}",
                   file=sys.stderr)
             return 2
-        text = render(build(root, version))
+        doc = build(root, version)
     except InputError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
-    out = root / OUT_NAME
+    # released_at is the one field that is not a function of the tree: it is
+    # stamped after the tag. Write mode keeps it; --check ignores its value
+    # but requires it to be null or a real date.
+    previous = committed_manifest(out)
+    stamped = previous.get("released_at") if previous else None
+    if stamped is not None and not valid_date(stamped):
+        if args.check:
+            print(f"DRIFT: {OUT_NAME}: released_at {stamped!r} is not null or a "
+                  "YYYY-MM-DD date", file=sys.stderr)
+            return 1
+        stamped = None
+    doc["released_at"] = stamped
+    text = render(doc)
+
     if args.check:
         if not out.is_file():
             print(f"error: {OUT_NAME}: not found; run tools/gen_registry_release.py",

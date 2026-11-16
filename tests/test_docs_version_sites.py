@@ -139,24 +139,104 @@ def test_a_version_bump_without_the_readme_sites_fails(tree):
         assert any(name in ln for ln in bad), name
 
 
+def reports_in(tree: Path) -> list[str]:
+    """Versions that have docs/vX.Y.Z-verification.md, oldest first."""
+    vs = [m.group(1) for p in (tree / "docs").glob("v*-verification.md")
+          if (m := re.fullmatch(r"v(\d+\.\d+\.\d+)-verification\.md", p.name))]
+    return sorted(vs, key=lambda v: tuple(int(x) for x in v.split(".")))
+
+
+def describe_reports_in_readme(tree: Path, have: list[str]) -> None:
+    """Make every README report-count site say: len(have) reports, through have[-1].
+
+    The README is edited by hand after a release, so a test that copies it
+    must not depend on what it says today. Every occurrence is rewritten.
+    """
+    readme = tree / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    n = len(have)
+    for pattern, repl in (
+        (r"\b(?:[A-Z][a-z]+(?:-[a-z]+)?|\d+) (verification reports exist)", rf"{n} \1"),
+        (r"(The )\d+( verification reports)", rf"\g<1>{n}\2"),
+        (r"(# )\d+( release gate records)", rf"\g<1>{n}\2"),
+        (r"(through \[`docs/v)\d+\.\d+\.\d+(-verification\.md`\])",
+         rf"\g<1>{have[-1]}\2"),
+    ):
+        text, k = re.subn(pattern, repl, text)
+        assert k >= 1, f"README.md: no site for {pattern!r}"
+    readme.write_text(text, encoding="utf-8")
+
+
+def drop_report(tree: Path, version: str) -> None:
+    own = tree / "docs" / f"v{version}-verification.md"
+    own.unlink(missing_ok=True)
+    own.with_name(own.name + ".sha256").unlink(missing_ok=True)
+
+
+def next_patch(version: str) -> str:
+    major, minor, patch = (int(x) for x in version.split("."))
+    return f"{major}.{minor}.{patch + 1}"
+
+
+def current_version() -> str:
+    return (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+
+
 def test_the_release_flow_passes_gate_then_report(tree):
-    pin_readme_version(tree)  # independent of the checkout's current version
-    # Step 1: VERSION and the README sites are bumped together; the report for
-    # the new version does not exist yet (it is written in step 7).
-    new = "1.12.5"
-    (tree / "VERSION").write_text(new + "\n", encoding="utf-8")
-    edit(tree, "README.md", r"^(\| \*\*Version\*\* \| )\d+\.\d+\.\d+", rf"\g<1>{new}")
-    edit(tree, "README.md", r'("version": ")\d+\.\d+\.\d+', rf"\g<1>{new}")
-    edit(tree, "README.md", r"(b')\d+\.\d+\.\d+(')", rf"\g<1>{new}\2")
-    edit(tree, "README.md", r"(registry-)\d+\.\d+\.\d+(-orange)", rf"\g<1>{new}\2")
+    """The release being made is VERSION, whatever VERSION is today.
+
+    This test used to hardcode 1.12.5, so it passed until the report for the
+    next release existed, and then failed on the very commit that
+    release.sh step 7 creates (v1.12.6's verification-report commit).
+    """
+    new = current_version()
+    pin_readme_version(tree, new)
     edit(tree, "CHANGELOG.md", r"^## \[\d+\.\d+\.\d+\]", f"## [{new}]")
+    # Step 1: VERSION and the README sites are bumped together; the report for
+    # the new version does not exist yet (it is written in step 7), and the
+    # README counts the reports that do.
+    drop_report(tree, new)
+    describe_reports_in_readme(tree, reports_in(tree))
     code, lines = run_check(tree)
     assert code == 0, "gate state:\n" + "\n".join(failing(lines))
     # Step 7: the report for VERSION lands; the README still counts one fewer.
     (tree / "docs" / f"v{new}-verification.md").write_text("# report\n", encoding="utf-8")
+    assert reports_in(tree)[-1] == new
     code, lines = run_check(tree)
     assert code == 0, "after the report:\n" + "\n".join(failing(lines))
     # The next release, without bumping the count, must fail the gate.
-    (tree / "VERSION").write_text("1.12.6\n", encoding="utf-8")
+    (tree / "VERSION").write_text(next_patch(new) + "\n", encoding="utf-8")
     code, lines = run_check(tree)
     assert any("README version row" in ln for ln in failing(lines)), "\n".join(lines)
+
+
+def test_the_through_clause_accepts_the_report_for_version(tree):
+    """Newest report is VERSION's own: README one behind (count, through) is valid."""
+    new = current_version()
+    pin_readme_version(tree, new)
+    (tree / "docs" / f"v{new}-verification.md").write_text("# report\n", encoding="utf-8")
+    have = reports_in(tree)
+    assert have[-1] == new and len(have) >= 2
+    describe_reports_in_readme(tree, have[:-1])
+    code, lines = run_check(tree)
+    assert code == 0, "\n".join(failing(lines))
+    assert any(ln.startswith("OK: README report count") for ln in lines)
+
+
+def test_the_through_clause_fails_when_the_newest_report_is_not_version(tree):
+    """Newest report is NOT VERSION's: README one behind is not allowed."""
+    new = current_version()
+    later = next_patch(new)
+    pin_readme_version(tree, later)
+    (tree / "VERSION").write_text(later + "\n", encoding="utf-8")
+    edit(tree, "CHANGELOG.md", r"^## \[\d+\.\d+\.\d+\]", f"## [{later}]")
+    have = reports_in(tree)
+    assert have[-1] != later
+    describe_reports_in_readme(tree, have[:-1])
+    code, lines = run_check(tree)
+    assert code == 1
+    assert [ln for ln in failing(lines) if "report count" in ln], "\n".join(lines)
+    # ... and the same README is fine when it counts every report.
+    describe_reports_in_readme(tree, have)
+    code, lines = run_check(tree)
+    assert code == 0, "\n".join(failing(lines))

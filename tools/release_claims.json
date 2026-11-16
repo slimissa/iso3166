@@ -722,6 +722,14 @@
     {"file": "tools/gen_registry_release.py", "contains": "def build("},
     {"file": "scripts/release.sh", "contains": "gen_registry_release.py --check --version"},
     {"file": "README.md", "contains": "31 checks run in sequence"},
+    {"file": "docs/RELEASE_PATTERN.md", "contains": "**v1.12.6 amendment.**"},
+    {"file": "docs/PROVENANCE.md", "contains": "fails CI and the release gate"},
+    {"file": "CONTRIBUTING.md", "contains": "seven-layer validator"},
+    {"file": "tests/test_changelog_unreleased.py"},
+    {"file": "registry_release.schema.json", "contains": "released_at"},
+    {"file": "scripts/release.sh", "contains": "--stamp-released-at"},
+    {"file": "README.md", "contains": "`released_at` is the tag date"},
+    {"file": "tests/test_registry_release_released_at.py"},
     {"file": "tests/test_version_axes.py"}
   ]
 }

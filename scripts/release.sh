@@ -693,7 +693,14 @@ if [ "$DRY_RUN" = "0" ]; then
         --gate-rec "$GATE_REC" --gate-log "$GATE_LOG" --out "$REPORT" \
         || die "could not write the verification report (no gate evidence recorded?)"
 
-    git add "$REPORT" "$REPORT.sha256"
+    # released_at is the tag date: written after the tag, in this commit, and
+    # ignored by `gen_registry_release.py --check` (the tagged tree has null).
+    python3 tools/gen_registry_release.py --stamp-released-at "$TODAY" \
+        || die "could not stamp released_at in registry_release.json"
+    python3 tools/gen_registry_release.py --check --version "$VERSION" \
+        || die "registry_release.json does not match the tree after stamping released_at"
+
+    git add "$REPORT" "$REPORT.sha256" registry_release.json
     git commit -m "docs: v$VERSION verification report"
     git push origin main
     echo "  verification report committed"

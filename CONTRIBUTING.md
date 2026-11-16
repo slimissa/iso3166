@@ -202,7 +202,7 @@ of the registry data.
 
 As of v1.12, every push to `main` runs 23 jobs:
 
-- `validate-json` — six-layer validator + ground-truth verify, on a
+- `validate-json` — seven-layer validator + ground-truth verify, on a
   matrix of Ubuntu × Python versions.
 - `check-version-consistency` — `VERSION` vs. `meta.version` vs.
   `CHANGELOG` vs. Parquet footer.

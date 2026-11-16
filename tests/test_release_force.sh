@@ -93,6 +93,9 @@ build_repo() {
         # throwaway repo it is a stub that succeeds, so it cannot recurse.
         printf '#!/usr/bin/env bash\nexit 0\n' > tests/test_release_force.sh
         printf 'def test_stub():\n    assert True\n' > wrappers/python/tests/test_stub.py
+        # Step 7 stages registry_release.json (the post-tag released_at stamp);
+        # gen_registry_release.py is a stub here, so the file must exist.
+        printf '{}\n' > registry_release.json
         printf '0.0.0\n' > VERSION
         printf '# Changelog\n\n## [0.0.2] - 2000-01-02\n\n- two\n\n## [0.0.1] - 2000-01-01\n\n- one\n' > CHANGELOG.md
         git add -A && git commit -q -m "init"
