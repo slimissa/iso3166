@@ -21,6 +21,7 @@
     "index.js",
     "derived.js",
     "clubs.js",
+    "contract.js",
     "iso3166.json",
     "README.md"
   ],

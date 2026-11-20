@@ -121,10 +121,10 @@
     "tests": {
       "root": 190,
       "python_wrapper": 119,
-      "javascript": 97,
+      "javascript": 104,
       "rust": 30,
       "go": 46,
-      "total": 482
+      "total": 489
     },
     "gates": 31,
     "claims": 20
