@@ -1294,4 +1294,36 @@ mod tests {
         assert!(is_valid_date("2010-01-01"));
         assert!(r.is_active_on("DE", "2010-01-01").is_ok());
     }
+
+    /// Compile-time proof: if `CountryRegistry` ever stops being `Send + Sync`
+    /// (an `Rc`, a `RefCell` or a raw pointer in a field), this fails to build.
+    fn assert_send_sync<T: Send + Sync>() {}
+
+    #[test]
+    fn registry_is_send_and_sync() {
+        assert_send_sync::<CountryRegistry>();
+    }
+
+    #[test]
+    fn registry_can_be_shared_across_threads() {
+        let shared = std::sync::Arc::new(reg());
+        let handles: Vec<_> = (0..8)
+            .map(|i| {
+                let r = std::sync::Arc::clone(&shared);
+                std::thread::spawn(move || {
+                    for _ in 0..200 {
+                        assert_eq!(r.active("US").unwrap().alpha_3, "USA", "thread {}", i);
+                        assert!(r.is_eu("DE"));
+                        assert_eq!(r.by_numeric("20").unwrap().alpha_2, "AD");
+                        assert_eq!(r.region_tree("FR"), ["Europe", "Western Europe"]);
+                    }
+                    r.all_active().len()
+                })
+            })
+            .collect();
+        let expected = shared.all_active().len();
+        for h in handles {
+            assert_eq!(h.join().expect("a reader thread panicked"), expected);
+        }
+    }
 }
