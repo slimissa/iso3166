@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 31 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 515 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 31 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 517 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.7 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -945,12 +945,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 190 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 192 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 124 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 111 |
 | Rust | `(cd wrappers/rust && cargo test)` | 38 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 52 (declarations) |
-| **Total** | | **515** |
+| **Total** | | **517** |
 
 ### Additional checks
 
@@ -1145,6 +1145,7 @@ iso3166/
     test_consumers_json.py                  # consumers.json is well formed and agrees with JOINS.md and README section 22
     test_check_consumers_current.py         # check_consumers_current.py reads served metadata, exits 0/1/2
     test_check_snapshot_upstream.py         # check_snapshot_freshness.py --check-upstream against a local repository
+    test_cross_language_derived_sort.py     # cross_language_derived.py rejects an active_on map whose keys are out of order
     test_enrich_field_citations.py          # record_source writes one source line per field
     test_enrich_field_values.py             # enrich_field.py --only-value compares values with the snapshot
     test_enrich_independent.py              # enrich_independent.py logic that needs no live ISO markup

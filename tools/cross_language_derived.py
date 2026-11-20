@@ -203,6 +203,14 @@ def check_active_on(results: dict[str, dict]) -> list[str]:
     for name, d in results.items():
         if len(d) != fx["keys"]:
             bad.append(f"{name} active_on: {len(d)} keys, expected {fx['keys']}")
+        # Query 11: "275 keys, sorted" (docs/QUERIES.md). Dict equality below ignores
+        # order, so a surface that returned the right map in the wrong order
+        # would otherwise pass.
+        ordered = sorted(d)
+        if list(d) != ordered:
+            first = next(k for k, want in zip(d, ordered) if k != want)
+            bad.append(f"{name} active_on: keys are not sorted by code "
+                       f"(first out of order: {first!r})")
         if tally(d) != fx["counts"]:
             bad.append(f"{name} active_on: counts {tally(d)}, expected {fx['counts']}")
         if tally(d, active) != fx["active_counts"]:
