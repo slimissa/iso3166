@@ -153,3 +153,28 @@ def test_with_alpha2_active_first(reg):
     for code in ("AI", "SK"):
         matches = reg.with_alpha2(code)
         assert [m.is_active for m in matches] == [True, False], code
+
+
+def test_by_numeric_coerces_ints_but_not_floats(reg):
+    # "ints are coerced" (docstring): 20 == "020". A float is not an int:
+    # str(20.0) is "20.0", which no code matches, so it is a miss (JavaScript
+    # cannot tell 20.0 from 20; the Python wrapper can).
+    assert reg.by_numeric(20) == reg.by_numeric("020")
+    assert reg.by_numeric(20.0) is None
+    assert reg.by_numeric(840.5) is None
+    assert reg.by_numeric(-840) is None
+    assert reg.by_numeric("-840") is None
+
+
+def test_version_matches_meta(reg):
+    import re
+    from pathlib import Path
+
+    import iso3166
+
+    assert iso3166.__version__ == reg.meta["version"], (
+        "__version__ and the bundled registry's meta.version disagree")
+    pyproject = Path(__file__).resolve().parent.parent / "pyproject.toml"
+    if pyproject.is_file():  # absent when the tests run against an installed wheel
+        declared = re.search(r'^version = "([^"]+)"', pyproject.read_text(encoding="utf-8"), re.M)
+        assert declared and declared.group(1) == iso3166.__version__

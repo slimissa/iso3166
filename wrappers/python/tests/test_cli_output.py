@@ -86,3 +86,29 @@ def test_csv_and_tsv_are_byte_identical_to_the_root_exports():
         proc = _run("list", flag)
         assert proc.returncode == 0, proc.stderr
         assert proc.stdout == want.read_text(encoding="utf-8"), name
+
+
+def test_jsonl_prints_one_json_object_per_line():
+    import json
+
+    proc = _run("list", "--jsonl", "--limit", "3")
+    assert proc.returncode == 0, proc.stderr
+    lines = proc.stdout.splitlines()
+    assert len(lines) == 3
+    objs = [json.loads(ln) for ln in lines]  # each line is a complete JSON document
+    assert [o["alpha_2"] for o in objs] == ["AD", "AE", "AF"]
+    assert proc.stdout.endswith("\n") and "\n\n" not in proc.stdout
+    # the whole registry, one object per line: active plus withdrawn
+    full = _run("list", "--jsonl")
+    assert len(full.stdout.splitlines()) == len(CountryRegistry().all())
+
+
+def test_limit_truncates_and_a_negative_limit_is_ignored():
+    first = _run("list", "--raw", "alpha_2", "--limit", "3")
+    assert first.stdout.splitlines() == ["AD", "AE", "AF"]
+    everything = _run("list", "--raw", "alpha_2")
+    assert len(everything.stdout.splitlines()) == len(CountryRegistry().all())
+    assert _run("list", "--raw", "alpha_2", "--limit", "-1").stdout == everything.stdout
+    # --limit 0 selects nothing: the table says so, JSON Lines prints nothing
+    assert _run("list", "--limit", "0").stdout == "(no results)\n"
+    assert _run("list", "--jsonl", "--limit", "0").stdout == ""

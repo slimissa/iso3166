@@ -1,4 +1,6 @@
 """v1.12.0 club membership queries (docs/QUERIES.md, Query 10)."""
+from pathlib import Path
+
 import pytest
 
 from iso3166 import CountryRegistry
@@ -104,3 +106,29 @@ def test_eea_provisional_application_counts(reg):
     # HR: no provisional date in the source, formal only
     assert reg.is_eea_member_at("HR", "2020-01-01") is False
     assert reg.is_eea_member_at("HR", "2025-02-19") is True
+
+
+def test_club_cells_are_the_four_flat_export_cells(reg, tmp_path):
+    # eu, eea, eurozone, customs_union: "from:to" joined with "|"; an empty
+    # `to` is a current member, "" is never a member.
+    assert reg._club_cells("GB") == (
+        "1973-01-01:2020-01-31", "1994-01-01:2020-12-31", "", "1973-01-01:2020-12-31")
+    assert reg._club_cells("DE") == (
+        "1958-01-01:", "1994-01-01:", "1999-01-01:", "1968-07-01:")
+    assert reg._club_cells("XX") == ("", "", "", "")
+    assert reg._club_cells("") == ("", "", "", "")
+    assert reg._club_cells("gb") == reg._club_cells("GB")  # the code is normalized
+    assert reg._club_cells(" de ") == reg._club_cells("DE")
+    # Several ranges in one field are joined with "|" (no real entry has two
+    # today, so build a registry that does).
+    import json
+
+    from iso3166 import CountryRegistry
+
+    data = json.loads(
+        (Path(__file__).resolve().parent.parent / "iso3166" / "iso3166.json").read_text(encoding="utf-8"))
+    de = next(e for e in data["countries"]["active"] if e["alpha_2"] == "DE")
+    de["eu_membership"] = [{"from": "1958-01-01", "to": "1970-12-31"}, {"from": "1980-01-01", "to": None}]
+    path = tmp_path / "iso3166.json"
+    path.write_text(json.dumps(data), encoding="utf-8")
+    assert CountryRegistry(path)._club_cells("DE")[0] == "1958-01-01:1970-12-31|1980-01-01:"
