@@ -2,6 +2,7 @@ package iso3166
 
 import (
 	"errors"
+	"reflect"
 	"testing"
 )
 
@@ -117,5 +118,52 @@ func TestEEAProvisionalApplicationCounts(t *testing.T) {
 		if got := ok(r.IsEEAMemberAt(c.code, c.date)); got != c.want {
 			t.Errorf("IsEEAMemberAt(%s, %s) = %v, want %v", c.code, c.date, got, c.want)
 		}
+	}
+}
+
+// TestLoadClubsParsesAllFour: loadClubs reads the four arrays of every active
+// entry into their own fields. The synthetic registry gives each array a
+// different range, so a swapped or dropped field cannot pass.
+func TestLoadClubsParsesAllFour(t *testing.T) {
+	data := []byte(`{"countries": {"active": [
+		{"alpha_2": "AA",
+		 "eu_membership":       [{"from": "1958-01-01", "to": "1999-12-31"}],
+		 "eea_membership":      [{"from": "1994-01-01", "to": null}],
+		 "eurozone_membership": [{"from": "2002-01-01", "to": "2010-06-30"}, {"from": "2012-01-01", "to": null}],
+		 "customs_union":       [{"from": "1968-07-01", "to": "1990-01-01"}]},
+		{"alpha_2": "BB"}
+	]}}`)
+	got, err := loadClubs(data)
+	if err != nil {
+		t.Fatalf("loadClubs: %v", err)
+	}
+	aa := got["AA"]
+	want := map[string][]clubRange{
+		"eu":       {{from: "1958-01-01", to: "1999-12-31"}},
+		"eea":      {{from: "1994-01-01", open: true}},
+		"eurozone": {{from: "2002-01-01", to: "2010-06-30"}, {from: "2012-01-01", open: true}},
+		"customs":  {{from: "1968-07-01", to: "1990-01-01"}},
+	}
+	for name, have := range map[string][]clubRange{
+		"eu": aa.eu, "eea": aa.eea, "eurozone": aa.eurozone, "customs": aa.customs,
+	} {
+		if !reflect.DeepEqual(have, want[name]) {
+			t.Errorf("AA.%s = %+v, want %+v", name, have, want[name])
+		}
+	}
+	bb, present := got["BB"]
+	if !present || len(bb.eu)+len(bb.eea)+len(bb.eurozone)+len(bb.customs) != 0 {
+		t.Errorf("BB (no club fields) = %+v, present=%v; want an entry with four empty lists", bb, present)
+	}
+
+	// The bundled registry: DE is in all four.
+	all, err := loadClubs(bundledRegistry)
+	if err != nil {
+		t.Fatalf("loadClubs(bundled): %v", err)
+	}
+	de := all["DE"]
+	if len(de.eu) == 0 || len(de.eea) == 0 || len(de.eurozone) == 0 || len(de.customs) == 0 {
+		t.Errorf("DE: eu=%d eea=%d eurozone=%d customs=%d, want all four non-empty",
+			len(de.eu), len(de.eea), len(de.eurozone), len(de.customs))
 	}
 }
