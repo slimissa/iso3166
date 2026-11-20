@@ -70,7 +70,10 @@ func main() {
 	case "borders_transitively":
 		n, convErr := strconv.Atoi(a(3))
 		if convErr != nil {
-			n = 0
+			// v1.12.8: not an integer is a usage error (exit 2), never an
+			// empty answer: `borders_transitively US abc` used to print [].
+			fmt.Fprintf(os.Stderr, "error: max_hops must be an integer, got %q\n", a(3))
+			os.Exit(2)
 		}
 		emit(reg.BordersTransitively(a(2), n))
 	case "succession_path":
