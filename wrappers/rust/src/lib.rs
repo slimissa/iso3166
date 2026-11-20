@@ -1189,4 +1189,44 @@ mod tests {
         );
         assert!(r.region_countries("Antarctica", None).is_empty());
     }
+
+    #[test]
+    fn load_from_missing_file_is_io_error() {
+        let err = match CountryRegistry::load_from("/nonexistent.json") {
+            Ok(_) => panic!("load_from(/nonexistent.json) must fail"),
+            Err(e) => e,
+        };
+        match &err {
+            RegistryError::Io(e) => assert_eq!(e.kind(), std::io::ErrorKind::NotFound),
+            other => panic!("want RegistryError::Io, got {:?}", other),
+        }
+        assert!(err.to_string().starts_with("registry IO error:"), "{}", err);
+        assert!(std::error::Error::source(&err).is_some());
+    }
+
+    #[test]
+    fn load_from_malformed_json_is_parse_error() {
+        let path = std::env::temp_dir()
+            .join(format!("iso3166-malformed-{}.json", std::process::id()));
+        std::fs::write(&path, "{not json").expect("write temp file");
+        let result = CountryRegistry::load_from(&path);
+        let _ = std::fs::remove_file(&path);
+        let err = match result {
+            Ok(_) => panic!("load_from on malformed JSON must fail"),
+            Err(e) => e,
+        };
+        assert!(matches!(err, RegistryError::Parse(_)), "{:?}", err);
+        assert!(err.to_string().starts_with("registry parse error:"), "{}", err);
+        assert!(std::error::Error::source(&err).is_some());
+    }
+
+    #[test]
+    fn serde_error_converts_to_registry_error() {
+        let serde_err = serde_json::from_str::<Meta>("{").unwrap_err();
+        let err: RegistryError = serde_err.into();
+        assert!(matches!(err, RegistryError::Parse(_)), "{:?}", err);
+        let io_err = std::io::Error::new(std::io::ErrorKind::NotFound, "gone");
+        let err: RegistryError = io_err.into();
+        assert!(matches!(err, RegistryError::Io(_)), "{:?}", err);
+    }
 }
