@@ -8,6 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.8] — 2026-11-20
+
+### Fixed
+- JavaScript: `KNOWN_EU_MEMBERS` is now a genuinely frozen Set (`frozenSet()` helper), not `Object.freeze(new Set())` which did not freeze internal slots.
+- JavaScript: `checkArgs`, `assertDate`, `validDate` extracted to `contract.js` (shared by `clubs.js` and `derived.js`).
+- Rust: `derived_queries` fixture test now runs the 129 derived cases.
+- Rust: error-path tests for `load_from`, malformed JSON, and serde conversion.
+- Go: `cmd/query` exits 2 on a malformed `max_hops`, not silently returning `[]`.
+- Go: error messages in `load_from` are now pinned, not just "err != nil".
+- Python: `test_cli.py` split into 5 files (core, derived, clubs, temporal, output) + `cli_support.py`.
+
+### Changed
+- JavaScript: 7 new pin tests for freeze, `activeOn`, `currencyAt`, `bordersTransitively`, `byNumeric`, constructor behavior, club member counts.
+- Rust: `#[non_exhaustive]` on `Country`, `Meta`, `Summary`. **No external consumers exist at the time of this release; future field additions will be semver-compatible.** Documented as `### Changed` because the change is invisible to current users.
+- Rust: `dq_valid_date` renamed to `is_valid_date` (re-exported). `Send + Sync` now tested.
+- Go: `dqValidDate` renamed to `ValidDate`. `TestFixtureDerivedQueries` and `TestConcurrentReads` added. `TestLoadClubsParsesAllFour` added.
+- Python: `--jsonl`, `--limit`, `_club_cells`, `by_numeric(20.0)`, `test_version_matches_meta` pinned.
+- All four wrappers: "Derived queries (v1.10.0+)" section added to READMEs.
+- `tools/cross_language_derived.py`: `active_on` output keys are now sorted-asserted.
+
 ## [1.12.7] — 2026-11-16
 
 ### Fixed
