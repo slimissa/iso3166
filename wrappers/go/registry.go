@@ -736,8 +736,13 @@ func (e *InvalidDateError) Error() string {
 	return fmt.Sprintf("malformed date: %q (want YYYY-MM-DD)", e.Date)
 }
 
-// dqValidDate reports whether s is a real YYYY-MM-DD date, year >= 1.
-func dqValidDate(s string) bool {
+// ValidDate reports whether s is a real YYYY-MM-DD date, year >= 1. It is the
+// check behind InvalidDateError (IsActiveOn, ActiveOn and the four club *At
+// queries) and behind CurrencyAt's miss on a malformed date. Exported in
+// v1.12.8 (it was the unexported dqValidDate) so a caller can validate a date
+// before querying. A trailing newline,
+// whitespace, single-digit parts and impossible days are not dates.
+func ValidDate(s string) bool {
 	if len(s) != 10 || s[4] != '-' || s[7] != '-' {
 		return false
 	}
@@ -782,7 +787,7 @@ func dqValidDate(s string) bool {
 //	IsActiveOn("DD", "1800-01-01") // nil (before 1974)
 func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 	yes, no := true, false
-	if !dqValidDate(date) {
+	if !ValidDate(date) {
 		return nil, &InvalidDateError{Date: date}
 	}
 	c := dqNorm(code)
@@ -825,7 +830,7 @@ func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 // 76 unknown (CZ, SK and RU among them). A malformed date returns an
 // *InvalidDateError. See docs/QUERIES.md, "Query 11".
 func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
-	if !dqValidDate(date) {
+	if !ValidDate(date) {
 		return nil, &InvalidDateError{Date: date}
 	}
 	out := make(map[string]*bool, len(r.active)+len(r.withdrawn))
@@ -854,7 +859,7 @@ func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
 // differ from the withdrawn entry's historical currency. ok == false
 // means "cannot answer". See docs/QUERIES.md, "Query 7".
 func (r *CountryRegistry) CurrencyAt(code, date string) ([]string, bool) {
-	if !dqValidDate(date) {
+	if !ValidDate(date) {
 		return nil, false
 	}
 	c := dqNorm(code)

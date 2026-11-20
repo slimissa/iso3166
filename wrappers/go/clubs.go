@@ -81,7 +81,7 @@ func loadClubs(data []byte) (map[string]clubSet, error) {
 }
 
 func clubAt(ranges []clubRange, date string) (bool, error) {
-	if !dqValidDate(date) {
+	if !ValidDate(date) {
 		return false, &InvalidDateError{Date: date}
 	}
 	for _, r := range ranges {

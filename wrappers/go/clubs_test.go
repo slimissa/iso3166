@@ -167,3 +167,25 @@ func TestLoadClubsParsesAllFour(t *testing.T) {
 			len(de.eu), len(de.eea), len(de.eurozone), len(de.customs))
 	}
 }
+
+func TestValidDate(t *testing.T) {
+	for _, ok := range []string{"2024-02-29", "2000-02-29", "0001-01-01", "2023-04-30", "2023-12-31"} {
+		if !ValidDate(ok) {
+			t.Errorf("ValidDate(%q) = false, want true", ok)
+		}
+	}
+	for _, bad := range []string{"1900-02-29", "2023-02-29", "2023-04-31", "2023-00-10", "2023-01-00",
+		"2023-13-01", "0000-01-01", "2020-01-01\n", " 2020-01-01", "2020-1-1", "20200101", "2020/01/01", ""} {
+		if ValidDate(bad) {
+			t.Errorf("ValidDate(%q) = true, want false", bad)
+		}
+	}
+	// The queries that report InvalidDateError agree with it.
+	r := mustLoad(t)
+	for _, d := range []string{"2010-02-30", "2020-01-01\n"} {
+		var ide *InvalidDateError
+		if _, err := r.IsActiveOn("DE", d); !errors.As(err, &ide) {
+			t.Errorf("IsActiveOn(DE, %q): want *InvalidDateError, got %v", d, err)
+		}
+	}
+}
