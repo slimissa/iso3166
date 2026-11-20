@@ -124,6 +124,19 @@ struct PredecessorCase {
 }
 
 #[derive(Deserialize)]
+struct DerivedCase {
+    query: String,
+    args: Vec<serde_json::Value>,
+    expected: serde_json::Value,
+}
+
+#[derive(Deserialize)]
+struct DerivedQueries {
+    enforced: bool,
+    cases: Vec<DerivedCase>,
+}
+
+#[derive(Deserialize)]
 struct Fixture {
     lookup_alpha2: Vec<LookupAlpha2>,
     lookup_alpha2_missing: Vec<String>,
@@ -147,6 +160,7 @@ struct Fixture {
     lookup_alpha2_ambiguous: Gated<HashMap<String, AmbiguousCase>>,
     successors: Gated<Vec<SuccessorCase>>,
     predecessors: Gated<Vec<PredecessorCase>>,
+    derived_queries: DerivedQueries,
 }
 
 #[derive(Deserialize)]
@@ -539,5 +553,63 @@ fn predecessors() {
     let reg = reg();
     for c in &fixture.predecessors.cases {
         assert_eq!(reg.predecessors(&c.input), c.predecessors, "{}", c.input);
+    }
+}
+
+/// Run one `derived_queries.cases` entry through the Rust API and return
+/// the JSON value the fixture expects (`null` for `None`).
+fn run_derived(reg: &CountryRegistry, c: &DerivedCase) -> serde_json::Value {
+    use serde_json::json;
+    let s = |i: usize| -> &str {
+        c.args[i]
+            .as_str()
+            .unwrap_or_else(|| panic!("{}: argument {} is not a string", c.query, i))
+    };
+    match c.query.as_str() {
+        "is_eu" => json!(reg.is_eu(s(0))),
+        "is_eea" => json!(reg.is_eea(s(0))),
+        "is_eurozone" => json!(reg.is_eurozone(s(0))),
+        "region_tree" => json!(reg.region_tree(s(0))),
+        "borders_transitively" => {
+            let hops = c.args[1].as_u64().expect("max_hops is an integer") as usize;
+            json!(reg.borders_transitively(s(0), hops))
+        }
+        "succession_path" => json!(reg.succession_path(s(0), s(1))),
+        "successors" => json!(reg.successors(s(0))),
+        "predecessors" => json!(reg.predecessors(s(0))),
+        "calling_code_for" => json!(reg.calling_code_for(s(0))),
+        "currency_at" => json!(reg.currency_at(s(0), s(1))),
+        "region_countries" => {
+            let sub = if c.args.len() > 1 { Some(s(1)) } else { None };
+            json!(reg.region_countries(s(0), sub))
+        }
+        "is_active_on" => json!(reg.is_active_on(s(0), s(1)).expect("well-formed date")),
+        "is_eu_member_at" => json!(reg.is_eu_member_at(s(0), s(1)).expect("well-formed date")),
+        "is_eea_member_at" => json!(reg.is_eea_member_at(s(0), s(1)).expect("well-formed date")),
+        "is_eurozone_member_at" => {
+            json!(reg.is_eurozone_member_at(s(0), s(1)).expect("well-formed date"))
+        }
+        "is_in_customs_union_at" => {
+            json!(reg.is_in_customs_union_at(s(0), s(1)).expect("well-formed date"))
+        }
+        other => panic!("derived_queries: no Rust mapping for query {:?}", other),
+    }
+}
+
+#[test]
+fn derived_queries() {
+    // The shared fixture's derived cases (v1.10.0; docs/QUERIES.md), the same
+    // ones the Python, JavaScript and Go suites and the CLI must reproduce.
+    let fixture = load_fixture();
+    if !fixture.derived_queries.enforced {
+        eprintln!("derived_queries enforced=false; skipping");
+        return;
+    }
+    let cases = &fixture.derived_queries.cases;
+    assert!(cases.len() >= 129, "the fixture has only {} derived cases", cases.len());
+    let reg = reg();
+    for c in cases {
+        let got = run_derived(&reg, c);
+        assert_eq!(got, c.expected, "{}({:?})", c.query, c.args);
     }
 }
