@@ -151,7 +151,12 @@ impl From<serde_json::Error> for RegistryError {
 ///
 /// The optional fields are `Option<String>` / `Option<Vec<String>>` and
 /// are `None` when the registry entry has no value.
+///
+/// `#[non_exhaustive]` (v1.12.8): fields may be added in a minor release, so
+/// code outside this crate cannot build a `Country` with a struct literal or
+/// match it exhaustively.
 #[derive(Debug, Clone, Deserialize)]
+#[non_exhaustive]
 pub struct Country {
     pub alpha_2: String,
     pub alpha_3: String,
@@ -206,7 +211,22 @@ impl Country {
 }
 
 /// The registry's `meta` block.
+///
+/// `#[non_exhaustive]`: it cannot be built with a struct literal outside
+/// this crate.
+///
+/// ```compile_fail,E0639
+/// let _ = iso3166_registry::Meta {
+///     version: String::new(),
+///     updated: String::new(),
+///     source: None,
+///     schema_version: None,
+///     count_active: None,
+///     count_withdrawn: None,
+/// };
+/// ```
 #[derive(Debug, Clone, Deserialize)]
+#[non_exhaustive]
 pub struct Meta {
     pub version: String,
     pub updated: String,
@@ -221,7 +241,11 @@ pub struct Meta {
 }
 
 /// Summary returned by [`CountryRegistry::summary`].
+///
+/// `#[non_exhaustive]`: it cannot be built with a struct literal outside
+/// this crate.
 #[derive(Debug, Clone)]
+#[non_exhaustive]
 pub struct Summary {
     pub version: String,
     pub updated: String,
