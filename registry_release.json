@@ -122,9 +122,9 @@
       "root": 190,
       "python_wrapper": 119,
       "javascript": 111,
-      "rust": 34,
+      "rust": 36,
       "go": 46,
-      "total": 500
+      "total": 502
     },
     "gates": 31,
     "claims": 20

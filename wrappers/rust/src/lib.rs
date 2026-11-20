@@ -64,8 +64,23 @@ fn dq_norm(code: &str) -> String {
     code.trim().to_uppercase()
 }
 
-/// True for a real calendar date written as YYYY-MM-DD, year >= 1.
-fn dq_valid_date(s: &str) -> bool {
+/// True for a real calendar date written as `YYYY-MM-DD`, year >= 1.
+///
+/// This is the check behind the `InvalidDate` error of
+/// [`CountryRegistry::is_active_on`] and the four club `*_at` queries; it is
+/// public (v1.12.8, renamed from a private helper) so a caller can validate a
+/// date before querying. Like the Python, JavaScript and Go wrappers it
+/// rejects a trailing newline, whitespace, single-digit parts and impossible
+/// days.
+///
+/// ```
+/// use iso3166_registry::is_valid_date;
+///
+/// assert!(is_valid_date("2024-02-29"));
+/// assert!(!is_valid_date("2023-02-29"));
+/// assert!(!is_valid_date("2020-01-01\n"));
+/// ```
+pub fn is_valid_date(s: &str) -> bool {
     let b = s.as_bytes();
     if b.len() != 10 || b[4] != b'-' || b[7] != b'-' {
         return false;
@@ -656,7 +671,7 @@ impl CountryRegistry {
         code: &str,
         date: &str,
     ) -> Result<bool, InvalidDate> {
-        if !dq_valid_date(date) {
+        if !is_valid_date(date) {
             return Err(InvalidDate(date.to_string()));
         }
         Ok(self.club_ranges(pick, code).iter().any(|r| {
@@ -875,7 +890,7 @@ impl CountryRegistry {
     /// entry's historical currency. `None` means "cannot answer".
     /// See docs/QUERIES.md, "Query 7".
     pub fn currency_at(&self, code: &str, date: &str) -> Option<Vec<String>> {
-        if !dq_valid_date(date) {
+        if !is_valid_date(date) {
             return None;
         }
         let c = dq_norm(code);
@@ -936,7 +951,7 @@ impl CountryRegistry {
     /// `is_active_on("DD", "1800-01-01")` (before 1974).
     /// See docs/QUERIES.md, "Query 9".
     pub fn is_active_on(&self, code: &str, date: &str) -> Result<Option<bool>, InvalidDate> {
-        if !dq_valid_date(date) {
+        if !is_valid_date(date) {
             return Err(InvalidDate(date.to_string()));
         }
         Ok(self.is_active_on_valid(code, date))
@@ -983,7 +998,7 @@ impl CountryRegistry {
         &self,
         date: &str,
     ) -> Result<std::collections::BTreeMap<String, Option<bool>>, InvalidDate> {
-        if !dq_valid_date(date) {
+        if !is_valid_date(date) {
             return Err(InvalidDate(date.to_string()));
         }
         let mut out = std::collections::BTreeMap::new();
@@ -1252,5 +1267,31 @@ mod tests {
         let io_err = std::io::Error::new(std::io::ErrorKind::NotFound, "gone");
         let err: RegistryError = io_err.into();
         assert!(matches!(err, RegistryError::Io(_)), "{:?}", err);
+    }
+
+    #[test]
+    fn is_valid_date_matches_the_contract() {
+        for ok in ["2024-02-29", "2000-02-29", "0001-01-01", "2023-04-30", "2023-12-31"] {
+            assert!(is_valid_date(ok), "{:?} must be valid", ok);
+        }
+        for bad in [
+            "1900-02-29", "2023-02-29", "2023-04-31", "2023-00-10", "2023-01-00",
+            "2023-13-01", "0000-01-01", "2020-01-01\n", " 2020-01-01", "2020-1-1",
+            "20200101", "2020/01/01", "", "2020-01-0x",
+        ] {
+            assert!(!is_valid_date(bad), "{:?} must be invalid", bad);
+        }
+    }
+
+    #[test]
+    fn is_valid_date_agrees_with_the_queries_that_use_it() {
+        let r = reg();
+        for date in ["2010-02-30", "2020-01-01\n", "2010-13-45"] {
+            assert!(!is_valid_date(date));
+            assert!(r.is_active_on("DE", date).is_err(), "{:?}", date);
+            assert!(r.is_eu_member_at("DE", date).is_err(), "{:?}", date);
+        }
+        assert!(is_valid_date("2010-01-01"));
+        assert!(r.is_active_on("DE", "2010-01-01").is_ok());
     }
 }
