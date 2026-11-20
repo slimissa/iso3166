@@ -2,9 +2,11 @@ package iso3166
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
 )
@@ -157,8 +159,18 @@ func TestSummaryConsistency(t *testing.T) {
 }
 
 func TestLoadFromMissing(t *testing.T) {
-	if _, err := LoadFrom("/nonexistent.json"); err == nil {
+	_, err := LoadFrom("/nonexistent.json")
+	if err == nil {
 		t.Fatal("LoadFrom(/nonexistent.json) did not return an error")
+	}
+	if !strings.Contains(err.Error(), "registry not found") {
+		t.Errorf("error %q does not say \"registry not found\"", err)
+	}
+	if !strings.Contains(err.Error(), "/nonexistent.json") {
+		t.Errorf("error %q does not name the path", err)
+	}
+	if !os.IsNotExist(errors.Unwrap(err)) {
+		t.Errorf("error %q does not wrap the underlying not-exist error", err)
 	}
 }
 
