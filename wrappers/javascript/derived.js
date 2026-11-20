@@ -26,16 +26,45 @@
  * only, so successors("SK") follows Sikkim's replaced_by (IN).
  */
 
+// Object.freeze(new Set(...)) does NOT make a Set immutable: freezing stops
+// property writes, but add(), delete() and clear() act on the Set's internal
+// slots and still work, so a caller could corrupt the snapshot. FrozenSet
+// refuses them. (Set.prototype.add.call(frozen, x) is out of reach of any
+// JavaScript wrapper; this closes the public mutators.)
+class FrozenSet extends Set {
+  constructor(values) {
+    super();
+    for (const v of values) Set.prototype.add.call(this, v);
+    Object.freeze(this);
+  }
+
+  add() {
+    throw new TypeError("cannot modify a frozen Set");
+  }
+
+  delete() {
+    throw new TypeError("cannot modify a frozen Set");
+  }
+
+  clear() {
+    throw new TypeError("cannot modify a frozen Set");
+  }
+}
+
+function frozenSet(values) {
+  return new FrozenSet(values);
+}
+
 // Deprecated since v1.12.0 and no longer consulted: isEu, isEea and
 // isEurozone read the date-scoped membership arrays. KNOWN_EU_MEMBERS is
 // the 27 EU member states at v1.9.3. Both are kept only so existing
 // imports keep working; they are a frozen snapshot and are not updated.
-const KNOWN_EU_MEMBERS = Object.freeze(new Set([
+const KNOWN_EU_MEMBERS = frozenSet([
   "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
   "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK",
   "SI", "ES", "SE",
-]));
-const EEA_NON_EU = Object.freeze(new Set(["IS", "LI", "NO"]));
+]);
+const EEA_NON_EU = frozenSet(["IS", "LI", "NO"]);
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const PHONE_JUNK = new Set([" ", "-", "(", ")", ".", "+"]);

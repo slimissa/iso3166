@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 31 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 479 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 31 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 482 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.7 (schema 1.0.0) |
 | **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
@@ -947,10 +947,10 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 |-------|---------|------:|
 | Root (Python) | `python3 -m pytest tests/ -q` | 190 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 119 |
-| JavaScript | `(cd wrappers/javascript && node --test)` | 94 |
+| JavaScript | `(cd wrappers/javascript && node --test)` | 97 |
 | Rust | `(cd wrappers/rust && cargo test)` | 30 (declarations) |
 | Go | `(cd wrappers/go && go test ./...)` | 46 (declarations) |
-| **Total** | | **479** |
+| **Total** | | **482** |
 
 ### Additional checks
 
@@ -1250,6 +1250,7 @@ iso3166/
       test/
         clubs.test.js                       # Club query tests
         consistency.test.js                 # Shared-fixture test
+        contract.test.js                    # Frozen sets and the argument/date contract
         derived.test.js                     # Derived-query tests
         registry.test.js                    # Registry tests
     python/
