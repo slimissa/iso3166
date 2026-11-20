@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"sync"
 	"testing"
 )
 
@@ -808,5 +809,48 @@ func TestFixturePredecessors(t *testing.T) {
 		if !sliceEq(got, c.Predecessors) {
 			t.Fatalf("%s: predecessors %v, want %v", c.Input, got, c.Predecessors)
 		}
+	}
+}
+
+// TestConcurrentReads: a CountryRegistry is read-only after Load, so many
+// goroutines may query it at once. Run with `go test -race` to make the data
+// races, if any, fail loudly.
+func TestConcurrentReads(t *testing.T) {
+	r := mustLoad(t)
+	const workers = 100
+	var wg sync.WaitGroup
+	errs := make(chan string, workers)
+	for i := 0; i < workers; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			for j := 0; j < 50; j++ {
+				if c := r.Active("US"); c.Alpha3 != "USA" {
+					errs <- "Active(US) wrong"
+					return
+				}
+				if !r.IsEU("DE") || r.IsEU("GB") {
+					errs <- "IsEU wrong"
+					return
+				}
+				if got := r.RegionTree("FR"); !reflect.DeepEqual(got, []string{"Europe", "Western Europe"}) {
+					errs <- "RegionTree(FR) wrong"
+					return
+				}
+				if got := r.BordersTransitively("US", 1); !reflect.DeepEqual(got, []string{"CA", "MX"}) {
+					errs <- "BordersTransitively(US,1) wrong"
+					return
+				}
+				if _, err := r.IsEUMemberAt("GB", "2010-01-01"); err != nil {
+					errs <- "IsEUMemberAt error"
+					return
+				}
+			}
+		}(i)
+	}
+	wg.Wait()
+	close(errs)
+	for e := range errs {
+		t.Error(e)
 	}
 }
