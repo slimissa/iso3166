@@ -1267,7 +1267,12 @@ iso3166/
         iso3166.json                        # CURATED: byte-identical copy of the registry
         registry.py                         # Country and CountryRegistry
       tests/
-        test_cli.py                         # CLI tests
+        cli_support.py                      # run_cli(): the CLI runner shared by the test_cli_*.py files
+        test_cli_clubs.py                   # CLI: is-eu, is-eea, is-eurozone and the club cells
+        test_cli_core.py                    # CLI: entry point, lookup, validate, exit codes
+        test_cli_derived.py                 # CLI: derived-query subcommands
+        test_cli_output.py                  # CLI: --raw, --csv, --tsv, --jsonl, --limit
+        test_cli_temporal.py                # CLI: date-scoped queries and active-on
         test_clubs.py                       # Club query tests
         test_consistency.py                 # Shared-fixture test
         test_derived.py                     # Derived-query tests
