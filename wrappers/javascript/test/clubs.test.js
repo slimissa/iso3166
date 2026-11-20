@@ -1,6 +1,8 @@
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
 const { CountryRegistry, KNOWN_EU_MEMBERS } = require("..");
 
 const reg = new CountryRegistry();
@@ -83,4 +85,39 @@ test("activeOn('1990-01-01'): 275 keys, 170 true, 29 false, 76 null", () => {
   assert.equal(r.BJ, null);
   assert.equal(vals.filter(Boolean).length, 170); // truthiness drops the 76
   assert.throws(() => reg.activeOn("1990-13-01"), TypeError);
+});
+
+test("club ranges are frozen, down to each [from, to] pair", () => {
+  const de = reg._clubs.get("DE");
+  assert.ok(Object.isFrozen(de));
+  for (const field of ["eu_membership", "eea_membership", "eurozone_membership", "customs_union"]) {
+    assert.ok(Object.isFrozen(de[field]), field);
+    for (const range of de[field]) assert.ok(Object.isFrozen(range), field);
+  }
+  assert.throws(() => de.eu_membership.push(["2030-01-01", null]), TypeError);
+  assert.throws(() => {
+    de.eu_membership[0][0] = "1900-01-01";
+  }, TypeError);
+});
+
+test("member counts match the open-ended ranges in the data", () => {
+  const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "iso3166.json"), "utf-8"));
+  const open = (field) =>
+    data.countries.active.filter((e) => (e[field] ?? []).some((r) => r.to === null)).map((e) => e.alpha_2);
+  const now = {
+    eu_membership: (c) => reg.isEu(c),
+    eea_membership: (c) => reg.isEea(c),
+    eurozone_membership: (c) => reg.isEurozone(c),
+  };
+  for (const [field, fn] of Object.entries(now)) {
+    const expected = open(field).sort();
+    const got = data.countries.active.map((e) => e.alpha_2).filter(fn).sort();
+    assert.deepEqual(got, expected, field);
+    assert.ok(expected.length > 0, field);
+  }
+  // The same ranges, read through the date-scoped queries, on a day after the last change.
+  assert.deepEqual(
+    data.countries.active.map((e) => e.alpha_2).filter((c) => reg.isEuMemberAt(c, "2099-12-31")).sort(),
+    open("eu_membership").sort(),
+  );
 });

@@ -47,3 +47,25 @@ test("results are frozen", () => {
   assert.ok(Object.isFrozen(reg.regionTree("FR")));
   assert.throws(() => reg.regionTree("FR").push("X"), TypeError);
 });
+
+test("activeOn returns a frozen object", () => {
+  const out = reg.activeOn("1990-01-01");
+  assert.ok(Object.isFrozen(out));
+  assert.throws(() => {
+    out.DE = false;
+  }, TypeError);
+  assert.equal(out.DE, true);
+});
+
+test("currencyAt on a malformed date returns null, not an error", () => {
+  for (const bad of ["2010-13-45", "2010-02-30", "20100101", "", "2010-01-01\n", null, undefined, 20100101]) {
+    assert.equal(reg.currencyAt("DE", bad), null, String(bad));
+  }
+});
+
+test("bordersTransitively defaults to 2 hops", () => {
+  const dflt = [...reg.bordersTransitively("US")];
+  assert.deepEqual(dflt, [...reg.bordersTransitively("US", 2)]);
+  assert.notDeepEqual(dflt, [...reg.bordersTransitively("US", 1)]);
+  assert.ok(dflt.length > reg.bordersTransitively("US", 1).length);
+});

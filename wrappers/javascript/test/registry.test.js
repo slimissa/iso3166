@@ -178,3 +178,23 @@ test("withAlpha2 lists the active entry first", () => {
     assert.deepEqual(statuses, [false, true], code);
   }
 });
+
+test("byNumeric: a float or a negative number is not a code", () => {
+  const reg = makeReg();
+  for (const bad of [840.5, -840, "-840", "840.5", "84e1", 0, "000", "", null, undefined]) {
+    assert.equal(reg.byNumeric(bad), null, String(bad));
+  }
+  assert.equal(reg.byNumeric(840).alpha_2, "US");
+  assert.equal(reg.byNumeric("840").alpha_2, "US");
+  assert.equal(reg.byNumeric(20).alpha_2, "AD");
+});
+
+test("constructor: a non-string path is a TypeError, an empty one loads the bundled registry", () => {
+  for (const bad of [42, {}, [], true, Symbol("x")]) {
+    assert.throws(() => new CountryRegistry(bad), TypeError, String(String(bad)));
+  }
+  for (const dflt of [undefined, null, ""]) {
+    assert.ok(new CountryRegistry(dflt).all().length > 0);
+  }
+  assert.throws(() => new CountryRegistry("/nonexistent.json"), RegistryError);
+});
