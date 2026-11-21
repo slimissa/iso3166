@@ -1519,62 +1519,80 @@
   ],
   "1.12.9": [
     {
-      "file": ".github/workflows/validate.yml",
-      "contains": "enrich_independent.py --check"
+      "file": "tools/version_axes.json",
+      "contains": "\"bumper\": \"write_package_json\""
     },
     {
-      "file": ".github/workflows/validate.yml",
-      "contains": "enrich_field.py --field subregion --check"
-    },
-    {
-      "file": ".github/workflows/validate.yml",
-      "contains": "enrich_field.py --field intermediate_region --check"
-    },
-    {
-      "file": "docs/AUDIT.md",
-      "absent": "five of its"
+      "file": "tools/check_version_consistency.py",
+      "contains": "def bump("
     },
     {
       "file": "scripts/release.sh",
-      "contains": "gen_iso4217_snapshot.py --check --source \"$CURRENCY_SOURCE\""
+      "contains": "check_version_consistency.py --bump"
     },
     {
       "file": "scripts/release.sh",
-      "contains": "parse_source.py --verify iso3166.json"
+      "contains": "check_version_consistency.py --expect"
     },
     {
       "file": "README.md",
-      "contains": "33 checks run in sequence"
+      "contains": "held by eleven files"
     },
     {
-      "file": "tools/gen_state_doc.py",
-      "contains": "NORTHERN_AMERICA_DEPENDENCIES"
+      "file": "tools/version_axes.json",
+      "contains": "\"name\": \"registry-release-json\""
     },
     {
-      "file": "tools/iso3166_cli.py",
-      "contains": "Twenty-six subcommands"
+      "file": "registry_release.json",
+      "contains": "\"registry\": \"iso3166\""
     },
     {
-      "file": "tools/independent_snapshot.json",
-      "contains": "\"review_by\""
+      "file": "registry_release.schema.json"
     },
     {
-      "file": "tools/archive/build_initial_data.py"
+      "file": "tools/gen_registry_release.py",
+      "contains": "def build("
     },
     {
-      "file": "tools/archive/initial_exceptions.json"
-    },
-    {
-      "file": "tools/parse_source.py",
-      "contains": "tools/archive/initial_exceptions.json"
-    },
-    {
-      "file": "docs/decisions/club-memberships.md",
-      "contains": "no oldid"
+      "file": "scripts/release.sh",
+      "contains": "gen_registry_release.py --check --version"
     },
     {
       "file": "README.md",
-      "contains": "tools/archive/"
+      "contains": "31 checks run in sequence"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "**v1.12.9 amendment.**"
+    },
+    {
+      "file": "docs/PROVENANCE.md",
+      "contains": "fails CI and the release gate"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "seven-layer validator"
+    },
+    {
+      "file": "tests/test_changelog_unreleased.py"
+    },
+    {
+      "file": "registry_release.schema.json",
+      "contains": "released_at"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "--stamp-released-at"
+    },
+    {
+      "file": "README.md",
+      "contains": "`released_at` is the tag date"
+    },
+    {
+      "file": "tests/test_registry_release_released_at.py"
+    },
+    {
+      "file": "tests/test_version_axes.py"
     }
   ]
 }
