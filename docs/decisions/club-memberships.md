@@ -15,9 +15,11 @@ Wikipedia, English edition, read 2026-10-29:
 - Eurozone / Euro area (eurozone). Cross-checked against the Council of the EU page "Timeline - Joining the euro area". That cross-check is a second source, not the source of record.
 - European Union Customs Union (customs union)
 
-Permalink status: the research tool returned page text without revision ids,
-so `source_permalink` is the canonical title URL, not an `oldid` URL. This is a
-known deviation from the introduced snapshot. Pin an `oldid` at the first review.
+Permalink status (deviation): no oldid. The research tool returned page text
+without revision ids, so `source_permalink` is the canonical title URL, not an
+`oldid` URL. `tools/build_club_snapshots.py` records this in the snapshots'
+`permalink_note`. This is a known deviation from the introduced snapshot. Pin
+an `oldid` at the first review.
 
 ## Files
 `tools/{eu_membership,eea_membership,eurozone_membership,customs_union}_snapshot.json`,
