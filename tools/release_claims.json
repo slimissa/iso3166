@@ -1516,5 +1516,65 @@
     {
       "file": "tests/test_version_axes.py"
     }
+  ],
+  "1.12.9": [
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "enrich_independent.py --check"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "enrich_field.py --field subregion --check"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "contains": "enrich_field.py --field intermediate_region --check"
+    },
+    {
+      "file": "docs/AUDIT.md",
+      "absent": "five of its"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gen_iso4217_snapshot.py --check --source \"$CURRENCY_SOURCE\""
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "parse_source.py --verify iso3166.json"
+    },
+    {
+      "file": "README.md",
+      "contains": "33 checks run in sequence"
+    },
+    {
+      "file": "tools/gen_state_doc.py",
+      "contains": "NORTHERN_AMERICA_DEPENDENCIES"
+    },
+    {
+      "file": "tools/iso3166_cli.py",
+      "contains": "Twenty-six subcommands"
+    },
+    {
+      "file": "tools/independent_snapshot.json",
+      "contains": "\"review_by\""
+    },
+    {
+      "file": "tools/archive/build_initial_data.py"
+    },
+    {
+      "file": "tools/archive/initial_exceptions.json"
+    },
+    {
+      "file": "tools/parse_source.py",
+      "contains": "tools/archive/initial_exceptions.json"
+    },
+    {
+      "file": "docs/decisions/club-memberships.md",
+      "contains": "no oldid"
+    },
+    {
+      "file": "README.md",
+      "contains": "tools/archive/"
+    }
   ]
 }
