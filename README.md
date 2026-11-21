@@ -1117,6 +1117,7 @@ iso3166/
     RELEASE_PATTERN.md                      # Release invariants shared across the registry family
     SPEC-phase1.md                          # v1.11.0 Phase 1 spec: the `introduced` snapshot
     SPEC-v1.12.0-phase1.md                  # v1.12.0 Phase 1 spec: the club-membership snapshots
+    SPEC-v1.12.1-readme.md                  # The v1.12.1 README rewrite: audit, and where the prompt disagreed with the tree
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
     v*-verification.md                      # 47 release gate records, v1.0.0 to v1.12.7
@@ -1135,9 +1136,10 @@ iso3166/
       v1.9.3-version-policy.md              # Version strings in PROVENANCE.md and CONTRIBUTING.md
       withdrawn-codes.md                    # ADR: withdrawn codes and successors
   scripts/
-    release.sh                              # The release pipeline (steps 0 to 7, 30-check gate)
+    release.sh                              # The release pipeline (steps 0 to 7, 33-check gate)
   tests/
     cross_language_consistency.json         # Shared fixture for all four wrappers (generated)
+    test_api_misuse.py                      # The malformed-input contract: dated queries raise on a malformed date, per surface
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON
     test_cli.py                             # --raw prints one line for a null or empty-list value, in both CLIs
     test_check_introduced_future.py         # check_introduced.py rejects an introduced date in the future
@@ -1152,6 +1154,7 @@ iso3166/
     test_enrich_field_values.py             # enrich_field.py --only-value compares values with the snapshot
     test_enrich_independent.py              # enrich_independent.py logic that needs no live ISO markup
     test_export_aggregated.py               # Aggregated export tests
+    test_docs_version_sites.py              # The README version sites are checked, and each check fails when its site is broken
     test_export_check_order.py              # The artifact freshness block fails at --check, before regeneration
     test_index_matches_fixture.py           # docs/QUERIES.md worked-examples index equals the fixture's derived_queries
     test_release_force.sh                   # Shell test of release.sh --force resume mode (release gate and CI)
@@ -1165,7 +1168,7 @@ iso3166/
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
     test_release_pattern.py                 # Release-pattern properties
   tools/
-    archive/
+    archive/                                # tools/archive/: one-shot tools kept for the record; neither CI nor the gate runs them
       build_initial_data.py                 # Archival: one-shot importer that produced the first iso3166.json
       initial_exceptions.json               # Archival: hand-maintained overrides for the initial import
     audit_languages.py                      # Classify each entry's languages list
@@ -1236,6 +1239,7 @@ iso3166/
       clubs_test.go                         # Club query tests
       derived_fixture_test.go               # The 129 derived cases of the shared fixture
       derived_test.go                       # Derived-query worked examples
+      unknown_code_test.go                  # Unknown-code contract, Go column
       go.mod                                # Module github.com/slimissa/iso3166-go (no version site)
       iso3166.json                          # CURATED: byte-identical copy of the registry
       registry.go                           # CountryRegistry and the derived queries
@@ -1259,12 +1263,15 @@ iso3166/
         consistency.test.js                 # Shared-fixture test
         contract.test.js                    # Frozen sets and the argument/date contract
         derived.test.js                     # Derived-query tests
+        extra_args.test.js                  # An extra or missing argument throws TypeError
+        unknown_code.test.js                # Unknown-code contract, JavaScript column
         registry.test.js                    # Registry tests
     python/
       README.md                             # Python API
       pyproject.toml                        # Package iso3166-registry (version site)
       iso3166/
         __init__.py                         # Exports; __version__ (version site)
+        _dates.py                           # Date validation shared by derived.py and clubs.py
         cli.py                              # Packaged CLI, `iso3166` console script (26 subcommands)
         clubs.py                            # Dated club queries (4)
         derived.py                          # Derived queries (12)
@@ -1281,6 +1288,7 @@ iso3166/
         test_consistency.py                 # Shared-fixture test
         test_derived.py                     # Derived-query tests
         test_registry.py                    # Registry tests
+        test_unknown_code_contract.py       # Unknown-code contract, Python column
     rust/
       Cargo.lock                            # Lockfile (version site)
       Cargo.toml                            # Crate iso3166-registry (version site)
