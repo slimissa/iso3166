@@ -4,16 +4,34 @@ tools/iso3166_cli.py
 
 Command-line interface to the ISO 3166 country registry.
 
-Eight subcommands:
+Twenty-six subcommands:
 
-    lookup CC              All fields for one country
-    list                   Filter across the registry
-    currency CC            Currencies in circulation in a country
-    country CURRENCY       Countries where a currency circulates
-    region REGION          All countries in a region
-    info                   Registry metadata
-    validate CC...         Exit 0 if all codes exist, 1 otherwise
-    search QUERY           Substring search on names and codes
+    lookup CC                     All fields for one country
+    list                          Filter across the registry
+    currency CC                   Currencies in circulation in a country
+    country CURRENCY              Countries where a currency circulates
+    region REGION                 All countries in a region
+    info                          Registry metadata
+    validate CC...                Exit 0 if all codes exist, 1 otherwise
+    search QUERY                  Substring search on names and codes
+    successors CC                 All descendants of CC via replaced_by
+    predecessors CC               All ancestors of CC via replaced_by
+    is-eu CC                      Current EU member
+    is-eea CC                     Current EEA member
+    is-eurozone CC                Current eurozone member
+    region-tree CC                Region, subregion, intermediate region
+    borders-transitively CC       Codes within N border hops
+    succession-path FROM TO       Shortest replaced_by path
+    calling-code-for NUMBER       Countries whose calling code prefixes NUMBER
+    currency-at CC DATE           Currency at a date
+    region-countries REGION       Active countries in a region
+    introduced CC                 Date ISO 3166-1 added the code
+    is-eu-member-at CC DATE       EU member on a date
+    is-eea-member-at CC DATE      EEA party on a date
+    is-eurozone-member-at CC DATE Eurozone member on a date
+    is-in-customs-union-at CC DATE  In the EU customs union on a date
+    is-active-on CC DATE          Code assigned on a date (tri-state)
+    active-on DATE                Every code's assignment on a date
 
 Five output modes, mutually exclusive:
 

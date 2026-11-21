@@ -755,7 +755,7 @@ A universe built from `if v` is 170 codes, not the 246 the registry can place (1
 
 ## 11. Command-line interface
 
-The command is `iso3166`. Two files implement it: the packaged CLI (`wrappers/python/iso3166/cli.py`, installed as the `iso3166` console script by `pip install -e wrappers/python`) and the repo CLI (`tools/iso3166_cli.py`). `bin/iso3166` runs the installed script when one is on the `PATH`, and otherwise the repo CLI. All commands are read-only and offline. Twenty-five subcommands:
+The command is `iso3166`. Two files implement it: the packaged CLI (`wrappers/python/iso3166/cli.py`, installed as the `iso3166` console script by `pip install -e wrappers/python`) and the repo CLI (`tools/iso3166_cli.py`). `bin/iso3166` runs the installed script when one is on the `PATH`, and otherwise the repo CLI. All commands are read-only and offline. Twenty-six subcommands:
 
 | Subcommand | Purpose |
 |------------|---------|
@@ -1355,7 +1355,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The aggregated table counts withdrawn entries.** Its 277 sums to the total, not to the 252 active entries, and `AI` and `SK` are counted twice.
 - **The club arrays are strings in CSV, TSV, SQL and Parquet,** in the `from:to|from:to` format, not native lists or structs. A consumer who wants ranges parses the string or reads the JSON.
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
-- **The CLI module docstrings are stale:** the repo CLI's says eight subcommands, the packaged one's says twenty-three, and both implement twenty-five.
+- **The packaged CLI's module docstring is stale:** it says twenty-three subcommands; both CLIs implement twenty-six. The repo CLI's docstring lists all twenty-six (corrected in v1.12.9).
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging. The Rust and Go test counts in this README are static counts of declarations, not test runs.
 - **`independent_snapshot.json` has no `review_by`,** so the snapshot freshness check reports `review_by unset` as a warning. (`check_registry_freshness.py` itself runs in CI and in the gate since v1.12.6; see the note under the job table in Section 14.)
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
