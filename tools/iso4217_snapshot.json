@@ -171,13 +171,13 @@
   "meta": {
     "count_active": 166,
     "count_withdrawn": 135,
-    "iso4217_updated": "2026-10-16",
-    "iso4217_version": "1.8.0",
+    "iso4217_updated": "2026-11-21",
+    "iso4217_version": "1.9.5",
     "refresh_cadence": "quarterly",
     "review_by": "2027-10-25",
     "source": "slimissa/iso4217",
     "source_repo": "slimissa/iso4217",
-    "source_version": "1.8.0"
+    "source_version": "1.9.5"
   },
   "withdrawn": [
     "ADF",

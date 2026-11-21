@@ -132,11 +132,11 @@
   "vendors": [
     {
       "name": "iso4217",
-      "version": "1.8.0",
+      "version": "1.9.5",
       "review_by": "2027-10-25",
       "source": "slimissa/iso4217",
       "path": "tools/iso4217_snapshot.json",
-      "sha256": "1edb1b48b8dcf4f1e5aec1b803942b5382999f7957e48ca64eae1658b2cc5ae8"
+      "sha256": "2dff248c59513cc4dae417c6e1f02a732796dda6e99629e2f689c23a819883ca"
     }
   ]
 }
