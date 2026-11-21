@@ -383,6 +383,9 @@ jobs:
       - name: intermediate_region
         run: python3 tools/enrich_field.py --field intermediate_region --check
 
+      - name: independent
+        run: python3 tools/enrich_independent.py --check
+
       - name: Club memberships match the snapshots
         run: python3 tools/enrich_club_memberships.py --check
 

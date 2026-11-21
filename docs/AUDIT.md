@@ -55,14 +55,14 @@ Tools that modify the registry.
 | `enrich_field.py` | yes | yes | yes |
 | `enrich_official_name.py` | yes | yes | yes |
 | `enrich_withdrawn.py` | yes | yes | yes |
-| `enrich_independent.py` | yes | no | no |
+| `enrich_independent.py` | yes | yes | no |
 
 ## Notes
 
 Rows with a `no` are the gaps. Four are visible in the tables:
 `gen_iso4217_snapshot.py` runs in the gate only; `enrich_independent.py`
-is checked neither in CI nor in the gate; `check_release_claims.py` runs
-in the gate only; `parse_source.py --verify` runs in CI only.
+runs in CI only (`check-fields`, since v1.12.9); `check_release_claims.py`
+runs in the gate only; `parse_source.py --verify` runs in CI only.
 
 - **`gen_iso4217_snapshot.py`.** It has no `--check` mode without
   `--source`: it compares the snapshot with a registry file from
