@@ -1358,7 +1358,6 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
 - **The packaged CLI's module docstring is stale:** it says twenty-three subcommands; both CLIs implement twenty-six. The repo CLI's docstring lists all twenty-six (corrected in v1.12.9).
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging. The Rust and Go test counts in this README are static counts of declarations, not test runs.
-- **`independent_snapshot.json` has no `review_by`,** so the snapshot freshness check reports `review_by unset` as a warning. (`check_registry_freshness.py` itself runs in CI and in the gate since v1.12.6; see the note under the job table in Section 14.)
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
 - **The sanctions release (v1.13.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
 - **The geography release (v1.14.0) is deferred.** There is no `regions.json` and no `timezones[]`.
