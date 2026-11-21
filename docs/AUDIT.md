@@ -66,10 +66,10 @@ gate only; `parse_source.py --verify` runs in CI only.
 
 - **`parse_source.py`.** `release.sh` does not call it at all. CI runs
   both `--verify` and `--audit`.
-- **`enrich_field.py`.** CI and the gate run `--check` for five of its
-  seven fields: `borders`, `calling_codes`, `currency_codes`,
-  `languages`, `tlds`. `subregion` and `intermediate_region` have no
-  `--check` invocation in either place.
+- **`enrich_field.py`.** CI (`check-fields`) and the gate run `--check`
+  for all seven of its fields: `borders`, `calling_codes`,
+  `currency_codes`, `intermediate_region`, `languages`, `subregion`,
+  `tlds`.
 - **`check_cross_language.sh`.** CI passes six codes (`US GB JP TW XK
   UK`); the gate passes three (`US GB JP`).
 - **`validate.py`.** CI adds `--verbose`; the gate does not.
