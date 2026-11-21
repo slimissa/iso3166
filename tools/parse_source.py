@@ -71,7 +71,7 @@ Audit the frozen sets against the sources:
 
     python3 tools/parse_source.py --audit \\
         --m49 /tmp/iso3166-sources/un_m49.csv \\
-        --exceptions tools/initial_exceptions.json
+        --exceptions tools/archive/initial_exceptions.json
 
 Verify a registry file against the frozen sets:
 
@@ -590,9 +590,9 @@ def build_parser() -> argparse.ArgumentParser:
         "--exceptions",
         metavar="PATH",
         type=Path,
-        default=PROJECT_ROOT / "tools/initial_exceptions.json",
+        default=PROJECT_ROOT / "tools/archive/initial_exceptions.json",
         help="Path to the exceptions file "
-             "(default: tools/initial_exceptions.json).",
+             "(default: tools/archive/initial_exceptions.json).",
     )
     p.add_argument(
         "--quiet",

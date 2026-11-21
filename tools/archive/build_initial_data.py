@@ -46,16 +46,16 @@ Exit codes:
     3  Schema validation failure (output written but does not conform).
 
 Usage:
-    python3 tools/build_initial_data.py \\
+    python3 tools/archive/build_initial_data.py \\
         --un-m49 /tmp/un_m49.csv \\
-        --exceptions tools/initial_exceptions.json \\
+        --exceptions tools/archive/initial_exceptions.json \\
         --out iso3166.json \\
         --schema schema.json
 
     # Preview without writing:
-    python3 tools/build_initial_data.py \\
+    python3 tools/archive/build_initial_data.py \\
         --un-m49 /tmp/un_m49.csv \\
-        --exceptions tools/initial_exceptions.json \\
+        --exceptions tools/archive/initial_exceptions.json \\
         --dry-run
 """
 from __future__ import annotations
@@ -71,7 +71,7 @@ from pathlib import Path
 from typing import Any
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 if not (PROJECT_ROOT / "iso3166.json").is_file():
     print(
         f"error: {PROJECT_ROOT / 'iso3166.json'} not found; "
@@ -711,10 +711,10 @@ def build_parser() -> argparse.ArgumentParser:
         help="Path to the UN M49 overview CSV.",
     )
     parser.add_argument(
-        "--exceptions", type=Path, default=PROJECT_ROOT / "tools/initial_exceptions.json",
+        "--exceptions", type=Path, default=PROJECT_ROOT / "tools/archive/initial_exceptions.json",
         metavar="PATH",
         help="Path to the hand-maintained exceptions file "
-             "(default: tools/initial_exceptions.json).",
+             "(default: tools/archive/initial_exceptions.json).",
     )
     parser.add_argument(
         "--out", type=Path, default=PROJECT_ROOT / "iso3166.json", metavar="PATH",

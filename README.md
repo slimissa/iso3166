@@ -1165,9 +1165,11 @@ iso3166/
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
     test_release_pattern.py                 # Release-pattern properties
   tools/
+    archive/
+      build_initial_data.py                 # Archival: one-shot importer that produced the first iso3166.json
+      initial_exceptions.json               # Archival: hand-maintained overrides for the initial import
     audit_languages.py                      # Classify each entry's languages list
     build_club_snapshots.py                 # Generate the four club snapshots and their meta files
-    build_initial_data.py                   # Archival: one-shot importer that produced the first iso3166.json
     build_introduced_snapshot.py            # Generate introduced_snapshot.json from wikipedia_dates.json
     gen_registry_release.py                 # Writes registry_release.json; --check --version X.Y.Z compares it byte for byte
     check_cli_agreement.sh                  # The repo CLI and the packaged CLI print the same bytes for --raw
@@ -1210,7 +1212,6 @@ iso3166/
     gen_withdrawn_doc.py                    # Generate docs/WITHDRAWN.md (--check)
     iana_tld_snapshot.json                  # Snapshot: IANA ccTLDs (248)
     independent_snapshot.json               # Snapshot: ISO OBP `independent` extract
-    initial_exceptions.json                 # Archival: hand-maintained overrides for the initial import
     introduced_snapshot.json                # Snapshot: `introduced` dates and null_reasons
     introduced_snapshot.meta.json           # Vendoring metadata and review_by
     iso3166_cli.py                          # The repo CLI (26 subcommands)

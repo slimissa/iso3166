@@ -16,7 +16,7 @@ A layer may only read from the layer immediately below it. The code structurally
 
 The single source of truth. Its shape is fixed by `schema.json`. Changes to RAW are reviewed by a human and require a first-party source citation in the commit message.
 
-`iso3166.json` is committed. It is not generated at build time. The one-shot importer in `tools/build_initial_data.py` produced it once and is archival; after v1.0.0, the JSON is edited directly.
+`iso3166.json` is committed. It is not generated at build time. The one-shot importer in `tools/archive/build_initial_data.py` produced it once and is archival; after v1.0.0, the JSON is edited directly.
 
 ## CURATED — the derived artifacts
 

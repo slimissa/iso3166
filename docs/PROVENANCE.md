@@ -128,7 +128,7 @@ They are populated in later releases, one field at a time.
 
 - **The `independent` flag is only populated for a small set of countries.**
   The full population is a Phase 1.5 enrichment. Until then, `independent`
-  defaults to `false` for entries not in `tools/initial_exceptions.json`.
+  defaults to `false` for entries not in `tools/archive/initial_exceptions.json`.
   This is not a data error; it is an incomplete population, and consumers
   should not rely on the flag being correct until v1.1.0.
 - **The withdrawn list is a representative sample, not the full ISO 3166-3
@@ -146,7 +146,7 @@ Any discrepancy between sources is recorded here, with the resolution.
 
 | Date | Discrepancy | Resolution |
 |------|-------------|------------|
-| 2026-09-22 | UN M49 omits `TW` (Taiwan). ISO 3166-1 assigns it. | `TW` supplied manually via `tools/initial_exceptions.json`, sourced from the ISO 3166-1 official list, with the omission noted in the entry's `note` field. |
+| 2026-09-22 | UN M49 omits `TW` (Taiwan). ISO 3166-1 assigns it. | `TW` supplied manually via `tools/archive/initial_exceptions.json`, sourced from the ISO 3166-1 official list, with the omission noted in the entry's `note` field. |
 
 
 ## Snapshot policy

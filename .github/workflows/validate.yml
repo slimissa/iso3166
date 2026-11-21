@@ -66,9 +66,12 @@ jobs:
 
       - name: Ground-truth audit
         run: |
+          # The exceptions file must exist: a moved file would otherwise be
+          # swallowed by the || below and the audit would skip silently.
+          test -f tools/archive/initial_exceptions.json
           python3 tools/parse_source.py --audit \
             --m49 /dev/null \
-            --exceptions tools/initial_exceptions.json 2>/dev/null || \
+            --exceptions tools/archive/initial_exceptions.json 2>/dev/null || \
           echo "(audit skipped: M49 CSV not available in CI; --verify covers the same ground)"
 
       - name: Ground-truth verify against frozen sets

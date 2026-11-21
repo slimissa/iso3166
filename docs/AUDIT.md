@@ -97,4 +97,6 @@ Tools that are not in any category above:
   neither CI nor the gate.
 - `build_initial_data.py` and `migrate_notes_to_per_field.py` are
   one-shot tools (the first-cut import and the v1.7.2 citation
-  migration). They run in neither.
+  migration). They run in neither. `build_initial_data.py` and its
+  input `initial_exceptions.json` live in `tools/archive/` since v1.12.9;
+  `parse_source.py --audit` reads the exceptions file from there.
