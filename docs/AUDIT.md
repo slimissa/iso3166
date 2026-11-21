@@ -44,7 +44,7 @@ Tools that verify data.
 | `check_introduced_meta.py` | yes | yes |
 | `check_release_claims.py` | no | yes |
 | `check_cross_language.sh` | yes | yes |
-| `parse_source.py --verify` | yes | no |
+| `parse_source.py --verify` | yes | yes |
 
 ## Category C — Enrichment
 
@@ -59,10 +59,11 @@ Tools that modify the registry.
 
 ## Notes
 
-Rows with a `no` are the gaps. Four are visible in the tables:
-`gen_iso4217_snapshot.py` runs in the gate only; `enrich_independent.py`
-runs in CI only (`check-fields`, since v1.12.9); `check_release_claims.py`
-runs in the gate only; `parse_source.py --verify` runs in CI only.
+Rows with a `no` are the gaps. After v1.12.9 four rows remain:
+`check_consumers_current.py` (advisory, network, deliberately outside
+both); `gen_iso4217_snapshot.py` (gate only; it needs a source file);
+`enrich_independent.py` (CI only); `check_release_claims.py` (gate
+only).
 
 - **`gen_iso4217_snapshot.py`.** It has no `--check` mode without
   `--source`: it compares the snapshot with a registry file from
@@ -71,8 +72,9 @@ runs in the gate only; `parse_source.py --verify` runs in CI only.
   to start without it. CI has no such file, so CI runs
   `check_iso4217_snapshot.py` (well-formedness) instead.
 
-- **`parse_source.py`.** `release.sh` does not call it at all. CI runs
-  both `--verify` and `--audit`.
+- **`parse_source.py`.** The gate and CI run `--verify` against
+  `iso3166.json` (it checks the registry's code sets against the frozen
+  sets exactly). CI also runs `--audit`; `--audit` is not in the gate.
 - **`enrich_field.py`.** CI (`check-fields`) and the gate run `--check`
   for all seven of its fields: `borders`, `calling_codes`,
   `currency_codes`, `intermediate_region`, `languages`, `subregion`,

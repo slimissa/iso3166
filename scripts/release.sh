@@ -451,6 +451,7 @@ if [ "$DRY_RUN" = "0" ]; then
         gate python3 tools/check_iso4217_snapshot.py
         gate python3 tools/gen_iso4217_snapshot.py --check --source "$CURRENCY_SOURCE"
         gate python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema
+        gate python3 tools/parse_source.py --verify iso3166.json
         gate python3 tools/check_introduced.py
         gate python3 tools/check_introduced_meta.py
         gate python3 tools/check_state_doc.py --strict
