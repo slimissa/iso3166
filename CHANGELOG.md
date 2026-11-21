@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.9] — 2026-11-21
+
+### Fixed
+- Wiring: CI and the release gate now run all field enrichment checks, independent enrichment checks, and ISO 4217 snapshot checks.
+- Wiring: `parse_source.py --verify` added to the release gate.
+- Wiring: `build_initial_data.py` and `initial_exceptions.json` moved to `tools/archive/`.
+- Docs: `iso3166_cli.py` docstring corrected to 26 subcommands.
+- Docs: `club-memberships.md` explicitly notes the "no oldid" deviation.
+- Docs: README §17 tree updated with the eight missing tracked files.
+
+### Changed
+- `independent_snapshot.json` now has a `review_by` date (2027-10-28).
+- The release gate count increased from 31 to 33.
+
 ## [1.12.8] — 2026-11-20
 
 ### Fixed
