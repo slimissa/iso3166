@@ -50,5 +50,5 @@ A list field counts as populated when it is non-empty; any other field when it i
 1. `independent` has no ISO OBP extract for UK (`tools/independent_snapshot.json`), so that value has no OBP source.
 2. Withdrawn entries carry `withdrawal_date` only. There is no `code_lifetime` field and no assignment date is recorded.
 3. `subregion` is null for AQ, EU, TW, UK, XK. AQ and TW have no UN M49 subregion; the others are not officially-assigned.
-4. The `--strict-independent` rule blocks Northern America regressions; other regions are not yet enforced.
+4. The `--strict-independent` rule blocks Northern America regressions (every entry there except BM, GL, PM must have `independent` true); other regions are not yet enforced.
 5. `tools/check_registry_freshness.py` runs in the release gate and CI; entries older than 365 days fail the check.

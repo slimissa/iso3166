@@ -31,6 +31,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from validate import NORTHERN_AMERICA_DEPENDENCIES  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "STATE.md"
 
@@ -183,7 +186,9 @@ def render(root: Path, version: str, date: str) -> str:
              "`code_lifetime` field and no assignment date is recorded.")
     L.append(f"3. `subregion` is null for {', '.join(null_sub)}. AQ and TW have no UN M49 "
              "subregion; the others are not officially-assigned.")
-    L.append("4. The `--strict-independent` rule blocks Northern America regressions; "
+    na_deps = ", ".join(sorted(NORTHERN_AMERICA_DEPENDENCIES))
+    L.append("4. The `--strict-independent` rule blocks Northern America regressions "
+             f"(every entry there except {na_deps} must have `independent` true); "
              "other regions are not yet enforced.")
     wf = (root / ".github" / "workflows" / "validate.yml").read_text(encoding="utf-8")
     rs = (root / "scripts" / "release.sh").read_text(encoding="utf-8")
