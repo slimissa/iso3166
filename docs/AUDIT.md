@@ -27,7 +27,7 @@ Tools that write committed artifacts.
 | `gen_withdrawn_doc.py` | yes | yes | yes |
 | `build_introduced_snapshot.py` | yes | yes | yes |
 | `build_club_snapshots.py` | yes | yes | yes |
-| `gen_iso4217_snapshot.py` | yes | no | no |
+| `gen_iso4217_snapshot.py` | yes | no (needs the source file) | yes (`--check --source "$CURRENCY_SOURCE"`) |
 
 ## Category B — Validators
 
@@ -60,9 +60,16 @@ Tools that modify the registry.
 ## Notes
 
 Rows with a `no` are the gaps. Four are visible in the tables:
-`gen_iso4217_snapshot.py` and `enrich_independent.py` are checked
-neither in CI nor in the gate; `check_release_claims.py` runs in the
-gate only; `parse_source.py --verify` runs in CI only.
+`gen_iso4217_snapshot.py` runs in the gate only; `enrich_independent.py`
+is checked neither in CI nor in the gate; `check_release_claims.py` runs
+in the gate only; `parse_source.py --verify` runs in CI only.
+
+- **`gen_iso4217_snapshot.py`.** It has no `--check` mode without
+  `--source`: it compares the snapshot with a registry file from
+  `slimissa/iso4217`. The gate reads that file from `$CURRENCY_SOURCE`
+  (default `iso4217.json`, a gitignored local copy) and step 0 refuses
+  to start without it. CI has no such file, so CI runs
+  `check_iso4217_snapshot.py` (well-formedness) instead.
 
 - **`parse_source.py`.** `release.sh` does not call it at all. CI runs
   both `--verify` and `--audit`.

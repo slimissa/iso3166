@@ -65,6 +65,12 @@ chmod +x "$TMP/bin/gh"
 printf '#!/usr/bin/env bash\nexit 0\n' > "$TMP/bin/cargo"
 chmod +x "$TMP/bin/cargo"
 
+# Step 0 refuses a release when the ISO 4217 source file is missing (the gate
+# runs gen_iso4217_snapshot.py --check --source; the tool is a stub here). The
+# file lives outside the throwaway repositories, so their trees stay clean.
+printf '{}\n' > "$TMP/iso4217.json"
+export CURRENCY_SOURCE="$TMP/iso4217.json"
+
 export PATH="$TMP/bin:$PATH"
 export GIT_AUTHOR_NAME=t GIT_AUTHOR_EMAIL=t@t GIT_COMMITTER_NAME=t GIT_COMMITTER_EMAIL=t@t
 

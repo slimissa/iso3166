@@ -74,6 +74,11 @@ cd "$REPO_ROOT"
 POLLED_WORKFLOWS=(
     "validate.yml"
 )
+# tools/gen_iso4217_snapshot.py --check compares tools/iso4217_snapshot.json
+# with a registry file from slimissa/iso4217 and has no mode without one, so
+# the gate needs the file. The default is the gitignored local copy at the
+# repository root; set CURRENCY_SOURCE=PATH to use another.
+CURRENCY_SOURCE="${CURRENCY_SOURCE:-iso4217.json}"
 # BEGIN run-temp
 # Every run gets its own temporary directory. A fixed path let a nested
 # release.sh (tests/test_release_force.sh runs one inside the gate) truncate
@@ -314,6 +319,8 @@ fi
 
 check_no_orphan_variables
 check_workflows_covered
+[ -f "$CURRENCY_SOURCE" ] \
+    || die "the gate needs an ISO 4217 registry file for tools/gen_iso4217_snapshot.py --check, and '$CURRENCY_SOURCE' does not exist; set CURRENCY_SOURCE=PATH"
 if [ "$RESUME_MODE" = "1" ]; then
     echo "  artifact freshness: checked in step 2 (resume mode)"
 elif [ "$DRY_RUN" = "1" ]; then
@@ -442,6 +449,7 @@ if [ "$DRY_RUN" = "0" ]; then
         gate python3 tools/check_snapshot_freshness.py
         gate python3 tools/check_registry_freshness.py
         gate python3 tools/check_iso4217_snapshot.py
+        gate python3 tools/gen_iso4217_snapshot.py --check --source "$CURRENCY_SOURCE"
         gate python3 tools/validate.py iso3166.json --strict-count --strict-independent --require-schema
         gate python3 tools/check_introduced.py
         gate python3 tools/check_introduced_meta.py
