@@ -91,11 +91,4 @@ this release said ISO 4217). **No issue was filed and none is numbered
 here:** an issue number cannot be made up. Issue: not filed. When it is
 filed, record its number on this line.
 
-Draft text for the issue:
-
-> **`GS` currency: FKP or GBP?** ISO 4217's country-currency allow-list
-> (`docs/COUNTRY_CURRENCY_ALLOWLIST.md`, ADR 0010 row GS) lists the `GS`
-> pair as `fix-in-3166`: this registry says `FKP`, ISO 4217's registry says
-> `GBP`. Secondary mirrors show "No universal currency" for `GS`. Decide
-> `GBP`, `FKP` or `null`, record the source, and tell ISO 4217 so it can
-> update its allow-list on its next re-vendor.
+Draft text for the issue: [`gs-issue-draft.md`](./gs-issue-draft.md).

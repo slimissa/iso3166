@@ -1126,6 +1126,7 @@ iso3166/
     decisions/
       club-memberships.md                   # ADR: club membership arrays, sources, null policy
       cross-registry-edges.md               # ADR: the state of each edge to a sibling registry, 2026-11-04
+      gs-issue-draft.md                     # Draft issue text for the `GS` currency request; not filed
       input-contract.md                     # ADR: the input contract of the four wrappers (v1.8.0)
       introduced-field.md                   # ADR: the `introduced` field and its quarantine rules
       languages-audit-2026-09.md            # Audit of the `languages` field, 2026-09
@@ -1319,7 +1320,7 @@ iso3166/
 | [`docs/AUDIT.md`](./docs/AUDIT.md) | Which tools exist, and does each run in CI and in the release gate? |
 | [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md) | What invariants does every release refuse on? |
 | [`docs/README-AUDIT-NOTES.md`](./docs/README-AUDIT-NOTES.md) | What failure is behind each release rule? |
-| [`docs/decisions/`](./docs/decisions) | Why was each design choice made? Ten decision documents, from [`v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md) to [`club-memberships.md`](./docs/decisions/club-memberships.md). |
+| [`docs/decisions/`](./docs/decisions) | Why was each design choice made? Eleven decision records and one unfiled issue draft (`gs-issue-draft.md`), from [`v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md) to [`club-memberships.md`](./docs/decisions/club-memberships.md). |
 | `docs/SPEC-phase1.md`, `docs/SPEC-v1.12.0-phase1.md` | What did the Phase 1 research of the `introduced` and club-membership snapshots find? |
 | `docs/v<version>-verification.md` | What did the gate print when this version shipped? |
 | [`CHANGELOG.md`](./CHANGELOG.md) | What changed in each release? |
