@@ -26,6 +26,18 @@ rule from `docs/decisions/languages-borders-sources.md`.
 
 ## Corrections
 
-(Record the entries that were corrected, if any. If none, write
-"The Factbook's lists were complete for every entry where they
-existed. No second source was needed.")
+Four entries were corrected: `MT`, `IE`, `CY` and `PR`. For each, the
+Factbook listed only the official language, and v1.4.0 added the other
+language (CHANGELOG, `[1.4.0]`). The registry holds:
+
+| Entry | `languages` |
+|-------|-------------|
+| `CY` | `ell`, `tur` |
+| `IE` | `eng`, `gle` |
+| `MT` | `eng`, `mlt` |
+| `PR` | `eng`, `spa` |
+
+The CHANGELOG does not name the source of the added languages, and the
+`note` of each of the four entries cites the Factbook page for
+`languages`, not UIS. No correction is recorded as coming from UIS, so the
+second-source rule above has no recorded use.
