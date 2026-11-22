@@ -396,6 +396,8 @@ Every active entry carries twenty-four fields; every withdrawn entry carries twe
 | `last_verified` | date | 0 | | Last date a human or tool verified the entry |
 | `note` | string | 0 | | One `<field> source:` line per populated field |
 
+The 76 nulls of `introduced` (27 quarantined, 46 source-silent, 3 not officially assigned) are the counts in `tools/introduced_snapshot.json` (`meta.counts`); [Section 7](#7-the-temporal-identity-layer) says what each class means. All 25 withdrawn entries are null too, which this table does not count.
+
 ### Coverage
 
 | Group | Count | Notes |
