@@ -638,6 +638,13 @@ iso3166 currency-at DE 2000-01-01
 # exit 0 list, 4 unknown (None), 1 code not found, 2 malformed DATE
 ```
 
+**Malformed date.** `currency_at` is the exception to the malformed-input
+rule in "Dates" above: the library does not raise. Python returns `None`,
+JavaScript `null`, Rust `None` and Go `nil, false`, the same as for an
+unknown code or an unknown answer, so a library caller cannot tell a typo
+in the date from "no answer". The CLI does exit 2 (`error: malformed date`).
+Check the date's form before the call where that matters.
+
 **Exactness.** `currency_at` is exact for active entries with `introduced` set
 and exact for withdrawn entries with `withdrawal_date` set, in one respect:
 *when the code exists*. Before `introduced` or after `withdrawal_date` the
