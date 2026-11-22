@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.10] — 2026-11-22
+
+### Fixed
+- Decision records: quantitative amendments (`v1.9.2-amendments.md` now states 11 version sites, 24 active fields, 20 withdrawn fields).
+- Decision records: `Status: Accepted` added to `v1.9.3-version-policy.md`.
+- Decision records: `languages-audit-2026-09.md` placeholder filled (MT, IE, CY, PR).
+- Decision records: `v1.5.0-scope.md` deferral closed.
+- Decision records: `PROVENANCE.md` corrected to reference the languages-borders-sources ADR status.
+- Decision records: `gs-issue-draft.md` extracted from `cross-registry-edges.md`.
+- Docs: `currency_at` malformed-date exception documented in `QUERIES.md`.
+- README: §11 and §15 refinements (gate line 2, CI poll numbers, introduced null footnote, v1.15.0 scope, absent queries).
+- README: "Ten decision documents" corrected to match the actual count.
+
 ## [1.12.9] — 2026-11-21
 
 ### Fixed
