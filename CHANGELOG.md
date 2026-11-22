@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.11] — 2026-11-22
+
+### Added
+- `docs/introduced-reconnaissance.md`: 21 documented gaps for the `[likely]` quarantined codes.
+- `docs/sanctions-reconnaissance.md`: the source landscape and why v1.13.0 stopped.
+- `docs/SCOPE.md`: the "What we did not build" page with reopening triggers.
+- `Makefile`: `package`, `build-wheel`, `test`, and `registry-release` targets.
+
+### Fixed
+- README §10: storage paragraph quantifying the join-dimension argument.
+- README §17: tree now lists all tracked files, including the new docs and Makefile.
+- README §18: documentation index updated with the new reconnaissance docs and SCOPE.md.
+
 ## [1.12.10] — 2026-11-22
 
 ### Fixed

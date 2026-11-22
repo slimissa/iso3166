@@ -1131,6 +1131,10 @@ iso3166/
     LAYERS.md                               # RAW / CURATED / AGGREGATED model
     PROVENANCE.md                           # Per-field source, access date and refresh cadence
     QUERIES-DECISIONS.md                    # Why each derived query is shaped as it is; deferred queries
+│   ├── SCOPE.md
+│   ├── introduced-reconnaissance.md
+│   ├── sanctions-reconnaissance.md
+│   ├── gs-issue-draft.md
     QUERIES.md                              # Signature, semantics and worked examples of every derived query
     README-AUDIT-NOTES.md                   # Append-only receipts: the failure behind each release rule
     RELEASE_PATTERN.md                      # Release invariants shared across the registry family
@@ -1334,6 +1338,10 @@ iso3166/
 | [`docs/ENRICHMENT.md`](./docs/ENRICHMENT.md) | How are the enriched fields populated, and where does the naive rule break? |
 | [`docs/QUERIES.md`](./docs/QUERIES.md) | What are the signature, semantics and edge cases of each derived query? |
 | [`docs/QUERIES-DECISIONS.md`](./docs/QUERIES-DECISIONS.md) | Why is each query shaped as it is, and which queries are deferred? |
+│   ├── SCOPE.md
+│   ├── introduced-reconnaissance.md
+│   ├── sanctions-reconnaissance.md
+│   ├── gs-issue-draft.md
 | [`docs/STATE.md`](./docs/STATE.md) | What is the current state of the registry, with every number verified? |
 | [`docs/WITHDRAWN.md`](./docs/WITHDRAWN.md) | Which codes are withdrawn, when, and replaced by what? |
 | [`docs/AUDIT.md`](./docs/AUDIT.md) | Which tools exist, and does each run in CI and in the release gate? |
@@ -1473,9 +1481,21 @@ Nothing is scheduled. Each item below starts when its trigger fires.
 | Deferred item | Trigger to start | Where decided |
 |---------------|------------------|---------------|
 | **v1.13.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
+│   ├── SCOPE.md
+│   ├── introduced-reconnaissance.md
+│   ├── sanctions-reconnaissance.md
+│   ├── gs-issue-draft.md
 | **v1.14.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
+│   ├── SCOPE.md
+│   ├── introduced-reconnaissance.md
+│   ├── sanctions-reconnaissance.md
+│   ├── gs-issue-draft.md
 | **v1.15.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
 | **v1.16.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
+│   ├── SCOPE.md
+│   ├── introduced-reconnaissance.md
+│   ├── sanctions-reconnaissance.md
+│   ├── gs-issue-draft.md
 | **v2.0.0:** a breaking schema change | A consumer needs one | This section |
 | **`source_hash`** | A stable raw source appears; the current sources are not stable files | Previous README |
 
