@@ -586,7 +586,7 @@ Reference: ISO 3166 v1.9.1. `check_registry_freshness.py` shipped in
 v1.9.0 but was wired into neither CI nor the gate; v1.9.1 wires it into the
 gate only.
 
-**v1.12.9 amendment.** v1.12.6 moved this check to CI because the gate is
+**v1.12.10 amendment.** v1.12.6 moved this check to CI because the gate is
 too infrequent to be the only check. The rule's reasoning (CI red on day
 366 with no commit behind it) is preserved: the red CI is the forcing
 function, not a bug.
