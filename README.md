@@ -1053,7 +1053,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 **`--force`** resumes from a post-commit state: when `VERSION` already equals the target because a previous run committed the release but did not reach the tag. It skips bump, commit and push, checks that `HEAD` **is** the `chore: release v<version>` commit (a commit on top of it is refused, because the tag lands on `HEAD`) and is on `origin/main`, **re-runs the gate and the CI check**, and refuses if regeneration left uncommitted files, then tags, releases and writes the report. `--force` and `--dry-run` are mutually exclusive, and `tests/test_release_force.sh` exercises the mode; it runs in the release gate and in the `check-force-test` CI job. `docs/README-AUDIT-NOTES.md` records the failures behind the rules: never reset `VERSION` to re-run the script, never interrupt the CI wait.
 
-Forty-three verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.9-verification.md`](./docs/v1.12.9-verification.md), from v1.12.2 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+Fifty verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.10-verification.md`](./docs/v1.12.9-verification.md), from v1.12.2 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
 
 ---
 
@@ -1091,7 +1091,7 @@ The schema has its own version (`schema.json`, currently 1.0.0, shown in the sch
 
 ## 17. Project structure
 
-Every tracked file is named below. The 49 verification reports are collapsed into one line.
+Every tracked file is named below. The 50 verification reports are collapsed into one line.
 
 ```text
 iso3166/
@@ -1144,7 +1144,7 @@ iso3166/
     SPEC-v1.12.1-readme.md                  # The v1.12.1 README rewrite: audit, and where the prompt disagreed with the tree
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
-    v*-verification.md                      # 49 release gate records, v1.0.0 to v1.12.9
+    v*-verification.md                      # 50 release gate records, v1.0.0 to v1.12.9
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     v1.12.3-verification-errata.md          # Correction to the v1.12.3 report (11 of about 38 commands recorded)
     decisions/
