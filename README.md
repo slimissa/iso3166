@@ -783,6 +783,8 @@ The command is `iso3166`. Two files implement it: the packaged CLI (`wrappers/py
 | `is-active-on CODE DATE` | Tri-state: `true`, `false`, `unknown` |
 | `active-on DATE` | `is-active-on` for every code: one `CODE<TAB>true\|false\|unknown` line each (275); `--json` prints an object |
 
+**Queries that do not exist.** There is no `root` and no `siblings` query, in the CLI or in any wrapper. There is no query named `descendants` either: `successors CODE` is the descendants query (the transitive closure of `replaced_by`), and `predecessors CODE` is its reverse. The repository records no decision about `root` or `siblings`, so no reason for their absence is given here; they are not implemented.
+
 **Global options:** `--registry PATH`, `--color {never,auto,always}`. **Output modes**, mutually exclusive: `--json`, `--jsonl`, `--csv`, `--tsv`, `--raw [FIELD]`.
 
 **Exit codes:**
