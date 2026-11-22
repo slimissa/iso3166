@@ -1,12 +1,12 @@
 {
   "registry": "iso3166",
-  "version": "1.12.10",
+  "version": "1.12.11",
   "format_version": "1.0.0",
   "schema_version": "1.0.0",
   "released": "2026-11-22",
   "released_at": "2026-11-22",
   "commit": null,
-  "tag": "v1.12.10",
+  "tag": "v1.12.11",
   "tag_object": null,
   "distribution": "source-only",
   "source": {
@@ -19,7 +19,7 @@
       "path": "iso3166.json",
       "layer": "curated",
       "bytes": 409358,
-      "sha256": "f3aba31acb63c1218faea76491677d14c70232dd16f4d368e16f659887b732d6"
+      "sha256": "8ed00ce504ca3c0fa996b51f834e0646d1c48b77997c600471882ea7b78fdcef"
     },
     {
       "path": "schema.json",
@@ -31,25 +31,25 @@
       "path": "iso3166.sql",
       "layer": "raw",
       "bytes": 326437,
-      "sha256": "3c7a3c0ac1028c115af2a512e98417d2bb60e1890aeafe94770d2bb930b4fb79"
+      "sha256": "a6ecbad50cebc9da606c8322e062929ab5eeda402dd1b9c19c0f36749164240a"
     },
     {
       "path": "iso3166.postgresql.sql",
       "layer": "raw",
       "bytes": 326440,
-      "sha256": "0c277bd1d88b4efacc4bd646d5989578bca19c03a7ddd1a5f4580f39e78c3c28"
+      "sha256": "acf50c5c75b55a46bcbd8e97f60a55827bf1594ed74c2d164852ee3625e46772"
     },
     {
       "path": "iso3166.mysql.sql",
       "layer": "raw",
       "bytes": 325676,
-      "sha256": "1a5a69a052a9ed426ef4bf3d0e8dbe48142bfe7fd2c5ed6c557253395e9cc5bc"
+      "sha256": "7ec04ee85ea6de28d3ca19ed81759f38a7e6673460d680078fa678488032bb76"
     },
     {
       "path": "iso3166.sqlite.sql",
       "layer": "raw",
       "bytes": 325334,
-      "sha256": "da1b58e02284c69b04c8a7483b1114f41f428e405df124a3840ac3f326e937b7"
+      "sha256": "93e7f75e7d7fc068f2e79a079f78f6918bbf1fcc1e66d36a103d1a9ae58ad024"
     },
     {
       "path": "iso3166.csv",
@@ -79,7 +79,7 @@
       "path": "iso3166.parquet",
       "layer": "raw",
       "bytes": 41100,
-      "sha256": "1325de644424610431adbc8813e67040ed651bb6bc6a7c077a176b5b15673cbc"
+      "sha256": "b9b4a9921af43850f5a283a2cf7b0f8d5304ca4bc94155d7fcc31b8cb2cfd65d"
     },
     {
       "path": "countries_by_region.parquet",
@@ -91,25 +91,25 @@
       "path": "wrappers/python/iso3166/iso3166.json",
       "layer": "bundled",
       "bytes": 409358,
-      "sha256": "f3aba31acb63c1218faea76491677d14c70232dd16f4d368e16f659887b732d6"
+      "sha256": "8ed00ce504ca3c0fa996b51f834e0646d1c48b77997c600471882ea7b78fdcef"
     },
     {
       "path": "wrappers/javascript/iso3166.json",
       "layer": "bundled",
       "bytes": 409358,
-      "sha256": "f3aba31acb63c1218faea76491677d14c70232dd16f4d368e16f659887b732d6"
+      "sha256": "8ed00ce504ca3c0fa996b51f834e0646d1c48b77997c600471882ea7b78fdcef"
     },
     {
       "path": "wrappers/go/iso3166.json",
       "layer": "bundled",
       "bytes": 409358,
-      "sha256": "f3aba31acb63c1218faea76491677d14c70232dd16f4d368e16f659887b732d6"
+      "sha256": "8ed00ce504ca3c0fa996b51f834e0646d1c48b77997c600471882ea7b78fdcef"
     },
     {
       "path": "wrappers/rust/iso3166.json",
       "layer": "bundled",
       "bytes": 409358,
-      "sha256": "f3aba31acb63c1218faea76491677d14c70232dd16f4d368e16f659887b732d6"
+      "sha256": "8ed00ce504ca3c0fa996b51f834e0646d1c48b77997c600471882ea7b78fdcef"
     }
   ],
   "counts": {
