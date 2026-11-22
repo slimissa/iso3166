@@ -70,8 +70,8 @@ recorded exceptions. Each is justified in its ADR under `docs/decisions/`.
   standards body publishes official languages or land borders. The ADR
   [languages-borders-sources](decisions/languages-borders-sources.md)
   widens "first-party" to "a government standards body or a government
-  statistical service", under which the Factbook counts. That ADR still
-  reads `Status: proposed`; this document follows it.
+  statistical service", under which the Factbook counts. That ADR reads
+  `Status: accepted`; this document follows it.
 An empty field is honest; a wrong field is not.
 
 ## Refresh cadence
