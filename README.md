@@ -1454,7 +1454,7 @@ Nothing is scheduled. Each item below starts when its trigger fires.
 |---------------|------------------|---------------|
 | **v1.13.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
 | **v1.14.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
-| **v1.15.0, ecosystem:** the documentation release | The six registries are stable enough to be documented as a platform | This section |
+| **v1.15.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
 | **v1.16.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
 | **v2.0.0:** a breaking schema change | A consumer needs one | This section |
 | **`source_hash`** | A stable raw source appears; the current sources are not stable files | Previous README |
