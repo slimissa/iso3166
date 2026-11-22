@@ -979,6 +979,19 @@ Beyond the seven-layer validator, the repo carries twelve auxiliary checks, list
 | `tools/check_introduced.py` | Every active entry's `introduced` equals `tools/introduced_snapshot.json`; a null needs a `meta.null_reasons` entry; no `introduced` date, in the entry or the snapshot, is later than today. The same comparison runs in the validator's integrity layer. | release gate; CI through `validate.py` |
 | `tools/check_introduced_meta.py` | `tools/introduced_snapshot.meta.json` has `review_by`, `source` and `vendored_at` (valid dates, `review_by` not before `vendored_at`) and agrees with the snapshot's own `meta` (`review_by`, `source`, `source_permalink`, `source_accessed`). The generator never reads this hand-written file. | release gate and CI (`check-snapshots`) |
 
+### Build and test with make
+
+The [`Makefile`](./Makefile) at the repository root names the commands that already exist in [`scripts/release.sh`](./scripts/release.sh) and in the Tests table above. It adds no step of its own, and `release.sh` does not call it.
+
+| Target | What it runs |
+|--------|--------------|
+| `make package` | The eight generators of `release.sh` step 2 other than `gen_registry_release.py`: `export_sql`, `export_csv`, `export_parquet`, `export_aggregated`, `sync_wrappers`, `gen_consistency_fixture`, `gen_withdrawn_doc`, `gen_state_doc`. Then `gen_iso4217_snapshot.py --source iso4217.json` if that file is present; if not, it prints a skip line and leaves `tools/iso4217_snapshot.json` as is. |
+| `make build-wheel` | `python3 -m build --wheel --sdist` in `wrappers/python`. Needs the `build` package (`pip install build`). |
+| `make test` | The root and Python-wrapper pytest suites, `npm test`, `cargo test`, `go test ./...`, and `tools/check_cross_language.sh US GB JP`. It stops at the first failing command, and needs Node, Cargo and Go installed. |
+| `make registry-release` | `python3 tools/gen_registry_release.py`, which rewrites `registry_release.json`. |
+
+`make` with no target prints the list. Set `PYTHON=` to use another interpreter, and `CURRENCY_SOURCE=` to point `make package` at an ISO 4217 registry file other than `iso4217.json`. On a clean v1.12.10 tree, `make package` and `make registry-release` leave `git status` empty. `make build-wheel` writes `wrappers/python/build/` and `wrappers/python/dist/`, which `.gitignore` does not list: stage files by name, not with `git add -A`.
+
 ---
 
 ## 14. Continuous integration
