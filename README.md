@@ -1116,6 +1116,7 @@ iso3166/
   iso3166.sql                               # CURATED: SQL, ANSI SQL-92 (portable)
   iso3166.sqlite.sql                        # CURATED: SQL, SQLite 3.37+
   iso3166.tsv                               # CURATED: TSV
+  Makefile                                  # Build and test targets
   requirements-dev.txt                      # Tool-time dependencies; pins pyarrow==26.0.0 (constraints.txt repeats it)
   schema.json                               # JSON Schema for iso3166.json (schema version 1.0.0)
   .github/
