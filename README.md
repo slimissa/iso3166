@@ -1340,6 +1340,9 @@ iso3166/
 | [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md) | What invariants does every release refuse on? |
 | [`docs/README-AUDIT-NOTES.md`](./docs/README-AUDIT-NOTES.md) | What failure is behind each release rule? |
 | [`docs/decisions/`](./docs/decisions) | Why was each design choice made? Eleven decision records and one unfiled issue draft (`gs-issue-draft.md`), from [`v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md) to [`club-memberships.md`](./docs/decisions/club-memberships.md). |
+| [`docs/introduced-reconnaissance.md`](./docs/introduced-reconnaissance.md) | Why is `introduced` null for each of the 21 `[likely]` quarantined codes, and what would fill it? |
+| [`docs/sanctions-reconnaissance.md`](./docs/sanctions-reconnaissance.md) | Which sanctions sources exist, why is there no sanctions data, and what would reopen that? |
+| [`docs/SCOPE.md`](./docs/SCOPE.md) | What did we not build, and what would start each item? |
 | `docs/SPEC-phase1.md`, `docs/SPEC-v1.12.0-phase1.md` | What did the Phase 1 research of the `introduced` and club-membership snapshots find? |
 | `docs/v<version>-verification.md` | What did the gate print when this version shipped? |
 | [`CHANGELOG.md`](./CHANGELOG.md) | What changed in each release? |
