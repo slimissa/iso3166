@@ -118,7 +118,7 @@ def test_each_new_check_fails_when_its_site_is_wrong(tree, name, rel, pattern, r
 
 
 @pytest.mark.parametrize("pattern,repl", [
-    (r"\b[A-Z][a-z]+-[a-z]+ verification reports exist", "Forty-three verification reports exist"),
+    (r"\b[A-Za-z]+(?:-[a-z]+)? verification reports exist", "Forty-three verification reports exist"),
     (r"The \d+ verification reports are collapsed", "The 43 verification reports are collapsed"),
     (r"(through \[`docs/v)\d+\.\d+\.\d+(-verification\.md`\])", r"\g<1>1.12.3\2"),
 ])
