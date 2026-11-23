@@ -2,6 +2,7 @@
 
 The upstream is a local bare git repository, so no test touches the network.
 """
+import importlib.util
 import json
 import subprocess
 import sys
@@ -93,3 +94,30 @@ def test_the_real_iso4217_snapshot_names_its_source():
         encoding="utf-8"))["meta"]
     assert meta["source_repo"] == "slimissa/iso4217"
     assert meta["source_version"] == meta["iso4217_version"]
+
+
+def test_a_timeout_is_a_warning_not_a_skip(monkeypatch):
+    """A hung `git ls-remote` must surface as a WARN that says it timed out.
+
+    stable_tags() turns subprocess.TimeoutExpired into OSError and
+    check_upstream() turns that into a warn. A timeout that vanished (the
+    snapshot treated as "no upstream to check") would look like a pass.
+    The real snapshot is used, so the repo/version pair is the shipped one.
+    """
+    spec = importlib.util.spec_from_file_location("check_snapshot_freshness", TOOL)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    seen = {}
+
+    def hang(cmd, **kwargs):
+        seen["cmd"], seen["timeout"] = cmd, kwargs.get("timeout")
+        raise subprocess.TimeoutExpired(cmd, kwargs.get("timeout"))
+
+    monkeypatch.setattr(mod.subprocess, "run", hang)
+    out = mod.check_upstream(TOOL.parent / "iso4217_snapshot.json")
+    assert out is not None, "the snapshot names its source; it must not be skipped"
+    assert out["status"] == "warn"
+    assert "unreachable" in out["detail"] and "timed out" in out["detail"]
+    assert "ls-remote" in seen["cmd"], "the check ran git ls-remote"
+    assert isinstance(seen["timeout"], int) and seen["timeout"] > 0, \
+        "git ls-remote must carry a timeout, or a hang blocks the gate"
