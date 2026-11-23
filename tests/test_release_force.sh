@@ -8,6 +8,8 @@
 #   bash tests/test_release_force.sh        # exit 0 on pass, 1 on fail
 #
 # Scenarios (the version under test is 0.0.1, a release commit exists):
+#   0. pre-check: the mutation patterns scenarios 5 and 7 rewrite each occur
+#      exactly once in release.sh and differ from their mutated form.
 #   1. no --force            -> "VERSION already reads"            (exit 1)
 #   2. --force --dry-run     -> "mutually exclusive"               (exit 2)
 #   3. --force, release commit in a long history -> resumes, exit 0, and
@@ -144,6 +146,31 @@ run_sh() {
 REPO="$TMP/repo"
 build_repo "$REPO" "$REAL_SH"
 
+# 0. Pre-check: the two mutation patterns that scenarios 5 and 7 rewrite
+#    must each occur exactly once in the real release.sh, and each must
+#    differ from its mutated form. If release.sh was edited and a pattern
+#    went stale, this fails first and names the scenario it would have
+#    broken, instead of surfacing later as an unrelated-looking failure.
+GOOD='grep -Fqx "chore: release v$VERSION" <(git log --format=%s)'
+BUGGY='git log --format=%s | grep -Fqx "chore: release v$VERSION"'
+GATE_GOOD='    ) > "$GATE_LOG" 2>&1
+    GATE_RC=$?
+'
+GATE_BAD='    ) > "$GATE_LOG" 2>&1 || GATE_RC=$?
+'
+occurs_once() {  # occurs_once FILE PATTERN: exit 0 iff PATTERN occurs exactly once
+    python3 - "$1" "$2" <<'PY'
+import sys
+sys.exit(0 if open(sys.argv[1]).read().count(sys.argv[2]) == 1 else 1)
+PY
+}
+if occurs_once "$REAL_SH" "$GOOD" && [ "$GOOD" != "$BUGGY" ]; then
+    pass "0a. the resume-check pattern for scenario 5 occurs once in release.sh"
+else fail "0a. the resume-check pattern for scenario 5 is stale: update scenario 5"; fi
+if occurs_once "$REAL_SH" "$GATE_GOOD" && [ "$GATE_GOOD" != "$GATE_BAD" ]; then
+    pass "0b. the gate pattern for scenario 7 occurs once in release.sh"
+else fail "0b. the gate pattern for scenario 7 is stale: update scenario 7"; fi
+
 # 1. Without --force the script refuses to resume.
 run_sh "$REPO" 0.0.1
 if [ "$RC" -eq 1 ] && grep -q "VERSION already reads 0.0.1" <<<"$OUT"; then
@@ -182,8 +209,7 @@ else fail "4. --force, no release commit (rc=$RC): $(tail -3 <<<"$OUT")"; fi
 
 # 5. Mutation: the buggy pipeline form of the resume check must fail
 #    scenario 3. If the rewrite does not apply, the test is stale.
-GOOD='grep -Fqx "chore: release v$VERSION" <(git log --format=%s)'
-BUGGY='git log --format=%s | grep -Fqx "chore: release v$VERSION"'
+#    (GOOD and BUGGY are defined and pre-checked in scenario 0.)
 if ! grep -qF -- "$GOOD" "$REAL_SH"; then
     fail "5. mutation: release.sh no longer contains the process-substitution check; update this test"
 else
@@ -227,11 +253,7 @@ else fail "6. mid-gate failure was not fatal (rc=$RC): $(tail -4 <<<"$OUT")"; fi
 
 # 7. Mutation: put the gate subshell on the left of `||` again. The same
 #    failing check must then get through, which is what scenario 6 detects.
-GATE_GOOD='    ) > "$GATE_LOG" 2>&1
-    GATE_RC=$?
-'
-GATE_BAD='    ) > "$GATE_LOG" 2>&1 || GATE_RC=$?
-'
+#    (GATE_GOOD and GATE_BAD are defined and pre-checked in scenario 0.)
 if ! python3 - "$REAL_SH" "$TMP/release_open.sh" "$GATE_GOOD" "$GATE_BAD" <<'PY'
 import sys
 src, dst, good, bad = sys.argv[1:5]
