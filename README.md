@@ -54,10 +54,10 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 517 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 529 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.12 (schema 1.0.0) |
-| **Version sites** | 10 files carry the version; `scripts/release.sh` bumps 8 of them ([Section 16](#16-versioning)) |
+| **Version sites** | 11 files carry the version; `scripts/release.sh` bumps 7 of them ([Section 16](#16-versioning)) |
 | **Dependencies** | The JSON needs none. The Python, JavaScript and Go wrappers need none; the Rust crate needs `serde` and `serde_json`. Tool time: `jsonschema`, `pyarrow==26.0.0`, `pandas`, `pytest`. |
 
 If a number on this page disagrees with the tree, the tree wins; `tools/check_docs_match_tree.py` checks the counts, versions and lists it can.
@@ -93,6 +93,9 @@ Not every field is first-party. Most enrichable fields come from ISO, the UN Sta
 | Evaluating whether to trust the data | [`docs/PROVENANCE.md`](./docs/PROVENANCE.md) and [Known limitations](#20-known-limitations) |
 | Contributing a correction | [Contributing](#19-contributing) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) |
 | Building a registry with the same discipline | [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md) |
+| Validating a column of country codes that spans decades | [`examples/historical-entity-resolution`](./examples/historical-entity-resolution) and `is_active_on` ([Section 7](#7-the-temporal-identity-layer)) |
+| Guarding a shell pipeline on a dated fact | [Command-line interface](#11-command-line-interface): `is-active-on` exits 0, 1 or 4, and a malformed date exits 2 |
+| Joining another registry to this one | [Consumed by](#22-consumed-by) and [`docs/JOINS.md`](./docs/JOINS.md) |
 
 ---
 
@@ -278,7 +281,7 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
     "count_withdrawn": 25,
     "schema_version": "1.0.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
-    "updated": "2026-10-31",
+    "updated": "2026-11-23",
     "version": "1.12.12"
   },
   "countries": { "active": [ "..." ], "withdrawn": [ "..." ] }
@@ -637,7 +640,7 @@ The file carries no `iso3166.*` footer metadata, and is not a version site.
 
 ## 10. Worked example: a strategy across four dates
 
-A strategy desk holds positions keyed by `alpha_2` and needs to know, as of four dates, which countries were in the EU and the eurozone. The script below reads only `iso3166.parquet` with DuckDB, parses the club cells, and asks the same questions the wrapper queries answer. It was run against v1.12.4 with DuckDB 2.0.0 and PyArrow 26.0.0; the Python wrapper gives the same counts.
+A strategy desk holds positions keyed by `alpha_2` and needs to know, as of four dates, which countries were in the EU and the eurozone. The script below reads only `iso3166.parquet` with DuckDB, parses the club cells, and asks the same questions the wrapper queries answer. It was run against v1.12.12 with DuckDB 2.0.1 and PyArrow 26.0.0; the Python wrapper gives the same counts.
 
 ```bash
 pip install duckdb pyarrow
@@ -678,7 +681,7 @@ for d in ("2010-01-01", "2020-01-31", "2020-02-01"):
     ).fetchone()
     print(f"  GB in the EU on {d}: {bool(n)}")
 (cur,) = con.execute(
-    "SELECT count(*) FROM c WHERE alpha_2='GB' AND member_at(eu_membership, '2026-10-31')"
+    "SELECT count(*) FROM c WHERE alpha_2='GB' AND member_at(eu_membership, '2026-11-23')"
 ).fetchone()
 print(f"  GB in the EU today:  {bool(cur)}   (is_eu('GB') is the same current-status answer)")
 
@@ -686,9 +689,9 @@ print("\nQ5: which countries list EUR as a currency, and how many are in the eur
 eur, ez_now, only = con.execute("""
 SELECT count(*) FILTER (WHERE list_contains(currency_codes, 'EUR')),
        count(*) FILTER (WHERE list_contains(currency_codes, 'EUR')
-                          AND member_at(eurozone_membership, '2026-10-31')),
+                          AND member_at(eurozone_membership, '2026-11-23')),
        string_agg(alpha_2, ' ' ORDER BY alpha_2) FILTER (WHERE list_contains(currency_codes, 'EUR')
-                          AND NOT member_at(eurozone_membership, '2026-10-31'))
+                          AND NOT member_at(eurozone_membership, '2026-11-23'))
 FROM c
 """).fetchone()
 print(f"  EUR in currency_codes: {eur}; eurozone members: {ez_now}; EUR without membership: {eur - ez_now}")
@@ -721,7 +724,7 @@ What the numbers say:
 - **A current alias would have answered all four dates the same.** `is_eu` over the 252 entries gives 27 today. A fact table dated 1990 joined on `is_eu` mislabels 16 countries that were not yet members and the UK, which was.
 - **"Uses the euro" is not "is in the eurozone".** 36 entries list `EUR`; 21 are members. The other 15 are microstates and overseas territories (`AD`, `MC`, `SM`, `VA`, `ME`, the French departments and collectivities) that use the euro without membership. The registry keeps both facts.
 
-**What the example costs to store.** The example reads one file, `iso3166.parquet`: 41,100 bytes on disk for 277 rows (252 active entries and 25 withdrawn) in 24 columns, about 148 bytes per row, measured at v1.12.10 with PyArrow 26.0.0 (`wc -c iso3166.parquet`; Parquet bytes depend on the PyArrow version). Loaded into pandas 3.0.6 and measured with `memory_usage(deep=True)`, the same table takes 378,278 bytes in memory, about 1,366 bytes per row, because the club cells and the list columns are strings and lists. The ISO 4217 registry's `orders-5k` example reports 93 bytes per order in memory. The two numbers answer different questions. An orders table grows with the business, so its per-row cost is the number to budget. The country table does not grow with it: it is a fixed lookup of 277 rows that every order joins to, held once per process however many orders reference it. The countries are the smaller join table, and the cost to plan for is the join, not the table.
+**What the example costs to store.** The example reads one file, `iso3166.parquet`: 41,100 bytes on disk for 277 rows (252 active entries and 25 withdrawn) in 24 columns, about 148 bytes per row, measured at v1.12.12 with PyArrow 26.0.0 (`wc -c iso3166.parquet`; Parquet bytes depend on the PyArrow version). Loaded into pandas 3.0.6 and measured with `memory_usage(deep=True)`, the same table takes 378,278 bytes in memory, about 1,366 bytes per row, because the club cells and the list columns are strings and lists. The ISO 4217 registry's `orders-5k` example reports 93 bytes per order in memory. The two numbers answer different questions. An orders table grows with the business, so its per-row cost is the number to budget. The country table does not grow with it: it is a fixed lookup of 277 rows that every order joins to, held once per process however many orders reference it. The countries are the smaller join table, and the cost to plan for is the join, not the table.
 
 ### Which countries were active in 1990?
 
@@ -842,12 +845,12 @@ Four wrappers, one contract. Each embeds a byte-identical copy of `iso3166.json`
 
 | Language | Package | Source | Minimum | Import | Tests |
 |----------|---------|--------|---------|--------|------:|
-| Python | `iso3166-registry` | [`wrappers/python`](./wrappers/python) | Python 3.9 | `from iso3166 import CountryRegistry` | 104 |
-| JavaScript | `iso3166-registry` | [`wrappers/javascript`](./wrappers/javascript) | Node 18 | `require("iso3166-registry")` | 52 |
-| Rust | `iso3166-registry` | [`wrappers/rust`](./wrappers/rust) | edition 2021 | `use iso3166_registry::CountryRegistry;` | 27 |
-| Go | `github.com/slimissa/iso3166-go` | [`wrappers/go`](./wrappers/go) | Go 1.21 | `import iso3166 "github.com/slimissa/iso3166-go"` | 41 |
+| Python | `iso3166-registry` | [`wrappers/python`](./wrappers/python) | Python 3.9 | `from iso3166 import CountryRegistry` | 124 |
+| JavaScript | `iso3166-registry` | [`wrappers/javascript`](./wrappers/javascript) | Node 18 | `require("iso3166-registry")` | 111 |
+| Rust | `iso3166-registry` | [`wrappers/rust`](./wrappers/rust) | edition 2021 | `use iso3166_registry::CountryRegistry;` | 41 |
+| Go | `github.com/slimissa/iso3166-go` | [`wrappers/go`](./wrappers/go) | Go 1.21 | `import iso3166 "github.com/slimissa/iso3166-go"` | 52 |
 
-The Python and JavaScript counts are from running the suites; the Rust and Go counts are `#[test]` and `func Test` declarations counted statically, because the audit environment had no `cargo` or `go`. Each wrapper has its own README with the full API. Python, JavaScript and Go have no runtime dependencies; the Rust crate depends on `serde` and `serde_json`.
+All four counts are from running the suites (`pytest`, `npm test`, `cargo test`, `go test -v`). The Rust count includes 3 doc-tests. Each wrapper has its own README with the full API. Python, JavaScript and Go have no runtime dependencies; the Rust crate depends on `serde` and `serde_json`.
 
 ### One API, four spellings
 
@@ -938,8 +941,8 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 23 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 24 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 25 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 26 | `python3 -m pytest tests/ -v` | The root suite (82 tests, including the architecture test and the index-vs-fixture test) |
-| 27 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (104 tests) |
+| 26 | `python3 -m pytest tests/ -v` | The root suite (201 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
+| 27 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (124 tests) |
 | 28 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 29 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
 | 30 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 9 scenarios in a throwaway repository, two of them mutations that must be caught, two that refuse a commit on top of the release commit and an uncommitted regeneration |
@@ -953,12 +956,14 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 192 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 201 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 124 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 111 |
-| Rust | `(cd wrappers/rust && cargo test)` | 38 (declarations) |
-| Go | `(cd wrappers/go && go test ./...)` | 52 (declarations) |
-| **Total** | | **517** |
+| Rust | `(cd wrappers/rust && cargo test)` | 41 (18 unit, 20 integration, 3 doc) |
+| Go | `(cd wrappers/go && go test ./...)` | 52 |
+| **Total** | | **529** |
+
+Every number is a test run: `pytest` (the root count is pinned in `tests/test_counts.json`), `npm test`, `cargo test` and `go test -v`. This table is also the source of `counts.tests` in `registry_release.json`: `tools/gen_registry_release.py` reads its leading integers, so a change here needs the manifest regenerated.
 
 ### Additional checks
 
@@ -989,6 +994,7 @@ The [`Makefile`](./Makefile) at the repository root names the commands that alre
 | `make build-wheel` | `python3 -m build --wheel --sdist` in `wrappers/python`. Needs the `build` package (`pip install build`). |
 | `make test` | The root and Python-wrapper pytest suites, `npm test`, `cargo test`, `go test ./...`, and `tools/check_cross_language.sh US GB JP`. It stops at the first failing command, and needs Node, Cargo and Go installed. |
 | `make registry-release` | `python3 tools/gen_registry_release.py`, which rewrites `registry_release.json`. |
+| `make check` | `bash examples/run_all.sh --check`: runs every example under `examples/` and diffs its output against the pinned `expected_output.txt`. |
 
 `make` with no target prints the list. Set `PYTHON=` to use another interpreter, and `CURRENCY_SOURCE=` to point `make package` at an ISO 4217 registry file other than `iso4217.json`. On a clean v1.12.10 tree, `make package` and `make registry-release` leave `git status` empty. `make build-wheel` writes `wrappers/python/build/` and `wrappers/python/dist/`, which `.gitignore` does not list: stage files by name, not with `git add -A`.
 
@@ -1053,7 +1059,7 @@ It requires bash 4+, git, `gh`, python3 and cargo, runs on Linux only (it uses G
 
 **`--force`** resumes from a post-commit state: when `VERSION` already equals the target because a previous run committed the release but did not reach the tag. It skips bump, commit and push, checks that `HEAD` **is** the `chore: release v<version>` commit (a commit on top of it is refused, because the tag lands on `HEAD`) and is on `origin/main`, **re-runs the gate and the CI check**, and refuses if regeneration left uncommitted files, then tags, releases and writes the report. `--force` and `--dry-run` are mutually exclusive, and `tests/test_release_force.sh` exercises the mode; it runs in the release gate and in the `check-force-test` CI job. `docs/README-AUDIT-NOTES.md` records the failures behind the rules: never reset `VERSION` to re-run the script, never interrupt the CI wait.
 
-Fifty-one verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.11-verification.md`](./docs/v1.12.11-verification.md), from v1.12.2 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
+Fifty-two verification reports exist, `docs/v1.0.0-verification.md` through [`docs/v1.12.12-verification.md`](./docs/v1.12.12-verification.md), from v1.12.2 each recording the commands and exit codes of its gate (see step 7); the earlier ones record the date, commit, tag and workflows, and some add a hand-written summary of the gate. Tags are immutable. The shared release pattern is [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md).
 
 ---
 
@@ -1091,7 +1097,7 @@ The schema has its own version (`schema.json`, currently 1.0.0, shown in the sch
 
 ## 17. Project structure
 
-Every tracked file is named below. The 51 verification reports are collapsed into one line.
+Every tracked file is named below. The 52 verification reports are collapsed into one line.
 
 ```text
 iso3166/
@@ -1132,19 +1138,18 @@ iso3166/
     LAYERS.md                               # RAW / CURATED / AGGREGATED model
     PROVENANCE.md                           # Per-field source, access date and refresh cadence
     QUERIES-DECISIONS.md                    # Why each derived query is shaped as it is; deferred queries
-│   ├── SCOPE.md
-│   ├── introduced-reconnaissance.md
-│   ├── sanctions-reconnaissance.md
-│   ├── gs-issue-draft.md
     QUERIES.md                              # Signature, semantics and worked examples of every derived query
     README-AUDIT-NOTES.md                   # Append-only receipts: the failure behind each release rule
     RELEASE_PATTERN.md                      # Release invariants shared across the registry family
+    SCOPE.md                                # What the registry does not do, with the trigger that would start each item
     SPEC-phase1.md                          # v1.11.0 Phase 1 spec: the `introduced` snapshot
     SPEC-v1.12.0-phase1.md                  # v1.12.0 Phase 1 spec: the club-membership snapshots
     SPEC-v1.12.1-readme.md                  # The v1.12.1 README rewrite: audit, and where the prompt disagreed with the tree
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
-    v*-verification.md                      # 51 release gate records, v1.0.0 to v1.12.11
+    introduced-reconnaissance.md            # Why `introduced` is null for each of the 21 `[likely]` quarantined codes
+    sanctions-reconnaissance.md             # Country-level sanctions sources, and why the registry has none
+    v*-verification.md                      # 52 release gate records, v1.0.0 to v1.12.12
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     v1.12.3-verification-errata.md          # Correction to the v1.12.3 report (11 of about 38 commands recorded)
     decisions/
@@ -1160,6 +1165,15 @@ iso3166/
       v1.9.2-amendments.md                  # Where the tree no longer matches the v1.0.0 decisions
       v1.9.3-version-policy.md              # Version strings in PROVENANCE.md and CONTRIBUTING.md
       withdrawn-codes.md                    # ADR: withdrawn codes and successors
+  examples/
+    README.md                               # What each example proves; real versus synthetic data
+    run_all.sh                              # Run every example; --check diffs against expected_output.txt, --write regenerates it
+    historical-entity-resolution/
+      README.md                             # The example: validate a decades-long country column row by row
+      analyze.py                            # Validates each row against is_active_on on its own date
+      expected_output.txt                   # Pinned output; tests/test_examples.py diffs against it
+      generate_fake_trades.py               # Synthetic trades with a known share of deliberately wrong rows
+      requirements.txt                      # Example dependencies
   scripts/
     release.sh                              # The release pipeline (steps 0 to 7, 33-check gate)
   tests/
@@ -1167,6 +1181,11 @@ iso3166/
     test_api_misuse.py                      # The malformed-input contract: dated queries raise on a malformed date, per surface
     test_architecture.py                    # AST guardrail: export_aggregated.py must not read RAW JSON
     test_cli.py                             # --raw prints one line for a null or empty-list value, in both CLIs
+    test_counts.json                        # Pinned count of collected tests, per file and in total
+    test_counts.py                          # Fails when pytest collects a different number of tests than the pin
+    test_examples.py                        # Every example runs and prints its pinned output
+    test_malformed_date_contract.py         # A malformed date is an error on every surface
+    test_python_datetime_conversion.py      # Python-only: date, datetime and pandas.Timestamp are converted, the rest raise
     test_check_introduced_future.py         # check_introduced.py rejects an introduced date in the future
     test_check_release_diff.py              # check_release_diff.py allows only version and date changes after a bump
     test_club_ranges.py                     # validate.py rejects overlapping, touching and misordered club ranges
@@ -1339,10 +1358,6 @@ iso3166/
 | [`docs/ENRICHMENT.md`](./docs/ENRICHMENT.md) | How are the enriched fields populated, and where does the naive rule break? |
 | [`docs/QUERIES.md`](./docs/QUERIES.md) | What are the signature, semantics and edge cases of each derived query? |
 | [`docs/QUERIES-DECISIONS.md`](./docs/QUERIES-DECISIONS.md) | Why is each query shaped as it is, and which queries are deferred? |
-│   ├── SCOPE.md
-│   ├── introduced-reconnaissance.md
-│   ├── sanctions-reconnaissance.md
-│   ├── gs-issue-draft.md
 | [`docs/STATE.md`](./docs/STATE.md) | What is the current state of the registry, with every number verified? |
 | [`docs/WITHDRAWN.md`](./docs/WITHDRAWN.md) | Which codes are withdrawn, when, and replaced by what? |
 | [`docs/AUDIT.md`](./docs/AUDIT.md) | Which tools exist, and does each run in CI and in the release gate? |
@@ -1354,6 +1369,7 @@ iso3166/
 | [`docs/SCOPE.md`](./docs/SCOPE.md) | What did we not build, and what would start each item? |
 | `docs/SPEC-phase1.md`, `docs/SPEC-v1.12.0-phase1.md` | What did the Phase 1 research of the `introduced` and club-membership snapshots find? |
 | `docs/v<version>-verification.md` | What did the gate print when this version shipped? |
+| [`examples/`](./examples) | Which claims in the documentation run as programs, with pinned output? |
 | [`CHANGELOG.md`](./CHANGELOG.md) | What changed in each release? |
 | [`CONTRIBUTING.md`](./CONTRIBUTING.md) | How do I correct data, add a code, or change a tool? |
 | `wrappers/*/README.md` | What is the full API of each wrapper? |
@@ -1398,7 +1414,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The club arrays are strings in CSV, TSV, SQL and Parquet,** in the `from:to|from:to` format, not native lists or structs. A consumer who wants ranges parses the string or reads the JSON.
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
 - **The packaged CLI's module docstring is stale:** it says twenty-three subcommands; both CLIs implement twenty-six. The repo CLI's docstring lists all twenty-six (corrected in v1.12.9).
-- **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging. The Rust and Go test counts in this README are static counts of declarations, not test runs.
+- **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging.
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
 - **The sanctions release (v1.13.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
 - **The geography release (v1.14.0) is deferred.** There is no `regions.json` and no `timezones[]`.
@@ -1482,21 +1498,9 @@ Nothing is scheduled. Each item below starts when its trigger fires.
 | Deferred item | Trigger to start | Where decided |
 |---------------|------------------|---------------|
 | **v1.13.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
-│   ├── SCOPE.md
-│   ├── introduced-reconnaissance.md
-│   ├── sanctions-reconnaissance.md
-│   ├── gs-issue-draft.md
 | **v1.14.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
-│   ├── SCOPE.md
-│   ├── introduced-reconnaissance.md
-│   ├── sanctions-reconnaissance.md
-│   ├── gs-issue-draft.md
 | **v1.15.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
 | **v1.16.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
-│   ├── SCOPE.md
-│   ├── introduced-reconnaissance.md
-│   ├── sanctions-reconnaissance.md
-│   ├── gs-issue-draft.md
 | **v2.0.0:** a breaking schema change | A consumer needs one | This section |
 | **`source_hash`** | A stable raw source appears; the current sources are not stable files | Previous README |
 
