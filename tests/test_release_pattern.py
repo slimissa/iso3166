@@ -26,3 +26,21 @@ def test_rules_25_and_26_present():
     for rule in ("Rule 25", "Rule 26"):
         assert rule in pattern, f"Missing {rule} in RELEASE_PATTERN.md"
         assert rule in notes, f"Missing {rule} receipt in README-AUDIT-NOTES.md"
+
+
+def test_rules_26_to_29_pin_one_sentence_each():
+    """Pin one sentence of each of Rules 26, 27, 28 and 29.
+
+    The presence tests above only find the words "Rule 26". These pin the
+    claim each rule makes, so softening a rule's body fails here even when its
+    heading survives. The text is hard-wrapped, so whitespace is normalised.
+    """
+    text = " ".join(Path("docs/RELEASE_PATTERN.md").read_text(encoding="utf-8").split())
+    assert "A derived file that the release does not regenerate drifts silently." in text, \
+        "Rule 26 lost its sentence: an unregenerated derived file drifts"
+    assert "`grep -q` exits at the first match" in text, \
+        "Rule 27 lost its sentence: grep -q exits at the first match (SIGPIPE)"
+    assert "A command that takes a run ID from that output gets an empty ID" in text, \
+        "Rule 28 lost its sentence: an empty gh run list gives an empty run ID"
+    assert "bash ignores `set -e` inside any compound command whose exit status is tested" in text, \
+        "Rule 29 lost its sentence: set -e is ignored where the status is tested"
