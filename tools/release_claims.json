@@ -1750,5 +1750,83 @@
     {
       "file": "tests/test_version_axes.py"
     }
+  ],
+  "1.12.12": [
+    {
+      "file": "tools/version_axes.json",
+      "contains": "\"bumper\": \"write_package_json\""
+    },
+    {
+      "file": "tools/check_version_consistency.py",
+      "contains": "def bump("
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_version_consistency.py --bump"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "check_version_consistency.py --expect"
+    },
+    {
+      "file": "README.md",
+      "contains": "held by eleven files"
+    },
+    {
+      "file": "tools/version_axes.json",
+      "contains": "\"name\": \"registry-release-json\""
+    },
+    {
+      "file": "registry_release.json",
+      "contains": "\"registry\": \"iso3166\""
+    },
+    {
+      "file": "registry_release.schema.json"
+    },
+    {
+      "file": "tools/gen_registry_release.py",
+      "contains": "def build("
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gen_registry_release.py --check --version"
+    },
+    {
+      "file": "README.md",
+      "contains": "33 checks run in sequence"
+    },
+    {
+      "file": "docs/RELEASE_PATTERN.md",
+      "contains": "**v1.12.12 amendment.**"
+    },
+    {
+      "file": "docs/PROVENANCE.md",
+      "contains": "fails CI and the release gate"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "seven-layer validator"
+    },
+    {
+      "file": "tests/test_changelog_unreleased.py"
+    },
+    {
+      "file": "registry_release.schema.json",
+      "contains": "released_at"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "--stamp-released-at"
+    },
+    {
+      "file": "README.md",
+      "contains": "`released_at` is the tag date"
+    },
+    {
+      "file": "tests/test_registry_release_released_at.py"
+    },
+    {
+      "file": "tests/test_version_axes.py"
+    }
   ]
 }
