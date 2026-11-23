@@ -8,6 +8,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parent.parent
 TOOL = ROOT / "tools" / "validate.py"
 
@@ -48,6 +50,8 @@ def test_with_flag_and_jsonschema_present_the_real_data_passes():
     try:
         import jsonschema  # noqa: F401
     except ImportError:
-        return  # the blocked-import tests above are the point on this machine
+        # A `return` here passed silently. The blocked-import tests above are
+        # the point on this machine; this one needs the real package.
+        pytest.skip("jsonschema is not installed; the real-data pass is not checked")
     r = run("--require-schema", blocked=False)
     assert r.returncode == 0, r.stdout + r.stderr
