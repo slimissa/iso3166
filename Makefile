@@ -7,6 +7,7 @@
 #   make build-wheel       build the Python wheel and sdist (needs `build`)
 #   make test              run every suite and the cross-language check
 #   make registry-release  regenerate registry_release.json
+#   make check             run every example and diff it against its pinned output
 #
 # Needs GNU make, python3, and for `make test` also node, cargo and go.
 
@@ -15,10 +16,10 @@ CURRENCY_SOURCE ?= iso4217.json
 
 .DEFAULT_GOAL := help
 
-.PHONY: help package build-wheel test registry-release
+.PHONY: help package build-wheel test registry-release check
 
 help:
-	@echo "targets: package build-wheel test registry-release"
+	@echo "targets: package build-wheel test registry-release check"
 	@echo "see the README section 'Build and test with make'"
 
 # The generators release.sh step 2 runs, in the same order, minus
@@ -53,3 +54,6 @@ test:
 
 registry-release:
 	$(PYTHON) tools/gen_registry_release.py
+
+check:
+	bash examples/run_all.sh --check
