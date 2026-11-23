@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "iso3166-registry"
-version = "1.12.11"
+version = "1.12.12"
 dependencies = [
  "serde",
  "serde_json",
