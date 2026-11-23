@@ -240,3 +240,30 @@ def test_the_through_clause_fails_when_the_newest_report_is_not_version(tree):
     describe_reports_in_readme(tree, have)
     code, lines = run_check(tree)
     assert code == 0, "\n".join(failing(lines))
+
+
+def test_the_checks_need_no_pyarrow(tmp_path):
+    """The version-site checks read text and file names, never a Parquet file.
+
+    This file therefore does not call pytest.importorskip("pyarrow"): that
+    would skip every test here on a machine without the library even though
+    none of them needs it. Instead pyarrow is made unimportable for the
+    checker (a shim on PYTHONPATH, inherited by the subprocess) and the
+    checks must still pass. If a check ever starts reading Parquet, this
+    fails loudly, and importorskip on THAT test is then the right fix.
+    """
+    import os
+
+    shim = tmp_path / "shim"
+    shim.mkdir()
+    (shim / "pyarrow.py").write_text(
+        'raise ImportError("pyarrow is blocked for this test")\n', encoding="utf-8")
+    env = dict(os.environ, PYTHONPATH=str(shim))
+    p = subprocess.run([sys.executable, str(CHECK), "--root", str(ROOT)],
+                       capture_output=True, text=True, env=env)
+    lines = (p.stdout + p.stderr).splitlines()
+    assert "pyarrow is blocked" not in p.stdout + p.stderr
+    assert p.returncode == 0 and not failing(lines), "\n".join(lines[-10:])
+    probe = subprocess.run([sys.executable, "-c", "import pyarrow"],
+                           capture_output=True, text=True, env=env)
+    assert probe.returncode != 0, "the shim did not block pyarrow"
