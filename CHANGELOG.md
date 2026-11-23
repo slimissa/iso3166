@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.13] — 2026-11-23
+
+### Changed
+- Rewrote the README to the ISO 4217 / ISO 10383 operational standard.
+- Corrected the §13 Tests table: root tests now 201, Rust tests now 41 (529 total).
+- Corrected §1 and §12 to match the new test counts.
+- Added missing files to §17 tree and corrected all doc counts to match the tree.
+- Regenerated `registry_release.json` to record the corrected test counts.
+
 ## [1.12.12] — 2026-11-23
 
 ### Added
