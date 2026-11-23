@@ -1,5 +1,5 @@
 {
-  "total": 199,
+  "total": 201,
   "files": {
     "tests/test_api_misuse.py": 33,
     "tests/test_architecture.py": 2,
@@ -17,6 +17,7 @@
     "tests/test_enrich_field_citations.py": 5,
     "tests/test_enrich_field_values.py": 3,
     "tests/test_enrich_independent.py": 10,
+    "tests/test_examples.py": 2,
     "tests/test_export_aggregated.py": 7,
     "tests/test_export_check_order.py": 2,
     "tests/test_gen_registry_release.py": 8,
