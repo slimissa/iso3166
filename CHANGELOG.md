@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.12] — 2026-11-23
+
+### Added
+- `examples/historical-entity-resolution/`: A runnable 10,000-trade example demonstrating the cost of using naive lookups vs temporal integrity.
+- `Makefile`: Added `make check` to run all examples.
+
+### Fixed
+- Infrastructure: Split `test_api_misuse.py`, added scenario 0 to force test, added snapshot timeout test, pinned release pattern body sentences, proved pyarrow independence, and fixed pytest skips.
+- Documentation: Removed the stale "five of seven" note from `AUDIT.md`.
+
 ## [1.12.11] — 2026-11-22
 
 ### Added
