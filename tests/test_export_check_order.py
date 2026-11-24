@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 IGNORE = shutil.ignore_patterns(
     ".git", "target", "node_modules", "__pycache__", "*.egg-info",
-    ".pytest_cache",
+    ".pytest_cache", ".venv", "venv",
 )
 
 

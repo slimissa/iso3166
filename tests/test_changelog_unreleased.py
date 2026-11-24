@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SKIP_UNRELEASED = 'released = [h for h in headings if h != "Unreleased"]'
 COUNT_UNRELEASED = "released = list(headings)"
 IGNORE = shutil.ignore_patterns("__pycache__", ".pytest_cache", "node_modules",
-                                "target", ".git", "*.egg-info")
+                                "target", ".git", "*.egg-info", ".venv", "venv")
 
 
 def _tree(tmp_path: Path) -> Path:
