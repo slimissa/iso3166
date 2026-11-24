@@ -77,7 +77,7 @@ def test_registry_release_format_version():
 def test_registry_release_vendors():
     v = {x["name"]: x for x in load()["vendors"]}
     assert v["iso4217"]["version"] == "1.9.5"
-    assert v["iso4217"]["review_by"] == "2027-10-25"
+    assert v["iso4217"]["review_by"] == "2027-02-21"
 
 
 def _copy_tree(tmp_path: Path) -> Path:

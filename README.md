@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 529 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 549 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.13 (schema 1.0.0) |
 | **Version sites** | 11 files carry the version; `scripts/release.sh` bumps 7 of them ([Section 16](#16-versioning)) |
@@ -941,7 +941,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 23 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 24 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 25 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 26 | `python3 -m pytest tests/ -v` | The root suite (201 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
+| 26 | `python3 -m pytest tests/ -v` | The root suite (221 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
 | 27 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (124 tests) |
 | 28 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 29 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
@@ -956,12 +956,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 201 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 221 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 124 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 111 |
 | Rust | `(cd wrappers/rust && cargo test)` | 41 (18 unit, 20 integration, 3 doc) |
 | Go | `(cd wrappers/go && go test ./...)` | 52 |
-| **Total** | | **529** |
+| **Total** | | **549** |
 
 Every number is a test run: `pytest` (the root count is pinned in `tests/test_counts.json`), `npm test`, `cargo test` and `go test -v`. This table is also the source of `counts.tests` in `registry_release.json`: `tools/gen_registry_release.py` reads its leading integers, so a change here needs the manifest regenerated.
 

@@ -174,7 +174,7 @@
     "iso4217_updated": "2026-11-21",
     "iso4217_version": "1.9.5",
     "refresh_cadence": "quarterly",
-    "review_by": "2027-10-25",
+    "review_by": "2027-02-21",
     "source": "slimissa/iso4217",
     "source_repo": "slimissa/iso4217",
     "source_version": "1.9.5"

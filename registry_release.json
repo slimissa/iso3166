@@ -119,12 +119,12 @@
     "introduced_dated": 176,
     "introduced_null": 76,
     "tests": {
-      "root": 201,
+      "root": 221,
       "python_wrapper": 124,
       "javascript": 111,
       "rust": 41,
       "go": 52,
-      "total": 529
+      "total": 549
     },
     "gates": 33,
     "claims": 20
@@ -133,10 +133,10 @@
     {
       "name": "iso4217",
       "version": "1.9.5",
-      "review_by": "2027-10-25",
+      "review_by": "2027-02-21",
       "source": "slimissa/iso4217",
       "path": "tools/iso4217_snapshot.json",
-      "sha256": "2dff248c59513cc4dae417c6e1f02a732796dda6e99629e2f689c23a819883ca"
+      "sha256": "cdf76d62bf628c086b64391d1b4c785426af3419ed4c50d69ebecc28dfd24994"
     }
   ]
 }
