@@ -8,6 +8,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+The vendored ISO 4217 snapshot meets qlf-sentinel client contract CC-2: its vendoring metadata now sits in a sibling `.meta.json`, like every other snapshot in this repository, and one cadence vocabulary covers every `tools/*.meta.json`.
+
+Consumer impact: none. No field in `iso3166.json` changes, and neither does the set of active codes. The only data changes are the vendored ISO 4217 snapshot's metadata (`review_by` in `tools/iso4217_snapshot.json`, and the new `tools/iso4217_snapshot.meta.json`) and the cadence word, `annual` to `yearly`, in the four club snapshots, their `.meta.json` files and `tools/introduced_snapshot.meta.json`. No consumer reads any of them: the fields in `tools/consumers.json` were re-read from each consumer's code on 2026-11-24.
+
+### Added
+
+- `tools/iso4217_snapshot.meta.json`: the snapshot's vendoring metadata (Sentinel CC-2): `source`, `source_version` 1.9.5, `vendored_at` 2026-11-21 (the author date of the last commit that changed the snapshot), `vendored_from` (the v1.9.5 tag URL), and a `meta` object with `review_by` 2027-02-21 and `refresh_cadence` `quarterly`. `tools/check_snapshot_freshness.py` now reads `review_by` from it (`meta_source` `sibling`). It also carries `source_repo`, so `--check-upstream` keeps working.
+- `tools/cadence.py`: the review rule in one place. `refresh_cadence` is `monthly`, `quarterly` or `yearly`, and `review_by` is `vendored_at` plus 1, 3 or 12 calendar months, same day, clamped to the month's last day. Ported from ISO 10383 v1.1.9.
+- `tests/test_snapshot_meta.py`: the five CC-2 keys and their types, the cadence word, the `review_by` rule, top-level and `meta` copies equal, the sibling and the snapshot's embedded `meta` equal on every shared key, and the sibling's `source_version` equal to the embedded `iso4217_version`; every `tools/*.meta.json` follows the cadence rule. Each rule has a negative test on a broken copy.
+- `tools/release_claims.json`: claims for v1.12.14.
+
+### Changed
+
+- `tools/iso4217_snapshot.json`: `meta.review_by` 2027-10-25 to 2027-02-21, one quarter after `vendored_at`. The embedded `meta` stays, because `check_iso4217_snapshot.py`, `gen_iso4217_snapshot.py` and `gen_state_doc.py` read it. `registry_release.json`, `docs/STATE.md` and the pin in `tests/test_gen_registry_release.py` follow.
+- `refresh_cadence` `annual` is now `yearly` in `tools/build_club_snapshots.py` (and the four club snapshots and meta files it writes) and in the hand-written `tools/introduced_snapshot.meta.json`. No `review_by` date changes.
+- `tools/consumers.json` and `docs/JOINS.md`: consumer fields re-read from code on 2026-11-24; no `fields_read` changes. `JOINS.md` records that Asset Identifiers hard-codes 250 ISO 3166 codes in its `tools/validate.py`.
+- README: ISO 4217 snapshot v1.9.5 with quarterly review (section 22), the new files in the section 17 tree, `yearly` for the club and `introduced` snapshots, and the root test count 201 to 230. `docs/PROVENANCE.md` and `docs/CROSS_REGISTRY_CONTRACT.md` describe the sibling file.
+
+### Notes
+
+- Cadence: ISO 4217 stays `quarterly`, the word its snapshot already carried; only the date was inconsistent with it (`review_by` 2027-10-25, eleven months after the last refresh). The source releases often: between the last two refreshes it moved from v1.8.0 to v1.9.5, eleven tags, and a quarterly date catches that drift without relying on the opt-in `--check-upstream`. The Wikipedia-sourced club and `introduced` snapshots stay on a 12-month review; only the word changes, from `annual` to `yearly`, so every `tools/*.meta.json` uses the vocabulary of ISO 10383 v1.1.9, which qlf-sentinel reads.
+- Not done here: `tools/sentinel_gates.json` and `tools/sentinel_sources.json` (CC-3 and CC-4 formats are not final). The six snapshots without a sibling file keep their embedded `refresh_cadence` (`annual`, `rare`, `closed`), which the new test does not cover.
+
 ## [1.12.13] — 2026-11-23
 
 ### Changed
