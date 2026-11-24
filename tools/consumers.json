@@ -1,5 +1,5 @@
 {
-  "_comment": "Registries that vendor iso3166.json, as read from their public repositories on 2026-11-04. Read by tools/check_consumers_current.py. fields_read must agree with docs/JOINS.md (tests/test_consumers_json.py checks that). snapshot_path is where the consumer keeps its copy; its vendoring metadata is the same path with .json replaced by .meta.json.",
+  "_comment": "Registries that vendor iso3166.json, as read from their public repositories on 2026-11-24. Read by tools/check_consumers_current.py. fields_read must agree with docs/JOINS.md (tests/test_consumers_json.py checks that). snapshot_path is where the consumer keeps its copy; its vendoring metadata is the same path with .json replaced by .meta.json.",
   "consumers": [
     {
       "name": "ISO 4217",

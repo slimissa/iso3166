@@ -11,7 +11,9 @@ that document for ISO 3166. The consumer list is `tools/consumers.json`; the
 rules every registry follows are in
 [`CROSS_REGISTRY_CONTRACT.md`](./CROSS_REGISTRY_CONTRACT.md).
 
-Facts below were read from the consumers' public repositories on 2026-11-04.
+Facts below were read from the consumers' public repositories on 2026-11-04
+and re-read from their code at `main` on 2026-11-24 (ISO 4217 `028863f`,
+ISO 10383 `db454bc`, Exchange Calendar `a18ab08`); no field read changed.
 A row that says "none recorded" means no reader was found there on that day,
 not that none exists.
 
@@ -24,7 +26,7 @@ not that none exists.
 | `region` | ISO 4217 | Read from the vendored snapshot to group currencies by region. The string is used as it is; this registry owns the value. |
 | `subregion` | ISO 4217 | As `region`. In v1.12.4 the allowed values are the 17 M49 subregions in `tools/m49_subregion_snapshot.json`. |
 | `currency_codes` | ISO 4217 | ISO 4217's `check_country_codes.py --membership` compares each country's list with ISO 4217's own country-to-currency entries, against a reviewed allow-list. A `null` list means "no currency recorded" and is treated as empty. The reverse edge: every code here must be an active code in `tools/iso4217_snapshot.json` (validator layer 4). |
-| `independent` | none recorded | Part of the surface a consumer may read. Nothing in the consumers' public files reads it on 2026-11-04. |
+| `independent` | none recorded | Part of the surface a consumer may read. Nothing in the consumers' code reads it on 2026-11-24. |
 
 ## Rules for every join
 
@@ -56,9 +58,16 @@ decides from that line whether to re-vendor.
 ## Not consumers of a field
 
 - **Corporate Actions**: no country field in its public `schema.json`,
-  `actions.json` or README on 2026-11-04. The edge is planned.
+  `actions.json` or README on 2026-11-04, nor on 2026-11-24 (`e66509b`;
+  `tools/check_sibling_versions.py` says ISO 3166 is not referenced by its
+  data). The edge is planned.
 - **Asset Identifiers**: has `instruments[].country` in its schema (a
-  pattern check only); it does not vendor this registry yet.
+  pattern check only); it does not vendor this registry yet. On 2026-11-24
+  (`0a9e5b1`) its `tools/validate.py` hard-codes `ISO3166_COUNTRIES`
+  (250 codes, line 69) for the ISIN prefix check: it holds `AN`, which is
+  not an active code here, and lacks `EU`, `UK` and `XK`. A hard-coded copy
+  reads no field of `iso3166.json`, so it is not listed in
+  `tools/consumers.json`.
 - **LAS_Shell**, **Tempus**: no country field found, or no public repository
   reachable, on 2026-11-04.
 
