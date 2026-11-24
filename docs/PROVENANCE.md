@@ -166,3 +166,15 @@ run manually on every ISO 4217 release. The snapshot's `meta` block
 records the source version and date. Synthetic codes (for example
 `MXN_OLD`) are filtered out; the snapshot contains only codes
 matching `^[A-Z]{3}$`.
+
+The vendoring metadata lives in the sibling
+`tools/iso4217_snapshot.meta.json` (qlf-sentinel client contract CC-2):
+`source`, `source_version`, `vendored_at`, `vendored_from`, and a `meta`
+object with `review_by` and `refresh_cadence` (`quarterly`).
+`tools/check_snapshot_freshness.py` reads `review_by` from that file.
+After a refresh, set `source_version`, `vendored_at` and `vendored_from`
+in the sibling by hand, and set `review_by` to `vendored_at` plus three
+calendar months in both the sibling and the snapshot's embedded `meta`
+(the generator preserves the embedded value).
+`tests/test_snapshot_meta.py` fails until the two files agree and the
+date follows the rule in `tools/cadence.py`.

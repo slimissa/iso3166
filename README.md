@@ -1211,6 +1211,7 @@ iso3166/
     test_validate_snapshot_value.py         # validate.py's snapshot-value layer fails on one wrong value in each of seven fields
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
     test_release_pattern.py                 # Release-pattern properties
+    test_snapshot_meta.py                   # iso4217_snapshot.meta.json: CC-2 keys, the cadence rule, no drift from the embedded meta
   tools/
     archive/                                # tools/archive/: one-shot tools kept for the record; neither CI nor the gate runs them
       build_initial_data.py                 # Archival: one-shot importer that produced the first iso3166.json
@@ -1218,6 +1219,7 @@ iso3166/
     audit_languages.py                      # Classify each entry's languages list
     build_club_snapshots.py                 # Generate the four club snapshots and their meta files
     build_introduced_snapshot.py            # Generate introduced_snapshot.json from wikipedia_dates.json
+    cadence.py                              # review_by = vendored_at + 1 cadence period (monthly, quarterly, yearly)
     gen_registry_release.py                 # Writes registry_release.json; --check --version X.Y.Z compares it byte for byte
     check_cli_agreement.sh                  # The repo CLI and the packaged CLI print the same bytes for --raw
     check_cross_language.sh                 # Run a lookup through all four wrappers and diff the output
@@ -1262,7 +1264,8 @@ iso3166/
     introduced_snapshot.json                # Snapshot: `introduced` dates and null_reasons
     introduced_snapshot.meta.json           # Vendoring metadata and review_by
     iso3166_cli.py                          # The repo CLI (26 subcommands)
-    iso4217_snapshot.json                   # Snapshot: ISO 4217 codes, v1.8.0
+    iso4217_snapshot.json                   # Snapshot: ISO 4217 codes, v1.9.5
+    iso4217_snapshot.meta.json              # Vendoring metadata (Sentinel CC-2): source, vendored_at, quarterly review_by
     iso639_3_snapshot.json                  # Snapshot: ISO 639-3 languages (7,927 codes)
     itu_calling_code_snapshot.json          # Snapshot: ITU calling codes (204)
     m49_intermediate_region_snapshot.json   # Snapshot: UN M49 intermediate regions (7, closed)
@@ -1477,7 +1480,7 @@ ISO 3166 is a root of the join graph: other registries reference `alpha_2`. This
 | [Asset Identifiers](https://github.com/slimissa/asset-identifiers) | Already has `instruments[].country` in its schema (a pattern check, `^[A-Z]{2}$`); not yet vendored | None in this tree |
 | [LAS_Shell](https://github.com/slimissa/Las_shell) | Reads country codes for market status and prompt display | None in this tree |
 | Tempus (repo not publicly reachable at 2026-11-04) | Planned compile-time `Country<ISO3166>` validation | None in this tree |
-| ISO 4217 (reverse edge) | This registry's `currency_codes` must resolve in an ISO 4217 snapshot | `tools/iso4217_snapshot.json` (v1.8.0, `review_by` 2027-10-25), checked by validator layer 4 and `check_iso4217_snapshot.py` |
+| ISO 4217 (reverse edge) | This registry's `currency_codes` must resolve in an ISO 4217 snapshot | `tools/iso4217_snapshot.json` (v1.9.5, `review_by` 2027-02-21, quarterly; vendoring metadata in `tools/iso4217_snapshot.meta.json`), checked by validator layer 4 and `check_iso4217_snapshot.py` |
 
 No external adopter is recorded. *Using this registry in your project? Open a pull request to add a row.*
 

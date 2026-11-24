@@ -52,7 +52,7 @@ vendors a snapshot of ISO 4217 and is vendored by three registries.
 | Rule | ISO 3166 as provider | ISO 3166 as consumer of ISO 4217 |
 |------|----------------------|----------------------------------|
 | 1 | yes: `VERSION`, `meta.version`, annotated tags, [`JOINS.md`](./JOINS.md) (new in v1.12.4) | n/a |
-| 2 | n/a | partly: `source_repo` and `source_version` since v1.12.4; no `vendored_from`, no `snapshot_sha256`, no `vendored_at` |
+| 2 | n/a | partly: since the CC-2 change (2026-11-24), a sibling `tools/iso4217_snapshot.meta.json` records `source`, `source_version`, `vendored_from`, `vendored_at`, `review_by` and `refresh_cadence` (`quarterly`); the snapshot is derived and its embedded meta names the generator only in its `_comment`; no `snapshot_sha256` |
 | 3 | n/a | no: `check_iso4217_snapshot.py` checks well-formedness, not a hash |
 | 4 | `check_consumers_current.py` for its consumers (advisory, network, run by hand) | `check_snapshot_freshness.py --check-upstream` (opt-in); nothing schedules either |
 | 5 | from v1.12.4 | n/a |

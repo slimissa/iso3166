@@ -1906,5 +1906,33 @@
     {
       "file": "tests/test_version_axes.py"
     }
+  ],
+  "1.12.14": [
+    {
+      "file": "tools/iso4217_snapshot.meta.json"
+    },
+    {
+      "file": "tools/iso4217_snapshot.meta.json",
+      "contains": "\"refresh_cadence\": \"quarterly\""
+    },
+    {
+      "file": "tools/iso4217_snapshot.meta.json",
+      "contains": "\"review_by\": \"2027-02-21\""
+    },
+    {
+      "file": "tools/iso4217_snapshot.json",
+      "contains": "\"review_by\": \"2027-02-21\""
+    },
+    {
+      "file": "tools/cadence.py",
+      "contains": "CADENCE_MONTHS = {\"monthly\": 1, \"quarterly\": 3, \"yearly\": 12}"
+    },
+    {
+      "file": "tests/test_snapshot_meta.py"
+    },
+    {
+      "file": "README.md",
+      "contains": "(v1.9.5, `review_by` 2027-02-21, quarterly;"
+    }
   ]
 }

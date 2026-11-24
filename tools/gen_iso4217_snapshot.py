@@ -21,6 +21,12 @@ The generator preserves meta.review_by and meta.refresh_cadence from
 the existing snapshot. Set review_by manually once if it is null; the
 tool preserves the value on every subsequent run.
 
+The vendoring metadata (Sentinel CC-2) lives in the sibling
+tools/iso4217_snapshot.meta.json, which this tool does not write. After
+a refresh, update its source_version, vendored_at and vendored_from, and
+set review_by = vendored_at + 3 months (tools/cadence.py) there and in
+the embedded meta; tests/test_snapshot_meta.py checks that they agree.
+
 Usage:
     python3 tools/gen_iso4217_snapshot.py --source PATH
     python3 tools/gen_iso4217_snapshot.py --check --source PATH
