@@ -33,7 +33,7 @@ TOOLS = ROOT / "tools"
 
 ACCESSED_AT = "2026-10-29"
 REVIEW_BY = "2027-10-29"
-CADENCE = "annual"
+CADENCE = "yearly"
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 WP = "https://en.wikipedia.org/wiki/"

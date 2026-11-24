@@ -1933,6 +1933,18 @@
     {
       "file": "README.md",
       "contains": "(v1.9.5, `review_by` 2027-02-21, quarterly;"
+    },
+    {
+      "file": "tools/build_club_snapshots.py",
+      "contains": "CADENCE = \"yearly\""
+    },
+    {
+      "file": "tools/introduced_snapshot.meta.json",
+      "contains": "\"refresh_cadence\": \"yearly\""
+    },
+    {
+      "file": "tools/eu_membership_snapshot.meta.json",
+      "absent": "\"annual\""
     }
   ]
 }

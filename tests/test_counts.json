@@ -1,5 +1,5 @@
 {
-  "total": 221,
+  "total": 230,
   "files": {
     "tests/test_api_misuse.py": 33,
     "tests/test_architecture.py": 2,
@@ -28,7 +28,7 @@
     "tests/test_registry_release_released_at.py": 6,
     "tests/test_release_evidence_unique.py": 6,
     "tests/test_release_pattern.py": 4,
-    "tests/test_snapshot_meta.py": 20,
+    "tests/test_snapshot_meta.py": 29,
     "tests/test_validate_require_schema.py": 4,
     "tests/test_validate_snapshot_value.py": 9,
     "tests/test_verification_report_evidence.py": 7,

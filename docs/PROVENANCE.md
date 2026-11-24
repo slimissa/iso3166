@@ -45,11 +45,11 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 | `borders` | CIA World Factbook, land boundaries | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
 | `subregion` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
 | `intermediate_region` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
-| `eu_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eu_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
-| `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
-| `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
-| `customs_union` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/customs_union_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | annual (`review_by` 2027-10-29) |
-| `introduced` | Wikipedia (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json` | 2026-10-28 (snapshot `source_accessed`) | annual (`review_by` 2027-10-28) |
+| `eu_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eu_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
+| `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
+| `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
+| `customs_union` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/customs_union_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
+| `introduced` | Wikipedia (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json` | 2026-10-28 (snapshot `source_accessed`) | yearly (`review_by` 2027-10-28) |
 
 ## What is a first-party source
 

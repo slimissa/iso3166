@@ -54,7 +54,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 549 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 33 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 558 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
 | **Version** | 1.12.13 (schema 1.0.0) |
 | **Version sites** | 11 files carry the version; `scripts/release.sh` bumps 7 of them ([Section 16](#16-versioning)) |
@@ -941,7 +941,7 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 23 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 24 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 25 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 26 | `python3 -m pytest tests/ -v` | The root suite (221 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
+| 26 | `python3 -m pytest tests/ -v` | The root suite (230 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
 | 27 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (124 tests) |
 | 28 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 29 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
@@ -956,12 +956,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 221 |
+| Root (Python) | `python3 -m pytest tests/ -q` | 230 |
 | Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 124 |
 | JavaScript | `(cd wrappers/javascript && node --test)` | 111 |
 | Rust | `(cd wrappers/rust && cargo test)` | 41 (18 unit, 20 integration, 3 doc) |
 | Go | `(cd wrappers/go && go test ./...)` | 52 |
-| **Total** | | **549** |
+| **Total** | | **558** |
 
 Every number is a test run: `pytest` (the root count is pinned in `tests/test_counts.json`), `npm test`, `cargo test` and `go test -v`. This table is also the source of `counts.tests` in `registry_release.json`: `tools/gen_registry_release.py` reads its leading integers, so a change here needs the manifest regenerated.
 
@@ -1211,7 +1211,7 @@ iso3166/
     test_validate_snapshot_value.py         # validate.py's snapshot-value layer fails on one wrong value in each of seven fields
     test_verification_report_evidence.py    # The report records every gate command, exit code and the log hash
     test_release_pattern.py                 # Release-pattern properties
-    test_snapshot_meta.py                   # iso4217_snapshot.meta.json: CC-2 keys, the cadence rule, no drift from the embedded meta
+    test_snapshot_meta.py                   # iso4217_snapshot.meta.json: CC-2 keys and no drift from the embedded meta; every *.meta.json: the cadence rule
   tools/
     archive/                                # tools/archive/: one-shot tools kept for the record; neither CI nor the gate runs them
       build_initial_data.py                 # Archival: one-shot importer that produced the first iso3166.json
@@ -1238,7 +1238,7 @@ iso3166/
     club_format.py                          # Serialize club arrays to 'from:to|from:to' for flat exports
     cross_language_derived.py               # Run every derived-query fixture case through the Python wrapper
     consumers.json                          # The registries that vendor this one: repo, vendored path, fields read
-    customs_union_snapshot.json             # Snapshot: EU customs union (annual)
+    customs_union_snapshot.json             # Snapshot: EU customs union (yearly)
     customs_union_snapshot.meta.json        # Vendoring metadata and review_by
     eea_membership_snapshot.json            # Snapshot: EEA, with provisional-application dates
     eea_membership_snapshot.meta.json       # Vendoring metadata and review_by
@@ -1247,9 +1247,9 @@ iso3166/
     enrich_independent.py                   # Populate `independent` from ISO OBP, with an audit trail
     enrich_official_name.py                 # Populate `official_name` (--check)
     enrich_withdrawn.py                     # Maintain the withdrawn array (--check)
-    eu_membership_snapshot.json             # Snapshot: EU membership (annual)
+    eu_membership_snapshot.json             # Snapshot: EU membership (yearly)
     eu_membership_snapshot.meta.json        # Vendoring metadata and review_by
-    eurozone_membership_snapshot.json       # Snapshot: eurozone membership (annual)
+    eurozone_membership_snapshot.json       # Snapshot: eurozone membership (yearly)
     eurozone_membership_snapshot.meta.json  # Vendoring metadata and review_by
     export_aggregated.py                    # Generate countries_by_region.parquet from iso3166.parquet (--check)
     export_csv.py                           # Generate the four CSV/TSV files (--check)
@@ -1410,7 +1410,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **No historical currencies.** `currency_at` returns the entry's current currency inside its lifetime and `None` outside it. `currency_at("DE", "1990-01-01")` is `["EUR"]`, not the Deutsche Mark. For a withdrawn entry it returns the successor's current currency up to and including `withdrawal_date`.
 - **`introduced` and `is_active_on` have no data before 1974.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`.
 - **Club arrays reach back to the EU's 1958 founding.** `eu_membership` starts on 1958-01-01 (for `DE`); the EEA, eurozone and customs-union arrays start when those clubs did (1994, 1999, 1968-07-01). `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` answer for any date from 1958-01-01; they are not bounded by the 1974 limit, and before a club existed the answer is `false`. So `is_active_on("DE", "1960-01-01")` is `false` while `is_eu_member_at("DE", "1960-01-01")` is `true`.
-- **The `introduced` and club data are Wikipedia-sourced** under a documented exception, not first-party. Each snapshot is reviewed annually (`review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
+- **The `introduced` and club data are Wikipedia-sourced** under a documented exception, not first-party. Each snapshot is reviewed yearly (`refresh_cadence` `yearly`, `review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
 - **EEA provisional application is dated for 12 countries.** Croatia has formal dates only. The UK's EEA end (2020-12-31) is the page prose's date, and the state table disagrees; it is flagged likely in the snapshot.
 - **Five active entries have no region:** `AQ`, `EU`, `TW`, `UK`, `XK`. In `countries_by_region.parquet` they, and the 25 withdrawn entries, fall into rows with a null `region`.
 - **The aggregated table counts withdrawn entries.** Its 277 sums to the total, not to the 252 active entries, and `AI` and `SK` are counted twice.

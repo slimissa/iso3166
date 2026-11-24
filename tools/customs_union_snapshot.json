@@ -5,7 +5,7 @@
     "permalink_note": "Canonical title URL, not an oldid permalink: the research tool returned page text without revision ids. Pin an oldid at the next review.",
     "accessed_at": "2026-10-29",
     "review_by": "2027-10-29",
-    "refresh_cadence": "annual",
+    "refresh_cadence": "yearly",
     "generator": "tools/build_club_snapshots.py",
     "count": 32,
     "semantics": "from = first day in the customs union; to = last day, inclusive",

@@ -6,7 +6,8 @@ vendored_at plus one cadence period (tools/cadence.py); every key present
 both at the top level and in "meta" has the same value in both; every key
 shared by the sibling "meta" and the snapshot's embedded "meta" has the same
 value in both; and the sibling's source_version is the embedded
-iso4217_version.
+iso4217_version. Every tools/*.meta.json, the club and introduced files
+included, uses the same cadence vocabulary and the same review_by rule.
 
 Modelled on tests/test_snapshot_meta.py of slimissa/iso10383 at tag v1.1.9
 (857cc31). Rules (e) and (f) differ from that model: this snapshot is an
@@ -106,6 +107,26 @@ def test_iso4217_sibling_meta_values():
         ("quarterly", "2026-11-21", "2027-02-21")
 
 
+ALL_META = sorted(p.name for p in TOOLS.glob("*.meta.json"))
+
+
+def test_every_sibling_meta_file_is_found():
+    assert ALL_META == [
+        "customs_union_snapshot.meta.json", "eea_membership_snapshot.meta.json",
+        "eu_membership_snapshot.meta.json", "eurozone_membership_snapshot.meta.json",
+        "introduced_snapshot.meta.json", "iso4217_snapshot.meta.json",
+    ]
+
+
+@pytest.mark.parametrize("name", ALL_META)
+def test_every_sibling_meta_file_follows_the_cadence_rule(name):
+    """One vocabulary for every tools/*.meta.json, and review_by = vendored_at + 1 period."""
+    meta = json.loads((TOOLS / name).read_text(encoding="utf-8"))["meta"]
+    for k in ("vendored_at", "review_by", "refresh_cadence"):
+        assert k in meta, f"{name}: meta lacks {k}"
+    assert cadence_problems(meta) == [], name
+
+
 @pytest.mark.parametrize("start, n, end", [
     ("2026-11-21", 3, "2027-02-21"),
     ("2026-11-23", 12, "2027-11-23"),
@@ -163,3 +184,15 @@ def test_each_rule_is_enforced(tmp_path, target, change, expect):
     _edit(m if target == "meta" else s, change)
     found = problems(m, s)
     assert any(expect in p for p in found), found
+
+
+@pytest.mark.parametrize("change, expect", [
+    (lambda m: m.update(refresh_cadence="annual"), "not in ['monthly', 'quarterly', 'yearly']"),
+    (lambda m: m.update(review_by="2027-10-30"), "!= vendored_at + 1 yearly period (2027-10-29)"),
+], ids=["b-annual-refused", "c-yearly-date"])
+def test_the_cadence_rule_is_enforced_on_a_club_meta_copy(tmp_path, change, expect):
+    m = tmp_path / "eu_membership_snapshot.meta.json"
+    shutil.copy2(TOOLS / m.name, m)
+    _edit(m, lambda d: change(d["meta"]))
+    meta = json.loads(m.read_text(encoding="utf-8"))["meta"]
+    assert any(expect in p for p in cadence_problems(meta)), cadence_problems(meta)
