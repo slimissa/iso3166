@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.14] — 2026-11-24
+
 The vendored ISO 4217 snapshot meets qlf-sentinel client contract CC-2: its vendoring metadata now sits in a sibling `.meta.json`, like every other snapshot in this repository, and one cadence vocabulary covers every `tools/*.meta.json`.
 
 Consumer impact: none. No field in `iso3166.json` changes, and neither does the set of active codes. The only data changes are the vendored ISO 4217 snapshot's metadata (`review_by` in `tools/iso4217_snapshot.json`, and the new `tools/iso4217_snapshot.meta.json`) and the cadence word, `annual` to `yearly`, in the four club snapshots, their `.meta.json` files and `tools/introduced_snapshot.meta.json`. No consumer reads any of them: the fields in `tools/consumers.json` were re-read from each consumer's code on 2026-11-24.
@@ -25,6 +27,9 @@ Consumer impact: none. No field in `iso3166.json` changes, and neither does the 
 - `refresh_cadence` `annual` is now `yearly` in `tools/build_club_snapshots.py` (and the four club snapshots and meta files it writes) and in the hand-written `tools/introduced_snapshot.meta.json`. No `review_by` date changes.
 - `tools/consumers.json` and `docs/JOINS.md`: consumer fields re-read from code on 2026-11-24; no `fields_read` changes. `JOINS.md` records that Asset Identifiers hard-codes 250 ISO 3166 codes in its `tools/validate.py`.
 - README: ISO 4217 snapshot v1.9.5 with quarterly review (section 22), the new files in the section 17 tree, `yearly` for the club and `introduced` snapshots, and the root test count 201 to 230. `docs/PROVENANCE.md` and `docs/CROSS_REGISTRY_CONTRACT.md` describe the sibling file.
+
+### Fixed
+- `tests/test_export_check_order.py`, `tests/test_changelog_unreleased.py`: the repository copies now skip `.venv` and `venv`; a virtual environment inside the repository was copied six times per run and could fill the disk.
 
 ### Notes
 
