@@ -45,6 +45,10 @@ Consumer impact: none. Two values in `iso3166.json` change: `introduced` of the 
 - `tests/cross_language_consistency.json` and `tools/gen_consistency_fixture.py`: on 1990-01-01, `active_on` is 169 true and 30 false (was 170 and 29), and `CS` is false, because the registry's `CS` starts in 2003. `examples/historical-entity-resolution` says the same.
 - `docs/introduced-reconnaissance.md` and `docs/withdrawn-completeness.md` are rechecked 2027-02-25, three months after a request to ISO for the 1974–1996 newsletters.
 
+### Fixed
+
+- `tools/check_version_consistency.py` accepts a first CHANGELOG heading that is the next minor (x.(y+1).0) or major ((x+1).0.0) version, as its comment already said, not only the next patch; the v1.13.0 section commit failed CI on it. `tests/test_version_next_heading.py` pins the three accepted steps and rejects the others (root tests 308 to 318).
+
 ### Notes
 
 - Not changed, by decision: `iana_tld`, `iso639_3` and `itu_calling_code` keep `rare`, and `independent` keeps `annual`. Their `review_by` breaks the rule (2027-09-27 against a vendored date of 2026-09-23; 2027-10-28 against 2026-10-21), so they wait for the maintainer to accept 2027-09-23 and 2027-10-21. `tests/test_snapshot_meta.py` pins them as stopped. Resolved later in this cycle: the maintainer accepted both dates once git confirmed each vendored date (see Changed), and the stopped list is gone.

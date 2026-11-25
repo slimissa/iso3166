@@ -150,6 +150,12 @@ def ex_badge(root, site, ctx):
     return m.group(1)
 
 
+def next_versions(cur):
+    """The versions a release can go to from `cur` (a 3-tuple of ints)."""
+    major, minor, patch = cur
+    return {(major, minor, patch + 1), (major, minor + 1, 0), (major + 1, 0, 0)}
+
+
 def ex_first_released_heading(root, site, ctx):
     p = root / site["path"]
     if not p.is_file():
@@ -161,23 +167,24 @@ def ex_first_released_heading(root, site, ctx):
         top = released[0]
         if top == version:
             return top
-        # Pre-release acceptance: the CHANGELOG heading may be exactly
-        # one minor ahead of VERSION with patch 0 (x.y.z -> x.(y+1).0).
-        # This is the CHANGELOG-first pattern `release.sh` uses: the
-        # release section is committed before `release.sh` bumps VERSION,
-        # so the checker must accept it, or `release.sh` can never run.
+        # Pre-release acceptance: the CHANGELOG heading may be the NEXT
+        # version: one patch ahead (x.y.z -> x.y.(z+1)), one minor ahead
+        # with patch 0 (x.y.z -> x.(y+1).0), or one major ahead
+        # (x.y.z -> (x+1).0.0). This is the CHANGELOG-first pattern
+        # `release.sh` uses: the release section is committed before
+        # `release.sh` bumps VERSION, so the checker must accept it, or
+        # `release.sh` can never run. Until v1.13.0 only the patch case
+        # was accepted, although this comment already described the minor
+        # one, so a minor release failed CI on its CHANGELOG commit.
         try:
             top_t = tuple(int(x) for x in top.split("."))
             cur_t = tuple(int(x) for x in version.split("."))
         except ValueError:
             top_t = cur_t = None
-        if (top_t is not None
-                and top_t[0] == cur_t[0]
-                and top_t[1] == cur_t[1]
-                and top_t[2] == cur_t[2] + 1):
+        if top_t is not None and top_t in next_versions(cur_t):
             ctx["notes"].append(
                 f"CHANGELOG has [{top}]; VERSION is {version} "
-                f"(pre-release: one patch ahead, accepted)")
+                f"(pre-release: the next version, accepted)")
             return version
     if "Unreleased" in headings and int(version.split(".", 1)[0]) < 1:
         ctx["notes"].append(
