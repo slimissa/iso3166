@@ -208,8 +208,8 @@ Each field's source has its own cadence:
 | `tlds` | IANA | rare |
 | `languages` | CIA World Factbook | approximately annual |
 | `borders` | CIA World Factbook | approximately annual |
-| `subregion` | UN M49 | rare (closed list) |
-| `intermediate_region` | UN M49 | rare (closed list) |
+| `subregion` | UN M49 | closed (static list; `closed_reason` in the snapshot) |
+| `intermediate_region` | UN M49 | closed (static list; `closed_reason` in the snapshot) |
 
 There is no automatic sync. Every refresh is a human-reviewed commit
 with the source citation recorded in the entry's `note` field.

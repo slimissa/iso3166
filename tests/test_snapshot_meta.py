@@ -196,3 +196,105 @@ def test_the_cadence_rule_is_enforced_on_a_club_meta_copy(tmp_path, change, expe
     _edit(m, lambda d: change(d["meta"]))
     meta = json.loads(m.read_text(encoding="utf-8"))["meta"]
     assert any(expect in p for p in cadence_problems(meta)), cadence_problems(meta)
+
+
+# --- every tools/*_snapshot.json: one cadence vocabulary ---------------------
+#
+# The cadence comes from the sibling .meta.json when there is one, else from
+# the snapshot's embedded meta; when both carry it they must agree. A cadence
+# in CADENCE_MONTHS needs review_by = vendored date + 1 period. "closed" is
+# the one other value: it needs review_by "closed" and a closed_reason.
+#
+# STOPPED: snapshots whose review_by breaks the rule. They keep their values
+# until the maintainer accepts the proposed date (the change that does so
+# must remove the row). Each row pins (cadence, review_by, vendored date,
+# proposed review_by); the test fails if any of them changes.
+
+ALL_SNAPSHOTS = sorted(p.name for p in TOOLS.glob("*_snapshot.json"))
+VENDORED_KEYS = ("vendored_at", "accessed_at", "generated", "extracted_at")
+STOPPED = {
+    "iana_tld_snapshot.json": ("rare", "2027-09-27", "2026-09-23", "2027-09-23"),
+    "independent_snapshot.json": ("annual", "2027-10-28", "2026-10-21", "2027-10-21"),
+    "iso639_3_snapshot.json": ("rare", "2027-09-27", "2026-09-23", "2027-09-23"),
+    "itu_calling_code_snapshot.json": ("rare", "2027-09-27", "2026-09-23", "2027-09-23"),
+}
+
+
+def effective_meta(snapshot: Path) -> dict:
+    """cadence, review_by, vendored date and closed_reason of one snapshot."""
+    embedded = json.loads(snapshot.read_text(encoding="utf-8")).get("meta") or {}
+    sib_path = snapshot.with_name(snapshot.name.replace(".json", ".meta.json"))
+    sibling = json.loads(sib_path.read_text(encoding="utf-8")).get("meta", {}) if sib_path.exists() else {}
+    src = sibling or embedded
+    vendored = next((str(src[k])[:10] for k in VENDORED_KEYS if src.get(k)), None)
+    disagree = [k for k in ("refresh_cadence", "review_by")
+                if k in sibling and k in embedded and sibling[k] != embedded[k]]
+    return {"refresh_cadence": src.get("refresh_cadence"), "review_by": src.get("review_by"),
+            "vendored": vendored, "closed_reason": src.get("closed_reason"), "disagree": disagree}
+
+
+def snapshot_cadence_problems(m: dict) -> list[str]:
+    out = [f"sibling and embedded meta disagree on {k}" for k in m["disagree"]]
+    cad, rb = m["refresh_cadence"], m["review_by"]
+    if cad == "closed":
+        if rb != "closed":
+            out.append(f"refresh_cadence closed needs review_by 'closed', not {rb!r}")
+        if not (isinstance(m["closed_reason"], str) and m["closed_reason"].strip()):
+            out.append("refresh_cadence closed needs a closed_reason")
+        return out
+    if cad not in CADENCE_MONTHS:
+        return out + [f"refresh_cadence {cad!r} not in {sorted(CADENCE_MONTHS)} or 'closed'"]
+    va, rbd = _iso_date(m["vendored"]), _iso_date(rb)
+    if va is None:
+        return out + ["no vendored date (" + ", ".join(VENDORED_KEYS) + ")"]
+    want = add_months(va, CADENCE_MONTHS[cad])
+    if rbd != want:
+        out.append(f"review_by {rb} != vendored {va} + 1 {cad} period ({want})")
+    return out
+
+
+def test_every_snapshot_is_found():
+    assert len(ALL_SNAPSHOTS) == 12, ALL_SNAPSHOTS
+    assert set(STOPPED) <= set(ALL_SNAPSHOTS)
+
+
+@pytest.mark.parametrize("name", [n for n in ALL_SNAPSHOTS if n not in STOPPED])
+def test_every_snapshot_uses_the_cadence_vocabulary(name):
+    assert snapshot_cadence_problems(effective_meta(TOOLS / name)) == [], name
+
+
+@pytest.mark.parametrize("name", sorted(STOPPED))
+def test_stopped_snapshots_are_pinned_with_their_proposed_date(name):
+    """A stopped snapshot still breaks the rule, exactly as recorded."""
+    cad, rb, vendored, proposed = STOPPED[name]
+    m = effective_meta(TOOLS / name)
+    assert (m["refresh_cadence"], m["review_by"], m["vendored"]) == (cad, rb, vendored)
+    assert add_months(date.fromisoformat(vendored), 12).isoformat() == proposed
+    assert snapshot_cadence_problems(m) != []
+
+
+@pytest.mark.parametrize("change, expect", [
+    (lambda m: m.pop("closed_reason"), "needs a closed_reason"),
+    (lambda m: m.update(closed_reason="  "), "needs a closed_reason"),
+    (lambda m: m.update(review_by="2027-09-23"), "needs review_by 'closed'"),
+    (lambda m: m.update(refresh_cadence="rare", review_by="2027-09-23"), "'rare' not in"),
+    (lambda m: m.update(refresh_cadence="annual", review_by="2027-09-23"), "'annual' not in"),
+    (lambda m: m.update(refresh_cadence="yearly", review_by="2027-09-27"),
+     "review_by 2027-09-27 != vendored 2026-09-23 + 1 yearly period (2027-09-23)"),
+], ids=["closed-no-reason", "closed-blank-reason", "closed-dated", "rare", "annual", "yearly-wrong-date"])
+def test_the_snapshot_rule_is_enforced_on_an_m49_copy(tmp_path, change, expect):
+    s = tmp_path / "m49_subregion_snapshot.json"
+    shutil.copy2(TOOLS / s.name, s)
+    assert snapshot_cadence_problems(effective_meta(s)) == []
+    _edit(s, lambda d: change(d["meta"]))
+    found = snapshot_cadence_problems(effective_meta(s))
+    assert any(expect in p for p in found), found
+
+
+def test_sibling_and_embedded_cadence_must_agree(tmp_path):
+    for n in ("eu_membership_snapshot.json", "eu_membership_snapshot.meta.json"):
+        shutil.copy2(TOOLS / n, tmp_path / n)
+    s = tmp_path / "eu_membership_snapshot.json"
+    assert snapshot_cadence_problems(effective_meta(s)) == []
+    _edit(s, lambda d: d["meta"].update(refresh_cadence="quarterly"))
+    assert "sibling and embedded meta disagree on refresh_cadence" in snapshot_cadence_problems(effective_meta(s))

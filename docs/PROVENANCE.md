@@ -43,8 +43,8 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 | `tlds` | IANA snapshot | 2026-09-23 (snapshot generated) | rare |
 | `languages` | CIA World Factbook, codes validated against ISO 639-3 snapshot | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
 | `borders` | CIA World Factbook, land boundaries | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
-| `subregion` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
-| `intermediate_region` | UN M49 snapshot | 2026-09-23 (snapshot generated) | rare (closed list) |
+| `subregion` | UN M49 snapshot | 2026-09-23 (snapshot generated) | closed (static list; `closed_reason` in the snapshot) |
+| `intermediate_region` | UN M49 snapshot | 2026-09-23 (snapshot generated) | closed (static list; `closed_reason` in the snapshot) |
 | `eu_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eu_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
 | `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
 | `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
