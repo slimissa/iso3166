@@ -826,7 +826,7 @@ func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 // ActiveOn is IsActiveOn for every code at once: the 252 active entries
 // plus the 23 withdrawn codes that are not also active (AI and SK exist in
 // both; the active entry wins, as in IsActiveOn). 275 keys. A nil pointer
-// is unknown, not false: on 1990-01-01 the answer is 170 true, 29 false and
+// is unknown, not false: on 1990-01-01 the answer is 169 true, 30 false and
 // 76 unknown (CZ, SK and RU among them). A malformed date returns an
 // *InvalidDateError. See docs/QUERIES.md, "Query 11".
 func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
@@ -855,7 +855,7 @@ func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
 // before a known Introduced), else the union of the terminal
 // successors' current currencies. For withdrawn entries, returns the
 // successor's current currency; the withdrawn entry's historical
-// currency is not in the tree. For nil Introduced (all 25) it may
+// currency is not in the tree. For nil Introduced (24 of 25) it may
 // differ from the withdrawn entry's historical currency. ok == false
 // means "cannot answer". See docs/QUERIES.md, "Query 7".
 func (r *CountryRegistry) CurrencyAt(code, date string) ([]string, bool) {

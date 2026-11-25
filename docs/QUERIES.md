@@ -808,8 +808,8 @@ not turn "the source is silent" into a confident answer. In order:
 3. The code is **active** (an active entry wins when a code is in both arrays,
    AI and SK): `introduced` null → `null`; else `date >= introduced`.
 4. The code is **withdrawn**: `date > withdrawal_date` → `false`. Otherwise,
-   `introduced` is set → `introduced <= date`. If `introduced` is null (all 25
-   withdrawn entries): `date < 1974-01-01` → `null`; else `true`. The start is
+   `introduced` is set → `introduced <= date`. If `introduced` is null (24 of
+   the 25 withdrawn entries; CS is dated 2003-07-23 by Newsletter V-8): `date < 1974-01-01` → `null`; else `true`. The start is
    unknown, but ISO 3166 did not exist before 1974, so the registry cannot
    answer for earlier dates and says so. From 1974-01-01 up to and including
    `withdrawal_date` the answer is `true`: the code existed at some point

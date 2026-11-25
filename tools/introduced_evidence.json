@@ -155,21 +155,22 @@
       "code": "AX",
       "current": "2004-02-13",
       "candidate": "2004-02-13",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-9, Inclusion of an entry for Åland Islands (English version)",
+        "number": "V-9",
+        "date": "2004-02-13",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv9e-ax.html",
+          "https://web.archive.org/web/20040506213031id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv9e-ax.html"
         ],
-        "locator": "row for AX, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 10, column 2, \"Alpha-2 code\": present entry \"--\", new entry \"AX\"; Description of change: \"Insert the new entry for \"ÅLAND ISLANDS\" between AFGHANISTAN and ALBANIA (p. 10).\"",
+        "sha256": "0d05a0fd2872ac8203ccb5e3ecd27f5a64ea16baf773a14abd5678d96fa4ea44",
+        "retrieved": "Internet Archive capture 20040506213031, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv9e-ax.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.AX",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-9 (2004-02-13) assigns AX; issue date adopted (decision D3: the tree dates codes by newsletter issue date). French version nlv9f-ax.html agrees: V-9, 2004-02-13, Code alpha-2 \"--\" -> \"AX\". V-10 (2004-04-26) changes only the French name",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-9 adds the alpha-2 code AX (decision D4); no other effective date is stated"
     },
     {
       "code": "AZ",
@@ -563,13 +564,24 @@
     },
     {
       "code": "CS",
-      "current": null,
-      "candidate": null,
-      "class": "lead_only",
-      "doc": null,
-      "quote_ref": null,
-      "verdict": "unconfirmed",
-      "reason": "withdrawn: start date not sourced"
+      "current": "2003-07-23",
+      "candidate": "2003-07-23",
+      "class": "iso_primary",
+      "doc": {
+        "title": "ISO 3166-1 Newsletter V-8, Deletion of \"Yugoslavia\"; inclusion of \"Serbia and Montenegro\" with new alphabetical code elements (English version)",
+        "number": "V-8",
+        "date": "2003-07-23",
+        "urls": [
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv8e-cs.html",
+          "https://web.archive.org/web/20030726171200id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv8e-cs.html"
+        ],
+        "locator": "pages 21/19, column 2, \"Alpha-2 code\": present entry \"YU\", new entry \"CS\"; Description of change: \"Delete the old entry for \"Yugoslavia\" (p. 21). Insert the new entry for \"Serbia and Montenegro\" (p. 19).\"",
+        "sha256": "87c0ed472af8a5c749c43162d4c97e8a2b7a15923d639a5bdcca513d8473a8cc",
+        "retrieved": "Internet Archive capture 20030726171200, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv8e-cs.html (SHA256SUMS verified)"
+      },
+      "quote_ref": "Newsletter V-8 (2003-07-23) assigns CS; issue date adopted (decision D3: the tree dates codes by newsletter issue date). French version nlv8f-cs.html agrees: V-8, 2003-07-23, Code alpha-2 \"YU\" -> \"CS\". The second use of CS (Serbia and Montenegro); Czechoslovakia's earlier CS is ISO 3166-3 CSHH",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-8 adds the alpha-2 code CS (decision D4); no other effective date is stated"
     },
     {
       "code": "CT",
@@ -945,21 +957,22 @@
       "code": "GG",
       "current": "2006-03-29",
       "candidate": "2006-03-29",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-11, Inclusion of an entry for Jersey, Guernsey and Isle of Man. Change of remark for the United Kingdom (English; the capture has no French part)",
+        "number": "V-11",
+        "date": "2006-03-29",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv11-div.html",
+          "https://web.archive.org/web/20060513064221id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv11-div.html"
         ],
-        "locator": "row for GG, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 14, \"Alpha-2 code\": present entry \"--\", new entry \"GG\"; Description of change: \"Insert the new entry for \"GUERNSEY\" between GUATEMALA and GUINEA (p. 14).\"",
+        "sha256": "dbb73b8373ddd9500c4cd67cfd67e4ad6194f85f9437dee7c1de0fef967cb891",
+        "retrieved": "Internet Archive capture 20060513064221, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv11-div.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.GG",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-11 (2006-03-29) assigns GG; issue date adopted (decision D3: the tree dates codes by newsletter issue date). English only: no French version of V-11 was captured",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-11 adds the alpha-2 code GG (decision D4); no other effective date is stated"
     },
     {
       "code": "GH",
@@ -1195,21 +1208,22 @@
       "code": "IM",
       "current": "2006-03-29",
       "candidate": "2006-03-29",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-11, Inclusion of an entry for Jersey, Guernsey and Isle of Man. Change of remark for the United Kingdom (English; the capture has no French part)",
+        "number": "V-11",
+        "date": "2006-03-29",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv11-div.html",
+          "https://web.archive.org/web/20060513064221id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv11-div.html"
         ],
-        "locator": "row for IM, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 15, \"Alpha-2 code\": present entry \"--\", new entry \"IM\"; Description of change: \"Insert the new entry for \"ISLE OF MAN\" between IRELAND and ISRAEL (p. 15).\"",
+        "sha256": "dbb73b8373ddd9500c4cd67cfd67e4ad6194f85f9437dee7c1de0fef967cb891",
+        "retrieved": "Internet Archive capture 20060513064221, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv11-div.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.IM",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-11 (2006-03-29) assigns IM; issue date adopted (decision D3: the tree dates codes by newsletter issue date). English only: no French version of V-11 was captured",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-11 adds the alpha-2 code IM (decision D4); no other effective date is stated"
     },
     {
       "code": "IN",
@@ -1275,21 +1289,22 @@
       "code": "JE",
       "current": "2006-03-29",
       "candidate": "2006-03-29",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-11, Inclusion of an entry for Jersey, Guernsey and Isle of Man. Change of remark for the United Kingdom (English; the capture has no French part)",
+        "number": "V-11",
+        "date": "2006-03-29",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv11-div.html",
+          "https://web.archive.org/web/20060513064221id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv11-div.html"
         ],
-        "locator": "row for JE, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 15, \"Alpha-2 code\": present entry \"--\", new entry \"JE\"; Description of change: \"Insert the new entry for \"JERSEY\" between JAPAN and JORDAN (p. 15).\"",
+        "sha256": "dbb73b8373ddd9500c4cd67cfd67e4ad6194f85f9437dee7c1de0fef967cb891",
+        "retrieved": "Internet Archive capture 20060513064221, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv11-div.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.JE",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-11 (2006-03-29) assigns JE; issue date adopted (decision D3: the tree dates codes by newsletter issue date). English only: no French version of V-11 was captured",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-11 adds the alpha-2 code JE (decision D4); no other effective date is stated"
     },
     {
       "code": "JM",
@@ -1595,21 +1610,22 @@
       "code": "ME",
       "current": "2006-09-26",
       "candidate": "2006-09-26",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-12, Inclusion of the new entries for \"Serbia\" and \"Montenegro\" (English; the capture has no French part)",
+        "number": "V-12",
+        "date": "2006-09-26",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv12-div.html",
+          "https://web.archive.org/web/20061108195817id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv12-div.html"
         ],
-        "locator": "row for ME, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 19, \"Alpha-2 code\": present entry \"CS\", new entry \"ME\"; Description of change: \"Insert the new entry for \" MONTENEGRO\" between \"MONGOLIA\" and \"MONTSERRAT\" (p. 16).\"",
+        "sha256": "1097f62eac4af2c1181d3c4364ad21ce327b47c6a50be0ae503a777a3949b97a",
+        "retrieved": "Internet Archive capture 20061108195817, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv12-div.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.ME",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-12 (2006-09-26) assigns ME; issue date adopted (decision D3: the tree dates codes by newsletter issue date). English only: no French version of V-12 was captured",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-12 adds the alpha-2 code ME (decision D4); no other effective date is stated"
     },
     {
       "code": "MF",
@@ -2105,21 +2121,22 @@
       "code": "PS",
       "current": "1999-10-01",
       "candidate": "1999-10-01",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-2, Inclusion of new country name and code elements (English version)",
+        "number": "V-2",
+        "date": "1999-10-01",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv2e-ps.html",
+          "https://web.archive.org/web/20021219231418id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv2e-ps.html"
         ],
-        "locator": "row for PS, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 17, column 2, \"Alpha-2 code\": present entry \"- - -\", new entry \"PS\"; Description of change: \"Insert the new country name ... Insert the three code elements in columns 2, 3 and 4.\"",
+        "sha256": "9aeb3adb69864018c923944623e0a6bd9a652266e96ac7f937586b753ab92dc4",
+        "retrieved": "Internet Archive capture 20021219231418, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv2e-ps.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.PS",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-2 (1999-10-01) assigns PS; issue date adopted (decision D3: the tree dates codes by newsletter issue date). French version nlv2f-ps.html agrees: INFO-SERVICE V-2, 1999-10-01, Code alpha-2 \"- - -\" -> \"PS\"",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-2 adds the alpha-2 code PS (decision D4); no other effective date is stated"
     },
     {
       "code": "PT",
@@ -2205,21 +2222,22 @@
       "code": "RS",
       "current": "2006-09-26",
       "candidate": "2006-09-26",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-12, Inclusion of the new entries for \"Serbia\" and \"Montenegro\" (English; the capture has no French part)",
+        "number": "V-12",
+        "date": "2006-09-26",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv12-div.html",
+          "https://web.archive.org/web/20061108195817id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv12-div.html"
         ],
-        "locator": "row for RS, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 19, \"Alpha-2 code\": present entry \"CS\", new entry \"RS\"; Description of change: \"Delete the old entry for \"SERBIA AND MONTENEGRO\" (p.19). Insert the new entry for \" SERBIA\" between \"SENEGAL\" and \"SEYCHELLES\" (p. 19).\"",
+        "sha256": "1097f62eac4af2c1181d3c4364ad21ce327b47c6a50be0ae503a777a3949b97a",
+        "retrieved": "Internet Archive capture 20061108195817, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv12-div.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.RS",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-12 (2006-09-26) assigns RS; issue date adopted (decision D3: the tree dates codes by newsletter issue date). English only: no French version of V-12 was captured",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-12 adds the alpha-2 code RS (decision D4); no other effective date is stated"
     },
     {
       "code": "RU",
@@ -2417,9 +2435,23 @@
         "sha256": "667c074c49b2bf05875d37eed572f8a1de7a954390e9d61e9da0cf55bd512460",
         "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file SS.html (SHA256SUMS verified)"
       },
-      "quote_ref": "2011-08-09 Assign code elements",
+      "quote_ref": "2011-08-09 Assign code elements; ISO 3166-1 Newsletter VI-10 (2011-08-09) \"Assign code elements\" agrees (more_docs)",
       "verdict": "adopted",
-      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)",
+      "more_docs": [
+        {
+          "title": "ISO 3166-1 Newsletter VI-10, Code elements for South Sudan",
+          "number": "VI-10",
+          "date": "2011-08-09",
+          "urls": [
+            "http://www.iso.org/iso/nl_vi-10_south_sudan.pdf",
+            "https://web.archive.org/web/20120119115237id_/http://www.iso.org/iso/nl_vi-10_south_sudan.pdf"
+          ],
+          "locator": "page 1, table: \"SS | SOUTH SUDAN / SOUDAN DU SUD | Assign code elements\" (the SD row is \"Correct numeric code after split\", not an assignment)",
+          "sha256": "056ce4803a35ec3929bb0acb153493e11b2bdf7dc961199fd8a25e9bba125f4d",
+          "retrieved": "Internet Archive capture 20120119115237, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/nl_vi-10_south_sudan.pdf (SHA256SUMS verified)"
+        }
+      ]
     },
     {
       "code": "ST",
@@ -2565,21 +2597,22 @@
       "code": "TL",
       "current": "2002-05-20",
       "candidate": "2002-05-20",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
-        "number": null,
-        "date": null,
+        "title": "ISO 3166-1 Newsletter V-5, Change of names and alphabetical code elements of East Timor (English version)",
+        "number": "V-5",
+        "date": "2002-05-20",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv5e-tl.html",
+          "https://web.archive.org/web/20020812061843id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlv5e-tl.html"
         ],
-        "locator": "row for TL, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "page 12, column 2, \"Alpha-2 code\": present entry \"TP\", new entry \"TL\"; Description of change: \"Insert the new official country name and the new alphabetic code elements on page 12\"",
+        "sha256": "bd843eaabe3d3c136bf3637a8cb60ce9b50a7ea5bee33fa02054612ba5ca7c2b",
+        "retrieved": "Internet Archive capture 20020812061843, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv5e-tl.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.TL",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "Newsletter V-5 (2002-05-20) assigns TL; issue date adopted (decision D3: the tree dates codes by newsletter issue date). French version nlv5f-tl.html agrees: V-5, 2002-05-20, Code alpha-2 \"TP\" -> \"TL\". V-6 (2002-11-15) changes only the names; TL unchanged",
+      "verdict": "adopted",
+      "reason": "ISO 3166-1 Newsletter V-5 adds the alpha-2 code TL (decision D4); no other effective date is stated"
     },
     {
       "code": "TM",

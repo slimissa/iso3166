@@ -18,8 +18,8 @@
     {
       "path": "iso3166.json",
       "layer": "curated",
-      "bytes": 409358,
-      "sha256": "c05f4d5754582f33f921bc5091c9def39bbab6fc040689a740af6297f9b9a783"
+      "bytes": 409366,
+      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
     },
     {
       "path": "schema.json",
@@ -30,86 +30,86 @@
     {
       "path": "iso3166.sql",
       "layer": "raw",
-      "bytes": 326437,
-      "sha256": "823e81db4c8e509477cf0224c38a0d959acec1ae7fc457bc47f3d0acdee8b947"
+      "bytes": 326445,
+      "sha256": "2e35200ff430662570a40b33a796007cbf39533a8c4019992dd6a0baa504c184"
     },
     {
       "path": "iso3166.postgresql.sql",
       "layer": "raw",
-      "bytes": 326440,
-      "sha256": "cdb9955600eb904535d0e0d0b06d1027e4affc106ce7608a18249be09d64ebf2"
+      "bytes": 326448,
+      "sha256": "2628e4f33b4432c1a506d6e4fa1863040ba270925b5578804a232f94b47ab95a"
     },
     {
       "path": "iso3166.mysql.sql",
       "layer": "raw",
-      "bytes": 325676,
-      "sha256": "01a780cc28c24b1c9ef350c731198ab1f4f8477f336949b233f153dcaac7c6e9"
+      "bytes": 325684,
+      "sha256": "4a357be2216c2333619c89ea782d2fbca55d121e912532b7f4306e97463376e9"
     },
     {
       "path": "iso3166.sqlite.sql",
       "layer": "raw",
-      "bytes": 325334,
-      "sha256": "8c27c1ac40eddd3a3ac6e2ac66d350a63be08e2475f3165368849a45dc792151"
+      "bytes": 325342,
+      "sha256": "7838289d85aee6dc8d4228b3631b870b2cdfe92ea984ceb3e9660a3faa3a0778"
     },
     {
       "path": "iso3166.csv",
       "layer": "raw",
-      "bytes": 194576,
-      "sha256": "fa2ea8770de2ea1ae7336b8a8951d74e91e2dae21e1583cd42e9cb8b44d602c7"
+      "bytes": 194586,
+      "sha256": "6dac6bceee8671eab4078ebe9b799d7bdead899dc6705258d22f3f067eb7e869"
     },
     {
       "path": "iso3166.excel.csv",
       "layer": "raw",
-      "bytes": 194579,
-      "sha256": "781e3a4de54638867094311994602b79eddc79d119d0d35a4a1216011f00c992"
+      "bytes": 194589,
+      "sha256": "34b9a689eb0ea05ca6e1a455fb5f62adad3ef37263f697b0e3e2a74094e3c326"
     },
     {
       "path": "iso3166.european.csv",
       "layer": "raw",
-      "bytes": 194562,
-      "sha256": "f7ea587b0f449f2f63b7dc0a3505c6a8dc326888bca2ef4ef70063525c4a594a"
+      "bytes": 194572,
+      "sha256": "286c723effa5bfd56cf2e246eb85e0863e8079d764f722ae78c713acf90d526b"
     },
     {
       "path": "iso3166.tsv",
       "layer": "raw",
-      "bytes": 194562,
-      "sha256": "45fcad2f6fbd29c4263efa946e9f44a8a80aa519b6e56801fa1bdb98d6c4b909"
+      "bytes": 194572,
+      "sha256": "3e9f4d30c95941b4c93e763dd1a2052f7bcda074a3fee8637a88fc3f4da78cdd"
     },
     {
       "path": "iso3166.parquet",
       "layer": "raw",
-      "bytes": 41100,
-      "sha256": "97a88de8ec4c312098c1c00b9df89396ff89abb05856618df52d958f0c7dba92"
+      "bytes": 41110,
+      "sha256": "f98d9c90740cbf0f60ae25a77de074c0affd50762a8a299a50ad1ccc9f9542f9"
     },
     {
       "path": "countries_by_region.parquet",
       "layer": "aggregated",
       "bytes": 3450,
-      "sha256": "5700373809f1777123c09e3d7984c8f731a371bf7185bd19b4860c41b40b6cc8"
+      "sha256": "f6a14f22f46b1745cd7a300f314073b775af9719786c7033df2e6d2e19d45044"
     },
     {
       "path": "wrappers/python/iso3166/iso3166.json",
       "layer": "bundled",
-      "bytes": 409358,
-      "sha256": "c05f4d5754582f33f921bc5091c9def39bbab6fc040689a740af6297f9b9a783"
+      "bytes": 409366,
+      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
     },
     {
       "path": "wrappers/javascript/iso3166.json",
       "layer": "bundled",
-      "bytes": 409358,
-      "sha256": "c05f4d5754582f33f921bc5091c9def39bbab6fc040689a740af6297f9b9a783"
+      "bytes": 409366,
+      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
     },
     {
       "path": "wrappers/go/iso3166.json",
       "layer": "bundled",
-      "bytes": 409358,
-      "sha256": "c05f4d5754582f33f921bc5091c9def39bbab6fc040689a740af6297f9b9a783"
+      "bytes": 409366,
+      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
     },
     {
       "path": "wrappers/rust/iso3166.json",
       "layer": "bundled",
-      "bytes": 409358,
-      "sha256": "c05f4d5754582f33f921bc5091c9def39bbab6fc040689a740af6297f9b9a783"
+      "bytes": 409366,
+      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
     }
   ],
   "counts": {
@@ -119,12 +119,12 @@
     "introduced_dated": 176,
     "introduced_null": 76,
     "tests": {
-      "root": 297,
+      "root": 307,
       "python_wrapper": 124,
       "javascript": 111,
       "rust": 41,
       "go": 52,
-      "total": 625
+      "total": 635
     },
     "gates": 35,
     "claims": 10

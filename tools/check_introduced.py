@@ -46,8 +46,11 @@ def introduced_mismatches(
     snapshot: dict[str, Any],
     today: str | None = None,
 ) -> list[str]:
-    """Return one message per active entry that disagrees with the snapshot,
-    and one per `introduced` date (entry or snapshot) later than today."""
+    """Return one message per entry that disagrees with the snapshot, and one
+    per `introduced` date (entry or snapshot) later than today.
+
+    Active entries are compared, and withdrawn entries whose code is not also
+    active (AI and SK hold the active value under their key)."""
     data = snapshot.get("data")
     if not isinstance(data, dict):
         return ["tools/introduced_snapshot.json has no 'data' object"]
@@ -59,9 +62,14 @@ def introduced_mismatches(
             errors.append(
                 f"snapshot {a2}: introduced {value} is in the future (today is {today})"
             )
-    for i, entry in enumerate(reg.get("countries", {}).get("active", [])):
+    countries = reg.get("countries", {})
+    active_codes = {e.get("alpha_2") for e in countries.get("active", [])}
+    entries = [("active", i, e) for i, e in enumerate(countries.get("active", []))]
+    entries += [("withdrawn", i, e) for i, e in enumerate(countries.get("withdrawn", []))
+                if e.get("alpha_2") not in active_codes]
+    for section, i, entry in entries:
         a2 = entry.get("alpha_2", "?")
-        where = f"active[{i}] ({a2})"
+        where = f"{section}[{i}] ({a2})"
         tree = entry.get("introduced", _MISSING)
         if a2 not in data:
             errors.append(f"{where}: no entry for {a2} in tools/introduced_snapshot.json")
@@ -112,8 +120,12 @@ def main(argv: list[str] | None = None) -> int:
 
     active = reg.get("countries", {}).get("active", [])
     nulls = sum(1 for e in active if e.get("introduced") is None)
+    active_codes = {e.get("alpha_2") for e in active}
+    own = [e for e in reg.get("countries", {}).get("withdrawn", []) if e.get("alpha_2") not in active_codes]
+    wnulls = sum(1 for e in own if e.get("introduced") is None)
     print(f"OK: introduced matches the snapshot for {len(active)} active entries "
-          f"({nulls} null, each with a documented reason)")
+          f"({nulls} null, each with a documented reason) and {len(own)} withdrawn "
+          f"entries not shared with an active code ({wnulls} null)")
     return 0
 
 

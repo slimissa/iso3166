@@ -97,8 +97,9 @@ func TestActiveOn1990(t *testing.T) {
 			no++
 		}
 	}
-	if yes != 170 || no != 29 || unknown != 76 {
-		t.Errorf("true/false/unknown = %d/%d/%d, want 170/29/76", yes, no, unknown)
+	// CS (withdrawn) is dated 2003-07-23 by Newsletter V-8: false on 1990-01-01.
+	if yes != 169 || no != 30 || unknown != 76 {
+		t.Errorf("true/false/unknown = %d/%d/%d, want 169/30/76", yes, no, unknown)
 	}
 	if _, err := r.ActiveOn("1990-13-01"); err == nil {
 		t.Error("malformed date must return an error")

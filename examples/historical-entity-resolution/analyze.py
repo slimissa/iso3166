@@ -138,7 +138,7 @@ def main() -> int:
     print(f"  successors('SU') = {reg.successors('SU')}   (no heir recorded in the tree)")
     print(f"  successors('YU') = {reg.successors('YU')}   (two active heirs)")
     print(f"  is_active_on('CS', '1991-06-01') = {reg.is_active_on('CS', '1991-06-01')}"
-          "   (CS holds one entry, Serbia and Montenegro; the older meaning is not split out)")
+          "   (CS holds one entry, Serbia and Montenegro, assigned 2003-07-23; Czechoslovakia's older CS is not split out)")
     return 0
 
 

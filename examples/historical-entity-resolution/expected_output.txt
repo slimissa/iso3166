@@ -48,4 +48,4 @@ A malformed date is not silent any more (v1.12.5):
 == Honest limits, as the registry answers them ==
   successors('SU') = []   (no heir recorded in the tree)
   successors('YU') = ['CS', 'ME', 'RS']   (two active heirs)
-  is_active_on('CS', '1991-06-01') = True   (CS holds one entry, Serbia and Montenegro; the older meaning is not split out)
+  is_active_on('CS', '1991-06-01') = False   (CS holds one entry, Serbia and Montenegro, assigned 2003-07-23; Czechoslovakia's older CS is not split out)

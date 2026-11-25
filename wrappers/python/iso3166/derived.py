@@ -409,7 +409,7 @@ class DerivedQueries:
           current currencies of the terminal successors. For withdrawn
           entries, returns the successor's current currency; the
           withdrawn entry's historical currency is not in the tree. For
-          null ``introduced`` (all 25), it may differ from the withdrawn
+          null ``introduced`` (24 of 25), it may differ from the withdrawn
           entry's historical currency.
 
         None means "cannot answer": unknown code, malformed date (not a
@@ -527,8 +527,8 @@ class DerivedQueries:
         entry wins, exactly as in ``is_active_on``). 275 keys, sorted.
         ``result[code] == reg.is_active_on(code, date)`` for every key.
 
-        **``None`` is not ``False``.** For 1990-01-01 the answer is 170
-        True, 29 False and 76 None. The 76 are active entries whose
+        **``None`` is not ``False``.** For 1990-01-01 the answer is 169
+        True, 30 False and 76 None. The 76 are active entries whose
         ``introduced`` is null (the source is silent): they include CZ, SK
         and RU. Do not write ``[c for c, v in r.items() if v]`` and call it
         "the countries that existed"; it silently drops them. Count them

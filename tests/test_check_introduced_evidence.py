@@ -109,19 +109,32 @@ def _primary(led, code="SS", date_="2011-08-09"):
     (lambda led: _row(led, "AD").update(current="1974-09-16"), "AD: current '1974-09-16' != snapshot '1974-09-15'"),
     (lambda led: _row(led, "AD").update(verdict="adopted"), "AD: adopted with class inference"),
     (lambda led: _row(led, "SS").update(verdict="adopted", **{"class": "ma_member"}), "SS: adopted with class ma_member"),
-    (lambda led: _row(led, "AX").update(verdict="adopted"), "AX: adopted with class lead_only"),
+    (lambda led: _row(led, "NU").update(verdict="adopted"), "NU: adopted with class lead_only"),
     (lambda led: _primary(led)["doc"].update(sha256=None), "SS: iso_primary needs doc"),
     (lambda led: _primary(led)["doc"].update(urls=[]), "SS: iso_primary needs doc"),
     (lambda led: _primary(led, "SS", "2011-07-09"), "SS: adopted 2011-07-09 != iso3166.json introduced '2011-08-09'"),
-    (lambda led: _primary(led, "SU", "1974-09-15"), "SU: adopted, but SU is not an active entry"),
+    (lambda led: _primary(led, "SU", "1974-09-15"), "SU: adopted 1974-09-15 != iso3166.json introduced None"),
     (lambda led: _primary(led).update(candidate=None), "SS: adopted with no candidate"),
     (lambda led: _row(led, "AD").update(verdict="conflict"), "AD: conflict, but candidate equals current"),
     (lambda led: _row(led, "AD").update(recheck_date="2026-11-24"), "AD: recheck_date 2026-11-24 has passed"),
     (lambda led: _row(led, "AD").update(recheck_date="soon"), "AD: recheck_date 'soon' is not YYYY-MM-DD"),
+    (lambda led: _primary(led)["doc"].update(urls=["https://web.archive.org/web/20030726171200/http://www.iso.org/x.html", "http://www.iso.org/x.html"]),
+     "is not an id_ capture of an iso.org URL"),
+    (lambda led: _primary(led)["doc"].update(urls=["https://web.archive.org/web/20030726171200id_/http://www.iso.org/x.html"]),
+     "without the iso.org URL it captured"),
+    (lambda led: _row(led, "SS").update(more_docs=[]), "SS: more_docs is not a non-empty list"),
+    (lambda led: _row(led, "SS").update(more_docs=[{"title": "x"}]), "SS: more_docs[0] doc keys are not"),
+    (lambda led: _row(led, "RU").update(bound={"not_before": "1992"}), "RU: bound is not"),
+    (lambda led: _row(led, "RU").update(bound={"not_before": "about 1992", "doc": {}}), "RU: bound is not"),
+    (lambda led: _row(led, "RU").update(bound={"not_before": "1992", "doc": {"title": "x"}}), "RU: bound doc keys are not"),
+    (lambda led: _row(led, "PS").update(bound={"not_before": "2000", "doc": _row(led, "PS")["doc"]}),
+     "PS: adopted 1999-10-01 is before its bound 2000"),
 ], ids=["no-rows", "missing-row", "duplicate-row", "unsorted", "missing-key", "extra-key", "bad-date",
         "bad-class", "bad-verdict", "empty-reason", "bad-doc", "current-drift", "adopted-inference",
         "adopted-ma-member", "adopted-lead", "primary-no-sha", "primary-no-url", "adopted-differs-from-tree",
-        "adopted-not-active", "adopted-no-candidate", "conflict-equal", "recheck-passed", "recheck-malformed"])
+        "adopted-withdrawn-differs", "adopted-no-candidate", "conflict-equal", "recheck-passed", "recheck-malformed",
+        "archive-not-id_", "archive-without-original", "more-docs-empty", "more-docs-bad",
+        "bound-no-doc", "bound-bad-date", "bound-bad-doc", "adopted-before-bound"])
 def test_each_rule_is_enforced(change, expect):
     found = _broken(change)
     assert any(expect in p for p in found), found
@@ -150,16 +163,48 @@ def test_the_generator_takes_exactly_the_adopted_iso_primary_rows():
                if r["class"] == "iso_primary" and r["verdict"] == "adopted"}
     meta = SNAPSHOT["meta"]
     assert meta["iso_primary_codes"] == sorted(adopted)
-    assert meta["counts"]["active_from_iso_primary"] == len(adopted)
+    counts = meta["counts"]
+    assert counts["active_from_iso_primary"] + counts["withdrawn_from_iso_primary"] == len(adopted)
     for code, d in adopted.items():
         assert SNAPSHOT["data"][code] == d, code
 
 
-def test_the_obp_adoptions_cite_the_harvest_page_and_an_assignment_entry():
-    """D7: only an assignment entry dates a code; never the 2011-12-13 alignment entry."""
+def test_every_adoption_cites_an_assignment():
+    """Only a document that assigns the code dates it.
+
+    OBP rows cite an assignment entry of the code's own page, never the
+    2011-12-13 alignment entry. Newsletter rows cite the alpha-2 cell whose
+    new entry is the code (series V) and are dated by the issue date."""
     for r in LEDGER["rows"]:
         if r["class"] != "iso_primary":
             continue
-        assert r["quote_ref"].split(" ", 1)[1] in ("Assign code elements", "Add new entry"), r["code"]
-        assert "align ISO 3166-1 and ISO 3166-2" not in r["doc"]["locator"], r["code"]
-        assert r["doc"]["urls"] == [f"https://www.iso.org/obp/ui/#iso:code:3166:{r['code']}"]
+        c, doc = r["code"], r["doc"]
+        assert "align ISO 3166-1 and ISO 3166-2" not in doc["locator"], c
+        if doc["urls"][0].startswith("https://www.iso.org/obp/"):
+            assert r["quote_ref"].split(" ", 1)[1].split(";")[0] in ("Assign code elements", "Add new entry"), c
+            assert doc["urls"] == [f"https://www.iso.org/obp/ui/#iso:code:3166:{c}"]
+        else:
+            assert doc["number"].startswith(("V-", "VI-")), c
+            assert f'new entry "{c}"' in doc["locator"], c
+            assert r["candidate"] == doc["date"], c
+            assert any(u.startswith("https://web.archive.org/web/") and "id_/" in u for u in doc["urls"]), c
+
+
+def test_the_newsletter_adoptions():
+    """Series V: nine codes, each dated by the newsletter that assigns it."""
+    got = {r["code"]: (r["doc"]["number"], r["candidate"]) for r in LEDGER["rows"]
+           if r["class"] == "iso_primary" and r["doc"]["number"]}
+    assert got == {"PS": ("V-2", "1999-10-01"), "TL": ("V-5", "2002-05-20"),
+                   "CS": ("V-8", "2003-07-23"), "AX": ("V-9", "2004-02-13"),
+                   "GG": ("V-11", "2006-03-29"), "IM": ("V-11", "2006-03-29"),
+                   "JE": ("V-11", "2006-03-29"), "ME": ("V-12", "2006-09-26"),
+                   "RS": ("V-12", "2006-09-26")}
+    ss = _row(LEDGER, "SS")
+    assert [d["number"] for d in ss["more_docs"]] == ["VI-10"]
+    assert ss["more_docs"][0]["date"] == ss["candidate"] == "2011-08-09"
+
+
+def test_the_withdrawn_cs_entry_takes_its_v8_date():
+    """D4: V-8 assigned the new code CS (YU -> CS); the withdrawn CS row is dated by it."""
+    cs = [e for e in TREE["countries"]["withdrawn"] if e["alpha_2"] == "CS"][0]
+    assert cs["introduced"] == "2003-07-23" == SNAPSHOT["data"]["CS"]

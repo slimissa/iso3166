@@ -275,10 +275,10 @@ def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
         return w["introduced"] <= date
 
     codes = sorted(set(act) | set(wd))
-    allc = {"true": 170, "false": 29, "null": 76}
+    allc = {"true": 169, "false": 30, "null": 76}
     actc = {"true": 161, "false": 15, "null": 76}
     spot = {"DE": True, "US": True, "DD": True, "SU": True, "YU": True,
-            "CS": True, "AN": True, "BU": False, "BJ": None, "CZ": None,
+            "CS": False, "AN": True, "BU": False, "BJ": None, "CZ": None,
             "RU": None, "XK": None, "AI": None, "SK": None}
 
     def tally(cs):

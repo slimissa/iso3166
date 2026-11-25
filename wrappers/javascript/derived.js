@@ -283,7 +283,7 @@ const DerivedQueries = {
    * known `introduced`), else the union of the terminal successors'
    * current currencies. For withdrawn entries, returns the successor's
    * current currency; the withdrawn entry's historical currency is not
-   * in the tree. For null `introduced` (all 25) it may differ from the
+   * in the tree. For null `introduced` (24 of 25) it may differ from the
    * withdrawn entry's historical currency. null means "cannot answer".
    *
    *   currencyAt("DE", "2000-01-01") // ["EUR"]
@@ -372,7 +372,7 @@ const DerivedQueries = {
    * the active entry wins, as in isActiveOn). 275 keys, sorted. Throws
    * TypeError on a malformed date.
    *
-   * null is not false. On 1990-01-01: 170 true, 29 false, 76 null. The 76
+   * null is not false. On 1990-01-01: 169 true, 30 false, 76 null. The 76
    * are active entries whose `introduced` is null (CZ, SK, RU among them);
    * filtering on truthiness silently drops them.
    *

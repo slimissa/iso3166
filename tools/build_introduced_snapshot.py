@@ -15,7 +15,10 @@ Algorithm for `introduced` (active entries):
   4. code in LIST_1974                       -> "1974-09-15"
   5. code in wikipedia_dates.json "data"     -> that date
   6. otherwise                               -> null (source silent)
-Withdrawn entries are always null.
+Withdrawn entries whose code is not also active: the adopted iso_primary
+ledger row's candidate if there is one (an ISO newsletter that assigned the
+code, such as V-8 for CS), otherwise null. AI and SK are both active and
+withdrawn; their key holds the active value.
 
 Step 2 reads only rows that are iso_primary AND adopted; every other ledger
 row is provenance, not input. A ledger row cannot be adopted without the
@@ -23,6 +26,10 @@ document's sha256 (tools/check_introduced_evidence.py).
 
 Usage:
   python3 tools/build_introduced_snapshot.py          # write snapshot
+  python3 tools/build_introduced_snapshot.py --apply  # write snapshot, then set
+                                                      # `introduced` in iso3166.json
+                                                      # from it (active entries, and
+                                                      # withdrawn entries not also active)
   python3 tools/build_introduced_snapshot.py --check  # exit 1 on drift
 """
 import json
@@ -116,7 +123,8 @@ def build():
     out, reasons = {}, {}
     counts = {"active_from_1974_list": 0, "active_from_data": 0, "active_from_iso_primary": 0,
               "active_null_not_assigned": 0, "active_null_quarantined": 0,
-              "active_null_source_silent": 0, "withdrawn_null": 0}
+              "active_null_source_silent": 0, "withdrawn_from_iso_primary": 0,
+              "withdrawn_null": 0}
     for e in sorted(active, key=lambda x: x["alpha_2"]):
         c = e["alpha_2"]
         if e.get("status") != "officially-assigned":
@@ -144,16 +152,23 @@ def build():
     # alpha_2, so a withdrawn entry never overwrites an active one; the
     # active value is already null or sourced for these two codes.
     withdrawn_codes = []
+    active_codes = {e["alpha_2"] for e in active}
     for e in sorted(withdrawn, key=lambda x: x["alpha_2"]):
-        withdrawn_codes.append(e["alpha_2"])
-        counts["withdrawn_null"] += 1
-        if e["alpha_2"] not in out:
-            out[e["alpha_2"]] = None
-            reasons[e["alpha_2"]] = "withdrawn: start date not sourced"
+        c = e["alpha_2"]
+        withdrawn_codes.append(c)
+        if c in active_codes:
+            counts["withdrawn_null"] += 1
+        elif c in primary:
+            out[c] = primary[c]
+            counts["withdrawn_from_iso_primary"] += 1
+        else:
+            out[c] = None
+            reasons[c] = "withdrawn: start date not sourced"
+            counts["withdrawn_null"] += 1
 
-    unknown_primary = sorted(set(primary) - {e["alpha_2"] for e in active})
+    unknown_primary = sorted(set(primary) - set(out))
     if unknown_primary:
-        raise SystemExit("adopted ledger rows for codes that are not active: %s" % unknown_primary)
+        raise SystemExit("adopted ledger rows for codes the tree does not have: %s" % unknown_primary)
     for c, v in out.items():
         if v is not None:
             if not DATE_RE.match(v):
@@ -179,6 +194,30 @@ def build():
     return json.dumps(snap, indent=2, ensure_ascii=False) + "\n"
 
 
+def apply(snapshot_text: str) -> int:
+    """Set `introduced` in iso3166.json from the snapshot; return entries changed.
+
+    Active entries take data[alpha_2]. A withdrawn entry takes data[alpha_2]
+    only when its code is not also active (AI and SK keep their own value).
+    The file is written as tools/enrich_field.py writes it: sorted keys,
+    2-space indent, LF, trailing newline."""
+    data = json.loads(snapshot_text)["data"]
+    tree = json.loads(TREE.read_text(encoding="utf-8"))
+    active_codes = {e["alpha_2"] for e in tree["countries"]["active"]}
+    changed = 0
+    for section in ("active", "withdrawn"):
+        for e in tree["countries"][section]:
+            c = e["alpha_2"]
+            if section == "withdrawn" and c in active_codes:
+                continue
+            if e.get("introduced") != data[c]:
+                e["introduced"] = data[c]
+                changed += 1
+    TREE.write_text(json.dumps(tree, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+                    encoding="utf-8")
+    return changed
+
+
 def main(argv):
     text = build()
     if "--check" in argv:
@@ -189,6 +228,8 @@ def main(argv):
         return 0
     OUT.write_text(text, encoding="utf-8")
     print("wrote %s" % OUT)
+    if "--apply" in argv:
+        print("iso3166.json: %d `introduced` value(s) changed" % apply(text))
     return 0
 
 

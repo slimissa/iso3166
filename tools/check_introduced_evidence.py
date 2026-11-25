@@ -10,7 +10,9 @@ Rules
 -----
  1. Format. The file has `rows`, a list. Each row has exactly the keys
     code, current, candidate, class, doc, quote_ref, verdict, reason, and
-    may have recheck_date. class is iso_primary, ma_member, lead_only or
+    may have recheck_date, more_docs (further documents, each held to rule
+    5) and bound (a predecessor bound: {"not_before": YYYY[-MM[-DD]],
+    "doc": a document held to rule 5}; inference only, it sets nothing). class is iso_primary, ma_member, lead_only or
     inference; verdict is adopted, conflict or unconfirmed; current and
     candidate are null or YYYY-MM-DD; a recheck_date is YYYY-MM-DD.
  2. One row per code. The codes are exactly the keys of the snapshot's
@@ -21,8 +23,13 @@ Rules
  5. An iso_primary row names its document: doc has title, urls (at least
     one), locator and a 64-hex sha256 (D2/D3: the bytes read are not
     committed, their hash is).
- 6. Every adopted row has a candidate equal to the active entry's
-    `introduced` in iso3166.json, and equal to current.
+ 6. Every adopted row has a candidate equal to the entry's `introduced` in
+    iso3166.json (the active entry, or a withdrawn entry whose code is not
+    also active), and equal to current. An adopted date is not earlier than
+    the row's bound, if it has one.
+ 9. A document URL on web.archive.org is an `id_` capture
+    (https://web.archive.org/web/<14-digit timestamp>id_/...) and comes with
+    the iso.org URL it captured (D2).
  7. A conflict row has a candidate that differs from current.
  8. A recheck_date must not have passed (--today, default today).
 
@@ -44,12 +51,36 @@ from pathlib import Path
 
 DEFAULT_ROOT = Path(__file__).resolve().parent.parent
 KEYS = ("code", "current", "candidate", "class", "doc", "quote_ref", "verdict", "reason")
-OPTIONAL = ("recheck_date",)
+OPTIONAL = ("recheck_date", "more_docs", "bound")
 CLASSES = ("iso_primary", "ma_member", "lead_only", "inference")
 VERDICTS = ("adopted", "conflict", "unconfirmed")
 DOC_KEYS = ("title", "number", "date", "urls", "locator", "sha256", "retrieved")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 SHA_RE = re.compile(r"^[0-9a-f]{64}$")
+ARCHIVE_RE = re.compile(r"^https://web\.archive\.org/web/\d{14}id_/(https?://(www\.)?iso\.org[:/].*)$")
+BOUND_RE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
+
+
+def doc_problems(doc) -> list[str]:
+    """Rule 5 and rule 9 for one document; empty when it is citable."""
+    if not isinstance(doc, dict) or set(doc) != set(DOC_KEYS):
+        return [f"doc keys are not {list(DOC_KEYS)}"]
+    out = []
+    if not (isinstance(doc.get("title"), str) and doc["title"].strip()
+            and isinstance(doc.get("urls"), list) and doc["urls"]
+            and all(isinstance(u, str) and u.startswith("http") for u in doc["urls"])
+            and isinstance(doc.get("locator"), str) and doc["locator"].strip()
+            and isinstance(doc.get("sha256"), str) and SHA_RE.match(doc["sha256"])):
+        out.append("needs doc with title, urls, locator and a 64-hex sha256")
+    urls = doc.get("urls") if isinstance(doc.get("urls"), list) else []
+    for u in urls:
+        if isinstance(u, str) and "web.archive.org" in u:
+            m = ARCHIVE_RE.match(u)
+            if not m:
+                out.append(f"archive URL {u!r} is not an id_ capture of an iso.org URL")
+            elif not any(isinstance(o, str) and "web.archive.org" not in o and "iso.org" in o for o in urls):
+                out.append(f"archive URL {u!r} without the iso.org URL it captured")
+    return out
 
 
 def _is_date(v) -> bool:
@@ -69,6 +100,8 @@ def problems(ledger: dict, snapshot: dict, tree: dict, today: date) -> list[str]
         return ["ledger has no `rows` list"]
     data = snapshot.get("data", {})
     introduced = {e["alpha_2"]: e.get("introduced") for e in tree["countries"]["active"]}
+    for e in tree["countries"].get("withdrawn", []):
+        introduced.setdefault(e["alpha_2"], e.get("introduced"))
 
     codes = [r.get("code") if isinstance(r, dict) else None for r in rows]
     if codes != sorted(data):
@@ -115,22 +148,35 @@ def problems(ledger: dict, snapshot: dict, tree: dict, today: date) -> list[str]
         if r["verdict"] == "adopted" and r["class"] != "iso_primary":
             out.append(f"{c}: adopted with class {r['class']}; only iso_primary can be adopted")
         if r["class"] == "iso_primary":
-            ok = (isinstance(doc, dict) and isinstance(doc.get("title"), str) and doc["title"].strip()
-                  and isinstance(doc.get("urls"), list) and doc["urls"]
-                  and all(isinstance(u, str) and u.startswith("http") for u in doc["urls"])
-                  and isinstance(doc.get("locator"), str) and doc["locator"].strip()
-                  and isinstance(doc.get("sha256"), str) and SHA_RE.match(doc["sha256"]))
-            if not ok:
-                out.append(f"{c}: iso_primary needs doc with title, urls, locator and a 64-hex sha256")
+            for p in doc_problems(doc):
+                out.append(f"{c}: iso_primary {p}")
+        if "more_docs" in r:
+            if not isinstance(r["more_docs"], list) or not r["more_docs"]:
+                out.append(f"{c}: more_docs is not a non-empty list")
+            else:
+                for j, d in enumerate(r["more_docs"]):
+                    for p in doc_problems(d):
+                        out.append(f"{c}: more_docs[{j}] {p}")
+        bound = r.get("bound")
+        if "bound" in r:
+            if not isinstance(bound, dict) or set(bound) != {"not_before", "doc"} \
+                    or not isinstance(bound.get("not_before"), str) or not BOUND_RE.match(bound["not_before"]):
+                out.append(f"{c}: bound is not {{not_before: YYYY[-MM[-DD]], doc}}")
+                bound = None
+            else:
+                for p in doc_problems(bound["doc"]):
+                    out.append(f"{c}: bound {p}")
         if r["verdict"] == "adopted":
             if r["candidate"] is None:
                 out.append(f"{c}: adopted with no candidate")
             elif c not in introduced:
-                out.append(f"{c}: adopted, but {c} is not an active entry of iso3166.json")
+                out.append(f"{c}: adopted, but {c} is not an entry of iso3166.json")
             elif introduced[c] != r["candidate"]:
                 out.append(f"{c}: adopted {r['candidate']} != iso3166.json introduced {introduced[c]!r}")
             elif r["current"] != r["candidate"]:
                 out.append(f"{c}: adopted {r['candidate']} != current {r['current']!r}")
+            if bound and r["candidate"] and r["candidate"][:len(bound["not_before"])] < bound["not_before"]:
+                out.append(f"{c}: adopted {r['candidate']} is before its bound {bound['not_before']}")
         if r["verdict"] == "conflict" and r["candidate"] == r["current"]:
             out.append(f"{c}: conflict, but candidate equals current")
     return out

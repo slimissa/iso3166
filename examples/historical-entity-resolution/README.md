@@ -95,7 +95,7 @@ A malformed date is not silent any more (v1.12.5):
 == Honest limits, as the registry answers them ==
   successors('SU') = []   (no heir recorded in the tree)
   successors('YU') = ['CS', 'ME', 'RS']   (two active heirs)
-  is_active_on('CS', '1991-06-01') = True   (CS holds one entry, Serbia and Montenegro; the older meaning is not split out)
+  is_active_on('CS', '1991-06-01') = False   (CS holds one entry, Serbia and Montenegro, assigned 2003-07-23; Czechoslovakia's older CS is not split out)
 ```
 
 ## Honest limits
@@ -112,8 +112,10 @@ A malformed date is not silent any more (v1.12.5):
   unresolved. Splitting them among the successor states needs a source
   the registry does not hold.
 - **Reused codes are one entry.** `CS` was Czechoslovakia and later Serbia and
-  Montenegro; the registry holds the later entry, and `is_active_on("CS",
-  "1991-06-01")` answers `true` for it. The older meaning is not split out.
+  Montenegro; the registry holds the later entry, which ISO 3166-1 Newsletter
+  V-8 assigned on 2003-07-23, so `is_active_on("CS", "1991-06-01")` answers
+  `false`. A 1991 trade coded `CS` meant Czechoslovakia, whose entry
+  (ISO 3166-3 `CSHH`) the registry does not hold.
 - **Dates only.** The query answers whether a code existed on a day, not
   whether a country's borders, name or currency were what the trade assumed.
 

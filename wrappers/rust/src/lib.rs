@@ -886,7 +886,7 @@ impl CountryRegistry {
     /// union of the terminal successors' current currencies. For
     /// withdrawn entries, returns the successor's current currency; the
     /// withdrawn entry's historical currency is not in the tree. For
-    /// null `introduced` (all 25) it may differ from the withdrawn
+    /// null `introduced` (24 of 25) it may differ from the withdrawn
     /// entry's historical currency. `None` means "cannot answer".
     /// See docs/QUERIES.md, "Query 7".
     pub fn currency_at(&self, code: &str, date: &str) -> Option<Vec<String>> {
@@ -990,8 +990,8 @@ impl CountryRegistry {
     /// (AI and SK exist in both; the active entry wins). 275 keys, sorted.
     /// A malformed date is `Err(InvalidDate)`.
     ///
-    /// `None` is not `Some(false)`. On 1990-01-01 the answer is 170 true,
-    /// 29 false and 76 unknown (CZ, SK and RU among them); filtering on
+    /// `None` is not `Some(false)`. On 1990-01-01 the answer is 169 true,
+    /// 30 false and 76 unknown (CZ, SK and RU among them); filtering on
     /// `Some(true)` alone silently drops the unknowns.
     /// See docs/QUERIES.md, "Query 11".
     pub fn active_on(
@@ -1116,7 +1116,8 @@ mod tests {
         let m = r.active_on("1990-01-01").unwrap();
         assert_eq!(m.len(), 275);
         let count = |v: Option<bool>| m.values().filter(|x| **x == v).count();
-        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (170, 29, 76));
+        // CS (withdrawn) is dated 2003-07-23 by Newsletter V-8: false on 1990-01-01.
+        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (169, 30, 76));
         for (code, v) in &m {
             assert_eq!(*v, r.is_active_on(code, "1990-01-01").unwrap(), "{}", code);
         }
