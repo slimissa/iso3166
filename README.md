@@ -76,7 +76,7 @@ Every system that touches international finance, trade, shipping or identity kee
 
 This registry provides all of these as first-class, date-scoped facts in one versioned, schema-validated file. The answers are tri-state (`true`, `false`, `null`) where the source can be silent (`is_active_on`) and binary where the source is a complete range list (the four club queries). The JSON is the contract; the SQL, CSV, Parquet, wrapper and CLI forms are ways to consume it without writing a parser.
 
-Not every field is first-party. Most enrichable fields come from ISO, the UN Statistics Division, IANA, the ITU, ISO 639-3 or the CIA World Factbook, but `introduced` and the four club arrays are sourced from Wikipedia under a documented, explicit exception ([`docs/decisions/introduced-field.md`](./docs/decisions/introduced-field.md), [`docs/decisions/club-memberships.md`](./docs/decisions/club-memberships.md)). [Section 7](#7-the-temporal-identity-layer) says exactly which, and when each snapshot is next reviewed.
+Not every field is first-party. Most enrichable fields come from ISO, the UN Statistics Division, IANA, the ITU, ISO 639-3 or the CIA World Factbook, but the four club arrays and 170 of the 176 `introduced` dates rest on Wikipedia or a maintainer-supplied 1974 list under a documented, explicit exception ([`docs/decisions/introduced-field.md`](./docs/decisions/introduced-field.md), [`docs/decisions/club-memberships.md`](./docs/decisions/club-memberships.md)). Six `introduced` dates come from ISO's own Online Browsing Platform, and every code's evidence is a row of [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) ([`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md)). [Section 7](#7-the-temporal-identity-layer) says exactly which, and when each snapshot is next reviewed.
 
 ---
 
@@ -447,13 +447,16 @@ Three facts change over time for a country code: whether the code existed, which
 
 | `introduced` | Count | Meaning |
 |--------------|------:|---------|
-| Dated from the 1974 edition | 161 | The code was in the first ISO 3166-1 list, dated `1974-09-15` |
-| Dated from the data | 15 | A later edition's date, taken from the source table |
+| Dated from an ISO document | 6 | `BL`, `BQ`, `CW`, `MF`, `SS`, `SX`: the assignment entry ("Assign code elements", "Add new entry") in the change history of the code's ISO Online Browsing Platform page |
+| Dated from the 1974 list | 161 | `1974-09-15`, from a maintainer-supplied list of 1974 codes. An inference: the ISO 3166:1974 text has not been read |
+| Dated from the Wikipedia table | 9 | `AX`, `GG`, `IM`, `JE`, `ME`, `NU`, `PS`, `RS`, `TL`: a later date from the Changes table, a lead that no ISO document read here confirms |
 | Null, **quarantined** | 27 | The candidate date is not credible; see below |
 | Null, **source silent** | 46 | The source table gives no date |
 | Null, **not officially assigned** | 3 | `EU`, `UK`, `XK` are not in ISO 3166-1 |
 
 The 25 withdrawn entries have no `introduced` either; 23 of them are recorded in `meta.null_reasons` as "start date not sourced".
+
+Each of the 275 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 6 `iso_primary` adopted, 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 85 `lead_only` (the 9 Wikipedia dates, 4 quarantined Wikipedia rows, and 72 codes with no candidate at all).
 
 **The 27 quarantined codes.** The builder refuses a date it cannot defend rather than writing it. A code is quarantined when the Wikipedia table's date is a *change newsletter*, not an assignment date, or when the code cannot have been in the 1974 edition. Each is null in the registry and carries its reason in `tools/introduced_snapshot.json`, `meta.null_reasons`.
 
@@ -515,13 +518,13 @@ Five committed snapshots feed the temporal fields. Each has a sibling `.meta.jso
 
 | Snapshot | Feeds | Source | Vendored | `review_by` |
 |----------|-------|--------|----------|-------------|
-| `introduced_snapshot.json` | `introduced` | Wikipedia: ISO 3166-1 Changes (edition and newsletter table), permalinked `oldid=1258392980` | 2026-10-28 | 2027-10-28 |
+| `introduced_snapshot.json` | `introduced` | 6 codes: ISO Online Browsing Platform change history (harvest of 2026-10-20/21). The rest: Wikipedia, ISO 3166-1 Changes (edition and newsletter table), permalinked `oldid=1258392980`, and a maintainer-supplied 1974 list. Per code: `tools/introduced_evidence.json` | 2026-10-28 | 2027-10-28 |
 | `eu_membership_snapshot.json` | `eu_membership` | Wikipedia: Member state of the European Union | 2026-10-29 | 2027-10-29 |
 | `eea_membership_snapshot.json` | `eea_membership` | Wikipedia: European Economic Area; provisional dates from EFTA and the EEA Legal Texts | 2026-10-29 | 2027-10-29 |
 | `eurozone_membership_snapshot.json` | `eurozone_membership` | Wikipedia: Euro area, cross-checked against the Council of the EU timeline | 2026-10-29 | 2027-10-29 |
 | `customs_union_snapshot.json` | `customs_union` | Wikipedia: European Union Customs Union | 2026-10-29 | 2027-10-29 |
 
-Wikipedia is an explicit, documented exception to the registry's first-party rule: ISO 3166 does not publish club membership or per-code introduction dates, so no first-party source exists. The four club snapshots cite the page title URL, not an `oldid` permalink; the ADR records this as a known deviation to fix at the first review.
+Wikipedia is an explicit, documented exception to the registry's first-party rule. ISO 3166 does not publish club membership, so no first-party source exists for the clubs. For `introduced`, ISO's Online Browsing Platform keeps a change history per code, but its oldest entry is 2007-09-21: it dates the six codes assigned since then, and the older dates need ISO 3166 newsletters and editions not yet read. Until they are, the other dated codes stay under the exception, each labelled with its class in `tools/introduced_evidence.json`. The four club snapshots cite the page title URL, not an `oldid` permalink; the ADR records this as a known deviation to fix at the first review.
 
 ### EEA: provisional application is modeled
 
@@ -1152,7 +1155,7 @@ iso3166/
     SPEC-v1.12.1-readme.md                  # The v1.12.1 README rewrite: audit, and where the prompt disagreed with the tree
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
     WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
-    introduced-reconnaissance.md            # Why `introduced` is null for each of the 21 `[likely]` quarantined codes
+    introduced-reconnaissance.md            # `introduced` code by code: what the ledger and the OBP harvest show, what would replace each lead
     sanctions-reconnaissance.md             # Country-level sanctions sources, and why the registry has none
     v*-verification.md                      # 53 release gate records, v1.0.0 to v1.12.13
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
@@ -1227,7 +1230,7 @@ iso3166/
       initial_exceptions.json               # Archival: hand-maintained overrides for the initial import
     audit_languages.py                      # Classify each entry's languages list
     build_club_snapshots.py                 # Generate the four club snapshots and their meta files
-    build_introduced_snapshot.py            # Generate introduced_snapshot.json from wikipedia_dates.json
+    build_introduced_snapshot.py            # Generate introduced_snapshot.json: adopted ISO rows of the ledger, then the 1974 list and wikipedia_dates.json
     cadence.py                              # review_by = vendored_at + 1 cadence period (monthly, quarterly, yearly)
     gen_registry_release.py                 # Writes registry_release.json; --check --version X.Y.Z compares it byte for byte
     check_cli_agreement.sh                  # The repo CLI and the packaged CLI print the same bytes for --raw
@@ -1379,7 +1382,7 @@ iso3166/
 | [`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md) | What invariants does every release refuse on? |
 | [`docs/README-AUDIT-NOTES.md`](./docs/README-AUDIT-NOTES.md) | What failure is behind each release rule? |
 | [`docs/decisions/`](./docs/decisions) | Why was each design choice made? Twelve decision records and one unfiled issue draft (`gs-issue-draft.md`), from [`v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md) to [`club-memberships.md`](./docs/decisions/club-memberships.md). |
-| [`docs/introduced-reconnaissance.md`](./docs/introduced-reconnaissance.md) | Why is `introduced` null for each of the 21 `[likely]` quarantined codes, and what would fill it? |
+| [`docs/introduced-reconnaissance.md`](./docs/introduced-reconnaissance.md) | What stands behind each `introduced` value or null, what did the OBP harvest prove, and what would replace each lead or inference? |
 | [`docs/sanctions-reconnaissance.md`](./docs/sanctions-reconnaissance.md) | Which sanctions sources exist, why is there no sanctions data, and what would reopen that? |
 | [`docs/SCOPE.md`](./docs/SCOPE.md) | What did we not build, and what would start each item? |
 | [`docs/withdrawn-completeness.md`](./docs/withdrawn-completeness.md) | Which ISO 3166-3 entries does the withdrawn list lack, and what would modelling them need? |
@@ -1408,7 +1411,7 @@ Open an issue before starting a large change. Data corrections go through an enr
 9. Rehearse the release: `bash scripts/release.sh <version> --dry-run`
 10. Open a pull request. CI runs 23 jobs.
 
-**Source discipline.** Every enrichable field is first-party (ISO, UN, IANA, ITU, ISO 639-3, a documented government statistical service). Wikipedia, countrycode.org and aggregator CSVs are not acceptable as the origin of a field, with one explicit, documented exception: `introduced` and the four club arrays ([Section 7](#7-the-temporal-identity-layer)).
+**Source discipline.** Every enrichable field is first-party (ISO, UN, IANA, ITU, ISO 639-3, a documented government statistical service). Wikipedia, countrycode.org and aggregator CSVs are not acceptable as the origin of a field, with one explicit, documented exception: the four club arrays and the `introduced` dates that no ISO document read so far confirms (170 of 176; [Section 7](#7-the-temporal-identity-layer)).
 
 **Rules for scripts and commits.** No heredocs for patch scripts: write `/tmp/script.py`, run it, check its exit code. No live corruption examples in docs. Commit messages are claims about the diff: run `git diff --cached --stat` first. No tag before CI is green; the release script enforces it.
 
@@ -1423,7 +1426,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **No historical currencies.** `currency_at` returns the entry's current currency inside its lifetime and `None` outside it. `currency_at("DE", "1990-01-01")` is `["EUR"]`, not the Deutsche Mark. For a withdrawn entry it returns the successor's current currency up to and including `withdrawal_date`.
 - **`introduced` and `is_active_on` have no data before 1974.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`.
 - **Club arrays reach back to the EU's 1958 founding.** `eu_membership` starts on 1958-01-01 (for `DE`); the EEA, eurozone and customs-union arrays start when those clubs did (1994, 1999, 1968-07-01). `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` answer for any date from 1958-01-01; they are not bounded by the 1974 limit, and before a club existed the answer is `false`. So `is_active_on("DE", "1960-01-01")` is `false` while `is_eu_member_at("DE", "1960-01-01")` is `true`.
-- **The `introduced` and club data are Wikipedia-sourced** under a documented exception, not first-party. Each snapshot is reviewed yearly (`refresh_cadence` `yearly`, `review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
+- **The club data and 170 of the 176 `introduced` dates are not first-party.** They rest on Wikipedia or a maintainer-supplied 1974 list under a documented exception; six `introduced` dates come from ISO's Online Browsing Platform. Each snapshot is reviewed yearly (`refresh_cadence` `yearly`, `review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
 - **EEA provisional application is dated for 12 countries.** Croatia has formal dates only. The UK's EEA end (2020-12-31) is the page prose's date, and the state table disagrees; it is flagged likely in the snapshot.
 - **Five active entries have no region:** `AQ`, `EU`, `TW`, `UK`, `XK`. In `countries_by_region.parquet` they, and the 25 withdrawn entries, fall into rows with a null `region`.
 - **The aggregated table counts withdrawn entries.** Its 277 sums to the total, not to the 252 active entries, and `AI` and `SK` are counted twice.
@@ -1449,7 +1452,7 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 The registry stores no currency history. `currency_at` bounds the answer to the entry's lifetime (`introduced` to `withdrawal_date`) and returns the *current* currencies inside it. It returns `None` before `introduced`, so `currency_at("DE", "1960-01-01")` is `None`.
 
 **What does a null in `introduced` mean?**
-The source did not give a date the registry can defend. 27 are quarantined with a recorded reason, 46 are source-silent, 3 (`EU`, `UK`, `XK`) are not in ISO 3166-1. `is_active_on` returns `null` for them, never `false`. See [`docs/decisions/introduced-field.md`](./docs/decisions/introduced-field.md).
+No source gave a date the registry can defend. 27 are quarantined with a recorded reason, 46 are source-silent, 3 (`EU`, `UK`, `XK`) are not in ISO 3166-1. `is_active_on` returns `null` for them, never `false`. See [`docs/decisions/introduced-field.md`](./docs/decisions/introduced-field.md) and, per code, [`tools/introduced_evidence.json`](./tools/introduced_evidence.json).
 
 **Why are the club arrays strings in CSV, SQL and Parquet?**
 So the cell is identical across all nine files (`1973-01-01:2020-01-31`, ranges joined with `|`). The JSON and the wrappers hold real `{from, to}` ranges.

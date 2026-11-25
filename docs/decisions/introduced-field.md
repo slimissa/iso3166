@@ -4,6 +4,7 @@ Status: **accepted**
 Date: 2026-10-28
 Supersedes: none
 Superseded by: none
+Amended by: [`introduced-evidence.md`](./introduced-evidence.md) (which documents may date a code; the OBP change history)
 
 ## Context
 

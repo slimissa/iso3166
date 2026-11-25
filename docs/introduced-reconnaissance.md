@@ -1,233 +1,174 @@
-# Reconnaissance: the 21 `[likely]` quarantined `introduced` codes
+# Reconnaissance: `introduced`, code by code
 
-This page turns 21 inferences into 21 documented gaps. Each code below has
-`introduced: null` in the registry. The null is deliberate, and so is the
-reason it carries. This page records, per code, what the tree and the source
-say, how strong that evidence is, and what would let the date be filled in.
+This page says, for every `introduced` value, what stands behind it, and what
+would replace an inference or a lead with an ISO document. The per-code record
+is the ledger [`tools/introduced_evidence.json`](../tools/introduced_evidence.json);
+the rules are in [`decisions/introduced-evidence.md`](./decisions/introduced-evidence.md).
+This page groups the ledger's rows and adds what the ISO Online Browsing
+Platform (OBP) harvest showed.
 
-Scope: the 21 codes tagged `[likely]` in `meta.null_reasons` of
-[`tools/introduced_snapshot.json`](../tools/introduced_snapshot.json). The six
-codes tagged `[confirmed]` (BJ, DJ, KI, MM, VU, ZW) are not covered here: the
-tree itself proves they are successors of withdrawn codes. The quarantine list
-lives in `QUARANTINE` in
-[`tools/build_introduced_snapshot.py`](../tools/build_introduced_snapshot.py);
-the decision is in
-[`decisions/introduced-field.md`](./decisions/introduced-field.md).
+Status as of v1.12.14 (recheck 2027-01-25). Sources read: the maintainer's
+Firefox saves of 249 OBP code pages (2026-10-20/21, every active code except
+EU, TW and XK; `SHA256SUMS` verified), ISO 3166-1 Newsletter VI-13
+(2012-08-02), the Wikipedia permalink `oldid=1258392980`
+(`tools/wikipedia_dates.json`) and the 1974 list in
+`tools/build_introduced_snapshot.py`. ISO 3166 newsletters before VI-13, the
+editions of 1974 to 1997 and ISO 3166-3 were not read; the recheck date is
+when the pages the maintainer is asked to save should be in hand.
 
-Status as of v1.12.14 (recheck 2027-01-25). Wikipedia source: ISO 3166-1, permalink
-`oldid=1258392980`, accessed 2026-10-28 (`tools/wikipedia_dates.json`). The
-snapshot's `review_by` is 2027-10-28.
+## Where each value stands
 
-## How to read an entry
+| Group | Codes | Value | Ledger class / verdict |
+|-------|------:|-------|------------------------|
+| Dated by an OBP assignment entry | 6 | the entry's date | `iso_primary` / `adopted` |
+| Dated by the 1974 list | 161 | `1974-09-15` | `inference` / `unconfirmed` |
+| Dated by the Wikipedia table | 9 | the table's date | `lead_only` / `unconfirmed` |
+| Quarantined, candidate from the 1974 list | 23 | `null` | `inference` / `unconfirmed` |
+| Quarantined, candidate from Wikipedia | 4 | `null` | `lead_only` / `unconfirmed` |
+| Source silent | 46 | `null` | `lead_only`, no candidate |
+| Not officially assigned (EU, UK, XK) | 3 | `null` | `lead_only`, no candidate |
+| Withdrawn only | 23 | `null` | `lead_only`, no candidate |
+| | **275** | | |
 
-- **current value:** what the registry holds today. Always `null`.
-- **source:** the Wikipedia table row in `tools/wikipedia_dates.json`, if any,
-  and whether the maintainer-supplied 1974 list (`LIST_1974`) names the code.
-  Both are third-party inputs; the exception that allows them is recorded in
-  [`PROVENANCE.md`](./PROVENANCE.md).
-- **tree evidence:** what `iso3166.json` itself holds that bears on the date.
-  "None" means the tree is silent, not that the inference is wrong.
-- **reopening trigger:** the event that lets the quarantine be removed.
+No value changed in this work. The six OBP dates confirm the values the
+Wikipedia table had given; they are now held because ISO says so.
 
-Evidence strength is the same word the snapshot uses: `[likely]` means the
-inference rests on the history of the state, which is not in the tree. It does
-not mean the tree contradicts the candidate date.
+## What the OBP harvest proves, and what it cannot
 
-## Summary
+Every harvested page has a "Change history of country code" table. Its oldest
+entry on any page is 2007-09-21; the oldest entries cluster in 2010 and 2014.
+The history starts when the OBP began recording, not when the code was
+assigned. So it dates only codes assigned since 2007, and says nothing for a
+code whose oldest entry is a correction.
 
-| Group | Codes | Quarantine reason (paraphrased) | Count |
-|-------|-------|-----------------------------------|------:|
-| A | AM, AZ, BY, EE, GE, KG, KZ, LT, LV, RU, TJ, TM, UA, UZ | post-Soviet state; SU withdrawn 1992-08-30 (tree) | 14 |
-| B | BA, ER, MD, SH | the table row is a change newsletter | 4 |
-| C | CZ, SI, SK | successor state of Czechoslovakia/Yugoslavia | 3 |
-| | | **Total** | **21** |
+Only an entry that assigns the code dates it. Six do:
 
-Seventeen of the 21 are in the maintainer-supplied 1974 list (all of group A
-and C), which would give `1974-09-15`. That value is rejected for each: the
-quarantine overrides the list. BA, ER, MD and SH are not in that list; their
-only candidate is the newsletter date of their Wikipedia row.
+| Code | Date | Entry | Harvest file |
+|------|------|-------|--------------|
+| BL | `2007-09-21` | "Add new entry" | `BL.html` |
+| MF | `2007-09-21` | "Add new entry" | `MF.html` |
+| BQ | `2010-12-15` | "Add new entry" | `BQ.html` |
+| CW | `2010-12-15` | "Add new entry" | `CW.html` |
+| SX | `2010-12-15` | "Add new entry" | `SX.html` |
+| SS | `2011-08-09` | "Assign code elements" | `SS.html` |
 
-The tree facts used below come from four withdrawn entries: `SU` (USSR,
-withdrawn 1992-08-30, no `replaced_by`), the note on `CS` (Czechoslovakia,
-withdrawn 1993-01-01, replaced by CZ and SK), `YU` (withdrawn 2003-07-23,
-replaced by `CS`) and `SK` (Sikkim, withdrawn 1975-05-16, replaced by IN).
-[`WITHDRAWN.md`](./WITHDRAWN.md) lists them.
+"Addition of code to align ISO 3166-1 and ISO 3166-2" (2011-12-13, on AW,
+BQ, CW, SX and, with "and its administrative subdivisions", SS) is
+housekeeping, not an assignment. It dates nothing.
 
-## Group A: post-Soviet states (14)
+## The 161 dates of the 1974 list
 
-For every code in this group the tree evidence is the same and weak: `SU` is
-withdrawn on 1992-08-30, but `SU` has no `replaced_by`, so the tree holds no
-edge from `SU` to any code below. The inference that the code cannot be a 1974
-addition comes from the history of the state, which the tree does not record.
+They are `1974-09-15` because a maintainer-supplied list says the code was in
+the first edition. That is an inference until the ISO 3166:1974 text is read.
+It is not confirmed by elimination either: a code that appears in no
+newsletter may have entered through the editions of 1981, 1988, 1993 or 1997,
+which consolidated changes. What confirms a row: the 1974 edition, or a
+later edition or newsletter that states when the code was added.
 
-### AM: Armenia
+## The 9 Wikipedia dates
 
-- current value: `null`.
-- source: no row in `wikipedia_dates.json`; in the 1974 list (`1974-09-15`, rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to AM.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for AM.
+Each is a date from the Changes table; the OBP page's oldest entry is later
+and is not an assignment, so ISO has not confirmed or contradicted any of
+them here.
 
-### AZ: Azerbaijan
+| Code | Wikipedia date | Oldest OBP entry |
+|------|----------------|------------------|
+| AX | `2004-02-13` | 2011-06-12, "Correct administrative languages" |
+| GG | `2006-03-29` | 2008-09-09, "Addition of remark and administrative language French (fr, fra); Addition of the islands mentioned in the Remarks column (Column 7)" |
+| IM | `2006-03-29` | 2018-11-26, "Modification of remark part 2" |
+| JE | `2006-03-29` | 2013-02-06, "Add local short names" |
+| ME | `2006-09-26` | 2008-04-08, "Change of full name" |
+| NU | `2002-05-20` | 2011-06-12, "Correct the long name which was incorrect" |
+| PS | `1999-10-01` | 2008-04-08, "Correction of local name" |
+| RS | `2006-09-26` | 2010-02-19, "Addition of the country code prefix as the first code element, administrative update" |
+| TL | `2002-05-20` | 2011-12-13, "Update of the language adjustment and source list update." |
 
-- current value: `null`.
-- source: row `2002-05-20` (a change newsletter, not a verified addition); in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to AZ. Two candidate dates conflict.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for AZ.
+What confirms a row: the ISO 3166-1 newsletter of that date (series V), read
+from iso.org or an Internet Archive capture of it.
 
-### BY: Belarus
+## The 27 quarantined codes
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to BY.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for BY.
+The builder refuses these candidates, with the reason in
+`tools/introduced_snapshot.json`, `meta.null_reasons`. None of the 27 has an
+assignment entry on its OBP page.
 
-### EE: Estonia
+**Group A, post-Soviet states (14) [likely].** The tree holds `SU` withdrawn
+on 1992-08-30 with no `replaced_by`, so it has no edge to these codes; the
+inference that they are not 1974 codes rests on history.
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to EE.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for EE.
+| Code | Candidate (refused) | Tree evidence | Oldest OBP entry |
+|------|---------------------|---------------|------------------|
+| AM | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2018-11-26, "Correction of the romanization system label" |
+| AZ | `1974-09-15` (1974 list); Wikipedia `2002-05-20` | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2011-12-13, "Alphabetical re-ordering, name change of administrative places, first level prefix addition and source list update." |
+| BY | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2010-06-30, "Update of the administrative structure and of the list source" |
+| EE | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2014-11-03, "Update List Source" |
+| GE | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2018-11-26, "Correction of the romanization system label" |
+| KG | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2014-10-31, "Add 1 city KG-GO; update List Source" |
+| KZ | `1974-09-15` (1974 list); Wikipedia `2002-05-20` | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2016-11-15, "Addition of city KZ-BAY; update List Source" |
+| LT | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2014-10-31, "Add of 7 city municipality, 44 district municipality and 9 municipality" |
+| LV | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2011-12-13, "Administrative re-organization and source list update." |
+| RU | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2010-06-30, "Update of the administrative structure and of the list source" |
+| TJ | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2014-11-03, "Add 1 capital territory TJ-DU" |
+| TM | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2010-06-30, "Update of the administrative structure and update of the list source" |
+| UA | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2014-11-03, "Update subdivision name of UA-43; update List Source" |
+| UZ | `1974-09-15` (1974 list) | `SU` withdrawn 1992-08-30; no `replaced_by` edge to the code | 2020-11-24, "Addition of an asterisk to region UZ-XO; Correction of the Code Source" |
 
-### GE: Georgia
+**Group B, the Wikipedia row is a change newsletter (4) [likely].**
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to GE.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for GE.
+| Code | Candidate (refused) | Tree evidence | Oldest OBP entry |
+|------|---------------------|---------------|------------------|
+| BA | `2002-05-20` (Wikipedia) | none | 2010-06-30, "Addition of the country code prefix as the first code element, addition of names in administrative languages, update of the administrative structure and of the list source" |
+| ER | `2012-02-15` (Wikipedia) | none | 2011-12-13, "Country name romanization adjustment, language adjustment, alphabetical re-ordering and source list update." |
+| MD | `2008-03-31` (Wikipedia) | none | 2008-04-08, "Change of short name" |
+| SH | `2010-02-22` (Wikipedia) | none | 2010-02-22, "Change of name; Addition of islands given in Clauses 9 and 10" |
 
-### KG: Kyrgyzstan
+SH's oldest OBP entry, 2010-02-22, is "Change of name": the same date as its
+Wikipedia row, and not an assignment. That supports the quarantine reason
+from an ISO document. MD's Wikipedia date (2008-03-31) is close to its oldest
+OBP entry (2008-04-08, "Change of short name"), again a change.
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to KG.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for KG.
+**Group C, successors of Czechoslovakia or Yugoslavia (3) [likely].**
 
-### KZ: Kazakhstan
+| Code | Candidate (refused) | Tree evidence | Oldest OBP entry |
+|------|---------------------|---------------|------------------|
+| CZ | `1974-09-15` (1974 list) | note on withdrawn `CS`: replaced by CZ and SK | 2010-02-19, "Addition of the country code prefix as the first code element, alphabetical re-ordering" |
+| SI | `1974-09-15` (1974 list) | none direct; `YU` is replaced by `CS` | 2010-06-30, "Update of the administrative structure and languages and update of the list source" |
+| SK | `1974-09-15` (1974 list) | note on withdrawn `CS`; `SK` is also withdrawn Sikkim | no history rows |
 
-- current value: `null`.
-- source: row `2002-05-20` (a change newsletter); in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to KZ. Two candidate dates conflict.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for KZ.
+**Successors of withdrawn codes (6) [confirmed by the tree].**
 
-### LT: Lithuania
+| Code | Candidate (refused) | Tree evidence | Oldest OBP entry |
+|------|---------------------|---------------|------------------|
+| BJ | `1974-09-15` (1974 list) | successor of DY, withdrawn 1977-02-01 (tree) | 2015-11-27, "Change of spelling of BJ-AK, BJ-KO; update List Source" |
+| DJ | `1974-09-15` (1974 list) | successor of AI, withdrawn 1977-06-27 (tree) | 2011-12-13, "Language adjustment and source list update." |
+| KI | `1974-09-15` (1974 list) | successor of CT, withdrawn 1984-01-01 (tree) | 2009-03-03, "Addition of administrative language Gilbertese (-, gil)" |
+| MM | `1974-09-15` (1974 list) | successor of BU, withdrawn 1989-12-05 (tree) | 2011-06-12, "Official name change of long name" |
+| VU | `1974-09-15` (1974 list) | successor of NH, withdrawn 1980-07-30 (tree) | no history rows |
+| ZW | `1974-09-15` (1974 list) | successor of RH, withdrawn 1980-04-18 (tree) | 2015-11-27, "Update List Source" |
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to LT.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for LT.
+What reopens any of the 27: an ISO document that states the code's
+assignment date (a newsletter or an edition). The OBP harvest does not.
 
-### LV: Latvia
+## The 46 source-silent codes
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to LV.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for LV.
+No source in the tree gives a date: `AI`, `AQ`, `AS`, `AW`, `BF`, `BV`, `CC`, `CD`, `CK`, `CX`, `EH`, `FK`, `FM`, `FO`, `GF`, `GI`, `GP`, `GS`, `GU`, `HM`, `HR`, `IO`, `KN`, `KY`, `MH`, `MK`, `MP`, `MQ`, `MS`, `NC`, `NF`, `PF`, `PM`, `PN`, `PR`, `PW`, `RE`, `SJ`, `TC`, `TF`, `TK`, `UM`, `VG`, `VI`, `WF`, `YT`. Their OBP pages have no
+assignment entry. [`introduced-field.md`](./decisions/introduced-field.md)
+notes that the 1974 list omits about 30 territories that were in the 1974
+edition (KY, GU, PR, VG among them). That note is a lead with no document
+behind it; the 1974 edition is what would show it.
 
-### RU: Russian Federation
+## What would replace the rest
 
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to RU.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for RU.
+1. **ISO 3166-1 newsletters, series I to V.** They date every change from
+   1974 to 2007. The index page was on iso.org (`updates_on_iso_3166.htm`)
+   and is on the Internet Archive; neither was reachable from the
+   environment that wrote this page. The pages to save are listed in the
+   work's SPEC under "Pages to save as PDF (Firefox)".
+2. **The editions of 1974, 1981, 1988, 1993 and 1997.** They are sold or held
+   by national standards bodies and libraries; none was obtained.
+3. **ISO 3166-3.** It dates the withdrawn entries' ends and, by successor, some
+   starts ([`withdrawn-completeness.md`](./withdrawn-completeness.md)).
 
-### TJ: Tajikistan
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to TJ.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for TJ.
-
-### TM: Turkmenistan
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to TM.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for TM.
-
-### UA: Ukraine
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to UA.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for UA.
-
-### UZ: Uzbekistan
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: `SU` withdrawn 1992-08-30; no edge to UZ.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for UZ.
-
-## Group B: the table row is a change newsletter (4)
-
-For these four the Wikipedia table has a row, but the builder's reason says the
-row's date is a newsletter that changed the entry, not the one that added the
-code. The tree holds nothing about when any of the four codes was added. The
-approximate years in the builder's reasons (Bosnia "~1992", Moldova "~1992",
-Eritrea "~1993") are uncited comments, not values, and are not used anywhere.
-
-### BA: Bosnia and Herzegovina
-
-- current value: `null`.
-- source: row `2002-05-20`; not in the 1974 list.
-- tree evidence: none.
-- reopening trigger: a primary source shows which newsletter added BA, with its date.
-
-### ER: Eritrea
-
-- current value: `null`.
-- source: row `2012-02-15`; not in the 1974 list.
-- tree evidence: none.
-- reopening trigger: a primary source shows which newsletter added ER, with its date.
-
-### MD: Republic of Moldova
-
-- current value: `null`.
-- source: row `2008-03-31`; not in the 1974 list.
-- tree evidence: none. MD is also a post-Soviet state, but it is filed here because the quarantine reason names the newsletter.
-- reopening trigger: a primary source shows which newsletter added MD, with its date.
-
-### SH: Saint Helena
-
-- current value: `null`.
-- source: row `2010-02-22`; not in the 1974 list.
-- tree evidence: none. The builder's reason is that the code predates the row.
-- reopening trigger: a primary source confirms the original assignment date for SH, which predates its newsletter row.
-
-## Group C: successors of Czechoslovakia or Yugoslavia (3)
-
-### CZ: Czechia
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: the note on withdrawn `CS` says Czechoslovakia was withdrawn 1993-01-01 and replaced by CZ and SK. It is in a `note`, not a `replaced_by` edge, because the `CS` entry records the second use of the code.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for CZ.
-
-### SI: Slovenia
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: none direct. `YU` (withdrawn 2003-07-23) has `replaced_by` `CS`, not SI, so the tree holds no link from Yugoslavia to SI.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for SI.
-
-### SK: Slovakia
-
-- current value: `null`.
-- source: no row; in the 1974 list (rejected).
-- tree evidence: the same `CS` note as CZ. `SK` is also a withdrawn entry (Sikkim, withdrawn 1975-05-16, replaced by IN), so the code was reassigned; the registry keys by `alpha_2` and the active `SK` is the one that is null.
-- reopening trigger: a primary source gives the exact ISO 3166-1 assignment date for the second use of SK.
-
-## What would reopen the whole list
-
-Any one of these removes the need to infer:
-
-1. ISO publishes a bulk file or an Online Browsing Platform API with assignment
-   dates. The decision record makes this the stated condition for revisiting
-   the Wikipedia exception.
-2. The yearly review (`review_by` 2027-10-28) finds a first-party source for a
-   subset. Each code is independent: remove its `QUARANTINE` entry only with the
-   date and the source in the commit message.
-
-Until then, a null with a reason is the honest answer. `is_active_on(code, date)`
-returns `null` (unknown), not `false`, for a code with a null `introduced`; the
-README's section 10 shows it for CZ, SK and RU on 1990-01-01.
+Until then a labelled value is kept, and a null with a reason is the honest
+answer. `is_active_on(code, date)` returns `null` (unknown), not `false`, for
+a code with a null `introduced`.

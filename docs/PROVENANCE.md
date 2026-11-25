@@ -25,7 +25,7 @@ of the first release; the present state of the registry is in
 | `official_name` | ISO 3166-1 Online Browsing Platform | https://www.iso.org/obp/ui/ |
 | `languages` | CIA World Factbook; codes are ISO 639-3 | https://www.cia.gov/the-world-factbook/ |
 | `borders` | CIA World Factbook, land boundaries | https://www.cia.gov/the-world-factbook/ |
-| `introduced` | Wikipedia, ISO 3166-1 "Changes" table (explicit exception, see [introduced-field](decisions/introduced-field.md)) | https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980 |
+| `introduced` | Per code, in `tools/introduced_evidence.json` ([introduced-evidence](decisions/introduced-evidence.md)): 6 from the ISO 3166-1 Online Browsing Platform change history; 161 from a maintainer-supplied 1974 list and 9 from the Wikipedia ISO 3166-1 "Changes" table, both under the explicit exception ([introduced-field](decisions/introduced-field.md)) | https://www.iso.org/obp/ui/ ; https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980 |
 
 ## Current sources and refresh
 
@@ -49,7 +49,7 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 | `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
 | `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
 | `customs_union` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/customs_union_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
-| `introduced` | Wikipedia (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json` | 2026-10-28 (snapshot `source_accessed`) | yearly (`review_by` 2027-10-28) |
+| `introduced` | ISO OBP change history for 6 codes; the 1974 list and Wikipedia for 170 (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json`; per code in `tools/introduced_evidence.json` | 2026-10-28 (snapshot `source_accessed`) | yearly (`review_by` 2027-10-28) |
 
 ## What is a first-party source
 
@@ -63,9 +63,19 @@ If a field cannot be traced to a first-party source, it is left
 `null`. It is never populated from a third-party source, with these
 recorded exceptions. Each is justified in its ADR under `docs/decisions/`.
 
-- `introduced` and the four club-membership arrays (`eu_membership`,
-  `eea_membership`, `eurozone_membership`, `customs_union`) come from
-  Wikipedia, because ISO does not publish those facts.
+- The four club-membership arrays (`eu_membership`, `eea_membership`,
+  `eurozone_membership`, `customs_union`) come from Wikipedia, because ISO
+  does not publish those facts.
+- `introduced`, narrowed: the exception covers only the rows of
+  `tools/introduced_evidence.json` that are still `lead_only` or `inference`
+  (ADR [introduced-evidence](decisions/introduced-evidence.md)). Of the 176
+  dated codes, 6 are `iso_primary` (the ISO OBP change history) and outside
+  the exception; 161 are `inference` (a maintainer-supplied 1974 list; the
+  ISO 3166:1974 text has not been read) and 9 are `lead_only` (the Wikipedia
+  Changes table). Of the 76 null active codes, 23 have an `inference`
+  candidate and 53 a `lead_only` row (4 quarantined Wikipedia dates, 46 with
+  no source, 3 not officially assigned). The 23 withdrawn-only codes are
+  `lead_only` with no candidate.
 - `languages` and `borders` come from the CIA World Factbook, because no
   standards body publishes official languages or land borders. The ADR
   [languages-borders-sources](decisions/languages-borders-sources.md)

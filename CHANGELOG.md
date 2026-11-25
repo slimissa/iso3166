@@ -8,6 +8,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+`introduced` now carries its evidence code by code. A ledger records, for each of the 275 snapshot keys, what kind of source stands behind the value and which document, and only an ISO document can set a date. Six dates are now held on ISO's own Online Browsing Platform. A local checkout now installs and tests like CI, every snapshot uses one cadence vocabulary, and three docs carry a recheck date that CI enforces.
+
+Consumer impact: none. No value in `iso3166.json` changes, nor any export, wrapper copy or the schema; `introduced` keeps every value it had. The data files that change are `tools/introduced_snapshot.json` (meta only: a new `active_from_iso_primary` count and `iso_primary_codes`), the new `tools/introduced_evidence.json`, and `closed_reason` in the two M49 snapshots. The consumers read `alpha_2`, `name`, `region`, `subregion` and `currency_codes` (`tools/consumers.json`); ISO 4217, ISO 10383 and Exchange Calendar were re-read at `028863f`, `db454bc` and `ab01489` on 2026-11-25, and none reads `introduced` or any file under `tools/`.
+
+### Added
+
+- `tools/introduced_evidence.json`, the evidence ledger for `introduced`: one row per key of `tools/introduced_snapshot.json`, with `class` (`iso_primary`, `ma_member`, `lead_only`, `inference`), the document (title, URLs, locator, sha256 of the bytes read; documents are not committed), the verdict and the reason. Today: 6 `iso_primary` adopted, 184 `inference`, 85 `lead_only`.
+- `docs/decisions/introduced-evidence.md`: the four classes, and why only `iso_primary` can set a value. It amends `introduced-field.md`, whose claim that the OBP publishes no assignment dates holds only before 2007.
+- `tools/check_introduced_evidence.py`, in CI (`check-snapshots`) and the release gate: one row per code, only `iso_primary` rows with a document hash adopted, adopted dates equal to `iso3166.json`. `tests/test_check_introduced_evidence.py` has a negative case per rule.
+- `tools/check_doc_status.py`, in CI (`check-docs-match-tree`) and the release gate: a `Status as of vX.Y.Z` line needs `(recheck YYYY-MM-DD)` and fails the day after that date. Modelled on Exchange Calendar's `check_recheck_dates.py`.
+- `docs/withdrawn-completeness.md`: the 25 withdrawn entries against ISO 3166-3 (from a lead, to confirm). Six entries are missing (BQAQ, BYAA, CSHH, FXFR, GEHH, PUUM); the page sets out what modelling them would need. No data change.
+- `make dev-install`: the two installs CI makes, `requirements-dev.txt` with `constraints.txt` and the Python wrapper editable.
+- `docs/RELEASE_PATTERN.md` Rule 30: a finding from another tool or repository is compared with `origin/main` first; a finding against a stale copy is re-checked, not applied. Pinned in `tests/test_release_pattern.py`, with a receipt and a CONTRIBUTING line.
+
+### Changed
+
+- `introduced` for BL, BQ, CW, MF, SS and SX is now taken from the assignment entry in the code's OBP change history ("Add new entry", "Assign code elements"), from the maintainer's harvest of 2026-10-20/21. The dates are the ones the tree already held. `tools/build_introduced_snapshot.py` reads adopted `iso_primary` ledger rows before the quarantine, the 1974 list and the Wikipedia table.
+- The two M49 snapshots, `refresh_cadence` `closed`, now carry a `closed_reason`. `tests/test_snapshot_meta.py` checks every `tools/*_snapshot.json`: a cadence of `monthly`, `quarterly` or `yearly` with `review_by` one period after the vendored date, or `closed` with a reason.
+- `tests/test_export_check_order.py` and `tests/test_examples.py` start Python with the interpreter running the tests; with no `python3` on `PATH`, all 420 root and wrapper tests pass.
+- `docs/SCOPE.md`, `docs/sanctions-reconnaissance.md` and `docs/introduced-reconnaissance.md` were re-read against the tree and carry `Status as of v1.12.14 (recheck …)`. `introduced-reconnaissance.md` is rewritten around the ledger.
+- README, `PROVENANCE.md`, CONTRIBUTING and `requirements-dev.txt`: the introduced exception narrows to the rows still `lead_only` or `inference` (170 of 176 dates); the dev setup is `make dev-install`. The release gate has 35 checks; the root suite has 296 tests.
+
+### Notes
+
+- Not changed, by decision: `iana_tld`, `iso639_3` and `itu_calling_code` keep `rare`, and `independent` keeps `annual`. Their `review_by` breaks the rule (2027-09-27 against a vendored date of 2026-09-23; 2027-10-28 against 2026-10-21), so they wait for the maintainer to accept 2027-09-23 and 2027-10-21. `tests/test_snapshot_meta.py` pins them as stopped.
+- `requirements-dev.txt` does not list the wrapper: CI runs `pip-audit -r requirements-dev.txt --strict`, which fails on a local package not on PyPI.
+- The ISO 3166 newsletters before VI-13, the editions of 1974 to 1997 and ISO 3166-3 were not reachable from the environment that did this work. Nothing was dated from them.
+
 ## [1.12.14] — 2026-11-24
 
 The vendored ISO 4217 snapshot meets qlf-sentinel client contract CC-2: its vendoring metadata now sits in a sibling `.meta.json`, like every other snapshot in this repository, and one cadence vocabulary covers every `tools/*.meta.json`.
