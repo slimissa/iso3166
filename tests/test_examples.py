@@ -11,8 +11,10 @@ and read the diff before committing it.
 """
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -24,8 +26,10 @@ EXAMPLE = ROOT / "examples" / "historical-entity-resolution"
 
 @pytest.mark.skipif(shutil.which("bash") is None, reason="bash is not installed")
 def test_run_all_check_exits_zero():
+    # run_all.sh runs ${PYTHON:-python3}; give it the interpreter running the tests.
     p = subprocess.run(["bash", str(RUN_ALL), "--check"],
-                       capture_output=True, text=True, cwd=ROOT)
+                       capture_output=True, text=True, cwd=ROOT,
+                       env=dict(os.environ, PYTHON=sys.executable))
     assert p.returncode == 0, p.stdout + p.stderr
 
 

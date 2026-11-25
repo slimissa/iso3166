@@ -4,9 +4,15 @@ A --check that runs after regeneration compares a file with itself. The
 block in scripts/release.sh (between the artifact-freshness markers) runs
 --check on the committed artifacts FIRST. These tests run that block, taken
 verbatim from release.sh, in a throwaway copy of the repository.
+
+The block calls `python3` by name, as release.sh does. run_block puts a
+`python3` that is the interpreter running these tests first on PATH, so the
+tests do not depend on, or silently use, another python3.
 """
+import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +29,20 @@ def freshness_block() -> str:
     return text[begin:end]
 
 
+def _python3_first_on_path(repo: Path) -> dict:
+    """An environment whose `python3` is sys.executable.
+
+    A script, not a symlink: a venv interpreter reached through a symlink
+    in another directory does not find its pyvenv.cfg, and loses the venv.
+    """
+    shim = repo.parent / "python3-shim"
+    shim.mkdir(exist_ok=True)
+    exe = shim / "python3"
+    exe.write_text('#!/bin/sh\nexec "%s" "$@"\n' % sys.executable, encoding="utf-8")
+    exe.chmod(0o755)
+    return dict(os.environ, PATH=str(shim) + os.pathsep + os.environ.get("PATH", ""))
+
+
 def run_block(repo: Path, mode: str = "full"):
     script = (
         'set -euo pipefail\n'
@@ -32,7 +52,8 @@ def run_block(repo: Path, mode: str = "full"):
         + f"\nartifact_freshness {mode}\n"
     )
     return subprocess.run(["bash", "-c", script], cwd=repo,
-                          capture_output=True, text=True)
+                          capture_output=True, text=True,
+                          env=_python3_first_on_path(repo))
 
 
 def throwaway_repo(tmp_path: Path) -> Path:
