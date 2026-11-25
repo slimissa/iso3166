@@ -1157,6 +1157,7 @@ iso3166/
     v*-verification.md                      # 53 release gate records, v1.0.0 to v1.12.13
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     v1.12.3-verification-errata.md          # Correction to the v1.12.3 report (11 of about 38 commands recorded)
+    withdrawn-completeness.md               # The 25 withdrawn entries against ISO 3166-3 (lead, to confirm), and the modelling questions
     decisions/
       club-memberships.md                   # ADR: club membership arrays, sources, null policy
       cross-registry-edges.md               # ADR: the state of each edge to a sibling registry, 2026-11-04
@@ -1381,6 +1382,7 @@ iso3166/
 | [`docs/introduced-reconnaissance.md`](./docs/introduced-reconnaissance.md) | Why is `introduced` null for each of the 21 `[likely]` quarantined codes, and what would fill it? |
 | [`docs/sanctions-reconnaissance.md`](./docs/sanctions-reconnaissance.md) | Which sanctions sources exist, why is there no sanctions data, and what would reopen that? |
 | [`docs/SCOPE.md`](./docs/SCOPE.md) | What did we not build, and what would start each item? |
+| [`docs/withdrawn-completeness.md`](./docs/withdrawn-completeness.md) | Which ISO 3166-3 entries does the withdrawn list lack, and what would modelling them need? |
 | `docs/SPEC-phase1.md`, `docs/SPEC-v1.12.0-phase1.md` | What did the Phase 1 research of the `introduced` and club-membership snapshots find? |
 | `docs/v<version>-verification.md` | What did the gate print when this version shipped? |
 | [`examples/`](./examples) | Which claims in the documentation run as programs, with pinned output? |
