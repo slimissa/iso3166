@@ -69,7 +69,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "AN",
@@ -180,7 +194,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "BA",
@@ -420,7 +448,7 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; ISO page SUHH (Remark part 3): Belarus and Ukraine \"were separately coded in ISO 3166 already before the USSR was split\", and BY was Byelorussian SSR (ISO 3166-3 BYAA). That contradicts the quarantine reason; it gives no date, so nothing is adopted"
     },
     {
       "code": "BZ",
@@ -460,7 +488,21 @@
       "doc": null,
       "quote_ref": null,
       "verdict": "unconfirmed",
-      "reason": "source silent"
+      "reason": "source silent; bound: not before 1997-07 (ISO page ZRCD: ZR reserved from 1997-07, when its name changed to this code). An inference, never a date",
+      "bound": {
+        "not_before": "1997-07",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page ZR / ZRCD (Zaire)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:ZR"
+          ],
+          "locator": "Status remark: \"Reserved from 1997-07 to 2047-07.\"; Remark part 3: \"Name changed from Zaire to the Democratic Republic of the Congo (CD, COD, 180).\"",
+          "sha256": "5ff9cfe1780912c21c5ad464e7cd5816c6536e0ab864b7dee76e1273bd7b68bf",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/ZR.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "CF",
@@ -579,9 +621,35 @@
         "sha256": "87c0ed472af8a5c749c43162d4c97e8a2b7a15923d639a5bdcca513d8473a8cc",
         "retrieved": "Internet Archive capture 20030726171200, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlv8e-cs.html (SHA256SUMS verified)"
       },
-      "quote_ref": "Newsletter V-8 (2003-07-23) assigns CS; issue date adopted (decision D3: the tree dates codes by newsletter issue date). French version nlv8f-cs.html agrees: V-8, 2003-07-23, Code alpha-2 \"YU\" -> \"CS\". The second use of CS (Serbia and Montenegro); Czechoslovakia's earlier CS is ISO 3166-3 CSHH",
+      "quote_ref": "Newsletter V-8 (2003-07-23) assigns CS; issue date adopted (decision D3: the tree dates codes by newsletter issue date). French version nlv8f-cs.html agrees: V-8, 2003-07-23, Code alpha-2 \"YU\" -> \"CS\". The second use of CS (Serbia and Montenegro); Czechoslovakia's earlier CS is ISO 3166-3 CSHH; ISO 3166-3 Newsletters I-4 and I-5 give the period of validity 2003/2006 (more_docs)",
       "verdict": "adopted",
-      "reason": "ISO 3166-1 Newsletter V-8 adds the alpha-2 code CS (decision D4); no other effective date is stated"
+      "reason": "ISO 3166-1 Newsletter V-8 adds the alpha-2 code CS (decision D4); no other effective date is stated",
+      "more_docs": [
+        {
+          "title": "ISO 3166-3 Newsletter I-4, Removal of the country name SERBIA AND MONTENEGRO from ISO 3166-1 (English version)",
+          "number": "I-4",
+          "date": "2006-09-26",
+          "urls": [
+            "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlp3i-4e.html",
+            "https://web.archive.org/web/20061108195753id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlp3i-4e.html"
+          ],
+          "locator": "table: \"Serbia and Montenegro | CS SCG 891 | Period of validity 2003/2006 | CSHH\" (I-5 corrects the alpha-4 to CSXX)",
+          "sha256": "b6b048056c24674c98d726186033a6ba9e8ac6928d3f102a23acd143a17a7231",
+          "retrieved": "Internet Archive capture 20061108195753, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlp3i-4e.html (SHA256SUMS verified)"
+        },
+        {
+          "title": "ISO 3166-3 Newsletter I-5, correction of Newsletter I-4 (CSHH to CSXX)",
+          "number": "I-5",
+          "date": "2006-12-01",
+          "urls": [
+            "http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlp3i-5.html",
+            "https://web.archive.org/web/20070112042952id_/http://www.iso.org:80/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/nlp3i-5.html"
+          ],
+          "locator": "table: \"Serbia and Montenegro | CS SCG 891 | Period of validity 2003/2006 | CSXX\"",
+          "sha256": "ac444bfc93061f163891ec6d131aa4a1ff69bae23d8464bb53663debc0d13e85",
+          "retrieved": "Internet Archive capture 20070112042952, original bytes (id_), fetched by the maintainer; iso3166-sources-2026-11-25.tar.gz newsletters/ma/nlp3i-5.html (SHA256SUMS verified)"
+        }
+      ]
     },
     {
       "code": "CT",
@@ -761,7 +829,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "EG",
@@ -941,7 +1023,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "GF",
@@ -1364,7 +1460,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "KH",
@@ -1454,7 +1564,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "LA",
@@ -1534,7 +1658,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "LU",
@@ -1554,7 +1692,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "LY",
@@ -1604,7 +1756,21 @@
       },
       "quote_ref": "tools/wikipedia_dates.json data.MD",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: 2008-03-31 is a change newsletter; Moldova added ~1992"
+      "reason": "quarantined [likely]: 2008-03-31 is a change newsletter; Moldova added ~1992; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "ME",
@@ -1705,7 +1871,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2011-06-12",
       "verdict": "unconfirmed",
-      "reason": "quarantined [confirmed]: successor of BU, withdrawn 1989-12-05 (tree)"
+      "reason": "quarantined [confirmed]: successor of BU, withdrawn 1989-12-05 (tree); bound: not before 1989-12 (ISO page BUMM: BU reserved from 1989-12, when its name changed to this code). An inference, never a date",
+      "bound": {
+        "not_before": "1989-12",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page BU / BUMM (Burma)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:BU"
+          ],
+          "locator": "Status remark: \"Reserved from 1989-12 to 2039-12.\"; Remark part 3: \"Name changed from former Burma (BU, BUR, 104) to Myanmar (MM MMR, 104).\"",
+          "sha256": "ba4c6b9b1cdd5a1835cf6ec94e467994018bc6e6e736c92ee6b70f1e468c4fb4",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/BU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "MN",
@@ -2247,7 +2427,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "RW",
@@ -2581,7 +2775,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "TK",
@@ -2622,7 +2830,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "TN",
@@ -2712,7 +2934,7 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; ISO page SUHH (Remark part 3): Belarus and Ukraine \"were separately coded in ISO 3166 already before the USSR was split\", and BY was Byelorussian SSR (ISO 3166-3 BYAA). That contradicts the quarantine reason; it gives no date, so nothing is adopted"
     },
     {
       "code": "UG",
@@ -2772,7 +2994,21 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "bound": {
+        "not_before": "1992",
+        "doc": {
+          "title": "ISO Online Browsing Platform, ISO 3166 code page SU / SUHH (USSR)",
+          "number": null,
+          "date": null,
+          "urls": [
+            "https://www.iso.org/obp/ui/#iso:code:3166:SU"
+          ],
+          "locator": "Remark part 3: \"Removed from ISO 3166-1 in 1992 when former USSR was divided into: Armenia (AM, ...), ... Uzbekistan (UZ, UZB, 860).\"",
+          "sha256": "c41b032e412401efef061b4a56e530ec05abf5267aad8bd73bc714fa14f55ff3",
+          "retrieved": "Firefox save of the OBP page by the maintainer, 2026-11-25; iso3166-sources-2026-11-25.tar.gz obp-reserved/SU.html (SHA256SUMS verified)"
+        }
+      }
     },
     {
       "code": "VA",

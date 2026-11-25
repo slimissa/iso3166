@@ -208,3 +208,15 @@ def test_the_withdrawn_cs_entry_takes_its_v8_date():
     """D4: V-8 assigned the new code CS (YU -> CS); the withdrawn CS row is dated by it."""
     cs = [e for e in TREE["countries"]["withdrawn"] if e["alpha_2"] == "CS"][0]
     assert cs["introduced"] == "2003-07-23" == SNAPSHOT["data"]["CS"]
+
+
+def test_predecessor_bounds_are_inference_only():
+    """D7: a bound from a predecessor's ISO page never dates a code."""
+    bounded = {r["code"]: r["bound"]["not_before"] for r in LEDGER["rows"] if "bound" in r}
+    assert bounded == {**{c: "1992" for c in "AM AZ EE GE KG KZ LT LV MD RU TJ TM UZ".split()},
+                       "MM": "1989-12", "CD": "1997-07"}
+    for r in LEDGER["rows"]:
+        if "bound" in r:
+            assert r["class"] in ("inference", "lead_only"), r["code"]
+            assert (r["verdict"], r["current"]) == ("unconfirmed", None), r["code"]
+            assert f"not before {r['bound']['not_before']}" in r["reason"], r["code"]
