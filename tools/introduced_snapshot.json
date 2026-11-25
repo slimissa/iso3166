@@ -2,7 +2,8 @@
   "meta": {
     "counts": {
       "active_from_1974_list": 161,
-      "active_from_data": 15,
+      "active_from_data": 9,
+      "active_from_iso_primary": 6,
       "active_null_not_assigned": 3,
       "active_null_quarantined": 27,
       "active_null_source_silent": 46,
@@ -10,6 +11,14 @@
     },
     "default_date_1974_edition": "1974-09-15",
     "generator": "tools/build_introduced_snapshot.py",
+    "iso_primary_codes": [
+      "BL",
+      "BQ",
+      "CW",
+      "MF",
+      "SS",
+      "SX"
+    ],
     "withdrawn_codes": [
       "AI",
       "AN",

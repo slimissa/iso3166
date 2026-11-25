@@ -142,3 +142,24 @@ def test_main_exit_codes(tmp_path):
     _row(led, "AD").update(verdict="adopted")
     (tmp_path / "tools/introduced_evidence.json").write_text(json.dumps(led), encoding="utf-8")
     assert cie.main(["--root", str(tmp_path), "--today", "2026-11-25"]) == 1
+
+
+def test_the_generator_takes_exactly_the_adopted_iso_primary_rows():
+    """build_introduced_snapshot.py step 2 reads adopted iso_primary rows and nothing else."""
+    adopted = {r["code"]: r["candidate"] for r in LEDGER["rows"]
+               if r["class"] == "iso_primary" and r["verdict"] == "adopted"}
+    meta = SNAPSHOT["meta"]
+    assert meta["iso_primary_codes"] == sorted(adopted)
+    assert meta["counts"]["active_from_iso_primary"] == len(adopted)
+    for code, d in adopted.items():
+        assert SNAPSHOT["data"][code] == d, code
+
+
+def test_the_obp_adoptions_cite_the_harvest_page_and_an_assignment_entry():
+    """D7: only an assignment entry dates a code; never the 2011-12-13 alignment entry."""
+    for r in LEDGER["rows"]:
+        if r["class"] != "iso_primary":
+            continue
+        assert r["quote_ref"].split(" ", 1)[1] in ("Assign code elements", "Add new entry"), r["code"]
+        assert "align ISO 3166-1 and ISO 3166-2" not in r["doc"]["locator"], r["code"]
+        assert r["doc"]["urls"] == [f"https://www.iso.org/obp/ui/#iso:code:3166:{r['code']}"]

@@ -1,12 +1,12 @@
 {
-  "total": 294,
+  "total": 296,
   "files": {
     "tests/test_api_misuse.py": 33,
     "tests/test_architecture.py": 2,
     "tests/test_changelog_unreleased.py": 4,
     "tests/test_check_consumers_current.py": 6,
     "tests/test_check_doc_status.py": 12,
-    "tests/test_check_introduced_evidence.py": 31,
+    "tests/test_check_introduced_evidence.py": 33,
     "tests/test_check_introduced_future.py": 5,
     "tests/test_check_release_diff.py": 5,
     "tests/test_check_snapshot_upstream.py": 7,

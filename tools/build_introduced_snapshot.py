@@ -2,16 +2,24 @@
 """
 tools/build_introduced_snapshot.py
 
-Generates tools/introduced_snapshot.json from tools/wikipedia_dates.json
-and iso3166.json. Deterministic. The snapshot is a derived artifact.
+Generates tools/introduced_snapshot.json from tools/introduced_evidence.json,
+tools/wikipedia_dates.json and iso3166.json. Deterministic. The snapshot is a
+derived artifact.
 
 Algorithm for `introduced` (active entries):
   1. status != officially-assigned          -> null (not part of the standard)
-  2. code in QUARANTINE                      -> null (source conflicts with tree)
-  3. code in LIST_1974                       -> "1974-09-15"
-  4. code in wikipedia_dates.json "data"     -> that date
-  5. otherwise                               -> null (source silent)
+  2. ledger row iso_primary and adopted      -> its candidate (an ISO document
+                                                dates the code; see
+                                                docs/decisions/introduced-evidence.md)
+  3. code in QUARANTINE                      -> null (source conflicts with tree)
+  4. code in LIST_1974                       -> "1974-09-15"
+  5. code in wikipedia_dates.json "data"     -> that date
+  6. otherwise                               -> null (source silent)
 Withdrawn entries are always null.
+
+Step 2 reads only rows that are iso_primary AND adopted; every other ledger
+row is provenance, not input. A ledger row cannot be adopted without the
+document's sha256 (tools/check_introduced_evidence.py).
 
 Usage:
   python3 tools/build_introduced_snapshot.py          # write snapshot
@@ -24,6 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "tools" / "wikipedia_dates.json"
+LEDGER = ROOT / "tools" / "introduced_evidence.json"
 TREE = ROOT / "iso3166.json"
 OUT = ROOT / "tools" / "introduced_snapshot.json"
 EDITION_1974 = "1974-09-15"
@@ -89,6 +98,9 @@ QUARANTINE = {
 def build():
     src = json.loads(SOURCE.read_text(encoding="utf-8"))
     tree = json.loads(TREE.read_text(encoding="utf-8"))
+    ledger = json.loads(LEDGER.read_text(encoding="utf-8")) if LEDGER.exists() else {"rows": []}
+    primary = {r["code"]: r["candidate"] for r in ledger["rows"]
+               if r["class"] == "iso_primary" and r["verdict"] == "adopted"}
     data = src["data"]
     active = tree["countries"]["active"]
     withdrawn = tree["countries"]["withdrawn"]
@@ -102,7 +114,7 @@ def build():
         raise SystemExit("1974 list codes not active in tree: %s" % not_active)
 
     out, reasons = {}, {}
-    counts = {"active_from_1974_list": 0, "active_from_data": 0,
+    counts = {"active_from_1974_list": 0, "active_from_data": 0, "active_from_iso_primary": 0,
               "active_null_not_assigned": 0, "active_null_quarantined": 0,
               "active_null_source_silent": 0, "withdrawn_null": 0}
     for e in sorted(active, key=lambda x: x["alpha_2"]):
@@ -111,6 +123,9 @@ def build():
             out[c] = None
             reasons[c] = "not officially assigned (%s)" % e.get("status")
             counts["active_null_not_assigned"] += 1
+        elif c in primary:
+            out[c] = primary[c]
+            counts["active_from_iso_primary"] += 1
         elif c in QUARANTINE:
             out[c] = None
             reasons[c] = "quarantined [%s]: %s" % QUARANTINE[c]
@@ -136,6 +151,9 @@ def build():
             out[e["alpha_2"]] = None
             reasons[e["alpha_2"]] = "withdrawn: start date not sourced"
 
+    unknown_primary = sorted(set(primary) - {e["alpha_2"] for e in active})
+    if unknown_primary:
+        raise SystemExit("adopted ledger rows for codes that are not active: %s" % unknown_primary)
     for c, v in out.items():
         if v is not None:
             if not DATE_RE.match(v):
@@ -147,6 +165,7 @@ def build():
             "counts": dict(sorted(counts.items())),
             "default_date_1974_edition": EDITION_1974,
             "generator": "tools/build_introduced_snapshot.py",
+            "iso_primary_codes": sorted(primary),
             "withdrawn_codes": withdrawn_codes,
             "null_reasons": dict(sorted(reasons.items())),
             "review_by": REVIEW_BY,

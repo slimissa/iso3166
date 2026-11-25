@@ -285,21 +285,21 @@
       "code": "BL",
       "current": "2007-09-21",
       "candidate": "2007-09-21",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "title": "ISO Online Browsing Platform, ISO 3166-1 code page BL (Saint Barthélemy), \"Change history of country code\"",
         "number": null,
-        "date": null,
+        "date": "2007-09-21",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "https://www.iso.org/obp/ui/#iso:code:3166:BL"
         ],
-        "locator": "row for BL, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "Change history of country code, entry \"2007-09-21 | Add new entry | Ajouter une nouvelle entrée\" (the oldest entry on the page)",
+        "sha256": "074627f28841dc760b4e6b2b98cc6473d9f777bc52e26e939d3a1575b1bf38c0",
+        "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file BL.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.BL",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "2007-09-21 Add new entry",
+      "verdict": "adopted",
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
     },
     {
       "code": "BM",
@@ -335,21 +335,21 @@
       "code": "BQ",
       "current": "2010-12-15",
       "candidate": "2010-12-15",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "title": "ISO Online Browsing Platform, ISO 3166-1 code page BQ (Bonaire, Sint Eustatius and Saba), \"Change history of country code\"",
         "number": null,
-        "date": null,
+        "date": "2010-12-15",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "https://www.iso.org/obp/ui/#iso:code:3166:BQ"
         ],
-        "locator": "row for BQ, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "Change history of country code, entry \"2010-12-15 | Add new entry | Ajouter une nouvelle entrée\" (the oldest entry on the page)",
+        "sha256": "60c814c45b80536f2131edd785532882cba1db63bfd5ed66342a9a599b65ac48",
+        "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file BQ.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.BQ",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "2010-12-15 Add new entry",
+      "verdict": "adopted",
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
     },
     {
       "code": "BR",
@@ -605,21 +605,21 @@
       "code": "CW",
       "current": "2010-12-15",
       "candidate": "2010-12-15",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "title": "ISO Online Browsing Platform, ISO 3166-1 code page CW (Curaçao), \"Change history of country code\"",
         "number": null,
-        "date": null,
+        "date": "2010-12-15",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "https://www.iso.org/obp/ui/#iso:code:3166:CW"
         ],
-        "locator": "row for CW, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "Change history of country code, entry \"2010-12-15 | Add new entry | Ajouter une nouvelle entrée\" (the oldest entry on the page)",
+        "sha256": "51df5797893f61c6e20f761b51b318af2058da20b757273c54c5584d4a770a40",
+        "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file CW.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.CW",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "2010-12-15 Add new entry",
+      "verdict": "adopted",
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
     },
     {
       "code": "CX",
@@ -1615,21 +1615,21 @@
       "code": "MF",
       "current": "2007-09-21",
       "candidate": "2007-09-21",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "title": "ISO Online Browsing Platform, ISO 3166-1 code page MF (Saint Martin (French Part)), \"Change history of country code\"",
         "number": null,
-        "date": null,
+        "date": "2007-09-21",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "https://www.iso.org/obp/ui/#iso:code:3166:MF"
         ],
-        "locator": "row for MF, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "Change history of country code, entry \"2007-09-21 | Add new entry | Ajouter une nouvelle entrée\" (the oldest entry on the page)",
+        "sha256": "946312f97b398a91f0f622bb700eca0ba0533391205220025ec96462c0ad284a",
+        "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file MF.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.MF",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "2007-09-21 Add new entry",
+      "verdict": "adopted",
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
     },
     {
       "code": "MG",
@@ -2405,21 +2405,21 @@
       "code": "SS",
       "current": "2011-08-09",
       "candidate": "2011-08-09",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "title": "ISO Online Browsing Platform, ISO 3166-1 code page SS (South Sudan), \"Change history of country code\"",
         "number": null,
-        "date": null,
+        "date": "2011-08-09",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "https://www.iso.org/obp/ui/#iso:code:3166:SS"
         ],
-        "locator": "row for SS, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "Change history of country code, entry \"2011-08-09 | Assign code elements | Attribuer codet\" (the oldest entry on the page)",
+        "sha256": "667c074c49b2bf05875d37eed572f8a1de7a954390e9d61e9da0cf55bd512460",
+        "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file SS.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.SS",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "2011-08-09 Assign code elements",
+      "verdict": "adopted",
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
     },
     {
       "code": "ST",
@@ -2455,21 +2455,21 @@
       "code": "SX",
       "current": "2010-12-15",
       "candidate": "2010-12-15",
-      "class": "lead_only",
+      "class": "iso_primary",
       "doc": {
-        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "title": "ISO Online Browsing Platform, ISO 3166-1 code page SX (Sint Maarten (Dutch part)), \"Change history of country code\"",
         "number": null,
-        "date": null,
+        "date": "2010-12-15",
         "urls": [
-          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+          "https://www.iso.org/obp/ui/#iso:code:3166:SX"
         ],
-        "locator": "row for SX, as recorded in tools/wikipedia_dates.json",
-        "sha256": null,
-        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+        "locator": "Change history of country code, entry \"2010-12-15 | Add new entry | Ajouter une nouvelle entrée\" (the oldest entry on the page)",
+        "sha256": "4d99470b976eae6a019c27538229529c529295e54704d520bb90bc01b992606c",
+        "retrieved": "Firefox save of the OBP page, 2026-10-20/21, maintainer's harvest obp-harvest-2026-10-21.tar.gz, file SX.html (SHA256SUMS verified)"
       },
-      "quote_ref": "tools/wikipedia_dates.json data.SX",
-      "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "quote_ref": "2010-12-15 Add new entry",
+      "verdict": "adopted",
+      "reason": "the OBP change history entry assigns the code (decision D7: an assignment entry dates the code)"
     },
     {
       "code": "SY",
