@@ -14,7 +14,7 @@ lives in `QUARANTINE` in
 the decision is in
 [`decisions/introduced-field.md`](./decisions/introduced-field.md).
 
-Status as of v1.12.10. Wikipedia source: ISO 3166-1, permalink
+Status as of v1.12.14 (recheck 2027-01-25). Wikipedia source: ISO 3166-1, permalink
 `oldid=1258392980`, accessed 2026-10-28 (`tools/wikipedia_dates.json`). The
 snapshot's `review_by` is 2027-10-28.
 
@@ -224,7 +224,7 @@ Any one of these removes the need to infer:
 1. ISO publishes a bulk file or an Online Browsing Platform API with assignment
    dates. The decision record makes this the stated condition for revisiting
    the Wikipedia exception.
-2. The annual review (`review_by` 2027-10-28) finds a first-party source for a
+2. The yearly review (`review_by` 2027-10-28) finds a first-party source for a
    subset. Each code is independent: remove its `QUARANTINE` entry only with the
    date and the source in the commit message.
 

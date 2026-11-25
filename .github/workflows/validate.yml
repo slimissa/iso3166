@@ -424,6 +424,9 @@ jobs:
       - name: README, ENRICHMENT, PROVENANCE, CONTRIBUTING and LAYERS match the tree
         run: python3 tools/check_docs_match_tree.py
 
+      - name: Status lines carry a recheck date that has not passed
+        run: python3 tools/check_doc_status.py
+
   # =================================================================
   # 9. Mojibake scan. Every text file in the repo is checked for
   #    UTF-8 / Latin-1 round-trip corruption. Sub-second.

@@ -456,6 +456,7 @@ if [ "$DRY_RUN" = "0" ]; then
         gate python3 tools/check_introduced_meta.py
         gate python3 tools/check_state_doc.py --strict
         gate python3 tools/check_docs_match_tree.py
+        gate python3 tools/check_doc_status.py
         gate python3 tools/enrich_official_name.py --check
         gate python3 tools/enrich_withdrawn.py --check
         gate python3 tools/enrich_field.py --field currency_codes --check

@@ -4,7 +4,7 @@ This page records why the registry has no sanctions data, what the four
 candidate sources are, and what would change that. It is a reconnaissance
 note, not a design: no field, query or workflow described here exists.
 
-Status as of v1.12.10. Nothing in this page is compliance advice. The
+Status as of v1.12.14 (recheck 2027-05-25). Nothing in this page is compliance advice. The
 registry is an identity table; it is not a screening tool and must not be used
 to decide whether a transaction is permitted.
 
@@ -68,10 +68,12 @@ a wrong field is not". Four gaps stand between those sources and a field.
    own. Four publishers means four first-party sources with four formats and
    four meanings of "regime".
 3. **No stable file is recorded.** Every vendored snapshot in `tools/` carries
-   a source, a permalink or version, a vendoring date and a `review_by` date
-   (see `tools/introduced_snapshot.meta.json`). A sanctions source would need
-   the same, and a live list that changes without a version has no permalink
-   to record.
+   a source and either a `review_by` date one cadence period after its
+   vendoring date, or `closed` with a `closed_reason`
+   (`tests/test_snapshot_meta.py`). Those that track a changing source also
+   record a version or permalink (see `tools/introduced_snapshot.meta.json`).
+   A sanctions source would need the same, and a live list that changes
+   without a version has no permalink to record.
 4. **Dates are the hard part.** The temporal layer is built on dated ranges
    (`introduced`, `withdrawal_date`, the four club arrays). A sanctions field
    that lacked an effective-from and an effective-to date would not fit that

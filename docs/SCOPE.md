@@ -5,7 +5,7 @@ This page names what it does not do, so a missing feature is a recorded
 decision and not a surprise. Each item has a status, the reason the tree
 gives, and the trigger that would start it.
 
-Status as of v1.12.10. Nothing is scheduled; each item starts when its trigger
+Status as of v1.12.14 (recheck 2027-05-25). Nothing is scheduled; each item starts when its trigger
 fires (`README.md`, section 24). Where the repository records no reason, this
 page says so and does not supply one.
 
@@ -76,4 +76,5 @@ Each has its own decision in the file named.
    sections 20 and 24, and adds it to `CHANGELOG.md`.
 
 An item stays on this page until step 3. A row that says "out-of-scope"
-describes the tree at v1.12.10, not a promise about any later one.
+describes the tree at the version of the status line above, not a promise
+about any later one.
