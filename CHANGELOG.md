@@ -8,9 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-`introduced` now carries its evidence code by code. A ledger records, for each of the 275 snapshot keys, what kind of source stands behind the value and which document, and only an ISO document can set a date. Six dates are now held on ISO's own Online Browsing Platform. A local checkout now installs and tests like CI, every snapshot uses one cadence vocabulary, and three docs carry a recheck date that CI enforces.
+`introduced` now carries its evidence code by code. A ledger records, for each of the 275 snapshot keys, what kind of source stands behind the value and which document, and only an ISO document can set a date. Six dates are now held on ISO's own Online Browsing Platform, and nine more on the ISO 3166-1 newsletters of series V, which also date the withdrawn `CS`. A local checkout now installs and tests like CI, every snapshot uses one cadence vocabulary, and three docs carry a recheck date that CI enforces.
 
-Consumer impact: none. No value in `iso3166.json` changes, nor any export, wrapper copy or the schema; `introduced` keeps every value it had. The data files that change are `tools/introduced_snapshot.json` (meta only: a new `active_from_iso_primary` count and `iso_primary_codes`), the new `tools/introduced_evidence.json`, and `closed_reason` in the two M49 snapshots. The consumers read `alpha_2`, `name`, `region`, `subregion` and `currency_codes` (`tools/consumers.json`); ISO 4217, ISO 10383 and Exchange Calendar were re-read at `028863f`, `db454bc` and `ab01489` on 2026-11-25, and none reads `introduced` or any file under `tools/`.
+Consumer impact: none. One value in `iso3166.json` changes: `introduced` of the withdrawn `CS` (Serbia and Montenegro), from null to 2003-07-23, with every export and wrapper copy regenerated; no active entry's value changes, and the schema does not. For `is_active_on("CS", date)` it means `false` before 2003-07-23, where it was `true` from 1974. The data files that change are `tools/introduced_snapshot.json` (meta only: a new `active_from_iso_primary` count and `iso_primary_codes`), the new `tools/introduced_evidence.json`, and `closed_reason` in the two M49 snapshots. The consumers read `alpha_2`, `name`, `region`, `subregion` and `currency_codes` (`tools/consumers.json`); ISO 4217, ISO 10383 and Exchange Calendar were re-read at `028863f`, `db454bc` and `ab01489` on 2026-11-25, and none reads `introduced` or any file under `tools/`; ISO 4217 reads the withdrawn list for `alpha_2` only.
 
 ### Added
 
@@ -22,6 +22,12 @@ Consumer impact: none. No value in `iso3166.json` changes, nor any export, wrapp
 - `make dev-install`: the two installs CI makes, `requirements-dev.txt` with `constraints.txt` and the Python wrapper editable.
 - `docs/RELEASE_PATTERN.md` Rule 30: a finding from another tool or repository is compared with `origin/main` first; a finding against a stale copy is re-checked, not applied. Pinned in `tests/test_release_pattern.py`, with a receipt and a CONTRIBUTING line.
 
+- ISO 3166-1 newsletters as `iso_primary` documents (decision D2: an Internet Archive capture fetched with `id_` is the ISO document): V-2 dates PS (1999-10-01), V-5 TL (2002-05-20), V-8 CS (2003-07-23), V-9 AX (2004-02-13), V-11 GG, IM and JE (2006-03-29), V-12 ME and RS (2006-09-26); VI-10 is a second document for SS. Each row cites the iso.org URL, the `id_` capture URL and the sha256 of the bytes. The tree already dated every assigned code by its newsletter's issue date, and that convention is kept.
+- Predecessor bounds in the ledger (`bound.not_before`, from an ISO 3166-3 page; inference only, never a date): not before 1992 for the 13 successors of the USSR (SUHH), 1989-12 for MM (BUMM), 1997-07 for CD (ZRCD).
+- `tools/build_introduced_snapshot.py --apply` writes `introduced` into `iso3166.json` from the snapshot, for active entries and for withdrawn entries whose code is not also active. `tools/check_introduced.py` now checks those withdrawn entries too.
+- `tools/check_introduced_evidence.py`: adopted rows for withdrawn codes; optional `more_docs` and `bound`; an archive URL must be an `id_` capture of an iso.org URL and come with that URL.
+- `tools/enrich_independent.py --write` writes `refresh_cadence` `yearly` and its `review_by`.
+
 ### Changed
 
 - `introduced` for BL, BQ, CW, MF, SS and SX is now taken from the assignment entry in the code's OBP change history ("Add new entry", "Assign code elements"), from the maintainer's harvest of 2026-10-20/21. The dates are the ones the tree already held. `tools/build_introduced_snapshot.py` reads adopted `iso_primary` ledger rows before the quarantine, the 1974 list and the Wikipedia table.
@@ -31,11 +37,20 @@ Consumer impact: none. No value in `iso3166.json` changes, nor any export, wrapp
 - `docs/SCOPE.md`, `docs/sanctions-reconnaissance.md` and `docs/introduced-reconnaissance.md` were re-read against the tree and carry `Status as of v1.12.14 (recheck …)`. `introduced-reconnaissance.md` is rewritten around the ledger.
 - README, `PROVENANCE.md`, CONTRIBUTING and `requirements-dev.txt`: the introduced exception narrows to the rows still `lead_only` or `inference` (170 of 176 dates); the dev setup is `make dev-install`. The release gate has 35 checks; the root suite has 296 tests.
 
+- `introduced` of the withdrawn `CS` is 2003-07-23 (ISO 3166-1 Newsletter V-8, which replaced YU with CS), through the builder; it was null. Eight active codes keep their dates but now rest on the assigning newsletter, not on Wikipedia: AX, GG, IM, JE, ME, PS, RS, TL (and SS gains VI-10). The exception narrows to 162 of 176 active dates (161 from the 1974 list, 1 from Wikipedia).
+- `docs/withdrawn-completeness.md` rests on ISO pages: all 31 ISO 3166-3 entries, from the OBP (22 formerly used, 9 reserved codes), and the ISO 3166-3 newsletters I-1 to I-5. Of the 25 registry rows, 6 agree with an ISO date, 2 differ (AN: ISO 2010-12-15, registry 2010-12-01; ZR: ISO 1997-07, registry 1997-05-17) and 17 have no date on their page; 6 ISO entries are not in the registry. It adds the numerics and names that differ (YU 891 against the registry's 890) and what "exceptionally reserved" (FX, SU) means for the model. No withdrawn row changes.
+- `tests/cross_language_consistency.json` and `tools/gen_consistency_fixture.py`: on 1990-01-01, `active_on` is 169 true and 30 false (was 170 and 29), and `CS` is false, because the registry's `CS` starts in 2003. `examples/historical-entity-resolution` says the same.
+- `docs/introduced-reconnaissance.md` and `docs/withdrawn-completeness.md` are rechecked 2027-02-25, three months after a request to ISO for the 1974–1996 newsletters.
+
 ### Notes
 
 - Not changed, by decision: `iana_tld`, `iso639_3` and `itu_calling_code` keep `rare`, and `independent` keeps `annual`. Their `review_by` breaks the rule (2027-09-27 against a vendored date of 2026-09-23; 2027-10-28 against 2026-10-21), so they wait for the maintainer to accept 2027-09-23 and 2027-10-21. `tests/test_snapshot_meta.py` pins them as stopped. Resolved later in this cycle: the maintainer accepted both dates once git confirmed each vendored date (see Changed), and the stopped list is gone.
 - `requirements-dev.txt` does not list the wrapper: CI runs `pip-audit -r requirements-dev.txt --strict`, which fails on a local package not on PyPI.
-- The ISO 3166 newsletters before VI-13, the editions of 1974 to 1997 and ISO 3166-3 were not reachable from the environment that did this work. Nothing was dated from them.
+- The ISO 3166 newsletters before VI-13, the editions of 1974 to 1997 and ISO 3166-3 were not reachable from the environment that did this work. Nothing was dated from them. Resolved in part later in this cycle: the maintainer captured series V, VI-2, VI-10, VI-11, VI-13 and the ISO 3166-3 pages (see Added and Changed); series I–IV and the editions are still not online.
+
+- NU keeps 2002-05-20 from the Wikipedia table, although Newsletter V-4 of that date lists NIUE only among name changes, so the code existed before it. No ISO document read dates NU's assignment; quarantining it is left to the maintainer.
+- ISO's SUHH page says BY and UA "were separately coded in ISO 3166 already before the USSR was split", against the reason they are quarantined. It gives no date, so both stay null.
+- Five of the 22 ISO 3166-3 pages (BQAQ, BYAA, CSHH, GEHH, PUUM) were saved after their `SHA256SUMS` and do not match it. Their content is used in the withdrawn report, flagged; no ledger row cites them.
 
 ## [1.12.14] — 2026-11-24
 

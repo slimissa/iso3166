@@ -76,7 +76,7 @@ Every system that touches international finance, trade, shipping or identity kee
 
 This registry provides all of these as first-class, date-scoped facts in one versioned, schema-validated file. The answers are tri-state (`true`, `false`, `null`) where the source can be silent (`is_active_on`) and binary where the source is a complete range list (the four club queries). The JSON is the contract; the SQL, CSV, Parquet, wrapper and CLI forms are ways to consume it without writing a parser.
 
-Not every field is first-party. Most enrichable fields come from ISO, the UN Statistics Division, IANA, the ITU, ISO 639-3 or the CIA World Factbook, but the four club arrays and 170 of the 176 `introduced` dates rest on Wikipedia or a maintainer-supplied 1974 list under a documented, explicit exception ([`docs/decisions/introduced-field.md`](./docs/decisions/introduced-field.md), [`docs/decisions/club-memberships.md`](./docs/decisions/club-memberships.md)). Six `introduced` dates come from ISO's own Online Browsing Platform, and every code's evidence is a row of [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) ([`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md)). [Section 7](#7-the-temporal-identity-layer) says exactly which, and when each snapshot is next reviewed.
+Not every field is first-party. Most enrichable fields come from ISO, the UN Statistics Division, IANA, the ITU, ISO 639-3 or the CIA World Factbook, but the four club arrays and 162 of the 176 `introduced` dates rest on a maintainer-supplied 1974 list (161) or Wikipedia (1) under a documented, explicit exception ([`docs/decisions/introduced-field.md`](./docs/decisions/introduced-field.md), [`docs/decisions/club-memberships.md`](./docs/decisions/club-memberships.md)). Fourteen `introduced` dates come from ISO's own documents (ISO 3166-1 newsletters and the Online Browsing Platform), and every code's evidence is a row of [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) ([`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md)). [Section 7](#7-the-temporal-identity-layer) says exactly which, and when each snapshot is next reviewed.
 
 ---
 
@@ -447,16 +447,16 @@ Three facts change over time for a country code: whether the code existed, which
 
 | `introduced` | Count | Meaning |
 |--------------|------:|---------|
-| Dated from an ISO document | 6 | `BL`, `BQ`, `CW`, `MF`, `SS`, `SX`: the assignment entry ("Assign code elements", "Add new entry") in the change history of the code's ISO Online Browsing Platform page |
+| Dated from an ISO document | 14 | `PS`, `TL`, `AX`, `GG`, `IM`, `JE`, `ME`, `RS`: the ISO 3166-1 newsletter (V-2 to V-12) that assigns the code, dated by its issue date. `BL`, `BQ`, `CW`, `MF`, `SS`, `SX`: the assignment entry ("Assign code elements", "Add new entry") in the change history of the code's ISO Online Browsing Platform page; for `SS` also Newsletter VI-10 |
 | Dated from the 1974 list | 161 | `1974-09-15`, from a maintainer-supplied list of 1974 codes. An inference: the ISO 3166:1974 text has not been read |
-| Dated from the Wikipedia table | 9 | `AX`, `GG`, `IM`, `JE`, `ME`, `NU`, `PS`, `RS`, `TL`: a later date from the Changes table, a lead that no ISO document read here confirms |
+| Dated from the Wikipedia table | 1 | `NU` (2002-05-20). ISO 3166-1 Newsletter V-4 of that date lists Niue only among name changes, so the code existed before it; no ISO document read gives its assignment date ([`docs/introduced-reconnaissance.md`](./docs/introduced-reconnaissance.md)) |
 | Null, **quarantined** | 27 | The candidate date is not credible; see below |
 | Null, **source silent** | 46 | The source table gives no date |
 | Null, **not officially assigned** | 3 | `EU`, `UK`, `XK` are not in ISO 3166-1 |
 
-The 25 withdrawn entries have no `introduced` either; 23 of them are recorded in `meta.null_reasons` as "start date not sourced".
+Of the 25 withdrawn entries, one has an `introduced` date: `CS` (Serbia and Montenegro), 2003-07-23, the day ISO 3166-1 Newsletter V-8 assigned it in place of `YU`. 22 are recorded in `meta.null_reasons` as "start date not sourced"; `AI` and `SK` share their key with an active entry, whose value it holds.
 
-Each of the 275 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 6 `iso_primary` adopted, 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 85 `lead_only` (the 9 Wikipedia dates, 4 quarantined Wikipedia rows, and 72 codes with no candidate at all).
+Each of the 275 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 15 `iso_primary` adopted (14 active codes and withdrawn `CS`), 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 76 `lead_only` (NU's Wikipedia date, 4 quarantined Wikipedia rows, and 71 codes with no candidate at all). 15 rows carry a predecessor bound (`not_before`, from an ISO 3166-3 page), which narrows a date without setting one.
 
 **The 27 quarantined codes.** The builder refuses a date it cannot defend rather than writing it. A code is quarantined when the Wikipedia table's date is a *change newsletter*, not an assignment date, or when the code cannot have been in the 1974 edition. Each is null in the registry and carries its reason in `tools/introduced_snapshot.json`, `meta.null_reasons`.
 
@@ -524,7 +524,7 @@ Five committed snapshots feed the temporal fields. Each has a sibling `.meta.jso
 | `eurozone_membership_snapshot.json` | `eurozone_membership` | Wikipedia: Euro area, cross-checked against the Council of the EU timeline | 2026-10-29 | 2027-10-29 |
 | `customs_union_snapshot.json` | `customs_union` | Wikipedia: European Union Customs Union | 2026-10-29 | 2027-10-29 |
 
-Wikipedia is an explicit, documented exception to the registry's first-party rule. ISO 3166 does not publish club membership, so no first-party source exists for the clubs. For `introduced`, ISO's Online Browsing Platform keeps a change history per code, but its oldest entry is 2007-09-21: it dates the six codes assigned since then, and the older dates need ISO 3166 newsletters and editions not yet read. Until they are, the other dated codes stay under the exception, each labelled with its class in `tools/introduced_evidence.json`. The four club snapshots cite the page title URL, not an `oldid` permalink; the ADR records this as a known deviation to fix at the first review.
+Wikipedia is an explicit, documented exception to the registry's first-party rule. ISO 3166 does not publish club membership, so no first-party source exists for the clubs. For `introduced`, ISO's own documents date 14 active codes and the withdrawn `CS`: the ISO 3166-1 newsletters of series V and VI (1998–2012, read as Internet Archive captures of iso.org) date the codes they assign, and the Online Browsing Platform's change history, which starts in 2007, dates six more. ISO published no newsletters online before 1997, so the 1974–1997 dates need the newsletters of series I–IV or the printed editions, which ISO has been asked for. Until they arrive, the other dated codes stay under the exception, each labelled with its class in `tools/introduced_evidence.json`. The four club snapshots cite the page title URL, not an `oldid` permalink; the ADR records this as a known deviation to fix at the first review.
 
 ### EEA: provisional application is modeled
 
@@ -540,7 +540,7 @@ Twelve countries applied the EEA Agreement provisionally before it formally ente
 ### Known gaps
 
 - No historical currencies; `currency_at` returns the current currency for the lifetime-bounded answer.
-- `introduced` is null for 76 active entries and all 25 withdrawn ones; `is_active_on` answers `null` for them.
+- `introduced` is null for 76 active entries and 24 of the 25 withdrawn ones; `is_active_on` answers `null` for the active ones.
 - Nothing before 1974 can be dated for the identity layer. The club arrays reach back to 1958.
 - The club ranges come from Wikipedia and are reviewed once a year.
 
@@ -746,18 +746,20 @@ print(f"True {len(yes)}, False {len(no)}, None {len(unknown)}  (of {len(r)})")
 
 naive = [c for c, v in r.items() if v]   # the trap: None is falsy
 print(f"filtering on truthiness keeps {len(naive)}; it drops {len(unknown)}, e.g. {unknown[:4]}")
-print("DD, SU, YU, CS were active:", all(r[c] for c in ("DD", "SU", "YU", "CS")))
+print("DD, SU, YU were active:", all(r[c] for c in ("DD", "SU", "YU")))
+print("CS is the 2003 entry, not Czechoslovakia:", r["CS"])
 print("CZ, SK, RU are unknown, not false:", [r[c] for c in ("CZ", "SK", "RU")])
 ```
 
 ```text
-True 170, False 29, None 76  (of 275)
-filtering on truthiness keeps 170; it drops 76, e.g. ['AI', 'AM', 'AQ', 'AS']
-DD, SU, YU, CS were active: True
+True 169, False 30, None 76  (of 275)
+filtering on truthiness keeps 169; it drops 76, e.g. ['AI', 'AM', 'AQ', 'AS']
+DD, SU, YU were active: True
+CS is the 2003 entry, not Czechoslovakia: False
 CZ, SK, RU are unknown, not false: [None, None, None]
 ```
 
-A universe built from `if v` is 170 codes, not the 246 the registry can place (170 true plus 76 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU`, `YU` and `CS` were assigned and the current entries for Germany, Russia and the others cannot stand in for them.
+A universe built from `if v` is 169 codes, not the 245 the registry can place (169 true plus 76 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU` and `YU` were assigned and the current entries for Germany, Russia and the others cannot stand in for them. `CS` answers `false`: the registry's `CS` is Serbia and Montenegro, assigned 2003-07-23; in 1990 `CS` meant Czechoslovakia (ISO 3166-3 `CSHH`), which the registry does not hold.
 
 **What happens when the code is wrong?** An unknown code is an ordinary answer, not an error: `active("XX")` is `None`, `currencies("XX")` is `[]` (the same as real `AQ`, which has no currency), `is_eu_member_at("XX", d)` is `false`. A malformed *date* is an error. Lowercase codes work; padded ones (`" us "`) do not in a lookup, though they do in the dated queries. The table, per surface, is in [section 4b](#4b-api-contract).
 
@@ -1421,12 +1423,12 @@ Open an issue before starting a large change. Data corrections go through an enr
 
 Stated plainly, because a canonical registry is a claim and a claim needs its edges drawn.
 
-- **`introduced` is null for 76 of 252 active entries and all 25 withdrawn ones:** 27 quarantined (6 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
+- **`introduced` is null for 76 of 252 active entries and 24 of the 25 withdrawn ones:** 27 quarantined (6 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
 - **The quarantine reasons for 21 of the 27 are `[likely]`,** inferred from the post-Soviet and post-Yugoslav succession and from newsletter dates, not from a primary record. Six are `[confirmed]` against the tree's own withdrawn entries.
 - **No historical currencies.** `currency_at` returns the entry's current currency inside its lifetime and `None` outside it. `currency_at("DE", "1990-01-01")` is `["EUR"]`, not the Deutsche Mark. For a withdrawn entry it returns the successor's current currency up to and including `withdrawal_date`.
 - **`introduced` and `is_active_on` have no data before 1974.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`.
 - **Club arrays reach back to the EU's 1958 founding.** `eu_membership` starts on 1958-01-01 (for `DE`); the EEA, eurozone and customs-union arrays start when those clubs did (1994, 1999, 1968-07-01). `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` answer for any date from 1958-01-01; they are not bounded by the 1974 limit, and before a club existed the answer is `false`. So `is_active_on("DE", "1960-01-01")` is `false` while `is_eu_member_at("DE", "1960-01-01")` is `true`.
-- **The club data and 170 of the 176 `introduced` dates are not first-party.** They rest on Wikipedia or a maintainer-supplied 1974 list under a documented exception; six `introduced` dates come from ISO's Online Browsing Platform. Each snapshot is reviewed yearly (`refresh_cadence` `yearly`, `review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
+- **The club data and 162 of the 176 `introduced` dates are not first-party.** They rest on Wikipedia or a maintainer-supplied 1974 list under a documented exception; fourteen `introduced` dates come from ISO's Online Browsing Platform. Each snapshot is reviewed yearly (`refresh_cadence` `yearly`, `review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
 - **EEA provisional application is dated for 12 countries.** Croatia has formal dates only. The UK's EEA end (2020-12-31) is the page prose's date, and the state table disagrees; it is flagged likely in the snapshot.
 - **Five active entries have no region:** `AQ`, `EU`, `TW`, `UK`, `XK`. In `countries_by_region.parquet` they, and the 25 withdrawn entries, fall into rows with a null `region`.
 - **The aggregated table counts withdrawn entries.** Its 277 sums to the total, not to the 252 active entries, and `AI` and `SK` are counted twice.

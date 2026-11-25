@@ -993,7 +993,7 @@ the 252 active entries and the 23 withdrawn codes that are not also active:
 275 keys, sorted. `AI` and `SK` are in both lists; the active entry wins, as in
 `is_active_on`, so `active_on(d)[c] == is_active_on(c, d)` for every key.
 
-**`null` is not `false`.** On 1990-01-01 the answer is 170 `true`, 29 `false`
+**`null` is not `false`.** On 1990-01-01 the answer is 169 `true`, 30 `false`
 and 76 `null` (161, 15 and 76 over the 252 active entries alone). The 76 are
 active entries whose `introduced` is null (see "Known Nulls"), among them `CZ`,
 `SK`, `RU`. Filtering on truthiness drops them without saying so.
@@ -1006,7 +1006,8 @@ check pins it under `derived_queries.active_on` in the fixture).
 
 - `active_on("1990-01-01")["DE"]` → `true`; `["DD"]` → `true`; `["BU"]` → `false`
   (Burma, withdrawn 1989-12-05); `["BJ"]` → `null`.
-- `active_on("1990-01-01")` has 275 keys: 170 `true`, 29 `false`, 76 `null`.
+- `active_on("1990-01-01")` has 275 keys: 169 `true`, 30 `false`, 76 `null`. `["CS"]` is `false`: the
+  registry's `CS` is Serbia and Montenegro, dated 2003-07-23 by Newsletter V-8.
 
 **CLI.** `active-on DATE` prints one `CODE<TAB>true|false|unknown` line per code;
 `--json` prints an object of `true`/`false`/`null`. It exits 0 whatever the mix

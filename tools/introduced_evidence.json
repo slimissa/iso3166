@@ -194,7 +194,7 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date; ISO 3166-1 Newsletter V-4 (2002-05-20), English version nlv4e-div.html (sha256 in the SHA256SUMS of iso3166-sources-2026-11-25.tar.gz) shows the Wikipedia row's date is a name change for AZ (\"None of the code elements ... is changed\"), which supports the quarantine",
       "bound": {
         "not_before": "1992",
         "doc": {
@@ -228,7 +228,7 @@
       },
       "quote_ref": "tools/wikipedia_dates.json data.BA",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: 2002-05-20 is a change newsletter; Bosnia added ~1992"
+      "reason": "quarantined [likely]: 2002-05-20 is a change newsletter; Bosnia added ~1992; ISO 3166-1 Newsletter V-4 (2002-05-20), English version nlv4e-div.html (sha256 in the SHA256SUMS of iso3166-sources-2026-11-25.tar.gz) shows the Wikipedia row's date is a name change for BA (\"None of the code elements ... is changed\"), which supports the quarantine"
     },
     {
       "code": "BB",
@@ -1564,7 +1564,7 @@
       "doc": null,
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date; ISO 3166-1 Newsletter V-4 (2002-05-20), English version nlv4e-div.html (sha256 in the SHA256SUMS of iso3166-sources-2026-11-25.tar.gz) shows the Wikipedia row's date is a name change for KZ (\"None of the code elements ... is changed\"), which supports the quarantine",
       "bound": {
         "not_before": "1992",
         "doc": {
@@ -1756,7 +1756,7 @@
       },
       "quote_ref": "tools/wikipedia_dates.json data.MD",
       "verdict": "unconfirmed",
-      "reason": "quarantined [likely]: 2008-03-31 is a change newsletter; Moldova added ~1992; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date",
+      "reason": "quarantined [likely]: 2008-03-31 is a change newsletter; Moldova added ~1992; bound: not before 1992 (ISO page SUHH: SU removed from ISO 3166-1 in 1992, divided into this code and 12 others). An inference about the earliest possible date, never a date; ISO 3166-1 Newsletter VI-2 (2008-04-08) changes MD's short name only; it does not assign MD",
       "bound": {
         "not_before": "1992",
         "doc": {
@@ -2165,7 +2165,7 @@
       },
       "quote_ref": "tools/wikipedia_dates.json data.NU",
       "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here; CONTRADICTED by an ISO document: ISO 3166-1 Newsletter V-4 (2002-05-20), English version nlv4e-div.html (sha256 in the SHA256SUMS of iso3166-sources-2026-11-25.tar.gz) lists NIUE among name changes (present entry \"NIUE\", official name \"Republic of Niue\" added; \"None of the code elements ... is changed\"). So NU was already in ISO 3166-1 on 2002-05-20, and this date is a name change, not an assignment (decision D4). No ISO document read gives the assignment date, so the value is not changed here; see SPEC, Conflicts"
     },
     {
       "code": "NZ",

@@ -25,7 +25,7 @@ of the first release; the present state of the registry is in
 | `official_name` | ISO 3166-1 Online Browsing Platform | https://www.iso.org/obp/ui/ |
 | `languages` | CIA World Factbook; codes are ISO 639-3 | https://www.cia.gov/the-world-factbook/ |
 | `borders` | CIA World Factbook, land boundaries | https://www.cia.gov/the-world-factbook/ |
-| `introduced` | Per code, in `tools/introduced_evidence.json` ([introduced-evidence](decisions/introduced-evidence.md)): 6 from the ISO 3166-1 Online Browsing Platform change history; 161 from a maintainer-supplied 1974 list and 9 from the Wikipedia ISO 3166-1 "Changes" table, both under the explicit exception ([introduced-field](decisions/introduced-field.md)) | https://www.iso.org/obp/ui/ ; https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980 |
+| `introduced` | Per code, in `tools/introduced_evidence.json` ([introduced-evidence](decisions/introduced-evidence.md)): 14 active codes and withdrawn `CS` from ISO 3166-1 newsletters (series V and VI) and the ISO Online Browsing Platform change history; 161 from a maintainer-supplied 1974 list and 1 from the Wikipedia ISO 3166-1 "Changes" table, both under the explicit exception ([introduced-field](decisions/introduced-field.md)) | https://web.archive.org/web/2002/http://www.iso.org/iso/en/prods-services/iso3166ma/03updates-on-iso-3166/ ; https://www.iso.org/obp/ui/ ; https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980 |
 
 ## Current sources and refresh
 
@@ -49,7 +49,7 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 | `eea_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eea_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
 | `eurozone_membership` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/eurozone_membership_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
 | `customs_union` | Wikipedia (explicit exception, see [club-memberships](decisions/club-memberships.md)), via `tools/customs_union_snapshot.json` | 2026-10-29 (snapshot `accessed_at`) | yearly (`review_by` 2027-10-29) |
-| `introduced` | ISO OBP change history for 6 codes; the 1974 list and Wikipedia for 170 (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json`; per code in `tools/introduced_evidence.json` | 2026-10-28 (snapshot `source_accessed`) | yearly (`review_by` 2027-10-28) |
+| `introduced` | ISO 3166-1 newsletters (series V, VI) and the ISO OBP change history for 14 active codes and withdrawn `CS`; the 1974 list (161) and Wikipedia (1) for 162 (explicit exception, see [introduced-field](decisions/introduced-field.md)), via `tools/introduced_snapshot.json`; per code in `tools/introduced_evidence.json` | 2026-10-28 (snapshot `source_accessed`) | yearly (`review_by` 2027-10-28) |
 
 ## What is a first-party source
 
@@ -69,13 +69,16 @@ recorded exceptions. Each is justified in its ADR under `docs/decisions/`.
 - `introduced`, narrowed: the exception covers only the rows of
   `tools/introduced_evidence.json` that are still `lead_only` or `inference`
   (ADR [introduced-evidence](decisions/introduced-evidence.md)). Of the 176
-  dated codes, 6 are `iso_primary` (the ISO OBP change history) and outside
-  the exception; 161 are `inference` (a maintainer-supplied 1974 list; the
-  ISO 3166:1974 text has not been read) and 9 are `lead_only` (the Wikipedia
-  Changes table). Of the 76 null active codes, 23 have an `inference`
-  candidate and 53 a `lead_only` row (4 quarantined Wikipedia dates, 46 with
-  no source, 3 not officially assigned). The 23 withdrawn-only codes are
-  `lead_only` with no candidate.
+  dated active codes, 14 are `iso_primary` and outside the exception: 8 dated
+  by the ISO 3166-1 newsletter that assigns them (V-2 to V-12, Internet
+  Archive captures of iso.org) and 6 by the ISO OBP change history. 161 are
+  `inference` (a maintainer-supplied 1974 list; the ISO 3166:1974 text has
+  not been read) and 1 is `lead_only` (NU, from the Wikipedia Changes table;
+  Newsletter V-4 shows that date is a name change). Of the 76 null active
+  codes, 23 have an `inference` candidate and 53 a `lead_only` row (4
+  quarantined Wikipedia dates, 46 with no source, 3 not officially
+  assigned). Of the 23 withdrawn-only codes, `CS` is `iso_primary`
+  (2003-07-23, Newsletter V-8) and 22 are `lead_only` with no candidate.
 - `languages` and `borders` come from the CIA World Factbook, because no
   standards body publishes official languages or land borders. The ADR
   [languages-borders-sources](decisions/languages-borders-sources.md)
