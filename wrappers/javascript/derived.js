@@ -372,7 +372,7 @@ const DerivedQueries = {
    * the active entry wins, as in isActiveOn). 275 keys, sorted. Throws
    * TypeError on a malformed date.
    *
-   * null is not false. On 1990-01-01: 169 true, 30 false, 76 null. The 76
+   * null is not false. On 1990-01-01: 169 true, 29 false, 77 null. The 77
    * are active entries whose `introduced` is null (CZ, SK, RU among them);
    * filtering on truthiness silently drops them.
    *

@@ -25,16 +25,16 @@ three months for a reply.
 | Dated by an ISO 3166-1 newsletter that assigns the code | 8 | the issue date | `iso_primary` / `adopted` |
 | Dated by an OBP assignment entry | 6 | the entry's date | `iso_primary` / `adopted` |
 | Dated by the 1974 list | 161 | `1974-09-15` | `inference` / `unconfirmed` |
-| Dated by the Wikipedia table (NU) | 1 | `2002-05-20` | `lead_only` / `unconfirmed`, contradicted (below) |
 | Quarantined, candidate from the 1974 list | 23 | `null` | `inference` / `unconfirmed` |
-| Quarantined, candidate from Wikipedia | 4 | `null` | `lead_only` / `unconfirmed` |
+| Quarantined, candidate from Wikipedia | 5 | `null` | `lead_only` / `unconfirmed` |
 | Source silent | 46 | `null` | `lead_only`, no candidate |
 | Not officially assigned (EU, UK, XK) | 3 | `null` | `lead_only`, no candidate |
 | Withdrawn, dated by a newsletter (CS) | 1 | `2003-07-23` | `iso_primary` / `adopted` |
 | Withdrawn only, undated | 22 | `null` | `lead_only`, no candidate |
 | | **275** | | |
 
-One value changed in this work: withdrawn `CS`, from `null` to 2003-07-23.
+Two values changed in this work: withdrawn `CS`, from `null` to 2003-07-23,
+and `NU`, from `2002-05-20` to `null` (quarantined, below).
 The other 14 ISO dates confirm the values the tree already held.
 
 ## The newsletters (series V and VI)
@@ -88,10 +88,11 @@ the official name "Republic of Niue" is added, and the newsletter says "None
 of the code elements for the country names is changed". So NU was already in
 ISO 3166-1 on 2002-05-20, and the date is a name change. No ISO document read
 gives NU's assignment date, so the value stays, and the ledger row records the
-contradiction. Quarantining NU, as SH was for the same reason, is a decision
-for the maintainer.
+contradiction. The maintainer quarantined NU for the same reason as SH:
+the value is now `null` [confirmed], and the refused candidate stays in the
+ledger row.
 
-## The 27 quarantined codes
+## The 28 quarantined codes
 
 The builder refuses these candidates (`meta.null_reasons` in
 `tools/introduced_snapshot.json`). None is dated by an ISO document. The ISO
@@ -122,13 +123,14 @@ split", and ISO 3166-3 BYAA records Byelorussian SSR under BY. That
 contradicts the quarantine reason ("code cannot be in 1974 edition"). It
 gives no date, so both stay null.
 
-**The Wikipedia row is a change newsletter (4) [likely].**
+**The Wikipedia row is a change newsletter (5): BA, ER, MD, SH [likely], NU [confirmed].**
 
 | Code | Candidate (refused) | ISO evidence |
 |------|---------------------|--------------|
 | BA | `2002-05-20` (Wikipedia) | Newsletter V-4 of that date: official name dropped; "None of the code elements ... is changed" |
 | ER | `2012-02-15` (Wikipedia) | no newsletter of that date captured; VI-13 (2012-08-02) changes ER's full name |
 | MD | `2008-03-31` (Wikipedia) | Newsletter VI-2 (2008-04-08): change of short name; the OBP's oldest MD entry is the same |
+| NU | `2002-05-20` (Wikipedia) | Newsletter V-4 of that date: NIUE among name changes; "None of the code elements ... is changed" |
 | SH | `2010-02-22` (Wikipedia) | the OBP's oldest SH entry, 2010-02-22: "Change of name; Addition of islands" |
 
 **Successors of Czechoslovakia or Yugoslavia (3) [likely].**

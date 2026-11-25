@@ -389,7 +389,7 @@ Every active entry carries twenty-four fields; every withdrawn entry carries twe
 | `tlds` | list or null | 3 | 5 | IANA ccTLDs, with the leading dot |
 | `languages` | list or null | 3 | 1 | ISO 639-3 codes |
 | `borders` | list or null | 2 | 88 | Land neighbours as alpha-2 codes; `[]` for islands and enclaves |
-| `introduced` | date or null | 76 | | The date the ISO 3166-1 standard added the code ([Section 7](#7-the-temporal-identity-layer)) |
+| `introduced` | date or null | 77 | | The date the ISO 3166-1 standard added the code ([Section 7](#7-the-temporal-identity-layer)) |
 | `eu_membership` | list of ranges | 0 | 224 | 28 entries have at least one range |
 | `eea_membership` | list of ranges | 0 | 221 | 31 entries |
 | `eurozone_membership` | list of ranges | 0 | 231 | 21 entries |
@@ -399,7 +399,7 @@ Every active entry carries twenty-four fields; every withdrawn entry carries twe
 | `last_verified` | date | 0 | | Last date a human or tool verified the entry |
 | `note` | string | 0 | | One `<field> source:` line per populated field |
 
-The 76 nulls of `introduced` (27 quarantined, 46 source-silent, 3 not officially assigned) are the counts in `tools/introduced_snapshot.json` (`meta.counts`); [Section 7](#7-the-temporal-identity-layer) says what each class means. All 25 withdrawn entries are null too, which this table does not count.
+The 77 nulls of `introduced` (28 quarantined, 46 source-silent, 3 not officially assigned) are the counts in `tools/introduced_snapshot.json` (`meta.counts`); [Section 7](#7-the-temporal-identity-layer) says what each class means. All 25 withdrawn entries are null too, which this table does not count.
 
 ### Coverage
 
@@ -443,7 +443,7 @@ Three facts change over time for a country code: whether the code existed, which
 
 ### `introduced`: when the code existed
 
-`introduced` is the date the ISO 3166-1 standard added the code. It is not the date a country became independent or adopted a currency. Of 252 active entries, **176 are dated and 76 are null**.
+`introduced` is the date the ISO 3166-1 standard added the code. It is not the date a country became independent or adopted a currency. Of 252 active entries, **175 are dated and 77 are null**.
 
 | `introduced` | Count | Meaning |
 |--------------|------:|---------|
@@ -456,9 +456,9 @@ Three facts change over time for a country code: whether the code existed, which
 
 Of the 25 withdrawn entries, one has an `introduced` date: `CS` (Serbia and Montenegro), 2003-07-23, the day ISO 3166-1 Newsletter V-8 assigned it in place of `YU`. 22 are recorded in `meta.null_reasons` as "start date not sourced"; `AI` and `SK` share their key with an active entry, whose value it holds.
 
-Each of the 275 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 15 `iso_primary` adopted (14 active codes and withdrawn `CS`), 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 76 `lead_only` (NU's Wikipedia date, 4 quarantined Wikipedia rows, and 71 codes with no candidate at all). 15 rows carry a predecessor bound (`not_before`, from an ISO 3166-3 page), which narrows a date without setting one.
+Each of the 275 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 15 `iso_primary` adopted (14 active codes and withdrawn `CS`), 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 76 `lead_only` (5 quarantined Wikipedia rows, NU among them, and 71 codes with no candidate at all). 15 rows carry a predecessor bound (`not_before`, from an ISO 3166-3 page), which narrows a date without setting one.
 
-**The 27 quarantined codes.** The builder refuses a date it cannot defend rather than writing it. A code is quarantined when the Wikipedia table's date is a *change newsletter*, not an assignment date, or when the code cannot have been in the 1974 edition. Each is null in the registry and carries its reason in `tools/introduced_snapshot.json`, `meta.null_reasons`.
+**The 28 quarantined codes.** The builder refuses a date it cannot defend rather than writing it. A code is quarantined when the Wikipedia table's date is a *change newsletter*, not an assignment date, or when the code cannot have been in the 1974 edition. Each is null in the registry and carries its reason in `tools/introduced_snapshot.json`, `meta.null_reasons`.
 
 | Reason | Count | Codes |
 |--------|------:|-------|
@@ -540,7 +540,7 @@ Twelve countries applied the EEA Agreement provisionally before it formally ente
 ### Known gaps
 
 - No historical currencies; `currency_at` returns the current currency for the lifetime-bounded answer.
-- `introduced` is null for 76 active entries and 24 of the 25 withdrawn ones; `is_active_on` answers `null` for the active ones.
+- `introduced` is null for 77 active entries and 24 of the 25 withdrawn ones; `is_active_on` answers `null` for the active ones.
 - Nothing before 1974 can be dated for the identity layer. The club arrays reach back to 1958.
 - The club ranges come from Wikipedia and are reviewed once a year.
 
@@ -731,7 +731,7 @@ What the numbers say:
 
 ### Which countries were active in 1990?
 
-`active_on(date)` answers `is_active_on` for every code at once: 275 keys (the 252 active entries and the 23 withdrawn codes that are not also active), each `true`, `false` or `null`. The trap is `null`. It means the source is silent, not "no", and on 1990-01-01 it covers 76 active entries, including `CZ`, `SK` and `RU`.
+`active_on(date)` answers `is_active_on` for every code at once: 275 keys (the 252 active entries and the 23 withdrawn codes that are not also active), each `true`, `false` or `null`. The trap is `null`. It means the source is silent, not "no", and on 1990-01-01 it covers 77 active entries, including `CZ`, `SK` and `RU`.
 
 ```python
 from iso3166 import CountryRegistry
@@ -752,14 +752,14 @@ print("CZ, SK, RU are unknown, not false:", [r[c] for c in ("CZ", "SK", "RU")])
 ```
 
 ```text
-True 169, False 30, None 76  (of 275)
+True 169, False 29, None 77  (of 275)
 filtering on truthiness keeps 169; it drops 76, e.g. ['AI', 'AM', 'AQ', 'AS']
 DD, SU, YU were active: True
 CS is the 2003 entry, not Czechoslovakia: False
 CZ, SK, RU are unknown, not false: [None, None, None]
 ```
 
-A universe built from `if v` is 169 codes, not the 245 the registry can place (169 true plus 76 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU` and `YU` were assigned and the current entries for Germany, Russia and the others cannot stand in for them. `CS` answers `false`: the registry's `CS` is Serbia and Montenegro, assigned 2003-07-23; in 1990 `CS` meant Czechoslovakia (ISO 3166-3 `CSHH`), which the registry does not hold.
+A universe built from `if v` is 169 codes, not the 246 the registry can place (169 true plus 77 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU` and `YU` were assigned and the current entries for Germany, Russia and the others cannot stand in for them. `CS` answers `false`: the registry's `CS` is Serbia and Montenegro, assigned 2003-07-23; in 1990 `CS` meant Czechoslovakia (ISO 3166-3 `CSHH`), which the registry does not hold.
 
 **What happens when the code is wrong?** An unknown code is an ordinary answer, not an error: `active("XX")` is `None`, `currencies("XX")` is `[]` (the same as real `AQ`, which has no currency), `is_eu_member_at("XX", d)` is `false`. A malformed *date* is an error. Lowercase codes work; padded ones (`" us "`) do not in a lookup, though they do in the dated queries. The table, per surface, is in [section 4b](#4b-api-contract).
 
@@ -1423,7 +1423,7 @@ Open an issue before starting a large change. Data corrections go through an enr
 
 Stated plainly, because a canonical registry is a claim and a claim needs its edges drawn.
 
-- **`introduced` is null for 76 of 252 active entries and 24 of the 25 withdrawn ones:** 27 quarantined (6 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
+- **`introduced` is null for 77 of 252 active entries and 24 of the 25 withdrawn ones:** 28 quarantined (7 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
 - **The quarantine reasons for 21 of the 27 are `[likely]`,** inferred from the post-Soviet and post-Yugoslav succession and from newsletter dates, not from a primary record. Six are `[confirmed]` against the tree's own withdrawn entries.
 - **No historical currencies.** `currency_at` returns the entry's current currency inside its lifetime and `None` outside it. `currency_at("DE", "1990-01-01")` is `["EUR"]`, not the Deutsche Mark. For a withdrawn entry it returns the successor's current currency up to and including `withdrawal_date`.
 - **`introduced` and `is_active_on` have no data before 1974.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`.

@@ -1977,18 +1977,18 @@
       }
     ],
     "active_on": {
-      "_comment": "active_on (v1.12.5, Query 11): is_active_on for every code. 275 keys = 252 active + the 23 withdrawn codes that are not also active (AI and SK: the active entry wins). null is unknown, not false: 76 active entries have no introduced date on 1990-01-01. Every surface must return the same object.",
+      "_comment": "active_on (v1.12.5, Query 11): is_active_on for every code. 275 keys = 252 active + the 23 withdrawn codes that are not also active (AI and SK: the active entry wins). null is unknown, not false: 77 active entries have no introduced date on 1990-01-01. Every surface must return the same object.",
       "date": "1990-01-01",
       "keys": 275,
       "counts": {
         "true": 169,
-        "false": 30,
-        "null": 76
+        "false": 29,
+        "null": 77
       },
       "active_counts": {
         "true": 161,
-        "false": 15,
-        "null": 76
+        "false": 14,
+        "null": 77
       },
       "spot": {
         "DE": true,
@@ -2002,6 +2002,7 @@
         "BJ": null,
         "CZ": null,
         "RU": null,
+        "NU": null,
         "XK": null,
         "AI": null,
         "SK": null

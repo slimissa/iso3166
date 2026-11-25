@@ -68,15 +68,14 @@ recorded exceptions. Each is justified in its ADR under `docs/decisions/`.
   does not publish those facts.
 - `introduced`, narrowed: the exception covers only the rows of
   `tools/introduced_evidence.json` that are still `lead_only` or `inference`
-  (ADR [introduced-evidence](decisions/introduced-evidence.md)). Of the 176
+  (ADR [introduced-evidence](decisions/introduced-evidence.md)). Of the 175
   dated active codes, 14 are `iso_primary` and outside the exception: 8 dated
   by the ISO 3166-1 newsletter that assigns them (V-2 to V-12, Internet
   Archive captures of iso.org) and 6 by the ISO OBP change history. 161 are
   `inference` (a maintainer-supplied 1974 list; the ISO 3166:1974 text has
-  not been read) and 1 is `lead_only` (NU, from the Wikipedia Changes table;
-  Newsletter V-4 shows that date is a name change). Of the 76 null active
-  codes, 23 have an `inference` candidate and 53 a `lead_only` row (4
-  quarantined Wikipedia dates, 46 with no source, 3 not officially
+  not been read). Of the 77 null active codes, 23 have an `inference`
+  candidate and 54 a `lead_only` row (5 quarantined Wikipedia dates, NU
+  among them since Newsletter V-4 shows its date is a name change, 46 with no source, 3 not officially
   assigned). Of the 23 withdrawn-only codes, `CS` is `iso_primary`
   (2003-07-23, Newsletter V-8) and 22 are `lead_only` with no candidate.
 - `languages` and `borders` come from the CIA World Factbook, because no

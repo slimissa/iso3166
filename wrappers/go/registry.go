@@ -826,8 +826,8 @@ func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 // ActiveOn is IsActiveOn for every code at once: the 252 active entries
 // plus the 23 withdrawn codes that are not also active (AI and SK exist in
 // both; the active entry wins, as in IsActiveOn). 275 keys. A nil pointer
-// is unknown, not false: on 1990-01-01 the answer is 169 true, 30 false and
-// 76 unknown (CZ, SK and RU among them). A malformed date returns an
+// is unknown, not false: on 1990-01-01 the answer is 169 true, 29 false and
+// 77 unknown (CZ, SK and RU among them). A malformed date returns an
 // *InvalidDateError. See docs/QUERIES.md, "Query 11".
 func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
 	if !ValidDate(date) {

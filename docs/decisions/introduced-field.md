@@ -53,7 +53,8 @@ OBP API with assignment dates.
   territories that were in the 1974 edition (e.g. KY, GU, PR, VG). They are null
   ("source silent"), not wrong.
 - The 1974 list contains codes that cannot be 1974 additions. Quarantined
-  [confirmed by tree withdrawals]: BJ, DJ, KI, MM, VU, ZW. Quarantined [likely, by history]:
+  [confirmed by tree withdrawals]: BJ, DJ, KI, MM, VU, ZW. [confirmed by ISO 3166-1
+  Newsletter V-4, added in v1.13.0]: NU. Quarantined [likely, by history]:
   AM, AZ, BA, BY, CZ, EE, ER, GE, KG, KZ, LT, LV, MD, RU, SH, SI, SK, TJ, TM, UA, UZ.
 
 ## Precision

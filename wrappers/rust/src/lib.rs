@@ -991,7 +991,7 @@ impl CountryRegistry {
     /// A malformed date is `Err(InvalidDate)`.
     ///
     /// `None` is not `Some(false)`. On 1990-01-01 the answer is 169 true,
-    /// 30 false and 76 unknown (CZ, SK and RU among them); filtering on
+    /// 29 false and 77 unknown (CZ, SK and RU among them); filtering on
     /// `Some(true)` alone silently drops the unknowns.
     /// See docs/QUERIES.md, "Query 11".
     pub fn active_on(
@@ -1117,7 +1117,8 @@ mod tests {
         assert_eq!(m.len(), 275);
         let count = |v: Option<bool>| m.values().filter(|x| **x == v).count();
         // CS (withdrawn) is dated 2003-07-23 by Newsletter V-8: false on 1990-01-01.
-        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (169, 30, 76));
+        // NU is quarantined (Newsletter V-4 renames Niue in 2002): None, not Some(false).
+        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (169, 29, 77));
         for (code, v) in &m {
             assert_eq!(*v, r.is_active_on(code, "1990-01-01").unwrap(), "{}", code);
         }

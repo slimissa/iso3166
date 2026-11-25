@@ -20,10 +20,9 @@ maintainer's Firefox saves of the ISO Online Browsing Platform (OBP), made on
 
 Each page shows its alpha-2 and alpha-4 code, names, status, "Remark part 3"
 (what the name became) and a "Change history" table. The code shown on every
-page matches its file name. Five pages (‡: BQAQ, BYAA, CSHH, GEHH, PUUM) do
-not match the maintainer's `SHA256SUMS`: they were saved at 18:48–18:49,
-after the sums file (18:46:52). Their content is used below, flagged; their
-hashes are the recomputed ones, listed at the end.
+page matches its file name. Five pages (BQAQ, BYAA, CSHH, GEHH, PUUM) were
+saved after the first `SHA256SUMS` was written; the maintainer regenerated
+the sums on 2026-11-25, and every page now matches it (listed at the end).
 
 The ISO 3166-3 newsletters I-1 to I-5 (2002–2006, Internet Archive captures
 of the ISO 3166/MA website) add a period of validity for four entries.
@@ -53,24 +52,23 @@ Of the 25 registry rows, compared on the withdrawal date:
 
 "ISO dates" lists every dated statement on the entry's ISO page: the reserved
 period, a year in "Remark part 3", each change-history line, and the period
-of validity from a Part 3 newsletter. ‡: the page does not match
-`SHA256SUMS` (see Sources).
+of validity from a Part 3 newsletter.
 
 | ISO 3166-3 | Alpha-2 | Name (ISO) | ISO status | ISO dates | Registry `withdrawal_date` | Comparison |
 |------------|---------|------------|------------|-----------|----------------------------|------------|
 | AIDJ | AI | French Afars and Issas | Formerly used | — | 1977-06-27 | no ISO date on the page |
 | ANHH | AN | Netherlands Antilles | Transitionally reserved | Reserved from 2010-12 to 2060-12; 2011-12-13 "Deletion of code to align ISO 3166-1 and ISO 3166-2."; 2011-07-14 "Correct the English name to Sint Eustatius in alignment with United Na…"; 2011-03-14 "Divided into: Bonaire, Saint Eustatius and Saba (BQ, BES, 535), Curaça…"; 2010-12-15 "Delete entry" | 2010-12-01 | **differs**: ISO 2010-12-15 |
-| BQAQ ‡ | BQ | British Antarctic Territory | Formerly used | — | — | not in registry |
+| BQAQ | BQ | British Antarctic Territory | Formerly used | — | — | not in registry |
 | BUMM | BU | Burma | Transitionally reserved | Reserved from 1989-12 to 2039-12 | 1989-12-05 | agrees (month: 1989-12) |
-| BYAA ‡ | BY | Byelorussian SSR | Formerly used | — | — | not in registry |
-| CSHH ‡ | CS | Czechoslovakia | Formerly used | — | — | not in registry |
+| BYAA | BY | Byelorussian SSR | Formerly used | — | — | not in registry |
+| CSHH | CS | Czechoslovakia | Formerly used | — | — | not in registry |
 | CSXX | CS | Serbia and Montenegro | Transitionally reserved | Reserved from 2006-09 to 2056-09; 2006-12-01 "Divided into: Serbia (RS, SRB, 688), and Montenegro (ME, MNE, 499)"; 2006-09-26 "Divided into: Serbia (RS, SRB, 688), and Montenegro (ME, MNE, 499)"; Part 3 period 2003/2006 (I-4, 2006-09-26; I-5, 2006-12-01) | 2006-09-26 | agrees (exact: 2006-09-26) |
 | CTKI | CT | Canton and Enderbury Islands | Formerly used | — | 1984-01-01 | no ISO date on the page |
 | DDDE | DD | German Democratic Republic | Formerly used | — | 1990-10-03 | no ISO date on the page |
 | DYBJ | DY | Dahomey | Formerly used | — | 1977-02-01 | no ISO date on the page |
 | FQHH | FQ | French Southern and Antarctic Territories | Formerly used | — | 1979-01-01 | no ISO date on the page |
 | FXFR | FX | France, Metropolitan | Exceptionally reserved | 2002-11-22 "Deleted; see France (FR, FRA, 250) in ISO 3166-1"; Part 3 period 1993/1997 (I-2, 2002-11-22) | — | not in registry |
-| GEHH ‡ | GE | Gilbert and Ellice Islands | Formerly used | — | — | not in registry |
+| GEHH | GE | Gilbert and Ellice Islands | Formerly used | — | — | not in registry |
 | HVBF | HV | Upper Volta | Formerly used | — | 1984-08-04 | no ISO date on the page |
 | JTUM | JT | Johnston Island | Formerly used | — | 1986-01-01 | no ISO date on the page |
 | MIUM | MI | Midway Islands | Formerly used | — | 1986-01-01 | no ISO date on the page |
@@ -78,7 +76,7 @@ of validity from a Part 3 newsletter. ‡: the page does not match
 | NQAQ | NQ | Dronning Maud Land | Formerly used | — | 1983-01-01 | no ISO date on the page |
 | NTHH | NT | Neutral Zone | Transitionally reserved | Reserved from 1993-07 to 2043-07 | 1993-07-01 | agrees (month: 1993-07) |
 | PCHH | PC | Pacific Islands (Trust Territory) | Formerly used | — | 1986-11-03 | no ISO date on the page |
-| PUUM ‡ | PU | United States Miscellaneous Pacific Islands | Formerly used | — | — | not in registry |
+| PUUM | PU | United States Miscellaneous Pacific Islands | Formerly used | — | — | not in registry |
 | PZPA | PZ | Panama Canal Zone | Formerly used | — | 1980-01-01 | no ISO date on the page |
 | RHZW | RH | Southern Rhodesia | Formerly used | — | 1980-04-18 | no ISO date on the page |
 | SKIN | SK | Sikkim | Formerly used | — | 1975-05-16 | no ISO date on the page |
@@ -194,12 +192,12 @@ decision record; this page makes none.
 
 | ISO 3166-3 | Name (ISO) | Alpha-2 | Collides with | Note |
 |------------|------------|---------|---------------|------|
-| BQAQ ‡ | British Antarctic Territory | BQ | active `BQ` (Bonaire, Sint Eustatius and Saba) | ISO, Remark part 1: BQ "has been reused and reassigned" |
-| BYAA ‡ | Byelorussian SSR | BY | active `BY` (Belarus) | ISO: "Name changed to Belarus (BY, BLR, 112). Code element BYS removed": the alpha-2 stayed, the alpha-3 changed |
-| CSHH ‡ | Czechoslovakia | CS | withdrawn `CS` (Serbia and Montenegro, CSXX) | ISO, Remark part 1: "Former code element CS was reused for Serbia and Montenegro" |
+| BQAQ | British Antarctic Territory | BQ | active `BQ` (Bonaire, Sint Eustatius and Saba) | ISO, Remark part 1: BQ "has been reused and reassigned" |
+| BYAA | Byelorussian SSR | BY | active `BY` (Belarus) | ISO: "Name changed to Belarus (BY, BLR, 112). Code element BYS removed": the alpha-2 stayed, the alpha-3 changed |
+| CSHH | Czechoslovakia | CS | withdrawn `CS` (Serbia and Montenegro, CSXX) | ISO, Remark part 1: "Former code element CS was reused for Serbia and Montenegro" |
 | FXFR | France, Metropolitan | FX | nothing | exceptionally reserved; period 1993/1997 |
-| GEHH ‡ | Gilbert and Ellice Islands | GE | active `GE` (Georgia) | ISO: divided into Kiribati (KI) and Tuvalu (TV); GE "reused and reassigned to Georgia" |
-| PUUM ‡ | United States Miscellaneous Pacific Islands | PU | nothing | now part of UM |
+| GEHH | Gilbert and Ellice Islands | GE | active `GE` (Georgia) | ISO: divided into Kiribati (KI) and Tuvalu (TV); GE "reused and reassigned to Georgia" |
+| PUUM | United States Miscellaneous Pacific Islands | PU | nothing | now part of UM |
 
 The earlier version of this page, from a Wikipedia lead, called GEHH "Gilbert
 Islands" with successor Kiribati only. ISO's page names the Gilbert and
@@ -244,17 +242,17 @@ start.
 |------|--------|----------------------|
 | obp-3166-3/AIDJ.html | `9261b3ff13644d5791afa32630d04ca0fe81fb53bc82529c8d4b102460fcbab4` | verified |
 | obp-reserved/AN.html | `29854ca6b6b9723338cbbea4143290b635a8a1f6fb705418b026d1bce332c760` | verified |
-| obp-3166-3/BQAQ.html | `ee4e1584f0a395411562b2e1b8fd65900bb1b419ff3f2241f456a5109cac6b38` | **does not match SHA256SUMS** |
+| obp-3166-3/BQAQ.html | `ee4e1584f0a395411562b2e1b8fd65900bb1b419ff3f2241f456a5109cac6b38` | matches (regenerated 2026-11-25) |
 | obp-reserved/BU.html | `ba4c6b9b1cdd5a1835cf6ec94e467994018bc6e6e736c92ee6b70f1e468c4fb4` | verified |
-| obp-3166-3/BYAA.html | `70d24541a6072a82db8b2289e182d269ab7c91acde81732ae05b9935b8110f59` | **does not match SHA256SUMS** |
-| obp-3166-3/CSHH.html | `59901673f9be69922c240c9ca8ef874a14e301831110229226fe7bbb97d84087` | **does not match SHA256SUMS** |
+| obp-3166-3/BYAA.html | `70d24541a6072a82db8b2289e182d269ab7c91acde81732ae05b9935b8110f59` | matches (regenerated 2026-11-25) |
+| obp-3166-3/CSHH.html | `59901673f9be69922c240c9ca8ef874a14e301831110229226fe7bbb97d84087` | matches (regenerated 2026-11-25) |
 | obp-reserved/CS.html | `9e3f94be51d74dab1967087034eeb546606bccc18cedaa64a7991e3258b0fb75` | verified |
 | obp-3166-3/CTKI.html | `1f9d43d95d75b0261815622c129ff609c4bd36549e573250dfde530a7a3cc1e2` | verified |
 | obp-3166-3/DDDE.html | `390b3c108c629b1b2c3e251aadcdded04571eaa3dd4cfd18140b01bada886e2a` | verified |
 | obp-3166-3/DYBJ.html | `3e44dbb7e7254810dc7ef5e075c490d8e0a83eef2bf88dbde53283209e47426c` | verified |
 | obp-3166-3/FQHH.html | `15ccbb7d6471e60c7a0f4b1abec3befbb3090e5d7b048ae7549cd9bf20f168f0` | verified |
 | obp-reserved/FX.html | `ff754e53e7305605adb43db9522111f179632a0d01fac2436b165aa01aed20c8` | verified |
-| obp-3166-3/GEHH.html | `34d6540865ab7b584d67015d1869c07c159c13e16d305c05b8282a63ef13ad9b` | **does not match SHA256SUMS** |
+| obp-3166-3/GEHH.html | `34d6540865ab7b584d67015d1869c07c159c13e16d305c05b8282a63ef13ad9b` | matches (regenerated 2026-11-25) |
 | obp-3166-3/HVBF.html | `58d4ab815ad99a6e1e6b1fa97d2df74d3b23eb970d86e3e0dcfe5a2817fc0738` | verified |
 | obp-3166-3/JTUM.html | `a4166460ee8e19ea513c5b87634a3e73a146f1d4fac6a4dbb9f7d747e9d7630a` | verified |
 | obp-3166-3/MIUM.html | `2700a9e63e51065fd9776e9235624de35e89502428df1ac96860b21dc79ed835` | verified |
@@ -262,7 +260,7 @@ start.
 | obp-3166-3/NQAQ.html | `582bff52374bddc4beaef027ecb0a214414732bcee661ed9a27a0099eb4e1661` | verified |
 | obp-reserved/NT.html | `99efe31449b5dd28560126f7abcad6b392694153366433a2f022786bbb49400e` | verified |
 | obp-3166-3/PCHH.html | `a7e9de21ac0c75b8a17b13887e77794e9a617f80eb9ca1f757e7a409e4c75095` | verified |
-| obp-3166-3/PUUM.html | `f625ed788919e121aa94ba75e0123adc2fd93352cfe15e3f27bd7f1f160c99ca` | **does not match SHA256SUMS** |
+| obp-3166-3/PUUM.html | `f625ed788919e121aa94ba75e0123adc2fd93352cfe15e3f27bd7f1f160c99ca` | matches (regenerated 2026-11-25) |
 | obp-3166-3/PZPA.html | `43601037248c29413a26efa22c0576f20aead903f639a243611114346052edf7` | verified |
 | obp-3166-3/RHZW.html | `4343f63dd60cbb7a428485004ab4fbd31230d7b56770c7a3e50ce9afe7389fba` | verified |
 | obp-3166-3/SKIN.html | `c479ebc7c6755520f6aea589ea9d850518bb8dea7706184f5262650d77c08c9f` | verified |

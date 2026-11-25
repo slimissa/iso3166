@@ -69,14 +69,15 @@ test("EEA provisional application counts (v1.12.1)", () => {
 });
 
 // v1.12.5, Query 11: activeOn is isActiveOn for every code.
-test("activeOn('1990-01-01'): 275 keys, 169 true, 30 false, 76 null", () => {
+test("activeOn('1990-01-01'): 275 keys, 169 true, 29 false, 77 null", () => {
   const r = reg.activeOn("1990-01-01");
   const vals = Object.values(r);
   assert.equal(vals.length, 275);
   assert.deepEqual(Object.keys(r), [...Object.keys(r)].sort());
   const n = (v) => vals.filter((x) => x === v).length;
   // CS (withdrawn) is dated 2003-07-23 by Newsletter V-8: false on 1990-01-01.
-  assert.deepEqual([n(true), n(false), n(null)], [169, 30, 76]);
+  // NU is quarantined (Newsletter V-4 renames Niue in 2002): null, not false.
+  assert.deepEqual([n(true), n(false), n(null)], [169, 29, 77]);
   for (const [code, v] of Object.entries(r)) {
     assert.equal(v, reg.isActiveOn(code, "1990-01-01"), code);
   }
@@ -84,7 +85,7 @@ test("activeOn('1990-01-01'): 275 keys, 169 true, 30 false, 76 null", () => {
   assert.equal(r.DD, true);
   assert.equal(r.BU, false);
   assert.equal(r.BJ, null);
-  assert.equal(vals.filter(Boolean).length, 169); // truthiness drops the 76
+  assert.equal(vals.filter(Boolean).length, 169); // truthiness drops the 77
   assert.throws(() => reg.activeOn("1990-13-01"), TypeError);
 });
 

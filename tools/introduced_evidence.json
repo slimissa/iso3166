@@ -2149,7 +2149,7 @@
     },
     {
       "code": "NU",
-      "current": "2002-05-20",
+      "current": null,
       "candidate": "2002-05-20",
       "class": "lead_only",
       "doc": {
@@ -2165,7 +2165,7 @@
       },
       "quote_ref": "tools/wikipedia_dates.json data.NU",
       "verdict": "unconfirmed",
-      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here; CONTRADICTED by an ISO document: ISO 3166-1 Newsletter V-4 (2002-05-20), English version nlv4e-div.html (sha256 in the SHA256SUMS of iso3166-sources-2026-11-25.tar.gz) lists NIUE among name changes (present entry \"NIUE\", official name \"Republic of Niue\" added; \"None of the code elements ... is changed\"). So NU was already in ISO 3166-1 on 2002-05-20, and this date is a name change, not an assignment (decision D4). No ISO document read gives the assignment date, so the value is not changed here; see SPEC, Conflicts"
+      "reason": "quarantined [confirmed]: 2002-05-20 is a change newsletter: ISO 3166-1 Newsletter V-4 (2002-05-20) renames Niue, so NU predates it. Wikipedia row; a lead that names a newsletter, not an ISO document read here; CONTRADICTED by an ISO document: ISO 3166-1 Newsletter V-4 (2002-05-20), English version nlv4e-div.html (sha256 in the SHA256SUMS of iso3166-sources-2026-11-25.tar.gz) lists NIUE among name changes (present entry \"NIUE\", official name \"Republic of Niue\" added; \"None of the code elements ... is changed\"). So NU was already in ISO 3166-1 on 2002-05-20, and this date is a name change, not an assignment (decision D4). No ISO document read gives the assignment date, so the value is not changed here; see SPEC, Conflicts"
     },
     {
       "code": "NZ",

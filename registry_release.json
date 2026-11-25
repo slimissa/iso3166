@@ -18,8 +18,8 @@
     {
       "path": "iso3166.json",
       "layer": "curated",
-      "bytes": 409366,
-      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
+      "bytes": 409358,
+      "sha256": "c8da5e271d1e031399e7854668412ed2ec8a0ec9f48a22fa5e52fe1b3ad30ccc"
     },
     {
       "path": "schema.json",
@@ -30,56 +30,56 @@
     {
       "path": "iso3166.sql",
       "layer": "raw",
-      "bytes": 326445,
-      "sha256": "2e35200ff430662570a40b33a796007cbf39533a8c4019992dd6a0baa504c184"
+      "bytes": 326437,
+      "sha256": "400b15e0942f0b7f68d6411bea3bf5e7248dff23c3f715a2aeca20c22cd912ac"
     },
     {
       "path": "iso3166.postgresql.sql",
       "layer": "raw",
-      "bytes": 326448,
-      "sha256": "2628e4f33b4432c1a506d6e4fa1863040ba270925b5578804a232f94b47ab95a"
+      "bytes": 326440,
+      "sha256": "784c94c0cea97965e720b33e55183b521b0820e4b1be5402e3350001944bbe51"
     },
     {
       "path": "iso3166.mysql.sql",
       "layer": "raw",
-      "bytes": 325684,
-      "sha256": "4a357be2216c2333619c89ea782d2fbca55d121e912532b7f4306e97463376e9"
+      "bytes": 325676,
+      "sha256": "e13faf9d1ffe29c43c2569196e650009be9cc5aae3b86aa53b2e361afe3511a1"
     },
     {
       "path": "iso3166.sqlite.sql",
       "layer": "raw",
-      "bytes": 325342,
-      "sha256": "7838289d85aee6dc8d4228b3631b870b2cdfe92ea984ceb3e9660a3faa3a0778"
+      "bytes": 325334,
+      "sha256": "eea855b611b841a3b100079723a8d97807392ac53d70e1d2765bd6e2ee9ad259"
     },
     {
       "path": "iso3166.csv",
       "layer": "raw",
-      "bytes": 194586,
-      "sha256": "6dac6bceee8671eab4078ebe9b799d7bdead899dc6705258d22f3f067eb7e869"
+      "bytes": 194576,
+      "sha256": "ce023854645f57c578e2ab1155fa616762bf50a1145375b15da03d86997ea146"
     },
     {
       "path": "iso3166.excel.csv",
       "layer": "raw",
-      "bytes": 194589,
-      "sha256": "34b9a689eb0ea05ca6e1a455fb5f62adad3ef37263f697b0e3e2a74094e3c326"
+      "bytes": 194579,
+      "sha256": "746297e9b921799f3cb637c74e67b5f4799145ece1080c8af3fc4518dc36e53e"
     },
     {
       "path": "iso3166.european.csv",
       "layer": "raw",
-      "bytes": 194572,
-      "sha256": "286c723effa5bfd56cf2e246eb85e0863e8079d764f722ae78c713acf90d526b"
+      "bytes": 194562,
+      "sha256": "57785cb39754a0ab5ca250d9eff255ec796e3b7b4d985710d5b157abc6e5ad22"
     },
     {
       "path": "iso3166.tsv",
       "layer": "raw",
-      "bytes": 194572,
-      "sha256": "3e9f4d30c95941b4c93e763dd1a2052f7bcda074a3fee8637a88fc3f4da78cdd"
+      "bytes": 194562,
+      "sha256": "665921b4735a69ff1658dc180040b42c791cbeae2a03059180669060993d35e9"
     },
     {
       "path": "iso3166.parquet",
       "layer": "raw",
-      "bytes": 41110,
-      "sha256": "f98d9c90740cbf0f60ae25a77de074c0affd50762a8a299a50ad1ccc9f9542f9"
+      "bytes": 41105,
+      "sha256": "6502f88589805dc4884e23b6774b7c82f484e0e128cea8ef20065199c40205a4"
     },
     {
       "path": "countries_by_region.parquet",
@@ -90,34 +90,34 @@
     {
       "path": "wrappers/python/iso3166/iso3166.json",
       "layer": "bundled",
-      "bytes": 409366,
-      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
+      "bytes": 409358,
+      "sha256": "c8da5e271d1e031399e7854668412ed2ec8a0ec9f48a22fa5e52fe1b3ad30ccc"
     },
     {
       "path": "wrappers/javascript/iso3166.json",
       "layer": "bundled",
-      "bytes": 409366,
-      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
+      "bytes": 409358,
+      "sha256": "c8da5e271d1e031399e7854668412ed2ec8a0ec9f48a22fa5e52fe1b3ad30ccc"
     },
     {
       "path": "wrappers/go/iso3166.json",
       "layer": "bundled",
-      "bytes": 409366,
-      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
+      "bytes": 409358,
+      "sha256": "c8da5e271d1e031399e7854668412ed2ec8a0ec9f48a22fa5e52fe1b3ad30ccc"
     },
     {
       "path": "wrappers/rust/iso3166.json",
       "layer": "bundled",
-      "bytes": 409366,
-      "sha256": "2e17d8845c593a113cadba736adeccfab4f39865d19155e2f899b63b4308f7a2"
+      "bytes": 409358,
+      "sha256": "c8da5e271d1e031399e7854668412ed2ec8a0ec9f48a22fa5e52fe1b3ad30ccc"
     }
   ],
   "counts": {
     "active": 252,
     "withdrawn": 25,
     "officially_assigned": 249,
-    "introduced_dated": 176,
-    "introduced_null": 76,
+    "introduced_dated": 175,
+    "introduced_null": 77,
     "tests": {
       "root": 308,
       "python_wrapper": 124,

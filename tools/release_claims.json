@@ -2051,6 +2051,14 @@
     {
       "file": "tests/test_snapshot_meta.py",
       "absent": "STOPPED"
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"NU\": \"quarantined [confirmed]: 2002-05-20 is a change newsletter"
+    },
+    {
+      "file": "docs/withdrawn-completeness.md",
+      "absent": "‡"
     }
   ]
 }

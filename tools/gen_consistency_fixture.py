@@ -275,11 +275,11 @@ def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
         return w["introduced"] <= date
 
     codes = sorted(set(act) | set(wd))
-    allc = {"true": 169, "false": 30, "null": 76}
-    actc = {"true": 161, "false": 15, "null": 76}
+    allc = {"true": 169, "false": 29, "null": 77}
+    actc = {"true": 161, "false": 14, "null": 77}
     spot = {"DE": True, "US": True, "DD": True, "SU": True, "YU": True,
             "CS": False, "AN": True, "BU": False, "BJ": None, "CZ": None,
-            "RU": None, "XK": None, "AI": None, "SK": None}
+            "RU": None, "NU": None, "XK": None, "AI": None, "SK": None}
 
     def tally(cs):
         t = {"true": 0, "false": 0, "null": 0}
@@ -297,7 +297,7 @@ def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
             "active_on (v1.12.5, Query 11): is_active_on for every code. "
             "275 keys = 252 active + the 23 withdrawn codes that are not "
             "also active (AI and SK: the active entry wins). null is "
-            "unknown, not false: 76 active entries have no introduced date "
+            "unknown, not false: 77 active entries have no introduced date "
             "on 1990-01-01. Every surface must return the same object."
         ),
         "date": date,

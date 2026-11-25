@@ -2,10 +2,10 @@
   "meta": {
     "counts": {
       "active_from_1974_list": 161,
-      "active_from_data": 1,
+      "active_from_data": 0,
       "active_from_iso_primary": 14,
       "active_null_not_assigned": 3,
-      "active_null_quarantined": 27,
+      "active_null_quarantined": 28,
       "active_null_source_silent": 46,
       "withdrawn_from_iso_primary": 1,
       "withdrawn_null": 24
@@ -118,6 +118,7 @@
       "NH": "withdrawn: start date not sourced",
       "NQ": "withdrawn: start date not sourced",
       "NT": "withdrawn: start date not sourced",
+      "NU": "quarantined [confirmed]: 2002-05-20 is a change newsletter: ISO 3166-1 Newsletter V-4 (2002-05-20) renames Niue, so NU predates it",
       "PC": "withdrawn: start date not sourced",
       "PF": "source silent",
       "PM": "source silent",
@@ -349,7 +350,7 @@
     "NQ": null,
     "NR": "1974-09-15",
     "NT": null,
-    "NU": "2002-05-20",
+    "NU": null,
     "NZ": "1974-09-15",
     "OM": "1974-09-15",
     "PA": "1974-09-15",

@@ -660,7 +660,7 @@ a separate release.
 1. A malformed date → `None`. Unknown code → `None`.
 2. **Active** entry (an active entry wins when a code is in both arrays, AI and
    SK):
-   a. `introduced` null → `None` (source silent; 76 of 252 entries).
+   a. `introduced` null → `None` (source silent; 77 of 252 entries).
    b. `date < introduced` → `None`.
    c. Otherwise a copy of its current `currency_codes` (`None` if null).
 3. **Withdrawn** entry:
@@ -993,8 +993,8 @@ the 252 active entries and the 23 withdrawn codes that are not also active:
 275 keys, sorted. `AI` and `SK` are in both lists; the active entry wins, as in
 `is_active_on`, so `active_on(d)[c] == is_active_on(c, d)` for every key.
 
-**`null` is not `false`.** On 1990-01-01 the answer is 169 `true`, 30 `false`
-and 76 `null` (161, 15 and 76 over the 252 active entries alone). The 76 are
+**`null` is not `false`.** On 1990-01-01 the answer is 169 `true`, 29 `false`
+and 77 `null` (161, 14 and 77 over the 252 active entries alone). The 77 are
 active entries whose `introduced` is null (see "Known Nulls"), among them `CZ`,
 `SK`, `RU`. Filtering on truthiness drops them without saying so.
 
@@ -1006,7 +1006,7 @@ check pins it under `derived_queries.active_on` in the fixture).
 
 - `active_on("1990-01-01")["DE"]` → `true`; `["DD"]` → `true`; `["BU"]` → `false`
   (Burma, withdrawn 1989-12-05); `["BJ"]` → `null`.
-- `active_on("1990-01-01")` has 275 keys: 169 `true`, 30 `false`, 76 `null`. `["CS"]` is `false`: the
+- `active_on("1990-01-01")` has 275 keys: 169 `true`, 29 `false`, 77 `null`. `["CS"]` is `false`: the
   registry's `CS` is Serbia and Montenegro, dated 2003-07-23 by Newsletter V-8.
 
 **CLI.** `active-on DATE` prints one `CODE<TAB>true|false|unknown` line per code;
@@ -1015,10 +1015,10 @@ of answers, because no single code is "the" answer; 2 for a malformed `DATE`.
 
 ## Known Nulls
 
-The `introduced` field is null for 76 active entries (27 quarantined, 46 source
-silent, 3 not officially assigned) and 25 withdrawn entries. Reasons are in
-`tools/introduced_snapshot.json`'s `meta.null_reasons`. 176 active entries have
-a date. `is_active_on` returns `null` for the 76 active nulls.
+The `introduced` field is null for 77 active entries (28 quarantined, 46 source
+silent, 3 not officially assigned) and 24 withdrawn entries (`CS` is dated).
+Reasons are in `tools/introduced_snapshot.json`'s `meta.null_reasons`. 175 active
+entries have a date. `is_active_on` returns `null` for the 77 active nulls.
 
 ## What no query answers
 

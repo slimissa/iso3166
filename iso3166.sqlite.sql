@@ -1498,7 +1498,7 @@ borders source: https://www.cia.gov/the-world-factbook/countries/NU/
 languages source: https://www.cia.gov/the-world-factbook/countries/NU/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
-# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL, '2002-05-20', NULL, NULL, NULL, NULL);
+# per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union) VALUES ('NZ', 'NZL', '554', 'New Zealand', 'officially-assigned', 1, 'New Zealand', 'Oceania', 'Australia and New Zealand', NULL, '64', '.nz', 'eng|mri', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en

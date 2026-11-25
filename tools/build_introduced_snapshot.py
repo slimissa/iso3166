@@ -89,6 +89,7 @@ QUARANTINE = {
     "LV": ("likely", "post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"),
     "MD": ("likely", "2008-03-31 is a change newsletter; Moldova added ~1992"),
     "MM": ("confirmed", "successor of BU, withdrawn 1989-12-05 (tree)"),
+    "NU": ("confirmed", "2002-05-20 is a change newsletter: ISO 3166-1 Newsletter V-4 (2002-05-20) renames Niue, so NU predates it"),
     "RU": ("likely", "post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"),
     "SH": ("likely", "2010-02-22 is a change newsletter; Saint Helena predates it"),
     "SI": ("likely", "successor state of Czechoslovakia/Yugoslavia; not a 1974 code"),
