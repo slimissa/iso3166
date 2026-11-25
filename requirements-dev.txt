@@ -4,10 +4,15 @@
 # has no runtime dependencies; these are needed to regenerate and validate
 # the derived artifacts.
 #
-# Install:
+# Install (or `make dev-install`, which runs the last two lines):
 #   python3 -m venv .venv
 #   source .venv/bin/activate
-#   pip install -r requirements-dev.txt
+#   pip install -r requirements-dev.txt -c constraints.txt
+#   pip install -e wrappers/python
+#
+# The wrapper is not listed here: CI runs `pip-audit -r requirements-dev.txt
+# --strict`, which fails on a local package that is not on PyPI. Without the
+# wrapper installed, 37 wrapper CLI tests fail (they run the `iso3166` script).
 
 jsonschema>=4.20
 pyarrow==26.0.0

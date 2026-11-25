@@ -990,6 +990,7 @@ The [`Makefile`](./Makefile) at the repository root names the commands that alre
 
 | Target | What it runs |
 |--------|--------------|
+| `make dev-install` | `pip install -r requirements-dev.txt -c constraints.txt`, then `pip install -e wrappers/python`: the installs CI makes. Run it inside a virtualenv. |
 | `make package` | The eight generators of `release.sh` step 2 other than `gen_registry_release.py`: `export_sql`, `export_csv`, `export_parquet`, `export_aggregated`, `sync_wrappers`, `gen_consistency_fixture`, `gen_withdrawn_doc`, `gen_state_doc`. Then `gen_iso4217_snapshot.py --source iso4217.json` if that file is present; if not, it prints a skip line and leaves `tools/iso4217_snapshot.json` as is. |
 | `make build-wheel` | `python3 -m build --wheel --sdist` in `wrappers/python`. Needs the `build` package (`pip install build`). |
 | `make test` | The root and Python-wrapper pytest suites, `npm test`, `cargo test`, `go test ./...`, and `tools/check_cross_language.sh US GB JP`. It stops at the first failing command, and needs Node, Cargo and Go installed. |
@@ -1383,7 +1384,7 @@ iso3166/
 
 Open an issue before starting a large change. Data corrections go through an enrichment tool, not a hand edit of `iso3166.json`. [`CONTRIBUTING.md`](./CONTRIBUTING.md) covers data corrections, adding or withdrawing a code, wrapper contributions and release prerequisites. The quick workflow:
 
-1. Set up (once): `python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements-dev.txt && pip install -e wrappers/python`
+1. Set up (once): `python3 -m venv .venv && source .venv/bin/activate && make dev-install` (it runs `pip install -r requirements-dev.txt -c constraints.txt` and `pip install -e wrappers/python`, as CI does)
 2. Change the data through its tool (`tools/enrich_*.py`), or change the tool.
 3. Validate; it must exit 0: `python3 tools/validate.py iso3166.json --strict-count --strict-independent`
 4. Regenerate the derived files, in layer order:

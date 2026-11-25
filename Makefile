@@ -3,6 +3,7 @@
 # Every command here already exists in scripts/release.sh or in the README's
 # "Tests" table. The Makefile adds no step of its own; it names them.
 #
+#   make dev-install       install the tool dependencies and the Python wrapper (editable), as CI does
 #   make package           regenerate every committed artifact
 #   make build-wheel       build the Python wheel and sdist (needs `build`)
 #   make test              run every suite and the cross-language check
@@ -16,11 +17,19 @@ CURRENCY_SOURCE ?= iso4217.json
 
 .DEFAULT_GOAL := help
 
-.PHONY: help package build-wheel test registry-release check
+.PHONY: help dev-install package build-wheel test registry-release check
 
 help:
-	@echo "targets: package build-wheel test registry-release check"
+	@echo "targets: dev-install package build-wheel test registry-release check"
 	@echo "see the README section 'Build and test with make'"
+
+# What CI installs (validate.yml: the tool dependencies with constraints.txt,
+# and the wrapper editable). Run it inside a virtualenv. The wrapper is not a
+# line of requirements-dev.txt because CI audits that file with
+# `pip-audit --strict`, which refuses a local package not on PyPI.
+dev-install:
+	$(PYTHON) -m pip install -r requirements-dev.txt -c constraints.txt
+	$(PYTHON) -m pip install -e wrappers/python
 
 # The generators release.sh step 2 runs, in the same order, minus
 # gen_registry_release (its own target) plus the ISO 4217 snapshot.

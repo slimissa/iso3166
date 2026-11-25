@@ -191,12 +191,16 @@ must exit 0.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements-dev.txt
+make dev-install
 ```
 
+`make dev-install` runs `pip install -r requirements-dev.txt -c constraints.txt`
+and `pip install -e wrappers/python`, the two installs CI makes.
 `requirements-dev.txt` lists `jsonschema` (for the validator) and
 `pyarrow` (for the Parquet exporter). Neither is a runtime dependency
-of the registry data.
+of the registry data. The wrapper is installed separately because CI
+audits `requirements-dev.txt` with `pip-audit --strict`, which refuses a
+local package; without it the wrapper tests fail.
 
 ## CI
 
@@ -242,7 +246,7 @@ To run `scripts/release.sh <version>` on a fresh machine, install:
   (the gate runs `cargo clippy --all-targets -- -D warnings`; needed since
   v1.10.1)
 - node and go, which `tools/check_cross_language.sh` runs in the gate
-- `pip install -r requirements-dev.txt` inside a virtualenv (see Tooling)
+- `make dev-install` inside a virtualenv (see Tooling)
 
 CI installs all of these by default. A local release machine needs them added
 once. `scripts/release.sh` does not need bash 4 features: it uses no
