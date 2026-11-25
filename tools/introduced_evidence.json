@@ -1,0 +1,2945 @@
+{
+  "_comment": "Evidence ledger for `introduced` (docs/decisions/introduced-evidence.md). One row per key of tools/introduced_snapshot.json. class: iso_primary (an ISO or ISO 3166/MA document), ma_member (a member of the ISO 3166/MA quoting ISO; never adopted alone), lead_only (points to a document, dates nothing), inference (a conclusion, not a reading). Only an iso_primary row with verdict adopted may set a value; its candidate must equal iso3166.json. ISO documents are not committed: doc records title, number, date, URLs, locator and the sha256 of the bytes read. Checked by tools/check_introduced_evidence.py.",
+  "rows": [
+    {
+      "code": "AD",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AF",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AI",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "AL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AM",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "AN",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "AO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AQ",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "AR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AS",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "AT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AU",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "AW",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "AX",
+      "current": "2004-02-13",
+      "candidate": "2004-02-13",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for AX, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.AX",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "AZ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "BA",
+      "current": null,
+      "candidate": "2002-05-20",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for BA, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.BA",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: 2002-05-20 is a change newsletter; Bosnia added ~1992"
+    },
+    {
+      "code": "BB",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BD",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BF",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "BG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BH",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BI",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BJ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [confirmed]: successor of DY, withdrawn 1977-02-01 (tree)"
+    },
+    {
+      "code": "BL",
+      "current": "2007-09-21",
+      "candidate": "2007-09-21",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for BL, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.BL",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "BM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BQ",
+      "current": "2010-12-15",
+      "candidate": "2010-12-15",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for BQ, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.BQ",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "BR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BS",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BU",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "BV",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "BW",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "BY",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "BZ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CC",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "CD",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "CF",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CH",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CI",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "CL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CS",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "CT",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "CU",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CV",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CW",
+      "current": "2010-12-15",
+      "candidate": "2010-12-15",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for CW, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.CW",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "CX",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "CY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "CZ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: successor state of Czechoslovakia/Yugoslavia; not a 1974 code"
+    },
+    {
+      "code": "DD",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "DE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "DJ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [confirmed]: successor of AI, withdrawn 1977-06-27 (tree)"
+    },
+    {
+      "code": "DK",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "DM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "DO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "DY",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "DZ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "EC",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "EE",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "EG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "EH",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "ER",
+      "current": null,
+      "candidate": "2012-02-15",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for ER, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.ER",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: 2012-02-15 is a change newsletter; Eritrea was added later (~1993)"
+    },
+    {
+      "code": "ES",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "ET",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "EU",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "not officially assigned (exceptionally-reserved)"
+    },
+    {
+      "code": "FI",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "FJ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "FK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "FM",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "FO",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "FQ",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "FR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GB",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GD",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GE",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "GF",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "GG",
+      "current": "2006-03-29",
+      "candidate": "2006-03-29",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for GG, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.GG",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "GH",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GI",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "GL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GP",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "GQ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GS",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "GT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GU",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "GW",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "GY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "HK",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "HM",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "HN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "HR",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "HT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "HU",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "HV",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "ID",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IM",
+      "current": "2006-03-29",
+      "candidate": "2006-03-29",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for IM, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.IM",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "IN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IO",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "IQ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IS",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "IT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "JE",
+      "current": "2006-03-29",
+      "candidate": "2006-03-29",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for JE, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.JE",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "JM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "JO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "JP",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "JT",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "KE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "KG",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "KH",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "KI",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [confirmed]: successor of CT, withdrawn 1984-01-01 (tree)"
+    },
+    {
+      "code": "KM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "KN",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "KP",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "KR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "KW",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "KY",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "KZ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2002-05-20",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "LA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LB",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LC",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LI",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LK",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LS",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LT",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "LU",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "LV",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "LY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MC",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MD",
+      "current": null,
+      "candidate": "2008-03-31",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for MD, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.MD",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: 2008-03-31 is a change newsletter; Moldova added ~1992"
+    },
+    {
+      "code": "ME",
+      "current": "2006-09-26",
+      "candidate": "2006-09-26",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for ME, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.ME",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "MF",
+      "current": "2007-09-21",
+      "candidate": "2007-09-21",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for MF, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.MF",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "MG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MH",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "MI",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "MK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "ML",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MM",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py; tools/wikipedia_dates.json also has 2011-06-12",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [confirmed]: successor of BU, withdrawn 1989-12-05 (tree)"
+    },
+    {
+      "code": "MN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MP",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "MQ",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "MR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MS",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "MT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MU",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MV",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MW",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MX",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "MZ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NC",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "NE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NF",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "NG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NH",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "NI",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NP",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NQ",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "NR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "NT",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "NU",
+      "current": "2002-05-20",
+      "candidate": "2002-05-20",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for NU, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.NU",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "NZ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "OM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PC",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "PE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PF",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "PG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PH",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PK",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PM",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "PN",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "PR",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "PS",
+      "current": "1999-10-01",
+      "candidate": "1999-10-01",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for PS, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.PS",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "PT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PW",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "PY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PZ",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "QA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "RE",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "RH",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "RO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "RS",
+      "current": "2006-09-26",
+      "candidate": "2006-09-26",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for RS, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.RS",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "RU",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "RW",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SB",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SC",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SD",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SH",
+      "current": null,
+      "candidate": "2010-02-22",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for SH, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.SH",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: 2010-02-22 is a change newsletter; Saint Helena predates it"
+    },
+    {
+      "code": "SI",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: successor state of Czechoslovakia/Yugoslavia; not a 1974 code"
+    },
+    {
+      "code": "SJ",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "SK",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: successor state of Czechoslovakia/Yugoslavia; not a 1974 code"
+    },
+    {
+      "code": "SL",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SS",
+      "current": "2011-08-09",
+      "candidate": "2011-08-09",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for SS, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.SS",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "ST",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SU",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "SV",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SX",
+      "current": "2010-12-15",
+      "candidate": "2010-12-15",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for SX, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.SX",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "SY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "SZ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TC",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "TD",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TF",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "TG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TH",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TJ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "TK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "TL",
+      "current": "2002-05-20",
+      "candidate": "2002-05-20",
+      "class": "lead_only",
+      "doc": {
+        "title": "Wikipedia, ISO 3166-1, Changes (Edition/Newsletter table)",
+        "number": null,
+        "date": null,
+        "urls": [
+          "https://en.wikipedia.org/w/index.php?title=ISO_3166-1&oldid=1258392980"
+        ],
+        "locator": "row for TL, as recorded in tools/wikipedia_dates.json",
+        "sha256": null,
+        "retrieved": "2026-10-28 (tools/wikipedia_dates.json)"
+      },
+      "quote_ref": "tools/wikipedia_dates.json data.TL",
+      "verdict": "unconfirmed",
+      "reason": "Wikipedia row; a lead that names a newsletter, not an ISO document read here"
+    },
+    {
+      "code": "TM",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "TN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TO",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TP",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "TR",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TT",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TV",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TW",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "TZ",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "UA",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "UG",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "UK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "not officially assigned (exceptionally-reserved)"
+    },
+    {
+      "code": "UM",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "US",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "UY",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "UZ",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [likely]: post-Soviet state; SU withdrawn 1992-08-30 (tree); code cannot be in 1974 edition"
+    },
+    {
+      "code": "VA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "VC",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "VD",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "VE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "VG",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "VI",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "VN",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "VU",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [confirmed]: successor of NH, withdrawn 1980-07-30 (tree)"
+    },
+    {
+      "code": "WF",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "WK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "WS",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "XK",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "not officially assigned (user-assigned)"
+    },
+    {
+      "code": "YD",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "YE",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "YT",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "source silent"
+    },
+    {
+      "code": "YU",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "ZA",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "ZM",
+      "current": "1974-09-15",
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "ZR",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
+      "code": "ZW",
+      "current": null,
+      "candidate": "1974-09-15",
+      "class": "inference",
+      "doc": null,
+      "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
+      "verdict": "unconfirmed",
+      "reason": "quarantined [confirmed]: successor of RH, withdrawn 1980-04-18 (tree)"
+    }
+  ]
+}

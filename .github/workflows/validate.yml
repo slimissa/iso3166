@@ -488,6 +488,9 @@ jobs:
       - name: Introduced snapshot meta is complete
         run: python3 tools/check_introduced_meta.py
 
+      - name: Introduced evidence ledger agrees with the tree
+        run: python3 tools/check_introduced_evidence.py
+
   # =================================================================
   # 10c. release.sh --force. tests/test_release_force.sh runs the
   #      resume mode and the gate's fail-closed behavior in a throwaway

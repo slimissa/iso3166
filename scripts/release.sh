@@ -454,6 +454,7 @@ if [ "$DRY_RUN" = "0" ]; then
         gate python3 tools/parse_source.py --verify iso3166.json
         gate python3 tools/check_introduced.py
         gate python3 tools/check_introduced_meta.py
+        gate python3 tools/check_introduced_evidence.py
         gate python3 tools/check_state_doc.py --strict
         gate python3 tools/check_docs_match_tree.py
         gate python3 tools/check_doc_status.py
