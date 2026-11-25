@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.0] — 2026-11-25
+
 `introduced` now carries its evidence code by code. A ledger records, for each of the 275 snapshot keys, what kind of source stands behind the value and which document, and only an ISO document can set a date. Six dates are now held on ISO's own Online Browsing Platform, and nine more on the ISO 3166-1 newsletters of series V, which also date the withdrawn `CS`. A local checkout now installs and tests like CI, every snapshot uses one cadence vocabulary, and three docs carry a recheck date that CI enforces.
 
 Consumer impact: none. Two values in `iso3166.json` change: `introduced` of the withdrawn `CS` (Serbia and Montenegro), from null to 2003-07-23, and of `NU` (Niue), from 2002-05-20 to null (quarantined); with every export and wrapper copy regenerated; no other active entry's value changes, and the schema does not. For `is_active_on("CS", date)` it means `false` before 2003-07-23, where it was `true` from 1974. The data files that change are `tools/introduced_snapshot.json` (meta only: a new `active_from_iso_primary` count and `iso_primary_codes`), the new `tools/introduced_evidence.json`, and `closed_reason` in the two M49 snapshots. The consumers read `alpha_2`, `name`, `region`, `subregion` and `currency_codes` (`tools/consumers.json`); ISO 4217, ISO 10383 and Exchange Calendar were re-read at `028863f`, `db454bc` and `ab01489` on 2026-11-25, and none reads `introduced` or any file under `tools/`; ISO 4217 reads the withdrawn list for `alpha_2` only.
