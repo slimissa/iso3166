@@ -401,10 +401,10 @@ exact; where they do not it says so.
 | `is_active_on(code, date)` | done in v1.11.0 | Needed an `introduced` field |
 | `currency_at` (lifetime-bounded) | done in v1.11.1 | Uses `introduced` and `withdrawal_date` |
 | `currency_at` with historical currencies | a later release | Needs a source for currency history; none is in the tree |
-| `is_sanctioned_at(code, regime, date)` | v1.13.0 | Needs a `sanctions_regime[]` field |
-| `timezone_of(code)` | v1.14.0 | Needs a `timezones[]` field |
-| `subdivisions_of(code)` | v1.16.0 | Needs a `subdivisions.json` companion |
-| `is_landlocked(code)` | v1.14.0 or never | Not derivable from `borders`; needs coastline data |
+| `is_sanctioned_at(code, regime, date)` | v1.14.0 | Needs a `sanctions_regime[]` field |
+| `timezone_of(code)` | v1.15.0 | Needs a `timezones[]` field |
+| `subdivisions_of(code)` | v1.17.0 | Needs a `subdivisions.json` companion |
+| `is_landlocked(code)` | v1.15.0 or never | Not derivable from `borders`; needs coastline data |
 | `population_of`, `gdp_of` | never | The registry is identity, not demographics |
 | `flag_emoji(code)` | never | Derivable from `alpha_2`; not a registry concern |
 | Area-code narrowing for `calling_code_for` | not scheduled | Needs numbering-plan data the tree does not carry |

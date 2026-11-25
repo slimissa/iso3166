@@ -1946,5 +1946,111 @@
       "file": "tools/eu_membership_snapshot.meta.json",
       "absent": "\"annual\""
     }
+  ],
+  "1.13.0": [
+    {
+      "file": "tools/introduced_evidence.json"
+    },
+    {
+      "file": "tools/check_introduced_evidence.py"
+    },
+    {
+      "file": "docs/decisions/introduced-evidence.md"
+    },
+    {
+      "file": "tools/check_doc_status.py"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gate python3 tools/check_introduced_evidence.py"
+    },
+    {
+      "file": "scripts/release.sh",
+      "contains": "gate python3 tools/check_doc_status.py"
+    },
+    {
+      "file": "docs/withdrawn-completeness.md",
+      "contains": "| ISO 3166-3 entries, each with an ISO page | 31 |"
+    },
+    {
+      "file": "docs/withdrawn-completeness.md",
+      "absent": "lead_only, to confirm"
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"PS\": \"1999-10-01\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"V-2\""
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"TL\": \"2002-05-20\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"V-5\""
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"CS\": \"2003-07-23\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"V-8\""
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"AX\": \"2004-02-13\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"V-9\""
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"JE\": \"2006-03-29\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"V-11\""
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"RS\": \"2006-09-26\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"V-12\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "\"number\": \"VI-10\""
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"SS\": \"2011-08-09\""
+    },
+    {
+      "file": "tools/introduced_evidence.json",
+      "contains": "Change history of country code, entry \\\"2010-12-15 | Add new entry"
+    },
+    {
+      "file": "tools/introduced_snapshot.json",
+      "contains": "\"BQ\": \"2010-12-15\""
+    },
+    {
+      "file": "docs/SCOPE.md",
+      "contains": "## Sanctions (v1.14.0)"
+    },
+    {
+      "file": "README.md",
+      "contains": "**v1.14.0, sanctions:**"
+    },
+    {
+      "file": "tests/test_snapshot_meta.py",
+      "absent": "STOPPED"
+    }
   ]
 }

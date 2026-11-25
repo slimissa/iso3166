@@ -1014,7 +1014,7 @@ The [`Makefile`](./Makefile) at the repository root names the commands that alre
 
 One workflow, [`.github/workflows/validate.yml`](./.github/workflows/validate.yml), with 23 CI jobs. It runs on pushes to `main` and to `v*` branches, on pull requests to `main`, and on manual dispatch, and ignores pushes that touch only `.gitignore`, `.gitattributes` or `LICENSE`. It has read-only `contents` permission and cancels an in-progress run for the same ref.
 
-There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.13.0, the sanctions release, has not shipped.
+There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.14.0, the sanctions release, has not shipped.
 
 | Job | What it runs |
 |-----|--------------|
@@ -1437,8 +1437,8 @@ Stated plainly, because a canonical registry is a claim and a claim needs its ed
 - **The packaged CLI's module docstring is stale:** it says twenty-three subcommands; both CLIs implement twenty-six. The repo CLI's docstring lists all twenty-six (corrected in v1.12.9).
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging.
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
-- **The sanctions release (v1.13.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
-- **The geography release (v1.14.0) is deferred.** There is no `regions.json` and no `timezones[]`.
+- **The sanctions release (v1.14.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
+- **The geography release (v1.15.0) is deferred.** There is no `regions.json` and no `timezones[]`.
 - **No subdivisions.** ISO 3166-2 is not covered.
 - **Language packages are not published** to PyPI, npm, crates.io or a Go proxy. Install from a clone.
 - **The release script is Linux-only,** and its network-dependent steps (`gh`) need access to GitHub.
@@ -1514,14 +1514,16 @@ Apache 2.0. See [`LICENSE`](./LICENSE). The country data in this registry is fac
 
 ## 24. What's next
 
-Nothing is scheduled. Each item below starts when its trigger fires.
+**v1.13.0 is prepared, not released:** the evidence ledger for `introduced` (`tools/introduced_evidence.json`) and its check, `introduced` dates from ISO 3166-1 newsletters (series V and VI) and the ISO Online Browsing Platform, the withdrawn report on ISO 3166-3 pages, `check_doc_status.py`, `make dev-install`, and one cadence vocabulary for every snapshot. Its entries are in `CHANGELOG.md` under `[Unreleased]`, and its release claims in `tools/release_claims.json`.
+
+Nothing after it is scheduled. Each item below starts when its trigger fires.
 
 | Deferred item | Trigger to start | Where decided |
 |---------------|------------------|---------------|
-| **v1.13.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
-| **v1.14.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
-| **v1.15.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
-| **v1.16.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
+| **v1.14.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
+| **v1.15.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
+| **v1.16.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
+| **v1.17.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
 | **v2.0.0:** a breaking schema change | A consumer needs one | This section |
 | **`source_hash`** | A stable raw source appears; the current sources are not stable files | Previous README |
 
