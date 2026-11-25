@@ -204,3 +204,13 @@ goes red on 2027-09-23, the day the entries verified on 2026-09-22 pass 365
 days, whether or not the tree changed. Rule 25's entry above is not edited;
 this entry amends it. `docs/RELEASE_PATTERN.md` rule 25 and
 `docs/PROVENANCE.md` still describe the gate-only design.
+
+### Rule 30 — Findings from outside are re-checked against `origin/main`
+
+The brief for the v1.12.14 work said ISO 4217 v1.9.5 was untagged. Reading
+`slimissa/iso4217` showed the annotated tag `v1.9.5`, dated 2026-11-24,
+pointing at `ef094d9`. The same brief cited `check_doc_facts.py`,
+`check_doc_links.py` and `facts.json`, which this repository has never had.
+Both claims came from copies older than, or other than, the tree being
+changed. Acting on them would have changed the wrong thing. Rule 30 makes
+the comparison with `origin/main` the first step.

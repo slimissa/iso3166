@@ -42,6 +42,13 @@ coordinated, not shipped silently. The release notes are the
 current notification channel. Neither repo has an automated
 mechanism.
 
+### Findings from tools and other repositories
+
+Before acting on a finding from qlf-sentinel or a sibling registry,
+`git fetch origin` and compare the SHA the finding names with
+`origin/main`. A finding against a stale copy is re-checked, not
+applied ([`docs/RELEASE_PATTERN.md`](./docs/RELEASE_PATTERN.md), Rule 30).
+
 ## No live corruption examples in docs
 
 Any doc that shows a corruption class by example will trigger the

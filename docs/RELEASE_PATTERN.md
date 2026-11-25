@@ -688,6 +688,29 @@ command, could fail the release gate. It was found while wiring
 `No such file or directory` and the gate still reported "gate passed".
 `tests/test_release_force.sh` scenarios 6 and 7 now hold the fix in place.
 
+### 30. Re-check a Finding From Outside Against `origin/main`
+
+Rule 30: a finding from another tool or repository (qlf-sentinel, a sibling
+registry's check, a brief written from either) was made against some copy
+of this repository, and that copy may be stale. Before acting on it, fetch
+and compare the SHA the finding names with `origin/main`:
+
+    git fetch origin
+    git rev-parse --short origin/main        # the SHA the finding should name
+    git log --oneline <sha>..origin/main     # what changed since its copy
+
+If the SHAs are equal, act on the finding. If they differ, a finding against
+a stale copy is re-checked, not applied: run the same check against
+`origin/main` and act on that result. A finding that names no SHA counts as
+stale. The same holds for a claim about a sibling repository (a tag, a file,
+a version): read it at that repository's current `origin`, and record the
+SHA or tag you read.
+
+Reference: ISO 3166 v1.12.14. The brief for that work said ISO 4217 v1.9.5
+was untagged; the tag had existed since 2026-11-24, pointing at `ef094d9`.
+The same brief named tools that this repository does not have. Both were
+caught by reading the current tree before acting.
+
 ### A10. Three files, three lifetimes
 
 The pattern is documented in three files, not one:

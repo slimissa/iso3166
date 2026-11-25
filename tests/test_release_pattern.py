@@ -44,3 +44,17 @@ def test_rules_26_to_29_pin_one_sentence_each():
         "Rule 28 lost its sentence: an empty gh run list gives an empty run ID"
     assert "bash ignores `set -e` inside any compound command whose exit status is tested" in text, \
         "Rule 29 lost its sentence: set -e is ignored where the status is tested"
+
+
+def test_rule_30_external_findings_are_rechecked():
+    """Pin Rule 30 in the pattern, its receipt, and its CONTRIBUTING line."""
+    pattern = " ".join(Path("docs/RELEASE_PATTERN.md").read_text(encoding="utf-8").split())
+    notes = Path("docs/README-AUDIT-NOTES.md").read_text(encoding="utf-8")
+    contributing = " ".join(Path("CONTRIBUTING.md").read_text(encoding="utf-8").split())
+    assert "### 30. Re-check a Finding From Outside Against `origin/main`" in pattern
+    assert "a finding against a stale copy is re-checked, not applied" in pattern, \
+        "Rule 30 lost its sentence: a finding against a stale copy is re-checked"
+    assert "A finding that names no SHA counts as stale." in pattern
+    assert "### Rule 30" in notes, "Missing Rule 30 receipt in README-AUDIT-NOTES.md"
+    assert "A finding against a stale copy is re-checked, not applied" in contributing
+    assert "Rule 30" in contributing
