@@ -204,20 +204,9 @@ def test_the_cadence_rule_is_enforced_on_a_club_meta_copy(tmp_path, change, expe
 # the snapshot's embedded meta; when both carry it they must agree. A cadence
 # in CADENCE_MONTHS needs review_by = vendored date + 1 period. "closed" is
 # the one other value: it needs review_by "closed" and a closed_reason.
-#
-# STOPPED: snapshots whose review_by breaks the rule. They keep their values
-# until the maintainer accepts the proposed date (the change that does so
-# must remove the row). Each row pins (cadence, review_by, vendored date,
-# proposed review_by); the test fails if any of them changes.
 
 ALL_SNAPSHOTS = sorted(p.name for p in TOOLS.glob("*_snapshot.json"))
 VENDORED_KEYS = ("vendored_at", "accessed_at", "generated", "extracted_at")
-STOPPED = {
-    "iana_tld_snapshot.json": ("rare", "2027-09-27", "2026-09-23", "2027-09-23"),
-    "independent_snapshot.json": ("annual", "2027-10-28", "2026-10-21", "2027-10-21"),
-    "iso639_3_snapshot.json": ("rare", "2027-09-27", "2026-09-23", "2027-09-23"),
-    "itu_calling_code_snapshot.json": ("rare", "2027-09-27", "2026-09-23", "2027-09-23"),
-}
 
 
 def effective_meta(snapshot: Path) -> dict:
@@ -255,22 +244,11 @@ def snapshot_cadence_problems(m: dict) -> list[str]:
 
 def test_every_snapshot_is_found():
     assert len(ALL_SNAPSHOTS) == 12, ALL_SNAPSHOTS
-    assert set(STOPPED) <= set(ALL_SNAPSHOTS)
 
 
-@pytest.mark.parametrize("name", [n for n in ALL_SNAPSHOTS if n not in STOPPED])
+@pytest.mark.parametrize("name", ALL_SNAPSHOTS)
 def test_every_snapshot_uses_the_cadence_vocabulary(name):
     assert snapshot_cadence_problems(effective_meta(TOOLS / name)) == [], name
-
-
-@pytest.mark.parametrize("name", sorted(STOPPED))
-def test_stopped_snapshots_are_pinned_with_their_proposed_date(name):
-    """A stopped snapshot still breaks the rule, exactly as recorded."""
-    cad, rb, vendored, proposed = STOPPED[name]
-    m = effective_meta(TOOLS / name)
-    assert (m["refresh_cadence"], m["review_by"], m["vendored"]) == (cad, rb, vendored)
-    assert add_months(date.fromisoformat(vendored), 12).isoformat() == proposed
-    assert snapshot_cadence_problems(m) != []
 
 
 @pytest.mark.parametrize("change, expect", [

@@ -51,6 +51,7 @@ from typing import Any, Callable
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import enrich_field as ef  # noqa: E402  (registry load/write helpers)
+from cadence import review_by  # noqa: E402  (review_by = extracted date + 1 cadence period)
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -65,6 +66,7 @@ if not (PROJECT_ROOT / "iso3166.json").is_file():
 SNAPSHOT = PROJECT_ROOT / "tools/independent_snapshot.json"
 OBP_URL = "https://www.iso.org/obp/ui/#iso:code:3166:{code}"
 SNAPSHOT_SOURCE = "ISO 3166-1 Online Browsing Platform"
+SNAPSHOT_CADENCE = "yearly"
 SNAPSHOT_SCHEMA_VERSION = "1.0.0"
 
 OVERRIDES: dict[str, tuple[bool, str]] = {
@@ -195,7 +197,9 @@ def snapshot_doc(plan: dict[str, Any], now: str) -> dict[str, Any]:
         entries[code] = row
     return {"meta": {"source": SNAPSHOT_SOURCE,
                      "schema_version": SNAPSHOT_SCHEMA_VERSION,
-                     "extracted_at": now},
+                     "extracted_at": now,
+                     "refresh_cadence": SNAPSHOT_CADENCE,
+                     "review_by": review_by(now[:10], SNAPSHOT_CADENCE)},
             "entries": entries}
 
 

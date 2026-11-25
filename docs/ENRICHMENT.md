@@ -204,8 +204,8 @@ Each field's source has its own cadence:
 |-------|--------|---------|
 | `official_name` | ISO 3166-1 | per amendment |
 | `currency_codes` | ISO 4217 | per amendment |
-| `calling_codes` | ITU-T E.164 | rare |
-| `tlds` | IANA | rare |
+| `calling_codes` | ITU-T E.164 | yearly |
+| `tlds` | IANA | yearly |
 | `languages` | CIA World Factbook | approximately annual |
 | `borders` | CIA World Factbook | approximately annual |
 | `subregion` | UN M49 | closed (static list; `closed_reason` in the snapshot) |

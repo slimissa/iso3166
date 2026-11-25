@@ -119,12 +119,12 @@
     "introduced_dated": 176,
     "introduced_null": 76,
     "tests": {
-      "root": 296,
+      "root": 297,
       "python_wrapper": 124,
       "javascript": 111,
       "rust": 41,
       "go": 52,
-      "total": 624
+      "total": 625
     },
     "gates": 35,
     "claims": 10

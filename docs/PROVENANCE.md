@@ -39,8 +39,8 @@ documented in [`ENRICHMENT.md`](./ENRICHMENT.md).
 |-------|--------|----------------|---------|
 | `official_name` | ISO 3166-1 Online Browsing Platform, per entry | 2026-10-21 (newest `last_verified` among populated entries) | per amendment |
 | `currency_codes` | ISO 4217 snapshot (v1.8.0) | 2026-10-16 (snapshot date) | per amendment |
-| `calling_codes` | ITU-T E.164 snapshot | 2026-09-23 (snapshot generated) | rare |
-| `tlds` | IANA snapshot | 2026-09-23 (snapshot generated) | rare |
+| `calling_codes` | ITU-T E.164 snapshot | 2026-09-23 (snapshot generated) | yearly (`review_by` 2027-09-23) |
+| `tlds` | IANA snapshot | 2026-09-23 (snapshot generated) | yearly (`review_by` 2027-09-23) |
 | `languages` | CIA World Factbook, codes validated against ISO 639-3 snapshot | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
 | `borders` | CIA World Factbook, land boundaries | 2026-10-21 (newest `last_verified` among populated entries) | approximately annual |
 | `subregion` | UN M49 snapshot | 2026-09-23 (snapshot generated) | closed (static list; `closed_reason` in the snapshot) |

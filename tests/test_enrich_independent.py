@@ -133,3 +133,11 @@ def test_check_populated_mismatch_fails(tmp_path):
     assert ei.cmd_check(rp, sp, out=out.append) == 1
     text = "\n".join(out)
     assert "AT:" in text and "withdrawn SU" in text
+
+
+def test_snapshot_doc_writes_the_yearly_cadence_and_its_review_date():
+    """A --write keeps refresh_cadence and sets review_by = extracted date + 12 months."""
+    plan = {"active": {"FR": {"value": True, "source_url": "https://www.iso.org/obp/ui/#iso:code:3166:FR"}}}
+    meta = ei.snapshot_doc(plan, "2026-10-21T13:33:25Z")["meta"]
+    assert meta["refresh_cadence"] == "yearly"
+    assert meta["review_by"] == "2027-10-21"
