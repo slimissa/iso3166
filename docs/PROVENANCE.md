@@ -5,7 +5,7 @@ documented exceptions in "What is a first-party source". This
 document records those sources, the refresh cadence, the audit
 procedure, and the known gaps in v1.0.0.
 
-This document is current as of v1.12 for the sections "Sources", "Current
+This document is current as of v1.13 for the sections "Sources", "Current
 sources and refresh" and "Refresh cadence". The sections titled "Known
 gaps in v1.0.0" and "Known limitations in v1.0.0" are a historical record
 of the first release; the present state of the registry is in

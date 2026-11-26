@@ -211,7 +211,7 @@ local package; without it the wrapper tests fail.
 
 ## CI
 
-As of v1.12, every push to `main` runs 23 jobs:
+As of v1.13, every push to `main` runs 23 jobs:
 
 - `validate-json` — seven-layer validator + ground-truth verify, on a
   matrix of Ubuntu × Python versions.
