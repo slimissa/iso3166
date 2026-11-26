@@ -49,6 +49,25 @@ def failing(lines):
 PIN_VERSION = "0.0.0"
 
 
+def pin_doc_minor(tree: Path, version: str) -> None:
+    """Rewrite the two major.minor doc claims to `version`'s minor.
+
+    docs/PROVENANCE.md ("current as of vX.Y") and CONTRIBUTING.md ("As of
+    vX.Y") name the minor release they describe. The checkout carries the
+    NEXT minor between the CHANGELOG-first commit and the release, which
+    the checker accepts only while the CHANGELOG heading is ahead. A test
+    that rewrites the CHANGELOG heading to VERSION removes that window, so
+    it must also bring these two claims to VERSION's minor; otherwise it
+    fails for a state no real tree is in. Added when v1.13.0 hit it.
+    """
+    mm = ".".join(version.split(".")[:2])
+    for rel, pat in (("docs/PROVENANCE.md", r"([Cc]urrent as of v)\d+\.\d+(?!\.?\d)"),
+                     ("CONTRIBUTING.md", r"(\bAs of v)\d+\.\d+(?!\.?\d)")):
+        f = tree / rel
+        f.write_text(re.sub(pat, rf"\g<1>{mm}", f.read_text(encoding="utf-8")),
+                     encoding="utf-8")
+
+
 def pin_readme_version(tree: Path, version: str = PIN_VERSION) -> None:
     """Rewrite every version site in the fixture README to a fixed value.
 
@@ -191,6 +210,7 @@ def test_the_release_flow_passes_gate_then_report(tree):
     """
     new = current_version()
     pin_readme_version(tree, new)
+    pin_doc_minor(tree, new)
     edit(tree, "CHANGELOG.md", r"^## \[\d+\.\d+\.\d+\]", f"## [{new}]")
     # Step 1: VERSION and the README sites are bumped together; the report for
     # the new version does not exist yet (it is written in step 7), and the
@@ -214,6 +234,7 @@ def test_the_through_clause_accepts_the_report_for_version(tree):
     """Newest report is VERSION's own: README one behind (count, through) is valid."""
     new = current_version()
     pin_readme_version(tree, new)
+    pin_doc_minor(tree, new)
     (tree / "docs" / f"v{new}-verification.md").write_text("# report\n", encoding="utf-8")
     have = reports_in(tree)
     assert have[-1] == new and len(have) >= 2
@@ -228,6 +249,7 @@ def test_the_through_clause_fails_when_the_newest_report_is_not_version(tree):
     new = current_version()
     later = next_patch(new)
     pin_readme_version(tree, later)
+    pin_doc_minor(tree, later)
     (tree / "VERSION").write_text(later + "\n", encoding="utf-8")
     edit(tree, "CHANGELOG.md", r"^## \[\d+\.\d+\.\d+\]", f"## [{later}]")
     have = reports_in(tree)
