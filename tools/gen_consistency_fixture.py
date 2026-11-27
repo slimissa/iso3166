@@ -268,7 +268,11 @@ def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
             return None if intro is None else date >= intro
         w = wd[code]
         end = w.get("withdrawal_date")
-        if not end or date > end:
+        if not end:
+            # v1.14.0: end unknown (the ISO page gives no date).
+            intro = w.get("introduced")
+            return False if intro is not None and date < intro else None
+        if date > end:
             return False
         if w.get("introduced") is None:
             return None if date < "1974-01-01" else True

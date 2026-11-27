@@ -54,9 +54,9 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 | **Club memberships** | 4: `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, as inclusive `{from, to}` ranges |
 | **Snapshots** | 5 temporal snapshots (`introduced`, EU, EEA, eurozone, customs union); 12 `*_snapshot.json` files in `tools/` in all |
 | **Flat exports** | 9: 4 SQL, 4 CSV/TSV, 1 Parquet. One more Parquet file is the aggregated layer. |
-| **Gate checks** | 35 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 646 tests ([Section 13](#13-validation)) |
+| **Gate checks** | 35 checks run in sequence in the release gate; CI runs 23 jobs; the test suites hold 674 tests ([Section 13](#13-validation)) |
 | **Cross-language cases** | 129 derived-query cases in one shared fixture, plus the lookup and field cases around them |
-| **Version** | 1.13.0 (schema 1.0.0) |
+| **Version** | 1.13.0 (schema 1.1.0) |
 | **Version sites** | 11 files carry the version; `scripts/release.sh` bumps 7 of them ([Section 16](#16-versioning)) |
 | **Dependencies** | The JSON needs none. The Python, JavaScript and Go wrappers need none; the Rust crate needs `serde` and `serde_json`. Tool time: `jsonschema`, `pyarrow==26.0.0`, `pandas`, `pytest`. |
 
@@ -279,7 +279,7 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
   "meta": {
     "count_active": 252,
     "count_withdrawn": 25,
-    "schema_version": "1.0.0",
+    "schema_version": "1.1.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
     "updated": "2026-11-23",
     "version": "1.13.0"
@@ -433,7 +433,7 @@ The 77 nulls of `introduced` (28 quarantined, 46 source-silent, 3 not officially
 
 **`region`** is one of `Africa`, `Americas`, `Asia`, `Europe`, `Oceania`, or `null`. The registry has no `classification` or `relationship` enum; those belong to the ISO 4217 registry.
 
-Design decisions behind these fields are recorded in [`docs/decisions/v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md) (with [amendments](./docs/decisions/v1.9.2-amendments.md)), [`withdrawn-codes.md`](./docs/decisions/withdrawn-codes.md), [`introduced-field.md`](./docs/decisions/introduced-field.md) and [`club-memberships.md`](./docs/decisions/club-memberships.md).
+Design decisions behind these fields are recorded in [`docs/decisions/v1.0.0-decisions.md`](./docs/decisions/v1.0.0-decisions.md) (with [amendments](./docs/decisions/v1.9.2-amendments.md)), [`withdrawn-codes.md`](./docs/decisions/withdrawn-codes.md), [`withdrawn-alpha4.md`](./docs/decisions/withdrawn-alpha4.md), [`introduced-field.md`](./docs/decisions/introduced-field.md) and [`club-memberships.md`](./docs/decisions/club-memberships.md).
 
 ---
 
@@ -580,7 +580,7 @@ SELECT country_alpha_2 FROM country_currencies WHERE currency_code = 'EUR';
 
 ### CSV and TSV
 
-Four files, one per audience. LF line endings, a header row, 24 columns, 277 data rows.
+Four files, one per audience. LF line endings, a header row, 26 columns, 277 data rows.
 
 | File | Audience | Quirk |
 |------|----------|-------|
@@ -589,13 +589,13 @@ Four files, one per audience. LF line endings, a header row, 24 columns, 277 dat
 | [`iso3166.european.csv`](./iso3166.european.csv) | European Excel locales | Semicolon-delimited |
 | [`iso3166.tsv`](./iso3166.tsv) | Terminal, clipboard, Sheets | Tab-separated |
 
-Columns, in order: `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, `independent`, `official_name`, `region`, `subregion`, `intermediate_region`, `currency_codes`, `calling_codes`, `tlds`, `languages`, `borders`, `note`, `last_verified`, `withdrawal_date`, `replaced_by`, `introduced`, `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`.
+Columns, in order: `alpha_2`, `alpha_3`, `numeric`, `name`, `status`, `independent`, `official_name`, `region`, `subregion`, `intermediate_region`, `currency_codes`, `calling_codes`, `tlds`, `languages`, `borders`, `note`, `last_verified`, `withdrawal_date`, `replaced_by`, `introduced`, `eu_membership`, `eea_membership`, `eurozone_membership`, `customs_union`, `alpha_4` and `reservation` (both withdrawn rows only; v1.14.0, last so that no column moved).
 
 Read `numeric` and `calling_codes` as text: `020` is Andorra, and a spreadsheet will turn it into `20`. Note that `note` contains newlines inside a quoted field.
 
 ### Parquet
 
-[`iso3166.parquet`](./iso3166.parquet): columnar, typed, 24 columns, 277 rows. Columns follow the CSV, except that `numeric` is named `numeric_code`.
+[`iso3166.parquet`](./iso3166.parquet): columnar, typed, 26 columns, 277 rows. Columns follow the CSV, except that `numeric` is named `numeric_code`.
 
 - `currency_codes`, `calling_codes`, `tlds`, `languages`, `borders` and `replaced_by` are native lists of strings (for example `list<string>` for `currency_codes`), not pipe-joined.
 - `independent` is a native boolean.
@@ -727,7 +727,7 @@ What the numbers say:
 - **A current alias would have answered all four dates the same.** `is_eu` over the 252 entries gives 27 today. A fact table dated 1990 joined on `is_eu` mislabels 16 countries that were not yet members and the UK, which was.
 - **"Uses the euro" is not "is in the eurozone".** 36 entries list `EUR`; 21 are members. The other 15 are microstates and overseas territories (`AD`, `MC`, `SM`, `VA`, `ME`, the French departments and collectivities) that use the euro without membership. The registry keeps both facts.
 
-**What the example costs to store.** The example reads one file, `iso3166.parquet`: 41,100 bytes on disk for 277 rows (252 active entries and 25 withdrawn) in 24 columns, about 148 bytes per row, measured at v1.12.12 with PyArrow 26.0.0 (`wc -c iso3166.parquet`; Parquet bytes depend on the PyArrow version). Loaded into pandas 3.0.6 and measured with `memory_usage(deep=True)`, the same table takes 378,278 bytes in memory, about 1,366 bytes per row, because the club cells and the list columns are strings and lists. The ISO 4217 registry's `orders-5k` example reports 93 bytes per order in memory. The two numbers answer different questions. An orders table grows with the business, so its per-row cost is the number to budget. The country table does not grow with it: it is a fixed lookup of 277 rows that every order joins to, held once per process however many orders reference it. The countries are the smaller join table, and the cost to plan for is the join, not the table.
+**What the example costs to store.** The example reads one file, `iso3166.parquet`: 41,100 bytes on disk for 277 rows (252 active entries and 25 withdrawn) in 26 columns, about 148 bytes per row, measured at v1.12.12 with PyArrow 26.0.0 (`wc -c iso3166.parquet`; Parquet bytes depend on the PyArrow version). Loaded into pandas 3.0.6 and measured with `memory_usage(deep=True)`, the same table takes 378,278 bytes in memory, about 1,366 bytes per row, because the club cells and the list columns are strings and lists. The ISO 4217 registry's `orders-5k` example reports 93 bytes per order in memory. The two numbers answer different questions. An orders table grows with the business, so its per-row cost is the number to budget. The country table does not grow with it: it is a fixed lookup of 277 rows that every order joins to, held once per process however many orders reference it. The countries are the smaller join table, and the cost to plan for is the join, not the table.
 
 ### Which countries were active in 1990?
 
@@ -850,10 +850,10 @@ Four wrappers, one contract. Each embeds a byte-identical copy of `iso3166.json`
 
 | Language | Package | Source | Minimum | Import | Tests |
 |----------|---------|--------|---------|--------|------:|
-| Python | `iso3166-registry` | [`wrappers/python`](./wrappers/python) | Python 3.9 | `from iso3166 import CountryRegistry` | 124 |
-| JavaScript | `iso3166-registry` | [`wrappers/javascript`](./wrappers/javascript) | Node 18 | `require("iso3166-registry")` | 111 |
-| Rust | `iso3166-registry` | [`wrappers/rust`](./wrappers/rust) | edition 2021 | `use iso3166_registry::CountryRegistry;` | 41 |
-| Go | `github.com/slimissa/iso3166-go` | [`wrappers/go`](./wrappers/go) | Go 1.21 | `import iso3166 "github.com/slimissa/iso3166-go"` | 52 |
+| Python | `iso3166-registry` | [`wrappers/python`](./wrappers/python) | Python 3.9 | `from iso3166 import CountryRegistry` | 126 |
+| JavaScript | `iso3166-registry` | [`wrappers/javascript`](./wrappers/javascript) | Node 18 | `require("iso3166-registry")` | 113 |
+| Rust | `iso3166-registry` | [`wrappers/rust`](./wrappers/rust) | edition 2021 | `use iso3166_registry::CountryRegistry;` | 43 |
+| Go | `github.com/slimissa/iso3166-go` | [`wrappers/go`](./wrappers/go) | Go 1.21 | `import iso3166 "github.com/slimissa/iso3166-go"` | 54 |
 
 All four counts are from running the suites (`pytest`, `npm test`, `cargo test`, `go test -v`). The Rust count includes 3 doc-tests. Each wrapper has its own README with the full API. Python, JavaScript and Go have no runtime dependencies; the Rust crate depends on `serde` and `serde_json`.
 
@@ -948,8 +948,8 @@ Everything below runs in the release gate, in this order, inside one `set -e` su
 | 25 | `enrich_field.py --only-value` | Any value of the seven snapshot-backed fields that is not in its snapshot; skips the presence check, so a value problem is reported on its own |
 | 26 | `enrich_club_memberships.py --check` | The four club arrays differing from their snapshots |
 | 27 | `check_release_diff.py` | A regenerated artifact that differs from `HEAD` in anything but the version string and the `updated` date (Parquet: in table content) |
-| 28 | `python3 -m pytest tests/ -v` | The root suite (318 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
-| 29 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (124 tests) |
+| 28 | `python3 -m pytest tests/ -v` | The root suite (338 tests, pinned in `tests/test_counts.json`, including the architecture test and the index-vs-fixture test) |
+| 29 | `python3 -m pytest wrappers/python/tests/ -q` | The Python wrapper suite (126 tests) |
 | 30 | `build_introduced_snapshot.py --check` | `introduced_snapshot.json` differing from what its generator produces (the hand-written sibling `.meta.json` is checked by `check_introduced_meta.py`) |
 | 31 | `build_club_snapshots.py --check` | A club snapshot or its `.meta.json` differing from what the generator produces |
 | 32 | `bash tests/test_release_force.sh` | A regression in `release.sh --force` resume mode or in the gate's fail-closed behavior: 9 scenarios in a throwaway repository, two of them mutations that must be caught, two that refuse a commit on top of the release commit and an uncommitted regeneration |
@@ -963,12 +963,12 @@ The gate is not the whole test surface. The JavaScript suite (`npm test`), the G
 
 | Suite | Command | Tests |
 |-------|---------|------:|
-| Root (Python) | `python3 -m pytest tests/ -q` | 318 |
-| Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 124 |
-| JavaScript | `(cd wrappers/javascript && node --test)` | 111 |
-| Rust | `(cd wrappers/rust && cargo test)` | 41 (18 unit, 20 integration, 3 doc) |
-| Go | `(cd wrappers/go && go test ./...)` | 52 |
-| **Total** | | **646** |
+| Root (Python) | `python3 -m pytest tests/ -q` | 338 |
+| Python wrapper | `(cd wrappers/python && python3 -m pytest tests -q)` | 126 |
+| JavaScript | `(cd wrappers/javascript && node --test)` | 113 |
+| Rust | `(cd wrappers/rust && cargo test)` | 43 (20 unit, 20 integration, 3 doc) |
+| Go | `(cd wrappers/go && go test ./...)` | 54 |
+| **Total** | | **674** |
 
 Every number is a test run: `pytest` (the root count is pinned in `tests/test_counts.json`), `npm test`, `cargo test` and `go test -v`. This table is also the source of `counts.tests` in `registry_release.json`: `tools/gen_registry_release.py` reads its leading integers, so a change here needs the manifest regenerated.
 
@@ -1122,12 +1122,12 @@ iso3166/
   registry_release.json                     # Release manifest: 16 artifacts with sizes and SHA-256 digests (generated; version site 11)
   registry_release.schema.json              # JSON Schema (draft 2020-12) for registry_release.json
   countries_by_region.parquet               # AGGREGATED: 30 rows, grain (region, subregion)
-  iso3166.csv                               # CURATED: CSV, RFC 4180, 24 columns
+  iso3166.csv                               # CURATED: CSV, RFC 4180, 26 columns
   iso3166.european.csv                      # CURATED: CSV, semicolon-delimited
   iso3166.excel.csv                         # CURATED: CSV with UTF-8 BOM
   iso3166.json                              # RAW: the registry (252 active, 25 withdrawn)
   iso3166.mysql.sql                         # CURATED: SQL, MySQL 8+ / MariaDB 10.4+
-  iso3166.parquet                           # CURATED: Parquet, 24 columns (version site: footer)
+  iso3166.parquet                           # CURATED: Parquet, 26 columns (version site: footer)
   iso3166.postgresql.sql                    # CURATED: SQL, PostgreSQL 12+
   iso3166.sql                               # CURATED: SQL, ANSI SQL-92 (portable)
   iso3166.sqlite.sql                        # CURATED: SQL, SQLite 3.37+
@@ -1176,6 +1176,7 @@ iso3166/
       v1.5.0-scope.md                       # v1.5.0 scope: reconnaissance of the remaining fields
       v1.9.2-amendments.md                  # Where the tree no longer matches the v1.0.0 decisions
       v1.9.3-version-policy.md              # Version strings in PROVENANCE.md and CONTRIBUTING.md
+      withdrawn-alpha4.md                   # ADR: ISO 3166-3 alpha-4, reservation, CSHH deferred to v2.0.0
       withdrawn-codes.md                    # ADR: withdrawn codes and successors
   examples/
     README.md                               # What each example proves; real versus synthetic data

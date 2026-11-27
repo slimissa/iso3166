@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/slimissa/iso3166/schema/1.0.0",
+  "$id": "https://github.com/slimissa/iso3166/schema/1.1.0",
   "title": "ISO 3166 Country Registry",
   "description": "A canonical, versioned, machine-readable registry of ISO 3166 country codes.",
   "type": "object",
@@ -111,6 +111,15 @@
       "properties": {
         "alpha_2": { "$ref": "#/definitions/alpha2" },
         "alpha_3": { "$ref": "#/definitions/alpha3" },
+        "alpha_4": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Z]{4}$",
+          "description": "ISO 3166-3 four-letter code of a withdrawn entry (e.g. AIDJ, CSXX), or null when no ISO page shows it. Withdrawn entries only. See docs/decisions/withdrawn-alpha4.md."
+        },
+        "reservation": {
+          "enum": ["exceptionally-reserved", "transitionally-reserved", null],
+          "description": "Withdrawn entries only: the status ISO 3166-1 shows today for the entry's alpha-2 on its ISO Online Browsing Platform page. exceptionally-reserved or transitionally-reserved: ISO still reserves the alpha-2. null: ISO shows this entry as formerly used, with no current reservation of its alpha-2. It does not change status, which stays withdrawn. See docs/decisions/withdrawn-alpha4.md."
+        },
         "numeric": { "$ref": "#/definitions/numeric" },
         "name": {
           "type": "string",
@@ -207,6 +216,7 @@
         { "$ref": "#/definitions/commonFields" },
         {
           "required": ["eu_membership", "eea_membership", "eurozone_membership", "customs_union"],
+          "not": { "anyOf": [{ "required": ["alpha_4"] }, { "required": ["reservation"] }] },
           "properties": {
             "status": {
               "enum": [
@@ -225,7 +235,7 @@
       "allOf": [
         { "$ref": "#/definitions/commonFields" },
         {
-          "required": ["withdrawal_date"],
+          "required": ["withdrawal_date", "alpha_4", "reservation"],
           "not": {
             "anyOf": [
               { "required": ["eu_membership"] },

@@ -207,6 +207,16 @@ pub struct Country {
     pub replaced_by: Option<Vec<String>>,
     #[serde(default)]
     pub introduced: Option<String>,
+    /// ISO 3166-3 four-letter code of a withdrawn entry (v1.14.0); `None` on
+    /// active entries and where no ISO page shows it.
+    #[serde(default)]
+    pub alpha_4: Option<String>,
+    /// Status ISO 3166-1 shows today for a withdrawn entry's alpha-2
+    /// (v1.14.0): `"exceptionally-reserved"`, `"transitionally-reserved"`, or
+    /// `None` when ISO shows the entry as formerly used. `None` on active
+    /// entries; `status` stays `"withdrawn"` either way.
+    #[serde(default)]
+    pub reservation: Option<String>,
     // v1.12.0 club memberships (active entries only; absent = empty).
     #[serde(default)]
     pub(crate) eu_membership: Vec<MembershipRange>,
@@ -943,7 +953,9 @@ impl CountryRegistry {
     /// withdrawn entry has no sourced start date: `false` after
     /// `withdrawal_date`, `None` before 1974-01-01 (ISO 3166 did not
     /// exist), and `true` from 1974-01-01 up to and including
-    /// `withdrawal_date`.
+    /// `withdrawal_date`. A withdrawn entry whose `withdrawal_date` is null
+    /// (its ISO page gives none; v1.14.0) is `None`: `false` only before a
+    /// known `introduced`.
     ///
     /// `is_active_on("DE", "1990-01-01")` is `Some(true)`,
     /// `is_active_on("DE", "1970-01-01")` is `Some(false)` and
@@ -972,7 +984,13 @@ impl CountryRegistry {
         };
         let end = match wd.withdrawal_date.as_deref() {
             Some(d) => d,
-            None => return Some(false),
+            // End unknown (v1.14.0): the ISO page gives no date.
+            None => {
+                return match wd.introduced.as_deref() {
+                    Some(intro) if date < intro => Some(false),
+                    _ => None,
+                };
+            }
         };
         if date > end {
             return Some(false);
@@ -1040,6 +1058,64 @@ mod tests {
 
     fn reg() -> CountryRegistry {
         CountryRegistry::load().expect("load bundled registry")
+    }
+
+    /// v1.14.0: a withdrawn entry whose ISO page gives no withdrawal date.
+    #[test]
+    fn is_active_on_withdrawn_without_withdrawal_date_is_unknown() {
+        let mut data: serde_json::Value =
+            serde_json::from_str(BUNDLED_REGISTRY).expect("bundled registry is JSON");
+        for e in data["countries"]["withdrawn"].as_array_mut().expect("withdrawn list") {
+            match e["alpha_2"].as_str() {
+                Some("NT") => {
+                    e["withdrawal_date"] = serde_json::Value::Null;
+                    e["alpha_4"] = "NTHH".into();
+                    e["introduced"] = serde_json::Value::Null;
+                }
+                Some("MI") => {
+                    e["withdrawal_date"] = serde_json::Value::Null;
+                    e["alpha_4"] = "MIUM".into();
+                    e["introduced"] = "1975-01-01".into();
+                }
+                _ => {}
+            }
+        }
+        let dir = std::env::temp_dir().join(format!("iso3166-undated-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).expect("temp dir");
+        let path = dir.join("iso3166.json");
+        std::fs::write(&path, data.to_string()).expect("write temp registry");
+        let r = CountryRegistry::load_from(&path).expect("load temp registry");
+        assert_eq!(r.is_active_on("NT", "1980-01-01").unwrap(), None);
+        assert_eq!(r.is_active_on("NT", "2025-01-01").unwrap(), None);
+        assert_eq!(r.is_active_on("MI", "1974-06-01").unwrap(), Some(false));
+        assert_eq!(r.is_active_on("MI", "1980-01-01").unwrap(), None);
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn alpha_4_and_reservation_on_withdrawn_entries_only() {
+        type Pair = (Option<String>, Option<String>);
+        let data: serde_json::Value =
+            serde_json::from_str(BUNDLED_REGISTRY).expect("bundled registry is JSON");
+        let want: std::collections::BTreeMap<String, Pair> = data["countries"]["withdrawn"]
+            .as_array()
+            .expect("withdrawn list")
+            .iter()
+            .map(|e| {
+                (
+                    e["alpha_2"].as_str().unwrap().to_string(),
+                    (e["alpha_4"].as_str().map(String::from), e["reservation"].as_str().map(String::from)),
+                )
+            })
+            .collect();
+        let r = reg();
+        let got: std::collections::BTreeMap<String, Pair> = r
+            .all_withdrawn()
+            .iter()
+            .map(|c| (c.alpha_2.clone(), (c.alpha_4.clone(), c.reservation.clone())))
+            .collect();
+        assert_eq!(got, want);
+        assert!(r.all_active().iter().all(|c| c.alpha_4.is_none() && c.reservation.is_none()));
     }
 
     #[test]

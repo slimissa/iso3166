@@ -88,6 +88,8 @@ COLUMNS = (
     "replaced_by",
     "introduced",
     *CLUB_COLUMNS,
+    "alpha_4",  # v1.14.0: trailing, so existing column positions do not move
+    "reservation",  # v1.14.0: withdrawn rows only (empty on active rows)
 )
 
 
@@ -176,6 +178,8 @@ def build_table(reg: dict[str, Any]):
         pa.field("eea_membership",      pa.string()),
         pa.field("eurozone_membership", pa.string()),
         pa.field("customs_union",       pa.string()),
+        pa.field("alpha_4",             pa.string()),
+        pa.field("reservation",         pa.string()),
     ]
 
     schema = pa.schema(fields)

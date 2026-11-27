@@ -95,6 +95,11 @@ VALID_STATUSES = {
     "withdrawn",
 }
 ACTIVE_STATUSES = {"officially-assigned", "user-assigned", "exceptionally-reserved"}
+# reservation (v1.14.0, withdrawn entries only): the status ISO 3166-1 shows
+# today for the entry's alpha-2, or null when ISO shows the entry as formerly
+# used. It never changes `status`, which stays `withdrawn`. See
+# docs/decisions/withdrawn-alpha4.md.
+RESERVATIONS = ("exceptionally-reserved", "transitionally-reserved")
 
 # Northern America has 5 entries: BM, CA, GL, PM, US. CA and US are
 # sovereign; BM, GL, PM are dependencies. If a future entry is added to
@@ -107,6 +112,8 @@ OPTIONAL_STRING_FIELDS = ("official_name", "region", "subregion", "intermediate_
 
 ALPHA_2_RE = re.compile(r"^[A-Z]{2}$")
 ALPHA_3_RE = re.compile(r"^[A-Z]{3}$")
+ALPHA_4_RE = re.compile(r"^[A-Z]{4}$")
+SCHEMA_ID_RE = re.compile(r"/schema/(\d+\.\d+\.\d+)$")
 NUMERIC_RE = re.compile(r"^[0-9]{3}$")
 ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 TLD_RE = re.compile(r"^\.[a-z]{2,}$")
@@ -222,6 +229,15 @@ def layer_schema(reg: dict[str, Any], *, schema_path: Path) -> LayerResult:
         path = ".".join(str(p) for p in err.absolute_path) or "<root>"
         r.error(f"{path}: {err.message}")
 
+    # meta.schema_version names the schema the data conforms to: it must be
+    # the version in schema.json's $id (v1.14.0).
+    m = SCHEMA_ID_RE.search(str(schema.get("$id", "")))
+    declared = reg.get("meta", {}).get("schema_version")
+    if m is None:
+        r.error(f"schema.json $id {schema.get('$id')!r} does not end in /schema/X.Y.Z")
+    elif declared != m.group(1):
+        r.error(f"meta.schema_version {declared!r} != schema.json $id version {m.group(1)!r}")
+
     if not r.errors:
         active = len(reg.get("countries", {}).get("active", []))
         withdrawn = len(reg.get("countries", {}).get("withdrawn", []))
@@ -305,6 +321,31 @@ def layer_integrity(
                 r.error(f"{where}: alpha_3 {entry['alpha_3']!r} does not match ^[A-Z]{{3}}$")
             if "numeric" in entry and not NUMERIC_RE.fullmatch(entry["numeric"] or ""):
                 r.error(f"{where}: numeric {entry['numeric']!r} does not match ^[0-9]{{3}}$")
+
+            # reservation (v1.14.0): withdrawn entries only, key required,
+            # one of RESERVATIONS or null.
+            if section == "active":
+                if "reservation" in entry:
+                    r.error(f"{where}: reservation is only allowed on withdrawn entries")
+            elif "reservation" not in entry:
+                r.error(f"{where}: missing reservation (use null when ISO shows no current reservation)")
+            elif entry["reservation"] is not None and entry["reservation"] not in RESERVATIONS:
+                r.error(f"{where}: reservation {entry['reservation']!r} is not one of "
+                        f"{list(RESERVATIONS)} or null")
+
+            # alpha_4 (v1.14.0): withdrawn entries only, key required, the
+            # ISO 3166-3 code or null; it starts with the entry's alpha_2.
+            if section == "active":
+                if "alpha_4" in entry:
+                    r.error(f"{where}: alpha_4 is only allowed on withdrawn entries")
+            elif "alpha_4" not in entry:
+                r.error(f"{where}: missing alpha_4 (use null when no ISO page shows it)")
+            elif entry["alpha_4"] is not None:
+                a4 = entry["alpha_4"]
+                if not isinstance(a4, str) or not ALPHA_4_RE.fullmatch(a4):
+                    r.error(f"{where}: alpha_4 {a4!r} does not match ^[A-Z]{{4}}$")
+                elif not a4.startswith(str(entry.get("alpha_2", ""))):
+                    r.error(f"{where}: alpha_4 {a4!r} does not start with alpha_2 {entry.get('alpha_2')!r}")
 
             # Types.
             if "independent" in entry and not isinstance(entry["independent"], bool):
@@ -425,9 +466,9 @@ def layer_business(reg: dict[str, Any], *, strict_independent: bool = False) -> 
     active = countries.get("active", [])
     withdrawn = countries.get("withdrawn", [])
 
-    # Uniqueness within each section.
+    # Uniqueness within each section (alpha_4 exists on withdrawn only).
     for section_name, section in (("active", active), ("withdrawn", withdrawn)):
-        for field in ("alpha_2", "alpha_3"):
+        for field in ("alpha_2", "alpha_3", "alpha_4"):
             codes = [e.get(field) for e in section if e.get(field)]
             dupes = sorted({c for c, n in Counter(codes).items() if n > 1})
             if dupes:
@@ -444,8 +485,14 @@ def layer_business(reg: dict[str, Any], *, strict_independent: bool = False) -> 
             r.error(f"active[{i}] ({e.get('alpha_2')}): replaced_by must be null")
 
     for i, e in enumerate(withdrawn):
+        a2 = e.get("alpha_2")
         if e.get("status") != "withdrawn":
-            r.error(f"withdrawn[{i}] ({e.get('alpha_2')}): status must be 'withdrawn'")
+            r.error(f"withdrawn[{i}] ({a2}): status must be 'withdrawn'")
+        # withdrawal_date: a date, or null only on an entry that carries its
+        # ISO 3166-3 alpha_4 (the ISO page exists and gives no date).
+        if not e.get("withdrawal_date") and not e.get("alpha_4"):
+            r.error(f"withdrawn[{i}] ({a2}): withdrawal_date is required "
+                    f"(null only with an ISO 3166-3 alpha_4)")
 
     # Northern America must be sovereign unless listed as a dependency
     # (see NORTHERN_AMERICA_DEPENDENCIES). Warn-only until the v1.7.3 data
@@ -467,8 +514,6 @@ def layer_business(reg: dict[str, Any], *, strict_independent: bool = False) -> 
         else:
             r.warn(msg + "; warn-only until the data commit, "
                          "pass --strict-independent to block")
-        if not e.get("withdrawal_date"):
-            r.error(f"withdrawn[{i}] ({e.get('alpha_2')}): withdrawal_date is required")
 
     # Self-reference: replaced_by must not contain the entry's own alpha_2.
     for e in withdrawn:
@@ -672,22 +717,30 @@ def layer_ground_truth(reg: dict[str, Any]) -> LayerResult:
     r = LayerResult("ground-truth")
     countries = reg.get("countries", {})
 
+    # Active entries are grouped by status. Withdrawn entries are grouped by
+    # section, and (v1.14.0) by their reservation.
     by_status: dict[str, set[str]] = {
         "officially-assigned": set(),
         "user-assigned": set(),
         "exceptionally-reserved": set(),
-        "withdrawn": set(),
     }
-    for section in ("active", "withdrawn"):
-        for e in countries.get(section, []):
-            status = e.get("status")
-            a2 = e.get("alpha_2")
-            if status in by_status and a2:
-                by_status[status].add(a2)
+    for e in countries.get("active", []):
+        status = e.get("status")
+        a2 = e.get("alpha_2")
+        if status in by_status and a2:
+            by_status[status].add(a2)
+    withdrawn_all = {e.get("alpha_2") for e in countries.get("withdrawn", []) if e.get("alpha_2")}
+    def reserved(kind: str) -> set[str]:
+        return {e.get("alpha_2") for e in countries.get("withdrawn", [])
+                if e.get("alpha_2") and e.get("reservation") == kind}
 
     pairs: list[tuple[str, frozenset[str], set[str]]] = [
         ("officially-assigned", parse_source.OFFICIAL_ISO3166_CODES, by_status["officially-assigned"]),
-        ("withdrawn", parse_source.WITHDRAWN_ISO3166_CODES, by_status["withdrawn"]),
+        ("withdrawn", parse_source.WITHDRAWN_ISO3166_CODES, withdrawn_all),
+        ("withdrawn reservation exceptionally-reserved",
+         parse_source.WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES, reserved("exceptionally-reserved")),
+        ("withdrawn reservation transitionally-reserved",
+         parse_source.WITHDRAWN_TRANSITIONAL_RESERVATION_CODES, reserved("transitionally-reserved")),
         ("exceptionally-reserved", parse_source.EXCEPTIONALLY_RESERVED_CODES, by_status["exceptionally-reserved"]),
         ("user-assigned", parse_source.USER_ASSIGNED_CODES, by_status["user-assigned"]),
     ]

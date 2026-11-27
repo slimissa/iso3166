@@ -484,7 +484,9 @@ class DerivedQueries:
         withdrawn entry has no sourced start date: it is False after
         ``withdrawal_date``, None before 1974-01-01 (ISO 3166 did not
         exist, so the registry cannot say), and True from 1974-01-01
-        up to and including ``withdrawal_date``.
+        up to and including ``withdrawal_date``. A withdrawn entry whose
+        ``withdrawal_date`` is null (its ISO page gives none; v1.14.0) is
+        None: False only before a known ``introduced``.
 
         >>> reg.is_active_on("DE", "1990-01-01")
         True
@@ -505,8 +507,13 @@ class DerivedQueries:
                 return None
             return date >= act.introduced
         wd = next((w for w in self._withdrawn if w.alpha_2 == c), None)
-        if wd is None or not wd.withdrawal_date:
+        if wd is None:
             return False
+        if not wd.withdrawal_date:
+            # End unknown (v1.14.0): the ISO page gives no date.
+            if wd.introduced is not None and date < wd.introduced:
+                return False
+            return None
         if date > wd.withdrawal_date:
             return False
         if wd.introduced is None:

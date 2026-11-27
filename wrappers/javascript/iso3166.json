@@ -10000,6 +10000,7 @@
       {
         "alpha_2": "AI",
         "alpha_3": "AFI",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10016,6 +10017,7 @@
         "replaced_by": [
           "DJ"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Eastern Africa",
         "tlds": null,
@@ -10024,6 +10026,7 @@
       {
         "alpha_2": "AN",
         "alpha_3": "ANT",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10042,6 +10045,7 @@
           "CW",
           "SX"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Caribbean",
         "tlds": null,
@@ -10050,6 +10054,7 @@
       {
         "alpha_2": "BU",
         "alpha_3": "BUR",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10066,6 +10071,7 @@
         "replaced_by": [
           "MM"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "South-eastern Asia",
         "tlds": null,
@@ -10074,6 +10080,7 @@
       {
         "alpha_2": "CS",
         "alpha_3": "SCG",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10091,6 +10098,7 @@
           "RS",
           "ME"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Southern Europe",
         "tlds": null,
@@ -10099,6 +10107,7 @@
       {
         "alpha_2": "CT",
         "alpha_3": "CTE",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10115,6 +10124,7 @@
         "replaced_by": [
           "KI"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10123,6 +10133,7 @@
       {
         "alpha_2": "DD",
         "alpha_3": "DDR",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10139,6 +10150,7 @@
         "replaced_by": [
           "DE"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Western Europe",
         "tlds": null,
@@ -10147,6 +10159,7 @@
       {
         "alpha_2": "DY",
         "alpha_3": "DHY",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10163,6 +10176,7 @@
         "replaced_by": [
           "BJ"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Western Africa",
         "tlds": null,
@@ -10171,6 +10185,7 @@
       {
         "alpha_2": "FQ",
         "alpha_3": "ATF",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10187,6 +10202,7 @@
         "replaced_by": [
           "TF"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10195,6 +10211,7 @@
       {
         "alpha_2": "HV",
         "alpha_3": "HVO",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10211,6 +10228,7 @@
         "replaced_by": [
           "BF"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Western Africa",
         "tlds": null,
@@ -10219,6 +10237,7 @@
       {
         "alpha_2": "JT",
         "alpha_3": "JTN",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10233,6 +10252,7 @@
         "official_name": null,
         "region": null,
         "replaced_by": null,
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10241,6 +10261,7 @@
       {
         "alpha_2": "MI",
         "alpha_3": "MID",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10255,6 +10276,7 @@
         "official_name": null,
         "region": null,
         "replaced_by": null,
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10263,6 +10285,7 @@
       {
         "alpha_2": "NH",
         "alpha_3": "NHB",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10279,6 +10302,7 @@
         "replaced_by": [
           "VU"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Melanesia",
         "tlds": null,
@@ -10287,6 +10311,7 @@
       {
         "alpha_2": "NQ",
         "alpha_3": "ATN",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10303,6 +10328,7 @@
         "replaced_by": [
           "AQ"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10311,6 +10337,7 @@
       {
         "alpha_2": "NT",
         "alpha_3": "NTZ",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10325,6 +10352,7 @@
         "official_name": null,
         "region": null,
         "replaced_by": null,
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Western Asia",
         "tlds": null,
@@ -10333,6 +10361,7 @@
       {
         "alpha_2": "PC",
         "alpha_3": "PCI",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10352,6 +10381,7 @@
           "MP",
           "PW"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Micronesia",
         "tlds": null,
@@ -10360,6 +10390,7 @@
       {
         "alpha_2": "PZ",
         "alpha_3": "PCZ",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10376,6 +10407,7 @@
         "replaced_by": [
           "PA"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Central America",
         "tlds": null,
@@ -10384,6 +10416,7 @@
       {
         "alpha_2": "RH",
         "alpha_3": "RHO",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10400,6 +10433,7 @@
         "replaced_by": [
           "ZW"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Eastern Africa",
         "tlds": null,
@@ -10408,6 +10442,7 @@
       {
         "alpha_2": "SK",
         "alpha_3": "SKM",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10424,6 +10459,7 @@
         "replaced_by": [
           "IN"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Southern Asia",
         "tlds": null,
@@ -10432,6 +10468,7 @@
       {
         "alpha_2": "SU",
         "alpha_3": "SUN",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10446,6 +10483,7 @@
         "official_name": null,
         "region": null,
         "replaced_by": null,
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10454,6 +10492,7 @@
       {
         "alpha_2": "TP",
         "alpha_3": "TMP",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10470,6 +10509,7 @@
         "replaced_by": [
           "TL"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "South-eastern Asia",
         "tlds": null,
@@ -10478,6 +10518,7 @@
       {
         "alpha_2": "VD",
         "alpha_3": "VDR",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10494,6 +10535,7 @@
         "replaced_by": [
           "VN"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "South-eastern Asia",
         "tlds": null,
@@ -10502,6 +10544,7 @@
       {
         "alpha_2": "WK",
         "alpha_3": "WAK",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10516,6 +10559,7 @@
         "official_name": null,
         "region": null,
         "replaced_by": null,
+        "reservation": null,
         "status": "withdrawn",
         "subregion": null,
         "tlds": null,
@@ -10524,6 +10568,7 @@
       {
         "alpha_2": "YD",
         "alpha_3": "YMD",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10540,6 +10585,7 @@
         "replaced_by": [
           "YE"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Western Asia",
         "tlds": null,
@@ -10548,6 +10594,7 @@
       {
         "alpha_2": "YU",
         "alpha_3": "YUG",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10564,6 +10611,7 @@
         "replaced_by": [
           "CS"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Southern Europe",
         "tlds": null,
@@ -10572,6 +10620,7 @@
       {
         "alpha_2": "ZR",
         "alpha_3": "ZAR",
+        "alpha_4": null,
         "borders": null,
         "calling_codes": null,
         "currency_codes": null,
@@ -10588,6 +10637,7 @@
         "replaced_by": [
           "CD"
         ],
+        "reservation": null,
         "status": "withdrawn",
         "subregion": "Middle Africa",
         "tlds": null,
@@ -10598,7 +10648,7 @@
   "meta": {
     "count_active": 252,
     "count_withdrawn": 25,
-    "schema_version": "1.0.0",
+    "schema_version": "1.1.0",
     "source": "ISO 3166-1:2020 (cross-checked against UN M49)",
     "updated": "2026-11-26",
     "version": "1.13.0"

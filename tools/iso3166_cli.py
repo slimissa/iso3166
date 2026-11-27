@@ -1100,8 +1100,12 @@ def _dq_is_active_on(reg, code, date):
         return None if intro is None else date >= intro
     wd = next((w for w in reg["countries"]["withdrawn"]
                if w["alpha_2"] == code), None)
-    if wd is None or not wd.get("withdrawal_date"):
+    if wd is None:
         return False
+    if not wd.get("withdrawal_date"):
+        # End unknown (v1.14.0): the ISO page gives no date.
+        intro = wd.get("introduced")
+        return False if intro is not None and date < intro else None
     if date > wd["withdrawal_date"]:
         return False
     intro = wd.get("introduced")

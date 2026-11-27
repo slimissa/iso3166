@@ -1,6 +1,9 @@
 package iso3166
 
 import (
+	"encoding/json"
+	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 )
@@ -105,4 +108,107 @@ func TestActiveOn1990(t *testing.T) {
 	if _, err := r.ActiveOn("1990-13-01"); err == nil {
 		t.Error("malformed date must return an error")
 	}
+}
+
+// v1.14.0: a withdrawn entry whose ISO page gives no withdrawal date.
+func TestIsActiveOnWithdrawnWithoutWithdrawalDateIsUnknown(t *testing.T) {
+	raw, err := os.ReadFile("iso3166.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var data map[string]any
+	if err := json.Unmarshal(raw, &data); err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range data["countries"].(map[string]any)["withdrawn"].([]any) {
+		m := e.(map[string]any)
+		switch m["alpha_2"] {
+		case "NT":
+			m["withdrawal_date"], m["alpha_4"], m["introduced"] = nil, "NTHH", nil
+		case "MI":
+			m["withdrawal_date"], m["alpha_4"], m["introduced"] = nil, "MIUM", "1975-01-01"
+		}
+	}
+	out, _ := json.Marshal(data)
+	path := filepath.Join(t.TempDir(), "iso3166.json")
+	if err := os.WriteFile(path, out, 0o644); err != nil {
+		t.Fatal(err)
+	}
+	r, err := LoadFrom(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, c := range []struct {
+		code, date string
+		want       *bool
+	}{
+		{"NT", "1980-01-01", nil}, {"NT", "2025-01-01", nil},
+		{"MI", "1974-06-01", ptrBool(false)}, {"MI", "1980-01-01", nil},
+	} {
+		got, err := r.IsActiveOn(c.code, c.date)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if (got == nil) != (c.want == nil) || (got != nil && *got != *c.want) {
+			t.Errorf("IsActiveOn(%s, %s) = %v, want %v", c.code, c.date, fmtBool(got), fmtBool(c.want))
+		}
+	}
+}
+
+func TestAlpha4AndReservationOnWithdrawnEntriesOnly(t *testing.T) {
+	r := mustLoad(t)
+	raw, err := os.ReadFile("iso3166.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var data struct {
+		Countries struct {
+			Withdrawn []struct {
+				Alpha2      string  `json:"alpha_2"`
+				Alpha4      *string `json:"alpha_4"`
+				Reservation *string `json:"reservation"`
+			} `json:"withdrawn"`
+		} `json:"countries"`
+	}
+	if err := json.Unmarshal(raw, &data); err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]string{}
+	for _, w := range data.Countries.Withdrawn {
+		want[w.Alpha2] = fmtStr(w.Alpha4) + "/" + fmtStr(w.Reservation)
+	}
+	got := map[string]string{}
+	for _, c := range r.AllWithdrawn() {
+		got[c.Alpha2] = fmtStr(c.Alpha4) + "/" + fmtStr(c.Reservation)
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("withdrawn alpha_4/reservation = %v, want %v", got, want)
+	}
+	for _, c := range r.AllActive() {
+		if c.Alpha4 != nil {
+			t.Errorf("active %s has alpha_4 %q", c.Alpha2, *c.Alpha4)
+		}
+		if c.Reservation != nil {
+			t.Errorf("active %s has reservation %q", c.Alpha2, *c.Reservation)
+		}
+	}
+}
+
+func ptrBool(b bool) *bool { return &b }
+
+func fmtBool(b *bool) string {
+	if b == nil {
+		return "nil"
+	}
+	if *b {
+		return "true"
+	}
+	return "false"
+}
+
+func fmtStr(s *string) string {
+	if s == nil {
+		return "<nil>"
+	}
+	return *s
 }

@@ -100,3 +100,35 @@ def test_active_on_raises_on_a_malformed_date(reg):
     import pytest
     with pytest.raises(ValueError, match="malformed date"):
         reg.active_on("1990-13-01")
+
+
+# v1.14.0: a withdrawn entry whose ISO page gives no withdrawal date.
+def _undated_registry(tmp_path):
+    import json
+    from importlib import resources
+    data = json.loads(resources.files("iso3166").joinpath("iso3166.json").read_text(encoding="utf-8"))
+    for e in data["countries"]["withdrawn"]:
+        if e["alpha_2"] == "NT":
+            e.update(withdrawal_date=None, alpha_4="NTHH", introduced=None)
+        if e["alpha_2"] == "MI":
+            e.update(withdrawal_date=None, alpha_4="MIUM", introduced="1975-01-01")
+    p = tmp_path / "iso3166.json"
+    p.write_text(json.dumps(data), encoding="utf-8")
+    return CountryRegistry(p)
+
+
+def test_is_active_on_a_withdrawn_entry_without_withdrawal_date_is_unknown(tmp_path):
+    r = _undated_registry(tmp_path)
+    assert r.is_active_on("NT", "1980-01-01") is None
+    assert r.is_active_on("NT", "2025-01-01") is None
+    assert r.is_active_on("MI", "1974-06-01") is False   # before a known introduced
+    assert r.is_active_on("MI", "1980-01-01") is None
+
+
+def test_alpha_4_and_reservation_are_carried_by_withdrawn_entries_only(reg):
+    import json
+    from importlib import resources
+    data = json.loads(resources.files("iso3166").joinpath("iso3166.json").read_text(encoding="utf-8"))
+    want = {e["alpha_2"]: (e["alpha_4"], e["reservation"]) for e in data["countries"]["withdrawn"]}
+    assert {c.alpha_2: (c.alpha_4, c.reservation) for c in reg.all_withdrawn()} == want
+    assert all(c.alpha_4 is None and c.reservation is None for c in reg.all_active())

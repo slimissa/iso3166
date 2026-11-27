@@ -334,7 +334,9 @@ const DerivedQueries = {
    * Active entries are resolved first (AI and SK exist twice). A
    * withdrawn entry has no sourced start date: false after
    * `withdrawal_date`, null before 1974-01-01 (ISO 3166 did not exist),
-   * and true from 1974-01-01 up to and including `withdrawal_date`.
+   * and true from 1974-01-01 up to and including `withdrawal_date`. A
+   * withdrawn entry whose `withdrawal_date` is null (its ISO page gives
+   * none; v1.14.0) is null: false only before a known `introduced`.
    *
    *   isActiveOn("DE", "1990-01-01") // true
    *   isActiveOn("DE", "1970-01-01") // false
@@ -353,7 +355,12 @@ const DerivedQueries = {
       return date >= act.introduced;
     }
     const wd = this._withdrawn.find((w) => w.alpha_2 === c);
-    if (!wd || !wd.withdrawal_date) return false;
+    if (!wd) return false;
+    if (!wd.withdrawal_date) {
+      // End unknown (v1.14.0): the ISO page gives no date.
+      if (wd.introduced != null && date < wd.introduced) return false;
+      return null;
+    }
     if (date > wd.withdrawal_date) return false;
     if (wd.introduced == null) {
       // Start unknown: ISO 3166 began in 1974, so nothing earlier is known.

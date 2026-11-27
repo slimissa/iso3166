@@ -104,6 +104,8 @@ COLUMNS = (
     "replaced_by",
     "introduced",
     *CLUB_COLUMNS,
+    "alpha_4",  # v1.14.0: trailing, so existing column positions do not move
+    "reservation",  # v1.14.0: withdrawn rows only (empty on active rows)
 )
 
 

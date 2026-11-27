@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `alpha_4` on every withdrawn entry: the ISO 3166-3 four-letter code (`AIDJ`, `CSXX`), or null where no ISO page shows it. Active entries do not carry it. `schema.json` (pattern `^[A-Z]{4}$`, required on withdrawn entries, refused on active ones) and `tools/validate.py` (it starts with the entry's alpha-2 and is unique in the withdrawn list) check it. The four wrappers expose it (`Country.alpha_4`, `Alpha4`); the flat exports gain it as their last column, so no column moves. `docs/decisions/withdrawn-alpha4.md` records the decisions.
+- `reservation` on every withdrawn entry: the status ISO 3166-1 shows today for its alpha-2, `exceptionally-reserved` or `transitionally-reserved`, or null when ISO shows the entry as formerly used, with no current reservation of its alpha-2. Active entries do not carry it, and `status` gains no value: every withdrawn entry keeps `withdrawn`. A status value would have collided with the active `exceptionally-reserved` of EU and UK, which the flat exports, the SQL active filter and every wrapper's `is_active` read as active. `schema.json` and `tools/validate.py` check the vocabulary; `tools/parse_source.py` lists the codes for each value, and the ground-truth layer compares them with the data. The four wrappers expose it (`Country.reservation`, `Reservation`); the flat exports gain it after `alpha_4`.
+- `tools/validate.py` checks that `meta.schema_version` equals the version in `schema.json`'s `$id`. `tests/test_validate_withdrawn_alpha4.py` has a negative case per new rule.
+
+### Changed
+
+- `schema.json` is version 1.1.0 (was 1.0.0), and `meta.schema_version` follows. The change is additive.
+- A withdrawn entry may have a null `withdrawal_date` when it carries its ISO 3166-3 `alpha_4` (its ISO page exists and gives no date). `is_active_on` answers null (unknown) for such an entry, and false only before a known `introduced`, in all four wrappers.
+
+### Fixed
+
+- `tools/validate.py`'s "withdrawal_date is required" check never ran: it sat inside the Northern America block and tested a stale loop variable. It now runs on every withdrawn entry.
+
 ## [1.13.0] — 2026-11-25
 
 `introduced` now carries its evidence code by code. A ledger records, for each of the 275 snapshot keys, what kind of source stands behind the value and which document, and only an ISO document can set a date. Six dates are now held on ISO's own Online Browsing Platform, and nine more on the ISO 3166-1 newsletters of series V, which also date the withdrawn `CS`. A local checkout now installs and tests like CI, every snapshot uses one cadence vocabulary, and three docs carry a recheck date that CI enforces.

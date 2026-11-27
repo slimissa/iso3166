@@ -19,7 +19,8 @@ def test_csv_matches_fixture_columns():
         "official_name,region,subregion,intermediate_region,"
         "currency_codes,calling_codes,tlds,languages,borders,"
         "note,last_verified,withdrawal_date,replaced_by,introduced,"
-        "eu_membership,eea_membership,eurozone_membership,customs_union"
+        "eu_membership,eea_membership,eurozone_membership,customs_union,"
+        "alpha_4,reservation"
     )
     assert header == expected, f"\n got: {header}\nwant: {expected}"
 

@@ -130,8 +130,10 @@ CSV_COLUMNS = (
     "currency_codes", "calling_codes", "tlds", "languages", "borders",
     "note", "last_verified", "withdrawal_date", "replaced_by", "introduced",
     "eu_membership", "eea_membership", "eurozone_membership", "customs_union",
+    "alpha_4",
+    "reservation",
 )
-_CLUB_CSV_COLUMNS = CSV_COLUMNS[-4:]
+_CLUB_CSV_COLUMNS = ("eu_membership", "eea_membership", "eurozone_membership", "customs_union")
 
 
 def csv_render_row(entry, reg=None):
@@ -249,8 +251,14 @@ def resolve_color_enabled(flag: str | None, stream) -> bool:
 # ============================================================
 
 def _entry(c: Country) -> dict[str, Any]:
-    """A Country as a plain dict: tuples become lists, keys keep order."""
-    return {k: (list(v) if isinstance(v, tuple) else v) for k, v in asdict(c).items()}
+    """A Country as a plain dict: tuples become lists, keys keep order.
+    ``alpha_4`` and ``reservation`` exist on withdrawn entries only, as in
+    iso3166.json."""
+    d = {k: (list(v) if isinstance(v, tuple) else v) for k, v in asdict(c).items()}
+    if c.is_active:
+        del d["alpha_4"]
+        del d["reservation"]
+    return d
 
 
 def _entries(countries: Iterable[Country]) -> list[dict[str, Any]]:

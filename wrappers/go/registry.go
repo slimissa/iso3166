@@ -62,6 +62,14 @@ type Country struct {
 	WithdrawalDate     *string  `json:"withdrawal_date"`
 	ReplacedBy         []string `json:"replaced_by"`
 	Introduced         *string  `json:"introduced"`
+	// Alpha4 is the ISO 3166-3 four-letter code of a withdrawn entry
+	// (v1.14.0); nil on active entries and where no ISO page shows it.
+	Alpha4 *string `json:"alpha_4"`
+	// Reservation is the status ISO 3166-1 shows today for a withdrawn
+	// entry's alpha-2 (v1.14.0): "exceptionally-reserved",
+	// "transitionally-reserved", or nil when ISO shows the entry as formerly
+	// used. nil on active entries. Status stays "withdrawn" either way.
+	Reservation *string `json:"reservation"`
 }
 
 // Exists reports whether the Country came from a successful lookup. The
@@ -79,6 +87,8 @@ func (c *Country) clone() Country {
 	out.LastVerified = cloneStringPtr(c.LastVerified)
 	out.WithdrawalDate = cloneStringPtr(c.WithdrawalDate)
 	out.Introduced = cloneStringPtr(c.Introduced)
+	out.Alpha4 = cloneStringPtr(c.Alpha4)
+	out.Reservation = cloneStringPtr(c.Reservation)
 	out.CurrencyCodes = cloneStrings(c.CurrencyCodes)
 	out.CallingCodes = cloneStrings(c.CallingCodes)
 	out.TLDs = cloneStrings(c.TLDs)
@@ -778,7 +788,9 @@ func ValidDate(s string) bool {
 // is nil. Active entries are resolved first (AI and SK exist twice). A
 // withdrawn entry has no sourced start date: false after
 // withdrawal_date, nil before 1974-01-01 (ISO 3166 did not exist), and
-// true from 1974-01-01 up to and including withdrawal_date.
+// true from 1974-01-01 up to and including withdrawal_date. A withdrawn
+// entry whose withdrawal_date is nil (its ISO page gives none; v1.14.0) is
+// nil: false only before a known Introduced.
 // See docs/QUERIES.md, "Query 9".
 //
 //	IsActiveOn("DE", "1990-01-01") // true
@@ -807,7 +819,17 @@ func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 			break
 		}
 	}
-	if wd == nil || wd.WithdrawalDate == nil || date > *wd.WithdrawalDate {
+	if wd == nil {
+		return &no, nil
+	}
+	if wd.WithdrawalDate == nil {
+		// End unknown (v1.14.0): the ISO page gives no date.
+		if wd.Introduced != nil && date < *wd.Introduced {
+			return &no, nil
+		}
+		return nil, nil
+	}
+	if date > *wd.WithdrawalDate {
 		return &no, nil
 	}
 	if wd.Introduced != nil {

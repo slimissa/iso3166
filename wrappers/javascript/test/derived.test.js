@@ -69,3 +69,33 @@ test("bordersTransitively defaults to 2 hops", () => {
   assert.notDeepEqual(dflt, [...reg.bordersTransitively("US", 1)]);
   assert.ok(dflt.length > reg.bordersTransitively("US", 1).length);
 });
+
+// v1.14.0: a withdrawn entry whose ISO page gives no withdrawal date.
+test("isActiveOn: a withdrawn entry without withdrawal_date is unknown", () => {
+  const fs = require("node:fs");
+  const os = require("node:os");
+  const path = require("node:path");
+  const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "iso3166.json"), "utf8"));
+  for (const e of data.countries.withdrawn) {
+    if (e.alpha_2 === "NT") Object.assign(e, { withdrawal_date: null, alpha_4: "NTHH", introduced: null });
+    if (e.alpha_2 === "MI") Object.assign(e, { withdrawal_date: null, alpha_4: "MIUM", introduced: "1975-01-01" });
+  }
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "iso3166-"));
+  const file = path.join(dir, "iso3166.json");
+  fs.writeFileSync(file, JSON.stringify(data));
+  const r = new CountryRegistry(file);
+  assert.equal(r.isActiveOn("NT", "1980-01-01"), null);
+  assert.equal(r.isActiveOn("NT", "2025-01-01"), null);
+  assert.equal(r.isActiveOn("MI", "1974-06-01"), false);
+  assert.equal(r.isActiveOn("MI", "1980-01-01"), null);
+});
+
+test("alpha_4 and reservation are carried by withdrawn entries only", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const data = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "iso3166.json"), "utf8"));
+  const want = Object.fromEntries(data.countries.withdrawn.map((e) => [e.alpha_2, [e.alpha_4, e.reservation]]));
+  const got = Object.fromEntries(reg.allWithdrawn().map((c) => [c.alpha_2, [c.alpha_4, c.reservation]]));
+  assert.deepEqual(got, want);
+  assert.ok(reg.allActive().every((c) => c.alpha_4 === null && c.reservation === null));
+});

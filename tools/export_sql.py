@@ -96,6 +96,8 @@ COUNTRY_COLUMNS = (
     "replaced_by",
     "introduced",
     *CLUB_COLUMNS,
+    "alpha_4",  # v1.14.0: trailing, so existing column positions do not move
+    "reservation",  # v1.14.0: withdrawn rows only (empty on active rows)
 )
 
 
@@ -231,6 +233,8 @@ def country_types(dialect: str) -> dict[str, str]:
         "eea_membership":      "VARCHAR(80)",
         "eurozone_membership": "VARCHAR(80)",
         "customs_union":       "VARCHAR(80)",
+        "alpha_4":             "CHAR(4)",
+        "reservation":         "VARCHAR(30)",
     }
 
     if dialect in ("ansi", "postgresql"):
@@ -332,7 +336,9 @@ def generate(dialect: str, reg: dict[str, Any]) -> str:
     # because of reassigned codes (AI, SK). A currency code refers to
     # the country's currently-active entry. Consumers joining should
     # filter on status = 'officially-assigned' or 'user-assigned' or
-    # 'exceptionally-reserved' as appropriate.
+    # 'exceptionally-reserved' as appropriate. Withdrawn rows have status
+    # 'withdrawn'; since v1.14.0 their `reservation` column says whether ISO
+    # still reserves the alpha-2.
     parts.append(")")
     if dialect == "mysql":
         parts.append(" ENGINE=InnoDB DEFAULT CHARSET=utf8mb4")

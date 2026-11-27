@@ -36,9 +36,17 @@ OFFICIAL_ISO3166_CODES
     of the 249 (it omits TW; see docs/PROVENANCE.md, discrepancy log).
 
 WITHDRAWN_ISO3166_CODES
-    ISO 3166-3:2013 withdrawn alpha-2 codes. The initial population is
-    the representative set committed in Phase 1; the full set is
-    completed in v1.1.0.
+    The alpha-2 codes of countries.withdrawn: ISO 3166-3 entries, all with
+    status `withdrawn`. The initial population is the representative set
+    committed in Phase 1; the full set is completed in v1.1.0.
+
+WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES
+WITHDRAWN_TRANSITIONAL_RESERVATION_CODES
+    The withdrawn entries whose `reservation` (v1.14.0) is
+    `exceptionally-reserved` or `transitionally-reserved`: ISO 3166-3 entries
+    whose alpha-2 ISO 3166-1 still reserves, each from the status on its
+    alpha-2 page of the ISO Online Browsing Platform. Subsets of
+    WITHDRAWN_ISO3166_CODES; see docs/decisions/withdrawn-alpha4.md.
 
 EXCEPTIONALLY_RESERVED_CODES
     ISO 3166-1 exceptionally-reserved alpha-2 codes in production use
@@ -62,8 +70,10 @@ members, not the 267 that a naive sum would give.
 
 SU is in WITHDRAWN, not EXCEPTIONALLY_RESERVED. ISO 3166-1 lists SU as
 exceptionally reserved AND ISO 3166-3 lists it as withdrawn; this
-registry resolves in favor of the withdrawn treatment to match the
-data.
+registry keeps it in the withdrawn list. Since v1.14.0 the reservation is
+its `reservation` field there (listed in
+WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES); EXCEPTIONALLY_RESERVED_CODES
+holds active entries only.
 
 Usage
 -----
@@ -159,6 +169,10 @@ WITHDRAWN_ISO3166_CODES: frozenset[str] = frozenset({
     "ZR",
 })
 
+WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES: frozenset[str] = frozenset()
+
+WITHDRAWN_TRANSITIONAL_RESERVATION_CODES: frozenset[str] = frozenset()
+
 EXCEPTIONALLY_RESERVED_CODES: frozenset[str] = frozenset({
     "EU", "UK",
 })
@@ -250,16 +264,27 @@ def _status_map(registry_path: Path) -> dict[str, set[str]]:
         "user-assigned": set(),
         "exceptionally-reserved": set(),
         "withdrawn": set(),
+        "reservation:exceptionally-reserved": set(),
+        "reservation:transitionally-reserved": set(),
     }
 
+    # Active entries by status; withdrawn entries by section, and (v1.14.0)
+    # by their reservation.
     countries = data.get("countries", {})
-    for section in ("active", "withdrawn"):
-        for entry in countries.get(section, []):
-            status = entry.get("status")
-            a2 = entry.get("alpha_2")
-            if not status or not a2:
-                continue
-            result.setdefault(status, set()).add(a2.upper())
+    for entry in countries.get("active", []):
+        status = entry.get("status")
+        a2 = entry.get("alpha_2")
+        if not status or not a2:
+            continue
+        result.setdefault(status, set()).add(a2.upper())
+    for entry in countries.get("withdrawn", []):
+        a2 = entry.get("alpha_2")
+        if not a2:
+            continue
+        result["withdrawn"].add(a2.upper())
+        reservation = entry.get("reservation")
+        if reservation:
+            result.setdefault(f"reservation:{reservation}", set()).add(a2.upper())
 
     return result
 
@@ -413,6 +438,10 @@ def cmd_bootstrap(registry_path: Path) -> int:
     blocks = [
         _format_set_block("OFFICIAL_ISO3166_CODES", by_status["officially-assigned"]),
         _format_set_block("WITHDRAWN_ISO3166_CODES", by_status["withdrawn"]),
+        _format_set_block("WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES",
+                          by_status["reservation:exceptionally-reserved"]),
+        _format_set_block("WITHDRAWN_TRANSITIONAL_RESERVATION_CODES",
+                          by_status["reservation:transitionally-reserved"]),
         _format_set_block("EXCEPTIONALLY_RESERVED_CODES", by_status["exceptionally-reserved"]),
         _format_set_block("USER_ASSIGNED_CODES", by_status["user-assigned"]),
     ]
@@ -526,6 +555,16 @@ def cmd_verify(registry_path: Path) -> int:
         "withdrawn",
         set(WITHDRAWN_ISO3166_CODES),
         by_status["withdrawn"],
+    )
+    any_discrepancy |= _report_discrepancy(
+        "withdrawn reservation exceptionally-reserved",
+        set(WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES),
+        by_status["reservation:exceptionally-reserved"],
+    )
+    any_discrepancy |= _report_discrepancy(
+        "withdrawn reservation transitionally-reserved",
+        set(WITHDRAWN_TRANSITIONAL_RESERVATION_CODES),
+        by_status["reservation:transitionally-reserved"],
     )
     any_discrepancy |= _report_discrepancy(
         "exceptionally-reserved",

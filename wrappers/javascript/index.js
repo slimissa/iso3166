@@ -82,6 +82,11 @@ function makeCountry(raw) {
     withdrawal_date: raw.withdrawal_date ?? null,
     replaced_by: raw.replaced_by ?? null,
     introduced: raw.introduced ?? null,
+    // v1.14.0: ISO 3166-3 four-letter code; withdrawn entries only.
+    alpha_4: raw.alpha_4 ?? null,
+    // v1.14.0: "exceptionally-reserved", "transitionally-reserved" or null;
+    // withdrawn entries only. status stays "withdrawn" either way.
+    reservation: raw.reservation ?? null,
   }));
 }
 

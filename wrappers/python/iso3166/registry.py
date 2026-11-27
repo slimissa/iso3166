@@ -69,6 +69,14 @@ class Country:
     withdrawal_date: Optional[str] = None
     replaced_by: Optional[tuple[str, ...]] = None
     introduced: Optional[str] = None
+    # v1.14.0: the ISO 3166-3 four-letter code of a withdrawn entry (e.g.
+    # "AIDJ"); None on active entries and where no ISO page shows it.
+    alpha_4: Optional[str] = None
+    # v1.14.0: the status ISO 3166-1 shows today for a withdrawn entry's
+    # alpha-2: "exceptionally-reserved", "transitionally-reserved", or None
+    # when ISO shows the entry as formerly used. None on active entries;
+    # status stays "withdrawn" either way.
+    reservation: Optional[str] = None
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Country":
@@ -93,6 +101,8 @@ class Country:
             withdrawal_date=d.get("withdrawal_date"),
             replaced_by=_as_tuple(d.get("replaced_by")),
             introduced=d.get("introduced"),
+            alpha_4=d.get("alpha_4"),
+            reservation=d.get("reservation"),
         )
 
     @property
