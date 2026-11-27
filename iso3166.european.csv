@@ -60,7 +60,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;;;;;;;
 AN;ANT;530;Netherlands Antilles;withdrawn;false;;;Caribbean;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
-ISO 3166-1 status: Transitionally reserved. Reserved from 2010-12 to 2060-12. (https://www.iso.org/obp/ui/#iso:code:3166:AN)";2026-09-23;2010-12-01;BQ|CW|SX;;;;;;ANHH;transitionally-reserved
+ISO 3166-1 status: Transitionally reserved. Reserved from 2010-12 to 2060-12. (https://www.iso.org/obp/ui/#iso:code:3166:AN)
+withdrawal_date before v1.14.0: 2010-12-01";2026-09-23;2010-12-15;BQ|CW|SX;;;;;;ANHH;transitionally-reserved
 AO;AGO;024;Angola;officially-assigned;true;Republic of Angola;Africa;Sub-Saharan Africa;Middle Africa;AOA;244;.ao;por;CD|CG|NA|ZM;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:AO
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:AO
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -439,7 +440,8 @@ intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 CS;SCG;891;Serbia and Montenegro;withdrawn;true;;;Southern Europe;;;;;;;"CS was used twice: Czechoslovakia (withdrawn 1993-01-01, replaced by CZ and SK) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by ME and RS). This entry records the second use; replaced_by reflects the terminal successors of that use.
 source: https://unstats.un.org/unsd/methodology/m49/
 ISO 3166-1 status: Transitionally reserved. Reserved from 2006-09 to 2056-09. (https://www.iso.org/obp/ui/#iso:code:3166:CS)";2026-09-23;2006-09-26;RS|ME;2003-07-23;;;;;CSXX;transitionally-reserved
-CT;CTE;000;Canton and Enderbury Islands;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:CT;2026-09-23;1984-01-01;KI;;;;;;CTKI;
+CT;CTE;128;Canton and Enderbury Islands;withdrawn;false;;;;;;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:CT
+numeric before v1.14.0: 000";2026-09-23;1984-01-01;KI;;;;;;CTKI;
 CU;CUB;192;Cuba;officially-assigned;true;Republic of Cuba;Americas;Latin America and the Caribbean;Caribbean;CUP;53;.cu;spa;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:CU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:CU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -491,7 +493,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/CZ/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;;2004-05-01:;2004-05-01:;;2004-05-01:;;
-DD;DDR;278;East Germany;withdrawn;true;;;Western Europe;;;;;;;source: https://unstats.un.org/unsd/methodology/m49/;2026-09-23;1990-10-03;DE;;;;;;DDDE;
+DD;DDR;278;German Democratic Republic;withdrawn;true;;;Western Europe;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
+name before v1.14.0: East Germany";2026-09-23;1990-10-03;DE;;;;;;DDDE;
 DE;DEU;276;Germany;officially-assigned;true;Federal Republic of Germany;Europe;Western Europe;;EUR;49;.de;deu;AT|BE|CH|CZ|DK|FR|LU|NL|PL;"currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:DE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/DE/
@@ -990,7 +993,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source
 official_name source: https://www.iso.org/obp/ui/#iso:code:3166:JP";2026-10-21;;;1974-09-15;;;;;;
-JT;JTN;000;Johnston Island;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:JT;2026-09-23;1986-01-01;;;;;;;JTUM;
+JT;JTN;396;Johnston Island;withdrawn;false;;;;;;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:JT
+numeric before v1.14.0: 000";2026-09-23;1986-01-01;;;;;;;JTUM;
 KE;KEN;404;Kenya;officially-assigned;true;Republic of Kenya;Africa;Sub-Saharan Africa;Eastern Africa;KES;254;.ke;eng|swa;ET|SO|SS|TZ|UG;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:KE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:KE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1232,7 +1236,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/MH/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;;;;;;;
-MI;MID;000;Midway Islands;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:MI;2026-09-23;1986-01-01;;;;;;;MIUM;
+MI;MID;488;Midway Islands;withdrawn;false;;;;;;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:MI
+numeric before v1.14.0: 000";2026-09-23;1986-01-01;;;;;;;MIUM;
 MK;MKD;807;North Macedonia;officially-assigned;true;Republic of North Macedonia;Europe;Southern Europe;;MKD;389;.mk;mkd;AL|BG|GR|RS|XK;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:MK
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:MK
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1446,7 +1451,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NP/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;1974-09-15;;;;;;
-NQ;ATN;000;Dronning Maud Land;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:NQ;2026-09-23;1983-01-01;AQ;;;;;;NQAQ;
+NQ;ATN;216;Dronning Maud Land;withdrawn;false;;;;;;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:NQ
+numeric before v1.14.0: 000";2026-09-23;1983-01-01;AQ;;;;;;NQAQ;
 NR;NRU;520;Naoero;officially-assigned;true;Republic of Nauru;Oceania;Micronesia;;AUD;674;.nr;eng|nau;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NR
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1455,8 +1461,9 @@ languages source: https://www.cia.gov/the-world-factbook/countries/NR/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;1974-09-15;;;;;;
-NT;NTZ;000;Neutral Zone;withdrawn;false;;;Western Asia;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
-ISO 3166-1 status: Transitionally reserved. Reserved from 1993-07 to 2043-07. (https://www.iso.org/obp/ui/#iso:code:3166:NT)";2026-09-23;1993-07-01;;;;;;;NTHH;transitionally-reserved
+NT;NTZ;536;Neutral Zone;withdrawn;false;;;Western Asia;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
+ISO 3166-1 status: Transitionally reserved. Reserved from 1993-07 to 2043-07. (https://www.iso.org/obp/ui/#iso:code:3166:NT)
+numeric before v1.14.0: 000";2026-09-23;1993-07-01;;;;;;;NTHH;transitionally-reserved
 NU;NIU;570;Niue;officially-assigned;false;Niue;Oceania;Polynesia;;NZD;683;.nu;eng|niu;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:NU
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:NU
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1490,7 +1497,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;1974-09-15;;;;;;
-PC;PCI;000;Pacific Islands (Trust Territory);withdrawn;false;;;Micronesia;;;;;;;source: https://unstats.un.org/unsd/methodology/m49/;2026-09-23;1986-11-03;FM|MH|MP|PW;;;;;;PCHH;
+PC;PCI;582;Pacific Islands (Trust Territory);withdrawn;false;;;Micronesia;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
+numeric before v1.14.0: 000";2026-09-23;1986-11-03;FM|MH|MP|PW;;;;;;PCHH;
 PE;PER;604;Peru;officially-assigned;true;Republic of Peru;Americas;Latin America and the Caribbean;South America;PEN;51;.pe;aym|que|spa;BO|BR|CL|CO|EC;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -2039,7 +2047,8 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;1974-09-15;;;;;;
-VD;VDR;000;North Vietnam;withdrawn;true;;;South-eastern Asia;;;;;;;source: https://unstats.un.org/unsd/methodology/m49/;2026-09-23;1976-07-02;VN;;;;;;VDVN;
+VD;VDR;000;Viet-Nam, Democratic Republic of;withdrawn;true;;;South-eastern Asia;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
+name before v1.14.0: North Vietnam";2026-09-23;1976-07-02;VN;;;;;;VDVN;
 VE;VEN;862;Venezuela (Bolivarian Republic of);officially-assigned;true;Bolivarian Republic of Venezuela;Americas;Latin America and the Caribbean;South America;VES;58;.ve;spa;BR|CO|GY;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:VE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:VE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -2091,7 +2100,8 @@ languages source: https://www.cia.gov/the-world-factbook/countries/WF/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;;;;;;;
-WK;WAK;000;Wake Island;withdrawn;false;;;;;;;;;;source: https://www.iso.org/obp/ui/#iso:code:3166:WK;2026-09-23;1986-01-01;;;;;;;WKUM;
+WK;WAK;872;Wake Island;withdrawn;false;;;;;;;;;;"source: https://www.iso.org/obp/ui/#iso:code:3166:WK
+numeric before v1.14.0: 000";2026-09-23;1986-01-01;;;;;;;WKUM;
 WS;WSM;882;Samoa;officially-assigned;true;Independent State of Samoa;Oceania;Polynesia;;WST;685;.ws;eng|smo;;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:WS
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:WS
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -2102,7 +2112,8 @@ subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;1974-09-15;;;;;;
 XK;XKX;000;Kosovo;user-assigned;true;;;;;;;;;AL|ME|MK|RS;"User-assigned code. Not officially assigned by ISO 3166-1. Used by the EU and others in production.
 borders source: https://www.cia.gov/the-world-factbook/countries/XK/";2026-09-23;;;;;;;;;
-YD;YMD;720;South Yemen;withdrawn;true;;;Western Asia;;;;;;;source: https://unstats.un.org/unsd/methodology/m49/;2026-09-23;1990-05-22;YE;;;;;;YDYE;
+YD;YMD;720;Yemen, Democratic;withdrawn;true;;;Western Asia;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
+name before v1.14.0: South Yemen";2026-09-23;1990-05-22;YE;;;;;;YDYE;
 YE;YEM;887;Yemen;officially-assigned;true;Republic of Yemen;Asia;Western Asia;;YER;967;.ye;ara;OM|SA;"official_name source: https://www.iso.org/obp/ui/#iso:code:3166:YE
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:YE
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -2120,8 +2131,9 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source";2026-09-23;;;;;;;;;
-YU;YUG;890;Yugoslavia;withdrawn;true;;;Southern Europe;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
-ISO 3166-1 status: Transitionally reserved. Reserved from 2003-07 to 2053-07. (https://www.iso.org/obp/ui/#iso:code:3166:YU)";2026-09-23;2003-07-23;CS;;;;;;YUCS;transitionally-reserved
+YU;YUG;891;Yugoslavia;withdrawn;true;;;Southern Europe;;;;;;;"source: https://unstats.un.org/unsd/methodology/m49/
+ISO 3166-1 status: Transitionally reserved. Reserved from 2003-07 to 2053-07. (https://www.iso.org/obp/ui/#iso:code:3166:YU)
+numeric before v1.14.0: 890";2026-09-23;2003-07-23;CS;;;;;;YUCS;transitionally-reserved
 ZA;ZAF;710;South Africa;officially-assigned;true;Republic of South Africa;Africa;Sub-Saharan Africa;Southern Africa;ZAR;27;.za;afr|eng|xho|zul;BW|LS|MZ|NA|SZ|ZW;"currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:ZA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/ZA/

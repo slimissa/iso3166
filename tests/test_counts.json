@@ -1,5 +1,5 @@
 {
-  "total": 347,
+  "total": 349,
   "files": {
     "tests/test_api_misuse.py": 33,
     "tests/test_architecture.py": 2,
@@ -37,6 +37,6 @@
     "tests/test_verification_report_evidence.py": 7,
     "tests/test_version_axes.py": 11,
     "tests/test_version_next_heading.py": 10,
-    "tests/test_withdrawn_iso3166_3.py": 9
+    "tests/test_withdrawn_iso3166_3.py": 11
   }
 }

@@ -464,6 +464,9 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('is_active_on', ['ZZ', '2000-01-01'], False),
         ('is_active_on', ['EU', '2000-01-01'], None),
         ('is_active_on', ['DD', '1800-01-01'], None),
+        # v1.14.0: AN was withdrawn on 2010-12-15 (ISO change history), not 12-01.
+        ('is_active_on', ['AN', '2010-12-10'], True),
+        ('is_active_on', ['AN', '2010-12-16'], False),
         # v1.12.0: date-scoped club memberships (docs/QUERIES.md, Query 10).
         # Never null: a malformed date, an unknown code and a code in no
         # range are all false. Range ends are inclusive.

@@ -115,3 +115,33 @@ def test_ge_bq_and_by_resolve_to_the_active_entry_like_ai_and_sk():
     active = {e["alpha_2"] for e in REG["countries"]["active"]}
     for a2 in ("AI", "BQ", "BY", "GE", "SK"):
         assert a2 in active and a2 in WITHDRAWN, a2
+
+
+# Corrections (v1.14.0), each stated exactly on the entry's ISO page; the old
+# value is kept in the row's note.
+CORRECTIONS = {
+    ("YU", "numeric"): ("890", "891"),
+    ("CT", "numeric"): ("000", "128"),
+    ("JT", "numeric"): ("000", "396"),
+    ("MI", "numeric"): ("000", "488"),
+    ("NQ", "numeric"): ("000", "216"),
+    ("NT", "numeric"): ("000", "536"),
+    ("PC", "numeric"): ("000", "582"),
+    ("WK", "numeric"): ("000", "872"),
+    ("DD", "name"): ("East Germany", "German Democratic Republic"),
+    ("VD", "name"): ("North Vietnam", "Viet-Nam, Democratic Republic of"),
+    ("YD", "name"): ("South Yemen", "Yemen, Democratic"),
+    ("AN", "withdrawal_date"): ("2010-12-01", "2010-12-15"),
+}
+
+
+def test_the_corrections_hold_and_the_old_value_is_in_the_note():
+    for (a2, field), (old, new) in CORRECTIONS.items():
+        e = WITHDRAWN[a2]
+        assert e[field] == new, (a2, field)
+        assert f"{field} before v1.14.0: {old}" in e["note"].splitlines(), (a2, field)
+
+
+def test_zr_keeps_its_date_because_iso_gives_only_a_month():
+    # ISO: "Reserved from 1997-07". Not an exact date, so no correction.
+    assert WITHDRAWN["ZR"]["withdrawal_date"] == "1997-05-17"

@@ -288,7 +288,7 @@
       "alpha_2": "AN",
       "name": "Netherlands Antilles",
       "status": "withdrawn",
-      "withdrawal_date": "2010-12-01"
+      "withdrawal_date": "2010-12-15"
     },
     {
       "input": "CT",
@@ -1930,6 +1930,22 @@
           "1800-01-01"
         ],
         "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "AN",
+          "2010-12-10"
+        ],
+        "expected": true
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "AN",
+          "2010-12-16"
+        ],
+        "expected": false
       },
       {
         "query": "is_eu_member_at",

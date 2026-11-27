@@ -147,35 +147,37 @@ field and array the answer is read from.
 | E116 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
 | E117 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
 | E118 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E119 | `is_eu_member_at` | `["GB", "2010-01-01"]` | `true` | exact | `eu_membership` (active) |
-| E120 | `is_eu_member_at` | `["GB", "2023-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E121 | `is_eu_member_at` | `["GB", "2020-01-31"]` | `true` | exact (range boundary, inclusive) | `eu_membership` (active) |
-| E122 | `is_eu_member_at` | `["GB", "2020-02-01"]` | `false` | exact | `eu_membership` (active) |
-| E123 | `is_eu_member_at` | `["GR", "1980-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E124 | `is_eu_member_at` | `["GR", "2000-01-01"]` | `true` | exact | `eu_membership` (active) |
-| E125 | `is_eu_member_at` | `["DE", "1950-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E126 | `is_eu_member_at` | `["DE", "2000-02-29"]` | `true` | exact (leap day is a real date) | `eu_membership` (active) |
-| E127 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
-| E128 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
-| E129 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
-| E130 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
-| E131 | `is_eea_member_at` | `["NO", "1994-01-01"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
-| E132 | `is_eurozone_member_at` | `["GR", "2000-01-01"]` | `false` | exact | `eurozone_membership` (active) |
-| E133 | `is_eurozone_member_at` | `["GR", "2000-12-31"]` | `false` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
-| E134 | `is_eurozone_member_at` | `["GR", "2001-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
-| E135 | `is_eurozone_member_at` | `["GR", "2002-01-01"]` | `true` | exact | `eurozone_membership` (active) |
-| E136 | `is_eurozone_member_at` | `["BG", "2025-12-31"]` | `false` | exact | `eurozone_membership` (active) |
-| E137 | `is_eurozone_member_at` | `["BG", "2026-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
-| E138 | `is_in_customs_union_at` | `["GB", "2010-01-01"]` | `true` | exact | `customs_union` (active) |
-| E139 | `is_in_customs_union_at` | `["GB", "2023-01-01"]` | `false` | exact | `customs_union` (active) |
-| E140 | `is_in_customs_union_at` | `["TR", "1995-12-30"]` | `false` | exact | `customs_union` (active) |
-| E141 | `is_in_customs_union_at` | `["TR", "1995-12-31"]` | `true` | exact (range boundary, inclusive) | `customs_union` (active) |
-| E142 | `is_eea_member_at` | `["BG", "2012-01-01"]` | `true` | exact (formal range) | `eea_membership` (active) |
-| E143 | `is_eea_member_at` | `["BG", "2005-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
-| E144 | `is_eea_member_at` | `["BG", "2007-07-31"]` | `false` | exact (day before provisional application) | `eea_membership` (active) |
-| E145 | `is_eea_member_at` | `["BG", "2007-08-01"]` | `true` | exact (first day of provisional application) | `eea_membership` (active) |
-| E146 | `is_eea_member_at` | `["CY", "2005-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
-| E147 | `is_eea_member_at` | `["CY", "2003-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
+| E119 | `is_active_on` | `["AN", "2010-12-10"]` | `true` | exact (withdrawn: end date only) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E120 | `is_active_on` | `["AN", "2010-12-16"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E121 | `is_eu_member_at` | `["GB", "2010-01-01"]` | `true` | exact | `eu_membership` (active) |
+| E122 | `is_eu_member_at` | `["GB", "2023-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E123 | `is_eu_member_at` | `["GB", "2020-01-31"]` | `true` | exact (range boundary, inclusive) | `eu_membership` (active) |
+| E124 | `is_eu_member_at` | `["GB", "2020-02-01"]` | `false` | exact | `eu_membership` (active) |
+| E125 | `is_eu_member_at` | `["GR", "1980-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E126 | `is_eu_member_at` | `["GR", "2000-01-01"]` | `true` | exact | `eu_membership` (active) |
+| E127 | `is_eu_member_at` | `["DE", "1950-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E128 | `is_eu_member_at` | `["DE", "2000-02-29"]` | `true` | exact (leap day is a real date) | `eu_membership` (active) |
+| E129 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
+| E130 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
+| E131 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
+| E132 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
+| E133 | `is_eea_member_at` | `["NO", "1994-01-01"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
+| E134 | `is_eurozone_member_at` | `["GR", "2000-01-01"]` | `false` | exact | `eurozone_membership` (active) |
+| E135 | `is_eurozone_member_at` | `["GR", "2000-12-31"]` | `false` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E136 | `is_eurozone_member_at` | `["GR", "2001-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E137 | `is_eurozone_member_at` | `["GR", "2002-01-01"]` | `true` | exact | `eurozone_membership` (active) |
+| E138 | `is_eurozone_member_at` | `["BG", "2025-12-31"]` | `false` | exact | `eurozone_membership` (active) |
+| E139 | `is_eurozone_member_at` | `["BG", "2026-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E140 | `is_in_customs_union_at` | `["GB", "2010-01-01"]` | `true` | exact | `customs_union` (active) |
+| E141 | `is_in_customs_union_at` | `["GB", "2023-01-01"]` | `false` | exact | `customs_union` (active) |
+| E142 | `is_in_customs_union_at` | `["TR", "1995-12-30"]` | `false` | exact | `customs_union` (active) |
+| E143 | `is_in_customs_union_at` | `["TR", "1995-12-31"]` | `true` | exact (range boundary, inclusive) | `customs_union` (active) |
+| E144 | `is_eea_member_at` | `["BG", "2012-01-01"]` | `true` | exact (formal range) | `eea_membership` (active) |
+| E145 | `is_eea_member_at` | `["BG", "2005-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
+| E146 | `is_eea_member_at` | `["BG", "2007-07-31"]` | `false` | exact (day before provisional application) | `eea_membership` (active) |
+| E147 | `is_eea_member_at` | `["BG", "2007-08-01"]` | `true` | exact (first day of provisional application) | `eea_membership` (active) |
+| E148 | `is_eea_member_at` | `["CY", "2005-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
+| E149 | `is_eea_member_at` | `["CY", "2003-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
 
 ## Conventions that apply to every query
 
@@ -714,7 +716,9 @@ a separate release.
   → `null` (after withdrawal).
 - `currency_at("AN", "2010-11-30")` and `("AN", "2010-12-01")` →
   `["ANG", "USD"]` (successor's currency): `BQ` has `USD`, `CW` and `SX` have
-  `ANG`; the withdrawal date, 2010-12-01, is inside the lifetime.
+  `ANG`; both dates are inside the lifetime, which ends on the withdrawal
+  date, 2010-12-15 (ISO's change history; the registry held 2010-12-01
+  before v1.14.0).
 - `currency_at("BJ", "2000-01-01")` → `null` (unknown): `BJ`'s `introduced` is
   null (quarantined).
 - `currency_at("PA", "2000-01-01")` → `["PAB", "USD"]`: a multi-currency active

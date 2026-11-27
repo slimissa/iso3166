@@ -8,34 +8,34 @@ Entries: **30**
 | alpha-2 | alpha-3 | numeric | Name | Withdrawn | Replaced by |
 |---------|---------|---------|------|-----------|-------------|
 | AI | AFI | 000 | French Afars and Issas | 1977-06-27 | DJ |
-| AN | ANT | 530 | Netherlands Antilles | 2010-12-01 | BQ, CW, SX |
+| AN | ANT | 530 | Netherlands Antilles | 2010-12-15 | BQ, CW, SX |
 | BQ | ATB | 000 | British Antarctic Territory | — | AQ |
 | BU | BUR | 104 | Burma | 1989-12-05 | MM |
 | BY | BYS | 112 | Byelorussian SSR | — | — |
 | CS | SCG | 891 | Serbia and Montenegro | 2006-09-26 | RS, ME |
-| CT | CTE | 000 | Canton and Enderbury Islands | 1984-01-01 | KI |
-| DD | DDR | 278 | East Germany | 1990-10-03 | DE |
+| CT | CTE | 128 | Canton and Enderbury Islands | 1984-01-01 | KI |
+| DD | DDR | 278 | German Democratic Republic | 1990-10-03 | DE |
 | DY | DHY | 000 | Dahomey | 1977-02-01 | BJ |
 | FQ | ATF | 000 | French Southern and Antarctic Territories | 1979-01-01 | TF |
 | FX | FXX | 249 | France, Metropolitan | — | FR |
 | GE | GEL | 000 | Gilbert and Ellice Islands | — | KI, TV |
 | HV | HVO | 854 | Upper Volta | 1984-08-04 | BF |
-| JT | JTN | 000 | Johnston Island | 1986-01-01 | — |
-| MI | MID | 000 | Midway Islands | 1986-01-01 | — |
+| JT | JTN | 396 | Johnston Island | 1986-01-01 | — |
+| MI | MID | 488 | Midway Islands | 1986-01-01 | — |
 | NH | NHB | 000 | New Hebrides | 1980-07-30 | VU |
-| NQ | ATN | 000 | Dronning Maud Land | 1983-01-01 | AQ |
-| NT | NTZ | 000 | Neutral Zone | 1993-07-01 | — |
-| PC | PCI | 000 | Pacific Islands (Trust Territory) | 1986-11-03 | FM, MH, MP, PW |
+| NQ | ATN | 216 | Dronning Maud Land | 1983-01-01 | AQ |
+| NT | NTZ | 536 | Neutral Zone | 1993-07-01 | — |
+| PC | PCI | 582 | Pacific Islands (Trust Territory) | 1986-11-03 | FM, MH, MP, PW |
 | PU | PUS | 849 | United States Miscellaneous Pacific Islands | — | UM |
 | PZ | PCZ | 000 | Panama Canal Zone | 1980-01-01 | PA |
 | RH | RHO | 000 | Southern Rhodesia | 1980-04-18 | ZW |
 | SK | SKM | 000 | Sikkim | 1975-05-16 | IN |
 | SU | SUN | 810 | USSR | 1992-08-30 | — |
 | TP | TMP | 626 | East Timor | 2002-05-20 | TL |
-| VD | VDR | 000 | North Vietnam | 1976-07-02 | VN |
-| WK | WAK | 000 | Wake Island | 1986-01-01 | — |
-| YD | YMD | 720 | South Yemen | 1990-05-22 | YE |
-| YU | YUG | 890 | Yugoslavia | 2003-07-23 | CS |
+| VD | VDR | 000 | Viet-Nam, Democratic Republic of | 1976-07-02 | VN |
+| WK | WAK | 872 | Wake Island | 1986-01-01 | — |
+| YD | YMD | 720 | Yemen, Democratic | 1990-05-22 | YE |
+| YU | YUG | 891 | Yugoslavia | 2003-07-23 | CS |
 | ZR | ZAR | 180 | Zaire | 1997-05-17 | CD |
 
 ## Succession chains
