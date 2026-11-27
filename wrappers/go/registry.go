@@ -558,7 +558,11 @@ func (r *CountryRegistry) dqEdges() map[string][]string {
 	return edges
 }
 
-func dqClosure(start string, edges map[string][]string) []string {
+// dqClosure walks edges from start. A code in active ends a walk (v1.14.0):
+// a replaced_by that names it means the active entry, so the walk does not
+// go on through a withdrawn entry that reuses the code (AN -> BQ is Bonaire,
+// not British Antarctic Territory). Only start is expanded whatever it is.
+func dqClosure(start string, edges map[string][]string, active map[string]*Country) []string {
 	seen := make(map[string]bool)
 	stack := []string{start}
 	for len(stack) > 0 {
@@ -567,7 +571,9 @@ func dqClosure(start string, edges map[string][]string) []string {
 		for _, n := range edges[cur] {
 			if n != start && !seen[n] {
 				seen[n] = true
-				stack = append(stack, n)
+				if _, isActive := active[n]; !isActive {
+					stack = append(stack, n)
+				}
 			}
 		}
 	}
@@ -672,7 +678,9 @@ func (r *CountryRegistry) SuccessionPath(fromCode, toCode string) ([]string, boo
 				}
 				return path, true
 			}
-			queue = append(queue, n)
+			if _, isActive := r.byAlpha2[n]; !isActive { // an active code ends a walk
+				queue = append(queue, n)
+			}
 		}
 	}
 	return nil, false
@@ -686,7 +694,7 @@ func (r *CountryRegistry) Successors(code string) []string {
 	if c == "" {
 		return []string{}
 	}
-	return dqClosure(c, r.dqEdges())
+	return dqClosure(c, r.dqEdges(), r.byAlpha2)
 }
 
 // Predecessors returns all ancestors: every withdrawn code from which
@@ -703,7 +711,7 @@ func (r *CountryRegistry) Predecessors(code string) []string {
 			rev[d] = append(rev[d], src)
 		}
 	}
-	return dqClosure(c, rev)
+	return dqClosure(c, rev, r.byAlpha2)
 }
 
 // CallingCodeFor returns the sorted codes whose calling_codes is a
@@ -846,10 +854,11 @@ func (r *CountryRegistry) IsActiveOn(code, date string) (*bool, error) {
 }
 
 // ActiveOn is IsActiveOn for every code at once: the 252 active entries
-// plus the 23 withdrawn codes that are not also active (AI and SK exist in
-// both; the active entry wins, as in IsActiveOn). 275 keys. A nil pointer
-// is unknown, not false: on 1990-01-01 the answer is 169 true, 29 false and
-// 77 unknown (CZ, SK and RU among them). A malformed date returns an
+// plus the 25 withdrawn codes that are not also active (AI, BQ, BY, GE and
+// SK exist in both; the active entry wins, as in IsActiveOn). 277 keys. A nil
+// pointer is unknown, not false: on 1990-01-01 the answer is 169 true, 29
+// false and 79 unknown (CZ, SK and RU among them, and PU and FX, which have
+// no withdrawal date). A malformed date returns an
 // *InvalidDateError. See docs/QUERIES.md, "Query 11".
 func (r *CountryRegistry) ActiveOn(date string) (map[string]*bool, error) {
 	if !ValidDate(date) {

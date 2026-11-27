@@ -87,77 +87,95 @@ field and array the answer is read from.
 | E56 | `predecessors` | `["IN"]` | `["SK"]` | exact | `replaced_by` (withdrawn) |
 | E57 | `predecessors` | `["YU"]` | `[]` | exact | `replaced_by` (withdrawn) |
 | E58 | `predecessors` | `["US"]` | `[]` | exact | `replaced_by` (withdrawn) |
-| E59 | `calling_code_for` | `["+44 20 7946 0958"]` | `["GB", "GG", "IM", "JE"]` | exact | `calling_codes` (active) |
-| E60 | `calling_code_for` | `["44 20 7946 0958"]` | `["GB", "GG", "IM", "JE"]` | exact | `calling_codes` (active) |
-| E61 | `calling_code_for` | `["+44 (0) 20.7946.0958"]` | `["GB", "GG", "IM", "JE"]` | exact | `calling_codes` (active) |
-| E62 | `calling_code_for` | `["+49 30 1234567"]` | `["DE"]` | exact | `calling_codes` (active) |
-| E63 | `calling_code_for` | `["+7 495 123 4567"]` | `["KZ", "RU"]` | exact | `calling_codes` (active) |
-| E64 | `calling_code_for` | `["+1 202 555 0100"]` | `["AG", "AI", "AS", "BB", "BM", "BS", "CA", "DM", "DO", "GD", "GU", "JM", "KN", "KY", "LC", "MP", "MS", "PR", "SX", "TC", "TT", "UM", "US", "VC", "VG", "VI"]` | exact | `calling_codes` (active) |
-| E65 | `calling_code_for` | `["+1-867-555-0100"]` | `["AG", "AI", "AS", "BB", "BM", "BS", "CA", "DM", "DO", "GD", "GU", "JM", "KN", "KY", "LC", "MP", "MS", "PR", "SX", "TC", "TT", "UM", "US", "VC", "VG", "VI"]` | exact | `calling_codes` (active) |
-| E66 | `calling_code_for` | `["+999 123"]` | `[]` | exact | `calling_codes` (active) |
-| E67 | `calling_code_for` | `["nonsense"]` | `[]` | exact | `calling_codes` (active) |
-| E68 | `calling_code_for` | `[""]` | `[]` | exact | `calling_codes` (active) |
-| E69 | `currency_at` | `["DE", "2000-01-01"]` | `["EUR"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E70 | `currency_at` | `["DE", "1990-01-01"]` | `["EUR"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E71 | `currency_at` | `["PA", "2000-01-01"]` | `["PAB", "USD"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E72 | `currency_at` | `["DE", "1970-01-01"]` | `null` | exact (before `introduced`) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E73 | `currency_at` | `["BJ", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E74 | `currency_at` | `["AQ", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E75 | `currency_at` | `["EU", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E76 | `currency_at` | `["DD", "1990-01-01"]` | `["EUR"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E77 | `currency_at` | `["DD", "1990-10-03"]` | `["EUR"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E78 | `currency_at` | `["DD", "1990-10-04"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E79 | `currency_at` | `["DD", "1991-01-01"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E80 | `currency_at` | `["YU", "2003-07-23"]` | `["EUR", "RSD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E81 | `currency_at` | `["YU", "2004-01-01"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E82 | `currency_at` | `["AN", "2010-11-30"]` | `["ANG", "USD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E83 | `currency_at` | `["AN", "2010-12-01"]` | `["ANG", "USD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E84 | `currency_at` | `["SU", "2000-01-01"]` | `null` | unknown (no successor) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E85 | `currency_at` | `["DE", "2000-13-01"]` | `null` | exact (malformed date) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E86 | `currency_at` | `["ZZ", "2000-01-01"]` | `null` | exact (unknown code) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
-| E87 | `region_countries` | `["Europe", "Western Europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
-| E88 | `region_countries` | `["europe", "western europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
-| E89 | `region_countries` | `["Americas", "Northern America"]` | `["BM", "CA", "GL", "PM", "US"]` | exact | `region`, `subregion` (active) |
-| E90 | `region_countries` | `["Antarctica"]` | `[]` | exact | `region`, `subregion` (active) |
-| E91 | `region_countries` | `["Nonexistent"]` | `[]` | exact | `region`, `subregion` (active) |
-| E92 | `is_active_on` | `["DE", "1990-01-01"]` | `true` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E93 | `is_active_on` | `["DE", "1970-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E94 | `is_active_on` | `["BJ", "2000-01-01"]` | `null` | unknown (source silent) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E95 | `is_active_on` | `["DD", "1990-01-01"]` | `true` | exact (withdrawn: end date only) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E96 | `is_active_on` | `["DD", "1990-10-04"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E97 | `is_active_on` | `["YU", "2010-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E98 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E99 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E100 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
-| E101 | `is_eu_member_at` | `["GB", "2010-01-01"]` | `true` | exact | `eu_membership` (active) |
-| E102 | `is_eu_member_at` | `["GB", "2023-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E103 | `is_eu_member_at` | `["GB", "2020-01-31"]` | `true` | exact (range boundary, inclusive) | `eu_membership` (active) |
-| E104 | `is_eu_member_at` | `["GB", "2020-02-01"]` | `false` | exact | `eu_membership` (active) |
-| E105 | `is_eu_member_at` | `["GR", "1980-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E106 | `is_eu_member_at` | `["GR", "2000-01-01"]` | `true` | exact | `eu_membership` (active) |
-| E107 | `is_eu_member_at` | `["DE", "1950-01-01"]` | `false` | exact | `eu_membership` (active) |
-| E108 | `is_eu_member_at` | `["DE", "2000-02-29"]` | `true` | exact (leap day is a real date) | `eu_membership` (active) |
-| E109 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
-| E110 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
-| E111 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
-| E112 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
-| E113 | `is_eea_member_at` | `["NO", "1994-01-01"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
-| E114 | `is_eurozone_member_at` | `["GR", "2000-01-01"]` | `false` | exact | `eurozone_membership` (active) |
-| E115 | `is_eurozone_member_at` | `["GR", "2000-12-31"]` | `false` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
-| E116 | `is_eurozone_member_at` | `["GR", "2001-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
-| E117 | `is_eurozone_member_at` | `["GR", "2002-01-01"]` | `true` | exact | `eurozone_membership` (active) |
-| E118 | `is_eurozone_member_at` | `["BG", "2025-12-31"]` | `false` | exact | `eurozone_membership` (active) |
-| E119 | `is_eurozone_member_at` | `["BG", "2026-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
-| E120 | `is_in_customs_union_at` | `["GB", "2010-01-01"]` | `true` | exact | `customs_union` (active) |
-| E121 | `is_in_customs_union_at` | `["GB", "2023-01-01"]` | `false` | exact | `customs_union` (active) |
-| E122 | `is_in_customs_union_at` | `["TR", "1995-12-30"]` | `false` | exact | `customs_union` (active) |
-| E123 | `is_in_customs_union_at` | `["TR", "1995-12-31"]` | `true` | exact (range boundary, inclusive) | `customs_union` (active) |
-| E124 | `is_eea_member_at` | `["BG", "2012-01-01"]` | `true` | exact (formal range) | `eea_membership` (active) |
-| E125 | `is_eea_member_at` | `["BG", "2005-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
-| E126 | `is_eea_member_at` | `["BG", "2007-07-31"]` | `false` | exact (day before provisional application) | `eea_membership` (active) |
-| E127 | `is_eea_member_at` | `["BG", "2007-08-01"]` | `true` | exact (first day of provisional application) | `eea_membership` (active) |
-| E128 | `is_eea_member_at` | `["CY", "2005-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
-| E129 | `is_eea_member_at` | `["CY", "2003-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
+| E59 | `region_tree` | `["GE"]` | `["Asia", "Western Asia"]` | exact | `region`, `subregion`, `intermediate_region` (the active entry) |
+| E60 | `region_tree` | `["BQ"]` | `["Americas", "Latin America and the Caribbean", "Caribbean"]` | exact | `region`, `subregion`, `intermediate_region` (the active entry) |
+| E61 | `region_tree` | `["BY"]` | `["Europe", "Eastern Europe"]` | exact | `region`, `subregion`, `intermediate_region` (the active entry) |
+| E62 | `is_active_on` | `["GE", "1977-01-01"]` | `null` | unknown (source silent; the active Georgia, not the withdrawn GEHH) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E63 | `is_active_on` | `["BQ", "1977-01-01"]` | `false` | exact (the active BQ, introduced 2010; not the withdrawn BQAQ) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E64 | `is_active_on` | `["BY", "1980-01-01"]` | `null` | unknown (quarantined; the active Belarus, not the withdrawn BYAA) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E65 | `successors` | `["GE"]` | `["KI", "TV"]` | exact | `replaced_by` (withdrawn) |
+| E66 | `successors` | `["BQ"]` | `["AQ"]` | exact | `replaced_by` (withdrawn) |
+| E67 | `predecessors` | `["KI"]` | `["CT", "GE"]` | exact | `replaced_by` (withdrawn) |
+| E68 | `predecessors` | `["AQ"]` | `["BQ", "NQ"]` | exact | `replaced_by` (withdrawn) |
+| E69 | `predecessors` | `["BQ"]` | `["AN"]` | exact | `replaced_by` (withdrawn) |
+| E70 | `succession_path` | `["AN", "BQ"]` | `["AN", "BQ"]` | exact | `replaced_by` (withdrawn) |
+| E71 | `succession_path` | `["AN", "AQ"]` | `null` | exact (AN's BQ is the active BQ: an active code ends a walk) | `replaced_by` (withdrawn) |
+| E72 | `is_active_on` | `["PU", "1980-01-01"]` | `null` | unknown (no withdrawal date on the ISO page) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E73 | `is_active_on` | `["FX", "1995-01-01"]` | `null` | unknown (no withdrawal date on the ISO page) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E74 | `is_active_on` | `["FX", "2025-01-01"]` | `null` | unknown (no withdrawal date on the ISO page) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E75 | `predecessors` | `["UM"]` | `["PU"]` | exact | `replaced_by` (withdrawn) |
+| E76 | `predecessors` | `["FR"]` | `["FX"]` | exact | `replaced_by` (withdrawn) |
+| E77 | `calling_code_for` | `["+44 20 7946 0958"]` | `["GB", "GG", "IM", "JE"]` | exact | `calling_codes` (active) |
+| E78 | `calling_code_for` | `["44 20 7946 0958"]` | `["GB", "GG", "IM", "JE"]` | exact | `calling_codes` (active) |
+| E79 | `calling_code_for` | `["+44 (0) 20.7946.0958"]` | `["GB", "GG", "IM", "JE"]` | exact | `calling_codes` (active) |
+| E80 | `calling_code_for` | `["+49 30 1234567"]` | `["DE"]` | exact | `calling_codes` (active) |
+| E81 | `calling_code_for` | `["+7 495 123 4567"]` | `["KZ", "RU"]` | exact | `calling_codes` (active) |
+| E82 | `calling_code_for` | `["+1 202 555 0100"]` | `["AG", "AI", "AS", "BB", "BM", "BS", "CA", "DM", "DO", "GD", "GU", "JM", "KN", "KY", "LC", "MP", "MS", "PR", "SX", "TC", "TT", "UM", "US", "VC", "VG", "VI"]` | exact | `calling_codes` (active) |
+| E83 | `calling_code_for` | `["+1-867-555-0100"]` | `["AG", "AI", "AS", "BB", "BM", "BS", "CA", "DM", "DO", "GD", "GU", "JM", "KN", "KY", "LC", "MP", "MS", "PR", "SX", "TC", "TT", "UM", "US", "VC", "VG", "VI"]` | exact | `calling_codes` (active) |
+| E84 | `calling_code_for` | `["+999 123"]` | `[]` | exact | `calling_codes` (active) |
+| E85 | `calling_code_for` | `["nonsense"]` | `[]` | exact | `calling_codes` (active) |
+| E86 | `calling_code_for` | `[""]` | `[]` | exact | `calling_codes` (active) |
+| E87 | `currency_at` | `["DE", "2000-01-01"]` | `["EUR"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E88 | `currency_at` | `["DE", "1990-01-01"]` | `["EUR"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E89 | `currency_at` | `["PA", "2000-01-01"]` | `["PAB", "USD"]` | lifetime-bounded (current currency) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E90 | `currency_at` | `["DE", "1970-01-01"]` | `null` | exact (before `introduced`) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E91 | `currency_at` | `["BJ", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E92 | `currency_at` | `["AQ", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E93 | `currency_at` | `["EU", "2000-01-01"]` | `null` | unknown (`introduced` is null) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E94 | `currency_at` | `["DD", "1990-01-01"]` | `["EUR"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E95 | `currency_at` | `["DD", "1990-10-03"]` | `["EUR"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E96 | `currency_at` | `["DD", "1990-10-04"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E97 | `currency_at` | `["DD", "1991-01-01"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E98 | `currency_at` | `["YU", "2003-07-23"]` | `["EUR", "RSD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E99 | `currency_at` | `["YU", "2004-01-01"]` | `null` | exact (after withdrawal) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E100 | `currency_at` | `["AN", "2010-11-30"]` | `["ANG", "USD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E101 | `currency_at` | `["AN", "2010-12-01"]` | `["ANG", "USD"]` | successor's currency | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E102 | `currency_at` | `["SU", "2000-01-01"]` | `null` | unknown (no successor) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E103 | `currency_at` | `["DE", "2000-13-01"]` | `null` | exact (malformed date) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E104 | `currency_at` | `["ZZ", "2000-01-01"]` | `null` | exact (unknown code) | `introduced`, `currency_codes` (active); `withdrawal_date`, `replaced_by` (withdrawn) |
+| E105 | `region_countries` | `["Europe", "Western Europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
+| E106 | `region_countries` | `["europe", "western europe"]` | `["AT", "BE", "CH", "DE", "FR", "LI", "LU", "MC", "NL"]` | exact | `region`, `subregion` (active) |
+| E107 | `region_countries` | `["Americas", "Northern America"]` | `["BM", "CA", "GL", "PM", "US"]` | exact | `region`, `subregion` (active) |
+| E108 | `region_countries` | `["Antarctica"]` | `[]` | exact | `region`, `subregion` (active) |
+| E109 | `region_countries` | `["Nonexistent"]` | `[]` | exact | `region`, `subregion` (active) |
+| E110 | `is_active_on` | `["DE", "1990-01-01"]` | `true` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E111 | `is_active_on` | `["DE", "1970-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E112 | `is_active_on` | `["BJ", "2000-01-01"]` | `null` | unknown (source silent) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E113 | `is_active_on` | `["DD", "1990-01-01"]` | `true` | exact (withdrawn: end date only) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E114 | `is_active_on` | `["DD", "1990-10-04"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E115 | `is_active_on` | `["YU", "2010-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E116 | `is_active_on` | `["ZZ", "2000-01-01"]` | `false` | exact | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E117 | `is_active_on` | `["EU", "2000-01-01"]` | `null` | unknown (not officially assigned) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E118 | `is_active_on` | `["DD", "1800-01-01"]` | `null` | unknown (before 1974) | `introduced` (active); `withdrawal_date` (withdrawn) |
+| E119 | `is_eu_member_at` | `["GB", "2010-01-01"]` | `true` | exact | `eu_membership` (active) |
+| E120 | `is_eu_member_at` | `["GB", "2023-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E121 | `is_eu_member_at` | `["GB", "2020-01-31"]` | `true` | exact (range boundary, inclusive) | `eu_membership` (active) |
+| E122 | `is_eu_member_at` | `["GB", "2020-02-01"]` | `false` | exact | `eu_membership` (active) |
+| E123 | `is_eu_member_at` | `["GR", "1980-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E124 | `is_eu_member_at` | `["GR", "2000-01-01"]` | `true` | exact | `eu_membership` (active) |
+| E125 | `is_eu_member_at` | `["DE", "1950-01-01"]` | `false` | exact | `eu_membership` (active) |
+| E126 | `is_eu_member_at` | `["DE", "2000-02-29"]` | `true` | exact (leap day is a real date) | `eu_membership` (active) |
+| E127 | `is_eu_member_at` | `["ZZ", "2000-01-01"]` | `false` | exact (unknown code) | `eu_membership` (active) |
+| E128 | `is_eea_member_at` | `["GB", "2020-12-31"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
+| E129 | `is_eea_member_at` | `["GB", "2021-01-01"]` | `false` | exact | `eea_membership` (active) |
+| E130 | `is_eea_member_at` | `["BG", "2010-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
+| E131 | `is_eea_member_at` | `["NO", "1994-01-01"]` | `true` | exact (range boundary, inclusive) | `eea_membership` (active) |
+| E132 | `is_eurozone_member_at` | `["GR", "2000-01-01"]` | `false` | exact | `eurozone_membership` (active) |
+| E133 | `is_eurozone_member_at` | `["GR", "2000-12-31"]` | `false` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E134 | `is_eurozone_member_at` | `["GR", "2001-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E135 | `is_eurozone_member_at` | `["GR", "2002-01-01"]` | `true` | exact | `eurozone_membership` (active) |
+| E136 | `is_eurozone_member_at` | `["BG", "2025-12-31"]` | `false` | exact | `eurozone_membership` (active) |
+| E137 | `is_eurozone_member_at` | `["BG", "2026-01-01"]` | `true` | exact (range boundary, inclusive) | `eurozone_membership` (active) |
+| E138 | `is_in_customs_union_at` | `["GB", "2010-01-01"]` | `true` | exact | `customs_union` (active) |
+| E139 | `is_in_customs_union_at` | `["GB", "2023-01-01"]` | `false` | exact | `customs_union` (active) |
+| E140 | `is_in_customs_union_at` | `["TR", "1995-12-30"]` | `false` | exact | `customs_union` (active) |
+| E141 | `is_in_customs_union_at` | `["TR", "1995-12-31"]` | `true` | exact (range boundary, inclusive) | `customs_union` (active) |
+| E142 | `is_eea_member_at` | `["BG", "2012-01-01"]` | `true` | exact (formal range) | `eea_membership` (active) |
+| E143 | `is_eea_member_at` | `["BG", "2005-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
+| E144 | `is_eea_member_at` | `["BG", "2007-07-31"]` | `false` | exact (day before provisional application) | `eea_membership` (active) |
+| E145 | `is_eea_member_at` | `["BG", "2007-08-01"]` | `true` | exact (first day of provisional application) | `eea_membership` (active) |
+| E146 | `is_eea_member_at` | `["CY", "2005-01-01"]` | `true` | exact (provisional application) | `eea_membership` (active) |
+| E147 | `is_eea_member_at` | `["CY", "2003-01-01"]` | `false` | exact (before provisional application) | `eea_membership` (active) |
 
 ## Conventions that apply to every query
 

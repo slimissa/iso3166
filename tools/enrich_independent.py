@@ -11,7 +11,7 @@ Rules:
   * Active entries that are not officially assigned and have no override
     (today: UK) have no OBP entry. They are NOT guessed: the value is
     left unchanged and the entry is listed as unresolved.
-  * Withdrawn entries: a hardcoded per-code table (11 true, 14 false);
+  * Withdrawn entries: a hardcoded per-code table (11 true, 19 false);
     no network access. A withdrawn code missing from the table aborts
     the run.
   * All-or-nothing: if any active entry cannot be resolved from its page,
@@ -75,8 +75,10 @@ OVERRIDES: dict[str, tuple[bool, str]] = {
     "EU": (False, "supranational organisation, not a sovereign state"),
 }
 WITHDRAWN_TRUE = frozenset("BU CS DD DY HV SU TP VD YD YU ZR".split())
-WITHDRAWN_FALSE = frozenset("AI AN CT FQ JT MI NH NQ NT PC PZ RH SK WK".split())
-assert len(WITHDRAWN_TRUE) == 11 and len(WITHDRAWN_FALSE) == 14
+# v1.14.0: BQ, BY, FX, GE and PU joined from their ISO 3166-3 pages, which give
+# no "Independent" value; false as for the other dependencies and parts of states.
+WITHDRAWN_FALSE = frozenset("AI AN BQ BY CT FQ FX GE JT MI NH NQ NT PC PU PZ RH SK WK".split())
+assert len(WITHDRAWN_TRUE) == 11 and len(WITHDRAWN_FALSE) == 19
 assert not (WITHDRAWN_TRUE & WITHDRAWN_FALSE)
 
 EMPTY_WARNING = "enrich_independent: snapshot empty; run --write to populate"

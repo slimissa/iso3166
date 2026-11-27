@@ -44,7 +44,7 @@ def test_withdrawn_table_covers_exactly_the_registry_codes():
     reg = json.loads((ROOT / "iso3166.json").read_text(encoding="utf-8"))
     codes = {e["alpha_2"] for e in reg["countries"]["withdrawn"]}
     assert codes == ei.WITHDRAWN_TRUE | ei.WITHDRAWN_FALSE
-    assert (len(ei.WITHDRAWN_TRUE), len(ei.WITHDRAWN_FALSE)) == (11, 14)
+    assert (len(ei.WITHDRAWN_TRUE), len(ei.WITHDRAWN_FALSE)) == (11, 19)
 
 
 def test_parse_independent_assumed_format():

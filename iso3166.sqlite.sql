@@ -308,6 +308,9 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 intermediate_region source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL, '2010-12-15', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('BQ', 'ATB', '000', 'British Antarctic Territory', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: ISO Online Browsing Platform, ISO 3166-3 entry BQAQ (formerly used)
+ISO 3166-3: British Antarctic Territory is now part of the entry Antarctica (AQ, ATA, 010).
+independent: not stated by ISO; false because British Antarctic Territory is a British overseas territory', '2026-11-25', NULL, 'AQ', NULL, NULL, NULL, NULL, NULL, 'BQAQ', NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('BR', 'BRA', '076', 'Brazil', 'officially-assigned', 1, 'Federative Republic of Brazil', 'Americas', 'Latin America and the Caribbean', 'South America', '55', '.br', 'por', 'AR|BO|CO|GF|GY|PE|PY|SR|UY|VE', 'currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BR
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
 borders source: https://www.cia.gov/the-world-factbook/countries/BR/
@@ -362,6 +365,9 @@ languages source: https://www.cia.gov/the-world-factbook/countries/BY/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('BY', 'BYS', '112', 'Byelorussian SSR', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: ISO Online Browsing Platform, ISO 3166-3 entry BYAA (formerly used)
+ISO 3166-3: Name changed to Belarus (BY, BLR, 112). Code element BYS removed from ISO 3166-1.
+independent: not stated by ISO; false is a guess: the Byelorussian SSR was a republic of the USSR, although it held its own seat at the United Nations', '2026-11-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'BYAA', NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('BZ', 'BLZ', '084', 'Belize', 'officially-assigned', 1, 'Belize', 'Americas', 'Latin America and the Caribbean', 'Central America', '501', '.bz', 'eng', 'GT|MX', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:BZ
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:BZ
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -701,6 +707,10 @@ tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source
 official_name source: https://www.iso.org/obp/ui/#iso:code:3166:FR', '2026-10-21', NULL, NULL, '1974-09-15', '1958-01-01:', '1994-01-01:', '1999-01-01:', '1968-07-01:', NULL, NULL);
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('FX', 'FXX', '249', 'France, Metropolitan', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: ISO Online Browsing Platform, ISO 3166-3 entry FXFR (https://www.iso.org/obp/ui/#iso:code:3166:FX)
+ISO 3166-1 status: Exceptionally reserved. Refers to Metropolitan France and reserved at the request of France.
+ISO 3166-3: Metropolitan France is now incorporated into the entry for France (FR, FRA, 250).
+independent: not stated by ISO; false because Metropolitan France is part of France (FR)', '2026-11-25', NULL, 'FR', NULL, NULL, NULL, NULL, NULL, 'FXFR', 'exceptionally-reserved');
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('GA', 'GAB', '266', 'Gabon', 'officially-assigned', 1, 'Gabonese Republic', 'Africa', 'Sub-Saharan Africa', 'Middle Africa', '241', '.ga', 'fra', 'CG|CM|GQ', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GA
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GA
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -735,6 +745,9 @@ languages source: https://www.cia.gov/the-world-factbook/countries/GE/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('GE', 'GEL', '000', 'Gilbert and Ellice Islands', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: ISO Online Browsing Platform, ISO 3166-3 entry GEHH (formerly used)
+ISO 3166-3: The Gilbert and Ellice Islands were divided into: Gilbert Islands: Kiribati (KI, KIR, 296), and Ellice Islands: Tuvalu (TV, TUV, 798).
+independent: not stated by ISO; false because the Gilbert and Ellice Islands were a British colony', '2026-11-25', NULL, 'KI|TV', NULL, NULL, NULL, NULL, NULL, 'GEHH', NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('GF', 'GUF', '254', 'French Guiana', 'officially-assigned', 0, 'French Guiana', 'Americas', 'Latin America and the Caribbean', 'South America', '594', '.gf', 'fra', 'BR|SR', 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:GF
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:GF
 calling_codes source: https://www.itu.int/oth/T02020000E8/en
@@ -1621,6 +1634,9 @@ languages source: https://www.cia.gov/the-world-factbook/countries/PT/
 tlds source: https://www.iana.org/domains/root/db
 subregion source: https://unstats.un.org/unsd/methodology/m49/
 # per-field sources reconstructed from enrich_field.py templates on 2026-10-20; pre-v1.7.2 notes kept only the last source', '2026-09-23', NULL, NULL, '1974-09-15', '1986-01-01:', '1994-01-01:', '1999-01-01:', '1986-01-01:', NULL, NULL);
+INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('PU', 'PUS', '849', 'United States Miscellaneous Pacific Islands', 'withdrawn', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'source: ISO Online Browsing Platform, ISO 3166-3 entry PUUM (formerly used)
+ISO 3166-3: United States Miscellaneous Pacific Islands are now part of the entry for US Minor Outlying Islands (UM, UMI, 581).
+independent: not stated by ISO; false because the United States Miscellaneous Pacific Islands are United States territories', '2026-11-25', NULL, 'UM', NULL, NULL, NULL, NULL, NULL, 'PUUM', NULL);
 INSERT INTO countries (alpha_2, alpha_3, numeric_code, name, status, independent, official_name, region, subregion, intermediate_region, calling_codes, tlds, languages, borders, note, last_verified, withdrawal_date, replaced_by, introduced, eu_membership, eea_membership, eurozone_membership, customs_union, alpha_4, reservation) VALUES ('PW', 'PLW', '585', 'Palau', 'officially-assigned', 1, 'Republic of Palau', 'Oceania', 'Micronesia', NULL, '680', '.pw', 'eng|pau', NULL, 'official_name source: https://www.iso.org/obp/ui/#iso:code:3166:PW
 currency_codes source: https://www.iso.org/obp/ui/#iso:code:3166:PW
 calling_codes source: https://www.itu.int/oth/T02020000E8/en

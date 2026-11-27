@@ -73,9 +73,9 @@ def test_results_are_copies(reg):
 
 
 def test_active_on_is_is_active_on_for_every_code(reg):
-    # v1.12.5, Query 11. 275 keys = 252 active + 23 withdrawn-only codes.
+    # v1.12.5, Query 11. 277 keys = 252 active + 25 withdrawn-only codes.
     r = reg.active_on("1990-01-01")
-    assert len(r) == 275 and list(r) == sorted(r)
+    assert len(r) == 277 and list(r) == sorted(r)
     for code, v in r.items():
         assert v is reg.is_active_on(code, "1990-01-01"), code
 
@@ -85,7 +85,7 @@ def test_active_on_1990_counts_and_the_none_trap(reg):
     n = lambda v: sum(1 for x in r.values() if x is v)  # noqa: E731
     # CS (withdrawn) is dated 2003-07-23 by Newsletter V-8, so it is False on 1990-01-01.
     # NU is quarantined (Newsletter V-4 renames Niue in 2002), so it is None, not False.
-    assert (n(True), n(False), n(None)) == (169, 29, 77)
+    assert (n(True), n(False), n(None)) == (169, 29, 79)
     act = {e.alpha_2 for e in reg.all_active()}
     a = {c: v for c, v in r.items() if c in act}
     assert len(a) == 252

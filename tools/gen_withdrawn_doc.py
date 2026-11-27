@@ -68,17 +68,21 @@ def build(reg: dict) -> str:
 
     # Succession chains: withdrawn entries whose replaced_by leads to
     # another withdrawn entry.
+    # A successor with an active entry means that entry (v1.14.0: AN -> BQ is
+    # Bonaire, not the withdrawn British Antarctic Territory), so it ends the
+    # chain.
     by_a2 = {e["alpha_2"]: e for e in withdrawn}
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
     chains: list[str] = []
     for e in withdrawn:
         succ = list(e.get("replaced_by") or [])
-        chained = [s for s in succ if s in by_a2]
+        chained = [s for s in succ if s in by_a2 and s not in active]
         if chained:
-            parts = [f"{e['alpha_2']} ({e['name']}, {e['withdrawal_date']})"]
+            parts = [f"{e['alpha_2']} ({e['name']}, {e.get('withdrawal_date') or '—'})"]
             for s in chained:
                 se = by_a2[s]
                 terminal = ", ".join(se.get("replaced_by") or []) or "no further successor"
-                parts.append(f"{s} ({se['name']}, {se['withdrawal_date']}) -> {terminal}")
+                parts.append(f"{s} ({se['name']}, {se.get('withdrawal_date') or '—'}) -> {terminal}")
             chains.append("    " + " -> ".join(parts))
 
     lines.append("## Succession chains")

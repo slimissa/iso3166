@@ -1,6 +1,6 @@
 """tools/cross_language_derived.py::check_active_on also checks the key order.
 
-Query 11 returns "275 keys, sorted" (docs/QUERIES.md). The cross-language check
+Query 11 returns "277 keys, sorted" (docs/QUERIES.md). The cross-language check
 compared the maps with `==`, which ignores order, so a surface that returned the
 right answer in the wrong order passed. Only the Python surface is used here, so
 this runs wherever the root suite runs (no node, go or cargo needed).

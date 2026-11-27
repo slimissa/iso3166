@@ -271,6 +271,8 @@ single subregion applies.
 - Entries that spanned multiple subregions stay null: FQ (French
   Southern and Antarctic Territories), SU (USSR).
 - Uninhabited entries stay null: CT, JT, MI, NQ, WK.
+- The five ISO 3166-3 entries added in v1.14.0 stay null: BQ, BY, FX, GE,
+  PU. Their ISO pages give no subregion, and nothing was added by hand.
 - The UN M49 does not assign a subregion to AQ (Antarctica) or to
   TW (Taiwan). Both stay null; they are the legitimate nulls that
   `enrich_field.py --field subregion --check` accepts.

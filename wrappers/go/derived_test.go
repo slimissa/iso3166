@@ -82,8 +82,8 @@ func TestActiveOn1990(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(m) != 275 {
-		t.Fatalf("len = %d, want 275", len(m))
+	if len(m) != 277 {
+		t.Fatalf("len = %d, want 277", len(m))
 	}
 	var yes, no, unknown int
 	for code, v := range m {
@@ -102,8 +102,9 @@ func TestActiveOn1990(t *testing.T) {
 	}
 	// CS (withdrawn) is dated 2003-07-23 by Newsletter V-8: false on 1990-01-01.
 	// NU is quarantined (Newsletter V-4 renames Niue in 2002): unknown, not false.
-	if yes != 169 || no != 29 || unknown != 77 {
-		t.Errorf("true/false/unknown = %d/%d/%d, want 169/29/77", yes, no, unknown)
+	// PU and FX (v1.14.0) have no withdrawal date: unknown.
+	if yes != 169 || no != 29 || unknown != 79 {
+		t.Errorf("true/false/unknown = %d/%d/%d, want 169/29/79", yes, no, unknown)
 	}
 	if _, err := r.ActiveOn("1990-13-01"); err == nil {
 		t.Error("malformed date must return an error")

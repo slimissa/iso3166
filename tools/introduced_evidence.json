@@ -986,6 +986,16 @@
       "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
     },
     {
+      "code": "FX",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
+    },
+    {
       "code": "GA",
       "current": "1974-09-15",
       "candidate": "1974-09-15",
@@ -2327,6 +2337,16 @@
       "quote_ref": "LIST_1974 in tools/build_introduced_snapshot.py",
       "verdict": "unconfirmed",
       "reason": "maintainer list; ISO 3166:1974 text not yet obtained"
+    },
+    {
+      "code": "PU",
+      "current": null,
+      "candidate": null,
+      "class": "lead_only",
+      "doc": null,
+      "quote_ref": null,
+      "verdict": "unconfirmed",
+      "reason": "withdrawn: start date not sourced"
     },
     {
       "code": "PW",

@@ -401,18 +401,30 @@
     }
   ],
   "counts": {
-    "total": 277,
+    "total": 282,
     "active": 252,
-    "withdrawn": 25,
+    "withdrawn": 30,
     "by_status": {
       "officially-assigned": 249,
       "user-assigned": 1,
       "exceptionally-reserved": 2,
-      "withdrawn": 25
+      "withdrawn": 30
     }
   },
   "overlap_codes": {
     "AI": [
+      "officially-assigned",
+      "withdrawn"
+    ],
+    "BQ": [
+      "officially-assigned",
+      "withdrawn"
+    ],
+    "BY": [
+      "officially-assigned",
+      "withdrawn"
+    ],
+    "GE": [
       "officially-assigned",
       "withdrawn"
     ],
@@ -670,10 +682,22 @@
     ]
   },
   "lookup_alpha2_ambiguous": {
-    "_comment": "AI and SK appear in both active and withdrawn. with_alpha2 must return the active entry first, count 2.",
+    "_comment": "AI, BQ, BY, GE and SK appear in both active and withdrawn. with_alpha2 must return the active entry first, count 2.",
     "enforced": true,
     "cases": {
       "AI": {
+        "first": "active",
+        "count": 2
+      },
+      "BQ": {
+        "first": "active",
+        "count": 2
+      },
+      "BY": {
+        "first": "active",
+        "count": 2
+      },
+      "GE": {
         "first": "active",
         "count": 2
       },
@@ -1298,6 +1322,170 @@
           "US"
         ],
         "expected": []
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "GE"
+        ],
+        "expected": [
+          "Asia",
+          "Western Asia"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "BQ"
+        ],
+        "expected": [
+          "Americas",
+          "Latin America and the Caribbean",
+          "Caribbean"
+        ]
+      },
+      {
+        "query": "region_tree",
+        "args": [
+          "BY"
+        ],
+        "expected": [
+          "Europe",
+          "Eastern Europe"
+        ]
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "GE",
+          "1977-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "BQ",
+          "1977-01-01"
+        ],
+        "expected": false
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "BY",
+          "1980-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "successors",
+        "args": [
+          "GE"
+        ],
+        "expected": [
+          "KI",
+          "TV"
+        ]
+      },
+      {
+        "query": "successors",
+        "args": [
+          "BQ"
+        ],
+        "expected": [
+          "AQ"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "KI"
+        ],
+        "expected": [
+          "CT",
+          "GE"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "AQ"
+        ],
+        "expected": [
+          "BQ",
+          "NQ"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "BQ"
+        ],
+        "expected": [
+          "AN"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "AN",
+          "BQ"
+        ],
+        "expected": [
+          "AN",
+          "BQ"
+        ]
+      },
+      {
+        "query": "succession_path",
+        "args": [
+          "AN",
+          "AQ"
+        ],
+        "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "PU",
+          "1980-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "FX",
+          "1995-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "is_active_on",
+        "args": [
+          "FX",
+          "2025-01-01"
+        ],
+        "expected": null
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "UM"
+        ],
+        "expected": [
+          "PU"
+        ]
+      },
+      {
+        "query": "predecessors",
+        "args": [
+          "FR"
+        ],
+        "expected": [
+          "FX"
+        ]
       },
       {
         "query": "calling_code_for",
@@ -1977,13 +2165,13 @@
       }
     ],
     "active_on": {
-      "_comment": "active_on (v1.12.5, Query 11): is_active_on for every code. 275 keys = 252 active + the 23 withdrawn codes that are not also active (AI and SK: the active entry wins). null is unknown, not false: 77 active entries have no introduced date on 1990-01-01. Every surface must return the same object.",
+      "_comment": "active_on (v1.12.5, Query 11): is_active_on for every code. 277 keys = 252 active + the 25 withdrawn codes that are not also active (AI, BQ, BY, GE and SK: the active entry wins). null is unknown, not false: 77 active entries have no introduced date, and PU and FX no withdrawal date, on 1990-01-01. Every surface must return the same object.",
       "date": "1990-01-01",
-      "keys": 275,
+      "keys": 277,
       "counts": {
         "true": 169,
         "false": 29,
-        "null": 77
+        "null": 79
       },
       "active_counts": {
         "true": 161,
@@ -2005,7 +2193,12 @@
         "NU": null,
         "XK": null,
         "AI": null,
-        "SK": null
+        "SK": null,
+        "PU": null,
+        "FX": null,
+        "GE": null,
+        "BQ": false,
+        "BY": null
       }
     },
     "error_cases": [

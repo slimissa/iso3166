@@ -120,6 +120,11 @@ class DerivedQueries:
         return cached
 
     def _closure(self, start: str, edges: dict) -> list:
+        # A code with an active entry ends a walk (v1.14.0): a replaced_by
+        # that names it means the active entry, so the walk does not go on
+        # through a withdrawn entry that reuses the code (AN -> BQ is
+        # Bonaire, not British Antarctic Territory). Only the start code is
+        # expanded whatever it is, as successors("AI") has always been DJ.
         seen = set()
         stack = [start]
         while stack:
@@ -127,7 +132,8 @@ class DerivedQueries:
             for nxt in edges.get(cur, ()):
                 if nxt not in seen and nxt != start:
                     seen.add(nxt)
-                    stack.append(nxt)
+                    if nxt not in self._by_alpha2:
+                        stack.append(nxt)
         return sorted(seen)
 
     # ------------------------------------------------------------
@@ -306,7 +312,8 @@ class DerivedQueries:
                     while prev[path[-1]] is not None:
                         path.append(prev[path[-1]])
                     return path[::-1]
-                q.append(nxt)
+                if nxt not in self._by_alpha2:   # an active code ends a walk
+                    q.append(nxt)
         return None
 
     def successors(self, code: str) -> list:
@@ -529,15 +536,15 @@ class DerivedQueries:
         """active_on(date: str) -> dict[str, bool | None]
 
         ``is_active_on`` for every code at once: ``{alpha_2: True | False |
-        None}`` for the 252 active entries and the 23 withdrawn codes that
-        are not also active (AI and SK exist in both lists; the active
-        entry wins, exactly as in ``is_active_on``). 275 keys, sorted.
+        None}`` for the 252 active entries and the 25 withdrawn codes that
+        are not also active (AI, BQ, BY, GE and SK exist in both lists; the
+        active entry wins, exactly as in ``is_active_on``). 277 keys, sorted.
         ``result[code] == reg.is_active_on(code, date)`` for every key.
 
         **``None`` is not ``False``.** For 1990-01-01 the answer is 169
-        True, 30 False and 76 None. The 76 are active entries whose
-        ``introduced`` is null (the source is silent): they include CZ, SK
-        and RU. Do not write ``[c for c, v in r.items() if v]`` and call it
+        True, 29 False and 79 None. Of the 79, 77 are active entries whose
+        ``introduced`` is null (the source is silent; they include CZ, SK
+        and RU), and two are PU and FX, which have no withdrawal date. Do not write ``[c for c, v in r.items() if v]`` and call it
         "the countries that existed"; it silently drops them. Count them
         separately, or decide per use whether unknown means in or out.
 
@@ -545,7 +552,7 @@ class DerivedQueries:
 
         >>> r = reg.active_on("1990-01-01")
         >>> len(r), r["DE"], r["DD"], r["BJ"]
-        (275, True, True, None)
+        (277, True, True, None)
 
         See docs/QUERIES.md, "Query 11".
         """

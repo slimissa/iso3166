@@ -629,12 +629,15 @@ def cmd_search(reg, args) -> int:
 # Succession queries
 # ============================================================
 
-def _succession_closure(start: str, edges: dict[str, list[str]]) -> list[str]:
+def _succession_closure(start: str, edges: dict[str, list[str]],
+                        active: set[str] | frozenset[str] = frozenset()) -> list[str]:
     """Transitive closure over `edges` from `start`, excluding `start`.
 
     Used for both directions: forward edges give all descendants of a
     code, reversed edges give all ancestors. See docs/QUERIES.md,
-    "Query 5".
+    "Query 5". A code in `active` ends a walk (v1.14.0): a replaced_by
+    that names it means the active entry, not a withdrawn entry reusing
+    the code (AN -> BQ is Bonaire). Only `start` is expanded whatever it is.
     """
     seen: set[str] = set()
     stack = [start]
@@ -643,7 +646,8 @@ def _succession_closure(start: str, edges: dict[str, list[str]]) -> list[str]:
         for nxt in edges.get(cur, ()):
             if nxt != start and nxt not in seen:
                 seen.add(nxt)
-                stack.append(nxt)
+                if nxt not in active:
+                    stack.append(nxt)
     return sorted(seen)
 
 
@@ -662,10 +666,14 @@ def cmd_successors(reg, args) -> int:
     chain: list[str] = []
     seen: set[str] = set()
 
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
+
     def walk(cur: str) -> None:
         if cur in seen:
             return
         seen.add(cur)
+        if cur != code and cur in active:
+            return  # an active code ends a walk (v1.14.0)
         e = by_a2.get(cur)
         if e is None:
             return
@@ -680,7 +688,7 @@ def cmd_successors(reg, args) -> int:
         e["alpha_2"]: list(e["replaced_by"])
         for e in reg["countries"]["withdrawn"] if e.get("replaced_by")
     }
-    successors = _succession_closure(code, edges)
+    successors = _succession_closure(code, edges, active)
 
     if args.json:
         write_json({
@@ -764,7 +772,8 @@ def cmd_predecessors(reg, args) -> int:
     for e in reg["countries"]["withdrawn"]:
         for d in e.get("replaced_by") or ():
             reverse.setdefault(d, []).append(e["alpha_2"])
-    predecessors = _succession_closure(code, reverse)
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
+    predecessors = _succession_closure(code, reverse, active)
 
     if args.json:
         write_json({"code": code, "predecessors": predecessors})
@@ -1007,7 +1016,8 @@ def cmd_succession_path(reg, args) -> int:
                             path.append(prev[path[-1]])
                         path.reverse()
                         break
-                    queue.append(n)
+                    if n not in _dq_active(reg):  # an active code ends a walk (v1.14.0)
+                        queue.append(n)
                 if path:
                     break
     if path is None:
@@ -1381,7 +1391,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_is_active_on)
 
     sp = sub.add_parser("active-on", parents=[common],
-                        help='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (275: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.', description='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (275: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.')
+                        help='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (277: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.', description='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (277: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.')
     sp.add_argument("date", help="YYYY-MM-DD.")
     sp.set_defaults(func=cmd_active_on)
 

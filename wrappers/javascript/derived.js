@@ -115,6 +115,10 @@ const DerivedQueries = {
   },
 
   _closure(start, edges) {
+    // A code with an active entry ends a walk (v1.14.0): a replaced_by that
+    // names it means the active entry, so the walk does not go on through a
+    // withdrawn entry that reuses the code (AN -> BQ is Bonaire, not British
+    // Antarctic Territory). Only the start code is expanded whatever it is.
     const seen = new Set();
     const stack = [start];
     while (stack.length) {
@@ -122,7 +126,7 @@ const DerivedQueries = {
       for (const nxt of edges.get(cur) ?? []) {
         if (!seen.has(nxt) && nxt !== start) {
           seen.add(nxt);
-          stack.push(nxt);
+          if (!this._byAlpha2.has(nxt)) stack.push(nxt);
         }
       }
     }
@@ -221,7 +225,7 @@ const DerivedQueries = {
           }
           return frozen(path.reverse());
         }
-        q.push(nxt);
+        if (!this._byAlpha2.has(nxt)) q.push(nxt); // an active code ends a walk
       }
     }
     return null;
@@ -374,14 +378,15 @@ const DerivedQueries = {
   /**
    * activeOn(date) -> { [alpha_2]: boolean | null }
    *
-   * isActiveOn for every code at once: the 252 active entries plus the 23
-   * withdrawn codes that are not also active (AI and SK exist in both;
-   * the active entry wins, as in isActiveOn). 275 keys, sorted. Throws
-   * TypeError on a malformed date.
+   * isActiveOn for every code at once: the 252 active entries plus the 25
+   * withdrawn codes that are not also active (AI, BQ, BY, GE and SK exist
+   * in both; the active entry wins, as in isActiveOn). 277 keys, sorted.
+   * Throws TypeError on a malformed date.
    *
-   * null is not false. On 1990-01-01: 169 true, 29 false, 77 null. The 77
-   * are active entries whose `introduced` is null (CZ, SK, RU among them);
-   * filtering on truthiness silently drops them.
+   * null is not false. On 1990-01-01: 169 true, 29 false, 79 null. Of the
+   * 79, 77 are active entries whose `introduced` is null (CZ, SK, RU among
+   * them) and two are PU and FX, which have no withdrawal date; filtering
+   * on truthiness silently drops them.
    *
    * See docs/QUERIES.md, "Query 11".
    */

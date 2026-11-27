@@ -48,7 +48,7 @@ def test_the_ledger_passes():
 
 def test_one_row_per_snapshot_code():
     assert [r["code"] for r in LEDGER["rows"]] == sorted(SNAPSHOT["data"])
-    assert len(LEDGER["rows"]) == 275
+    assert len(LEDGER["rows"]) == 277
 
 
 def test_every_1974_list_date_is_an_inference_with_its_reason():
@@ -75,7 +75,7 @@ def test_every_dated_value_has_a_row_that_says_where_it_came_from():
 
 def test_ledger_counts():
     c = Counter((r["class"], r["verdict"]) for r in LEDGER["rows"])
-    assert sum(c.values()) == 275
+    assert sum(c.values()) == 277
     assert c[("ma_member", "adopted")] == 0
 
 

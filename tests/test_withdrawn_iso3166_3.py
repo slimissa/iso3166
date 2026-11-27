@@ -19,6 +19,20 @@ ALPHA_4 = {
     "MI": "MIUM", "NH": "NHVU", "NQ": "NQAQ", "NT": "NTHH", "PC": "PCHH",
     "PZ": "PZPA", "RH": "RHZW", "SK": "SKIN", "SU": "SUHH", "TP": "TPTL",
     "VD": "VDVN", "WK": "WKUM", "YD": "YDYE", "YU": "YUCS", "ZR": "ZRCD",
+    # v1.14.0: the five ISO 3166-3 entries that joined the list.
+    "BQ": "BQAQ", "BY": "BYAA", "FX": "FXFR", "GE": "GEHH", "PU": "PUUM",
+}
+
+# The five new rows, field by field from their ISO pages: alpha-3, numeric
+# ("000" where the page gives none, the registry's convention), short name,
+# status, and the successors named in "Remark part 3". No page gives a
+# withdrawal date.
+NEW_ROWS = {
+    "GE": ("GEL", "000", "Gilbert and Ellice Islands", "withdrawn", ["KI", "TV"]),
+    "BQ": ("ATB", "000", "British Antarctic Territory", "withdrawn", ["AQ"]),
+    "BY": ("BYS", "112", "Byelorussian SSR", "withdrawn", None),
+    "PU": ("PUS", "849", "United States Miscellaneous Pacific Islands", "withdrawn", ["UM"]),
+    "FX": ("FXX", "249", "France, Metropolitan", "withdrawn", ["FR"]),
 }
 
 # ISO 3166-1 status "Transitionally reserved", and the period each page gives.
@@ -29,7 +43,7 @@ TRANSITIONAL = {
 }
 
 # ISO 3166-1 status "Exceptionally reserved" among the withdrawn entries.
-EXCEPTIONAL = {"SU"}
+EXCEPTIONAL = {"FX", "SU"}
 
 
 def test_every_withdrawn_entry_carries_its_iso_3166_3_alpha_4():
@@ -66,3 +80,38 @@ def test_transitionally_reserved_entries_carry_the_reservation_and_record_the_pe
 
 def test_status_stays_withdrawn_on_every_withdrawn_entry():
     assert {e["status"] for e in WITHDRAWN.values()} == {"withdrawn"}
+
+
+def test_the_withdrawn_list_holds_every_iso_3166_3_entry_but_cshh():
+    assert set(WITHDRAWN) == set(ALPHA_4)
+    assert len(REG["countries"]["withdrawn"]) == 30 == REG["meta"]["count_withdrawn"]
+    assert not any(e["alpha_4"] == "CSHH" for e in REG["countries"]["withdrawn"])
+
+
+def test_the_five_new_rows_are_as_their_iso_pages_give_them():
+    for a2, (a3, num, name, status, repl) in NEW_ROWS.items():
+        e = WITHDRAWN[a2]
+        assert (e["alpha_3"], e["numeric"], e["name"], e["status"], e["replaced_by"]) == \
+            (a3, num, name, status, repl), a2
+        assert e["withdrawal_date"] is None and e["introduced"] is None, a2
+        assert "ISO 3166-3: " in e["note"], a2
+        # ISO gives no "Independent" value; the schema requires a boolean, so
+        # the note says where false comes from.
+        assert e["independent"] is False, a2
+        assert any(line.startswith("independent: not stated by ISO; ")
+                   for line in e["note"].splitlines()), a2
+    assert "a guess" in WITHDRAWN["BY"]["note"]
+
+
+def test_by_names_no_successor_because_its_code_did_not_change():
+    # ISO: "Name changed to Belarus (BY, BLR, 112). Code element BYS removed".
+    # replaced_by may not name the entry's own alpha-2, so it is null and the
+    # note carries ISO's remark.
+    assert WITHDRAWN["BY"]["replaced_by"] is None
+    assert "Name changed to Belarus (BY, BLR, 112)" in WITHDRAWN["BY"]["note"]
+
+
+def test_ge_bq_and_by_resolve_to_the_active_entry_like_ai_and_sk():
+    active = {e["alpha_2"] for e in REG["countries"]["active"]}
+    for a2 in ("AI", "BQ", "BY", "GE", "SK"):
+        assert a2 in active and a2 in WITHDRAWN, a2

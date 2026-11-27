@@ -37,9 +37,9 @@ def test_active_on_prints_one_line_per_code_and_json_object():
     r = _run("active-on", "1990-01-01")
     assert r.returncode == 0
     lines = r.stdout.splitlines()
-    assert len(lines) == 275
+    assert len(lines) == 277
     assert "DE\ttrue" in lines and "BJ\tunknown" in lines and "BU\tfalse" in lines
     j = _run("active-on", "1990-01-01", "--json")
     d = json.loads(j.stdout)
-    assert len(d) == 275 and d["BJ"] is None and d["DE"] is True
+    assert len(d) == 277 and d["BJ"] is None and d["DE"] is True
     assert _run("active-on", "1990-13-01").returncode == 2

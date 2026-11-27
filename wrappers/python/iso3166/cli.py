@@ -628,7 +628,7 @@ def cmd_search(reg: CountryRegistry, args) -> int:
 # asked is about succession, and only withdrawn entries have any.
 
 def _succession_index(reg: CountryRegistry) -> dict[str, Country]:
-    """alpha_2 -> entry; withdrawn wins over active for AI and SK."""
+    """alpha_2 -> entry; withdrawn wins over active for AI, BQ, BY, GE and SK."""
     return {c.alpha_2: c for c in reg.all()}
 
 
@@ -647,6 +647,8 @@ def cmd_successors(reg: CountryRegistry, args) -> int:
         if cur in seen:
             return
         seen.add(cur)
+        if cur != code and reg.active(cur) is not None:
+            return  # an active code ends a walk (v1.14.0)
         e = by_a2.get(cur)
         if e is None:
             return
@@ -1163,7 +1165,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_is_active_on)
 
     sp = sub.add_parser("active-on", parents=[common],
-                        help='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (275: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.', description='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (275: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.')
+                        help='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (277: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.', description='Was each code assigned on DATE (YYYY-MM-DD)? One line per code (277: the active entries and the withdrawn codes that are not also active): CODE, a tab, then true, false or unknown. --json prints an object of true/false/null. Exit 0; 2 on a malformed DATE or usage error, 3 if the registry is missing. unknown is not false (76 of 252 active entries on 1990-01-01). See docs/QUERIES.md, Query 11.')
     sp.add_argument("date", help="YYYY-MM-DD.")
     sp.set_defaults(func=cmd_active_on)
 

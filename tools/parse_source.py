@@ -164,13 +164,13 @@ OFFICIAL_ISO3166_CODES: frozenset[str] = frozenset({
 })
 
 WITHDRAWN_ISO3166_CODES: frozenset[str] = frozenset({
-    "AI", "AN", "BU", "CS", "CT", "DD", "DY", "FQ", "HV", "JT", "MI", "NH",
-    "NQ", "NT", "PC", "PZ", "RH", "SK", "SU", "TP", "VD", "WK", "YD", "YU",
-    "ZR",
+    "AI", "AN", "BQ", "BU", "BY", "CS", "CT", "DD", "DY", "FQ", "FX", "GE",
+    "HV", "JT", "MI", "NH", "NQ", "NT", "PC", "PU", "PZ", "RH", "SK", "SU",
+    "TP", "VD", "WK", "YD", "YU", "ZR",
 })
 
 WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES: frozenset[str] = frozenset({
-    "SU",
+    "FX", "SU",
 })
 
 WITHDRAWN_TRANSITIONAL_RESERVATION_CODES: frozenset[str] = frozenset({

@@ -642,7 +642,12 @@ impl CountryRegistry {
         m
     }
 
+    /// A code with an active entry ends a walk (v1.14.0): a `replaced_by`
+    /// that names it means the active entry, so the walk does not go on
+    /// through a withdrawn entry that reuses the code (AN -> BQ is Bonaire,
+    /// not British Antarctic Territory). Only `start` is expanded whatever it is.
     fn dq_closure(
+        &self,
         start: &str,
         edges: &std::collections::HashMap<&str, Vec<&str>>,
     ) -> Vec<String> {
@@ -651,7 +656,10 @@ impl CountryRegistry {
         while let Some(cur) = stack.pop() {
             if let Some(next) = edges.get(cur.as_str()) {
                 for n in next {
-                    if *n != start && seen.insert((*n).to_string()) {
+                    if *n != start
+                        && seen.insert((*n).to_string())
+                        && !self.by_alpha2.contains_key(*n)
+                    {
                         stack.push((*n).to_string());
                     }
                 }
@@ -828,7 +836,10 @@ impl CountryRegistry {
                         path.reverse();
                         return Some(path);
                     }
-                    q.push_back((*n).to_string());
+                    if !self.by_alpha2.contains_key(*n) {
+                        // An active code ends a walk.
+                        q.push_back((*n).to_string());
+                    }
                 }
             }
         }
@@ -843,7 +854,7 @@ impl CountryRegistry {
         if c.is_empty() {
             return Vec::new();
         }
-        Self::dq_closure(&c, &self.dq_edges())
+        self.dq_closure(&c, &self.dq_edges())
     }
 
     /// Returns all ancestors: every withdrawn code from which `code` is
@@ -860,7 +871,7 @@ impl CountryRegistry {
                 rev.entry(d).or_default().push(src);
             }
         }
-        Self::dq_closure(&c, &rev)
+        self.dq_closure(&c, &rev)
     }
 
     /// Sorted codes whose `calling_codes` is a prefix of the number's
@@ -1004,12 +1015,14 @@ impl CountryRegistry {
     }
 
     /// [`is_active_on`](Self::is_active_on) for every code at once: the 252
-    /// active entries plus the 23 withdrawn codes that are not also active
-    /// (AI and SK exist in both; the active entry wins). 275 keys, sorted.
+    /// active entries plus the 25 withdrawn codes that are not also active
+    /// (AI, BQ, BY, GE and SK exist in both; the active entry wins). 277
+    /// keys, sorted.
     /// A malformed date is `Err(InvalidDate)`.
     ///
     /// `None` is not `Some(false)`. On 1990-01-01 the answer is 169 true,
-    /// 29 false and 77 unknown (CZ, SK and RU among them); filtering on
+    /// 29 false and 79 unknown (CZ, SK and RU among them, and PU and FX,
+    /// which have no withdrawal date); filtering on
     /// `Some(true)` alone silently drops the unknowns.
     /// See docs/QUERIES.md, "Query 11".
     pub fn active_on(
@@ -1190,11 +1203,11 @@ mod tests {
     fn active_on_agrees_with_is_active_on() {
         let r = reg();
         let m = r.active_on("1990-01-01").unwrap();
-        assert_eq!(m.len(), 275);
+        assert_eq!(m.len(), 277);
         let count = |v: Option<bool>| m.values().filter(|x| **x == v).count();
         // CS (withdrawn) is dated 2003-07-23 by Newsletter V-8: false on 1990-01-01.
         // NU is quarantined (Newsletter V-4 renames Niue in 2002): None, not Some(false).
-        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (169, 29, 77));
+        assert_eq!((count(Some(true)), count(Some(false)), count(None)), (169, 29, 79));
         for (code, v) in &m {
             assert_eq!(*v, r.is_active_on(code, "1990-01-01").unwrap(), "{}", code);
         }

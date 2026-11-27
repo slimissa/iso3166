@@ -57,7 +57,7 @@ ENFORCE_INPUT_CONTRACT = True
 
 SUCCESSOR_INPUTS = ["YU", "CS", "AN", "SK", "RS", "US", "SU"]
 PREDECESSOR_INPUTS = ["ME", "RS", "CS", "YU", "IN", "US"]
-AMBIGUOUS_ALPHA2 = ["AI", "SK"]
+AMBIGUOUS_ALPHA2 = ["AI", "BQ", "BY", "GE", "SK"]
 NUMERIC_ABSENT_INPUTS = ["", "000", "0", " 20", "020 "]
 
 
@@ -161,7 +161,7 @@ def build(reg: dict[str, Any]) -> dict[str, Any]:
             "input": code,
             "alpha_2": e["alpha_2"],
             "name": e["name"],
-            "status": "withdrawn",
+            "status": e["status"],
             "withdrawal_date": e.get("withdrawal_date"),
         })
 
@@ -279,11 +279,14 @@ def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
         return w["introduced"] <= date
 
     codes = sorted(set(act) | set(wd))
-    allc = {"true": 169, "false": 29, "null": 77}
+    allc = {"true": 169, "false": 29, "null": 79}
     actc = {"true": 161, "false": 14, "null": 77}
     spot = {"DE": True, "US": True, "DD": True, "SU": True, "YU": True,
             "CS": False, "AN": True, "BU": False, "BJ": None, "CZ": None,
-            "RU": None, "NU": None, "XK": None, "AI": None, "SK": None}
+            "RU": None, "NU": None, "XK": None, "AI": None, "SK": None,
+            # v1.14.0: PU and FX have no withdrawal date (unknown); GE, BQ
+            # and BY resolve to their active entry.
+            "PU": None, "FX": None, "GE": None, "BQ": False, "BY": None}
 
     def tally(cs):
         t = {"true": 0, "false": 0, "null": 0}
@@ -292,20 +295,21 @@ def active_on_case(reg: dict[str, Any]) -> dict[str, Any]:
             t["null" if v is None else ("true" if v else "false")] += 1
         return t
 
-    if (len(codes), tally(codes), tally(act)) != (275, allc, actc) or any(
+    if (len(codes), tally(codes), tally(act)) != (277, allc, actc) or any(
         known(c) != v for c, v in spot.items()
     ):
         raise SystemExit("active_on: typed expectations disagree with the data")
     return {
         "_comment": (
             "active_on (v1.12.5, Query 11): is_active_on for every code. "
-            "275 keys = 252 active + the 23 withdrawn codes that are not "
-            "also active (AI and SK: the active entry wins). null is "
-            "unknown, not false: 77 active entries have no introduced date "
-            "on 1990-01-01. Every surface must return the same object."
+            "277 keys = 252 active + the 25 withdrawn codes that are not "
+            "also active (AI, BQ, BY, GE and SK: the active entry wins). "
+            "null is unknown, not false: 77 active entries have no "
+            "introduced date, and PU and FX no withdrawal date, on "
+            "1990-01-01. Every surface must return the same object."
         ),
         "date": date,
-        "keys": 275,
+        "keys": 277,
         "counts": allc,
         "active_counts": actc,
         "spot": spot,
@@ -392,6 +396,30 @@ def derived_queries_case(reg: dict[str, Any]) -> dict[str, Any]:
         ('predecessors', ['IN'], ['SK']),
         ('predecessors', ['YU'], []),
         ('predecessors', ['US'], []),
+        # v1.14.0: GE, BQ and BY exist as active and withdrawn entries, like
+        # AI and SK. Every field lookup uses the active entry; succession
+        # starts from the withdrawn entry's replaced_by (as successors("AI")
+        # is DJ), and a successor with an active entry ends the walk: AN's
+        # BQ is Bonaire, not British Antarctic Territory.
+        ('region_tree', ['GE'], ['Asia', 'Western Asia']),
+        ('region_tree', ['BQ'], ['Americas', 'Latin America and the Caribbean', 'Caribbean']),
+        ('region_tree', ['BY'], ['Europe', 'Eastern Europe']),
+        ('is_active_on', ['GE', '1977-01-01'], None),
+        ('is_active_on', ['BQ', '1977-01-01'], False),
+        ('is_active_on', ['BY', '1980-01-01'], None),
+        ('successors', ['GE'], ['KI', 'TV']),
+        ('successors', ['BQ'], ['AQ']),
+        ('predecessors', ['KI'], ['CT', 'GE']),
+        ('predecessors', ['AQ'], ['BQ', 'NQ']),
+        ('predecessors', ['BQ'], ['AN']),
+        ('succession_path', ['AN', 'BQ'], ['AN', 'BQ']),
+        ('succession_path', ['AN', 'AQ'], None),
+        # PU and FX: no withdrawal date on their ISO pages, so unknown.
+        ('is_active_on', ['PU', '1980-01-01'], None),
+        ('is_active_on', ['FX', '1995-01-01'], None),
+        ('is_active_on', ['FX', '2025-01-01'], None),
+        ('predecessors', ['UM'], ['PU']),
+        ('predecessors', ['FR'], ['FX']),
         ('calling_code_for', ['+44 20 7946 0958'], ['GB', 'GG', 'IM', 'JE']),
         ('calling_code_for', ['44 20 7946 0958'], ['GB', 'GG', 'IM', 'JE']),
         ('calling_code_for', ['+44 (0) 20.7946.0958'], ['GB', 'GG', 'IM', 'JE']),
@@ -571,16 +599,19 @@ def alpha2_ambiguous_case(reg: dict[str, Any]) -> dict[str, Any]:
         cases[code] = {"first": "active", "count": 2}
     return {
         "_comment": (
-            "AI and SK appear in both active and withdrawn. with_alpha2 "
-            "must return the active entry first, count 2."
+            "AI, BQ, BY, GE and SK appear in both active and withdrawn. "
+            "with_alpha2 must return the active entry first, count 2."
         ),
         "enforced": ENFORCE_INPUT_CONTRACT,
         "cases": cases,
     }
 
 
-def _closure(start: str, edges: dict[str, list[str]]) -> list[str]:
-    """Transitive closure over `edges` from `start`, excluding it, sorted."""
+def _closure(start: str, edges: dict[str, list[str]], active: set[str]) -> list[str]:
+    """Transitive closure over `edges` from `start`, excluding it, sorted.
+
+    A code with an active entry ends a walk (v1.14.0); only `start` is
+    expanded whatever it is."""
     seen: set[str] = set()
     stack = [start]
     while stack:
@@ -588,7 +619,8 @@ def _closure(start: str, edges: dict[str, list[str]]) -> list[str]:
         for nxt in edges.get(cur, ()):
             if nxt != start and nxt not in seen:
                 seen.add(nxt)
-                stack.append(nxt)
+                if nxt not in active:
+                    stack.append(nxt)
     return sorted(seen)
 
 
@@ -605,11 +637,12 @@ def successors_case(reg: dict[str, Any]) -> dict[str, Any]:
         e["alpha_2"] for e in reg["countries"]["withdrawn"]
     }
     edges = _forward_edges(reg)
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
     cases = []
     for code in SUCCESSOR_INPUTS:
         if code not in known:
             raise SystemExit(f"successors: {code} not in registry")
-        cases.append({"input": code, "successors": _closure(code, edges)})
+        cases.append({"input": code, "successors": _closure(code, edges, active)})
     return {
         "_comment": (
             "All descendants of the input: the transitive closure of "
@@ -628,8 +661,9 @@ def predecessors_case(reg: dict[str, Any]) -> dict[str, Any]:
     for src, dsts in _forward_edges(reg).items():
         for d in dsts:
             reverse.setdefault(d, []).append(src)
+    active = {e["alpha_2"] for e in reg["countries"]["active"]}
     cases = [
-        {"input": code, "predecessors": _closure(code, reverse)}
+        {"input": code, "predecessors": _closure(code, reverse, active)}
         for code in PREDECESSOR_INPUTS
     ]
     return {
