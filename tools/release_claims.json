@@ -2060,5 +2060,160 @@
       "file": "docs/withdrawn-completeness.md",
       "absent": "‡"
     }
+  ],
+  "1.14.0": [
+    {
+      "file": "docs/decisions/withdrawn-alpha4.md"
+    },
+    {
+      "file": "tests/test_validate_withdrawn_alpha4.py"
+    },
+    {
+      "file": "tests/test_withdrawn_iso3166_3.py"
+    },
+    {
+      "file": "schema.json",
+      "contains": "\"$id\": \"https://github.com/slimissa/iso3166/schema/1.1.0\""
+    },
+    {
+      "file": "schema.json",
+      "contains": "\"enum\": [\"exceptionally-reserved\", \"transitionally-reserved\", null]"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"schema_version\": \"1.1.0\""
+    },
+    {
+      "file": "tools/validate.py",
+      "contains": "meta.schema_version {declared!r} != schema.json $id version"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"count_withdrawn\": 30"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"alpha_4\": \"CSXX\""
+    },
+    {
+      "file": "iso3166.json",
+      "absent": "\"alpha_4\": \"CSHH\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"alpha_4\": \"GEHH\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"alpha_4\": \"BQAQ\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"alpha_4\": \"BYAA\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"alpha_4\": \"PUUM\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"alpha_4\": \"FXFR\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"reservation\": \"exceptionally-reserved\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"reservation\": \"transitionally-reserved\""
+    },
+    {
+      "file": "tools/parse_source.py",
+      "contains": "WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES: frozenset[str] = frozenset({\n    \"FX\", \"SU\",\n})"
+    },
+    {
+      "file": "tools/parse_source.py",
+      "contains": "WITHDRAWN_TRANSITIONAL_RESERVATION_CODES: frozenset[str] = frozenset({\n    \"AN\", \"BU\", \"CS\", \"NT\", \"TP\", \"YU\", \"ZR\",\n})"
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"name\": \"German Democratic Republic\""
+    },
+    {
+      "file": "iso3166.json",
+      "absent": "\"name\": \"East Germany\""
+    },
+    {
+      "file": "iso3166.json",
+      "contains": "\"withdrawal_date\": \"2010-12-15\""
+    },
+    {
+      "file": "iso3166.csv",
+      "contains": "customs_union,alpha_4,reservation"
+    },
+    {
+      "file": "wrappers/python/iso3166/registry.py",
+      "contains": "alpha_4: Optional[str] = None"
+    },
+    {
+      "file": "wrappers/javascript/index.js",
+      "contains": "alpha_4: raw.alpha_4 ?? null"
+    },
+    {
+      "file": "wrappers/go/registry.go",
+      "contains": "Alpha4 *string `json:\"alpha_4\"`"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "pub alpha_4: Option<String>"
+    },
+    {
+      "file": "wrappers/python/iso3166/registry.py",
+      "contains": "reservation: Optional[str] = None"
+    },
+    {
+      "file": "wrappers/javascript/index.js",
+      "contains": "reservation: raw.reservation ?? null"
+    },
+    {
+      "file": "wrappers/go/registry.go",
+      "contains": "Reservation *string `json:\"reservation\"`"
+    },
+    {
+      "file": "wrappers/rust/src/lib.rs",
+      "contains": "pub reservation: Option<String>"
+    },
+    {
+      "file": "tests/cross_language_consistency.json",
+      "contains": "\"keys\": 277"
+    },
+    {
+      "file": "docs/withdrawn-completeness.md",
+      "contains": "| In both | 30 |"
+    },
+    {
+      "file": "docs/withdrawn-completeness.md",
+      "contains": "| ISO entries not in the registry | 1: CSHH (Czechoslovakia), deferred to v2.0.0 |"
+    },
+    {
+      "file": "docs/SCOPE.md",
+      "contains": "## Sanctions (v1.15.0)"
+    },
+    {
+      "file": "README.md",
+      "contains": "**v1.15.0, sanctions:**"
+    },
+    {
+      "file": "README.md",
+      "contains": "**v2.0.0, the withdrawn key:**"
+    },
+    {
+      "file": "docs/PROVENANCE.md",
+      "contains": "current as of v1.14"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "contains": "As of v1.14"
+    }
   ]
 }

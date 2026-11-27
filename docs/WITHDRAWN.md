@@ -5,38 +5,38 @@ Every entry in the `withdrawn` array of `iso3166.json`, with its ISO 3166-3 succ
 Registry version: **1.13.0**
 Entries: **30**
 
-| alpha-2 | alpha-3 | numeric | Name | Withdrawn | Replaced by |
-|---------|---------|---------|------|-----------|-------------|
-| AI | AFI | 000 | French Afars and Issas | 1977-06-27 | DJ |
-| AN | ANT | 530 | Netherlands Antilles | 2010-12-15 | BQ, CW, SX |
-| BQ | ATB | 000 | British Antarctic Territory | — | AQ |
-| BU | BUR | 104 | Burma | 1989-12-05 | MM |
-| BY | BYS | 112 | Byelorussian SSR | — | — |
-| CS | SCG | 891 | Serbia and Montenegro | 2006-09-26 | RS, ME |
-| CT | CTE | 128 | Canton and Enderbury Islands | 1984-01-01 | KI |
-| DD | DDR | 278 | German Democratic Republic | 1990-10-03 | DE |
-| DY | DHY | 000 | Dahomey | 1977-02-01 | BJ |
-| FQ | ATF | 000 | French Southern and Antarctic Territories | 1979-01-01 | TF |
-| FX | FXX | 249 | France, Metropolitan | — | FR |
-| GE | GEL | 000 | Gilbert and Ellice Islands | — | KI, TV |
-| HV | HVO | 854 | Upper Volta | 1984-08-04 | BF |
-| JT | JTN | 396 | Johnston Island | 1986-01-01 | — |
-| MI | MID | 488 | Midway Islands | 1986-01-01 | — |
-| NH | NHB | 000 | New Hebrides | 1980-07-30 | VU |
-| NQ | ATN | 216 | Dronning Maud Land | 1983-01-01 | AQ |
-| NT | NTZ | 536 | Neutral Zone | 1993-07-01 | — |
-| PC | PCI | 582 | Pacific Islands (Trust Territory) | 1986-11-03 | FM, MH, MP, PW |
-| PU | PUS | 849 | United States Miscellaneous Pacific Islands | — | UM |
-| PZ | PCZ | 000 | Panama Canal Zone | 1980-01-01 | PA |
-| RH | RHO | 000 | Southern Rhodesia | 1980-04-18 | ZW |
-| SK | SKM | 000 | Sikkim | 1975-05-16 | IN |
-| SU | SUN | 810 | USSR | 1992-08-30 | — |
-| TP | TMP | 626 | East Timor | 2002-05-20 | TL |
-| VD | VDR | 000 | Viet-Nam, Democratic Republic of | 1976-07-02 | VN |
-| WK | WAK | 872 | Wake Island | 1986-01-01 | — |
-| YD | YMD | 720 | Yemen, Democratic | 1990-05-22 | YE |
-| YU | YUG | 891 | Yugoslavia | 2003-07-23 | CS |
-| ZR | ZAR | 180 | Zaire | 1997-05-17 | CD |
+| alpha-2 | alpha-4 | alpha-3 | numeric | Name | Withdrawn | Replaced by | Reservation |
+|---------|---------|---------|---------|------|-----------|-------------|-------------|
+| AI | AIDJ | AFI | 000 | French Afars and Issas | 1977-06-27 | DJ | — |
+| AN | ANHH | ANT | 530 | Netherlands Antilles | 2010-12-15 | BQ, CW, SX | `transitionally-reserved` |
+| BQ | BQAQ | ATB | 000 | British Antarctic Territory | — | AQ | — |
+| BU | BUMM | BUR | 104 | Burma | 1989-12-05 | MM | `transitionally-reserved` |
+| BY | BYAA | BYS | 112 | Byelorussian SSR | — | — | — |
+| CS | CSXX | SCG | 891 | Serbia and Montenegro | 2006-09-26 | RS, ME | `transitionally-reserved` |
+| CT | CTKI | CTE | 128 | Canton and Enderbury Islands | 1984-01-01 | KI | — |
+| DD | DDDE | DDR | 278 | German Democratic Republic | 1990-10-03 | DE | — |
+| DY | DYBJ | DHY | 000 | Dahomey | 1977-02-01 | BJ | — |
+| FQ | FQHH | ATF | 000 | French Southern and Antarctic Territories | 1979-01-01 | TF | — |
+| FX | FXFR | FXX | 249 | France, Metropolitan | — | FR | `exceptionally-reserved` |
+| GE | GEHH | GEL | 000 | Gilbert and Ellice Islands | — | KI, TV | — |
+| HV | HVBF | HVO | 854 | Upper Volta | 1984-08-04 | BF | — |
+| JT | JTUM | JTN | 396 | Johnston Island | 1986-01-01 | — | — |
+| MI | MIUM | MID | 488 | Midway Islands | 1986-01-01 | — | — |
+| NH | NHVU | NHB | 000 | New Hebrides | 1980-07-30 | VU | — |
+| NQ | NQAQ | ATN | 216 | Dronning Maud Land | 1983-01-01 | AQ | — |
+| NT | NTHH | NTZ | 536 | Neutral Zone | 1993-07-01 | — | `transitionally-reserved` |
+| PC | PCHH | PCI | 582 | Pacific Islands (Trust Territory) | 1986-11-03 | FM, MH, MP, PW | — |
+| PU | PUUM | PUS | 849 | United States Miscellaneous Pacific Islands | — | UM | — |
+| PZ | PZPA | PCZ | 000 | Panama Canal Zone | 1980-01-01 | PA | — |
+| RH | RHZW | RHO | 000 | Southern Rhodesia | 1980-04-18 | ZW | — |
+| SK | SKIN | SKM | 000 | Sikkim | 1975-05-16 | IN | — |
+| SU | SUHH | SUN | 810 | USSR | 1992-08-30 | — | `exceptionally-reserved` |
+| TP | TPTL | TMP | 626 | East Timor | 2002-05-20 | TL | `transitionally-reserved` |
+| VD | VDVN | VDR | 000 | Viet-Nam, Democratic Republic of | 1976-07-02 | VN | — |
+| WK | WKUM | WAK | 872 | Wake Island | 1986-01-01 | — | — |
+| YD | YDYE | YMD | 720 | Yemen, Democratic | 1990-05-22 | YE | — |
+| YU | YUCS | YUG | 891 | Yugoslavia | 2003-07-23 | CS | `transitionally-reserved` |
+| ZR | ZRCD | ZAR | 180 | Zaire | 1997-05-17 | CD | `transitionally-reserved` |
 
 ## Succession chains
 
@@ -46,4 +46,4 @@ Withdrawn codes whose immediate successors were themselves withdrawn. A single q
 
 ## The CS case
 
-`CS` was used twice in ISO 3166-3 history: Czechoslovakia (withdrawn 1993-01-01, replaced by `CZ` and `SK`) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by `ME` and `RS`). The registry has one `CS` entry recording the second use; the first is documented in the entry's `note` field. See `docs/decisions/withdrawn-codes.md`.
+`CS` was used twice in ISO 3166-3 history: Czechoslovakia (withdrawn 1993-01-01, replaced by `CZ` and `SK`) and Serbia and Montenegro (withdrawn 2006-09-26, replaced by `ME` and `RS`). The registry has one `CS` entry recording the second use (ISO 3166-3 `CSXX`); the first (`CSHH`) is documented in the entry's `note` field and joins in v2.0.0, when the withdrawn key becomes `(alpha_2, alpha_4)`. See `docs/decisions/withdrawn-codes.md` and `docs/decisions/withdrawn-alpha4.md`.

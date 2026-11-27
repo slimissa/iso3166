@@ -27,8 +27,9 @@ Algorithm, implemented in `tools/build_introduced_snapshot.py`:
 4. Code in `wikipedia_dates.json` `data`: that date.
 5. Otherwise null, reason "source silent".
 
-Withdrawn entries are null. AI and SK are both active and withdrawn, so
-the snapshot (keyed by alpha_2) has 275 keys, not 277. The active value wins.
+Withdrawn entries are null. AI, BQ, BY, GE and SK are both active and
+withdrawn, so the snapshot (keyed by alpha_2) has 277 keys, not 282
+(v1.14.0). The active value wins.
 
 ## Source (the exception)
 

@@ -15,7 +15,7 @@ quoted from the file named.
 
 | Fact | Where |
 |------|-------|
-| The sanctions release, v1.14.0, has not shipped. No `sanctions_regime` field and no `is_sanctioned_at` query exists. | `README.md`, section 20 |
+| The sanctions release, v1.15.0, has not shipped. No `sanctions_regime` field and no `is_sanctioned_at` query exists. | `README.md`, section 20 |
 | A first attempt stopped because no first-party source was reachable. | `README.md`, section 20 |
 | `sanctions-freshness.yml` does not exist. | `README.md`, section 14 |
 | Deferred: `is_sanctioned_at(code, regime, date)`, which needs a `sanctions_regime[]` field. | `docs/QUERIES-DECISIONS.md`, deferred table |

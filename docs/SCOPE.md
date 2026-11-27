@@ -11,14 +11,14 @@ page says so and does not supply one.
 
 | Item | Planned release | Status | Trigger |
 |------|-----------------|--------|---------|
-| Sanctions | v1.14.0 | out-of-scope until the trigger | A compliance consumer exists and a reliable country-level source is found |
-| Geography: `regions.json`, `timezones[]` | v1.15.0 | out-of-scope until the trigger | A consumer asks for `regions.json` or `timezones[]` |
-| Subdivisions (ISO 3166-2) | v1.17.0 | out-of-scope until the trigger | A consumer asks for ISO 3166-2 subdivisions |
+| Sanctions | v1.15.0 | out-of-scope until the trigger | A compliance consumer exists and a reliable country-level source is found |
+| Geography: `regions.json`, `timezones[]` | v1.16.0 | out-of-scope until the trigger | A consumer asks for `regions.json` or `timezones[]` |
+| Subdivisions (ISO 3166-2) | v1.18.0 | out-of-scope until the trigger | A consumer asks for ISO 3166-2 subdivisions |
 | `root`, `siblings`, `descendants` queries | none | out-of-scope, no decision recorded | A consumer asks, then a decision record |
 
-## Sanctions (v1.14.0)
+## Sanctions (v1.15.0)
 
-- **Status:** out-of-scope. The first attempt, planned then as v1.13.0, stopped; it was not refused. v1.13.0 is now the `introduced` evidence release.
+- **Status:** out-of-scope. The first attempt, planned then as v1.13.0, stopped; it was not refused. v1.13.0 became the `introduced` evidence release, and v1.14.0 the withdrawn list against ISO 3166-3.
 - **What is missing:** a `sanctions_regime` field and an `is_sanctioned_at(code, regime, date)` query.
 - **Why:** a first attempt found no reachable first-party source (`README.md`, section 20).
 - **Reopening trigger:** a compliance consumer exists and a reliable country-level source is found, with dates, in a stable machine-readable form.
@@ -27,18 +27,18 @@ page says so and does not supply one.
 The registry must not be used to screen transactions or parties. It carries no
 sanctions data of any kind.
 
-## Geography (v1.15.0)
+## Geography (v1.16.0)
 
 - **Status:** out-of-scope. Deferred.
 - **What is missing:** `regions.json` and a `timezones[]` field. The `timezone_of(code)` query waits on the field. The existing `region`, `subregion` and `intermediate_region` fields are UN M49 and are not affected.
 - **Why:** the deferred table lists `timezone_of(code)` as needing a `timezones[]` field. The tree records no source for time zones.
-- **Related:** `is_landlocked(code)` is listed as "v1.15.0 or never", because it is not derivable from `borders` and needs coastline data.
+- **Related:** `is_landlocked(code)` is listed as "v1.16.0 or never", because it is not derivable from `borders` and needs coastline data.
 - **Reopening trigger:** a consumer asks for `regions.json` or `timezones[]`.
 - **Where decided:** [`QUERIES-DECISIONS.md`](./QUERIES-DECISIONS.md), "What is deferred, and why".
 
 ## Subdivisions (ISO 3166-2)
 
-- **Status:** out-of-scope. Deferred to v1.17.0.
+- **Status:** out-of-scope. Deferred to v1.18.0.
 - **What is missing:** ISO 3166-2 as a `subdivisions.json` companion file, and the `subdivisions_of(code)` query that needs it.
 - **Why:** the registry covers ISO 3166-1. The README lists "No subdivisions" as a known limitation (section 20). The tree records no further reason.
 - **Reopening trigger:** a consumer asks for ISO 3166-2 subdivisions.
@@ -65,8 +65,9 @@ Each has its own decision in the file named.
 | Area-code narrowing for `calling_code_for` | not scheduled; needs numbering-plan data | `QUERIES-DECISIONS.md` |
 | `source_hash` | waits for a stable raw source | `README.md`, section 24 |
 | Published language packages | not published to PyPI, npm, crates.io or a Go proxy | `README.md`, section 20 |
-| v1.16.0 ecosystem documentation | when the six registries are stable enough | `README.md`, section 24 |
-| v2.0.0 breaking schema change | when a consumer needs one | `README.md`, section 24 |
+| v1.17.0 ecosystem documentation | when the six registries are stable enough | `README.md`, section 24 |
+| v2.0.0 withdrawn key `(alpha_2, alpha_4)`, and `CSHH` (Czechoslovakia) as a second withdrawn `CS` | the release that takes it; it breaks every lookup keyed by alpha-2 alone | `decisions/withdrawn-alpha4.md` |
+| v2.0.0 any other breaking schema change | when a consumer needs one | `README.md`, section 24 |
 
 ## How an item leaves this page
 

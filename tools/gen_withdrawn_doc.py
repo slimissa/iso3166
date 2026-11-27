@@ -56,13 +56,15 @@ def build(reg: dict) -> str:
     lines.append(f"Registry version: **{version}**")
     lines.append(f"Entries: **{len(withdrawn)}**")
     lines.append("")
-    lines.append("| alpha-2 | alpha-3 | numeric | Name | Withdrawn | Replaced by |")
-    lines.append("|---------|---------|---------|------|-----------|-------------|")
+    lines.append("| alpha-2 | alpha-4 | alpha-3 | numeric | Name | Withdrawn | Replaced by | Reservation |")
+    lines.append("|---------|---------|---------|---------|------|-----------|-------------|-------------|")
     for e in withdrawn:
         succ = ", ".join(e.get("replaced_by") or []) or "—"
+        name = e["name"]
+        reservation = f"`{e['reservation']}`" if e.get("reservation") else "—"
         lines.append(
-            f"| {e['alpha_2']} | {e['alpha_3']} | {e['numeric']} | "
-            f"{e['name']} | {e.get('withdrawal_date') or '—'} | {succ} |"
+            f"| {e['alpha_2']} | {e.get('alpha_4') or '—'} | {e['alpha_3']} | {e['numeric']} | "
+            f"{name} | {e.get('withdrawal_date') or '—'} | {succ} | {reservation} |"
         )
     lines.append("")
 
@@ -106,8 +108,11 @@ def build(reg: dict) -> str:
         "(withdrawn 1993-01-01, replaced by `CZ` and `SK`) and Serbia "
         "and Montenegro (withdrawn 2006-09-26, replaced by `ME` and "
         "`RS`). The registry has one `CS` entry recording the second "
-        "use; the first is documented in the entry's `note` field. See "
-        "`docs/decisions/withdrawn-codes.md`."
+        "use (ISO 3166-3 `CSXX`); the first (`CSHH`) is documented in the "
+        "entry's `note` field and joins in v2.0.0, when the withdrawn key "
+        "becomes `(alpha_2, alpha_4)`. See "
+        "`docs/decisions/withdrawn-codes.md` and "
+        "`docs/decisions/withdrawn-alpha4.md`."
     )
     lines.append("")
 

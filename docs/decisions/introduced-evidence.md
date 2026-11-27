@@ -27,7 +27,7 @@ assignment entries; the oldest entry on any page is 2007-09-21.
 
 A ledger, [`tools/introduced_evidence.json`](../../tools/introduced_evidence.json),
 holds one row per key of `tools/introduced_snapshot.json` (active and
-withdrawn, 275 rows). Each row says what the registry holds (`current`),
+withdrawn, 277 rows since v1.14.0). Each row says what the registry holds (`current`),
 what a source proposes (`candidate`), what kind of source it is (`class`),
 which document and where in it (`doc`, `quote_ref`), the verdict, and the
 reason. `tools/check_introduced_evidence.py` checks it, in CI and in the

@@ -1,11 +1,13 @@
 # Withdrawn list against ISO 3166-3
 
-Status as of v1.12.14 (recheck 2027-02-25). This page compares the
-registry's 25 withdrawn entries with ISO 3166-3, the ISO list of formerly
-used country names, and with ISO's reserved alpha-2 codes. It changes no
-data: the withdrawn list (its rows, alpha-2 keys and `withdrawal_date`
-values) stays as it is until a decision record settles the modelling
-questions below.
+Status as of v1.13.0 (recheck 2027-02-25), with the changes prepared for
+v1.14.0 under `[Unreleased]` in `CHANGELOG.md`. This page compares the
+registry's withdrawn list with ISO 3166-3, the ISO list of formerly used
+country names, and with ISO's reserved alpha-2 codes. Since v1.14.0 the list
+follows these pages: each withdrawn entry carries its ISO 3166-3 `alpha_4`
+and its `reservation` (the status ISO shows for its alpha-2), five missing
+entries were added, and the values ISO's pages state exactly
+were corrected ([`decisions/withdrawn-alpha4.md`](decisions/withdrawn-alpha4.md)).
 
 ## Sources
 
@@ -20,55 +22,53 @@ maintainer's Firefox saves of the ISO Online Browsing Platform (OBP), made on
 
 Each page shows its alpha-2 and alpha-4 code, names, status, "Remark part 3"
 (what the name became) and a "Change history" table. The code shown on every
-page matches its file name. Five pages (BQAQ, BYAA, CSHH, GEHH, PUUM) were
-saved after the first `SHA256SUMS` was written; the maintainer regenerated
-the sums on 2026-11-25, and every page now matches it (listed at the end).
+page matches its file name, and every page's alpha-3 matches the registry
+row it was read for. The pages are not committed; their sha256 values are at
+the end of this page, and `tests/test_withdrawn_iso3166_3.py` pins the values
+read from them.
 
 The ISO 3166-3 newsletters I-1 to I-5 (2002–2006, Internet Archive captures
 of the ISO 3166/MA website) add a period of validity for four entries.
-
-Nothing on this page rests on Wikipedia any more: ISO pages exist for every
-entry.
 
 ## Counts
 
 | | Entries |
 |--|--:|
 | ISO 3166-3 entries, each with an ISO page | 31 |
-| In the registry's withdrawn list | 25 |
-| In both | 25 |
-| ISO entries not in the registry | 6: BQAQ, BYAA, CSHH, FXFR, GEHH, PUUM |
+| In the registry's withdrawn list | 30 |
+| In both | 30 |
+| ISO entries not in the registry | 1: CSHH (Czechoslovakia), deferred to v2.0.0 |
 | Registry rows not in ISO 3166-3 | 0 |
 
-Of the 25 registry rows, compared on the withdrawal date:
+Of the 30 registry rows, compared on the withdrawal date:
 
 | Result | Rows |
 |--------|-----:|
-| Agrees with a date on the ISO page or in a Part 3 newsletter | 6 (CSXX and YUCS exactly; BUMM, NTHH and TPTL to the month; SUHH to the year) |
-| Differs | 2 (ANHH, ZRCD) |
-| No date on the ISO page to compare with | 17 |
+| Agrees with a date on the ISO page or in a Part 3 newsletter | 7 (ANHH, CSXX and YUCS exactly; BUMM, NTHH and TPTL to the month; SUHH to the year) |
+| Differs | 1 (ZRCD: ISO gives the month only) |
+| No withdrawal date on the ISO page | 22 (17 rows with a date from elsewhere; the 5 rows added in v1.14.0, whose `withdrawal_date` is null) |
 
 ## Per entry
 
 "ISO dates" lists every dated statement on the entry's ISO page: the reserved
 period, a year in "Remark part 3", each change-history line, and the period
-of validity from a Part 3 newsletter.
+of validity from a Part 3 newsletter. "Registry" is `withdrawal_date`.
 
 | ISO 3166-3 | Alpha-2 | Name (ISO) | ISO status | ISO dates | Registry `withdrawal_date` | Comparison |
 |------------|---------|------------|------------|-----------|----------------------------|------------|
 | AIDJ | AI | French Afars and Issas | Formerly used | — | 1977-06-27 | no ISO date on the page |
-| ANHH | AN | Netherlands Antilles | Transitionally reserved | Reserved from 2010-12 to 2060-12; 2011-12-13 "Deletion of code to align ISO 3166-1 and ISO 3166-2."; 2011-07-14 "Correct the English name to Sint Eustatius in alignment with United Na…"; 2011-03-14 "Divided into: Bonaire, Saint Eustatius and Saba (BQ, BES, 535), Curaça…"; 2010-12-15 "Delete entry" | 2010-12-01 | **differs**: ISO 2010-12-15 |
-| BQAQ | BQ | British Antarctic Territory | Formerly used | — | — | not in registry |
+| ANHH | AN | Netherlands Antilles | Transitionally reserved | Reserved from 2010-12 to 2060-12; 2011-12-13 "Deletion of code to align ISO 3166-1 and ISO 3166-2."; 2011-07-14 "Correct the English name to Sint Eustatius in alignment with United Na…"; 2011-03-14 "Divided into: Bonaire, Saint Eustatius and Saba (BQ, BES, 535), Curaça…"; 2010-12-15 "Delete entry" | 2010-12-15 | agrees (exact: 2010-12-15; corrected in v1.14.0 from 2010-12-01) |
+| BQAQ | BQ | British Antarctic Territory | Formerly used | — | — | no date on the ISO page; `withdrawal_date` null (added in v1.14.0) |
 | BUMM | BU | Burma | Transitionally reserved | Reserved from 1989-12 to 2039-12 | 1989-12-05 | agrees (month: 1989-12) |
-| BYAA | BY | Byelorussian SSR | Formerly used | — | — | not in registry |
-| CSHH | CS | Czechoslovakia | Formerly used | — | — | not in registry |
+| BYAA | BY | Byelorussian SSR | Formerly used | — | — | no date on the ISO page; `withdrawal_date` null (added in v1.14.0) |
+| CSHH | CS | Czechoslovakia | Formerly used | — | — | not in registry: deferred to v2.0.0 (a second withdrawn `CS`) |
 | CSXX | CS | Serbia and Montenegro | Transitionally reserved | Reserved from 2006-09 to 2056-09; 2006-12-01 "Divided into: Serbia (RS, SRB, 688), and Montenegro (ME, MNE, 499)"; 2006-09-26 "Divided into: Serbia (RS, SRB, 688), and Montenegro (ME, MNE, 499)"; Part 3 period 2003/2006 (I-4, 2006-09-26; I-5, 2006-12-01) | 2006-09-26 | agrees (exact: 2006-09-26) |
 | CTKI | CT | Canton and Enderbury Islands | Formerly used | — | 1984-01-01 | no ISO date on the page |
 | DDDE | DD | German Democratic Republic | Formerly used | — | 1990-10-03 | no ISO date on the page |
 | DYBJ | DY | Dahomey | Formerly used | — | 1977-02-01 | no ISO date on the page |
 | FQHH | FQ | French Southern and Antarctic Territories | Formerly used | — | 1979-01-01 | no ISO date on the page |
-| FXFR | FX | France, Metropolitan | Exceptionally reserved | 2002-11-22 "Deleted; see France (FR, FRA, 250) in ISO 3166-1"; Part 3 period 1993/1997 (I-2, 2002-11-22) | — | not in registry |
-| GEHH | GE | Gilbert and Ellice Islands | Formerly used | — | — | not in registry |
+| FXFR | FX | France, Metropolitan | Exceptionally reserved | 2002-11-22 "Deleted; see France (FR, FRA, 250) in ISO 3166-1"; Part 3 period 1993/1997 (I-2, 2002-11-22) | — | no withdrawal date: 2002-11-22 is when ISO 3166-3 recorded it, and I-2 gives the years 1993/1997 only; `withdrawal_date` null (added in v1.14.0) |
+| GEHH | GE | Gilbert and Ellice Islands | Formerly used | — | — | no date on the ISO page; `withdrawal_date` null (added in v1.14.0) |
 | HVBF | HV | Upper Volta | Formerly used | — | 1984-08-04 | no ISO date on the page |
 | JTUM | JT | Johnston Island | Formerly used | — | 1986-01-01 | no ISO date on the page |
 | MIUM | MI | Midway Islands | Formerly used | — | 1986-01-01 | no ISO date on the page |
@@ -76,7 +76,7 @@ of validity from a Part 3 newsletter.
 | NQAQ | NQ | Dronning Maud Land | Formerly used | — | 1983-01-01 | no ISO date on the page |
 | NTHH | NT | Neutral Zone | Transitionally reserved | Reserved from 1993-07 to 2043-07 | 1993-07-01 | agrees (month: 1993-07) |
 | PCHH | PC | Pacific Islands (Trust Territory) | Formerly used | — | 1986-11-03 | no ISO date on the page |
-| PUUM | PU | United States Miscellaneous Pacific Islands | Formerly used | — | — | not in registry |
+| PUUM | PU | United States Miscellaneous Pacific Islands | Formerly used | — | — | no date on the ISO page; `withdrawal_date` null (added in v1.14.0) |
 | PZPA | PZ | Panama Canal Zone | Formerly used | — | 1980-01-01 | no ISO date on the page |
 | RHZW | RH | Southern Rhodesia | Formerly used | — | 1980-04-18 | no ISO date on the page |
 | SKIN | SK | Sikkim | Formerly used | — | 1975-05-16 | no ISO date on the page |
@@ -86,31 +86,35 @@ of validity from a Part 3 newsletter.
 | WKUM | WK | Wake Island | Formerly used | — | 1986-01-01 | no ISO date on the page |
 | YDYE | YD | Yemen, Democratic | Formerly used | — | 1990-05-22 | no ISO date on the page |
 | YUCS | YU | Yugoslavia | Transitionally reserved | Reserved from 2003-07 to 2053-07; Remark part 3: name changed "in 2003"; 2003-07-23 "Serbia and Montenegro (CS, SCG, 891)"; Part 3 period 1974/2003 (I-3, 2003-07-23) | 2003-07-23 | agrees (exact: 2003-07-23) |
-| ZRCD | ZR | Zaire | Transitionally reserved | Reserved from 1997-07 to 2047-07 | 1997-05-17 | **differs**: ISO reserved from 1997-07 |
+| ZRCD | ZR | Zaire | Transitionally reserved | Reserved from 1997-07 to 2047-07 | 1997-05-17 | **differs**: ISO reserved from 1997-07 (month only; not corrected) |
 
-## The two differences
+## What changed in v1.14.0
 
-- **AN (Netherlands Antilles).** The registry has 2010-12-01. ISO's change
-  history has "2010-12-15 Delete entry", and the AN reservation starts in
-  2010-12. ISO's date is 2010-12-15.
-- **ZR (Zaire).** The registry has 1997-05-17. ISO reserves ZR "from
-  1997-07", so ISO's change falls in July 1997, not May.
+Every change below is read from the entry's ISO page; the old value stays in
+the row's `note` ("numeric before v1.14.0: 000").
 
-Neither is changed here (decision D6 of this work: the withdrawn list stays).
+| Entry | Field | Before | After | ISO page |
+|-------|-------|--------|-------|----------|
+| all 25 rows | `alpha_4` | (no field) | AIDJ … ZRCD | each entry's page, "Alpha-4 code" |
+| all 25 rows | `reservation` | (no field) | `exceptionally-reserved`: SUHH; `transitionally-reserved`: ANHH, BUMM, CSXX, NTHH, TPTL, YUCS, ZRCD; null: the other 17 | each entry's alpha-2 page, "Status" |
+| SUHH | `note` | | + "ISO 3166-1 status: Exceptionally reserved. Refers to the former USSR and reserved at the request of the Foundation for Internet Development (FID)." | obp-reserved/SU.html, "Status" and "Status remark" |
+| ANHH, BUMM, CSXX, NTHH, TPTL, YUCS, ZRCD | `note` | | + "ISO 3166-1 status: Transitionally reserved. Reserved from … to …" | each page, "Status" and "Status remark" |
+| YUCS | `numeric` | 890 | 891 | obp-reserved/YU.html (Newsletter V-8 gives 891 too) |
+| CTKI, JTUM, MIUM, NQAQ, NTHH, PCHH, WKUM | `numeric` | `000` | 128, 396, 488, 216, 536, 582, 872 | each page, "Numeric code" |
+| DDDE | `name` | East Germany | German Democratic Republic | obp-3166-3/DDDE.html, "Short name" |
+| VDVN | `name` | North Vietnam | Viet-Nam, Democratic Republic of | obp-3166-3/VDVN.html |
+| YDYE | `name` | South Yemen | Yemen, Democratic | obp-3166-3/YDYE.html |
+| ANHH | `withdrawal_date` | 2010-12-01 | 2010-12-15 | obp-reserved/AN.html, change history "2010-12-15 Delete entry" |
+| GEHH, BQAQ, BYAA, PUUM, FXFR | (row) | not in the registry | added, `status` `withdrawn`; `reservation` `exceptionally-reserved` for FXFR, null for the other four | obp-3166-3/GEHH.html, BQAQ.html, BYAA.html, PUUM.html; obp-reserved/FX.html |
 
-## Other differences in the rows the registry holds
+## What is still different
 
-| Entry | Field | ISO page | Registry |
-|-------|-------|----------|----------|
-| YUCS | numeric | 891 | 890 |
-| CTKI, JTUM, MIUM, NQAQ, NTHH, PCHH, WKUM | numeric | 128, 396, 488, 216, 536, 582, 872 | `000` (no numeric held) |
-| DDDE | name | German Democratic Republic | East Germany |
-| VDVN | name | Viet-Nam, Democratic Republic of | North Vietnam |
-| YDYE | name | Yemen, Democratic | South Yemen |
-| SUHH | successors | AM, AZ, EE, GE, KZ, KG, LV, LT, MD, RU, TJ, TM, UZ ("Remark part 3") | `replaced_by: null` |
-
-YU's numeric 891 is also the one Newsletter V-8 (2003-07-23) shows for
-Yugoslavia and keeps for Serbia and Montenegro.
+| Entry | Field | ISO page | Registry | Why it stays |
+|-------|-------|----------|----------|--------------|
+| ZRCD | `withdrawal_date` | Reserved from 1997-07 | 1997-05-17 | ISO gives a month, not a date |
+| SUHH | `replaced_by` | 13 successors in "Remark part 3" (AM, AZ, EE, GE, KZ, KG, LV, LT, MD, RU, TJ, TM, UZ) | null | not a correction this release made; open |
+| BYAA | `replaced_by` | "Name changed to Belarus (BY, BLR, 112)" | null | `replaced_by` may not name the entry's own alpha-2; the note quotes ISO |
+| GEHH, BQAQ, BYAA, PUUM, FXFR | `withdrawal_date` | none | null | no ISO page gives one |
 
 ## What ISO says each name became ("Remark part 3")
 
@@ -162,79 +166,58 @@ The periods give years only. None is a full date, so none dates a withdrawn
 row's start; I-4 and I-5 corroborate the start year of CS (2003), which
 ISO 3166-1 Newsletter V-8 dates to 2003-07-23.
 
-## "Exceptionally reserved": FX and SU
+## Reserved alpha-2 codes: `reservation`
 
-ISO gives two former entries the status "Exceptionally reserved", with a
-reason: FX "reserved at the request of France", SU "reserved at the request of
-the Foundation for Internet Development (FID)". The other seven reserved codes
-saved here (AN, BU, CS, NT, TP, YU, ZR) are "Transitionally reserved" for 50
-years from their withdrawal (for example BU "from 1989-12 to 2039-12").
+ISO still reserves the alpha-2 of nine former entries. Two are
+"Exceptionally reserved", with a reason: FX "reserved at the request of
+France", SU "reserved at the request of the Foundation for Internet
+Development (FID)". Seven are "Transitionally reserved" for 50 years from
+their withdrawal: AN, BU, CS, NT, TP, YU and ZR (BU "from 1989-12 to
+2039-12"). Since v1.14.0 each withdrawn row records this in `reservation`
+(`exceptionally-reserved`, `transitionally-reserved`, or null for the 21
+entries ISO shows as formerly used), and each reserved row's `note` quotes
+ISO's status and remark, with the period for the seven. `status` stays
+`withdrawn` on all of them.
 
-The registry models these two cases differently from each other and from
-ISO:
+`status` gains no value for this. EU and UK, which ISO also reserves
+exceptionally but which were never ISO 3166-1 country entries, are active
+entries with `status` `exceptionally-reserved`; the same value on SU or FX
+would make them active for every reader that tells the two lists apart by
+`status` ([`decisions/withdrawn-alpha4.md`](decisions/withdrawn-alpha4.md),
+Decision 2a).
 
-- **SU** is a withdrawn row (`withdrawal_date` 1992-08-30, `replaced_by`
-  null). Nothing in it says the code stays reserved, or why.
-- **FX** is not in the registry at all, although ISO 3166-1 carried it from
-  1993 to 1997 and still reserves it.
-- **EU** and **UK**, which ISO also reserves exceptionally, are the
-  registry's only rows with that status, and they are active rows
-  (`status: exceptionally-reserved`). They were never ISO 3166-1 country
-  entries; SU and FX were.
+The alpha-2 page decides `reservation`. Only CS has two pages: its alpha-2
+page (Serbia and Montenegro, CSXX, "Transitionally reserved") and the ISO
+3166-3 page of CSHH (Czechoslovakia, "Formerly used"). They describe two
+different entries, so they do not disagree; the registry's `CS` row is CSXX.
 
-So "exceptionally reserved" in ISO cuts across the registry's split between
-active and withdrawn. Options for the maintainer: keep SU and FX as withdrawn
-rows and add a reservation note; add a reservation field to withdrawn rows
-(a schema change); or record reservations in a separate list. Each needs a
-decision record; this page makes none.
-
-## The six entries the registry lacks
+## CSHH, the entry the registry does not hold
 
 | ISO 3166-3 | Name (ISO) | Alpha-2 | Collides with | Note |
 |------------|------------|---------|---------------|------|
-| BQAQ | British Antarctic Territory | BQ | active `BQ` (Bonaire, Sint Eustatius and Saba) | ISO, Remark part 1: BQ "has been reused and reassigned" |
-| BYAA | Byelorussian SSR | BY | active `BY` (Belarus) | ISO: "Name changed to Belarus (BY, BLR, 112). Code element BYS removed": the alpha-2 stayed, the alpha-3 changed |
 | CSHH | Czechoslovakia | CS | withdrawn `CS` (Serbia and Montenegro, CSXX) | ISO, Remark part 1: "Former code element CS was reused for Serbia and Montenegro" |
-| FXFR | France, Metropolitan | FX | nothing | exceptionally reserved; period 1993/1997 |
-| GEHH | Gilbert and Ellice Islands | GE | active `GE` (Georgia) | ISO: divided into Kiribati (KI) and Tuvalu (TV); GE "reused and reassigned to Georgia" |
-| PUUM | United States Miscellaneous Pacific Islands | PU | nothing | now part of UM |
 
-The earlier version of this page, from a Wikipedia lead, called GEHH "Gilbert
-Islands" with successor Kiribati only. ISO's page names the Gilbert and
-Ellice Islands, divided into Kiribati and Tuvalu.
+A second withdrawn `CS` row breaks every lookup keyed by alpha-2: the
+validator's uniqueness check, the CLI's `_by_alpha2(reg.all_withdrawn())`, the
+alpha-2 sets of `is_active_on`, the SQL key `(alpha_2, status)`, and ISO 4217's
+`tools/export_aggregated.py`, which stops on a duplicate alpha-2 in the
+withdrawn list. CSHH joins in v2.0.0, when the withdrawn key becomes
+`(alpha_2, alpha_4)`. Until then the `CS` row's `note` keeps Czechoslovakia,
+and `is_active_on("CS", "1991-06-01")` is false: the registry's `CS` starts in
+2003.
 
-## What modelling the missing entries needs
+## The three reused codes added in v1.14.0
 
-**Reused alpha-2 codes (BQ, GE).** An active and a withdrawn entry may share
-an alpha-2: `AI` and `SK` do. The validator checks uniqueness within each
-section (`tools/validate.py`, `layer_business`), so BQAQ and GEHH fit the
-schema. Every read by alpha-2 prefers the active entry
-(`docs/QUERIES-DECISIONS.md`, "Why alpha-2 collisions resolve to the active
-entry"), so `is_active_on("GE", "1977-01-01")` answers for Georgia.
-
-**A name change under the same alpha-2 (BY).** ISO lists Byelorussian SSR in
-ISO 3166-3 because the name and alpha-3 changed, though BY stayed. Whether
-such an entry belongs in the withdrawn list is a decision, not a data fix.
-ISO's SUHH page also says BY and UA "were separately coded in ISO 3166 already
-before the USSR was split", which contradicts the reason BY and UA are
-quarantined in `tools/build_introduced_snapshot.py` ("code cannot be in 1974
-edition"). It gives no date, so `introduced` stays null for both.
-
-**Two withdrawn rows with one alpha-2 (CS).** CSHH (Czechoslovakia) and CSXX
-(Serbia and Montenegro) both carry `CS`. The registry holds only CSXX, now
-dated 2003-07-23 by Newsletter V-8. Adding CSHH breaks three things:
-`tools/validate.py` rejects a duplicate alpha-2 within `withdrawn`;
-`is_active_on` takes the first withdrawn row with the code
-(`wrappers/python/iso3166/derived.py`); and `YU`'s `replaced_by: ["CS"]` would
-no longer name one entry. The four-letter ISO 3166-3 code is the natural key.
-That is a schema change, which this page does not make.
-
-**The effect on `is_active_on`.** A withdrawn row with no `introduced` answers
-True from 1974-01-01 to its `withdrawal_date`. For CS this no longer holds:
-since `introduced` is 2003-07-23, `is_active_on("CS", "1991-06-01")` is False.
-That is the right answer for Serbia and Montenegro; a 1991 `CS` meant
-Czechoslovakia, which the registry does not hold. FXFR would need its 1993
-start.
+`GE` (GEHH), `BQ` (BQAQ) and `BY` (BYAA) now have an active and a withdrawn
+entry, as `AI` and `SK` do. Every field read uses the active entry (Georgia,
+Bonaire, Belarus); `with_alpha2` returns the active entry first; succession
+starts from the withdrawn entry's `replaced_by` (`successors("GE")` is KI and
+TV). A `replaced_by` that names one of these codes means its active entry, so
+a walk stops there: `AN`'s `BQ` is Bonaire, and `successors("AN")` does not
+reach `AQ`. ISO's SUHH page also says BY and UA "were separately coded in ISO
+3166 already before the USSR was split", which contradicts the reason BY and
+UA are quarantined in `tools/build_introduced_snapshot.py`; it gives no date,
+so `introduced` stays null for both.
 
 ## Page hashes
 

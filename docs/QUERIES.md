@@ -551,6 +551,14 @@ every withdrawn code from which `code` can be reached by one or more
 `replaced_by` edges, excluding `code`, sorted. Both are empty for a code
 with no edges in the relevant direction, and for unknown codes.
 
+**A code with an active entry ends a walk** (v1.14.0). A `replaced_by` that
+names a code with an active entry means that entry, so the walk records the
+code and goes no further, in both directions; only the starting code is
+expanded whatever it is. Before v1.14.0 no `replaced_by` named a code that also
+had a withdrawn entry, so no earlier answer changes; since then `AN` names `BQ`
+(Bonaire, Sint Eustatius and Saba), while the withdrawn `BQ` (British Antarctic
+Territory) leads to `AQ`. `succession_path` (Query 4) follows the same rule.
+
 This is the same definition on every surface. In v1.9.x the CLI returned
 only terminal successors (codes that were never replaced); from v1.10.0 the
 CLI returns the full closure, matching the wrappers. This is a breaking change
@@ -564,7 +572,11 @@ for CLI users and is announced in the release notes.
 - `successors("YU")` → `["CS", "ME", "RS"]`: `CS` is included because it is
   reachable (`YU` → `CS`), even though `CS` was itself withdrawn.
 - `successors("CS")` → `["ME", "RS"]`.
-- `successors("AN")` → `["BQ", "CW", "SX"]`.
+- `successors("AN")` → `["BQ", "CW", "SX"]`: `BQ` is active, so the walk stops
+  there and does not reach `AQ` through the withdrawn `BQ`.
+- `successors("BQ")` → `["AQ"]` and `successors("GE")` → `["KI", "TV"]`: the
+  start is expanded, as for `SK`.
+- `predecessors("AQ")` → `["BQ", "NQ"]`, not `AN`.
 - `successors("RS")` → `[]`: active, no edges.
 - `successors("US")` → `[]`: active.
 - `successors("SU")` → `[]`: withdrawn but with `replaced_by: null`.
@@ -686,8 +698,8 @@ a separate release.
 3. **Withdrawn** entry:
    a. `date > withdrawal_date` → `None` (the code no longer exists; the
       withdrawal date itself counts as inside the lifetime).
-   b. `introduced` set and `date < introduced` → `None`. All 25 withdrawn
-      entries have a null `introduced`, so this never fires today.
+   b. `introduced` set and `date < introduced` → `None`. Of the 30 withdrawn
+      entries only `CS` has an `introduced` (2003-07-23).
    c. Otherwise follow `replaced_by` transitively and return the sorted union
       of the **current** `currency_codes` of the active codes reached, or
       `None` if there are none. For withdrawn entries, this is the successor's
@@ -828,10 +840,14 @@ not turn "the source is silent" into a confident answer. In order:
 1. A date that is not a real `YYYY-MM-DD` → `false`.
 2. Code in neither array → `false`.
 3. The code is **active** (an active entry wins when a code is in both arrays,
-   AI and SK): `introduced` null → `null`; else `date >= introduced`.
-4. The code is **withdrawn**: `date > withdrawal_date` → `false`. Otherwise,
-   `introduced` is set → `introduced <= date`. If `introduced` is null (24 of
-   the 25 withdrawn entries; CS is dated 2003-07-23 by Newsletter V-8): `date < 1974-01-01` → `null`; else `true`. The start is
+   AI, BQ, BY, GE and SK): `introduced` null → `null`; else `date >= introduced`.
+4. The code is **withdrawn**. If its `withdrawal_date` is null (v1.14.0: GE,
+   BQ, BY, PU and FX, whose ISO pages give no date; only PU and FX are reached,
+   the other three having an active entry): `date < introduced` → `false`,
+   otherwise `null`, since the end is unknown. Else `date > withdrawal_date`
+   → `false`. Otherwise,
+   `introduced` is set → `introduced <= date`. If `introduced` is null (29 of
+   the 30 withdrawn entries; CS is dated 2003-07-23 by Newsletter V-8): `date < 1974-01-01` → `null`; else `true`. The start is
    unknown, but ISO 3166 did not exist before 1974, so the registry cannot
    answer for earlier dates and says so. From 1974-01-01 up to and including
    `withdrawal_date` the answer is `true`: the code existed at some point
@@ -1011,14 +1027,14 @@ iso3166 active-on DATE [--json]    # exit 0; 2 on a malformed DATE
 ```
 
 **Semantics.** `is_active_on` (Query 9) for every code, in one call. The keys are
-the 252 active entries and the 23 withdrawn codes that are not also active:
-275 keys, sorted. `AI` and `SK` are in both lists; the active entry wins, as in
+the 252 active entries and the 25 withdrawn codes that are not also active:
+277 keys, sorted. `AI`, `BQ`, `BY`, `GE` and `SK` are in both lists; the active entry wins, as in
 `is_active_on`, so `active_on(d)[c] == is_active_on(c, d)` for every key.
 
 **`null` is not `false`.** On 1990-01-01 the answer is 169 `true`, 29 `false`
-and 77 `null` (161, 14 and 77 over the 252 active entries alone). The 77 are
-active entries whose `introduced` is null (see "Known Nulls"), among them `CZ`,
-`SK`, `RU`. Filtering on truthiness drops them without saying so.
+and 79 `null` (161, 14 and 77 over the 252 active entries alone). 77 of the 79
+are active entries whose `introduced` is null (see "Known Nulls"), among them
+`CZ`, `SK`, `RU`; the other two are `PU` and `FX`, withdrawn without a date. Filtering on truthiness drops them without saying so.
 
 **Errors.** A malformed date raises, as in Query 9 (the CLI exits 2). A `date` is
 accepted in Python as in Query 9.
@@ -1028,7 +1044,7 @@ check pins it under `derived_queries.active_on` in the fixture).
 
 - `active_on("1990-01-01")["DE"]` → `true`; `["DD"]` → `true`; `["BU"]` → `false`
   (Burma, withdrawn 1989-12-05); `["BJ"]` → `null`.
-- `active_on("1990-01-01")` has 275 keys: 169 `true`, 29 `false`, 77 `null`. `["CS"]` is `false`: the
+- `active_on("1990-01-01")` has 277 keys: 169 `true`, 29 `false`, 79 `null`. `["CS"]` is `false`: the
   registry's `CS` is Serbia and Montenegro, dated 2003-07-23 by Newsletter V-8.
 
 **CLI.** `active-on DATE` prints one `CODE<TAB>true|false|unknown` line per code;

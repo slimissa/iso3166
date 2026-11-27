@@ -30,8 +30,8 @@ three months for a reply.
 | Source silent | 46 | `null` | `lead_only`, no candidate |
 | Not officially assigned (EU, UK, XK) | 3 | `null` | `lead_only`, no candidate |
 | Withdrawn, dated by a newsletter (CS) | 1 | `2003-07-23` | `iso_primary` / `adopted` |
-| Withdrawn only, undated | 22 | `null` | `lead_only`, no candidate |
-| | **275** | | |
+| Withdrawn only, undated | 24 | `null` | `lead_only`, no candidate (FX and PU joined in v1.14.0) |
+| | **277** | | |
 
 Two values changed in this work: withdrawn `CS`, from `null` to 2003-07-23,
 and `NU`, from `2002-05-20` to `null` (quarantined, below).

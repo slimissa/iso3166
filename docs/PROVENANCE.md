@@ -76,8 +76,9 @@ recorded exceptions. Each is justified in its ADR under `docs/decisions/`.
   not been read). Of the 77 null active codes, 23 have an `inference`
   candidate and 54 a `lead_only` row (5 quarantined Wikipedia dates, NU
   among them since Newsletter V-4 shows its date is a name change, 46 with no source, 3 not officially
-  assigned). Of the 23 withdrawn-only codes, `CS` is `iso_primary`
-  (2003-07-23, Newsletter V-8) and 22 are `lead_only` with no candidate.
+  assigned). Of the 25 withdrawn-only codes, `CS` is `iso_primary`
+  (2003-07-23, Newsletter V-8) and 24 are `lead_only` with no candidate
+  (FX and PU since v1.14.0).
 - `languages` and `borders` come from the CIA World Factbook, because no
   standards body publishes official languages or land borders. The ADR
   [languages-borders-sources](decisions/languages-borders-sources.md)

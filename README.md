@@ -1,6 +1,6 @@
 # ISO 3166 Country Registry
 
-**A canonical, versioned, machine-readable registry of ISO 3166 country codes: 252 active entries and 25 withdrawn ones, each with 24 fields (20 on withdrawn entries), and four date-scoped club-membership arrays (EU, EEA, eurozone, customs union).**
+**A canonical, versioned, machine-readable registry of ISO 3166 country codes: 252 active entries and 30 withdrawn ones, each with 24 fields (21 on withdrawn entries), and four date-scoped club-membership arrays (EU, EEA, eurozone, customs union).**
 
 One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, one aggregated table, four language wrappers, a command-line tool, five temporal snapshots) is regenerated from it or checked against it, and re-verified on every push.
 
@@ -47,7 +47,7 @@ One JSON file is the source of truth. Everything else (SQL, CSV, TSV, Parquet, o
 |---|---|
 | **Active entries** | 252: 249 `officially-assigned`, 2 `exceptionally-reserved` (`EU`, `UK`), 1 `user-assigned` (`XK`) |
 | **Withdrawn entries** | 25 (`AN`, `BU`, `CS`, `DD`, `SU`, `YU` and 19 more; see [`docs/WITHDRAWN.md`](./docs/WITHDRAWN.md)) |
-| **Total** | 277. `AI` and `SK` are in both arrays: an active code reused for a different entity than the withdrawn one (Anguilla and Slovakia, against the withdrawn `AI` and `SK`; see [Section 6](#a-dual-status-code)). |
+| **Total** | 282. `AI`, `BQ`, `BY`, `GE` and `SK` are in both arrays: an active code reused for a different entity than the withdrawn one (Anguilla, Bonaire, Belarus, Georgia and Slovakia, against the withdrawn French Afars and Issas, British Antarctic Territory, Byelorussian SSR, Gilbert and Ellice Islands and Sikkim; see [Section 6](#a-dual-status-code)). |
 | **Fields per active entry** | 24 (twenty on withdrawn entries: the four club arrays are active-only). 8 are enrichable, 1 is temporal, 4 are club arrays. |
 | **Derived queries** | 17: 13 in the Python `derived.py` mixin and 4 dated club queries in `clubs.py`, specified in [`docs/QUERIES.md`](./docs/QUERIES.md) |
 | **Surfaces** | 5: four language wrappers (Python, JavaScript, Rust, Go) and one command line with 26 subcommands |
@@ -198,7 +198,7 @@ SELECT alpha_2, eu_membership FROM countries WHERE alpha_2 = 'GB';
 ```python
 import pandas as pd
 df = pd.read_parquet("iso3166.parquet")
-print(df.shape)                                       # (277, 24)
+print(df.shape)                                       # (282, 25)
 print(df.loc[df.alpha_2 == "GB", "eu_membership"].iloc[0])   # 1973-01-01:2020-01-31
 ```
 
@@ -337,14 +337,15 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
 
 ### A withdrawn entry
 
-`DD`, East Germany, withdrawn 1990-10-03 and replaced by `DE`. A withdrawn entry has 20 fields, and most enrichable fields are `null`:
+`DD`, the German Democratic Republic, withdrawn 1990-10-03 and replaced by `DE`. A withdrawn entry has 21 fields, among them `alpha_4`, its ISO 3166-3 code; most enrichable fields are `null`:
 
 ```json
 {
   "alpha_2": "DD",
   "alpha_3": "DDR",
+  "alpha_4": "DDDE",
   "numeric": "278",
-  "name": "East Germany",
+  "name": "German Democratic Republic",
   "status": "withdrawn",
   "independent": true,
   "official_name": null,
@@ -360,17 +361,19 @@ The release script regenerates in layer order: SQL, CSV, Parquet, aggregated, wr
   "withdrawal_date": "1990-10-03",
   "replaced_by": ["DE"],
   "last_verified": "2026-09-23",
-  "note": "source: https://unstats.un.org/unsd/methodology/m49/"
+  "note": "source: https://unstats.un.org/unsd/methodology/m49/\nname before v1.14.0: East Germany"
 }
 ```
 
 ### A dual-status code
 
-Two codes are in both arrays. **`SK`** is active Slovakia (`officially-assigned`, `introduced: null`, quarantined) and withdrawn Sikkim (`alpha_3: SKM`, `numeric: 000`, withdrawn 1975-05-16, `replaced_by: ["IN"]`). **`AI`** is active Anguilla and a withdrawn entry for the French Territory of the Afars and Issas. A consumer must therefore key on `(alpha_2, status)`: the SQL `countries` table does, and the derived queries that take a code alone let the active entry win ([`docs/QUERIES.md`](./docs/QUERIES.md)). The aggregated table counts both entries.
+Five codes are in both arrays. **`SK`** is active Slovakia (`officially-assigned`, `introduced: null`, quarantined) and withdrawn Sikkim (`alpha_3: SKM`, `alpha_4: SKIN`, withdrawn 1975-05-16, `replaced_by: ["IN"]`). **`AI`** is active Anguilla and a withdrawn entry for the French Territory of the Afars and Issas (`AIDJ`). Since v1.14.0, **`GE`** (Georgia; Gilbert and Ellice Islands, `GEHH`), **`BQ`** (Bonaire, Sint Eustatius and Saba; British Antarctic Territory, `BQAQ`) and **`BY`** (Belarus; Byelorussian SSR, `BYAA`, the same alpha-2 under a new name and alpha-3) work the same way. A consumer must therefore key on `(alpha_2, status)`: the SQL `countries` table does, and the derived queries that take a code alone let the active entry win ([`docs/QUERIES.md`](./docs/QUERIES.md)). A `replaced_by` that names such a code means its active entry: `AN`'s `BQ` is Bonaire, so the succession queries stop there. The aggregated table counts both entries.
+
+`CS` is the one ISO 3166-3 code the registry cannot hold twice: Serbia and Montenegro (`CSXX`) is the withdrawn `CS`, and Czechoslovakia (`CSHH`) is in its `note`. It joins in v2.0.0, when the withdrawn key becomes `(alpha_2, alpha_4)` ([`withdrawn-alpha4.md`](./docs/decisions/withdrawn-alpha4.md)).
 
 ### Field reference
 
-Every active entry carries twenty-four fields; every withdrawn entry carries twenty. The counts below are over the 252 active entries. A list field counts as populated when it is non-empty.
+Every active entry carries twenty-four fields; every withdrawn entry carries twenty-one (no club arrays; `alpha_4` instead). The counts below are over the 252 active entries. A list field counts as populated when it is non-empty.
 
 | Field | Type | Null | Empty `[]` | Meaning |
 |-------|------|-----:|-----------:|---------|
@@ -409,7 +412,7 @@ The 77 nulls of `introduced` (28 quarantined, 46 source-silent, 3 not officially
 | `officially-assigned` | 249 | |
 | `exceptionally-reserved` | 2 | `EU`, `UK` |
 | `user-assigned` | 1 | `XK` |
-| Withdrawn | 25 | Every one carries `withdrawal_date`; none has `introduced` |
+| Withdrawn | 30 | Every ISO 3166-3 entry but `CSHH`. 25 carry `withdrawal_date` (the five added in v1.14.0 have none on their ISO page); one has `introduced` (`CS`); all have `status` `withdrawn`; `reservation` is `exceptionally-reserved` on 2 (`FX`, `SU`), `transitionally-reserved` on 7, null on 21 |
 | Europe / Asia / Americas / Africa / Oceania | 51 / 50 / 57 / 60 / 29 | Active entries by `region`; 5 have none |
 | `currency_codes` populated | 248 of 252 | Missing `AQ`, `EU`, `UK`, `XK` |
 | `calling_codes` populated | 249 of 252 | Missing `EU`, `UK`, `XK` |
@@ -462,9 +465,9 @@ Three facts change over time for a country code: whether the code existed, which
 | Null, **source silent** | 46 | The source table gives no date |
 | Null, **not officially assigned** | 3 | `EU`, `UK`, `XK` are not in ISO 3166-1 |
 
-Of the 25 withdrawn entries, one has an `introduced` date: `CS` (Serbia and Montenegro), 2003-07-23, the day ISO 3166-1 Newsletter V-8 assigned it in place of `YU`. 22 are recorded in `meta.null_reasons` as "start date not sourced"; `AI` and `SK` share their key with an active entry, whose value it holds.
+Of the 30 withdrawn entries, one has an `introduced` date: `CS` (Serbia and Montenegro), 2003-07-23, the day ISO 3166-1 Newsletter V-8 assigned it in place of `YU`. 24 are recorded in `meta.null_reasons` as "start date not sourced"; `AI`, `BQ`, `BY`, `GE` and `SK` share their key with an active entry, whose value it holds.
 
-Each of the 275 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 15 `iso_primary` adopted (14 active codes and withdrawn `CS`), 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 76 `lead_only` (5 quarantined Wikipedia rows, NU among them, and 71 codes with no candidate at all). 15 rows carry a predecessor bound (`not_before`, from an ISO 3166-3 page), which narrows a date without setting one.
+Each of the 277 snapshot keys has a row in [`tools/introduced_evidence.json`](./tools/introduced_evidence.json) that names its class (`iso_primary`, `ma_member`, `lead_only` or `inference`), its document and its verdict. Only an `iso_primary` row that is `adopted` can set a value; [`docs/decisions/introduced-evidence.md`](./docs/decisions/introduced-evidence.md) explains why, and `tools/check_introduced_evidence.py` enforces it. Today: 15 `iso_primary` adopted (14 active codes and withdrawn `CS`), 184 `inference` (the 161 dates of the 1974 list and the 23 quarantined codes it names), 78 `lead_only` (5 quarantined Wikipedia rows, NU among them, and 73 codes with no candidate at all). 15 rows carry a predecessor bound (`not_before`, from an ISO 3166-3 page), which narrows a date without setting one.
 
 **The 28 quarantined codes.** The builder refuses a date it cannot defend rather than writing it. A code is quarantined when the Wikipedia table's date is a *change newsletter*, not an assignment date, or when the code cannot have been in the 1974 edition. Each is null in the registry and carries its reason in `tools/introduced_snapshot.json`, `meta.null_reasons`.
 
@@ -548,7 +551,7 @@ Twelve countries applied the EEA Agreement provisionally before it formally ente
 ### Known gaps
 
 - No historical currencies; `currency_at` returns the current currency for the lifetime-bounded answer.
-- `introduced` is null for 77 active entries and 24 of the 25 withdrawn ones; `is_active_on` answers `null` for the active ones.
+- `introduced` is null for 77 active entries and 29 of the 30 withdrawn ones; `is_active_on` answers `null` for the active ones, and for the five withdrawn entries without a `withdrawal_date`.
 - Nothing before 1974 can be dated for the identity layer. The club arrays reach back to 1958.
 - The club ranges come from Wikipedia and are reviewed once a year.
 
@@ -560,9 +563,9 @@ All nine flat exports are CURATED. They are regenerated from `iso3166.json`, com
 
 | Artifact | Columns | Rows | Generator |
 |----------|--------:|-----:|-----------|
-| `iso3166.sql`, `.postgresql.sql`, `.mysql.sql`, `.sqlite.sql` | 23 (`countries`) + 2 (`country_currencies`) | 277 + 249 | `tools/export_sql.py` |
-| `iso3166.csv`, `.excel.csv`, `.european.csv`, `.tsv` | 24 | 277 | `tools/export_csv.py` |
-| `iso3166.parquet` | 24 | 277 | `tools/export_parquet.py` |
+| `iso3166.sql`, `.postgresql.sql`, `.mysql.sql`, `.sqlite.sql` | 24 (`countries`) + 2 (`country_currencies`) | 282 + 249 | `tools/export_sql.py` |
+| `iso3166.csv`, `.excel.csv`, `.european.csv`, `.tsv` | 25 | 282 | `tools/export_csv.py` |
+| `iso3166.parquet` | 25 | 282 | `tools/export_parquet.py` |
 
 Rows are active and withdrawn entries together (252 + 25). Filter on `status` (`<> 'withdrawn'`) for active only.
 
@@ -579,7 +582,7 @@ Four self-contained files, one per dialect, each with the same two tables.
 | [`iso3166.mysql.sql`](./iso3166.mysql.sql) | MySQL 8+ / MariaDB 10.4+ |
 | [`iso3166.sqlite.sql`](./iso3166.sqlite.sql) | SQLite 3.37+ |
 
-`countries` has 23 columns and the primary key `(alpha_2, status)`, which is what lets `AI` and `SK` appear twice. `country_currencies` is a join table of `(country_alpha_2, currency_code)`, 249 rows. `currency_codes` is therefore not a column of `countries`. The four club arrays are `VARCHAR(80)` strings in the format above. Loading `iso3166.sqlite.sql` into SQLite yields 277 and 249 rows.
+`countries` has 25 columns and the primary key `(alpha_2, status)`, which is what lets `AI`, `BQ`, `BY`, `GE` and `SK` appear twice. Withdrawn rows have `status` `withdrawn`, and `reservation` says whether ISO still reserves the alpha-2; the active filter is `status IN ('officially-assigned', 'user-assigned', 'exceptionally-reserved')`. `country_currencies` is a join table of `(country_alpha_2, currency_code)`, 249 rows. `currency_codes` is therefore not a column of `countries`. The four club arrays are `VARCHAR(80)` strings in the format above. Loading `iso3166.sqlite.sql` into SQLite yields 282 and 249 rows.
 
 ```sql
 SELECT alpha_2, name FROM countries WHERE status <> 'withdrawn' AND region = 'Europe';
@@ -588,7 +591,7 @@ SELECT country_alpha_2 FROM country_currencies WHERE currency_code = 'EUR';
 
 ### CSV and TSV
 
-Four files, one per audience. LF line endings, a header row, 26 columns, 277 data rows.
+Four files, one per audience. LF line endings, a header row, 26 columns, 282 data rows.
 
 | File | Audience | Quirk |
 |------|----------|-------|
@@ -603,7 +606,7 @@ Read `numeric` and `calling_codes` as text: `020` is Andorra, and a spreadsheet 
 
 ### Parquet
 
-[`iso3166.parquet`](./iso3166.parquet): columnar, typed, 26 columns, 277 rows. Columns follow the CSV, except that `numeric` is named `numeric_code`.
+[`iso3166.parquet`](./iso3166.parquet): columnar, typed, 26 columns, 282 rows. Columns follow the CSV, except that `numeric` is named `numeric_code`.
 
 - `currency_codes`, `calling_codes`, `tlds`, `languages`, `borders` and `replaced_by` are native lists of strings (for example `list<string>` for `currency_codes`), not pipe-joined.
 - `independent` is a native boolean.
@@ -640,10 +643,10 @@ The registry has one grain: one row per `(alpha_2, status)` entry. The only tabl
 
 Four properties to know before you join to it:
 
-- **It counts all 277 entries, active and withdrawn.** `country_count` sums to 277 and `independent_count` to 206, not to the 252 and 195 of the active entries. For active-only counts, query `iso3166.parquet`.
-- **Null does not equal null.** A withdrawn entry has no `region`, so the 25 withdrawn entries and the 5 active entries without a region (`AQ`, `EU`, `TW`, `UK`, `XK`) fall into rows with a null `region`. Join on region with `IS NOT DISTINCT FROM`, or an ordinary `=` join silently drops them.
+- **It counts all 282 entries, active and withdrawn.** `country_count` sums to 282 and `independent_count` to 206, not to the 252 and 195 of the active entries. For active-only counts, query `iso3166.parquet`.
+- **Null does not equal null.** A withdrawn entry has no `region`, so the 30 withdrawn entries and the 5 active entries without a region (`AQ`, `EU`, `TW`, `UK`, `XK`) fall into rows with a null `region`. Join on region with `IS NOT DISTINCT FROM`, or an ordinary `=` join silently drops them.
 - **The join key is the pair.** `Melanesia` and `Micronesia` appear under Oceania and, for withdrawn entries, with a null region; `Southern Europe` appears under Europe and under a null region. Join on `(region, subregion)`.
-- **`AI` and `SK` are counted twice**, once as the active entry and once as the withdrawn one.
+- **`AI`, `BQ`, `BY`, `GE` and `SK` are counted twice**, once as the active entry and once as the withdrawn one.
 
 The file carries no `iso3166.*` footer metadata, and is not a version site.
 
@@ -735,17 +738,17 @@ What the numbers say:
 - **A current alias would have answered all four dates the same.** `is_eu` over the 252 entries gives 27 today. A fact table dated 1990 joined on `is_eu` mislabels 16 countries that were not yet members and the UK, which was.
 - **"Uses the euro" is not "is in the eurozone".** 36 entries list `EUR`; 21 are members. The other 15 are microstates and overseas territories (`AD`, `MC`, `SM`, `VA`, `ME`, the French departments and collectivities) that use the euro without membership. The registry keeps both facts.
 
-**What the example costs to store.** The example reads one file, `iso3166.parquet`: 41,100 bytes on disk for 277 rows (252 active entries and 25 withdrawn) in 26 columns, about 148 bytes per row, measured at v1.12.12 with PyArrow 26.0.0 (`wc -c iso3166.parquet`; Parquet bytes depend on the PyArrow version). Loaded into pandas 3.0.6 and measured with `memory_usage(deep=True)`, the same table takes 378,278 bytes in memory, about 1,366 bytes per row, because the club cells and the list columns are strings and lists. The ISO 4217 registry's `orders-5k` example reports 93 bytes per order in memory. The two numbers answer different questions. An orders table grows with the business, so its per-row cost is the number to budget. The country table does not grow with it: it is a fixed lookup of 277 rows that every order joins to, held once per process however many orders reference it. The countries are the smaller join table, and the cost to plan for is the join, not the table.
+**What the example costs to store.** The example reads one file, `iso3166.parquet`: 44,233 bytes on disk for 282 rows (252 active entries and 30 withdrawn) in 26 columns, about 157 bytes per row, measured at v1.14.0 with PyArrow 26.0.0 (`wc -c iso3166.parquet`; Parquet bytes depend on the PyArrow version). Loaded into pandas 3.1.1 and measured with `memory_usage(deep=True)`, the same table takes 388,327 bytes in memory, about 1,377 bytes per row, because the club cells and the list columns are strings and lists. The ISO 4217 registry's `orders-5k` example reports 93 bytes per order in memory. The two numbers answer different questions. An orders table grows with the business, so its per-row cost is the number to budget. The country table does not grow with it: it is a fixed lookup of 282 rows that every order joins to, held once per process however many orders reference it. The countries are the smaller join table, and the cost to plan for is the join, not the table.
 
 ### Which countries were active in 1990?
 
-`active_on(date)` answers `is_active_on` for every code at once: 275 keys (the 252 active entries and the 23 withdrawn codes that are not also active), each `true`, `false` or `null`. The trap is `null`. It means the source is silent, not "no", and on 1990-01-01 it covers 77 active entries, including `CZ`, `SK` and `RU`.
+`active_on(date)` answers `is_active_on` for every code at once: 277 keys (the 252 active entries and the 25 withdrawn codes that are not also active), each `true`, `false` or `null`. The trap is `null`. It means the source is silent, not "no", and on 1990-01-01 it covers 77 active entries, including `CZ`, `SK` and `RU`, and two withdrawn ones, `PU` and `FX`, whose ISO pages give no withdrawal date.
 
 ```python
 from iso3166 import CountryRegistry
 
 reg = CountryRegistry()
-r = reg.active_on("1990-01-01")          # {alpha_2: True | False | None}, 275 codes
+r = reg.active_on("1990-01-01")          # {alpha_2: True | False | None}, 277 codes
 
 yes     = sorted(c for c, v in r.items() if v is True)
 no      = sorted(c for c, v in r.items() if v is False)
@@ -760,14 +763,14 @@ print("CZ, SK, RU are unknown, not false:", [r[c] for c in ("CZ", "SK", "RU")])
 ```
 
 ```text
-True 169, False 29, None 77  (of 275)
-filtering on truthiness keeps 169; it drops 76, e.g. ['AI', 'AM', 'AQ', 'AS']
+True 169, False 29, None 79  (of 277)
+filtering on truthiness keeps 169; it drops 79, e.g. ['AI', 'AM', 'AQ', 'AS']
 DD, SU, YU were active: True
 CS is the 2003 entry, not Czechoslovakia: False
 CZ, SK, RU are unknown, not false: [None, None, None]
 ```
 
-A universe built from `if v` is 169 codes, not the 246 the registry can place (169 true plus 77 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU` and `YU` were assigned and the current entries for Germany, Russia and the others cannot stand in for them. `CS` answers `false`: the registry's `CS` is Serbia and Montenegro, assigned 2003-07-23; in 1990 `CS` meant Czechoslovakia (ISO 3166-3 `CSHH`), which the registry does not hold.
+A universe built from `if v` is 169 codes, not the 248 the registry can place (169 true plus 79 unknown). Decide per use whether unknown means in or out, and count the unknowns so the choice is visible. The withdrawn codes matter here: in 1990 `DD`, `SU` and `YU` were assigned and the current entries for Germany, Russia and the others cannot stand in for them. `CS` answers `false`: the registry's `CS` is Serbia and Montenegro, assigned 2003-07-23; in 1990 `CS` meant Czechoslovakia (ISO 3166-3 `CSHH`), which the registry does not hold.
 
 **What happens when the code is wrong?** An unknown code is an ordinary answer, not an error: `active("XX")` is `None`, `currencies("XX")` is `[]` (the same as real `AQ`, which has no currency), `is_eu_member_at("XX", d)` is `false`. A malformed *date* is an error. Lowercase codes work; padded ones (`" us "`) do not in a lookup, though they do in the dated queries. The table, per surface, is in [section 4b](#4b-api-contract).
 
@@ -799,7 +802,7 @@ The command is `iso3166`. Two files implement it: the packaged CLI (`wrappers/py
 | `region-countries REGION [--subregion S]` | Codes in a region |
 | `introduced CODE` | The `introduced` date, or `unknown` |
 | `is-active-on CODE DATE` | Tri-state: `true`, `false`, `unknown` |
-| `active-on DATE` | `is-active-on` for every code: one `CODE<TAB>true\|false\|unknown` line each (275); `--json` prints an object |
+| `active-on DATE` | `is-active-on` for every code: one `CODE<TAB>true\|false\|unknown` line each (277); `--json` prints an object |
 
 **Queries that do not exist.** There is no `root` and no `siblings` query, in the CLI or in any wrapper. There is no query named `descendants` either: `successors CODE` is the descendants query (the transitive closure of `replaced_by`), and `predecessors CODE` is its reverse. The repository records no decision about `root` or `siblings`, so no reason for their absence is given here; they are not implemented.
 
@@ -1022,7 +1025,7 @@ The [`Makefile`](./Makefile) at the repository root names the commands that alre
 
 One workflow, [`.github/workflows/validate.yml`](./.github/workflows/validate.yml), with 23 CI jobs. It runs on pushes to `main` and to `v*` branches, on pull requests to `main`, and on manual dispatch, and ignores pushes that touch only `.gitignore`, `.gitattributes` or `LICENSE`. It has read-only `contents` permission and cancels an in-progress run for the same ref.
 
-There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.14.0, the sanctions release, has not shipped.
+There is no sanctions workflow. `sanctions-freshness.yml` does not exist: v1.15.0, the sanctions release, has not shipped.
 
 | Job | What it runs |
 |-----|--------------|
@@ -1133,7 +1136,7 @@ iso3166/
   iso3166.csv                               # CURATED: CSV, RFC 4180, 26 columns
   iso3166.european.csv                      # CURATED: CSV, semicolon-delimited
   iso3166.excel.csv                         # CURATED: CSV with UTF-8 BOM
-  iso3166.json                              # RAW: the registry (252 active, 25 withdrawn)
+  iso3166.json                              # RAW: the registry (252 active, 30 withdrawn)
   iso3166.mysql.sql                         # CURATED: SQL, MySQL 8+ / MariaDB 10.4+
   iso3166.parquet                           # CURATED: Parquet, 26 columns (version site: footer)
   iso3166.postgresql.sql                    # CURATED: SQL, PostgreSQL 12+
@@ -1164,13 +1167,13 @@ iso3166/
     SPEC-v1.12.0-phase1.md                  # v1.12.0 Phase 1 spec: the club-membership snapshots
     SPEC-v1.12.1-readme.md                  # The v1.12.1 README rewrite: audit, and where the prompt disagreed with the tree
     STATE.md                                # Generated current-state doc; numbers verified by check_state_doc.py
-    WITHDRAWN.md                            # Generated list of the 25 withdrawn codes
+    WITHDRAWN.md                            # Generated list of the 30 withdrawn codes
     introduced-reconnaissance.md            # `introduced` code by code: what the ledger and the OBP harvest show, what would replace each lead
     sanctions-reconnaissance.md             # Country-level sanctions sources, and why the registry has none
     v*-verification.md                      # 54 release gate records, v1.0.0 to v1.12.14
     v*-verification.md.sha256               # SHA-256 of each report, from v1.12.3 (sha256sum -c)
     v1.12.3-verification-errata.md          # Correction to the v1.12.3 report (11 of about 38 commands recorded)
-    withdrawn-completeness.md               # The 25 withdrawn entries against the 31 ISO 3166-3 pages, and the modelling questions
+    withdrawn-completeness.md               # The 30 withdrawn entries against the 31 ISO 3166-3 pages: 30 present, CSHH deferred to v2.0.0
     decisions/
       club-memberships.md                   # ADR: club membership arrays, sources, null policy
       cross-registry-edges.md               # ADR: the state of each edge to a sibling registry, 2026-11-04
@@ -1432,22 +1435,22 @@ Open an issue before starting a large change. Data corrections go through an enr
 
 Stated plainly, because a canonical registry is a claim and a claim needs its edges drawn.
 
-- **`introduced` is null for 77 of 252 active entries and 24 of the 25 withdrawn ones:** 28 quarantined (7 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
+- **`introduced` is null for 77 of 252 active entries and 29 of the 30 withdrawn ones:** 28 quarantined (7 confirmed, 21 likely), 46 source-silent, 3 not officially assigned. `is_active_on` answers `null` for them.
 - **The quarantine reasons for 21 of the 27 are `[likely]`,** inferred from the post-Soviet and post-Yugoslav succession and from newsletter dates, not from a primary record. Six are `[confirmed]` against the tree's own withdrawn entries.
 - **No historical currencies.** `currency_at` returns the entry's current currency inside its lifetime and `None` outside it. `currency_at("DE", "1990-01-01")` is `["EUR"]`, not the Deutsche Mark. For a withdrawn entry it returns the successor's current currency up to and including `withdrawal_date`.
 - **`introduced` and `is_active_on` have no data before 1974.** ISO 3166-1 starts in 1974; for a withdrawn entry before 1974-01-01 `is_active_on` is `null`.
 - **Club arrays reach back to the EU's 1958 founding.** `eu_membership` starts on 1958-01-01 (for `DE`); the EEA, eurozone and customs-union arrays start when those clubs did (1994, 1999, 1968-07-01). `is_eu_member_at`, `is_eea_member_at`, `is_eurozone_member_at` and `is_in_customs_union_at` answer for any date from 1958-01-01; they are not bounded by the 1974 limit, and before a club existed the answer is `false`. So `is_active_on("DE", "1960-01-01")` is `false` while `is_eu_member_at("DE", "1960-01-01")` is `true`.
 - **The club data and 162 of the 176 `introduced` dates are not first-party.** They rest on Wikipedia or a maintainer-supplied 1974 list under a documented exception; fourteen `introduced` dates come from ISO's Online Browsing Platform. Each snapshot is reviewed yearly (`refresh_cadence` `yearly`, `review_by` 2027-10-28 and 2027-10-29), and the four club snapshots cite a page title URL, not an `oldid` permalink.
 - **EEA provisional application is dated for 12 countries.** Croatia has formal dates only. The UK's EEA end (2020-12-31) is the page prose's date, and the state table disagrees; it is flagged likely in the snapshot.
-- **Five active entries have no region:** `AQ`, `EU`, `TW`, `UK`, `XK`. In `countries_by_region.parquet` they, and the 25 withdrawn entries, fall into rows with a null `region`.
-- **The aggregated table counts withdrawn entries.** Its 277 sums to the total, not to the 252 active entries, and `AI` and `SK` are counted twice.
+- **Five active entries have no region:** `AQ`, `EU`, `TW`, `UK`, `XK`. In `countries_by_region.parquet` they, and the 30 withdrawn entries, fall into rows with a null `region`.
+- **The aggregated table counts withdrawn entries.** Its 282 sums to the total, not to the 252 active entries, and `AI`, `BQ`, `BY`, `GE` and `SK` are counted twice.
 - **The club arrays are strings in CSV, TSV, SQL and Parquet,** in the `from:to|from:to` format, not native lists or structs. A consumer who wants ranges parses the string or reads the JSON.
 - **The SQL export has no `currency_codes` column;** currencies are in the `country_currencies` join table (249 rows).
 - **The packaged CLI's module docstring is stale:** it says twenty-three subcommands; both CLIs implement twenty-six. The repo CLI's docstring lists all twenty-six (corrected in v1.12.9).
 - **The release gate does not run the JavaScript, Go or Rust test suites.** It runs the Python suites, `cargo clippy` and the cross-language lookup; the other three run in CI, which the release script waits for before tagging.
 - **`independent` has no ISO OBP extract for `UK`** (`tools/independent_snapshot.json`), so that one value has no OBP source (`docs/STATE.md`, limitation 1).
-- **The sanctions release (v1.14.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
-- **The geography release (v1.15.0) is deferred.** There is no `regions.json` and no `timezones[]`.
+- **The sanctions release (v1.15.0) has not shipped.** No `sanctions_regime` field and no `is_sanctioned_at` query exists. A first attempt stopped because no first-party source was reachable.
+- **The geography release (v1.16.0) is deferred.** There is no `regions.json` and no `timezones[]`.
 - **No subdivisions.** ISO 3166-2 is not covered.
 - **Language packages are not published** to PyPI, npm, crates.io or a Go proxy. Install from a clone.
 - **The release script is Linux-only,** and its network-dependent steps (`gh`) need access to GitHub.
@@ -1477,8 +1480,8 @@ Both. The snapshot holds the formal entry into force and, for 12 countries, the 
 **What is the difference between `is_active_on` and `is_eu_member_at`?**
 `is_active_on` asks whether the *code* existed, and is tri-state because `introduced` can be null. `is_eu_member_at` asks whether the *country* was in a club, and is binary because the ranges are complete. Both are date-scoped.
 
-**Why do `AI` and `SK` appear twice?**
-Each is an active code (Anguilla, Slovakia) that ISO reused after an earlier entry with the same code was withdrawn. Key on `(alpha_2, status)`. Queries that take a code alone prefer the active entry.
+**Why do `AI`, `BQ`, `BY`, `GE` and `SK` appear twice?**
+Each is an active code (Anguilla, Bonaire, Belarus, Georgia, Slovakia) whose alpha-2 an earlier, withdrawn ISO 3166-3 entry also carried. Key on `(alpha_2, status)`, or on `alpha_4` for the withdrawn side. Queries that take a code alone prefer the active entry.
 
 **Why do 36 entries list EUR but only 21 are in the eurozone?**
 Membership and currency are different facts. Andorra, Monaco, San Marino, the Vatican, Montenegro, and several French and Finnish territories use the euro without being members.
@@ -1523,17 +1526,18 @@ Apache 2.0. See [`LICENSE`](./LICENSE). The country data in this registry is fac
 
 ## 24. What's next
 
-**v1.13.0 is prepared, not released:** the evidence ledger for `introduced` (`tools/introduced_evidence.json`) and its check, `introduced` dates from ISO 3166-1 newsletters (series V and VI) and the ISO Online Browsing Platform, the withdrawn report on ISO 3166-3 pages, `check_doc_status.py`, `make dev-install`, and one cadence vocabulary for every snapshot. Its entries are in `CHANGELOG.md` under `[Unreleased]`, and its release claims in `tools/release_claims.json`.
+**v1.14.0 is prepared, not released:** the withdrawn list against ISO 3166-3. Every withdrawn entry carries its ISO 3166-3 `alpha_4` and a `reservation` (exceptionally reserved: FX, SU; transitionally reserved: seven codes), with `status` unchanged; five ISO 3166-3 entries join (GE, BQ, BY, PU, FX), so the list holds every ISO 3166-3 entry but CSHH; numerics, three names and AN's withdrawal date are corrected against ISO's pages; `schema.json` is 1.1.0. Its entries are in `CHANGELOG.md` under `[Unreleased]`, and its release claims in `tools/release_claims.json`.
 
 Nothing after it is scheduled. Each item below starts when its trigger fires.
 
 | Deferred item | Trigger to start | Where decided |
 |---------------|------------------|---------------|
-| **v1.14.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
-| **v1.15.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
-| **v1.16.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
-| **v1.17.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
-| **v2.0.0:** a breaking schema change | A consumer needs one | This section |
+| **v1.15.0, sanctions:** `sanctions_regime`, `is_sanctioned_at(code, regime, date)` | A compliance consumer exists and a reliable country-level source is found | `docs/QUERIES-DECISIONS.md` (deferred table) |
+| **v1.16.0, geography:** `regions.json`, `timezones[]` | A consumer asks for `regions.json` or `timezones[]` | `docs/QUERIES-DECISIONS.md` |
+| **v1.17.0, ecosystem documentation:** a release that documents the six registries together as a platform. It is not this README, which documents ISO 3166 alone | The six registries are stable enough to be documented as a platform | This section |
+| **v1.18.0, subdivisions:** ISO 3166-2 as a `subdivisions.json` companion | A consumer asks for ISO 3166-2 subdivisions | `docs/QUERIES-DECISIONS.md` |
+| **v2.0.0, the withdrawn key:** the withdrawn list is keyed by `(alpha_2, alpha_4)`, and Czechoslovakia (`CSHH`) joins as a second withdrawn `CS` | The release that takes it; it breaks every lookup keyed by alpha-2 alone | [`withdrawn-alpha4.md`](./docs/decisions/withdrawn-alpha4.md) |
+| **v2.0.0:** any other breaking schema change | A consumer needs one | This section |
 | **`source_hash`** | A stable raw source appears; the current sources are not stable files | Previous README |
 
 See [`CHANGELOG.md`](./CHANGELOG.md) for release history and [`docs/decisions/`](./docs/decisions) for locked decisions.

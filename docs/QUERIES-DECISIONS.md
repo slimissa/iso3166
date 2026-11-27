@@ -17,7 +17,7 @@ The first draft of this design was written from memory of what the data
 reveal. Examples of what the tree said when asked:
 
 - The design expected `currency_at("DD", "1990-01-01")` to return the East
-  German mark. All 25 withdrawn entries have `currency_codes: null`; the
+  German mark. All 30 withdrawn entries have `currency_codes: null`; the
   currency is not in the tree, so the query returns the successor's current
   currency (`["EUR"]`, v1.11.1) and documents that it is not the mark.
 - The design expected `region_tree("TW")` to be `["Asia"]` and
@@ -180,10 +180,14 @@ wrapper that imported it would break outside a checkout.
 
 ## Why alpha-2 collisions resolve to the active entry
 
-`AI` and `SK` each name two entries. Every field read prefers the active one
+`AI`, `BQ`, `BY`, `GE` and `SK` each name two entries (the last three since
+v1.14.0). Every field read prefers the active one
 because that is what a consumer asking about "SK" in 2026 means. The
 succession graph can only use withdrawn entries (only they have
-`replaced_by`), so `successors("SK")` is `["IN"]`. The two rules can disagree
+`replaced_by`), so `successors("SK")` is `["IN"]`. A `replaced_by` that names
+such a code means its active entry, so a walk stops there (v1.14.0): `AN`'s
+`BQ` is Bonaire, and `successors("AN")` does not run on into the withdrawn
+British Antarctic Territory and `AQ`. The two rules can disagree
 about one code; the disagreement is stated in QUERIES.md instead of hidden by
 choosing one meaning for everything.
 
@@ -401,10 +405,10 @@ exact; where they do not it says so.
 | `is_active_on(code, date)` | done in v1.11.0 | Needed an `introduced` field |
 | `currency_at` (lifetime-bounded) | done in v1.11.1 | Uses `introduced` and `withdrawal_date` |
 | `currency_at` with historical currencies | a later release | Needs a source for currency history; none is in the tree |
-| `is_sanctioned_at(code, regime, date)` | v1.14.0 | Needs a `sanctions_regime[]` field |
-| `timezone_of(code)` | v1.15.0 | Needs a `timezones[]` field |
-| `subdivisions_of(code)` | v1.17.0 | Needs a `subdivisions.json` companion |
-| `is_landlocked(code)` | v1.15.0 or never | Not derivable from `borders`; needs coastline data |
+| `is_sanctioned_at(code, regime, date)` | v1.15.0 | Needs a `sanctions_regime[]` field |
+| `timezone_of(code)` | v1.16.0 | Needs a `timezones[]` field |
+| `subdivisions_of(code)` | v1.18.0 | Needs a `subdivisions.json` companion |
+| `is_landlocked(code)` | v1.16.0 or never | Not derivable from `borders`; needs coastline data |
 | `population_of`, `gdp_of` | never | The registry is identity, not demographics |
 | `flag_emoji(code)` | never | Derivable from `alpha_2`; not a registry concern |
 | Area-code narrowing for `calling_code_for` | not scheduled | Needs numbering-plan data the tree does not carry |
