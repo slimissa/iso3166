@@ -169,9 +169,13 @@ WITHDRAWN_ISO3166_CODES: frozenset[str] = frozenset({
     "ZR",
 })
 
-WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES: frozenset[str] = frozenset()
+WITHDRAWN_EXCEPTIONAL_RESERVATION_CODES: frozenset[str] = frozenset({
+    "SU",
+})
 
-WITHDRAWN_TRANSITIONAL_RESERVATION_CODES: frozenset[str] = frozenset()
+WITHDRAWN_TRANSITIONAL_RESERVATION_CODES: frozenset[str] = frozenset({
+    "AN", "BU", "CS", "NT", "TP", "YU", "ZR",
+})
 
 EXCEPTIONALLY_RESERVED_CODES: frozenset[str] = frozenset({
     "EU", "UK",

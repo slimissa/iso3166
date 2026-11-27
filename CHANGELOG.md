@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `schema.json` is version 1.1.0 (was 1.0.0), and `meta.schema_version` follows. The change is additive.
 - A withdrawn entry may have a null `withdrawal_date` when it carries its ISO 3166-3 `alpha_4` (its ISO page exists and gives no date). `is_active_on` answers null (unknown) for such an entry, and false only before a known `introduced`, in all four wrappers.
+- `alpha_4` is filled for all 25 withdrawn entries, each from its ISO Online Browsing Platform page (the maintainer's saves of 2026-11-25; sha256 in `docs/withdrawn-completeness.md`): `AIDJ` to `ZRCD`, with `CSXX` for Serbia and Montenegro. Each page's alpha-3 matches the row's. `tests/test_withdrawn_iso3166_3.py` pins the values.
+- `reservation` is filled from each entry's ISO alpha-2 page: `exceptionally-reserved` for `SU` ("Exceptionally reserved", "reserved at the request of the Foundation for Internet Development (FID)"), `transitionally-reserved` for the seven codes ISO reserves transitionally (AN, BU, CS, NT, TP, YU, ZR), null for the other 17, which ISO shows as formerly used. `status` stays `withdrawn` on all 25. Each reserved row's `note` gains a line with ISO's status and its remark, which for the seven gives the reservation period (e.g. "Reserved from 2010-12 to 2060-12").
 
 ### Fixed
 
